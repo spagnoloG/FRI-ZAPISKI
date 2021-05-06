@@ -396,7 +396,7 @@ enotska ali identicna matirka.
     $
 \end{center}
 
-\section{Sistemi linearnih enacb}
+\section{\underline{Sistemi linearnih enacb}}
 
 \textbf{2.1} Kvadratna matrika A je obrnljiva, ce obstaja taka matrika
 $A^{-1}$, da je
@@ -459,6 +459,62 @@ diagonalna matrika, ki ima na diagonali elemente $a_{ii}^{-1}$
     \end{bmatrix}
     $
 \end{center}
+
+\textbf{2.10} Za izracun inverza matrike A, uporabimo gausovo eliminacijo nad
+matriko $\begin{bmatrix}A|I\end{bmatrix}$
+\begin{center}
+    $\begin{bmatrix}A|I\end{bmatrix} =
+    \begin{bmatrix}I|A^{-1}\end{bmatrix}
+    $
+\end{center}
+
+\textbf{2.11} Matrika A je simetricna $\Leftrightarrow A^{T} = A$. Za elemente
+$a_{ij}$ simetricne matirke velja $a_{ij} = a_{ji}$.
+
+\textbf{2.12} Ce je matrika A simetricna in obrnljiva, je tudi $A^{-1}$ simetricna.
+
+\textbf{2.13} Ce je R poljubna (lahko tudi pravokotna) matrika, sta $R^{T}R$ in
+$RR^{T}$ simetricni matriki.
+
+\section{\underline{Vektorski prostori}}
+
+\textbf{3.1} Realni vektorski prostor V je mnozica "vektorjev" skupaj z pravili za
+\begin{itemize}
+    \item sestevanje vektorjev,
+    \item mnozenje vektorja z realnim stevilom (skalarjem)
+\end{itemize}
+Ce sta $\vec{x}$ in $\vec{y}$ poljubna vektorja v V, morajo biti v V tudi
+\begin{itemize}
+    \item vsota $\vec{x} + \vec{y}$ in 
+    \item produkti $\alpha\vec{x}$ za vse $\alpha \in R$
+\end{itemize}
+V vektorskem prostoru V morajo biti tudi VSE linearne kombinacije
+$\alpha\vec{x} + \beta\vec{y}$
+
+\textbf{Pravila za operacije v vektorskih prostorih}\\
+Operaciji sestevanja vektorjev in mnozenja vektorja s skalarjem v vektorskem prostoru
+morajo zadoscati naslednjim pravilom:
+\begin{itemize}
+    \item $\vec{x} + \vec{y} = \vec{y} + \vec{x}$ (komutativnost)
+    \item $\vec{x} + (\vec{y} + \vec{z}) = (\vec{x} + \vec{y}) + \vec{z}$ (asociativnost)
+    \item obstaja en sam nenicelni vektor $\vec{0}$, da velja $\vec{x} + \vec{0} = \vec{x}$
+    \item za vsak $\vec{x}$ obstaja natanko en $-\vec{x}$, da je $\vec{x} + (-\vec{x}) = \vec{0}$
+    \item $1 \cdot \vec{x} = \vec{x}$
+    \item $(\alpha\beta)\vec{x} = \alpha(\beta\vec{x})$
+    \item $\alpha(\vec{x} + \vec{y}) = \alpha\vec{x} + \alpha\vec{y}$ (distributivnost)
+    \item $(\alpha + \beta)\vec{x} = \alpha\vec{x} + \beta\vec{x}$
+\end{itemize}
+
+\textbf{3.2} Podmnozica U vektorskega prostora V je \textit{vektorski podprostor}, ce je za
+vsak par vektorjev $\vec{x}$ in $\vec{y}$ iz U in vsako realno stevilo $\alpha$ tudi
+\begin{itemize}
+    \item $\vec{x} + \vec{y} \in U$ in
+    \item $\alpha\vec{x} \in U$.
+\end{itemize}
+
+\textbf{3.3} Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
+kombinacija vektorjev iz U tudi v U.
+
 
 \end{multicols}
 \end{document}
