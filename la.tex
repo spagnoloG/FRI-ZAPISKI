@@ -381,7 +381,84 @@ potem lahko matriki pomnozimo blocno:
     \end{bmatrix}$
 \end{center}
 
+\textbf{1.31} Kvadratna matrika $I_{k}$ reda $k \times k$, ki ima vse diagonalne
+elemente enake 1, vse ostale elemente pa 0 ima lastnost, da za vsako matriko A
+reda $m \times n$ velja $AI_{n} = A$ in $I_{m}A = A$. Matrika $I_{k}$ se imenuje
+enotska ali identicna matirka.
+\begin{center}
+    $I_{k}=
+    \begin{bmatrix}
+        1 & 0 & \hdots & 0\\
+        0 & 1 & \hdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \hdots & 1
+    \end{bmatrix} 
+    $
+\end{center}
+
 \section{Sistemi linearnih enacb}
+
+\textbf{2.1} Kvadratna matrika A je obrnljiva, ce obstaja taka matrika
+$A^{-1}$, da je
+\begin{center}
+    $AA^{-1} = I\;
+    in\;
+    A^{-1}A = I
+    $
+\end{center}
+Matrika $A^{-1}$ (ce obstaja) se imenuje matriki A inverzna matrika.
+Matrika, ki ni obrnljiva, je singularna.
+
+\textbf{2.2} Kvadratna matirka reda $n$ je obrnljiva natanko tedaj, ko pri
+gaussovi eliminaciji dobimo $n$ pivotov.
+
+\textbf{2.3} Vsaka obrnljiva matrika ima eno samo inverzno matriko.
+
+\textbf{2.4} Inverzna matrika inverzne matrike $A^{-1}$ je matrika A
+\begin{center}
+    $(A^{-1})^{-1} = A$
+\end{center}
+
+\textbf{2.5} Ce je matrika A obrnljiva, potem ima sistem enacb
+$A\vec{x} = \vec{b}$ edino resitev $\vec{x} = A^{-1} \vec{b}$
+
+\textbf{2.6} Ce obstaja nenicelna resitev $\vec{x}$ enacbe $A\vec{x} = \vec{0}$,
+matrika A ni obrnljiva(je singularna).
+
+\textbf{2.7} Ce sta matirki A in B istega reda obrnljivi, je obrnljiv tudi
+produkt $A \cdot B$ in
+\begin{center}
+    $(A \cdot B)^{-1} =
+    B^{-1} \cdot A^{-1}
+    $
+\end{center}
+
+\textbf{Pozor!} Pravilo
+\begin{center}
+    $(AB)^{p} = A^{p}B^{p}$
+\end{center}
+velja le v primeru, ko matriki A in B komutirata, torej $AB = BA$.
+
+\textbf{2.8} Inverz transponirane matrike je transponirana matrika inverza
+\begin{center}
+    $(A^{T})^{-1} = (A^{-1})^{T}$
+\end{center}
+
+\textbf{2.9} Inverz diagonalne matrike z diagonalnimi elementi $a_{ii}$ je
+diagonalna matrika, ki ima na diagonali elemente $a_{ii}^{-1}$
+\begin{center}
+    $\begin{bmatrix}
+        a_{11} &        & 0\\
+               & \ddots &\\
+        0      &        & a_{nn}
+    \end{bmatrix}=
+    \begin{bmatrix}
+        a_{11}^{-1} &        & 0\\
+                    & \ddots &\\
+        0           &        & a_{nn}^{-1}
+    \end{bmatrix}
+    $
+\end{center}
 
 \end{multicols}
 \end{document}
