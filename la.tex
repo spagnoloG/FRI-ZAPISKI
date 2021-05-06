@@ -2,7 +2,6 @@
 \usepackage[margin=0.2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{multicol}
-\usepackage{lipsum}% dummy text
 
 \setlength{\columnseprule}{0.4pt}
 
@@ -515,6 +514,86 @@ vsak par vektorjev $\vec{x}$ in $\vec{y}$ iz U in vsako realno stevilo $\alpha$ 
 \textbf{3.3} Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
 kombinacija vektorjev iz U tudi v U.
 
+\textbf{Lastnosti vektorskih podprostorov}
+\begin{itemize}
+    \item Vsak vektorski podprostor nujno vsebuje nicelni vektor $\vec{0}$
+    \item Presek dveh podprostorov vektorskega podprostora je tudi podprostor
+\end{itemize}
+
+\textbf{3.4} Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
+vektorskega prostora $R^{m}$, ki vsebuje natanko vse linearne kombinacije stolpcev matrike A.\\
+\textit{neformalno: linearna ogrinjaca stolpcev matrike (npr. ce imas 5 stolpcev pa lahko 2 zapises kot linearno kombinacijo ostalih 3 bo imel column space 3 elemente)}
+
+\textbf{3.5} Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
+$\vec{b} \in C(A)$
+
+\textbf{3.6} Naj bo matrika $A \in R^{m \times n}$. Mnozica resitev homogenega sistema linearnih
+enacb je podprostor v vektorskem prostoru $R^{n}$.
+
+\textbf{3.7} Mnozica vseh resitev sistema linearnih enacb $A\vec{x} = \vec{0}$ se imenuje nicelni
+prostor matirke A. Oznacujemo ga z N(A).\\
+\textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor}
+
+\textbf{3.8} Ce je matrika A kvadratna in ni obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
+
+\textbf{3.9} Matrika ima \textit{stopnicasto} obliko, kadar se vsaka od njenih vrstic zacne z vsaj eno
+niclo vec kot prejsnja vrstica.
+
+\textbf{3.10} Prvi element, razlicen od nic v vsaki vrstici, je \textit{pivot}. Stevilo pivotov v matriki
+se imenuje rang matrike. Rang matrike A zapisemo kot $rang(A)$.
+
+\textbf{3.11} Rang matrike ni vecji od stevila vrstic in ni vecji od stevila stolpcev matrike.
+
+\textbf{3.12}
+\begin{center}
+    \textit{Stevilo prostih neznank matrike = st. stolpcev - rang matrike}   
+\end{center}
+
+\textbf{3.13}
+\begin{enumerate}
+    \item Visoka in ozka matrika $(m > n)$ ima poln stolpicni rang, kadar je $rang(A) = n$
+    \item Nizka in siroka matrika $(m < n)$ ima poln vrsticni rang, kadar je $rang(A) = m$
+    \item Kvadratna matrika $(n = m)$ ima poln rang, kadar je $rang(A) = m = n$
+\end{enumerate}
+
+\textbf{3.14} Za vsako matriko A s polnim stolpicnim rangom $r = n \leq m$, velja:
+\begin{enumerate}
+    \item Vsi stolpci A so pivotni stolpci
+    \item Sistem enacb $A\vec{x} = \vec{0}$ nima prostih neznank, zato tudi nima posebnih resitev
+    \item Nicelni prostor $N(A)$ vsebuje le nicelni vektor $N(A) = \{\vec{0}\}$
+    \item Kadar ima sistem enacb $A\vec{x} = \vec{b}$ resitev(kar ni vedno res!), je resitev ena sama
+    \item Reducirana vrsticna oblika matrike (A) se da zapisati kot
+\end{enumerate}
+\begin{center}
+    $R =
+    \begin{bmatrix}
+        I\\
+        0
+    \end{bmatrix}
+    \begin{bmatrix}
+        n \times n\; enotska\; matrika\\
+        m - n\; vrstic\; samih\; nicel\;
+    \end{bmatrix}
+    $
+\end{center}
+
+\textbf{3.15} Za vsako matriko A s polnim vrsticnim rangom $r = m \leq n$ velja:
+\begin{enumerate}
+    \item Vse vrstice so pivotne, ni prostih vrstic in U (stopnicasta oblika) in R(reducirana stopnicasta oblika) nimata nicelnih vrstic
+    \item Sistem enacb $A\vec{x} = \vec{b}$ je resljiv za vsak vektor $\vec{b}$
+    \item Sistem $A\vec{x} = \vec{b}$ ima $n-r = n-m$ prostih neznank, zato tudi prav toliko posebnih resitev
+    \item Stolpicni prostor $C(A)$ je ves prostor $R^{m}$
+\end{enumerate}
+
+\textbf{3.16} Za vsako kvadratno matriko A polnega ranga (rang(A) = m = n) velja:
+\begin{enumerate}
+    \item Reducirana vrsticna oblika matrike A je enotska matrika
+    \item Sistem enacb $A\vec{x} = \vec{b}$ ima natancno eno resitev za vsak vektor desnih strani $\vec{b}$
+    \item Matrika A je obrnljiva
+    \item Nicelni prostor matrike A je samo nicelni vektor $N(A) = \{\vec{0}\}$
+    \item Stolpicni prostor matrike A je cel prostor $C(A) = R^{m}$
+\end{enumerate}
+ 
 
 \end{multicols}
 \end{document}
