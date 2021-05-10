@@ -593,7 +593,67 @@ se imenuje rang matrike. Rang matrike A zapisemo kot $rang(A)$.
     \item Nicelni prostor matrike A je samo nicelni vektor $N(A) = \{\vec{0}\}$
     \item Stolpicni prostor matrike A je cel prostor $C(A) = R^{m}$
 \end{enumerate}
+
+\textbf{3.17} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so linearno neodvisni, ce je
+\begin{center}
+    $ 0\vec{x_{1}} + 0\vec{x_{2}} + \dots + 0\vec{x_{n}}$
+\end{center}
+edina njihova linearna kombinacija, ki je enaka vektorju $\vec{0}$. Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so
+linearno odvisni, \textit{ce niso linearno neodvisni}.
+
+\textbf{3.18} Ce so vektorji \textit{odvisni}, lahko vsaj enega izrazimo z ostalimi.
+
+\textbf{3.19} Ce je med vektorji  $\vec{u_{1}}, \dots,\vec{u_{n}}$ tudi nicelni vektor, so 
+vektorji \textit{linearno odvisni}.
+
+\textbf{3.20} Vsaka mnozica n vektorjev iz $R^{n}$ je odvisna, kadar je $n > m $.
+
+\textbf{3.21} Stolpci matrike A so linearno neodvisni natanko tedaj, ko ima homogena enacba
+$A\vec{x} = \vec{0}$ edino resitev $\vec{x} = \vec{0}$.
+
+\textbf{3.22} Kadar je $rang(A) = n$, so stolpci matrike $A \in R^{m \times n}$ linearno
+neodvisni. Kadar je pa $rang(A) < n$, so stolpci matrike $A \in R^{m \times n}$ linearno odvisni.
+
+\textbf{3.23} Kadar je $rang(A) = m$, so vrstice matrike $A \in R^{m \times n}$ linearno neodvisne.
+Kadar je pa $rang(A) < m$, so vrstice matrike $A \in R^{m \times n}$ linearno odvisne.
+
+\textbf{3.24} Vrsticni prostor matrike A je podprostor v $R^{n}$, ki ga razpenjajo vrstice matrike A.
+
+\textbf{3.25} Vrsticni prostor matrike A je $C(A^{T})$, stolpicni prostor matrike $A^{T}$.
+
+\textbf{3.26} \textit{Baza vektorskega prostora} je mnozica vektorjev, ki
+\begin{enumerate}
+    \item je linearno neodvisna in
+    \item napenja cel prostor.
+\end{enumerate}
+
+\textbf{3.27} Vsak vektor iz vektorskega prostora lahko na en sam nacin izrazimo
+kot linearno kombinacijo baznih vektorjev.
  
+\textbf{3.28} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so baza prostora $R^{n}$ natanko tedaj, kadar 
+je matrika, sestavljena iz stolpcev $\vec{x_{1}}, \dots,\vec{x_{n}}$, obrnljiva.
+
+\textbf{3.29} Prostor $R^{n}$ ima za $n > 0$ neskoncno mnogo razlicnih baz.
+
+\textbf{3.30} Ce sta mnozici vekotrjev {$\vec{v_{1}}, \dots,\vec{v_{m}}$} in $\vec{u_{1}}, \dots,\vec{u_{n}}$
+obe bazi istega vektorskega prostora, potem je $m = n \implies$ vse baze istega vektorskega prostora imajo
+isto stevilo vektorjev.
+
+\textbf{3.31} \textit{Dimenzija} vektroskega prostora je stevilo baznih vektorjev.
+
+\textbf{3.32} Dimenziji stolpicnega prostora $C(A)$ in vrsticnega prostora $C(A^{T})$ sta enaki rangu matrike $A$
+\begin{center}
+    $dim(C(A)) = dim(C(A^{T})) = rang(A)$.
+\end{center}
+
+\textbf{3.33} Dimenzija nicelnega prostora $N(A)$ matrike A z $n$ stolpci in ranga $r$
+je enaka $dim(N(A)) = n - r$.
+
+\textbf{3.34} Stolpicni prostor $C(A)$ in vrsticni prostor $C(A^{T})$ imata oba dimenzijo r. Dimenzija
+nicelnega prostora $N(A)$ je $n -r$, Dimenzija levega nicelnega prostora $N(A^{T})$ pa je $m - r$.
+
+\textbf{3.35} Vsako matriko ranga 1 lahko zapisemo kot produkt(stolpcnega) vektorja z vrsticnim
+vektorjem $A = \vec{u}\vec{v}^{T}$.
 
 \end{multicols}
 \end{document}
