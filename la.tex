@@ -655,5 +655,48 @@ nicelnega prostora $N(A)$ je $n -r$, Dimenzija levega nicelnega prostora $N(A^{T
 \textbf{3.35} Vsako matriko ranga 1 lahko zapisemo kot produkt(stolpcnega) vektorja z vrsticnim
 vektorjem $A = \vec{u}\vec{v}^{T}$.
 
+\section{\underline{Linearne preslikave}}
+
+\textbf{4.1} Preslikava $A: U \rightarrow V$ je linearna, ce velja
+\begin{enumerate}
+    \item aditivnost: $A(\vec{u}_{1} + \vec{u}_{2}) = A\vec{u}_{1} + A\vec{u}_{2}$ za vse $\vec{u}_{1}, \vec{u}_{2} \in U$,
+    \item homogenost: $A(\alpha \vec{u}) = \alpha(A\vec{u})$ za vse $\alpha \in R$ in $\vec{u} \in U$.
+\end{enumerate}
+
+\textbf{4.2} Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
+\begin{center}
+    $A(\alpha_{1}\vec{u}_{1} + \alpha_{2}\vec{u}_{2}) = \alpha_{1}A\vec{u}_{1} + \alpha_{2}A\vec{u}_{2}$
+\end{center}
+za vse $\alpha_{1}, \alpha_{2} \in R$ in vse $\vec{u}_{1}, \vec{u}_{2} \in U$.
+
+\textbf{4.3} Ce je A \textit{linearna preslikava}, je $A\vec{0} = \vec{0}$.
+
+\textbf{4.4} Naj bo $A: U \rightarrow V$ linearna preslikava in $\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$
+linearna kombinacija vektorjev. Potem je A($\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$) = $\sum_{i=1}^{k} \alpha_{i}A\vec{u}_{i}$.
+
+\textbf{4.5} Naj bo $\beta =$ $\{ \vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za vektorski prostor U. Potem je linearna
+preslikava $A: U \rightarrow V$ natanko dolocena, ce poznamo slike baznih vektorjev.
+
+\textbf{4.6} Naj bo $\beta =$ $\{\vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za U in $\{\vec{v_{1}}, \dots,\vec{v_{n}}\}$.
+Potem obstaja natanko ena linearna preslikava $A: U \rightarrow V$, za katero je $A\vec{u}_{i} = \vec{v}_{i}$ za $i = 1, 2, \dots, n$.
+
+\textbf{4.7} Naj bo $A: U \rightarrow V$ linearna preslikava. Potem mnozico
+\begin{center}
+    $ker A = \{ \vec{u} \in U; A\vec{u} = \vec{0}\}$
+\end{center}
+imenujemo \textit{jedro} linearne preslikave. Ker je $A\vec{0} = \vec{0}$, je $\vec{0} \in$ ker A za vse A.
+Zato je jedro vedno neprazna mnozica.
+
+\textbf{4.8} Jedro linearne preslikave $A: U \rightarrow V$ je vektorski podprostor v U.
+
+\textbf{4.9} Mnozico
+\begin{center}
+    $im\; A = \{ \vec{v} \in V; obstaja\; tak\; \vec{u} \in U,\; da\; je\; \vec{v} = A\vec{u} \}$
+\end{center}
+imenujemo \textit{slika} linearne preslikave $A: U \rightarrow V$.
+
+\textbf{4.10} Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
+vektorski podprostor v V.
+
 \end{multicols}
 \end{document}
