@@ -789,5 +789,133 @@ ortogonalnih polinomov, kadar
 
 \section{\underline{Determinante}}
 
+\textbf{6.1} Determinanta enotske matirke je\\ $det(I) = 1$.
+\begin{center}
+    \begin{math}
+        \begin{vmatrix}
+            1 & 0\\
+            0 & 1
+        \end{vmatrix}
+        = 1\; in\;
+        \begin{vmatrix}
+            1 & & 0\\
+            & \ddots &\\
+            0 & & 1\\
+        \end{vmatrix}
+        = 1.
+    \end{math}
+\end{center}
+
+\textbf{6.2} Determinanta spremeni predznak, ce med seboj zamenjamo dve vrstici.
+
+\textbf{6.3} Determinanta je linearna funkcija vsake vrstice posebej. To pomeni, da se
+\begin{enumerate}
+    \item determinanta pomnozi s faktorjem t, ce eno vrstico determinante(vsak element v tej vrstici)
+    pomnozimo s faktorjem t.
+    \begin{center}
+        \begin{math}
+            \begin{vmatrix}
+                ta & tb\\
+                c  & d\\
+            \end{vmatrix}
+            = t
+            \begin{vmatrix}
+                a & b\\
+                c & d\\
+            \end{vmatrix}
+        \end{math}
+    \end{center}
+    \item determinanta je vsota dveh determinant, ki se razlikujeta le v eni vrstici,
+    ce je v provitni determinanti ta vrstica vsota obeh vrstic, ostale vrstice pa so enake
+    v vseh treh determinantah.
+    \begin{center}
+        \begin{math}
+            \begin{vmatrix}
+                a + a' & b + b'\\
+                c      &      d\\
+            \end{vmatrix} =
+            \begin{vmatrix}
+                a & b\\
+                c & d\\
+            \end{vmatrix} +
+            \begin{vmatrix}
+                a' & b'\\
+                c & d\\
+            \end{vmatrix}
+        \end{math}
+    \end{center}
+\end{enumerate}
+
+\textbf{Pozor!} Kadar mnozimo matriko A s skalarjem t, se vsak element matrike pomnozi s skalarjem.
+Ko racunamo determinanto produkta matirke s skalarjem $tA$, skalar $t$ izpostavimo iz vsake vrstice posebej,
+zato je $det(tA) = t^{n}det(A)$, kjer je $n$ stevilo vrstic (ali stolpcev) determinante.
+
+\textbf{6.4} Matrika, ki ima dve enaki vrstici, ima determinanto enako 0.
+
+\textbf{6.5} Ce v matriki od poljubne vrstice odstejemo mnogokratnik neke druge vrstice,
+se njena determinanta ne spremeni.
+
+\textbf{6.6} Naj bo $A$ poljubna kvadratna matirka $n \times n$ in $U$ njena vrsticno-stopnicasta
+oblika, ki jo dobimo z \textit{Gaussovo eliminacijo}. Potem je 
+\begin{center}
+    $det(A) = \pm det(U)$.
+\end{center}
+
+\textbf{6.7} Determinanta, ki ima vrstico samih nicel, je enaka 0.
+
+\textbf{6.8} Determinanta trikotne matrike $A$ je produkt diagonalnih elementov:
+\begin{center}
+    $det(A) = a_{11}a_{22} \hdots a_{nn}$.
+\end{center}
+
+\textbf{6.9} Determinanta singularne matrike je enaka 0, determinanta obrnljive matrike je razlicna od 0.
+
+\textbf{6.10} Determinanta produkta dveh matrik je enaka produktu determinant obeh matrik:
+\begin{center}
+    $det(AB) = det(A)det(B)$.
+\end{center}
+
+\textbf{6.11} Determinanta inverzne matrike je enaka
+\begin{center}
+    $det(A^{-1}) = 1/det(A)$
+\end{center}
+in determinanta potence $A^{n}$ matrike A je
+\begin{center}
+    $det(A^{n}) = (det(A))^{n}$.
+\end{center}
+
+\textbf{6.12} Transponirana matrika $A^{T}$ ima isto determinanto kot A.
+
+\textbf{6.13} Vsaka lastnost, ki velja za vrstice determinante, velja tudi
+za njene stolpce. Med drugim:
+\begin{itemize}
+    \item Determinanta spremeni predznak, ce med seboj zamenjamo dva stolpca
+    \item Determinanta je enaka 0, ce sta dva stolpca enaka
+    \item Determinanta je enaka 0, ce so v vsaj enem stolpcu same nicle.
+\end{itemize}
+
+\textbf{6.14 (kofaktorska formula)} Ce je A kvadratna matrika reda n,
+njeno determinanto lahko izracunamo z razvojem po $i-ti$ vrstici
+\begin{center}
+    $det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in}$.
+\end{center}
+Kofaktorje $C_{ij}$ izracunamo kot $C_{ij} = (-1)^{i+j}D_{ij}$, kjer je $D_{ij}$ determinanta,
+ki jo dobimo, ce v A izbrisemo i-to vrstico in j-ti stolpec.
+
+\textbf{6.15} Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
+deljena z determinanto $|A|$:
+\begin{center}
+    $A^{-1} = \frac{C^{T}}{det(A)}$,
+\end{center}
+kjer je C matrika kofaktorjev matrike A.
+
+\textbf{6.16} Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
+enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpcema $\vec{a}$ in $\vec{b}$.
+
+\textbf{6.17} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki 
+ima te tri vektorje kot stolpce.
+
+\section{\underline{L. vrednosti in vektorji}}
+
 \end{multicols}
 \end{document}
