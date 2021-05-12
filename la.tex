@@ -92,6 +92,9 @@ navadno zapisemo kot  $\vec{a} - \vec{b}$.
 \end{center}
 \begin{center}
     $\vec{x} \cdot \vec{y} = x_{1}y_{1} + x_{2}y_{2} + \dots + x_{n}y_{n}$
+\end{center} \textit{alternativno:}
+\begin{center}
+    $\vec{x} \cdot \vec{y} = ||\vec{x}|| ||\vec{y}|| \cos \phi$
 \end{center}
 
 \textbf{Lastnosti skalarnega produkta}
@@ -172,6 +175,15 @@ Razdalja od tocke $P$ do ravnine, v kateri lezi tocka $A$ :
 Razdalja od tocke $P$ do premice, katera gre skozi tocko $A$:
 \begin{center}
     $d = \dfrac{||\vec{e} \times ( \vec{r_{P}} - \vec{r_{A}})||}{||\vec{e}||}$
+\end{center}
+
+\textbf{Projekcije vekotrjev}\\
+Naj bo $proj_{\vec{a}}\vec{b} = \vec{x}$ projekcija vektorja $\vec{b}$ na vektor $\vec{a}$.
+Izracunamo jo po sledeci formuli:
+\begin{center}
+    \begin{math}
+        proj_{\vec{a}}\vec{b} = \frac{\vec{a}\vec{b}}{\vec{a}\vec{a}} \vec{a}
+    \end{math}
 \end{center}
 
 \textbf{1.15} Matrika dimenzije $m \times n$ je tabela $m \times n$ stevil, urejenih
@@ -406,7 +418,8 @@ $A^{-1}$, da je
     $
 \end{center}
 Matrika $A^{-1}$ (ce obstaja) se imenuje matriki A inverzna matrika.
-Matrika, ki ni obrnljiva, je singularna.
+Matrika, ki ni obrnljiva, je singularna. Matrika \textbf{NI} obrnljiva, kadar je
+$rang(A) < n$ !
 
 \textbf{2.2} Kvadratna matirka reda $n$ je obrnljiva natanko tedaj, ko pri
 gaussovi eliminaciji dobimo $n$ pivotov.
