@@ -545,7 +545,7 @@ enacb je podprostor v vektorskem prostoru $R^{n}$.
 
 \textbf{3.7} Mnozica vseh resitev sistema linearnih enacb $A\vec{x} = \vec{0}$ se imenuje nicelni
 prostor matirke A. Oznacujemo ga z N(A).\\
-\textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor}
+\textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor. Matriko A samo eliminiras po gaussu in nato dobljene resitve enacis z 0.}
 
 \textbf{3.8} Ce je matrika A kvadratna in ni obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
 
@@ -929,6 +929,153 @@ enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpce
 ima te tri vektorje kot stolpce.
 
 \section{\underline{L. vrednosti in vektorji}}
+
+\textbf{7.1} Vektor $\vec{x} \neq \vec{0}$, za katerega je $A\vec{x} = \lambda \vec{x}$ lastni vektor. Stevilo
+$\lambda$ je lastna vrednost.
+\textbf{Pozor!} Nicelni vektor $\vec{0}$ ne more biti lastni vektor. Lahko pa je lastna vrednost enaka 0.
+
+\textbf{7.2} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima matrika
+$A^{2}$ lastno vrednost $\lambda^{2}$ in isti lastni vektor $\vec{x}$.
+
+\textbf{7.3} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
+matrika $A^{k}$ lastno vrednost $\lambda^{k}$ in isti lastni vektor $\vec{x}$.
+
+\textbf{7.4} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
+inverzna matrika lastno vrednost $1 / \lambda$ in isti lastni vektor $\vec{x}$.
+
+\textbf{7.5} Sled kvadratne matrike A reda $n$ je vsota njenih diagonalnih elementov.
+\begin{center}
+    \begin{math}
+        sled(A) =
+        \sum_{i=1}^{n} a_{ii} =
+        a_{11} + \dots + a_{nn}
+    \end{math}.
+\end{center}
+
+\textbf{7.6} Sled matrike je enaka vsoti vseh lastnih vrednosti, stetih z njihovo veckratnostjo.
+Ce so $\lambda_{1}, \dots, \lambda{n}$ lastne vrednosti matrike reda n, potem je sled enaka \textit{vsoti}
+\begin{center}
+    \begin{math}
+        sled(A) =
+        \sum_{i=1}^{n} \lambda_{i} =
+        \lambda_{1} + \dots + \lambda_{n}
+    \end{math},
+\end{center}
+determinanta matrike pa \textit{produktu} lastnih vrednosti
+\begin{center}
+    \begin{math}
+        det(A) =
+        \prod_{i=1}^{n} \lambda_{i} =
+        \lambda_{1} \dots  \lambda_{n}
+    \end{math}.
+\end{center}
+
+\textbf{7.7} Ce ima matrika A lastno vrednost $\lambda$, ki ji pripada lastni vektor $\vec{x}$,
+potem ima matrika $A + cI$ lastno vrednost $\lambda + c$ z istim lastnim vektorjem $\vec{x}$ (velja samo z
+enotskimi matrikami I).
+
+\textbf{7.8} Lastne vrednosti trikotne matrike so enake diagonalnim elementom.
+
+\textbf{7.9} Denimo, da ima matrika $A \in R^{n \times n}\; n$ linearno neodvisnih lastnih vektorjev
+$\vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}$. Ce jih zlozimo kot stolpce v matriko S
+\begin{center}
+    \begin{math}
+        S =
+        \begin{bmatrix}
+            \vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}
+        \end{bmatrix}
+    \end{math},
+\end{center}
+potem je T =: $S^{-1}AS$ diagonalna matrika z lastnimi vrednostmi $\lambda_{i}, i = 1, \dots, n$ na diagonali
+\begin{center}
+    \begin{math}
+        S^{-1}AS = T =
+        \begin{bmatrix}
+            \lambda_{1} & &\\
+            &   \ddots  &  \\
+            & &     \lambda_{1} 
+        \end{bmatrix}
+    \end{math}.
+\end{center}
+
+\textbf{Pozor!} Lastni vektorji v matriki S morajo biti v istem vrstnem redu kot lastne vrednosti v matriki $T$.
+
+\textbf{7.10} Ce je $A = STS^{-1}$, potem je $A^{k} = ST^{k}S^{-1}$ za vsak $k \in N$.
+
+\textbf{7.11} Naj bo A kvadratna matrika reda n, ki ima n linearno neodvisnih vektorjev in $\vec{y}_{0} \in R^{n}$.
+Zaporedje vektorjev iz $R^{n}$ naj bo definirano z $\vec{z}_{k+1} = A\vec{y}_{k}$. Potem velja
+\begin{itemize}
+    \item Ce je za vsaj eno lastno vrednost $|\lambda_{i}| > 1$, potem zaporedje
+    $\vec{y}_{k}$ neomejeno narasca.
+    \item Ce so vse lastne vrednosti $|\lambda_{i}| < 1$, potem zaporedje
+    $\vec{y}_{k}$, konvergira proti nicelnemu vektorju $\vec{0}$.
+    \item Ce je ena lastna vrednost $\lambda_{i} = 1$, vse ostale pa $|\lambda < 1|$, zaporedje
+    $\vec{y}_{k}$ konvergira proti $c_{i}\vec{x}_{i}$.
+\end{itemize}
+
+\textbf{7.12} Vse lastne vrednosti realne simetricne matrike so realne.
+
+\textbf{7.13} Lastni vektorji realne simetricne matrike, ki pripadajo razlicnim lastnim
+vrednostim, so med seboj pravokotni.
+
+\textbf{7.14 Schurov izrek} Za vsako kvadratno matriko reda n, ki ima le realne lastne vrednosti,
+obstaja taka ortogonalna matrika $Q$, da je 
+\begin{center}
+    \begin{math}
+        Q^{T}AQ = T
+    \end{math}
+\end{center} 
+zgornjetrikotna matrika, ki ima lastne vrednosti(lahko so kompleksne) matrike A na diagonali.
+
+\textbf{7.15 Spektralni izrek} Vsako simetricno matriko A lahko razcepimo v produkt
+$A = QTQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, T pa diagonalna z lastnimi
+vrednostmi matrike A na diagonali.
+
+\textbf{7.16} Vsako realno simetricno matriko lahko zapisemo kot linearno kombinacijo matrik ranga 1
+\begin{center}
+    \begin{math}
+        A = \lambda_{1}\vec{q}_{1}\vec{q}_{1}^{T} + \lambda_{2}\vec{q}_{2}\vec{q}_{2}^{T} +
+        \dots + \lambda_{n}\vec{q}_{n}\vec{q}_{n}^{T} 
+    \end{math},
+\end{center}
+kjer so $\vec{q}_{i}$ stolpci matrike Q (torej lastni vektorji matrike A).
+
+\textbf{6.17} Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
+stevilu pozitivnih lastnih vrednosti.
+
+\textbf{6.18} Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
+
+\textbf{6.19} Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta 
+pozitivni sled in determinanta matrike.
+
+\textbf{6.20} Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
+vektor $\vec{x} \neq \vec{0} \in R^{n}$
+\begin{center}
+    $\vec{x}^{T}A\vec{x} > 0$
+\end{center}
+
+\textbf{6.21} Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi 
+njuna vsota $A + B$.
+
+\textbf{6.22} Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
+
+\textbf{6.23} Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
+
+\textbf{6.24} Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
+je $A = R^{T}R$.
+
+\textbf{6.25} Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
+\begin{enumerate}
+    \item Vseh $n$ pivotov je pozitivnih;
+    \item Vseh $n$ vodilnih glavnih determinant je pozitivnih;
+    \item Vseh $n$ lastnih vrednosti je pozitivnih;
+    \item Za vsak $\vec{x} \neq \vec{0}$ je $\vec{x}^{T}A\vec{x} > 0$;
+    \item $A= R^{T}R$ za neko matriko R z linearno neodvisnimi stolpci.
+\end{enumerate}
+
+\textbf{6.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
+$A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
+V ortogonalna $n \times n$.
 
 \end{multicols}
 \end{document}
