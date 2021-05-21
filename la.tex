@@ -1,11 +1,17 @@
 \documentclass{article}
-\usepackage[margin=0.2cm]{geometry}
+\usepackage[margin=0.15cm]{geometry}
 \usepackage{amsmath}
 \usepackage{multicol}
+\usepackage{hyperref}
 
-\setlength{\columnseprule}{0.4pt}
+\setlength{\columnseprule}{0.5pt}
 
 \begin{document}
+
+\begin{center}
+    {\huge \href{https://github.com/spagnoloG/LA-FRI}{LA/FRI} - Cheat Sheet \par}
+\end{center}
+
 \begin{multicols}{3}
 
 \section{\underline{Vektorji in matrike}}
@@ -726,6 +732,9 @@ imenujemo \textit{slika} linearne preslikave $A: U \rightarrow V$.
 \textbf{4.10} Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
 vektorski podprostor v V.
 
+\textbf{4.11} Ce je $A: U \rightarrow V$ linearna preslikava, in je rang matrike te preslikave v standardni bazi poln,
+potem lahko sklepamo, da ima  ta preslikava \textbf{trivialno jedro}.
+
 
 \section{\underline{Ortogonalnost}}
 
@@ -914,15 +923,22 @@ in determinanta potence $A^{n}$ matrike A je
 
 \textbf{6.12} Transponirana matrika $A^{T}$ ima isto determinanto kot A.
 
-\textbf{6.13} Vsaka lastnost, ki velja za vrstice determinante, velja tudi
-za njene stolpce. Med drugim:
+\textbf{6.13 Recap dovoljenih operacij nad determinanto}
+\begin{enumerate}
+    \item Ce zamenjamo dve vrstici, se \textbf{spremeni} predznak determinante
+    \item Vrednost determinante se ne spremeni, ce neki vrstici pristejemo poljuben veckratnik katerekoli druge vrstice.
+    \item Ce vse elemente neke vrstice pomnozimo z istim stevilom $\alpha$, se vrednost determinante pomnozi z $\alpha$.
+\end{enumerate}
+
+\textbf{6.14} Vsaka lastnost, ki velja za vrstice determinante, velja tudi
+za njene \textbf{stolpce}. Med drugim:
 \begin{itemize}
     \item Determinanta spremeni predznak, ce med seboj zamenjamo dva stolpca
     \item Determinanta je enaka 0, ce sta dva stolpca enaka
     \item Determinanta je enaka 0, ce so v vsaj enem stolpcu same nicle.
 \end{itemize}
 
-\textbf{6.14 (kofaktorska formula)} Ce je A kvadratna matrika reda n,
+\textbf{6.15 (kofaktorska formula)} Ce je A kvadratna matrika reda n,
 njeno determinanto lahko izracunamo z razvojem po $i-ti$ vrstici
 \begin{center}
     $det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in}$.
@@ -930,17 +946,17 @@ njeno determinanto lahko izracunamo z razvojem po $i-ti$ vrstici
 Kofaktorje $C_{ij}$ izracunamo kot $C_{ij} = (-1)^{i+j}D_{ij}$, kjer je $D_{ij}$ determinanta,
 ki jo dobimo, ce v A izbrisemo i-to vrstico in j-ti stolpec.
 
-\textbf{6.15} Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
+\textbf{6.16} Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
 deljena z determinanto $|A|$:
 \begin{center}
     $A^{-1} = \frac{C^{T}}{det(A)}$,
 \end{center}
 kjer je C matrika kofaktorjev matrike A.
 
-\textbf{6.16} Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
+\textbf{6.17} Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
 enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpcema $\vec{a}$ in $\vec{b}$.
 
-\textbf{6.17} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki 
+\textbf{6.18} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki 
 ima te tri vektorje kot stolpce.
 
 \section{\underline{L. vrednosti in vektorji}}
