@@ -535,6 +535,8 @@ kombinacija vektorjev iz U tudi v U.
 
 \textbf{3.4} Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
 vektorskega prostora $R^{m}$, ki vsebuje natanko vse linearne kombinacije stolpcev matrike A.\\
+Izracunamo ga tako, da matriko A transponiramo in izvedemo operacijo gaussove eliminacije nad $A^{T}$. Vrstice katere ostanejo po gaussivi eliminaciji
+so linearno neodvisni vektorji, kateri tvorijo stoplicni prostor matrike A, $C(A)$.
 \textit{neformalno: linearna ogrinjaca stolpcev matrike (npr. ce imas 5 stolpcev pa lahko 2 zapises kot linearno kombinacijo ostalih 3 bo imel column space 3 elemente)}
 
 \textbf{3.5} Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
@@ -675,6 +677,7 @@ vektorjem $A = \vec{u}\vec{v}^{T}$.
     \item aditivnost: $A(\vec{u}_{1} + \vec{u}_{2}) = A\vec{u}_{1} + A\vec{u}_{2}$ za vse $\vec{u}_{1}, \vec{u}_{2} \in U$,
     \item homogenost: $A(\alpha \vec{u}) = \alpha(A\vec{u})$ za vse $\alpha \in R$ in $\vec{u} \in U$.
 \end{enumerate}
+\textbf{Pozor!} Preslikava ni linearna, ce $A(\vec{0}) \neq  \vec{0}$.
 
 \textbf{4.2} Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
 \begin{center}
@@ -699,6 +702,12 @@ Potem obstaja natanko ena linearna preslikava $A: U \rightarrow V$, za katero je
 \end{center}
 imenujemo \textit{jedro} linearne preslikave. Ker je $A\vec{0} = \vec{0}$, je $\vec{0} \in$ ker A za vse A.
 Zato je jedro vedno neprazna mnozica.
+\textit{Ce je matrika A$\phi$ \textbf{enotska} preslikava za } $\phi$, \textit{potem velja}
+\begin{center}
+    \begin{math}
+        ker \phi = N(A).
+    \end{math}
+\end{center}
 
 \textbf{4.8} Jedro linearne preslikave $A: U \rightarrow V$ je vektorski podprostor v U.
 
@@ -707,6 +716,12 @@ Zato je jedro vedno neprazna mnozica.
     $im\; A = \{ \vec{v} \in V; obstaja\; tak\; \vec{u} \in U,\; da\; je\; \vec{v} = A\vec{u} \}$
 \end{center}
 imenujemo \textit{slika} linearne preslikave $A: U \rightarrow V$.
+\textit{Ce je matrika A$\phi$ \textbf{enotska} preslikava za } $\phi$, \textit{potem velja}
+\begin{center}
+    \begin{math}
+        im \phi = C(A).
+    \end{math}
+\end{center}
 
 \textbf{4.10} Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
 vektorski podprostor v V.
