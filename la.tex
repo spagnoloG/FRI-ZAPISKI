@@ -755,7 +755,7 @@ ce je vsak vektor $\vec{u} \in U$ ortogonalen na vsak vektor $\vec{v} \in V$.
     \item Levi nicelni prostor $N(A^{T})$ je ortogonalni komplement stolpicnega prostora $C(A)$ v prostoru $R^{m}$.
 \end{itemize}
 
-\textbf{5.5} Za vsak vektor $4\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
+\textbf{5.5} Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
 vektor $\vec{x}$, da je $A\vec{x} = \vec{y}$.
 
 \textbf{5.6} Ce so stolpci matrike A linearno neodvisni, je matrika $A^{T}A$ obrnljiva.
@@ -959,6 +959,18 @@ enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpce
 \textbf{6.18} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki 
 ima te tri vektorje kot stolpce.
 
+\textbf{6.19} Naj bo A matrika $R^{n\times n}$
+\begin{center}
+    \begin{math}
+        A\; je\; obrnljiva\; \iff detA \neq 0
+    \end{math}
+\end{center}
+\begin{center}
+    \begin{math}
+        A^{-1}\; ne\; obstaja\; \iff detA = 0
+    \end{math}
+\end{center}
+
 \section{\underline{L. vrednosti in vektorji}}
 
 \textbf{7.1} Vektor $\vec{x} \neq \vec{0}$, za katerega je $A\vec{x} = \lambda \vec{x}$ lastni vektor. Stevilo
@@ -1107,6 +1119,12 @@ je $A = R^{T}R$.
 \textbf{6.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
 $A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
 V ortogonalna $n \times n$.
+
+\textbf{6.27} Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
+vrednosti matrike A.
+\begin{center}
+    $rang(A)$ = stevilo $\lambda A$
+\end{center}
 
 \end{multicols}
 \end{document}
