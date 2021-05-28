@@ -754,6 +754,11 @@ ce je vsak vektor $\vec{u} \in U$ ortogonalen na vsak vektor $\vec{v} \in V$.
     \item Nicelni prostor $N(A)$ je ortogonalni\\ komplement vrsticnega prostora $C(A^{T})$ v prostoru $R^{n}$
     \item Levi nicelni prostor $N(A^{T})$ je ortogonalni komplement stolpicnega prostora $C(A)$ v prostoru $R^{m}$.
 \end{itemize}
+\textbf{krajse:}
+\begin{center}
+    $N(A)$ = $C(A^{T})^{\perp}$\\
+    $N(A^{T})$ = $C(A)^{\perp}$ 
+\end{center}
 
 \textbf{5.5} Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
 vektor $\vec{x}$, da je $A\vec{x} = \vec{y}$.
@@ -807,22 +812,75 @@ ortogonalna matrika, potem je
 \textbf{5.14} Ce sta $Q_{1}$ in $Q_{2}$ ortogonalni matriki, je tudi produkt $Q = Q_{1}Q_{2}$ ortogonalna
 matrika.
 
-\textbf{5.15} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
+\textbf{5.15 Gram-Schmidtova} ortogonalizacija. Za vhod uporabimo Linearno ogrinjaco linearno neodvisnih vekotrjev. Po 
+gram-schmidtovi ortogonalizaciji pa dobimo paroma ortogonalne vektorje.
+Postopek:
+\begin{center}
+    \begin{math}
+        \vec{u}_{1} = \vec{v}_{1}
+    \end{math}\\
+    \begin{math}
+        \vec{u}_{2} = \vec{v}_{2} - proj_{\vec{u}_{1}}\vec{v}_{1}
+    \end{math}\\
+    \begin{math}
+        \vec{u}_{3} = \vec{v}_{3} - proj_{\vec{u}_{1}}\vec{v}_{3} - proj_{\vec{u}_{2}}\vec{v}_{3}
+    \end{math}\\
+    \begin{math}
+        \vdots
+    \end{math}
+\end{center}
+Po tem postopku dobimo paroma ortogonalne vektorje po Gram-Schmidtovi ortogonalizaciji.
+
+
+\textbf{5.16} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
 dobimo ortonormirane vektorje $q_{1}, \dots, q_{n}$. Matriki A in Q s temi stolpci zadoscajo enacbi $A = QR$, kjer
 je R zgornjetrikotna matrika.
+\begin{itemize}
+    \item Najprej z Gram-Schmidtovo ortogonalizacijo poiscemo linearno neodvisne vektorje matrike A
+    \item Vektorje normiramo in jih zapisemo v matriko Q.
+    \item Matriko R dobimo tako, da matriko $Q^{T}$ pomnozimo z matriko $A$
+    \begin{center}
+        \begin{math}
+            R = Q^{T}A
+        \end{math}
+    \end{center}
+    Tako smo prisli do vseh elementov v QR razcepu matrike A.
+\end{itemize}
+Sedaj ko imamo izracunane vse elemente lahko zapisemo se projekcijsko matriko. To je matrika pravokotne projekcije na $C(Q) = C(A)$.
+Njen izracun je preprost:
+\begin{center}
+    \begin{math}
+        QQ^{T} = pravokotna\; projekcija\; na\; C(Q)\; = C(A)
+    \end{math}
+\end{center}
+Sedaj lahko to projekcijsko matriko pomnozimo z desne s poljubnim vektorjem in ugotovimo kam se preslika v prostoru $C(A)$.
+V nasprotnem primeru, ce bi pa zeleli imeti projekcijsko matriko, s katero bi radi videli kam se vektor preslika v prostoru $N(A^{T})$, bi pa od identicne matrike
+odsteli projekcijsko matriko za $C(Q)$.
+\begin{center}
+    \begin{math}
+        I - QQ^{T} = pravokotna\; projekcija\; na\; C(A)^{\perp}\; = N(A^{T})
+    \end{math}
+\end{center}
 
-\textbf{5.16} Vektorski prostor $\iota$ je mnozica vseh neskoncnih zaporedij $\vec{u}$ s koncno
+\textbf{5.17} Vektorski prostor $\iota$ je mnozica vseh neskoncnih zaporedij $\vec{u}$ s koncno
 dolzino
 \begin{center}
     $||\vec{u}||^{2} = \vec{u} \cdot \vec{u} = \vec{u_{1}}^{2} + \vec{u_{2}}^{2} + \dots < \infty$
 \end{center}
 
-\textbf{5.17} Polinomi $p_{0}(x), p_{1}(x), \dots, p_{n}(x), \dots$ sestavljajo zaporedje
-ortogonalnih polinomov, kadar
-\begin{enumerate}
-    \item $p_{i}(x)$ je polinom stopnje i
-    \item $(p_{i}(x), p_{j}(x)) = 0$, kadarkoli je $i \neq j$.
-\end{enumerate}
+\textbf{5.18 Predoloceni sistemi}
+\begin{center}
+    \begin{math}
+        A^{T}A
+        \begin{bmatrix}
+            a\\
+            b
+        \end{bmatrix}
+        = A^{T}\vec{f}
+    \end{math}
+\end{center}
+Kjer je A matrika sistemov linearnih enacb in $\vec{f}$ vektor pricakovanih resitev
+po gaussovi eliminaciji zgornje enacbe, dobimo spremenljivke, ki predstavljao najboljso aproksimacijo vseh kombinaicij rezultatov in vhodnih spremenljivk.
 
 \section{\underline{Determinante}}
 
