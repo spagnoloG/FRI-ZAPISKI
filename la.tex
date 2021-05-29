@@ -376,7 +376,7 @@ so zaporedoma produkti vrstic matrike A z matriko B:
 
 \textbf{1.29} Vrstice matrike A z $n$ stolpci naj bodo
 $a^{1}, \dots, a^{n}$, stolpci matrike B z $n$ vrsticami pa
-$a_{1}, \dots, b_{n}$. Potem je
+$b_{1}, \dots, b_{n}$. Potem je
 \begin{center}
     $AB = a^{1}b_{1} + \dots + a^{n}b_{n}$
 \end{center}
@@ -1182,6 +1182,27 @@ V ortogonalna $n \times n$.
 vrednosti matrike A.
 \begin{center}
     $rang(A)$ = stevilo $\lambda A$
+\end{center}
+
+\textbf{6.28 Diagonalizacija} oz \textit{podobnost} matrik. Matriki A in B sta \textit{podobni}, ce imata
+obe iste lastne vrednosi. Diagonalno matriko sestavimo tako, da v njeno diagonalo vpisemo lastne vrednosti. Matriko 
+P pa sestavimo iz njenih lastnih vektorjev; po stolpcih.
+\begin{center}
+    \begin{math}
+        A = PDP^{-1}
+    \end{math} oz.\\
+    \begin{math}
+        D = P^{-1}AP
+    \end{math}
+\end{center}
+
+\textbf{6.29 Spektralni razcep}
+Naj bodo vekotrji $\vec{q}_{1}, \dots, \vec{q}_{n}$ ONB iz l. vektorjev marike A za l. vrednost $\lambda_{1}, \dots, \lambda{n}$,
+potem lahko matriko A zapisemo kot:
+\begin{center}
+    \begin{math}
+        A = \lambda_{1} \vec{q_{1}} \vec{q_{1}}^{T} + \dots + \lambda_{n} \vec{q_{n}} \vec{q_{n}}^{T}
+    \end{math}
 \end{center}
 
 \end{multicols}
