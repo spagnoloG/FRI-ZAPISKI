@@ -555,7 +555,7 @@ enacb je podprostor v vektorskem prostoru $R^{n}$.
 prostor matirke A. Oznacujemo ga z N(A).\\
 \textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor. Matriko A samo eliminiras po gaussu in nato dobljene resitve enacis z 0.}
 
-\textbf{3.8} Ce je matrika A kvadratna in ni obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
+\textbf{3.8} Ce je matrika A kvadratna in obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
 
 \textbf{3.9} Matrika ima \textit{stopnicasto} obliko, kadar se vsaka od njenih vrstic zacne z vsaj eno
 niclo vec kot prejsnja vrstica.
@@ -1141,31 +1141,31 @@ vrednostmi matrike A na diagonali.
 \end{center}
 kjer so $\vec{q}_{i}$ stolpci matrike Q (torej lastni vektorji matrike A).
 
-\textbf{6.17} Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
+\textbf{7.17} Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
 stevilu pozitivnih lastnih vrednosti.
 
-\textbf{6.18} Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
+\textbf{7.18} Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
 
-\textbf{6.19} Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta 
+\textbf{7.19} Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta 
 pozitivni sled in determinanta matrike.
 
-\textbf{6.20} Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
+\textbf{7.20} Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
 vektor $\vec{x} \neq \vec{0} \in R^{n}$
 \begin{center}
     $\vec{x}^{T}A\vec{x} > 0$
 \end{center}
 
-\textbf{6.21} Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi 
+\textbf{7.21} Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi 
 njuna vsota $A + B$.
 
-\textbf{6.22} Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
+\textbf{7.22} Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
 
-\textbf{6.23} Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
+\textbf{7.23} Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
 
-\textbf{6.24} Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
+\textbf{7.24} Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
 je $A = R^{T}R$.
 
-\textbf{6.25} Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
+\textbf{7.25} Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
 \begin{enumerate}
     \item Vseh $n$ pivotov je pozitivnih;
     \item Vseh $n$ vodilnih glavnih determinant je pozitivnih;
@@ -1174,17 +1174,17 @@ je $A = R^{T}R$.
     \item $A= R^{T}R$ za neko matriko R z linearno neodvisnimi stolpci.
 \end{enumerate}
 
-\textbf{6.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
+\textbf{7.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
 $A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
 V ortogonalna $n \times n$.
 
-\textbf{6.27} Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
+\textbf{7.27} Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
 vrednosti matrike A.
 \begin{center}
     $rang(A)$ = stevilo $\lambda A$
 \end{center}
 
-\textbf{6.28 Diagonalizacija} oz \textit{podobnost} matrik. Matriki A in B sta \textit{podobni}, ce imata
+\textbf{7.28 Diagonalizacija} oz \textit{podobnost} matrik. Matriki A in B sta \textit{podobni}, ce imata
 obe iste lastne vrednosi. Diagonalno matriko sestavimo tako, da v njeno diagonalo vpisemo lastne vrednosti. Matriko 
 P pa sestavimo iz njenih lastnih vektorjev; po stolpcih.
 \begin{center}
@@ -1196,7 +1196,7 @@ P pa sestavimo iz njenih lastnih vektorjev; po stolpcih.
     \end{math}
 \end{center}
 
-\textbf{6.29 Spektralni razcep}
+\textbf{7.29 Spektralni razcep}
 Naj bodo vekotrji $\vec{q}_{1}, \dots, \vec{q}_{n}$ ONB iz l. vektorjev marike A za l. vrednost $\lambda_{1}, \dots, \lambda{n}$,
 potem lahko matriko A zapisemo kot:
 \begin{center}
