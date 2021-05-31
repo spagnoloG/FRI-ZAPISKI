@@ -1054,7 +1054,7 @@ inverzna matrika lastno vrednost $1 / \lambda$ in isti lastni vektor $\vec{x}$.
 \end{center}
 
 \textbf{7.6} Sled matrike je enaka vsoti vseh lastnih vrednosti, stetih z njihovo veckratnostjo.
-Ce so $\lambda_{1}, \dots, \lambda{n}$ lastne vrednosti matrike reda n, potem je sled enaka \textit{vsoti}
+Ce so $\lambda_{1}, \dots, \lambda_{n}$ lastne vrednosti matrike reda n, potem je sled enaka \textit{vsoti}
 \begin{center}
     \begin{math}
         sled(A) =
@@ -1094,7 +1094,7 @@ potem je T =: $S^{-1}AS$ diagonalna matrika z lastnimi vrednostmi $\lambda_{i}, 
         \begin{bmatrix}
             \lambda_{1} & &\\
             &   \ddots  &  \\
-            & &     \lambda_{1} 
+            & &     \lambda_{n} 
         \end{bmatrix}
     \end{math}.
 \end{center}
@@ -1102,17 +1102,6 @@ potem je T =: $S^{-1}AS$ diagonalna matrika z lastnimi vrednostmi $\lambda_{i}, 
 \textbf{Pozor!} Lastni vektorji v matriki S morajo biti v istem vrstnem redu kot lastne vrednosti v matriki $T$.
 
 \textbf{7.10} Ce je $A = STS^{-1}$, potem je $A^{k} = ST^{k}S^{-1}$ za vsak $k \in N$.
-
-\textbf{7.11} Naj bo A kvadratna matrika reda n, ki ima n linearno neodvisnih vektorjev in $\vec{y}_{0} \in R^{n}$.
-Zaporedje vektorjev iz $R^{n}$ naj bo definirano z $\vec{z}_{k+1} = A\vec{y}_{k}$. Potem velja
-\begin{itemize}
-    \item Ce je za vsaj eno lastno vrednost $|\lambda_{i}| > 1$, potem zaporedje
-    $\vec{y}_{k}$ neomejeno narasca.
-    \item Ce so vse lastne vrednosti $|\lambda_{i}| < 1$, potem zaporedje
-    $\vec{y}_{k}$, konvergira proti nicelnemu vektorju $\vec{0}$.
-    \item Ce je ena lastna vrednost $\lambda_{i} = 1$, vse ostale pa $|\lambda < 1|$, zaporedje
-    $\vec{y}_{k}$ konvergira proti $c_{i}\vec{x}_{i}$.
-\end{itemize}
 
 \textbf{7.12} Vse lastne vrednosti realne simetricne matrike so realne.
 
