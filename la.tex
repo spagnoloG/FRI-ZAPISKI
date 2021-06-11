@@ -120,8 +120,10 @@ navadno zapisemo kot  $\vec{a} - \vec{b}$.
 
 \textbf{1.9} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
 \begin{center}
-    $|\vec{u} \cdot \vec{v}| \leq ||\vec{u}||||\vec{v}||$.
+    $|\vec{u} \cdot \vec{v}| \leq ||\vec{u}||||\vec{v}||$,
 \end{center}
+enakost velja, v primeru, da sta vektorja vzporedna.
+
 
 \textbf{1.10} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
 \begin{center}
@@ -129,7 +131,7 @@ navadno zapisemo kot  $\vec{a} - \vec{b}$.
 \end{center}
 
 \textbf{1.11} Vektorja $\vec{x}$ in $\vec{y}$ sta ortogonalna
-(ali pravokotna) natakno takrat, kadar je
+(pravokotna) natakno takrat, kadar je
 \begin{center}
     $\vec{x} \cdot \vec{y} = $ 0    
 \end{center}
@@ -286,6 +288,7 @@ je matrika reda $n \times m$
 \textbf{Lastnosti transponiranja matrik}
 \begin{itemize}
     \item $(A + B)^{T} = A^{T} + B^{T}$
+    \item $(A \cdot B)^{T} = B^{T} \cdot A^{T}$
     \item $(xA)^{T} = xA^{T}$
     \item $(A^{T})^{T} = A$
 \end{itemize}
@@ -487,7 +490,8 @@ matriko $\begin{bmatrix}A|I\end{bmatrix}$
 \end{center}
 
 \textbf{2.11} Matrika A je simetricna $\Leftrightarrow A^{T} = A$. Za elemente
-$a_{ij}$ simetricne matirke velja $a_{ij} = a_{ji}$.
+$a_{ij}$ simetricne matirke velja $a_{ij} = a_{ji}$. Za simetricno matriko vedno velja,
+da je kvadratna $A \in R^{n \times n}$.
 
 \textbf{2.12} Ce je matrika A simetricna in obrnljiva, je tudi $A^{-1}$ simetricna.
 
