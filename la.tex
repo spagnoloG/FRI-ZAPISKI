@@ -761,7 +761,15 @@ ce je vsak vektor $\vec{u} \in U$ ortogonalen na vsak vektor $\vec{v} \in V$.
 \textbf{krajse:}
 \begin{center}
     $N(A)$ = $C(A^{T})^{\perp}$\\
-    $N(A^{T})$ = $C(A)^{\perp}$ 
+    $N(A^{T})$ = $C(A)^{\perp}$ \\
+    tukaj lahko vedno pomnozimo s komplementom, da dobimo npr.\\
+    $N(A)^{\perp}$ = $C(A^{T})$
+\end{center}
+\textit{dodatek:}
+\begin{center}
+    $dim N(A) = st. stolpcev - rang(A)$\\
+    $dim N(A^{T}) = st. vrstic - rang(A)$\\
+    $dim C(A) = dim C(A^{T}) = rang(A)$
 \end{center}
 
 \textbf{5.5} Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
@@ -824,7 +832,7 @@ Postopek:
         \vec{u}_{1} = \vec{v}_{1}
     \end{math}\\
     \begin{math}
-        \vec{u}_{2} = \vec{v}_{2} - proj_{\vec{u}_{1}}\vec{v}_{1}
+        \vec{u}_{2} = \vec{v}_{2} - proj_{\vec{u}_{1}}\vec{v}_{2}
     \end{math}\\
     \begin{math}
         \vec{u}_{3} = \vec{v}_{3} - proj_{\vec{u}_{1}}\vec{v}_{3} - proj_{\vec{u}_{2}}\vec{v}_{3}
