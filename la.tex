@@ -376,6 +376,8 @@ so zaporedoma produkti vrstic matrike A z matriko B:
     \item $A(BC) = (AB)C$ (asociativnost)
     \item $(AB)^{T} = B^{T}A^{T}$
 \end{itemize}
+V splosnem; komutativnost matricnega mnozenja velja
+samo, ko sta matriki diagonalizabilni.
 
 \textbf{1.29} Vrstice matrike A z $n$ stolpci naj bodo
 $a^{1}, \dots, a^{n}$, stolpci matrike B z $n$ vrsticami pa
@@ -687,6 +689,12 @@ vektorjem $A = \vec{u}\vec{v}^{T}$.
     \item aditivnost: $A(\vec{u}_{1} + \vec{u}_{2}) = A\vec{u}_{1} + A\vec{u}_{2}$ za vse $\vec{u}_{1}, \vec{u}_{2} \in U$,
     \item homogenost: $A(\alpha \vec{u}) = \alpha(A\vec{u})$ za vse $\alpha \in R$ in $\vec{u} \in U$.
 \end{enumerate}
+Oziroma v enem koraku:
+\begin{center}
+    \begin{math}
+        A(\alpha\vec{u}_{1} + \beta\vec{u}_{2}) = \alpha A(\vec{u}_{1}) + \beta A(\vec{u}_{2}).
+    \end{math}
+\end{center}
 \textbf{Pozor!} Preslikava ni linearna, ce $A(\vec{0}) \neq  \vec{0}$.
 
 \textbf{4.2} Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
@@ -812,7 +820,12 @@ velja, da je $Q^{T}Q = I_{n}$ enotska matrika reda n.
     \item ima ortonormirane stolpce.
 \end{enumerate}
 
-\textbf{5.12} Ce je Q ortogonalna matirka, potem je obrnljiva in $Q^{-1} = Q^{T}$.
+\textbf{5.12} Ce je Q ortogonalna matirka, potem je obrnljiva in
+\begin{center}
+    $Q^{-1} = Q^{T}$\\
+    $dimU^{\perp} = n - dimU$\\
+    $(U^{\perp})^{\perp} = U$
+\end{center}
 
 \textbf{5.13} Mnozenje z ortogonalno matriko ohranja dolzino vektorjev in kote med njimi. Ce je Q
 ortogonalna matrika, potem je 
@@ -844,7 +857,7 @@ Postopek:
 Po tem postopku dobimo paroma ortogonalne vektorje po Gram-Schmidtovi ortogonalizaciji.
 
 
-\textbf{5.16} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
+\textbf{5.16 QR Razcep:} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
 dobimo ortonormirane vektorje $q_{1}, \dots, q_{n}$. Matriki A in Q s temi stolpci zadoscajo enacbi $A = QR$, kjer
 je R zgornjetrikotna matrika.
 \begin{itemize}
@@ -988,7 +1001,12 @@ oblika, ki jo dobimo z \textit{Gaussovo eliminacijo}. Potem je
 \end{center}
 in determinanta potence $A^{n}$ matrike A je
 \begin{center}
-    $det(A^{n}) = (det(A))^{n}$.
+    $det(A^{n}) = (det(A))^{n}$
+\end{center}
+ter determinanta transponirane matrike je enaka determinanti originalne matrike,
+saj ko naredimo razvoj po vrsticah, pridemo do enakih elementov po diagonali.
+\begin{center}
+    $det(A) = det(A^{T})$.
 \end{center}
 
 \textbf{6.12} Transponirana matrika $A^{T}$ ima isto determinanto kot A.
@@ -1205,6 +1223,14 @@ potem lahko matriko A zapisemo kot:
         A = \lambda_{1} \vec{q_{1}} \vec{q_{1}}^{T} + \dots + \lambda_{n} \vec{q_{n}} \vec{q_{n}}^{T}
     \end{math}
 \end{center}
+
+\textbf{7.30 Nekaj lastnosti simetricnih matrik}
+\begin{itemize}
+    \item Vse lastne vrednosti simetricne matrike so realne. Lastni vektorji realne simetricne matrike, ki 
+    pripadajo razlicnim lastnim vrednostim, so med seboj pravokotni.
+    \item Vsako realno simetricno matriko A lahko zapisemo kot $A = QDQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, D pa diagonalna matrika,
+    ki ima na diagonali pripadajoce lastne vrednosti matrike A.
+\end{itemize}
 
 \end{multicols}
 \end{document}
