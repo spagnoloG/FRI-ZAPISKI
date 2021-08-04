@@ -1,6 +1,6 @@
-la.aux
-la.fdb_latexmk
-la.fls
-la.log
-la.synctex.gz
-la.out
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
