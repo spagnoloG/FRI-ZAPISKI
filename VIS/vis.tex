@@ -1,0 +1,303 @@
+\documentclass{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\setlength{\columnseprule}{0.5pt}
+
+\begin{document}
+
+\begin{center}
+    {\huge \href{https://github.com/spagnoloG/VIS-FRI}{VIS/FRI} - Cheat Sheet \par}
+\end{center}
+
+\begin{multicols}{3}
+
+\textit{Ponovitev osnov}
+
+\section{\underline{Kombinatorika}}
+
+
+\textbf{1.1 Permutacije}
+\begin{enumerate}
+    \item brez ponavljanja: $P_{n} = n!$
+    \item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
+\end{enumerate}
+
+\textbf{1.2 Variacije}
+\begin{enumerate}
+    \item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
+    \item s ponavljanjem: $V_{n}^{r} = n^{r}$
+\end{enumerate}
+
+\textbf{1.3 Kombinacije}
+\begin{enumerate}
+    \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - r)! r!}$
+    \item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
+\end{enumerate}
+\begin{center}
+    Lastnosti binomskega simbola:
+    \begin{math}
+        {n \choose n} = 1 \quad
+        {n \choose 0} = 1 \quad
+        {n \choose 1} = n \quad
+        {n \choose r} = {n \choose n - r} 
+    \end{math}
+    Binomski izrek:\\
+    \begin{math}
+        (a + b)^{n} =
+        {n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
+        {n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
+    \end{math}
+
+\end{center}
+Za kombinacije velja, da vrstni red \textbf{ni} pomemben.
+
+\section{\underline{Verjetnost}}
+
+
+\textbf{2.1 Elementarna verjetnost}
+\smallskip
+
+Izid iz dane mnozice izidov je izbran na slepo, ce so vsi izidi
+iz te mnozice enako verjetni. Takrat se dogodek $A$ zgodi z verjetnostjo:
+\begin{center}
+    \begin{math}
+        P(A) = \dfrac{st.\: izidov,\: ki\: so\: v\: A\:}{st.\: vseh\: izidov}
+    \end{math}    
+\end{center}
+Nasprotni dogodek pa z verjetnostjo:
+\begin{center}
+    \begin{math}
+        P(\overline{A}) = 1 - P(A)
+    \end{math}    
+\end{center}
+Nacelo vkljucitev in izkljucitev dogodkov:
+\begin{center}
+    \begin{math}
+        P(A_{1} \cup \dots \cup A_{n}) =
+    \end{math}
+    \begin{math}
+        P(A_{1}) + \dots + P(A_{n}))
+    \end{math}
+    \begin{math}
+        - P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
+    \end{math}
+    \begin{math}
+        + P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
+    \end{math}
+    \begin{math}
+        - \dots
+    \end{math}
+    \begin{math}
+        + (-1)^{n + 1} P(A_{1} \dots A_{n})
+    \end{math}
+\end{center}
+Dogodki $A_{1}, A_{2}, \dots , A_{k}$ in $B$ so \textbf{neodvisni}, ce velja
+\begin{center}
+    \begin{math}
+        P(A_{1} \dots A_{k}) = P(A_{1}) \dots P(A_{k})
+    \end{math}
+\end{center}
+\textit{ali z drugimi besedami..} Verjetnost produkta paroma neodvisnih
+dogodkov je enaka produktu vrjetnosti teh dogodkov.
+
+\textbf{2.2 Pogojna verjetnost}
+Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
+\begin{center}
+    \begin{math}
+        P(A | B) = \dfrac{P(A \cup B)}{P(B)}
+    \end{math}
+\end{center}
+Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
+$P(A B) = P(A)P(B)$ .
+Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
+pa velja $P(A | B) = 0$ in $P(A + B) = P(A) + P(B)$.
+
+\textbf{2.3 Popolna verjetnost}
+
+Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
+ce se nobena dva dogodka ne moreta zgoditi hrkati in se vedno
+zgodi vsaj en od njih. Ce dogodki izpolnjujejo ta pogoj, potem po
+nacelu vkljucitev/izkljucitev velja:
+\begin{center}
+    \begin{math}
+        P(A) =
+    \end{math}
+    \smallskip
+    \begin{math}
+        \sum_{i=1}^{\infty} P(A \cap H_{i}) =
+        \sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
+    \end{math}
+\end{center}
+% Za \textbf{popolni sistem dogodkov} velja unija hipotez:
+% \begin{center}
+%     \begin{math}
+%         P(A|H_{1} \cup \dots \cup H_{n}) = 
+%     \end{math}
+%     \begin{math}
+%         \dfrac{
+%             P(A | H_{1}) P(H_{1}) + \dots
+%             P(A | H_{n - 1}) P(H_{n - 1}) +
+%             P(A | H_{n}) P(H_{n})
+%         }
+%         {
+%             P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
+%         }
+%     \end{math}    
+% \end{center}
+Zanje velja tudi \textbf{Bayesova formula}:
+\begin{center}
+    \begin{math}
+        P(H_{i} | A) = 
+    \end{math}
+    \begin{math}
+        \dfrac{
+            P(H_{i}) P(A | H_{i})
+        }
+        {
+            P(A)
+        }
+    \end{math}
+    \begin{math}
+        = \dfrac{
+            P(H_{i}) P(A | H_{i})
+        }
+        {
+            \sum_{k=1}^{n} P(H_{k}) P(A | H_{k})
+        }
+    \end{math}        
+\end{center}
+Splosno za vse nastete verjetnosti velja:
+\begin{center}
+    \begin{math}
+    P(A \cup B) = P(A) + P(B) - P(A \cap B)
+    \end{math} in 
+    \begin{math}
+        P(A \cap B) = P(A | B) P(B) = P(B | A) P(A)
+    \end{math}
+\end{center}
+
+\section{\underline{Porazdelitve}}
+
+\textbf{3.1 Diskretne slucjana spremenljivka}
+Naj bo $X$ diskretna slucajna spremenljivka $\implies$ $X$ je funkcija
+s koncno ali stevno zalogo  vrednosti ${ a_{1}, a_{2}, \dots}$ Verjetnost, 
+da $X$ zavzame vrednost $a_{i} \in R$, oznacimo z $P(X = a_{i}) = p_{i}$. Porazdelitev
+$X$ lahko podamo na dva enakovredna nacina, in sicer s:
+\begin{enumerate}
+    \item s \textbf{porazdelitveno shemo}
+        \begin{center}
+            \begin{math}
+                X \sim
+                \begin{pmatrix}
+                    a_{1} & a_{2} & a_{3} & \dots \\
+                    p_{1} & p_{2} & p_{3} & \dots
+                \end{pmatrix}
+            \end{math}
+        \end{center}
+        velja $0 \leq p_{i} \leq 1$ in $p_{1} + p_{2} + \dots = 1$
+    \item s \textbf{porazdelitveno funkcijo}
+        \begin{center}
+            \begin{math}
+                F_{x}(x) := P(X \leq x)
+            \end{math}
+        \end{center}
+\end{enumerate}
+
+\textbf{3.2 Bernoullijeva} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim B(p)
+    \end{math}
+\end{center}
+\begin{itemize}
+    \item V vsakem poskusu ima dogodek $A$ verjetnost $p$, $X$ pa ima vrednost 1, ce se je zgodil dogodek A, in 0 sicer.
+    \item $P(X = 1) = p, P(X = 0) = 1 - p$
+\end{itemize}
+
+
+\textbf{3.3 Binomska} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim B(n, p)
+    \end{math}
+\end{center}
+\begin{itemize}
+    \item $X$ je stevilo pojavitev izida $A$ v $n$ ponovitvah poskusa
+    \item $P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.$
+\end{itemize}
+Izvajamo $n$ neodvisnih slucajnih poskusov. V vsakem poskusu se lahko zgodi dogodek $A$ s 
+konstantno verjetnostjo $p$, $p =  P(A)$. 
+$X$ nam pove kolikokrat se je zgodil dogodek $A$ v $n$ poskusih.
+npr. kovanec vrzemo 10x, koliksne so vrjetnosti, da pade cifra 0x, 2x, vsaj 3x,..
+ali 5x vrzemo posteno kocko, izracunaj stevilo sestic, ki pade $\implies B(5, \dfrac{1}{6})$
+
+\textbf{3.4 Geometrijska} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim G(p)
+    \end{math}
+\end{center}
+\begin{itemize}
+    \item $X$ je stevilo ponovitev poskusa do (vkljucno) prve ponovitve izida $A$.
+    \item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$ % in $P(X \leq k) = 1 - (1 - p)^{k}$% 
+\end{itemize}
+Izvajamo  neodvisne slucajne poskuse, dokler se ne zgodi dogodek $A$. V vsakem poskusu
+se lahko zgodi dogodek $A$  s konstantno verjetnostjo $p$, $p =  P(A)$.
+npr. koliko metov kocke je potrebnih, do prve sestice.
+
+\textbf{3.5 Pascalova} oz. \textbf{negativna binomska} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim P(n, p)
+    \end{math}
+\end{center}
+\begin{itemize}
+    \item $X$ je stevilo ponovitev poskusa do (vkljucno) $n$-te ponovitve izida $A$.
+    \item \begin{math}
+        P(X = k) = {k - 1 \choose n - 1 }(1 - p)^{k - n} p^{n} $ za $ k = n, n + 1, n + 2, \dots
+    \end{math}
+\end{itemize}
+npr. koliko metov kocke je potrebnih, dokler sestica ne pade 5x $\implies P(5, \dfrac{1}{6})$. Stevilo metov kovanca,
+dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
+
+\textbf{3.6 Hipergeometrijska} slucjana spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim H(K, N - K, n)
+    \end{math}
+\end{center}
+\begin{itemize}
+    \item $X$ je stevilo elementov z doloceno lastnostjo med izbranimi.
+    \item \begin{math}
+        P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, R \}
+    \end{math}
+\end{itemize}
+V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
+npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
+Stevilo praznih baterij med izbranimi 4imi baterijami.
+
+\textbf{3.7 Poissonova} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim P(\lambda)
+    \end{math}
+\end{center}
+\begin{itemize}
+    \item $X$ je stevilo ponovitev dogodka A na danem intervalu, pri cemer:
+        \begin{itemize}
+            \item se dogodki pojavljajo neodvisno
+            \item povprecno stevilo dogodgov $\lambda$, ki se pojavjio na dolocenem intervalu, je konstantno.
+        \end{itemize}
+    \item \begin{math}
+        P(X = k) =  \dfrac{ \lambda^{k} }{k!} e^{- \lambda}$ za k = $ 0,1,2,\dots
+    \end{math}
+\end{itemize}
+npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
+kolikokrat se bo dogodek zgodil v  1/4h. St avtomobilov, ki preckajo cestov v 1min.
+
+\smallskip
+\end{multicols}
+\end{document}

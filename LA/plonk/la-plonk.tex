@@ -1,75 +1,20 @@
-\documentclass{article}
-\usepackage[margin=0.15cm]{geometry}
+\documentclass[a4paper]{article}
+\usepackage[margin=0.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{setspace}
 
 \setlength{\columnseprule}{0.5pt}
 
-\begin{document}
+\setstretch{0.5}
 
-\begin{center}
-    {\huge \href{https://github.com/spagnoloG/LA-FRI}{LA/FRI} - Cheat Sheet \par}
-\end{center}
+\begin{document}
 
 \begin{multicols}{3}
 
 \section{\underline{Vektorji in matrike}}
-
-\textbf{1.1} Vektor je \textit{urejena n-terica stevil}, ki jo obicajno
-zapisemo kot stolpec\smallskip
-\begin{center}
-    $\vec{x}$ =
-    $\begin{bmatrix}
-        x_{1}\\
-        \vdots \\
-        x_{n}\\
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.2} Produkt \textit{vektorja} $\vec{x}$ s skalarjem $\alpha$ je vektor
-\begin{center}
-    $\alpha \vec{x}$ =
-    $\alpha$
-    $\begin{bmatrix}
-        x_{1}\\
-        \vdots \\
-        x_{n}\\
-    \end{bmatrix}$ =
-    $\begin{bmatrix}
-        \alpha x_{1}\\
-        \vdots \\
-        \alpha x_{n}\\
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.3} Vsota \textit{vektorjev} $\vec{x}$ in $\vec{y}$ je vektor
-\begin{center}
-    $\vec{x} + \vec{y} = 
-    \begin{bmatrix}
-        x_{1}\\
-        \vdots \\
-        x_{n}\\
-    \end{bmatrix} +
-    \begin{bmatrix}
-        y_{1}\\
-        \vdots \\
-        y_{n}\\
-    \end{bmatrix} =
-    \begin{bmatrix}
-        x_{1}  +  y_{1}\\
-        \vdots\\
-        x_{n} + y_{n}\\
-    \end{bmatrix} 
-    $
-\end{center}
-
-\textbf{1.4} Nicelni vektor $\vec{0}$ je tisti vektor, za katerega
-je $\vec{a} + \vec{0} = \vec{0} + \vec{a} = \vec{a}$ za vsak vektor
-$\vec{a}$. Vse komponente nicelnega vektorja so enake 0. Vsakemu vektorju
-$\vec{a}$ priprada nasprotni vektor -$\vec{a}$, tako da je $\vec{a} + (-\vec{a}) = \vec{0}$
-Razlika vektorjev $\vec{a}$ in $\vec{b}$ je vsota $\vec{a} + (-\vec{b})$ in jo
-navadno zapisemo kot  $\vec{a} - \vec{b}$.
 
 \textbf{Lastnosti vektorske vsote}
 \begin{itemize}
@@ -78,24 +23,7 @@ navadno zapisemo kot  $\vec{a} - \vec{b}$.
     \item $a(\vec{a} + \vec{b}) = a\vec{a} + a\vec{b}$ (distributivnost)
 \end{itemize}
 
-\textbf{1.5} Linearna kombinacija vektorjev $\vec{x}$ in $\vec{y}$ je vsota
-\begin{center}
-    $a\vec{x} + b\vec{y}$
-\end{center}
-
 \textbf{1.6} Skalarni produkt vektorjev\\
-\begin{center}
-    $\begin{bmatrix} 
-        x_{1}\\ 
-        \vdots\\ 
-        x_{n}\\
-    \end{bmatrix}$ in
-    $\begin{bmatrix} 
-        y_{1}\\ 
-        \vdots\\ 
-        y_{n}\\
-    \end{bmatrix}$ je stevilo    
-\end{center}
 \begin{center}
     $\vec{x} \cdot \vec{y} = x_{1}y_{1} + x_{2}y_{2} + \dots + x_{n}y_{n}$
 \end{center} \textit{alternativno:}
@@ -196,65 +124,6 @@ Izracunamo jo po sledeci formuli:
 
 \textbf{1.15} Matrika dimenzije $m \times n$ je tabela $m \times n$ stevil, urejenih
 v $m$ vrstic in $n$ stolpcev:
-\begin{center}
-    $A^{m \times n} =$
-    $\begin{bmatrix}
-        x_{11} & x_{12} & x_{13} & \dots  & x_{1n} \\
-        x_{21} & x_{22} & x_{23} & \dots  & x_{2n} \\
-        \vdots & \vdots & \vdots & \ddots & \vdots \\
-        x_{m1} & x_{m2} & x_{m3} & \dots  & x_{mn}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.16} Matrika, katere elementi so enaki nic povsod
-zunaj glavne diagonale, se imenuje diagonalna matrika. Za
-diagonalno matriko je $a_{ij} = 0$, kadarkoli velja $i \neq j$
-
-\textbf{1.17} Matrika $A^{n \times n}$ je spodnjetrikotna, kadar
-so vsi elementi nad glavno diagonalo enaki 0:
-\begin{center}
-    $a_{ij} = 0$  \textit{kadar je} $i < j$
-\end{center}
-
-\textbf{1.18} Matrika $A^{n \times n}$ je zgornjetrikotna, kadar
-so vsi elementi pod glavno diagonalo enaki 0:
-\begin{center}
-    $a_{ij} = 0$  \textit{kadar je} $i > j$
-\end{center}
-
-\textbf{1.19} Matrika je trikotna, ce je zgornjetrikotna ali spodnjetrikotna.
-
-\textbf{1.20} Dve matriki $A$ in $B$ sta enaki natanko takrat,
-kadar imata enaki dimenziji in kadar so na istih mestih v obeh
-matrikah enaki elementi:
-\begin{center}
-    $A^{m \times n} = B^{p \times q} \implies m=p$ in $n=q$,\\
-    $a_{ij} = b_{ij}$ \textit{za vsak} $i= 1,...,m$ in $j=1,...,n$ 
-\end{center}
-
-\textbf{1.21} Produkt matrike s skalarjem dobimo tako, da 
-vsak element matrike pomnozimo s $skalarjem$
-\begin{center}
-    $aA^{m \times n} =$
-    $\begin{bmatrix}
-        ax_{11} & ax_{12} & ax_{13} & \dots  & ax_{1n} \\
-        ax_{21} & ax_{22} & ax_{23} & \dots  & ax_{2n} \\
-        \vdots  & \vdots  & \vdots  & \ddots  & \vdots \\
-        ax_{m1} & ax_{m2} & ax_{m3} & \dots  & ax_{mn}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.22} Vsoto dveh matrik enake dimenzije dobimo tako,
-da sestejemo istolezne elemente obeh matrik:
-\begin{center}
-    $A + B =$
-    $\begin{bmatrix}
-        a_{11} + b_{11} & ax_{12} + b_{12}  & \dots  & ax_{1n} + b_{1n} \\
-        a_{21} + b_{21} & ax_{22} + b_{22}  & \dots  & ax_{2n} + b_{2n}\\
-        \vdots          & \vdots            & \ddots & \vdots \\
-        a_{m1} + b_{m1} & ax_{m2} + b_{m3} & \dots  & ax_{mn} + b_{mn}
-    \end{bmatrix}$
-\end{center}
 
 \textbf{Osnovne matricne operacije}
 \begin{itemize}
@@ -265,26 +134,6 @@ da sestejemo istolezne elemente obeh matrik:
     \item $x(yA) = (xy)A$ \textit{in} $1 \cdot A = A$
 \end{itemize}
 
-\textbf{1.23} Transponirana matrika k matriki A reda $m \times n$
-je matrika reda $n \times m$
-\begin{center}
-    $A =$
-    $\begin{bmatrix}
-        x_{11} & x_{12} & \dots  & x_{1n} \\
-        x_{21} & x_{22} & \dots  & x_{2n} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        x_{m1} & x_{m2} & \dots  & x_{mn}
-    \end{bmatrix}$\\
-    \smallskip
-    $A^{T} =$
-    $\begin{bmatrix}
-        x_{11} & x_{21} & \dots  & x_{m1} \\
-        x_{12} & x_{22} & \dots  & x_{m2} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        x_{1n} & x_{2n} & \dots  & x_{mn}
-    \end{bmatrix}$
-\end{center}
-
 \textbf{Lastnosti transponiranja matrik}
 \begin{itemize}
     \item $(A + B)^{T} = A^{T} + B^{T}$
@@ -292,81 +141,6 @@ je matrika reda $n \times m$
     \item $(xA)^{T} = xA^{T}$
     \item $(A^{T})^{T} = A$
 \end{itemize}
-
-\textbf{1.24} Produkt matrike A in vektorja $\vec{x}$ je
-linearna kombinacija stolpcev matrike A, utezi linearne
-kombinacije so komponente vektorja $\vec{x}$:
-\begin{center}
-    $A \vec{x} =
-    \begin{bmatrix}
-                &         & \\
-        \vec{u} & \vec{v} & \vec{w} \\
-                &         & \\
-    \end{bmatrix}
-    \cdot
-    \begin{bmatrix}
-        a\\
-        b\\
-        c
-    \end{bmatrix} =$
-    $a\vec{u} + b\vec{v} + c\vec{w}$
-\end{center}
-
-\textbf{1.25} Produkt vrstice $\vec{x}$ z matriko A je
-linearna kombinacija vrstic matrike A, koeficienti linearne
-kombinacije so komponente vrstice $\vec{y}$:
-\begin{center}
-    $\vec{y} \cdot A =
-    \begin{bmatrix}
-        y_{1}, y_{2}, y_{3}
-    \end{bmatrix} \cdot
-    \begin{bmatrix}
-        \vec{u}\\
-        \vec{v}\\
-        \vec{w}
-    \end{bmatrix} =
-    \begin{bmatrix}
-        y_{1}\vec{u}\\
-        y_{2}\vec{v}\\
-        y_{3}\vec{w}
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{1.26} Produkt matrik A in B je matrika, katere stolpci
-so zaporedoma produkti matrike A s stolpci matrike B:
-\begin{center}
-    $AB = A
-    \begin{bmatrix}
-        b_{1}, b_{2}, \dots ,b_{n}
-    \end{bmatrix} =
-    \begin{bmatrix}
-        Ab_{1}, Ab_{2}, \dots ,Ab_{n}
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{1.27} Element $c_{ij}$ v $i-ti$ vrstici in $j-tem$ stolpcu
-produkta C = AB je skalarni produkt $i-te$ vrstice A in $j-tega$
-stolpca matrike B
-\begin{center}
-    $c_{ij} =
-    \sum_{k=1}^{n} a_{ik}b_{kj}
-    $
-\end{center}
-
-\textbf{1.28} Produkt matrik A in B je matrika, katere vrstice
-so zaporedoma produkti vrstic matrike A z matriko B:
-\begin{center}
-    $
-    \begin{bmatrix}
-        i-ta\; vrstica\; A
-    \end{bmatrix}B =
-    \begin{bmatrix}
-        i-ta\; vrstica\; AB
-    \end{bmatrix}
-    $
-\end{center}
 
 \textbf{Lastnosti matricnega produkta}
 \begin{itemize}
@@ -378,45 +152,6 @@ so zaporedoma produkti vrstic matrike A z matriko B:
 \end{itemize}
 V splosnem; komutativnost matricnega mnozenja velja
 samo, ko sta matriki diagonalizabilni.
-
-\textbf{1.29} Vrstice matrike A z $n$ stolpci naj bodo
-$a^{1}, \dots, a^{n}$, stolpci matrike B z $n$ vrsticami pa
-$b_{1}, \dots, b_{n}$. Potem je
-\begin{center}
-    $AB = a^{1}b_{1} + \dots + a^{n}b_{n}$
-\end{center}
-
-\textbf{1.30} Ce delitev na bloke v matriki A ustreza delitvi v matirki B,
-potem lahko matriki pomnozimo blocno:
-\begin{center}
-    $\begin{bmatrix}
-        A_{11} & A_{12}\\
-        A_{21} & A_{22}
-    \end{bmatrix}
-    \begin{bmatrix}
-        B_{11} & B_{12}\\
-        B_{21} & B_{22}
-    \end{bmatrix} =
-    \begin{bmatrix}
-        A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22}\\
-        A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.31} Kvadratna matrika $I_{k}$ reda $k \times k$, ki ima vse diagonalne
-elemente enake 1, vse ostale elemente pa 0 ima lastnost, da za vsako matriko A
-reda $m \times n$ velja $AI_{n} = A$ in $I_{m}A = A$. Matrika $I_{k}$ se imenuje
-enotska ali identicna matirka.
-\begin{center}
-    $I_{k}=
-    \begin{bmatrix}
-        1 & 0 & \hdots & 0\\
-        0 & 1 & \hdots & 0 \\
-        \vdots & \vdots & \ddots & \vdots\\
-        0 & 0 & \hdots & 1
-    \end{bmatrix} 
-    $
-\end{center}
 
 \section{\underline{Sistemi linearnih enacb}}
 
@@ -502,19 +237,6 @@ $RR^{T}$ simetricni matriki.
 
 \section{\underline{Vektorski prostori}}
 
-\textbf{3.1} Realni vektorski prostor V je mnozica "vektorjev" skupaj z pravili za
-\begin{itemize}
-    \item sestevanje vektorjev,
-    \item mnozenje vektorja z realnim stevilom (skalarjem)
-\end{itemize}
-Ce sta $\vec{x}$ in $\vec{y}$ poljubna vektorja v V, morajo biti v V tudi
-\begin{itemize}
-    \item vsota $\vec{x} + \vec{y}$ in 
-    \item produkti $\alpha\vec{x}$ za vse $\alpha \in R$
-\end{itemize}
-V vektorskem prostoru V morajo biti tudi VSE linearne kombinacije
-$\alpha\vec{x} + \beta\vec{y}$
-
 \textbf{Pravila za operacije v vektorskih prostorih}\\
 Operaciji sestevanja vektorjev in mnozenja vektorja s skalarjem v vektorskem prostoru
 morajo zadoscati naslednjim pravilom:
@@ -534,22 +256,8 @@ vsak par vektorjev $\vec{x}$ in $\vec{y}$ iz U in vsako realno stevilo $\alpha$ 
 \begin{itemize}
     \item $\vec{x} + \vec{y} \in U$ in
     \item $\alpha\vec{x} \in U$.
+    \item $\alpha\vec{x} + \beta\vec{y}$
 \end{itemize}
-
-\textbf{3.3} Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
-kombinacija vektorjev iz U tudi v U.
-
-\textbf{Lastnosti vektorskih podprostorov}
-\begin{itemize}
-    \item Vsak vektorski podprostor nujno vsebuje nicelni vektor $\vec{0}$
-    \item Presek dveh podprostorov vektorskega podprostora je tudi podprostor
-\end{itemize}
-
-\textbf{3.4} Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
-vektorskega prostora $R^{m}$, ki vsebuje natanko vse linearne kombinacije stolpcev matrike A.\\
-Izracunamo ga tako, da matriko A transponiramo in izvedemo operacijo gaussove eliminacije nad $A^{T}$. Vrstice katere ostanejo po gaussivi eliminaciji
-so linearno neodvisni vektorji, kateri tvorijo stoplicni prostor matrike A, $C(A)$.
-\textit{neformalno: linearna ogrinjaca stolpcev matrike (npr. ce imas 5 stolpcev pa lahko 2 zapises kot linearno kombinacijo ostalih 3 bo imel column space 3 elemente)}
 
 \textbf{3.5} Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
 $\vec{b} \in C(A)$
@@ -576,12 +284,6 @@ se imenuje rang matrike. Rang matrike A zapisemo kot $rang(A)$.
     \textit{Stevilo prostih neznank matrike = st. stolpcev - rang matrike}   
 \end{center}
 
-\textbf{3.13}
-\begin{enumerate}
-    \item Visoka in ozka matrika $(m > n)$ ima poln stolpicni rang, kadar je $rang(A) = n$
-    \item Nizka in siroka matrika $(m < n)$ ima poln vrsticni rang, kadar je $rang(A) = m$
-    \item Kvadratna matrika $(n = m)$ ima poln rang, kadar je $rang(A) = m = n$
-\end{enumerate}
 
 \textbf{3.14} Za vsako matriko A s polnim stolpicnim rangom $r = n \leq m$, velja:
 \begin{enumerate}
