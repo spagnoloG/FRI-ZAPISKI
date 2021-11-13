@@ -1,10 +1,9 @@
 # FRI-ZAPISKI
 
 trenutno na voljo:
-<ul>
-    <li>LA</li>
-    <li>VIS</li>
-</ul>
+- [LA](https://spagnolog.github.io/FRI-ZAPISKI/LA/la.pdf)
+- [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
+- [VIS](https://spagnolog.github.io/FRI-ZAPISKI/VIS/vis.pdf)
 
 Feel free to edit, correct and share this document. <br>
 sG
