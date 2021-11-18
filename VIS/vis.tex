@@ -33,7 +33,7 @@
 
 \textbf{1.3 Kombinacije}
 \begin{enumerate}
-    \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - r)! r!}$
+    \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
     \item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
 \end{enumerate}
 \begin{center}
@@ -242,11 +242,12 @@ ali 5x vrzemo posteno kocko, izracunaj stevilo sestic, ki pade $\implies B(5, \d
 \end{center}
 \begin{itemize}
     \item $X$ je stevilo ponovitev poskusa do (vkljucno) prve ponovitve izida $A$.
-    \item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$ % in $P(X \leq k) = 1 - (1 - p)^{k}$% 
+    \item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$ 
+    \item $P(X \leq k) = 1 - (1 - p)^{k}$ za $k = 1,2, \dots$
 \end{itemize}
 Izvajamo  neodvisne slucajne poskuse, dokler se ne zgodi dogodek $A$. V vsakem poskusu
 se lahko zgodi dogodek $A$  s konstantno verjetnostjo $p$, $p =  P(A)$.
-npr. koliko metov kocke je potrebnih, do prve sestice.
+npr. koliko metov kocke je potrebnih, do prve sestice $\implies G(1/6)$.
 
 \textbf{3.5 Pascalova} oz. \textbf{negativna binomska} slucajna spremenljivka
 \begin{center}
@@ -277,7 +278,8 @@ dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
 \end{itemize}
 V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
 npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
-Stevilo praznih baterij med izbranimi 4imi baterijami.
+imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna verjetnost je da sta 
+2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$. 
 
 \textbf{3.7 Poissonova} slucajna spremenljivka
 \begin{center}
@@ -296,7 +298,7 @@ Stevilo praznih baterij med izbranimi 4imi baterijami.
     \end{math}
 \end{itemize}
 npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
-kolikokrat se bo dogodek zgodil v  1/4h. St avtomobilov, ki preckajo cestov v 1min.
+kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki preckajo cestov v 1min.
 
 \smallskip
 \end{multicols}
