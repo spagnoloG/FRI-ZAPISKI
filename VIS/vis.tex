@@ -335,7 +335,7 @@ kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki pre
 
 \section{\underline{Zss in porazdelitve}}
 
-\textbf{3.1 Zvezna slucjana spremenljivka}
+\textbf{4.1 Zvezna slucjana spremenljivka}
 Naj bo $X$ zvezna slucajna spremenljivka $\implies$ $X$ je realna funkcija,
 za katero obstaja integrabilna funkcija $p_{X}: R \rightarrow [0, \infty)$,
 tako da za vsak $x \in R$ velja:
@@ -362,8 +362,9 @@ Lastnosti:
     \end{math} nqot
 \end{itemize}
 \textbf{ce} je funkcija zvezna v $x$, potem za njo velja tudi $F'(x) = p(x)$.
-
-\textbf{3.2 Enakomerna zvezna} slucajna spremenljivka
+Za zvezno slucajno spremenljivko $X$ je \textit{funkcija prezivetja} $S(x) = P(X > x)$
+vedno zvezna, nenarascujoca in zavzema vrednosti na intervalu $[0, 1]$.
+\textbf{4.2 Enakomerna zvezna} slucajna spremenljivka
 \begin{center}
     \begin{math}
         X \sim U[a, b]
@@ -391,7 +392,7 @@ Lastnosti:
 
 Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
 
-\textbf{3.3 Eksponentna} slucajna spremenljivka
+\textbf{4.3 Eksponentna} slucajna spremenljivka
 \begin{center}
     \begin{math}
         X \sim \epsilon(\lambda)
@@ -421,7 +422,7 @@ pri cemer so dogodki neodvisni in se pojavijo s konstantno
 stopnjo $\lambda$. $\lambda$ predstavlja povprecno stevilo dogodkov
 na izbrano casovno enoto.
 
-\textbf{3.4 Normalna} slucajna spremenljivka
+\textbf{4.4 Normalna} slucajna spremenljivka
 \begin{center}
     \begin{math}
         X \sim N(\mu, \sigma )
@@ -442,7 +443,7 @@ Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev $\implies$ potem za v
     P(X < x) = 1 - P(X > x)
 \end{math}.
 
-\textbf{3.5 Gamma} slucajna spremenljivka
+\textbf{4.5 Gamma} slucajna spremenljivka
 \begin{center}
     \begin{math}
         X \sim \Gamma(n, \lambda)
@@ -462,7 +463,7 @@ Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev $\implies$ potem za v
 V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
 prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 
-\textbf{3.5 Hi kvadrat} slucajna spremenljivka
+\textbf{4.6 Hi kvadrat} slucajna spremenljivka
 \begin{center}
     \begin{math}
         X \sim  \chi^{2}(n) = \Gamma(\frac{n}{2}, \frac{1}{2})
@@ -482,115 +483,8 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
 \bigskip
 
-\textit{Ponovitev analize}\\
+\input{ponovitev-analize.tex}
 
-\textbf{appx. Odvodi}
-\begin{center}
-    \begin{small}
-        \begin{enumerate}
-            \item \begin{math}
-                \frac{1}{x} = -\frac{1}{x^2}
-            \end{math}
-            \item \begin{math}
-                x^n  = nx^{n-1}
-            \end{math}
-            \item \begin{math}
-                \sqrt{x} = \frac{1}{2 \sqrt{x}}
-            \end{math}
-            \item \begin{math}
-                \sqrt[n] x = \frac{1}{n \sqrt[n]{x^{n-1}}}
-            \end{math}
-            \item \begin{math}
-                \sin (a x) =  a  \cos a x
-            \end{math}
-            \item  \begin{math}
-                \cos (a x) = - a \sin (a x)
-            \end{math}
-            \item \begin{math}
-                \tan x = \frac{1}{\cos^2 x} 
-            \end{math}
-            \item \begin{math}
-                e^ax = ae^{ax}
-            \end{math}
-            \item \begin{math}
-                a^x = a^x \ln a
-            \end{math}
-            \item \begin{math}
-                x^x = x^x (1+\ln x)
-            \end{math}
-            \item \begin{math}
-                ln x = \frac{1}{x}
-            \end{math}
-            \item \begin{math}
-                log_a x = \frac{1}{x \ln a}
-            \end{math}
-            \item \begin{math}
-                \arcsin x = \frac{1}{\sqrt {1 - x^2}}
-            \end{math}
-            \item \begin{math}
-                \arccos x = - \frac{1}{\sqrt{1 - x^2}}
-            \end{math}
-            \item \begin{math}
-                \arctan x = \frac{1}{1 + x^2}
-            \end{math}
-            \item \begin{math}
-                \operatorname{arccot}x = -\frac{1}{1 + x^2}
-            \end{math}
-        \end{enumerate}
-    \end{small}
-\end{center}
-\textbf{appx. Integrali}
-\begin{center}
-    \begin{small}
-        \begin{enumerate}
-            \item \begin{math}
-                \int x^a\,dx =
-                \Bigg\{\begin{tabular}{ccc}
-                    $\frac{x^{a+1}}{a+1} + C$  & $a \neq -1$ & \\
-                    $ \ln{\left|x\right|} + C$ & $a = -1$ & \\
-                  \end{tabular}
-            \end{math}
-            \item \begin{math}
-                \int \ln {x}\,dx = x \ln {x} - x + C
-            \end{math}
-            \item \begin{math}
-                \int \frac {1}{\sqrt{x}}\,dx=2\sqrt{x} + C 
-            \end{math}
-            \item \begin{math}
-                \int e^x\,dx = e^x + C
-            \end{math}
-            \item \begin{math}
-                \int a^x\,dx = \frac{a^x}{\ln{a}} + C
-            \end{math}
-            \item \begin{math}
-                \int \cos({ax}) \, dx = {sin (ax) \over a} + C
-            \end{math}
-            \item \begin{math}
-                \int \sin({ax}) \, dx = {-{cos(ax) \over a}} + C
-            \end{math}
-            \item \begin{math}
-                \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
-            \end{math}
-            \item \begin{math}
-                \int \frac{dx}{\cos^2 x}=\int \sec^2 x \, dx = \tan x + C
-            \end{math}
-            \item \begin{math}
-                \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
-            \end{math}
-            \item \begin{math}
-                \int {1 \over \sqrt{1-x^2}} \, dx = \arcsin {x} + C
-            \end{math}
-        \end{enumerate}
-    \end{small}
-\end{center}
-\begin{tiny}
-    \textbf{Integrating absolute values:}
-    First, determine where the quantity inside the absolute value bars is negative and where it is positive.
-    When we’ve determined that point all we need to do is break up the integral so that in each range of limits
-    the quantity inside the absolute value bars is always positive or always negative. Once this is done we can
-    drop the absolute value bars (adding negative signs when the quantity is negative) and then we can do the
-    integral as we’ve always done.
-\end{tiny}
 \smallskip
 \end{multicols}
 \end{document}

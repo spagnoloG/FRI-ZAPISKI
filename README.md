@@ -5,5 +5,5 @@ trenutno na voljo:
 - [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
 - [VIS](https://spagnolog.github.io/FRI-ZAPISKI/VIS/vis.pdf)
 
-Feel free to edit, correct and share this document. <br>
+Feel free to edit, correct and share these documents. <br>
 sG
