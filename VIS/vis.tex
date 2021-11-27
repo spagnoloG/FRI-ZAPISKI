@@ -20,41 +20,49 @@
 
 
 \textbf{1.1 Permutacije}
-\begin{enumerate}
-    \item brez ponavljanja: $P_{n} = n!$
-    \item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
-\end{enumerate}
+\begin{small}
+    \begin{enumerate}
+        \item brez ponavljanja: $P_{n} = n!$
+        \item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
+    \end{enumerate}        
+\end{small}
 
 \textbf{1.2 Variacije}
-\begin{enumerate}
-    \item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
-    \item s ponavljanjem: $V_{n}^{r} = n^{r}$
-\end{enumerate}
+    \begin{small}
+        \begin{enumerate}
+            \item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
+            \item s ponavljanjem: $V_{n}^{r} = n^{r}$
+        \end{enumerate}                
+    \end{small}
 
 \textbf{1.3 Kombinacije}
-\begin{enumerate}
-    \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
-    \item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
-\end{enumerate}
-\begin{center}
-    Lastnosti binomskega simbola:
-    \begin{math}
-        {n \choose n} = 1 \quad
-        {n \choose 0} = 1 \quad
-        {n \choose 1} = n \quad
-        {n \choose r} = {n \choose n - r} 
-    \end{math}
-    Binomski izrek:\\
-    \begin{math}
-        (a + b)^{n} =
-        {n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
-        {n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
-    \end{math}
+\begin{small}
+    \begin{enumerate}
+        \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
+        \item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
+    \end{enumerate}
+    \begin{center}
+        Lastnosti binomskega simbola:
+        \begin{math}
+            {n \choose n} = 1 \quad
+            {n \choose 0} = 1 \quad
+            {n \choose 1} = n \quad
+            {n \choose r} = {n \choose n - r} 
+        \end{math}
+        Binomski izrek:\\
+        \begin{math}
+            (a + b)^{n} =
+            {n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
+            {n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
+        \end{math}
+    
+    \end{center}        
 
-\end{center}
 Za kombinacije velja, da vrstni red \textbf{ni} pomemben. Medtem pa
 ko v splosnem za variacije in permutacije velja, da vrstni red \textbf{je}
 pomemben.
+\end{small}
+
 
 \section{\underline{Verjetnost}}
 
@@ -77,24 +85,26 @@ Nasprotni dogodek pa z verjetnostjo:
 \end{center}
 Nacelo vkljucitev in izkljucitev dogodkov:
 \begin{center}
-    \begin{math}
-        P(A_{1} \cup \dots \cup A_{n}) =
-    \end{math}
-    \begin{math}
-        P(A_{1}) + \dots + P(A_{n})
-    \end{math}
-    \begin{math}
-        - P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
-    \end{math}
-    \begin{math}
-        + P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
-    \end{math}
-    \begin{math}
-        - \dots
-    \end{math}
-    \begin{math}
-        + (-1)^{n + 1} P(A_{1} \dots A_{n})
-    \end{math}
+    \begin{small}
+        \begin{math}
+            P(A_{1} \cup \dots \cup A_{n}) =
+        \end{math}
+        \begin{math}
+            P(A_{1}) + \dots + P(A_{n})
+        \end{math}
+        \begin{math}
+            - P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
+        \end{math}
+        \begin{math}
+            + P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
+        \end{math}
+        \begin{math}
+            - \dots
+        \end{math}
+        \begin{math}
+            + (-1)^{n + 1} P(A_{1} \dots A_{n})
+        \end{math}
+    \end{small}
 \end{center}
 Dogodki $A_{1}, A_{2}, \dots , A_{k}$ in $B$ so \textbf{neodvisni}, ce velja
 \begin{center}
@@ -141,7 +151,7 @@ Za \textbf{popolni sistem dogodkov} velja unija hipotez:
     \bigskip
     \begin{math}
         \frac{
-            P(A | H_{1}) P(H_{1}) + \dots
+            P(A | H_{1}) P(H_{1}) + \dots +
             P(A | H_{n}) P(H_{n})
         }
         {
@@ -464,7 +474,7 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
         p_{X}(x) =
         \Bigg\{\begin{tabular}{ccc}
           $0$  & $x \leq 0$ & \\
-          $\dfrac{x^{\frac{n}{2} - 1} e ^{- \frac{x}{2}}}{2^{\frac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$ & \\
+          $\dfrac{x^{\frac{n}{2} - 1} e ^{- \frac{x}{2}}}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})}$ & $x > 0$ & \\
         \end{tabular}
     \end{math} 
 \end{itemize}
@@ -472,101 +482,115 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
 \bigskip
 
+\textit{Ponovitev analize}\\
+
 \textbf{appx. Odvodi}
 \begin{center}
-    \begin{enumerate}
-        \item \begin{math}
-            \frac{1}{x} = -\frac{1}{x^2}
-        \end{math}
-        \item \begin{math}
-            x^n  = nx^{n-1}
-        \end{math}
-        \item \begin{math}
-            \sqrt{x} = \frac{1}{2 \sqrt{x}}
-        \end{math}
-        \item \begin{math}
-            \sqrt[n] x = \frac{1}{n \sqrt[n]{x^{n-1}}}
-        \end{math}
-        \item \begin{math}
-            \sin (a x) =  a  \cos a x
-        \end{math}
-        \item  \begin{math}
-            \cos (a x) = - a \sin (a x)
-        \end{math}
-        \item \begin{math}
-            \tan x = \frac{1}{\cos^2 x} 
-        \end{math}
-        \item \begin{math}
-            e^ax = ae^{ax}
-        \end{math}
-        \item \begin{math}
-            a^x = a^x \ln a
-        \end{math}
-        \item \begin{math}
-            x^x = x^x (1+\ln x)
-        \end{math}
-        \item \begin{math}
-            ln x = \frac{1}{x}
-        \end{math}
-        \item \begin{math}
-            log_a x = \frac{1}{x \ln a}
-        \end{math}
-        \item \begin{math}
-            \arcsin x = \frac{1}{\sqrt {1 - x^2}}
-        \end{math}
-        \item \begin{math}
-            \arccos x = - \frac{1}{\sqrt{1 - x^2}}
-        \end{math}
-        \item \begin{math}
-            \arctan x = \frac{1}{1 + x^2}
-        \end{math}
-        \item \begin{math}
-            \operatorname{arccot}x = -\frac{1}{1 + x^2}
-        \end{math}
-    \end{enumerate}
+    \begin{small}
+        \begin{enumerate}
+            \item \begin{math}
+                \frac{1}{x} = -\frac{1}{x^2}
+            \end{math}
+            \item \begin{math}
+                x^n  = nx^{n-1}
+            \end{math}
+            \item \begin{math}
+                \sqrt{x} = \frac{1}{2 \sqrt{x}}
+            \end{math}
+            \item \begin{math}
+                \sqrt[n] x = \frac{1}{n \sqrt[n]{x^{n-1}}}
+            \end{math}
+            \item \begin{math}
+                \sin (a x) =  a  \cos a x
+            \end{math}
+            \item  \begin{math}
+                \cos (a x) = - a \sin (a x)
+            \end{math}
+            \item \begin{math}
+                \tan x = \frac{1}{\cos^2 x} 
+            \end{math}
+            \item \begin{math}
+                e^ax = ae^{ax}
+            \end{math}
+            \item \begin{math}
+                a^x = a^x \ln a
+            \end{math}
+            \item \begin{math}
+                x^x = x^x (1+\ln x)
+            \end{math}
+            \item \begin{math}
+                ln x = \frac{1}{x}
+            \end{math}
+            \item \begin{math}
+                log_a x = \frac{1}{x \ln a}
+            \end{math}
+            \item \begin{math}
+                \arcsin x = \frac{1}{\sqrt {1 - x^2}}
+            \end{math}
+            \item \begin{math}
+                \arccos x = - \frac{1}{\sqrt{1 - x^2}}
+            \end{math}
+            \item \begin{math}
+                \arctan x = \frac{1}{1 + x^2}
+            \end{math}
+            \item \begin{math}
+                \operatorname{arccot}x = -\frac{1}{1 + x^2}
+            \end{math}
+        \end{enumerate}
+    \end{small}
 \end{center}
 \textbf{appx. Integrali}
 \begin{center}
-    \begin{enumerate}
-        \item \begin{math}
-            \int x^a\,dx =
-            \Bigg\{\begin{tabular}{ccc}
-                $\frac{x^{a+1}}{a+1} + C$  & $a \neq -1$ & \\
-                $ \ln{\left|x\right|} + C$ & $a = -1$ & \\
-              \end{tabular}
-        \end{math}
-        \item \begin{math}
-            \int \ln {x}\,dx = x \ln {x} - x + C
-        \end{math}
-        \item \begin{math}
-            \int \frac {1}{\sqrt{x}}\,dx=2\sqrt{x} + C 
-        \end{math}
-        \item \begin{math}
-            \int e^x\,dx = e^x + C
-        \end{math}
-        \item \begin{math}
-            \int a^x\,dx = \frac{a^x}{\ln{a}} + C
-        \end{math}
-        \item \begin{math}
-            \int \cos({ax}) \, dx = {sin (ax) \over a} + C
-        \end{math}
-        \item \begin{math}
-            \int \sin({ax}) \, dx = {-{cos(ax) \over a}} + C
-        \end{math}
-        \item \begin{math}
-            \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
-        \end{math}
-        \item \begin{math}
-            \int \frac{dx}{\cos^2 x}=\int \sec^2 x \, dx = \tan x + C
-        \end{math}
-        \item \begin{math}
-            \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
-        \end{math}
-        \item \begin{math}
-            \int {1 \over \sqrt{1-x^2}} \, dx = \arcsin {x} + C
-        \end{math}
-    \end{enumerate}
+    \begin{small}
+        \begin{enumerate}
+            \item \begin{math}
+                \int x^a\,dx =
+                \Bigg\{\begin{tabular}{ccc}
+                    $\frac{x^{a+1}}{a+1} + C$  & $a \neq -1$ & \\
+                    $ \ln{\left|x\right|} + C$ & $a = -1$ & \\
+                  \end{tabular}
+            \end{math}
+            \item \begin{math}
+                \int \ln {x}\,dx = x \ln {x} - x + C
+            \end{math}
+            \item \begin{math}
+                \int \frac {1}{\sqrt{x}}\,dx=2\sqrt{x} + C 
+            \end{math}
+            \item \begin{math}
+                \int e^x\,dx = e^x + C
+            \end{math}
+            \item \begin{math}
+                \int a^x\,dx = \frac{a^x}{\ln{a}} + C
+            \end{math}
+            \item \begin{math}
+                \int \cos({ax}) \, dx = {sin (ax) \over a} + C
+            \end{math}
+            \item \begin{math}
+                \int \sin({ax}) \, dx = {-{cos(ax) \over a}} + C
+            \end{math}
+            \item \begin{math}
+                \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{dx}{\cos^2 x}=\int \sec^2 x \, dx = \tan x + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
+            \end{math}
+            \item \begin{math}
+                \int {1 \over \sqrt{1-x^2}} \, dx = \arcsin {x} + C
+            \end{math}
+        \end{enumerate}
+    \end{small}
 \end{center}
+\begin{tiny}
+    \textbf{Integrating absolute values:}
+    First, determine where the quantity inside the absolute value bars is negative and where it is positive.
+    When we’ve determined that point all we need to do is break up the integral so that in each range of limits
+    the quantity inside the absolute value bars is always positive or always negative. Once this is done we can
+    drop the absolute value bars (adding negative signs when the quantity is negative) and then we can do the
+    integral as we’ve always done.
+\end{tiny}
 \smallskip
 \end{multicols}
 \end{document}
