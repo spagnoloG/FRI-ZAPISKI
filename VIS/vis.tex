@@ -363,17 +363,17 @@ Lastnosti:
 \begin{itemize}
     \item  \begin{math}
         p_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $\dfrac{1}{b-a}$  & $x \in [a, b]$ & \\
+        \Bigg \{\begin{tabular}{ccc}
+          $\frac{1}{b-a}$  & $x \in [a, b]$ & \\
           $0$ & $sicer$ & \\
         \end{tabular}
     \end{math} 
     
      \item \begin{math}
         F_{X}(x) =
-        \{\begin{tabular}{ccc}
+        \Bigg \{\begin{tabular}{ccc}
           $0$ & $x < a$ & \\
-          $\dfrac{x - a}{b - a}$  & $x \in [a, b]$ & \\
+          $\frac{x - a}{b - a}$  & $x \in [a, b]$ & \\
           $1$ & $x > b$  & \\
         \end{tabular}
     \end{math}
@@ -391,7 +391,7 @@ Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
 \begin{itemize}
     \item  \begin{math}
         p_{X}(x) =
-        \{\begin{tabular}{ccc}
+        \Bigg \{\begin{tabular}{ccc}
           $0$  & $x < 0$ & \\
           $\lambda e^{- \lambda x}$ & $x \geq 0$ & \\
         \end{tabular}
@@ -399,7 +399,7 @@ Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
     
      \item \begin{math}
         F_{X}(x) =
-        \{\begin{tabular}{ccc}
+        \Bigg \{\begin{tabular}{ccc}
           $0$ & $x < 0$ & \\
           $1 - e^{- \lambda x}$ & $x > 0$  & \\
         \end{tabular}
@@ -420,7 +420,7 @@ na izbrano casovno enoto.
 
 \begin{itemize}
     \item  \begin{math}
-        p_{X}(x) = \dfrac{1}{\sigma \sqrt{2 \pi}} e^{- \dfrac{(x - \mu)^{2}}{2 \sigma^{2}}}
+        p_{X}(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(x - \mu)^{2}}{2 \sigma^{2}}}
     \end{math} za $x \in R$ 
     
      \item Za $F_{X}(x)$ ne obstaja eksplicitna formula. Vrednost preberemo iz porazdelitvenih tabel.
@@ -442,9 +442,9 @@ Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev $\implies$ potem za v
 \begin{itemize}
     \item  \begin{math}
         p_{X}(x) =
-        \{\begin{tabular}{ccc}
+        \Bigg\{\begin{tabular}{ccc}
           $0$  & $x \leq 0$ & \\
-          $\dfrac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$ & \\
+          $\frac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$ & \\
         \end{tabular}
     \end{math} 
 \end{itemize}
@@ -455,16 +455,16 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 \textbf{3.5 Hi kvadrat} slucajna spremenljivka
 \begin{center}
     \begin{math}
-        X \sim  \chi^{2}(n) = \Gamma(\dfrac{n}{2}, \dfrac{1}{2})
+        X \sim  \chi^{2}(n) = \Gamma(\frac{n}{2}, \frac{1}{2})
     \end{math}
 \end{center}
 
 \begin{itemize}
     \item  \begin{math}
         p_{X}(x) =
-        \{\begin{tabular}{ccc}
+        \Bigg\{\begin{tabular}{ccc}
           $0$  & $x \leq 0$ & \\
-          $\dfrac{x^{\dfrac{n}{2} - 1} e ^{- \dfrac{x}{2}}}{2^{\dfrac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$ & \\
+          $\dfrac{x^{\frac{n}{2} - 1} e ^{- \frac{x}{2}}}{2^{\frac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$ & \\
         \end{tabular}
     \end{math} 
 \end{itemize}
@@ -476,56 +476,97 @@ Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
 \begin{center}
     \begin{enumerate}
         \item \begin{math}
-            \dfrac{1}{x} \rightarrow -\dfrac{1}{x^2}
+            \frac{1}{x} = -\frac{1}{x^2}
         \end{math}
         \item \begin{math}
-            x^n  \rightarrow nx^{n-1}
+            x^n  = nx^{n-1}
         \end{math}
         \item \begin{math}
-            \sqrt{x} \rightarrow \dfrac{1}{2 \sqrt{x}}
+            \sqrt{x} = \frac{1}{2 \sqrt{x}}
         \end{math}
         \item \begin{math}
-            \sqrt[n] x \rightarrow \dfrac{1}{n \sqrt[n]{x^{n-1}}}
+            \sqrt[n] x = \frac{1}{n \sqrt[n]{x^{n-1}}}
         \end{math}
         \item \begin{math}
-            \sin (a x) \rightarrow  a  \cos a x
+            \sin (a x) =  a  \cos a x
         \end{math}
         \item  \begin{math}
-            \cos (a x) \rightarrow - a \sin (a x)
+            \cos (a x) = - a \sin (a x)
         \end{math}
         \item \begin{math}
-            \tan x \rightarrow \dfrac{1}{\cos^2 x} 
+            \tan x = \frac{1}{\cos^2 x} 
         \end{math}
         \item \begin{math}
-            e^ax \rightarrow ae^{ax}
+            e^ax = ae^{ax}
         \end{math}
         \item \begin{math}
-            a^x \rightarrow a^x \ln a
+            a^x = a^x \ln a
         \end{math}
         \item \begin{math}
-            x^x \rightarrow x^x (1+\ln x)
+            x^x = x^x (1+\ln x)
         \end{math}
         \item \begin{math}
-            ln x \rightarrow \dfrac{1}{x}
+            ln x = \frac{1}{x}
         \end{math}
         \item \begin{math}
-            log_a x \rightarrow \dfrac{1}{x \ln a}
+            log_a x = \frac{1}{x \ln a}
         \end{math}
         \item \begin{math}
-            \arcsin x \rightarrow \dfrac{1}{\sqrt {1 - x^2}}
+            \arcsin x = \frac{1}{\sqrt {1 - x^2}}
         \end{math}
         \item \begin{math}
-            \arccos x \rightarrow - \dfrac{1}{\sqrt{1 - x^2}}
+            \arccos x = - \frac{1}{\sqrt{1 - x^2}}
         \end{math}
         \item \begin{math}
-            \arctan x \rightarrow \dfrac{1}{1 + x^2}
+            \arctan x = \frac{1}{1 + x^2}
         \end{math}
         \item \begin{math}
-            \operatorname{arccot}x \rightarrow -\dfrac{1}{1 + x^2}
+            \operatorname{arccot}x = -\frac{1}{1 + x^2}
         \end{math}
     \end{enumerate}
 \end{center}
-
+\textbf{appx. Integrali}
+\begin{center}
+    \begin{enumerate}
+        \item \begin{math}
+            \int x^a\,dx =
+            \Bigg\{\begin{tabular}{ccc}
+                $\frac{x^{a+1}}{a+1} + C$  & $a \neq -1$ & \\
+                $ \ln{\left|x\right|} + C$ & $a = -1$ & \\
+              \end{tabular}
+        \end{math}
+        \item \begin{math}
+            \int \ln {x}\,dx = x \ln {x} - x + C
+        \end{math}
+        \item \begin{math}
+            \int \frac {1}{\sqrt{x}}\,dx=2\sqrt{x} + C 
+        \end{math}
+        \item \begin{math}
+            \int e^x\,dx = e^x + C
+        \end{math}
+        \item \begin{math}
+            \int a^x\,dx = \frac{a^x}{\ln{a}} + C
+        \end{math}
+        \item \begin{math}
+            \int \cos({ax}) \, dx = {sin (ax) \over a} + C
+        \end{math}
+        \item \begin{math}
+            \int \sin({ax}) \, dx = {-{cos(ax) \over a}} + C
+        \end{math}
+        \item \begin{math}
+            \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
+        \end{math}
+        \item \begin{math}
+            \int \frac{dx}{\cos^2 x}=\int \sec^2 x \, dx = \tan x + C
+        \end{math}
+        \item \begin{math}
+            \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
+        \end{math}
+        \item \begin{math}
+            \int {1 \over \sqrt{1-x^2}} \, dx = \arcsin {x} + C
+        \end{math}
+    \end{enumerate}
+\end{center}
 \smallskip
 \end{multicols}
 \end{document}
