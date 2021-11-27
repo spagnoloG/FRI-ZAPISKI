@@ -483,8 +483,63 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
 \bigskip
 
-\input{ponovitev-analize.tex}
+\section{\underline{Matematicno upanje}}
 
+\textbf{5.1 Matematicno upanje} diskretne slucajne spremenljivke
+\begin{center}
+    \begin{small}
+        \begin{math}
+            X \sim
+            \begin{pmatrix}
+                a_{1} & a_{2} & a_{3} & \dots \\
+                p_{1} & p_{2} & p_{3} & \dots \\
+            \end{pmatrix}
+        \end{math}
+    \end{small}
+\end{center}
+oz. zvezne slucajne spremenljivke z gostoto $p_X$ je
+\begin{center}
+    \begin{math}
+        E(X) = \sum_{k=0}^{\infty} x_k p_k\;
+    \end{math} oz.\\
+    \begin{math}
+        E(X) = \int_{- \infty}^{ \infty} x p_X(x)\, dx
+    \end{math}.
+    $E(X + Y) = E(X) + E(Y),\: X\: \&\: Y\: s.\: s.$
+\end{center}
+
+\textbf{5.2 Matematicno upanje funkcije}\\
+$f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
+\begin{center}
+    \begin{math}
+        E(f(X)) = \sum_{k=0}^{\infty} f(x_k) p_k\;
+    \end{math} oz.\\
+    \begin{math}
+        E(f(X)) = \int_{- \infty}^{ \infty} f(x) p_X (x)\, dx
+    \end{math}.
+\end{center}
+
+\textbf{5.3 Pomembne pretvorbe}
+\begin{itemize}
+    \item \begin{math}
+        X \sim Pois(\lambda) \implies E(x) = \lambda
+    \end{math}
+    \item \begin{math}
+        X \sim Pascal(n, p) \implies E(X) = \frac{n}{p}
+    \end{math}
+    \item \begin{math}
+        X \sim B(n, p) \implies E(X) = np
+    \end{math}
+    \item \begin{math}
+        X \sim G(p) \implies E(X) = \frac{1}{p}
+    \end{math}
+    \item
+        \begin{math}
+            X \sim H(K, N-K, n) \implies\\ E(X) = \frac{K}{K+(N-K)} *n
+        \end{math}   
+\end{itemize}
+
+\input{ponovitev-analize.tex}
 \smallskip
 \end{multicols}
 \end{document}
