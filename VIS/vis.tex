@@ -133,29 +133,29 @@ nacelu vkljucitev/izkljucitev velja:
         \sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
     \end{math}
 \end{center}
-% Za \textbf{popolni sistem dogodkov} velja unija hipotez:
-% \begin{center}
-%     \begin{math}
-%         P(A|H_{1} \cup \dots \cup H_{n}) = 
-%     \end{math}
-%     \begin{math}
-%         \dfrac{
-%             P(A | H_{1}) P(H_{1}) + \dots
-%             P(A | H_{n - 1}) P(H_{n - 1}) +
-%             P(A | H_{n}) P(H_{n})
-%         }
-%         {
-%             P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
-%         }
-%     \end{math}    
-% \end{center}
+Za \textbf{popolni sistem dogodkov} velja unija hipotez:
+\begin{center}
+    \begin{math}
+        P(A|H_{1} \cup \dots \cup H_{n}) = 
+    \end{math}
+    \bigskip
+    \begin{math}
+        \frac{
+            P(A | H_{1}) P(H_{1}) + \dots
+            P(A | H_{n}) P(H_{n})
+        }
+        {
+            P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
+        }
+    \end{math}    
+\end{center}
 Zanje velja tudi \textbf{Bayesova formula}:
 \begin{center}
     \begin{math}
         P(H_{i} | A) = 
     \end{math}
     \begin{math}
-        \dfrac{
+        \frac{
             P(H_{i}) P(A | H_{i})
         }
         {
@@ -163,7 +163,7 @@ Zanje velja tudi \textbf{Bayesova formula}:
         }
     \end{math}
     \begin{math}
-        = \dfrac{
+        = \frac{
             P(H_{i}) P(A | H_{i})
         }
         {
