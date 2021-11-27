@@ -401,7 +401,7 @@ Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
         F_{X}(x) =
         \{\begin{tabular}{ccc}
           $0$ & $x < 0$ & \\
-          $1 - e^{- \lambda x}$ & $x > b$  & \\
+          $1 - e^{- \lambda x}$ & $x > 0$  & \\
         \end{tabular}
     \end{math}
 \end{itemize}
@@ -427,6 +427,10 @@ na izbrano casovno enoto.
 \end{itemize}
 Po centralnem limitnem izreku sta vsota in povprecje veliko neodvisnih, enako porazdeljenih
 spremenljivk, \textit{normalno porazdeljeni}.
+Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev $\implies$ potem za vsak $x$ velja
+\begin{math}
+    P(X < x) = 1 - P(X > x)
+\end{math}.
 
 \textbf{3.5 Gamma} slucajna spremenljivka
 \begin{center}
@@ -440,13 +444,87 @@ spremenljivk, \textit{normalno porazdeljeni}.
         p_{X}(x) =
         \{\begin{tabular}{ccc}
           $0$  & $x \leq 0$ & \\
-          $\dfrac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x < 0$ & \\
+          $\dfrac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$ & \\
         \end{tabular}
     \end{math} 
 \end{itemize}
 
 V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
 prvo in $(n + 1)$ ponovitvijo dogodka $A$.
+
+\textbf{3.5 Hi kvadrat} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim  \chi^{2}(n) = \Gamma(\dfrac{n}{2}, \dfrac{1}{2})
+    \end{math}
+\end{center}
+
+\begin{itemize}
+    \item  \begin{math}
+        p_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $0$  & $x \leq 0$ & \\
+          $\dfrac{x^{\dfrac{n}{2} - 1} e ^{- \dfrac{x}{2}}}{2^{\dfrac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$ & \\
+        \end{tabular}
+    \end{math} 
+\end{itemize}
+
+Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
+\bigskip
+
+\textbf{appx. Odvodi}
+\begin{center}
+    \begin{enumerate}
+        \item \begin{math}
+            \dfrac{1}{x} \rightarrow -\dfrac{1}{x^2}
+        \end{math}
+        \item \begin{math}
+            x^n  \rightarrow nx^{n-1}
+        \end{math}
+        \item \begin{math}
+            \sqrt{x} \rightarrow \dfrac{1}{2 \sqrt{x}}
+        \end{math}
+        \item \begin{math}
+            \sqrt[n] x \rightarrow \dfrac{1}{n \sqrt[n]{x^{n-1}}}
+        \end{math}
+        \item \begin{math}
+            \sin (a x) \rightarrow  a  \cos a x
+        \end{math}
+        \item  \begin{math}
+            \cos (a x) \rightarrow - a \sin (a x)
+        \end{math}
+        \item \begin{math}
+            \tan x \rightarrow \dfrac{1}{\cos^2 x} 
+        \end{math}
+        \item \begin{math}
+            e^ax \rightarrow ae^{ax}
+        \end{math}
+        \item \begin{math}
+            a^x \rightarrow a^x \ln a
+        \end{math}
+        \item \begin{math}
+            x^x \rightarrow x^x (1+\ln x)
+        \end{math}
+        \item \begin{math}
+            ln x \rightarrow \dfrac{1}{x}
+        \end{math}
+        \item \begin{math}
+            log_a x \rightarrow \dfrac{1}{x \ln a}
+        \end{math}
+        \item \begin{math}
+            \arcsin x \rightarrow \dfrac{1}{\sqrt {1 - x^2}}
+        \end{math}
+        \item \begin{math}
+            \arccos x \rightarrow - \dfrac{1}{\sqrt{1 - x^2}}
+        \end{math}
+        \item \begin{math}
+            \arctan x \rightarrow \dfrac{1}{1 + x^2}
+        \end{math}
+        \item \begin{math}
+            \operatorname{arccot}x \rightarrow -\dfrac{1}{1 + x^2}
+        \end{math}
+    \end{enumerate}
+\end{center}
 
 \smallskip
 \end{multicols}

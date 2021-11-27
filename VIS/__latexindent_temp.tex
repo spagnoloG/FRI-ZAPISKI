@@ -359,17 +359,114 @@ Lastnosti:
         X \sim U[a, b]
     \end{math}
 \end{center}
-\begin{math}
-    \[ 
-\left \{
-  \begin{tabular}{ccc}
-  1 & 5 & 8 \\
-  0 & 2 & 4 \\
-  3 & 3 & -8 
-  \end{tabular}
-\right \}
-\]
-\end{math}
+
+\begin{itemize}
+    \item  \begin{math}
+        p_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $\dfrac{1}{b-a}$  & $x \in [a, b]$ & \\
+          $0$ & $sicer$ & \\
+        \end{tabular}
+    \end{math} 
+    
+     \item \begin{math}
+        F_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $0$ & $x < a$ & \\
+          $\dfrac{x - a}{b - a}$  & $x \in [a, b]$ & \\
+          $1$ & $x > b$  & \\
+        \end{tabular}
+    \end{math}
+\end{itemize}
+
+Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
+
+\textbf{3.3 Eksponentna} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim \epsilon(\lambda)
+    \end{math}
+\end{center}
+
+\begin{itemize}
+    \item  \begin{math}
+        p_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $0$  & $x < 0$ & \\
+          $\lambda e^{- \lambda x}$ & $x \geq 0$ & \\
+        \end{tabular}
+    \end{math} 
+    
+     \item \begin{math}
+        F_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $0$ & $x < 0$ & \\
+          $1 - e^{- \lambda x}$ & $x > b$  & \\
+        \end{tabular}
+    \end{math}
+\end{itemize}
+
+Slucajna spremenljivka $X$ - cas med zaporednima dogodkoma,
+pri cemer so dogodki neodvisni in se pojavijo s konstantno
+stopnjo $\lambda$. $\lambda$ predstavlja povprecno stevilo dogodkov
+na izbrano casovno enoto.
+
+\textbf{3.4 Normalna} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim N(\mu, \sigma )
+    \end{math}
+\end{center}
+
+\begin{itemize}
+    \item  \begin{math}
+        p_{X}(x) = \dfrac{1}{\sigma \sqrt{2 \pi}} e^{- \dfrac{(x - \mu)^{2}}{2 \sigma^{2}}}
+    \end{math} za $x \in R$ 
+    
+     \item Za $F_{X}(x)$ ne obstaja eksplicitna formula. Vrednost preberemo iz porazdelitvenih tabel.
+\end{itemize}
+Po centralnem limitnem izreku sta vsota in povprecje veliko neodvisnih, enako porazdeljenih
+spremenljivk, \textit{normalno porazdeljeni}.
+Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev.
+
+\textbf{3.5 Gamma} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim \Gamma(n, \ambda)
+    \end{math}
+\end{center}
+
+\begin{itemize}
+    \item  \begin{math}
+        p_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $0$  & $x \leq 0$ & \\
+          $\dfrac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$ & \\
+        \end{tabular}
+    \end{math} 
+\end{itemize}
+
+V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
+prvo in $(n + 1)$ ponovitvijo dogodka $A$.
+
+\textbf{3.5 Hi kvadrat} slucajna spremenljivka
+\begin{center}
+    \begin{math}
+        X \sim  \chi^{2}(n) = \Gamma(\dfrac{n}{2}, \dfrac{1}{2})
+    \end{math}
+\end{center}
+
+\begin{itemize}
+    \item  \begin{math}
+        p_{X}(x) =
+        \{\begin{tabular}{ccc}
+          $0$  & $x \leq 0$ & \\
+          $\dfrac{x^{\dfrac{n}{2} - 1} e ^{- \dfrac{x}{2}}}{2^{\dfrac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$ & \\
+        \end{tabular}
+    \end{math} 
+\end{itemize}
+
+Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
 
 \smallskip
 \end{multicols}
