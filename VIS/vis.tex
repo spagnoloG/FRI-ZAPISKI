@@ -466,7 +466,7 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 \textbf{4.6 Hi kvadrat} slucajna spremenljivka
 \begin{center}
     \begin{math}
-        X \sim  \chi^{2}(n) = \Gamma(\frac{n}{2}, \frac{1}{2})
+        X \sim \chi^{2}(n) = \Gamma(\frac{n}{2}, \frac{1}{2})
     \end{math}
 \end{center}
 
@@ -481,7 +481,6 @@ prvo in $(n + 1)$ ponovitvijo dogodka $A$.
 \end{itemize}
 
 Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
-\bigskip
 
 \section{\underline{Matematicno upanje}}
 
@@ -505,7 +504,13 @@ oz. zvezne slucajne spremenljivke z gostoto $p_X$ je
     \begin{math}
         E(X) = \int_{- \infty}^{ \infty} x p_X(x)\, dx
     \end{math}.
-    $E(X + Y) = E(X) + E(Y),\: X\: \&\: Y\: s.\: s.$
+\end{center}
+Za vsaki slucajni spremenljivki $X$ in $Y$ (lahko sta odvisni, lahko je ena zvezna in druga diskretna)
+ter $a, b \in R$ velja 
+\begin{center}
+    \begin{math}
+        E(aX + bY) = aE(X) + bE(Y)
+    \end{math}        
 \end{center}
 
 \textbf{5.2 Matematicno upanje funkcije}\\
@@ -519,7 +524,7 @@ $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
     \end{math}.
 \end{center}
 
-\textbf{5.3 Pomembne pretvorbe}
+\textbf{5.3 Matematicna upanja} dss in zss
 \begin{itemize}
     \item \begin{math}
         X \sim Pois(\lambda) \implies E(x) = \lambda
@@ -535,10 +540,58 @@ $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
     \end{math}
     \item
         \begin{math}
-            X \sim H(K, N-K, n) \implies\\ E(X) = \frac{K}{K+(N-K)} *n
-        \end{math}   
+            X \sim H(K, N-K, n) \implies\\ E(X) = \frac{nK}{K+(N-K)}
+        \end{math}
+    \item  \begin{math}
+        X \sim \epsilon(\lambda) \implies E(X) = \frac{1}{\lambda}
+    \end{math}
+    \item \begin{math}
+        X \sim U[a, b] \implies E(X) = \frac{a + b}{2}
+    \end{math}
+    \item \begin{math}
+        X \sim N(\mu, \sigma ) \implies E(X) = \mu
+    \end{math}
+    \item \begin{math}
+        X \sim \chi^{2}(n) \implies E(X) = n
+    \end{math}
 \end{itemize}
 
+\section{\underline{Disperzija in std. odklon}}
+
+\textbf{7.1 Disperzija} ali \textit{varianca} slucajnje spremenljivke $X$
+je definirana kot
+\begin{center}
+    \begin{math}
+        D(X) = E((X - E(X))^2) = E(X^2) - E(X)^2
+    \end{math}
+\end{center}
+Za $a, b \in R$ velja
+\begin{center}
+    \begin{math}
+        D(aX + b) = a^2 D(X)
+    \end{math}.
+\end{center} 
+Ce sta $X$ in $Y$ \textit{neodvisni} je 
+\begin{center}
+    \begin{small}
+        \begin{math}
+            E(XY) = E(X)E(Y)\,
+        \end{math}in \\
+        \begin{math}
+            D(X + Y) = D(X) + D(Y)
+        \end{math}.
+    \end{small}
+\end{center}
+
+\textbf{7.2 Standardni odklon} slucajnje spremenljivke $X$
+je enak 
+\begin{center}
+    \begin{math}
+        \sigma(X) = \sqrt{D(X)}
+    \end{math}.
+\end{center}
+
+\bigskip
 \input{ponovitev-analize.tex}
 \smallskip
 \end{multicols}

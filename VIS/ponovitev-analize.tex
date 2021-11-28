@@ -79,10 +79,10 @@
                 \int a^x\,dx = \frac{a^x}{\ln{a}} + C
             \end{math}
             \item \begin{math}
-                \int \cos({ax}) \, dx = {sin (ax) \over a} + C
+                \int \cos({ax}) \, dx = { \frac{sin (ax)}{a} } + C
             \end{math}
             \item \begin{math}
-                \int \sin({ax}) \, dx = {-{cos(ax) \over a}} + C
+                \int \sin({ax}) \, dx = { \frac{-cos(ax)}{a} } + C
             \end{math}
             \item \begin{math}
                 \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
@@ -94,19 +94,27 @@
                 \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
             \end{math}
             \item \begin{math}
-                \int {1 \over \sqrt{1-x^2}} \, dx = \arcsin {x} + C
+                \int {\frac{1}{\sqrt{1-x^2}}} \, dx = \arcsin {x} + C
             \end{math}
         \end{enumerate}
     \end{small}
 \end{center}
-\begin{tiny}
-    \textbf{Integrating absolute values:}
-    First, determine where the quantity inside the absolute value bars is negative and where it is positive.
-    When we’ve determined that point all we need to do is break up the integral so that in each range of limits
-    the quantity inside the absolute value bars is always positive or always negative. Once this is done we can
-    drop the absolute value bars (adding negative signs when the quantity is negative) and then we can do the
-    integral as we’ve always done.
-\end{tiny}\\
+    \textbf{Integriranje absolutnih vrednosti} (primer):
+    \begin{small}
+        Imamo funkcijo $f(x) = |x|$ , ki je zvezna na intervalu $[-1, 1]$
+        Ce hocemo to funkcijo in zelimo izracunati njeno 
+        \textit{porazdelitveno} funkcijo integrirati locimo 2 primera:    
+    \end{small}
+    \begin{enumerate}
+        \item \begin{math}
+            -1 \leq x < 0\\
+            F(x) = \int_{-1}^x |t|\,dt = \int_{-1}^x -t\,dt = - \frac{t^2}{2} \rvert_{-1}^{x} = - \frac{1}{2} (x^2 -1)
+        \end{math}
+        \item \begin{math}
+            0 \leq x < 1 \\
+            F(x) = \int_{-1}^x |t|\,dt = \int_{-1}^0 -t\,dt + \int_{0}^x t\,dt = - \frac{t^2}{2} \rvert_{0}^{-1} + - \frac{t^2}{2} \rvert_{0}^{x}= \frac{1}{2} (1 + x^2)
+        \end{math}
+    \end{enumerate}
 % other useful formulas
 \begin{small}
     \begin{math}
