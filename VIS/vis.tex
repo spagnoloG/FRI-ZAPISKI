@@ -14,7 +14,7 @@
 
 \begin{multicols}{3}
 
-\textit{Ponovitev osnov}
+\input{ponovitev-analize.tex}
 
 \section{\underline{Kombinatorika}}
 
@@ -212,7 +212,7 @@ Splosno za vse nastete verjetnosti velja:
     \end{math}
 \end{center}
 
-\section{\underline{Dss in porazdelitve}}
+\section{\underline{Diskretne s.s.}}
 
 \textbf{3.1 Diskretna slucjana spremenljivka}
 Naj bo $X$ diskretna slucajna spremenljivka $\implies$ $X$ je funkcija
@@ -333,9 +333,9 @@ imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna 
 npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
 kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki preckajo cesto v 1min.
 
-\section{\underline{Zss in porazdelitve}}
+\section{\underline{Zvezne s.s.}}
 
-\textbf{4.1 Zvezna slucjana spremenljivka}
+\textbf{4.1 Zvezna slucajna spremenljivka}
 Naj bo $X$ zvezna slucajna spremenljivka $\implies$ $X$ je realna funkcija,
 za katero obstaja integrabilna funkcija $p_{X}: R \rightarrow [0, \infty)$,
 tako da za vsak $x \in R$ velja:
@@ -499,10 +499,10 @@ Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
 oz. zvezne slucajne spremenljivke z gostoto $p_X$ je
 \begin{center}
     \begin{math}
-        E(X) = \sum_{k=0}^{\infty} x_k p_k\;
+        E(X^n) = \sum_{k=0}^{\infty} x_k^n p_k\;
     \end{math} oz.\\
     \begin{math}
-        E(X) = \int_{- \infty}^{ \infty} x p_X(x)\, dx
+        E(X^n) = \int_{- \infty}^{ \infty} x^n p_X(x)\, dx
     \end{math}.
 \end{center}
 Za vsaki slucajni spremenljivki $X$ in $Y$ (lahko sta odvisni, lahko je ena zvezna in druga diskretna)
@@ -510,7 +510,12 @@ ter $a, b \in R$ velja
 \begin{center}
     \begin{math}
         E(aX + bY) = aE(X) + bE(Y)
-    \end{math}        
+    \end{math}
+\end{center} in
+\begin{center}
+    \begin{math}
+        E(X^a Y^b) = E(X^a) E(Y^b)
+    \end{math}
 \end{center}
 
 \textbf{5.2 Matematicno upanje funkcije}\\
@@ -527,26 +532,29 @@ $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
 \textbf{5.3 Matematicna upanja} dss in zss
 \begin{itemize}
     \item \begin{math}
-        X \sim Pois(\lambda) \implies E(x) = \lambda
+        X \sim Bernoulli(p) \implies E(X) = p
     \end{math}
     \item \begin{math}
-        X \sim Pascal(n, p) \implies E(X) = \frac{n}{p}
-    \end{math}
-    \item \begin{math}
-        X \sim B(n, p) \implies E(X) = np
+        X \sim Binom(n, p) \implies E(X) = np
     \end{math}
     \item \begin{math}
         X \sim G(p) \implies E(X) = \frac{1}{p}
     \end{math}
+    \item \begin{math}
+        X \sim Pascal(n, p) \implies E(X) = \frac{n}{p}
+    \end{math}
     \item
-        \begin{math}
-            X \sim H(K, N-K, n) \implies\\ E(X) = \frac{nK}{K+(N-K)}
-        \end{math}
-    \item  \begin{math}
-        X \sim \epsilon(\lambda) \implies E(X) = \frac{1}{\lambda}
+    \begin{math}
+        X \sim H(K, N-K, n) \implies\\  E(X) = \frac{nR}{R + B}
+    \end{math}
+    \item \begin{math}
+        X \sim Pois(\lambda) \implies E(x) = \lambda
     \end{math}
     \item \begin{math}
         X \sim U[a, b] \implies E(X) = \frac{a + b}{2}
+    \end{math}
+    \item  \begin{math}
+        X \sim \epsilon(\lambda) \implies E(X) = \frac{1}{\lambda}
     \end{math}
     \item \begin{math}
         X \sim N(\mu, \sigma ) \implies E(X) = \mu
@@ -558,7 +566,7 @@ $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
 
 \section{\underline{Disperzija in std. odklon}}
 
-\textbf{7.1 Disperzija} ali \textit{varianca} slucajnje spremenljivke $X$
+\textbf{6.1 Disperzija} ali \textit{varianca} slucajnje spremenljivke $X$
 je definirana kot
 \begin{center}
     \begin{math}
@@ -583,7 +591,7 @@ Ce sta $X$ in $Y$ \textit{neodvisni} je
     \end{small}
 \end{center}
 
-\textbf{7.2 Standardni odklon} slucajnje spremenljivke $X$
+\textbf{6.2 Standardni odklon} slucajnje spremenljivke $X$
 je enak 
 \begin{center}
     \begin{math}
@@ -591,8 +599,234 @@ je enak
     \end{math}.
 \end{center}
 
+\textbf{6.3 Disperzije} dss in zss
+\begin{itemize}
+    \item \begin{math}
+        X \sim B(p) \implies D(X) = p(1 - p)
+    \end{math}
+    \item \begin{math}
+        X \sim B(n, p) \implies D(X) = np(1 - p)
+    \end{math}
+    \item \begin{math}
+        X \sim G(p) \implies D(X) = \frac{1 - p}{p^2}
+    \end{math}
+    \item \begin{math}
+        X \sim P(n, p) \implies D(X) = \frac{n(1 - p)}{p^2}
+    \end{math}
+    \item
+    \begin{math}
+        X \sim H(R, B, n) \implies\\ 
+        \frac{
+            nRB(R + B - n)
+        }{
+            (R + B)^2 (R + B - 1)
+        }
+    \end{math}
+    \item \begin{math}
+        X \sim P(\lambda) \implies D(x) = \lambda
+    \end{math}
+    \item \begin{math}
+        X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{12}
+    \end{math}
+    \item  \begin{math}
+        X \sim \epsilon(\lambda) \implies D(X) = \frac{1}{\lambda^2}
+    \end{math}
+    \item \begin{math}
+        X \sim N(\mu, \sigma ) \implies D(X) = \sigma^2
+    \end{math}
+    \item \begin{math}
+        X \sim \chi^{2}(n) \implies D(X) = 2n
+    \end{math}
+\end{itemize}
+
+\section{\underline{Slucajni vekotrji}}
+
+\textbf{7.1} Diskretni slcuajni spremenljivki $X$ in $Y$  lahko
+dolocata (dvorazsesni) \textbf{diskretni slucajni vektor} (X, Y).
+Verjetnost, da (X, Y) zavzame vrednost $(x_i, y_i) \in R$,
+
+\begin{center}
+    oznacimo s $P(X = x_i, Y = y_j) = p_{ij}$.
+\end{center}
+
+Porazdelitev (X, Y) lahko podamo na dva enakovredna nacina, in sicer:
+
+\begin{enumerate}
+    \item s \textbf{porazdelitveno tabelo}
+        \begin{center}
+            \begin{tiny}
+                (X, Y)
+                \begin{tabular}{ |c|c|c|c|c|c|c| } 
+                    \hline
+                        $ X \symbol{92} Y $ & $y_1$ & $y_2$ & $\dots$ & $y_m$ & $\dots$ & $X$ \\
+                        \cline{1-7}
+                        $x_1$ & $p_{11}$ & $p_{12}$ & $\dots$ & $p_{1m}$ & $\dots$ & $p_1$ \\
+                        $x_2$ & $p_{21}$ & $p_{22}$ & $\dots$ & $p_{2m}$ & $\dots$ & $p_2$ \\
+                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots $ & $\vdots$ & $\vdots$ \\
+                        $x_n$ & $p_{n1}$ & $p_{n2}$ & $\dots$ & $p_{nm}$ & $\dots$ & $p_n$ \\
+                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots $ & $\vdots$ & $\vdots$ \\
+                        \cline{1-7}
+                        $ Y $ & $q_1$ & $q_2$ & $\dots$ & $q_m$ & $\dots$ & $1$ \\
+                    \hline
+                    \end{tabular}
+            \end{tiny}
+        \end{center}
+        pri cemer je $0 \leq p_{ij} \leq 1$,
+        \begin{math}
+            \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty} p_{ij} = 1,\:
+            \sum_{i = 1}^{\infty} p_{ij} = p_i
+        \end{math} za vsak $i \in N$ in
+        \begin{math}
+            \sum_{i = 1}^{\infty} p_{ij} = q_j
+        \end{math} za vsak $j \in N$.
+    \item s \textbf{porazdelitveno funkcijo}
+        \begin{center}
+            \begin{math}
+                F_{X,Y}(x, y) = P(X \leq x, Y \leq y).
+            \end{math}
+            
+        \end{center}
+        Velja
+        \begin{math}
+            F_{X,Y}(x, y) =
+        \end{math}\\
+        \begin{math}
+            \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty} p_{ij}  I_{[x_i, \infty)} (x) I_{[y_j, \infty)} (y)
+        \end{math}
+        , kjer je
+        \begin{center}
+            \begin{math}
+                I_{[x_i, \infty)} (x) = 
+                \Bigg\{\begin{tabular}{cc}
+                    $1$  & $x_i \leq x$ \\
+                    $0$  & $sicer$ \\
+                  \end{tabular}
+            \end{math} \\
+            \begin{math}
+                I_{[y_j, \infty)} (y) = 
+                \Bigg\{\begin{tabular}{cc}
+                    $1$  & $y_j \leq y$ \\
+                    $0$  & $sicer$ \\
+                  \end{tabular}
+            \end{math}
+        \end{center}
+\end{enumerate}
+\textbf{Robne porazdelitve} so porazdelitve komponent\\
+\begin{center}
+    \begin{math}
+        p_i = P(X = x_i) = \sum_{j = 1}^{\infty} p_{ij}
+    \end{math}\\
+    \begin{math}
+        q_j = P(Y = y) = \sum_{j = 1}^{\infty} p_{ij}
+    \end{math}
+\end{center}
+Slucajni spremenljivki X in Y sta \textbf{neodvisni},
+ce za poljublni stevili $x,y \in R$ velja
+\begin{center}
+    \begin{math}
+        P(X = x, Y = y) = P(X = x)P(Y = y)
+    \end{math}.
+\end{center}
+
+\textbf{7.2 dvorazsezna gostota verjetnosti}
+Naj bosta X,Y z.s.s. Par (X, Y) je \textit{zvezni slucajni vektor},
+ce obstaja integrabilna funkcija $p_{X,Y}: R^2 \rightarrow R$ (gostota verjetnosti), tako da za
+vsak par $(x,y) \in R^2$ velja
+\begin{center}
+    \begin{math}
+        F_{X,Y}(x, y) = P(X \leq x, Y \leq y) = \int_{-\infty}^{x}\int_{-\infty}^{y} p_{X,Y}(x,y)\,dx\,dy
+    \end{math}.
+\end{center}
+\begin{small}
+Funkciji $F_{X,Y}$ pravimo \textit{porazdelitvena funkcija}.    
+\end{small}
+Velja
+\begin{center}
+    \begin{math}
+        \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} p_{X,Y}(x,y)\,dx\,dy = 1
+    \end{math}
+\end{center}
+\textbf{Robni gostoti} sta
+\begin{center}
+    \begin{math}
+        p_X(x) = \int_{-\infty}^{\infty} p_{XY}(x,y)\, dy
+    \end{math} in
+    \begin{math}
+        p_Y(y) = \int_{-\infty}^{\infty} p_{XY}(x,y)\, dx
+    \end{math}
+\end{center}
+Zvezni slucajni spremenljivki $X$ in $Y$ sta \textbf{neodvisni}, ce
+za vsaki realni stevili $x, y \in R$ velja
+\begin{center}
+    \begin{math}
+        p_{X,Y}(x,y) = p_X(x)p_Y(y)
+    \end{math}.
+\end{center}
+
+\textbf{7.3 Matematicno upanje} funkcije\\
+$f: R^2 \rightarrow R$ dvorazseznega slucajnega vektorja (X, Y) je 
+za diskretni slucajni vektor definirano s predpisom
+\begin{center}
+    \begin{math}
+        E(f(X,Y)) = 
+    \end{math}\\
+    \begin{math}
+        \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} f(x_i, y_i) P(X = x_i, Y = y_i)
+    \end{math}
+\end{center}
+za zvezni slucjani vektor pa s predpisom
+\begin{center}
+    \begin{math}
+        E(f(X,Y)) = 
+    \end{math}\\
+    \begin{math}
+        \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) P_{X,Y}(x,y)\,dx\,dy
+    \end{math}.
+\end{center}
+Ce sta $X$ in $Y$ \textbf{neodvisni} velja
+\begin{center}
+    \begin{math}
+        E(XY) = E(X)(Y)
+    \end{math}.
+\end{center}
+
+\textbf{7.4 Kovarianca} slucajnih spremenljivk $X$ in $Y$ je definirana kot
+\begin{center}
+    \begin{math}
+        Cov(X,Y) = E((X - E(X)) (Y - E(Y))) = E(XY) - E(X)E(Y)
+    \end{math}.
+\end{center}
+Za disperzijo velja
+\begin{center}
+    \begin{math}
+        D(X) = Cov(X, X)
+    \end{math}.
+\end{center}
+Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
+\begin{itemize}
+    \item \begin{math}
+        Cov(X + a, Y + b) = Cov(X, Y)
+    \end{math},
+    \item \begin{math}
+        Cov(aX + bY, Z) =\\ aCov(X, Z) + bCov(Y,Z)
+    \end{math},
+    \item \begin{math}
+        Cov(X, Y) = Cov(Y, X)
+    \end{math},
+    \item \begin{math}
+        |Cov(X, Y)| \leq \sqrt{D(X)D(Y)}
+    \end{math}.
+\end{itemize}
+
+\textbf{7.5 Korelacijski koeficient} izracunamo po formuli
+\begin{center}
+    \begin{math}
+        r(X,Y) = \frac{Cov(X,Y)}
+                      {\sigma(X) \sigma(Y}
+    \end{math}
+\end{center}
+
+
 \bigskip
-\input{ponovitev-analize.tex}
-\smallskip
 \end{multicols}
 \end{document}
