@@ -306,13 +306,14 @@ dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
 \begin{itemize}
     \item $X$ je stevilo elementov z doloceno lastnostjo med izbranimi.
     \item \begin{math}
-        P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, R \}
+        P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, K \}
     \end{math}
 \end{itemize}
 V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
 npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
 imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna verjetnost je da sta 
-2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$. 
+2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$.
+\textbf{Pozor!} Na kolokviju/izpitu moras nujno zapisati tudi mozne vrednosti k-ja.
 
 \textbf{3.7 Poissonova} slucajna spremenljivka
 \begin{center}
@@ -506,7 +507,7 @@ oz. zvezne slucajne spremenljivke z gostoto $p_X$ je
     \end{math}.
 \end{center}
 Za vsaki slucajni spremenljivki $X$ in $Y$ (lahko sta odvisni, lahko je ena zvezna in druga diskretna)
-ter $a, b \in R$ velja 
+ter $a, b, n \in R$ velja 
 \begin{center}
     \begin{math}
         E(aX + bY) = aE(X) + bE(Y)
@@ -514,9 +515,16 @@ ter $a, b \in R$ velja
 \end{center} in
 \begin{center}
     \begin{math}
-        E(X^a Y^b) = E(X^a) E(Y^b)
+        nE(X^a Y^b) = nE(X^a) E(Y^b)
     \end{math}
+\end{center} in
+\begin{center}
+    \begin{math}
+        E((X Y)^2) = E(X^2 + 2XY + Y^2)
+    \end{math} itn...
 \end{center}
+Matematicno upanje nam pove pricakovano vrednost, kolikokrat oz. kdaj (odvisno od porazdelitve) 
+se bo dolocen dogodek zgodil. 
 
 \textbf{5.2 Matematicno upanje funkcije}\\
 $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
@@ -545,7 +553,7 @@ $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
     \end{math}
     \item
     \begin{math}
-        X \sim H(K, N-K, n) \implies\\  E(X) = \frac{nR}{R + B}
+        X \sim H(R, B, n) \implies E(X) = \frac{nR}{R + B}
     \end{math}
     \item \begin{math}
         X \sim Pois(\lambda) \implies E(x) = \lambda
@@ -583,10 +591,7 @@ Ce sta $X$ in $Y$ \textit{neodvisni} je
 \begin{center}
     \begin{small}
         \begin{math}
-            E(XY) = E(X)E(Y)\,
-        \end{math}in \\
-        \begin{math}
-            D(X + Y) = D(X) + D(Y)
+            D(aX + bY) = a^2D(X) + b^2D(Y)
         \end{math}.
     \end{small}
 \end{center}
@@ -615,13 +620,17 @@ je enak
     \end{math}
     \item
     \begin{math}
-        X \sim H(R, B, n) \implies\\ 
-        \frac{
-            nRB(R + B - n)
-        }{
-            (R + B)^2 (R + B - 1)
-        }
+        X \sim H(R, B, n) \implies
     \end{math}
+    \begin{center}
+        \begin{math}
+            \frac{
+                nRB(R + B - n)
+            }{
+                (R + B)^2 (R + B - 1)
+            }
+        \end{math}
+    \end{center}
     \item \begin{math}
         X \sim P(\lambda) \implies D(x) = \lambda
     \end{math}
@@ -725,7 +734,12 @@ ce za poljublni stevili $x,y \in R$ velja
 \begin{center}
     \begin{math}
         P(X = x, Y = y) = P(X = x)P(Y = y)
-    \end{math}.
+    \end{math} in
+\end{center}
+\begin{center}
+    \begin{math}
+        P(X = x\, |\, Y = y) = \frac{P(X = x, Y = y)}{P(Y = y)}
+    \end{math}
 \end{center}
 
 \textbf{7.2 dvorazsezna gostota verjetnosti}
@@ -793,14 +807,18 @@ Ce sta $X$ in $Y$ \textbf{neodvisni} velja
 \textbf{7.4 Kovarianca} slucajnih spremenljivk $X$ in $Y$ je definirana kot
 \begin{center}
     \begin{math}
-        Cov(X,Y) = E((X - E(X)) (Y - E(Y))) = E(XY) - E(X)E(Y)
+        Cov(X,Y) = E((X - E(X)) (Y - E(Y))) = E(\underline{XY}) - E(X)E(Y)
     \end{math}.
 \end{center}
+\textbf{XY} mores posebi zracunat porazdelitev!\\
 Za disperzijo velja
 \begin{center}
     \begin{math}
         D(X) = Cov(X, X)
-    \end{math}.
+    \end{math} in\\
+    \begin{math}
+        D(aX + bY) = a^2D(X) + b^2D(Y) + 2Cov(X, Y)
+    \end{math}
 \end{center}
 Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
 \begin{itemize}
@@ -815,17 +833,23 @@ Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
     \end{math},
     \item \begin{math}
         |Cov(X, Y)| \leq \sqrt{D(X)D(Y)}
-    \end{math}.
+    \end{math},
+    \item \begin{math}
+        Cov(aX, bY) = abCov(X, Y)
+    \end{math}
 \end{itemize}
+
+Ce sta s.s $X$ in $Y$ \textit{neodvisni} je njuna kovarianca enaka \textbf{0},
+$Cov(X,Y) = 0$.
 
 \textbf{7.5 Korelacijski koeficient} izracunamo po formuli
 \begin{center}
     \begin{math}
-        r(X,Y) = \frac{Cov(X,Y)}
-                      {\sigma(X) \sigma(Y}
+        \rho(X,Y) = \frac{Cov(X,Y)}
+                      {\sigma(X) \sigma(Y)}
     \end{math}
 \end{center}
-
+Ce velja $\rho(X, Y) = 0$, lahko sklepamo da sta spremenljivki $X$ in $Y$ \textbf{nekolinearni}.
 
 \bigskip
 \end{multicols}
