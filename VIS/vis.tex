@@ -556,7 +556,7 @@ $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
         X \sim H(R, B, n) \implies E(X) = \frac{nR}{R + B}
     \end{math}
     \item \begin{math}
-        X \sim Pois(\lambda) \implies E(x) = \lambda
+        X \sim Pois(\lambda) \implies E(X) = \lambda
     \end{math}
     \item \begin{math}
         X \sim U[a, b] \implies E(X) = \frac{a + b}{2}
@@ -726,7 +726,7 @@ Porazdelitev (X, Y) lahko podamo na dva enakovredna nacina, in sicer:
         p_i = P(X = x_i) = \sum_{j = 1}^{\infty} p_{ij}
     \end{math}\\
     \begin{math}
-        q_j = P(Y = y) = \sum_{j = 1}^{\infty} p_{ij}
+        q_j = P(Y = y_i) = \sum_{j = 1}^{\infty} p_{ij}
     \end{math}
 \end{center}
 Slucajni spremenljivki X in Y sta \textbf{neodvisni},
@@ -849,7 +849,119 @@ $Cov(X,Y) = 0$.
                       {\sigma(X) \sigma(Y)}
     \end{math}
 \end{center}
+Korelacijski koeficient zavzema vrednosti na intervalu [-1, 1].
 Ce velja $\rho(X, Y) = 0$, lahko sklepamo da sta spremenljivki $X$ in $Y$ \textbf{nekolinearni}.
+Za $a, b, c, d \in R$ ter $a, c > 0$ velja:
+\begin{center}
+    $\rho(aX + b, cY + d) = \rho(X, Y)$
+\end{center}
+Ce je $|Cov(X, Y)| = sqrt{D(X)D(Y)}$, tj. $\rho(X, Y) = \pm 1$, potem sta $X$ in $Y$ v \textbf{linearni zvezi}
+\begin{center}
+    \begin{math}
+        Y = \pm \frac{D(Y)}{D(X)}(X - E(X)) + E(Y)
+    \end{math}.
+\end{center}
+Ker iz neodvisnosti sledi E(XY) = E(X)E(Y), sta neodvisni slucajni spremenljivki tudi nekolinearni. Obratno
+pa ne velja!
+
+\section{\underline{Normalna porazdelitev}}
+
+\textbf{8.1} Normalna porazdelitev je odvisna od dveh parametrov:
+$\mu = E(X)\, in\, \sigma = \sigma(X)$. Gostota njene porazdelitve je:
+\begin{center}
+    \begin{math}
+        p_{X}(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(x - \mu)^{2}}{2 \sigma^{2}}}
+    \end{math}        
+\end{center}
+Standardizacija: 
+\begin{center}
+    \begin{math}
+        Z = \frac{X - \mu}{\sigma} \sim N(\mu =  0, \sigma = 1)
+    \end{math}
+\end{center}
+Vrednost $F(X) = P(X \leq x)$ dobimo tako da integriramo
+funkcijo gostote na intervalu $[-\infty, x]$:
+\begin{center}
+    \begin{math}
+        F(x) = \frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-t^2 / 2}\, dt
+    \end{math}.
+\end{center}
+Velja : $P (a \leq Z \leq b) = F(b) - F(a)$ in $x \geq 4 \Rightarrow F(x) \approx 1 (std.\, napaka)$.
+
+\textbf{8.2 $\sigma$}  pravila
+
+\begin{itemize}
+    \item \begin{math}
+        1 \sigma \Rightarrow P(\mu - \sigma \leq X \leq \mu + \sigma) = 0.683
+    \end{math}
+
+    \item \begin{math}
+        2 \sigma \Rightarrow P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) = 0.954
+    \end{math}
+
+    \item \begin{math}
+        3 \sigma \Rightarrow P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) = 0.997
+    \end{math}
+\end{itemize}
+
+\textbf{8.3 $q_x$} pravila
+
+\begin{itemize}
+    \item $P (X \leq q_1) = 0.25$
+    \item $P (X \leq q_2(m)) = 0.5$
+    \item $P (X \leq q_3) = 0.75$
+\end{itemize}
+
+\textbf{8.4 Standardizacija binomske} porazdelitve
+\begin{center}
+    \begin{math}
+        X_B \sim B(n, p)
+    \end{math}
+\end{center}
+kjer velja $\mu = np$ in $\sigma = \sqrt{np(1-p)}$.
+velja:
+\begin{center}
+    \begin{math}
+        P(a \leq X_B \leq b) \approx P(a - \frac{1}{2} \leq X_N \leq b + \frac{1}{2})
+        = F(\frac{b + \frac{1}{2} - \mu}{\sigma}) - F(\frac{a - \frac{1}{2} - \mu}{\sigma})
+    \end{math}
+\end{center}
+in
+\begin{center}
+    \begin{math}
+        P(X_B \leq b) \approx P(X_N \leq b + \frac{1}{2}) = F(\frac{b + \frac{1}{2} - \mu}{\sigma})
+    \end{math}
+\end{center}.
+Pri ostalih dogodkih si pomagamo z
+\begin{itemize}
+    \item $P(X_B < k) = P(X_B \leq k - 1)$
+    \item $P(X_B < k) = P(X_B \geq k + 1) = 1 - P(X_B \leq k)$
+\end{itemize}
+Manjka aproksimacija,lp
+
+\section{\underline{CLI}}
+
+\textbf{9.1 Normalne spremenljivke:} Naj bosta $X \sim N(\mu_1, \sigma_1), Y \sim N(\mu_2, \sigma_2)$ neodvisni.
+Potem je 
+\begin{center}
+    \begin{math}
+        X + Y \sim N(\mu_1 + \mu_2, \sqrt{\sigma_1^2 + \sigma_2^2})    
+    \end{math}
+\end{center}
+Posledica: Naj bodo
+\begin{center}
+    \begin{math}
+        X_1 \sim N(\mu_1, \sigma_1), \dots , X_n \sim  N(\mu_n, \sigma_n)
+    \end{math}
+\end{center}
+neodvisne, normalno porazdeljene s.s. Potem velja:
+\begin{center}
+    \begin{math}
+        X_1 + \dots + X_n \sim N (
+            \sum_{i=1}^{n} \mu_i, \sqrt{\sum_{i=1}^{n} \sigma_i^2}
+        )
+    \end{math}.
+\end{center}
 
 \bigskip
 \end{multicols}
