@@ -635,7 +635,7 @@ je enak
         X \sim P(\lambda) \implies D(x) = \lambda
     \end{math}
     \item \begin{math}
-        X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{12}
+        X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{2}
     \end{math}
     \item  \begin{math}
         X \sim \epsilon(\lambda) \implies D(X) = \frac{1}{\lambda^2}
@@ -932,12 +932,52 @@ in
         P(X_B \leq b) \approx P(X_N \leq b + \frac{1}{2}) = F(\frac{b + \frac{1}{2} - \mu}{\sigma})
     \end{math}
 \end{center}.
-Pri ostalih dogodkih si pomagamo z
+\textbf{Pazi} za normalizirane \textit{diskretne} porazdelitve velja:
 \begin{itemize}
     \item $P(X_B < k) = P(X_B \leq k - 1)$
-    \item $P(X_B < k) = P(X_B \geq k + 1) = 1 - P(X_B \leq k)$
+    \item $P(X_B > k) = P(X_B \geq k + 1) = 1 - P(X_B \leq k)$
 \end{itemize}
-Manjka aproksimacija,lp
+
+
+\textbf{8.5 Aproksimacija binomske} porazdelitve\\
+
+\textbf{8.5.1 Poissonov Priblizek}
+
+Naj bo 
+\begin{center}
+    \begin{math}
+        X_B \sim B(n, p)\: in\: X_P \sim P(np)
+    \end{math}
+\end{center}
+Ce je 
+\begin{itemize}
+    \item $n \geq 20$ in $p \in (0, 0.05)$ ali pa
+    \item $n \geq 100$ in $np \in (0, 10]$,
+\end{itemize}
+ponavadi velja:
+\begin{center}
+    \begin{math}
+        P(X_B = k) \approx P(X_P = k) = \frac{(np)^k}{k!} e^{-np} 
+    \end{math}.
+\end{center}
+
+\textbf{8.5.2 Laplaceov Priblizek}
+
+Naj bo 
+\begin{center}
+    \begin{math}
+        X_B \sim B(n, p)\: in\: X_N \sim N(np, \sqrt{np(1-p)})
+    \end{math}.
+\end{center}
+Ce je $np \geq 10$ in $n(1 - p) \geq 10$, potem za $k$ dovolj blizu $np$ velja:
+\begin{center}
+    \begin{math}
+        P(X = k) \approx P(X_N = k) = 
+        \frac{
+            e^{-(k - np)^2/ (2np(1 - p))}
+        }{\sqrt{2 \pi np(1 - p)}}
+    \end{math}
+\end{center}
 
 \section{\underline{CLI}}
 
@@ -961,6 +1001,66 @@ neodvisne, normalno porazdeljene s.s. Potem velja:
             \sum_{i=1}^{n} \mu_i, \sqrt{\sum_{i=1}^{n} \sigma_i^2}
         )
     \end{math}.
+\end{center}
+
+\textbf{9.2 CLI za vsoto sl. spremenljivk}
+Naj bodo $X_1, + \dots +, X_n$ neodvisne in enako porazdeljene
+slucajne spremenljivke, kjer velja $E(X_i) = \mu, D(X_i) = \sigma^2 < \infty$. Potem za 
+dovolj velik $n$ (dobra aproksimacija : $n \geq 30$)  velja, da je porazdelitev vsote
+$S = X_1, + \dots +, X_n$ priblizno normalna.
+
+\begin{center}
+    \begin{math}
+        S \sim  N(n \mu, \sigma \sqrt{n})
+    \end{math}
+\end{center}
+
+Pri aproksimaciji \textbf{diskretne} porazdelitvene vsote z normalno porazdelitvijo, uporbljamo
+popravek za zveznost.
+
+\begin{center}
+    \begin{math}
+        P(a \leq b) \approx P(a - \frac{1}{2} \leq Y \leq b + \frac{1}{2}) =
+        F(
+            \frac{b + \frac{1}{2} - n \mu}{\sigma \sqrt{n}}
+        ) -
+        F(
+            \frac{b - \frac{1}{2} - n \mu}{\sigma \sqrt{n}}
+        )
+    \end{math}
+\end{center}
+
+\textbf{9.3 Enostavni slucajni vzorec}
+Naj bo $X$ s.s. Enostavni slucajni vzorec je slucajni vektor $(X_1, + \dots +, X_n)$,
+za katerega velja:
+\begin{itemize}
+    \item vsi cleni vektorja $X_i$ imajo isto porazdelitev kot spremenljivka $X$ in
+    \item cleni $X_i$ so med seboj neodvisni
+\end{itemize}
+
+\textbf{9.4 Vzorcno povprecje} normalno porazdeljenega \textbf{vzorca}
+Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec, $X_i \sim N(\mu, \sigma)$.
+Potem je porazdelitev vzorcnega povprecja $\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$
+tudi normalna:
+\begin{center}
+    \begin{math}
+        \overline{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})
+    \end{math}
+\end{center}
+
+\textbf{9.5 CLI} za \textbf{vzorcno povprecje}
+Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec in
+\begin{center}
+    \begin{math}
+        E(X_i) = \mu, D(X_i) = \sigma^2 < \infty
+    \end{math}
+\end{center}
+Za dovolj veliki vzorec $(n \geq 30)$ je porazdelitev vzorcnega povprecja
+$\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$ priblizno normalna
+\begin{center}
+    \begin{math}
+        \overline{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})
+    \end{math}
 \end{center}
 
 \bigskip
