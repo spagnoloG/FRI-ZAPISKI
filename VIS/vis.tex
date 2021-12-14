@@ -360,7 +360,10 @@ Lastnosti:
     \end{math}
     \item \begin{math}
         P(X = a) = 0, a \in R
-    \end{math} nqot
+    \end{math}
+    \item \begin{math}
+        P(|X| < 1) = P(-1 < X < 1)
+    \end{math}
 \end{itemize}
 \textbf{ce} je funkcija zvezna v $x$, potem za njo velja tudi $F'(x) = p(x)$.
 Za zvezno slucajno spremenljivko $X$ je \textit{funkcija prezivetja} $S(x) = P(X > x)$
@@ -635,7 +638,7 @@ je enak
         X \sim P(\lambda) \implies D(x) = \lambda
     \end{math}
     \item \begin{math}
-        X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{2}
+        X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{12}
     \end{math}
     \item  \begin{math}
         X \sim \epsilon(\lambda) \implies D(X) = \frac{1}{\lambda^2}
@@ -810,14 +813,14 @@ Ce sta $X$ in $Y$ \textbf{neodvisni} velja
         Cov(X,Y) = E((X - E(X)) (Y - E(Y))) = E(\underline{XY}) - E(X)E(Y)
     \end{math}.
 \end{center}
-\textbf{XY} mores posebi zracunat porazdelitev!\\
+\textbf{XY} mores posebi zracunat porazdelitev(ampak pazi, ni nujno da sta neodvisni, zato, ce imas tabelo, poberi vrednosti za npr. $P(XY = 1)$ iz tabele)!\\
 Za disperzijo velja
 \begin{center}
     \begin{math}
         D(X) = Cov(X, X)
     \end{math} in\\
     \begin{math}
-        D(aX + bY) = a^2D(X) + b^2D(Y) + 2Cov(X, Y)
+        D(aX + bY) = a^2D(X) + b^2D(Y) + 2abCov(X, Y)
     \end{math}
 \end{center}
 Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
@@ -837,6 +840,9 @@ Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
     \item \begin{math}
         Cov(aX, bY) = abCov(X, Y)
     \end{math}
+    \item \begin{math}
+        Cov(a, X) = 0 
+    \end{math} \textit{(neodvisni)}
 \end{itemize}
 
 Ce sta s.s $X$ in $Y$ \textit{neodvisni} je njuna kovarianca enaka \textbf{0},
@@ -855,7 +861,7 @@ Za $a, b, c, d \in R$ ter $a, c > 0$ velja:
 \begin{center}
     $\rho(aX + b, cY + d) = \rho(X, Y)$
 \end{center}
-Ce je $|Cov(X, Y)| = sqrt{D(X)D(Y)}$, tj. $\rho(X, Y) = \pm 1$, potem sta $X$ in $Y$ v \textbf{linearni zvezi}
+Ce je $|Cov(X, Y)| = \sqrt{D(X)D(Y)}$, tj. $\rho(X, Y) = \pm 1$, potem sta $X$ in $Y$ v \textbf{linearni zvezi}
 \begin{center}
     \begin{math}
         Y = \pm \frac{D(Y)}{D(X)}(X - E(X)) + E(Y)
@@ -886,7 +892,8 @@ funkcijo gostote na intervalu $[-\infty, x]$:
         F(x) = \frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-t^2 / 2}\, dt
     \end{math}.
 \end{center}
-Velja : $P (a \leq Z \leq b) = F(b) - F(a)$ in $x \geq 4 \Rightarrow F(x) \approx 1 (std.\, napaka)$.
+Velja : $P (a \leq Z \leq b) = F(b) - F(a)$ in $x \geq 4 \Rightarrow F(x) \approx 1 (std.\, napaka)$.\\
+Ce je spremenljivka $X \sim N(0,1)$ normalno porazdeljena, velja tudi da so lihi momenti normalne porazdelitve enaki 0 ($E(X^3) = E(X^5) = 0$).
 
 \textbf{8.2 $\sigma$}  pravila
 
@@ -1048,11 +1055,16 @@ tudi normalna:
     \end{math}
 \end{center}
 
+Pozor! Pri racunanju disperzije ne pozabi kvadrirati \textbf{$\frac{1}{n}$}.
+
 \textbf{9.5 CLI} za \textbf{vzorcno povprecje}
 Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec in
 \begin{center}
     \begin{math}
-        E(X_i) = \mu, D(X_i) = \sigma^2 < \infty
+        E(X_i) = \mu, D(X_i) = \sigma^2
+    \end{math}
+    \begin{math}
+        (\mu\; in\; \sigma^2\; morata\; biti\; koncni)
     \end{math}
 \end{center}
 Za dovolj veliki vzorec $(n \geq 30)$ je porazdelitev vzorcnega povprecja
