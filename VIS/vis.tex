@@ -527,7 +527,10 @@ ter $a, b, n \in R$ velja
     \end{math} itn...
 \end{center}
 Matematicno upanje nam pove pricakovano vrednost, kolikokrat oz. kdaj (odvisno od porazdelitve) 
-se bo dolocen dogodek zgodil. 
+se bo dolocen dogodek zgodil. Po definiciji disperzije velja tudi:
+\begin{center}
+    $E(X^2) = D(X) + E(X)^2$    
+\end{center}
 
 \textbf{5.2 Matematicno upanje funkcije}\\
 $f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
@@ -723,6 +726,23 @@ Porazdelitev (X, Y) lahko podamo na dva enakovredna nacina, in sicer:
             \end{math}
         \end{center}
 \end{enumerate}
+Podan imamo vektor $(X \in [0, a], Y \in [0,b])$. Potem velja slednje:
+\begin{itemize}
+    \item $P(X < 1 ) = P(X \leq 1, Y \leq b)$
+    \item $P(X < 1, Y > \frac{1}{2}) = P(X \leq 1, Y \leq 1) - P(X \leq 1, Y \leq \frac{1}{2})$
+    \item \begin{math}
+        P(X > 1, Y > \frac{1}{2}) = 
+    \end{math}
+\end{itemize}
+\begin{center}
+    \begin{small}
+        \begin{math}
+            P(X \leq a, \frac{1}{2} \leq Y \leq b) - P(X \leq 1, \frac{1}{2} \leq Y \leq b) =
+            (P(X \leq a, Y \leq b) - P(X \leq a, Y \leq \frac{1}{2})) - (P(X \leq 1, Y \leq b) - P(X \leq 1, Y \leq \frac{1}{2}))
+        \end{math}
+    \end{small}
+\end{center}
+
 \textbf{Robne porazdelitve} so porazdelitve komponent\\
 \begin{center}
     \begin{math}
@@ -803,7 +823,7 @@ za zvezni slucjani vektor pa s predpisom
 Ce sta $X$ in $Y$ \textbf{neodvisni} velja
 \begin{center}
     \begin{math}
-        E(XY) = E(X)(Y)
+        E(XY) = E(X)E(Y)
     \end{math}.
 \end{center}
 
