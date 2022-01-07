@@ -7,12 +7,39 @@ Rekurzivne probleme lahko resujemoo tudi z iteracijami:
 - vsak rekurzivni program lahko spremenimo v iterativnega s skladom
 
 ### PRETVORBA REKURZIJE V ITERACIJO S SKLADOM
+
+very good article: https://www.cs.odu.edu/~zeil/cs361/latest/Public/recursionConversion/index.html
+
+Na sklad shranimo:
+- argumente
+- lokalne spremenljivke
+- naslov (adreso) za nadaljevanje
+
+Primer rekurzivne funckije:
+```java
+public void recursive(ArgumentType args0) {
+  LocalVarsType
+  if(robniPogoj())
+    sSrobni;
+  else {
+    s0; // stavki
+    recursive(args1);
+    s1;
+    recursive(args2);
+    ...
+    recursive(argsRECCALLS);
+    sRECCALLS;
+  }
+}
+```
+
+
 Definicija skladovnega elementa:
 ```java
 class StackElementType {
   Argument type args; // vrednosti argumentov, bodisi za zacetek rekurzivnega klica, bodisi za povraztek iz rekurzivnega klica
   LocalVarsType locals; // vrednosti lokalnih spremenljivk za povratek iz rekurzivnega klica
-  int address; // vrednosti med 0 in RECCALS (st. rekurzivnih klicev)
+  int address; // vrednosti med 0 in RECCALS (st. rekurzivnih klicev, ne globina!)
 }
 ```
 Pretvorba rekurzije v iteracijo
@@ -34,13 +61,104 @@ public void iterative(ArgumentType args0) {
     args0 = e.args; // pripravi vrednosti..
     locals0 = e.locals // ..lokalnih spremenljivk
 
+    // izvedi del algoritma za dani naslov
     switch(e.address) {
-      // izvedi del algoritma za dani naslov
+
+      case 0: // izvajamo od zacetka
+            if(robniPogoj()) sRobni;
+            else {
+              s0; // izvedemo stavke
+              // priprava za povratek
+              e.address = 1; // postavimo naslov na 0 + 1
+              e.args = args0; // dodamo trenutno izracunane argumente
+              e.locals = locals0; // dodamo trenunto spremenjene lokalne spremenljivke
+              st.push(e); /// dodamo element na sklad
+              // priprava za zacetek rek. klica
+              e.address = 0; 
+              e.args = args1;
+              st.push(e);
+            }
+            break;
+      case i: // 0 < i < RECCALLS
+            si;
+            // priprava za povratek
+            e.address = i + 1;
+            e.args = args0;
+            e.locals = locals0;
+            st.push(e);
+            // priprava za zacetek rek. klica
+            e.address = 0;
+            e.args = args_(i+1); // ustrezno za klic
+            st.push(e);
+            break;
+      case RECCALS:
+            sRECCALLS;
+            break;
     }
+
   } while(!st.empty);
 
 }
 ```
+Primer iz linkanega clanka:sp
+```cs
+template <class T> 
+void quickSort(T[] v, unsigned int numberOfElements)
+{
+  if (numberOfElements > 1) 
+    { // quickSort(v, 0, numberOfElements - 1);
+     stack<pair<unsigned int, unsigned int>, list<pair<unsigned int, unsigned int> > > stk; 
+     stk.push (make_pair(0, numberOfElements - 1)); // initialize the stack
+
+     while (!stk.empty())
+      {
+       // simulated recursive call - remove parameters from stack
+       low = stk.top().first;
+       high = stk.top().second;
+       stk.pop();
+
+       // no need to sort a vector of zero or one elements
+       if (low < high)
+         {
+          // select the pivot value
+          unsigned int pivotIndex = (low + high) / 2;
+
+          // partition the vector
+          pivotIndex = pivot (v, low, high, pivotIndex);
+
+          // sort the two sub vectors
+          if (low < pivotIndex)
+            stk.push (make_pair(low, pivotIndex));
+          if (pivotIndex < high)
+            stk.push (make_pair(pivotIndex+1, high));
+         }
+      }
+   }
+}
+
+```
+
+### PRIMER REPNE REKURZIJE
+Ali je ta rekurzija repna?
+```java
+int fakulteta(int n) {
+  if(n == 0)
+    return 1;
+  else
+    return n * fakulteta(n - 1);
+}
+```
+Odgovor je **ne**, saj tukaj se pomnozimo rezultat klica funkcije s spremenljivko `n`. O Repni rekurziji lahko govorimo le v primeru, ko imamo v zadnji vrstici funkcije en sam `return function_call(params);` rekurzivni klic, enako velja za sestevanje z `n` in sestevanjem rekurzivnih klicov. V repni rekurziji je klic **eden**.
+No pa pretvorimo tale primer v **pravilno** repno rekurzijo:
+```java
+int fakulteta(int n, int acc) {
+  if(n == 0)
+    return 1;
+  else
+    return fakulteta(n - 1, n * acc);
+}
+```
+
 ## ANALIZA CASOVNE KOMPLEKSNOSTI
 
 #### Racunanje z O(n)
@@ -94,6 +212,15 @@ void hanoi(char A, char B, char C, int n) {
 Postopek:
 - najprej izracunas `a` in `c`, tako da izberes tisto matematicno funkcijo`g(n)`, katera se ti zdi najbolj primerna in v njo ustavis `n` pa enacis s casom izvajanja
 - ko imas `a` in `c`, izracunas `T(n)` s pomocjo dobljenega `a`-ja in `c`-ja pa matematicne funkcije `g(n)`. Ce se cas ujema --> success :)
+
+### POGOSTE KOMPLEKSNOSTI
+- `log(n)` ~ zelo pocasi raste
+- `n` ~ linearno narascanje
+- `n * log(n)` ~ blizu linearnega narascanja (rahlo vec)
+- `n^2, n^3, ...` ~ polinomsko (sprejemljivo)
+- `2^n` ~ nesprejemljivo
+- `n!` ~ nesprejemljivo
+- `n^n` ~ nesprejemljivo
 
 ## ADT ENOSMERNI SEZNAM S KAZALCI
 
@@ -362,7 +489,7 @@ Najpreprostejse zaporedje:
   
 Sepravi poskusamo dokler ne najdemo prostega placa.
 
-Better option : `h'_i(x) =((h_1(x) + i  * h_2(x)) mod m)` <br/>
+Better option : `h'_i(x) =((h_1(x) + i  * h_2(x)) mod m)` // zaradi mnozenja se elementi bolj razprsijo <br/>
 `h_1(x) = (x mod m)` <br/>
 `h_2(x) = (x mod m')` &emsp; &emsp; &emsp; `m' = m - 2` <br/>
 
@@ -404,3 +531,153 @@ Zaradi fiksne zgoscevalne funkcije, zgoscena tabela ne more biti dinamicna struk
 Ne moremo ucinkovito impementirati operacij, ki temeljijo na urejenosti elementov po kljucih. Kot so iskanje najvecjega/najmanjsega elementa, iskanje naslednjega elementa po velikosti, izpis elementov v danem intervalu vrednosti kljuca...
 
 Ce so slabosti nesprejemljive, uporabimo drevo.
+
+## ADT DREVO
+
+```
+          A
+        / | \ 
+       B  C  D
+      /     /  \ 
+     E     H    J  
+    / \
+   F   G
+```
+
+
+Terminologija:
+ - **stopnja** (degree) **vozlisca** ~ stevilo sinov vozlisca (stopnja vozlisca E = 2)
+ - **stopnja drevesa** ~ najvecje stevilo sinov od korena drevesa (v tem primeru 3)
+ - **pot** (path) ~ zaporedje root vozlisc vozlisc (npr A -> B -> E -> G)
+ - **nivo vozlisca** (level) ~ dolzina  poti od korena do vozlisca(nivo vozlisca E = 3)
+ - **visina drevesa** (height) ~ dolzina najdaljse poti od korena do list(za zgornje drevo je 4)
+
+Primer izracuna visine drevesa
+```java
+public int height(TreeNode n) {
+  if(n == null)
+    return 0;
+  else
+    return Math.max(height(leftomostChild(n)) + 1, height(rightSibling(n)); // pri levemu prisetejemo se oceta
+}
+```
+### OBHOD DREVESA (TRAVERSAL)
+```
+          A
+        /   \ 
+       B     C
+      / \   /  \ 
+     D   E F    G
+```
+**Premi (preorder)** ~ izpisemo oznako korena pred oznakami poddreves. (`A, B, D, E, C, F, G`)
+```java
+public void preorder(Tree r) {
+  if(r != null) {
+    r.writeLabel(); Stystem.out.print(", ");
+    Tree n = leftmostChild(r);
+    while(n != null) {
+      preorder(n);
+      n = rightSibling(n);
+    }
+  }
+}
+```
+**obratni (postorder)** ~ izpisemo najprej oznake vozlisc vseh poddreves in zatem oznako korena(`D, E, B, F, G, C, A`)
+
+```java
+public void postorder(Tree r) {
+  if(r != null) {
+    Tree n = leftmostChild(r);
+    while(n != null) {
+      postorder(n);
+      n = rightSibling(n);
+    }
+    // nazadnje izpisemo oznako korena
+    r.writeLabel(); System.out.println(", ");
+  }
+}
+
+```
+**vmesni (inorder)** ~ izpisemo najprej oznake vozlisc najbolj levega drevesa, nato oznako korena in zatem oznake vozlisc vseh ostalih poddreves korena. (`D, B, E, A, F, C, G`). Je najbolj zanimiv za binarna iskalna drevesa, saj tako lahko izpisemo elemente po narascujocem vrstnem redu, ker so v levem poddrevesu elementi vedno manjsi od korena, v desnem pa vecji.
+
+```java
+public void inorder(Tree r) {
+  if(r != null) {
+    Tree n = leftmostChild(r);
+    inorder(n);
+    // za levim  poddrevesom izpisemo oznako korena
+    r.writeLabel(); System.out.print(", ");
+    n = rightSibling(n);
+    while(n != null) {
+      inorder(n);
+      n = rightSibling(n);
+    }
+  }
+}
+```
+**nivojski** ~ izpisemo najprej vsa vozlisca na 1. nivoju, zatem na 2. nivoju itn. (`A, B, C, D, E, F, G`).
+```java
+pubic void printByLevel() {
+  int l = 1;
+  while(printLevel(l, root())) {
+    l++;
+    System.out.println();
+  }
+}
+
+private booolean printLevel(int l, Tree r) {
+  if(r == null)
+    return false;
+  else if (l == 1) {
+    r.writeLabel(); System.out.print(", ");
+    return true;
+  }
+  else {
+    Tree n = leftmostChild(r);
+    boolean existsLevel = false;
+    while(n != null) {
+      // izpis nivoja je mozen v vsaj enem poddrevesu
+      existsLevel = existisLevel || printLevel(l-1, n);
+      n = rightSibling(n);
+    }
+    return existsLevel;
+  }
+}
+```
+
+### Implementacija drevesa s poljem
+- vsako vozlisce hrani **stevilo sinov**, celo drevo pa stevilo vozlisc `n`
+- koren drevesa je **prvi** element polja
+- sledijo vsa vozlisca prvega najbolj levega pddrevesa, nato vsa vozlisca drugega poddrevesa in tako naprej
+- vsako poddrevo je shranjeno po istem pravilu
+
+```
+          A
+        / | \ 
+       B  C  D
+      /     /  \ 
+     E     H    J  
+    / \
+   F   G
+
+   [A][3] -- root
+   [B][1] \
+   [E][2]  | 
+   [F][0]  | -- prvo poddrevo 
+   [G][0] /
+   [C][0] -- drugo poddrevo
+   [D][2] \
+   [H][0]  | - tretje poddrevo
+   [J][0] /
+```
+### Operacije in casovne zahtevnosti
+- PARENT(n, T) ~ vrne oceta vozlisca `n` v drevesu T `O(1)`
+- LEFTOMOST_CHILD(n, T) ~ vrne najbollj levega sina vozlisca `n` `O(1)`
+- RIGHT_SIBLING(n, T) ~ vrne desnega brata vozlisca `n` `O(k)`, `k` je setevilo 
+- LABEL(n, T) ~ vrne oznako vozlisca `n`
+- ROOT(T) ~ vrne koren drevesa, ce eksplicitno shranjen `O(1)`
+- MAKENULL(T) ~ naredi prazno drevo `O(1)`
+- CREATE(r, v, T1, ... , Ti) ~ generira drevo s korenom `r` z oznako v, ter s stopnjo `i` s poddrevesi `T1, ..., Ti` `O(1)`
+
+Ker polje ni dinamicna struktura, vstavljanje pomeni premikanje vseh elementov v tabeli, se redko uporablja za implementacijo dreves. Ce se ze uporabi se uporabi za storage.
+
