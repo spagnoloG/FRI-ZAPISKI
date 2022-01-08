@@ -100,7 +100,7 @@ public void iterative(ArgumentType args0) {
 
 }
 ```
-Primer iz linkanega clanka:sp
+Primer iz linkanega clanka
 ```cs
 template <class T> 
 void quickSort(T[] v, unsigned int numberOfElements)
@@ -677,7 +677,248 @@ private booolean printLevel(int l, Tree r) {
 - LABEL(n, T) ~ vrne oznako vozlisca `n`
 - ROOT(T) ~ vrne koren drevesa, ce eksplicitno shranjen `O(1)`
 - MAKENULL(T) ~ naredi prazno drevo `O(1)`
-- CREATE(r, v, T1, ... , Ti) ~ generira drevo s korenom `r` z oznako v, ter s stopnjo `i` s poddrevesi `T1, ..., Ti` `O(1)`
+- CREATE(r, v, T1, ... , Ti) ~ generira drevo s korenom `r` z oznako v, ter s stopnjo `i` s poddrevesi `T1, ..., Ti` `O(n)`
 
 Ker polje ni dinamicna struktura, vstavljanje pomeni premikanje vseh elementov v tabeli, se redko uporablja za implementacijo dreves. Ce se ze uporabi se uporabi za storage.
+
+
+### Implementacija drevesa s kazalci
+Poznamo dve obliki implementacije dreves:
+- vsako vozlisce vsebuje kazalca na **levega otroka** in **desnega brata** 
+  ```java
+  public class Tree {
+    public Node parent, leftSon, rightSibling;
+  }
+  ```
+  ```
+        A -> n
+      /       \ 
+     B   ->    C -> n
+   /   \       /  \
+  D ->  E->n  F -> G -> n
+  ```
+- vsako vozlice vsebuje kazalce na vse otroke (obicajno drevesa z navzgor omejeno stopnjo, npr. binarna drevesa)
+  ```java
+  public class Tree {
+    public Node parent, leftSon, rightSon; // primer implementacije binarnega drevesa
+  }
+  ```
+  ```
+          A
+        /   \ 
+       B     C
+      / \   /  \ 
+     D   E F    G
+  ```
+
+Ponavadi dodamo tem implementacijam se kazalec na oceta.
+
+### Operacije in casovne zahtevnosti
+- PARENT(n, T) ~ vrne oceta vozlisca `n` v drevesu T `O(1)`
+- LEFTOMOST_CHILD(n, T) ~ vrne najbollj levega sina vozlisca `n` `O(1)`
+- RIGHT_SIBLING(n, T) ~ vrne desnega brata vozlisca `n` `O(1)`
+- LABEL(n, T) ~ vrne oznako vozlisca `n` `O(1)`
+- ROOT(T) ~ vrne koren drevesa, ce eksplicitno shranjen `O(1)`
+- MAKENULL(T) ~ naredi prazno drevo `O(1)`
+- CREATE(r, v, T1, ... , Ti) ~ generira drevo s korenom `r` z oznako v, ter s stopnjo `i` s poddrevesi `T1, ..., Ti` `O(1)` Za razliko od implementacije s poljem, je tukaj CREATE operacija zelo hitrejsa, saj je potrebno samo prevezati pointerje in ne dodajati novih elementov tabelo (`i` je tudi navzgor omejen, zato ga tretiramo kot konstantno operacijo)
+
+### Binarna drevesa
+vsa vozlisca s stopnjo manjso ali enako 2
+vozlisce ima lahko tudi samo desnega sina
+
+Lastnosti binarnih dreves:
+- binarno drevo visine `v` ima najvec `2^n - 1` vozlisc
+- visina binarnega drevesa z `n` vozlisci `n >= v >= [log_2(n+1)]`
+- v binarnem drevesu z `n` vozlisci je `n + 1` praznih poddreves
+
+Binarno drevo lahko izrodimo(degenerate) na `2^(n-1)` nacinov.
+```
+   A   1 
+ /   \  *
+null  B  2
+    /   \  *
+  null   C  2
+       /   \  *
+     null   D  2
+          /   \ *
+        null   E 2
+               ... (n - 1)
+```
+## KONTEKSTNO NEODVISNE GRAMATIKE
+*this year skipped* 
+
+## ADT SLOVAR
+Je poseben primer ADT mnozice, ki omogoca samo vstavljanje, brisanje in iskanje elementa.
+Za ucinkovito iskanje elementov, potrebujemo relacijo **urejenosti** med elementi.
+Urejenost je definirana bodisi na elementih samih bodisi na delih elementov - kljucih (keys).
+
+Vsaka podatkovna baza je pravzaprav slovar:
+- elementi so urejeni po kljucih, zaradi hitrega iskanja
+- ker so baze shranjene na (relativno) pocasnem disku, je potrebno izbrati podatkovno strukturo, ki minimizira stevilo dostopov do diska
+
+### Osnovne operacije
+- MAKENULL(D) ~ naredi prazen slovar D `O(1)`
+- MEMBER(x, D) ~ preveri ce je element `x` v slovarju `D`
+- INSERT(x, D) ~ vstavi element `x` v slovar `D`
+- DELETE(x, D) ~ zbrise element `x` iz slovarja `D`
+
+Zaradi urejenosti elementov v slovarju je mozno ucinkovito implementirati tudi operacije:
+- iskanje minimalnega elementa
+- iskanje maksimalnega elementa
+- iskanje predhodnika(predecessor)
+- iskanje naslednika(successor)
+- izpis elementov na danem intervalu
+
+### Implementacija slovarja z zgosceno tabelo
+Se ne uporablja, uporablja se implementacija z drevesom.
+Ampak in special cases zna prit prav, saj so osnovne operacije `O(1)` (pod dolocenimi pogoji, cene pa niti ne vec tolko kjut (rehashing ipd.)
+
+Slabosti:
+- fiksna podatkovna struktura
+- fiksna zgoscevalna funkcija (zaradi sovpadanja se lahko izrodi v seznam)
+- neucinkovite operacije, ki temeljijo na urejenosti po kljucih
+
+### Implementacija slovarja z drevesom
+Casovna kompleksnost osnovnih operacij je reda `O(log n)`. Ravno isto velja
+za operacije na podlagi urejenosti elementov. (`n` je stevilo elementov slovarja)
+
+### BINARNO ISKALNO DREVO
+Binarno iskalno drevo je najbolj preprosta drevesna implementacija slovarja.
+```java
+public class BSTree implements Dictionary {
+  Node rootNode;
+}
+
+public class Node {
+  Comparable key;
+  Node left, right;
+}
+```
+#### Iskanje elementa v BST
+```java
+private Node member(Comparable x, Node node) {
+  if(node == null)
+    return null;
+  else if(x.compareTo(node.key) == 0)
+    return node;
+  else if(x.compareTo(node.key) < 0) 
+    return member(x, noder.left);
+  else
+    return member(x, node.right);
+}
+```
+#### Dodajanje elementa v list
+```java
+private Node insertLeaf(Comparable x, Node node) {
+  if(node == null) 
+    node = new Node(x);
+  else if(x.compareTo(x.node.left) < 0)
+    node.left = insertLef(x.node.left);
+  else if(x.compareTo(x.node.left) > 0)
+    node.right = insertLeaf(x.node.right);
+  else // v tem primeru ne naredi nc, saj je isti element ze v drevesu
+    retrun null
+  return node;
+}
+```
+#### Desna rotacija
+
+```
+Dodamo nov element X < A
+
+   A       -->   A    -->      X 
+ /   \         /   \         /   \
+L     R       X     R       L1    A
+            /   \               /   \
+           L1   L2             L2    R
+```
+
+```java
+private Node rightRotation(Node node) {
+  Node temp = node;
+  node = node.left;
+  temp.left = node.right;
+  node.right = temp;
+  return node;
+}
+```
+#### Leva rotacija
+
+```
+Dodamo nov element X > A
+
+   A       -->   A    -->        X 
+ /   \         /   \           /   \
+L     R       L     X         A    R2
+                  /   \     /   \
+                 R1   R2   L    R1
+```       
+
+```java
+private Node leftRotation(Node node) {
+  Node temp = node;
+  node = node.right;
+  temp.left = node.left;
+  node.left = temp;
+  return node;
+}
+```
+#### Dodajanje elementa v koren
+Rekurzija gre najprej v globino, in element se doda kot list. Pri vracanju iz rekurzije se izvaja zaporedje
+rotacij, ki dvigne element v koren. Casovna zahtevnost je sorazmerna visini drevesa.
+```java
+private Node insertRoot(Comparable x, Node node) {
+  if(node == null)
+    node = new Node(x);
+  else if(x.compareTo(node.key) < 0) {
+    node.left = insertRoot(x, node.left);
+    node = rightRotation(node);
+  }
+  else if(x.compareTo(node.key) > 0) {
+    node.right = insertRoot(x, node.right);
+    node = leftRotation(node);
+  }else
+    ; // je ze not
+  return node;
+}
+```
+
+#### Brisanje elementa
+```java
+// za prenos minimalnega kljuca iz poddrevesa
+private Comparable minNodeKey;
+
+public Node delete(Comparable x, Node node) {
+  if(node != null) {
+    if(x.compareTo(node.key) == 0) { // najdli smo tega k je trea zbrisat
+      if(node.left == null)
+        node = node.right;
+      else if(node.right == null)
+        node = node.left;
+      else {
+        node.right = deleteMin(node.right);
+        node.key = minNodeKey;
+      }
+    }
+  } 
+  else if(x.compareTo(node.key) < 0)
+    node.left = delete(x, node.left);
+  else
+    node.right = delete(x, node.right);
+  retrun node; 
+}
+
+
+private Node deleteMin(Node node) {
+  if(node.left != null) {
+    node.left = deleteMin(node.left); // ohranjamo strukturo
+    return node;
+  }
+  else {
+    minNodeKey = node.key; // prenos kljuca
+    return node.right; // ohrani desno poddrevo
+  }
+}
+```
+
 
