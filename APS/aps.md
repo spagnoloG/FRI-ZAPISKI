@@ -1,4 +1,8 @@
 # APS
+(to je nastalo zto k mi ni biu usec font na slajdih, like are we in the 90's bro?)
+
+--> vizualizacije raznih implementacij algoritmov in podatkovnih struktur
+https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 ## REKURZIJA
 Zahteva vec rezije kot iteracija in je pomnilnisko bol zahtevna od iteracije(sklici se shranijo na stacku). Globina rekurzije = potrebna velikost sklada.
@@ -783,6 +787,8 @@ Casovna kompleksnost osnovnih operacij je reda `O(log n)`. Ravno isto velja
 za operacije na podlagi urejenosti elementov. (`n` je stevilo elementov slovarja)
 
 ### BINARNO ISKALNO DREVO
+:tipspepe: https://www.youtube.com/watch?v=cySVml6e_Fc
+
 Binarno iskalno drevo je najbolj preprosta drevesna implementacija slovarja.
 ```java
 public class BSTree implements Dictionary {
@@ -920,5 +926,156 @@ private Node deleteMin(Node node) {
   }
 }
 ```
+### AVL DREVO
+Bols ku se piflat teorijo, poglej si raje ta prakticn video, razlaga je top :)
+- https://www.youtube.com/watch?v=jDM6_TnYIqE
+
+Je delno poravnano binarno iskalno drevo. Za vsako vozlisce velja, da se visini obeh poddreves razlikujeta za najvec 1. Visina maximalno izrojenega AVL dervesa z `n` elementi je: `h = 1.44log_2(n+1)`. Zahtevnost osnovnih operacij je reda O(logn).
+
+Primer AVL - node-a
+```java
+public class Node {
+  Comparable key;
+  Node left, righ;
+  int balance; // ravnotezni faktor
+}
+```
+#### Dodajanje elementa v AVL drevo
+- Element dodamo v list drevesa kot pri navadnem BST
+- Preverimo ravnotezni faktor vseh vozlisc na poti navzgor od vstavljenega lista do korena drevesa.
+    - ce je absolutna vrednost ravnoteznega faktorja vecja kot 1, je potrebno drevo popravljati
+    - v najslabsem primeru je potrebno popravljati ravnotezni faktor vse do korena - ko pride do rotacije(enojne ali dvojne), je postopek zakljucen
+- popravljanje -> moozna sta 2 primera:
+  - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 2 in oba faktorja **isti** predznak (izvedemo enojno rotacijo)
+  - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in oba faktorja imata **razlicna** predznaka (izvedemo dvojno rotacijo)
+
+#### Brisanje elementa iz AVL drevesa
+- Element brisemo kot pri navadnem BST:
+  - ce je element list drevesa, ga enostavno izbrisemo
+  - ce ima element samo enega sina, ga izbrisemo ter na njegovo mesto postavimo njegovega sina
+  - ce ima element dva sina, izbrisemo najvecji element iz levega poddrevesa ali najmanjsi element iz desnega poddrevesa, ki nadomesti dejansko izbrisano vozlisce
+- Preverimo ravnotezni faktor vseh vozlisc na poti navzgor od oceta dejansko izbrisanega vozlisca do korena drevesa
+  - ce je absolutna vrednost ravnoteznega faktorja vecja kot 1, je potrebno drevo popravljati
+  - v najslabsem primeru je potrebno popravljati ravnotezni faktor vse do korena poravnati drevo
+- popravljanje -> mozna sta 2 primera:
+    - Ob brisanju elementa je mozen primer, da ima sin ravnotezni faktor enak 0 (enojna rotacija)
+    - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in imata oba faktorja **isti** predznak (enojna rotacija)
+    - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in faktorja imata **razlicna*2
+
+#### LL ROTACIJA (enojna)
+
+```
+Initially     Insert 10   after rotation
+
+  30 [1]      30 [2]         20 [0]
+  /           /             /  \
+ 20 [0]      20 [1]    [0] 10   30 [0]
+            /
+          10 [0]
+
+Tle mamo LL inbalance. Sepravi smo insertali Left left od roota.
+```
+#### LR ROTACIJA (dvojna)
+```
+Initially     Insert 20      first rotation   second rotation
+
+  30 [1]      30 [2]              30 [2]         20 [0]
+  /           /                  /              /  \
+ 10 [0]      10 [-1]            20 [1]     [0] 10   30 [0]
+               \               /
+                20 [0]       10 [0]
+
+Tle mamo LR inbalance. Sepravi smo insertali Left right od roota.
+```
+#### RR ROTACIJA (enojna)
+```
+Initially     Insert 30             after rotation
+
+  10 [-1]        10 [-2]                  20 [0]
+    \              \                     /  \
+     20 [0]         20 [-1]         [0] 10   30 [0] 
+                      \
+                       30 [0]
+
+Tle mamo RR inbalance. Sepravi smo insertali right right od roota.
+```
+#### RL ROTACIJA (dvojna)
+```
+Initially     Insert 30        first rotation           second rotation
+
+  10 [-1]        10 [-2]            10 [-2]                  20 [0]
+    \              \                  \                     /  \
+     30 [0]         30 [1]             20 [-1]        [0] 10    30 [0]
+                   /                     \
+              [0] 20                      30 [0]
+
+Tle mamo RL inbalance. Sepravi smo insertali right left od roota.
+```
+
+### RDECE-CRNO DREVO
+Bols ku se piflat teorijo, poglej si raje te prakticne videe, razlaga je top :)
+- https://www.youtube.com/watch?v=3RQtq7PDHog
+- https://www.youtube.com/watch?v=qA02XWRTBdw
+- https://www.youtube.com/watch?v=w5cvkTXY0vQ
+
+Vsako vozlisce je bodisi rdece, bodisi crne barve.
+Rdece vozlisce ima lahko samo crna sinova. Za vsako vozlisce velja, da vsaka
+pot od vozlisca do praznega poddrevesa (null) vsebuje enako stevilo crnih vozlisc (crna
+visina je konstanta). Visina rdece-crnega drevesa z `n` vozlisci je najvec `2log_2(n + 1)`.
+
+Rdece-crno drevo je **vedno** delno poravnano. Visina drevesa je najvec dvakrat vecja od poravnanega dreves z istim stevilom vozlisc. Najdaljsa pot od korena do listov je kvecjemu dvakrat daljsa od najkrajes poti od korena do listov.
+
+```
+Bol ku tko se ne more izrodit
+    A
+  /   \
+ B     C
+     /   \
+    D     E
+           \
+            F
+```
+Primer RB - node-a
+```java
+public class Node {
+  Comparable key;
+  Node left, right, parent;
+  int color;
+}
+```
+#### Osnovne operacije so hitre `O(logn)`
+- iskanje ~ enako kot pri obicajnem BST `O(logn)`
+- dodajanje ~ dodamo **rdeci** list, vendar je ob dodajanju potrebno popraviti strukturo drevesa, od spodaj navzgor (v najslabsem primeru od najnizjega lista do korena -> `O(logn)`)
+- brisanje ~ nadomestimo element z minimalnim iz desnega poddrevesa(ali z maksimalnim iz legega poddrevesa), ce je minimalni (izbrisani) **crn**, potem je potrebno ravno tako popravljanje strukture drevesa, ki se nadaljuje do korena (`O(logn)`).
+
+Honestly se res splaca pogledat videe za te operacije..
+
+#### Dodajanje elementa v rdece-crno drevo
+- Element dodamo v list drevesa kot pri navadnem BST
+- Dodano vozlisce (list) pobarvamo **rdece**
+- Ce je oce dodanega lista **rdec**, je potrebno drevo popraviti(rekurizvna definicja):
+  - oce je koren drevesa -> postopek se zakljuci
+  - stric je **rdec** --> stari oce postane **rdec** --> **ponovi** 3. pri starem ocetu
+  - stric ni **rdec** -> postopek se zakluci
+  
+#### Brisanje elementa iz rdece-crnega drevesa
+- Element izbrisemo iz drevesa kot pri navadnem BST:
+    - ce je element list drevesa, ga enostavno izbirsemo
+    - ce ima element samo enega sina, ga izbrisemo, ter na njegovo mesto postavimo njegovega sina
+    - ce ima element dva sina, zbrisemo najvecji element iz desnega poddrevesa, ki nadomesti dejansko izbrisano vozlisce
+
+- Barvanje:
+  - Ce je izbrisano **rdece** vozlisce, koncamo
+  - Ce je izbrisano **crno** vozlisce, je potrebno drevo popraviti (crna visina danega poddrevesa je je znizala za ena)
+  
+- Brsianje crnega vozlisca:
+  -  ce je koren problematicnega poddrevesa **rdec** -> zakljuci
+  -  ce je izbrisan koren drevesa -> zakljuci
+  - v nasprotnem primeru:
+    - 1. brat je **rdec** -> **crn** brat -> skoci v 2.
+    - 2. **crn** brat in ni **rdecega** necaka -> ponovi cel postopek pri ocetu
+    - 3. **crn** brat in **crn** zunanji necak -> **rdec** zunanji necak -> skoci v 4.
+    - 4. **crn** brat in **rdec** zunanji necak -> postopek se zakljuci
+  
 
 
