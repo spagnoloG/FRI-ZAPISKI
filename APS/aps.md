@@ -1,7 +1,7 @@
 # APS
 (to je nastalo zto k mi ni biu usec font na slajdih, like are we in the 90's bro?)
 
---> vizualizacije raznih implementacij algoritmov in podatkovnih struktur
+-> vizualizacije raznih implementacij algoritmov in podatkovnih struktur
 https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 ## REKURZIJA
@@ -13,6 +13,8 @@ Rekurzivne probleme lahko resujemoo tudi z iteracijami:
 ### PRETVORBA REKURZIJE V ITERACIJO S SKLADOM
 
 very good article: https://www.cs.odu.edu/~zeil/cs361/latest/Public/recursionConversion/index.html
+
+alpa pitonka: https://www.youtube.com/watch?v=Z35sLFyLBek&t=301s
 
 Na sklad shranimo:
 - argumente
@@ -373,7 +375,43 @@ public class ListCursor {
 - PRINTLIST(L) ~ po vrsti izpise vse elemente v seznamu `O(n)`
 
 ## ADT MNOZICA
-// TODO
+> Mnozica (angl. set) - zbirka elementov, kjer vrstni red ni pomembern in elementi se ne ponavljajo
+
+### Operacije
+- MAKENULL(S) ~ naredi prazno mnozico S `O(1)`
+- FIRST(S) ~ vrne polozaj prvega elementa v mnozici S `O(1)`
+- NEXT(p, S) ~ vrne naslednji polozaj polozaja p `O(1)`
+- RETRIEVE(p, S) ~ vrne element a_p na polozaju p `O(1)`
+- INSERT(x, S) ~ vstavi element `x` v mnozico S brez podvajanja `odvisno od implementacije`
+- DELETE(p, S) ~ zbrise element a_p na polozaju p `odvisno od implementacije`
+- EMPTY(S) ~ preveri ali je mnozica prazna `O(1)`
+- OVEREND(p, S) ~ preveri, ce je p polozaj, ki sledi zadnjemu `O(1)`
+- LOCATE(xm S) ~ poisce polozaj elementa `x` v mnozici S `O(n)`
+- PRINTSET(S) ~ po vrsti izpise vse elemente v mnozici S `O(n)`
+- UNION(S1, S) ~ v mnozico S doda (brez podvajanja) vse elemente iz mnozice S1 `O(mn)`
+- INTERSECTION(S1, S) ~ iz mnozice S zbrise vse elemente, ki se ne nahajajo tudi v S1 `odvisno od implementacije`
+
+### Mnozico lahko implementiramo:
+- S povezanim seznamom:
+    - INSERT(x, S) `O(n)`
+    - LOCATE(x, S) `O(n)`
+    - UNION:
+      - enosmerni seznam `O(m*n)` (gremo skozi obe mnozici)
+      - urejeni seznam `O(m + n)`
+    - INTERSECTION:
+      - enosmerni seznam `O((m+n)*n)` (element poiscemo, plus brisemo)
+      - urejeni seznam `O(m + n)`
+- Z zgosceno tabelo:
+  - ucinkoviti operaciji INSERT(x, S) in LOCATE(x, S) `O(1)` (btw pod pogoji, da hash funkcija dela tko ku je trea)
+  - UNION(S1, S) `O(m)`
+  - INTERSECTION(S1, S) `O(n)`
+  - Neucinkovite, ki so vezane na urejenost elementov
+- Z drevesom:
+  - ucinkoviti operaciji INSERT(x, S) in LOCATE(x, S) `O(logn)`
+  - UNION(S1, S) `O(m log n)`
+  - INTERSECTION(S1, S) `O(m log n)`
+  - Hitre operacije, ki so vezane na urejenost elementov
+
 
 ## ADT VRSTA Z ENOSMERNIM SEZNAMOM S KAZALCI
 Vrsta je zbirka elementov, kjer vedno elemente:
@@ -786,8 +824,8 @@ Slabosti:
 Casovna kompleksnost osnovnih operacij je reda `O(log n)`. Ravno isto velja
 za operacije na podlagi urejenosti elementov. (`n` je stevilo elementov slovarja)
 
-### BINARNO ISKALNO DREVO
-:tipspepe: https://www.youtube.com/watch?v=cySVml6e_Fc
+## BINARNO ISKALNO DREVO
+:tipspepe: https://www.youtube.com/watch?v=cySVml6e_Fc (samo pazi k prns je retardirana implementacija,tko da tisti element, ki ga ustavis, pole samo se traversas do roota)
 
 Binarno iskalno drevo je najbolj preprosta drevesna implementacija slovarja.
 ```java
@@ -926,7 +964,7 @@ private Node deleteMin(Node node) {
   }
 }
 ```
-### AVL DREVO
+## AVL DREVO
 Bols ku se piflat teorijo, poglej si raje ta prakticn video, razlaga je top :)
 - https://www.youtube.com/watch?v=jDM6_TnYIqE
 
@@ -973,6 +1011,16 @@ Initially     Insert 10   after rotation
             /
           10 [0]
 
+Primer na vecjem drevesu
+
+            A                   B
+          /   \             /       \
+         B     Ar          C         A
+       /   \             /   \     /   \
+      C     Br          Cl   Cr   Br   Ar 
+    /   \
+  Cl     Cr 
+
 Tle mamo LL inbalance. Sepravi smo insertali Left left od roota.
 ```
 #### LR ROTACIJA (dvojna)
@@ -984,6 +1032,16 @@ Initially     Insert 20      first rotation   second rotation
  10 [0]      10 [-1]            20 [1]     [0] 10   30 [0]
                \               /
                 20 [0]       10 [0]
+
+Primer na vecjem drevesu
+
+            A                       C
+          /   \                   /   \
+         B     Ar                B     A
+       /   \                   /  \     \  
+      Bl     C                Bl  Cl     Ar
+           /   \
+          Cl    Cr
 
 Tle mamo LR inbalance. Sepravi smo insertali Left right od roota.
 ```
@@ -1012,7 +1070,7 @@ Initially     Insert 30        first rotation           second rotation
 Tle mamo RL inbalance. Sepravi smo insertali right left od roota.
 ```
 
-### RDECE-CRNO DREVO
+### RDECE-CRNO DREVO (more like jebise)
 Bols ku se piflat teorijo, poglej si raje te prakticne videe, razlaga je top :)
 - https://www.youtube.com/watch?v=3RQtq7PDHog
 - https://www.youtube.com/watch?v=qA02XWRTBdw
@@ -1079,3 +1137,221 @@ Honestly se res splaca pogledat videe za te operacije..
   
 
 
+## ADT PRIORITETNA VRSTA
+V prioritetni ali prednostni vrsti ima vsak element oznako prioritete, ki doloca vrstni red brisanja elementov iz vrste.
+Ne velja FIFO! 
+Sledi dogovoru:  nizja je prioriteta, prej bo element prisel iz vrste.
+
+### Operacije in casovne zahtevnosti (heap, jebes ostalo)
+- MAKENULL(Q) ~ napravi prazno prioritetno vsto Q  `O(1)`
+- INSERT(x, Q) ~ vstavi element x v prioritetno vrsto Q `O(1)`
+- DELETEMIN(Q) ~ vrne element z najmanjso prioriteto iz prioritetne vrste Q in ga izbrise iz Q `<= O(logn)`
+- EMPTY(Q) ~ ali je prioritetna vrsta Q prazna? `<= O(logn)`
+
+### Heap implementacija
+- je levo poravnano, na najglobljem nivoju drevesa eventuelno manjkajo elementi samo iz desne strani
+- je delno urejeno, za vsako poddravo velja, da je v korenu najmanjsi element tega poddrevesa
+- vozlisca hranimo po vrsti po nivojih
+- hranimo se stevilo elementov `n`
+
+V vozliscih ne potrebujemo dodatnih indeksov, saj jih lahko sproti izracunamo:
+- ce z `i`(`i` gre od **1** naprej) oznaciom indeks vozlisca, potem velja:
+    - `2*i` je indeks levega sina
+    - `2*i + 1` je indeks desnega sina
+    - `i/2` je indeks oceta
+  
+```java
+public class Heap {
+  static final int DEFAULT_SIZE = 100;
+  static final int DEGREE = 2;
+  Comparable nodes[];
+  int noNodes, size;
+}
+```
+#### Insert procedure:
+- element `x` najprej dodamo na prvo prazno mesto z leve na zadnjem nivoju drevesa
+  - ce je zadnji nivo zapolnjen, ga dodamo kot prvega z leve na naslednjem nivoju
+- zamenjamo `x` z ocetom, dokler ni:
+  - oce manjsi od `x` ali
+  - `x` v korenu drevesa
+Casovna zahtevnos je reda `O(logn)`
+
+### Deletemin procedure:
+- Najmanjsi element se nahaja v korenu
+- Nadomestimo ga z najbolj desnim elementom `x` na zadnjem nivoju kopice
+- zaporedno zamenjujemo `x` z najmanjsim od obeh sinov, dokler ni:
+  - `x` manjsi od obeh sinov
+  - `x` list drevesa
+  
+Casovna zahtevnost reda `O(logn)`
+
+### Izgradnja kopice
+Kopico z `n` elementi zgradimo v casu reda
+- O(nlogn), ce `n` krat uporabimo `INSERT`
+- O(n), ce so vsi elementi podani na zacetku
+    - elemente najprej kar v poljubnem vrstnem redu postavimo v kopico, ki je tako levo poravnana
+    - kopico urejamo po nivojih od spodaj navzgor
+
+**Heapsort** -> najprej zgradimo kopico, nato pa se po vrsti jemlji od najmanjsega do najvecjega `O(nlogn)`.
+
+Za algoritme na grafih, je potrebna se operacija `DECREASEKEY(x, k, Q)`, ki elementu v kopici zmanjsa kljuc na `k` :
+  - najprej posicemo element `x` `O(logn)` in mu priredimo vrednost `k`
+  - zamenjamo `x` z ocetom, dokler ni:
+    - oce manjsi od `x` ali
+    - `x` v korenu drevesa
+
+## ADT BDREVO
+B drevo je popolnoma poravnano isaklno drevo, vsi listi so na istem nivoju. Vsako notranje vozlisce B-drevesa reda `m` ima lahko
+od `m/2` do `m`.
+
+Visina: `h <= log_[m/2](n+1/2) + 1`
+
+Properties:
+  - vsako vozlisce ima max `m` otrok
+  - minimum otrok:
+    - koren: `2` (ce mamo seveda sploh enough elementov)
+    - list: `0`
+    - notranja vozlisca `floor(m/2)`
+  - vsako vozlisce ima `max(m-1)` kljucev
+  - vsako vozlisca ima min kljucev:
+    - koren `1`
+    - vsa ostala vozlisca  `floor(m/2) - 1`
+
+
+
+Zelo so upoorabna za velike podatkovne baze, saj s pomocjo bdreves zminimiziramo stevilo dostopov do diska.
+
+V praksi se uprablja `m=512, 1024,.. ++`, tako da prva dva ali celo tri nivjoe drevesa hranimo v GP --> kar pomeni da potrebujemo za dostop do enega izmed 100T podatkov, samo 2 ali 3 branja iz diska.
+
+#### Implementacija
+```java
+public class BtreeNode {
+  int count; // st kljucev v vozliscu
+  Comparable keys[]; // [0,m -1]
+  BtreeNode children[]; // [0, m]
+}
+```
+### Operacije
+
+- **Iskanje** je posplošitev iskanja v BST: v vozlišču bodisi
+najdemo element ali pa ustrezno poddrevo. Postopek:
+  - Iskanje zacnemo v vozliscu, ki je koren drevesa
+  - Iskani element **zaporedno** preverjamo z elementi v vozliscu, dokler:
+    - ne naletimo na iskani element
+    - ne naletimo na vecji element in se iskanje rekurzivno nadaljuje v poddrevesu z istim indeksom
+    - ne peregledamo zadnjega elementa in se iskanje rekurzivno nadaljuje v zadnjem poddrevesu
+  - Casovna zahtevnost : `O(mlogn)` (Ce uporabimo bisekcijo, za iskanje po kljucih --> `O(logm * logn))`
+
+
+- **Dodajanje**: element dodamo v list; če ni dovolj prostora,
+se list razbije na dva lista z ustreznim ključem, ki ga
+rekurzivno dodamo očetu. Postopek:
+  - ce opazovano vozlisce vsebuje manj kot `m-1` elementov, dodamo element na ustrezno mesto in koncamo
+  - ce v opazovanem vozliscu ni prostora(ima ze m-1 elementov in z dodajanjem imamo `m` elementov), ga razbijemo na dve vozlisci:
+    - dolocimo sredinski `floor(m/2)` - ti elementi med `m` elementi 
+    - `floor(m/2)-1` elementov, ki so manjsi od sredinskega elementa, damo v novo levo vozlisce.
+    - `m - floor(m/2)` elementov, ki so vecji od sredinskega elementa, damo v novo desno vozlisce.
+    - sredinski element dodamo one level up, in ce pridemo do konfliktov, ponovimo vse postopke :)))).
+  - Casovna zahtevnost : `O(logn)`
+
+
+- **Brisanje**: element zbrišemo tako, da ga nadomestmo z
+maksimalnim iz desnega (ali minimalnim iz levega)
+poddrevesa – torej element je vedno zbrisan v listu. Postopek:
+  - Če vozlišče, kjer smo element zbrisali, vsebuje dovoljeno število elementov (vsaj  `floor(m/2) - 1` za koren zadošča 1), je postopek končan.
+- Če vozlišče sedaj vsebuje premalo (`floor(m/2) - 2`) elementov, potem:
+  - Eden izmed sosednih bratov (levi ali desni) vsebuje dovolj elementov, da
+  si jih razdelita med seboj – v tem primeru se od brata vzame enega ali
+  več elementov skupaj z ustreznimi poddrevesi in z zamenjavo
+  ustreznega elementa pri očetu. Sepravi ce uzamemo od levega brata, damo max element gor k ocetu, tistega, ki pa je bil do zdaj v root nodeu, premaknemo v tisti node, kjer smo element brisali.
+  - Če nobeden od bratov nima dovolj velikega števila elementov, imamo
+  dva brata (en `floor(m/2)` -1 in drugi `floor(m/2)`-2 elementov), ki ju skupaj z
+  ustreznim elementom v očetu lahko združimo v eno vozlišče, ki ima
+  elementov.
+  Postopek brisanja zatem rekurzivno ponovimo pri očetu.
+- Povperecna casovbn zahtevnost `O(logn)`
+
+
+## ADT DIGRAPH
+Usmerjeni graf je podan z mnozico vozlisc `V` in mnozico povezav `E` `G=<V, E>`
+
+Povezava je **urejen** par vozlisc:
+  - prvemu vozliscu pravimo **zacetek** povezave, drugemu pa konec povezave.
+  - Zacetek in konec povezave je lahko isto vozlisce
+
+**Izstopna stopnja**(outdegree) vozlisca `v` je stevilo povezav, ki imajo to vozlisce kot svoj zacetek.
+
+**Vstopna stopnja** (indegree) vozlisca `v` je stevilo povezav, ki imajo to vozlisce kot svoj konec.
+
+Graf je **poln** (fully connected), ce je vsako vozlisce povezano z vsakim dugim vozliscem(vkljucno s samim seboj) `n*2` povezav.
+
+**Pot** (path) v grafu (`G=<V,E>`) je zaporedje vozlisc `v_1, ... v_k`, tako da velja:
+  - `v_i` je vsebovan v `V`
+  - `<v_i, v_i+1>` je vsebovan v `E`
+
+Pot je **enostavna** ce se vsako vozlisce na poti ponovi samo enkrat - sicer imamo cikel.
+
+**aciklicen graf** --> graf brez ciklov
+
+Vozlisce `v_k` je  **dosegljivo** iz v_1, ce v grafu obstaja pot `v_1, ... v_k`.
+
+**drevo** je usmerjeni aciklicni graf, kjer je vsako vozlisce dosegljivo iz korena po natanko eni poti
+
+**podgraf** danega grafe `G=<V,E>` je graf `G'=<v',E'>`, tako da je `v'` podmnozica `V` in `E'` podmnozica `E`.
+
+Za ocenjevanje casovne zahtevnosti algoritmov na fraf
+
+### Operacije nad usmerjeni grafi
+- MAKENULL(G) ~ naredi prazen usmerjen graf `G` `O(1)`
+- INSERT_VERTEX(v, G) ~ doda vozlisce v graf `G` `O(1)`
+- INSERT_EDGE(v1, v2, G) ~ doda povezavo `<v1, v2>` v graf `G` `O(1)`
+- FIRST_VERTEX(G) ~ vrne prvo vozlisce v grafu `G` `O(1)`
+- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce v  grafu `G` `O(1)`
+- FIRST_EDGE(v, G) ~ vrne prvo povezavo v grafu `G` z zacetkom `v` `O(1)`
+- NEXT_EDGE(e,v,G) ~ vrne naslednjo povezavo dane povezave `e` z  zacetkom `v` po nekem vrstnem redu `O(1)`
+- END_POINT(e, G) ~ vrne konec povezave `e` v grafu `G` `O(1)`
+
+Usmerjeni graf ucinkovito implemenitramo s **seznamom sosednosti** (adjanceny list)
+- vozlisca hranimo v seznamu
+- vsako vozlisce ima seznam povezav, ki vodijo iz vozlisca
+- vsaka povezava hrani se kazalec na konec povezave
+
+### Neusmerjeni graf
+Podoben kot digraf, z nekaj izmemami
+
+Povezava je **neurejen** par vozlisc:
+  - vozlisci sta dva **konca** povezave
+  - povezani vozlisci sta **sosedni** (adjacent)
+  - dva konca povezave sta **razlicni** vozlisci
+  
+
+**stopnja vozlisca** `v` je stevilo povezav, katerim je to vozlisce eden od koncev (stevilo sosedov
+
+graf je **poln** (fully connected), ce je vsako vozlisce povezano z vsakim drugim vozliscem (**sam s seboj ne more biti**)
+
+### Operacije nad neusmerjenimi grafi
+- MAKENULL(G) ~ naredi prazen usmerjen graf `G` `O(1)`
+- INSERT_VERTEX(v, G) ~ doda vozlisce v graf `G` `O(1)`
+- INSERT_EDGE(v1, v2, G) ~ doda povezavo `<v1, v2>` v graf `G` `O(1)`
+- FIRST_VERTEX(G) ~ vrne prvo vozlisce v grafu `G` `O(1)`
+- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce v  grafu `G` `O(1)`
+- FIRST_EDGE(v, G) ~ vrne prvo povezavo v grafu `G` z zacetkom `v` `O(1)`
+- NEXT_EDGE(e,v,G) ~ vrne naslednjo povezavo dane povezave `e` z  zacetkom `v` po nekem vrstnem redu `O(1)`
+- ADJECENT_POINT(e, v, G) ~ vrne drugi konec povezave e v grafu `G` z enim koncem v `v` `O(1)`
+
+Implementiramo ga kot usmerjeni graf, kjer je vsaka povezava podvojena (dvosmerna):
+```
+        /  /              /  /
+     /        /        /        /
+    /          /------/          /
+    /          /      /          /
+     /        /        /        /   
+        /  /              /  /
+
+        /  /              /  /
+     /        /        /        /
+    /          /----->/          /
+    /          /<-----/          /
+     /        /        /        /
+        /  /              /  /
+```
