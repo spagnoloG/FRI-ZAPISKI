@@ -1355,3 +1355,331 @@ Implementiramo ga kot usmerjeni graf, kjer je vsaka povezava podvojena (dvosmern
      /        /        /        /
         /  /              /  /
 ```
+
+## Disjunktne mnzoice
+Mnozico elementov zelimo razbiti na disjunktne podmnozice glede na neko relacijo med elementi.
+
+Gradimo mnozice od spodaj navzgor
+- Vsak element je ena podmnozica
+- Manjse podmnozice zdruzujemo v vecje podmnozice, ce so elementi iz ene in druge podmnozice v dani relaciji
+
+Za vsak element mormo vedeti kateri podmnozici pripada.
+
+### Operacije:
+- MAKENULL(S) ~ generira prazno mnozico mnozic S `O(1)`
+- MAKESET(x, S) ~ tvori novo mnzoico `{x}` in jo doda v S `O(1)`
+- UNION(A1, A2, S) ~ zdruzi dve disjunktni podmnozici A1 in A2 v novo podmnozico. `O(1)`
+- FIND(x, S) ~ vrne podmnozico, katere element je `x` 
+
+Find operacija ima zabavno casovno kompleksnost --> na dolgi rok, m operacij v povprecju `(m \alpha (m,n) \aprrox O(m)) ` Sledi ackermanovi funkciji ~ `O(m)`.
+Sepravi ker je rekurzivnih klicov `m` in je `m <<< n`. `m` tretiramo kot konstantno in lahko predpostavimo, da ima operacija FIND `O(1)` casovno zahtevnost.
+
+#### Implementacija z gozdom
+- vsaka mnozica je drevo
+- vsak element kaze na oceta v drevesu
+- koren kaze sam nase
+- mnozica je identificirana s korenom
+
+Za ucinkovito implementacijo, vozlisce potrebuje st. elementov poddrevesa:
+
+```java
+public class DisjointSubset {
+  Object value;
+  DisjointSubset parent;
+  int noNodes; // moc podmnozice
+}
+```
+
+Operacija MAKESET iz enega elementa `x` tvori mnzoico `{x}` --> `O(1)`
+```java
+public DisjointSubset makeset(Object x) {
+  DisjointSubset newEl = new DijsointSubset();
+  newEl.value = x;
+  newEl.noNodes = 1;
+  newEl.parent = newEl;
+  return newEl;
+}
+```
+Operacija FIND(X): vrne mnnozico(t.j. koren drevesa), ki ji pripada element `x`. Ce je drevo izrojeno, je plezanje
+do korena lahko reda `O(n)`. Da se izrojenosti na dolgi rok izognemo, vsa vozlisca na poti prevezemo na koren:
+
+Ackermanova funkcija ce te zanima zakaj :kekw:
+```java
+public disjointSubset find(DisjointSubset x) {
+  if(x == x.parent)
+    return x;
+  else {
+    x.parent = find(x.parent); // prevezava
+    return x.parent; // in hkrati rezultat
+  }
+}
+```
+
+`O(n)` -> `O(1)`
+```
+FIND (d):
+
+    a
+    ^                                a    
+    |                              / | \ 
+    b       ===>                  d  c  b
+    ^                                    \
+    |                                     i
+    c
+   /  \
+  d    e
+```
+Operacija UNION: Koren ene podmnozice prevezemno na koren druge. Ker zelimo cimmanj izrojeno drevo, vedno prevezemo manjso mnozico na vecjo.
+
+Ce ignoriramo finde, je casovna zahtevnost `O(1)`.
+```java
+public void union(DisjointSubset a1, DisjointSubset a2) {
+  DisjointSubset s1 = find(a1);
+  DisjointSubset s2 = find(a2);
+
+  if(s1.noNodes >= s2.noNodes) {
+    s2.parent = s1;
+    s1.noNodes += s2.noNodes;
+  } else {
+    s1.parent = s2;
+    s2.noNodes += s1.Nonodes;
+  }
+}
+```
+
+
+## Analiza kriticne poti
+Basically isces najdaljso pot od zacetka do konca. To je NP hard problem :tipspepe:. 
+No pa pejmo skozi dinamicen alogritem(predpostavimo da ni ciklov!):
+- Graf pregledujemo od zacetka proti koncu
+- Hranimo seznam vozlisc, za katere smo pregledali ze vse poti do njih, nismo pa se pregledali njihovih naslednikov
+- za vsako vozlisce hranimo cas maksimalne poti, ki vodi do njega
+- zato, da ugotovimo, ce smo pregledali vse poti, ki vodijo do vozlica, potrebujemo vstopno stopnjo vozliscam ki se med iskanjem zmanjsa ob pregledu vsake nove poti
+- ce zelimo izpisati se kriticno pot, shranimo se predhodnika na maksimalni poti
+
+### inicializacija
+- izracunamo vstopne stopnje vseh vozlisc, postavimo zacetne case/razdalje na 0;
+
+```java
+class ValueType {
+  String name;
+  int inDegree;
+  Vertex parent; // kazalec na predhodnika
+  double time; // alpa dist
+}
+```
+Algorithm:
+```java
+// a - zacetno vozlisce, c - zakljucno vozlisce
+public double tDynimic(Vertex a, Vertex c, DiGraph g) {
+  Vertex v, w;
+  Edge e; // povezava <v, w>
+  List<Vertex> ls = new LinkedList<>(); // seznam vozlisc, katerih naslednikov se nismo pregledali
+
+  Object pos;
+
+  ls.insert(a);
+
+  while(!ls.empty()) {
+    pos = ls.first(); // izberemo kr prvega
+    v = (Vertex)ls.retrieve(pos); //  we doo the same thing
+    ls.delete(pos);  // pa ga odstranimo iz seznama
+
+    // poberemo prvo povezavo, iz elementa katerega smo pobrali iz seznama
+    e = g.firstEdge(v);
+  
+
+    while(e != null) {
+      w = g.endPoint(e); // vrne vozlisce, ka katerega kaze e
+      // preveri ce ima vozlisce ma katerega kaze e mmanjsi cas kot kot vozlisce iz seznama + vozlisce e
+      if(((ValueType)w.value).time < ((ValueType)v.value).time + ((Double)e.value).doubleValue()) {
+        // ce ima, mu nastavimo to
+        ((ValueType)w.value).time = ((ValueType)v.value).time + ((Double)e.value).doubleValue();
+        ((ValueType)w.value).parent = v; // mu nastavimo se pointer na parenta
+      }
+      ((ValueType)w.value).inDegree--; // ker smo pregledali eno pot do w, ji count zmanjasmo
+      if(((ValueType)w.value).inDegree == 0) {
+        // ce smo pregledali use poti do w, je w naslednji kandidat za pregledovanje
+        ls.insert(w);
+      }
+      e = g.nextEdge(v, e);
+    }
+  }
+  // konci cas / pot nas caka v zakljucnem vozliscu
+  return ((ValueType)c.value).time;
+}
+```
+**Inicialzizacija** grafa ima zahtevnost `O(n+m)`
+- izracunamo vstopne stopnje vseh vozlisc
+- postavimo zacetne case za vsa vozlisca na 0
+- sepravi sprehod preko vseh vozlisc `n` in vseh povezav `m`
+
+Casovna zahtevnost algoritma za iskanje kriticne poti z dinamicnim programiranjem je `O(n+m) = O(m)`
+
+  - pregledamo vse povezave (m) in vsa vozlisca (n)
+  - ker je graf povezan, velja `n-1 <= m`
+
+Izpis kriticne poti
+```java
+w = c;
+while(w!=a) {
+  v = ((ValueType)w.value).parent;
+  e = g.firstEdge(v);
+
+  while(g.endPoint(e) != w)
+    e = g.nextEdge(v, e);
+  
+  System.out.println("<" + v + ", " + w ", " + e + ">");
+  w = v;
+}
+```
+
+### DIJKSTRA
+Gradimo vpeto drevo od zacetnega vozlisca, ki je koren do vpetega devesa, proti listom. Vsakic iz mnozice vozlisc, ki se niso v drevesu izberemo tisto z najkrajso potjo od
+zacetnega vozlisa - pozresno (greedy). To zagotavlja, da ne obstaja krajsa pot od zacetnega vozlisca do `v` preko nekega drugega vozlisca `w`, ki se ni v drevesu.
+
+Ko vozlisce dodamo, pregledamo njegove naslednike:
+- ce je naslednik ze v drevesu, ga ignoriramo
+- ce je ze v prioritetni vrsti, eventuelno zmanjsamo prioriteto
+- sicer ga vstavimo v prioritetno vrsto
+
+Za izbiro vozlisca `v` z najkrajso potjo uporablja algoritem prioritetno vrsto vozlisc, za katera je ze znana dozlina vsaj ene poti od zacetnega vozlisca `a`.
+V prioritetni vrsti se hranijo dolzine **najkrajsih** znanih poti za vsako vozlisce
+Za napredovanje algoritme se te poti lahko skrajsajo, zato je potrebno uvesti se operacijo zmanjsanja prioritete.
+
+Za zmanjsevanje prioritete definiramo novo funkcijo DECREASE_KEY(x, new, Q):
+  - zmanjsa prioriteto elementa `x` na `new`
+  - v kopici operacijo implementiramo tako, da element z zmanjsano prioriteto zamenjujemo z ocetom
+  - postopek se ustavi, bodisi ce je oce manjsi od elementa ali ce element pride v koren kopice
+  - casovna zahtevnost je reda `O(logn)` pod pogojem, da imamo direkten dostop do elementa v kopici
+
+**Vsako** vozlisce hrani svoj polozaj (indeks) v kopici.
+```java
+class DijkstraVertex {
+  boolean visited;
+  DijkstraVertex parent;
+  double distance;
+  int heapIndex;
+}
+```
+Algoritem:
+- Vsako vozlisce dodamo in izbrisemo iz prioritetne vrste, torej `n` operacij INSERT in `n` operacij DELETEMIN
+- notranja zanka gre preko vseh povezav, torej se izvrsi `m`-krat (ena izvrsitev zahteva bodisi INSERT bodisi DECREASEKEY ali pa nobene od teh operacij)
+- ce implementiramo prioritetno vrsto s kopico, potem je casovna zahtevnost v najslabsem primeru reda `O(2nlogn + mlogn) = O((n+m)long)`
+- Ker za povezan graf velja `m >= n -1`, je casovna zahtevnost algoritma reda `O(mlogn)`
+- je pozresen, vendar vseeno zagotavlja optimalno resitev
+
+```java
+public void dijkstra(DijkstraVertex a, DiGraph g) {
+  // rezultat sta za vsako vozlisce 'parent' in 'distance'
+  PQDecrease q = new HeapPos(); // prioritetna vrsta vozlisc
+                                // urejena po distance
+  Edge e; // treuntna povezava
+  DijkstraVertex v, w; // trenutno vozlisce in njegov naslednik
+
+  // nobeno vozlisce se ni v prioritenti vrsti
+  for(DijkstraVertex t=(DijsktraVertex).g.firstVertex();
+      t!=null;
+      t=(DijsktraVertex)g.nextVertex(t)) {
+    t.visited = false;
+  }
+  // pripravi zacetno vozlisce in prioritetno vrsto
+  a.visited = true;
+  a.parent = null
+  a.distance = 0.0;
+  q.insert(a);
+
+  // oke zacnimo z algoritmom brt
+  while(!q.empty) {
+    v = (DijkstraVertex).q.deleteMin(); // uzamemo najcenejsega iz prioritetne vrste
+    e = g.firstEdge(v);
+    while(e != null) {
+      w = (DijkstraVertex).g.endPoint(e); // naslednik vozlisca v
+
+      if(!w.visited) {
+        // uredi w in dodaj v prioritetno vrsto
+        w.visited = true;
+        w.parent = v;
+        w.distance = v.distance + ((Double)e.value).doubleValue();
+        q.insert(w);
+      } else if(v.distance +
+                ((Double)e.value).doubleValue() <
+                w.distance 
+              ) {
+        w.parent = v;
+        q.decreaseKey(w, new Double(v.distance + ((Double)e.value).doubleValue()));
+      }
+      e = g.nextEdge(v,e);
+    }
+  }  
+}
+```
+
+## PRIMOV algoritem
+Je pozresen in zelo podoben algoritmu Dijkstra(le da je graf neusmerjen). Gradimo MST od poljubnega zacetnega vozlisca. Vsakic iz mnozice vozlisc, ki se niso v drevesu, izberemo tisto z najkrajso povezavo od nekega vozlisca v **MST**.
+Zatem pogledamo sosede dodanega vozilsca:
+- ce je sosed ze v MST, ga ignoriramo
+- ce je sosed ze v prioritetni vrsti, mu posodobimo prioriteto
+- sicer ga dodamo v prioritetno vrsto
+
+Za izbiro vozlisca `v` z najkrajso razdaljo, uporablja algoritem prioritetno vrsto vozlisc, za katera je ze znana dolzina povezave od nekega vozlisca v MST.
+V prioritetni se heranijo dolzine najkrajsih povezav za vsako vozlisce. Z napredovanjem algoritme se te povezave lahko skrajsajo, zato je potrebno tudi skrbeti za zmanjsevanje prioritete.
+
+```java
+class PrimVertex extends Vertex {
+  boolean visited; // obiskan
+  boolean intree; // je ze v drevesu
+  PrimVertex parent; // hranimo pointer, za se sprehodit po rezultatu algoritma
+  double distance;
+  int heapIndex;
+}
+```
+Algortim `O(mlogn) ~ greedy`:
+```java
+public void prim(UGraph g) {
+  PQDecrease q = new HeapPos(); // urejena po razdaljah
+  Prim vertex v, w;
+  Edge e;
+
+  // nobeno vozlisce se ni bilo pregledano
+  for(PrimVertex t = (PrimVertex)g.firstVertex();
+      t! = null;
+      t = (PrimVertex)g.nextVertex(t)) {
+        t.visited = false;
+      }
+  // inicializiraj prvo vozlisce in ga dodaj v prioritetno vrsto
+  v = (PrimVertex)g.firstVertex();
+  v.visited = true;
+  v.parent = null;
+  v.intree = false;
+  v.distance = 0;
+  q.insert(v);
+
+  while(!q.empty()) {
+    v = (PrimVertex)q.deleteMin();
+    v.intree = true;
+    e = g.firstEdge(v);
+
+    while(e != null) {
+      w = (PrimVertex)g.adjacentPoint(e, v);
+
+      // ce ga se nismo obiskali, ga dodamo v kopico
+      if(!w.visited) {
+        w.visited = true; // je v kopici
+        w.intree = false; // ni se v drevesu
+        w.parent = v; // potencialni oce
+        // trenunta najkrajsa povezava do drevesa
+        w.distance ((Double)e.value).doubleValue();
+        q.insert(w);
+      } // ce element se ni v drevesu preverimo ce je slucajno povezava cenejsa kot ta v e
+      else if (!w.intree && ((Double)e.value).doubleValue() < w .distance) {
+          w.parent = v; // novi potencialni oce
+          q.decreaseKey(w. e.value); // popravi ceno v prioritetni vrsti
+      }
+
+      e = g.nextEdge(v, e); // se sprehodimo naprej po grafu
+    }
+  }
+}
+
+```
