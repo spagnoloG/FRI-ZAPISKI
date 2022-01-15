@@ -1151,7 +1151,7 @@ Sledi dogovoru:  nizja je prioriteta, prej bo element prisel iz vrste.
 ### Heap implementacija
 - je levo poravnano, na najglobljem nivoju drevesa eventuelno manjkajo elementi samo iz desne strani
 - je delno urejeno, za vsako poddravo velja, da je v korenu najmanjsi element tega poddrevesa
-- vozlisca hranimo po vrsti po nivojih
+- **vozlisca hranimo po vrsti po nivojih**
 - hranimo se stevilo elementov `n`
 
 V vozliscih ne potrebujemo dodatnih indeksov, saj jih lahko sproti izracunamo:
@@ -1589,7 +1589,7 @@ Za zmanjsevanje prioritete definiramo novo funkcijo DECREASE_KEY(x, new, Q):
 
 #### Operacije nad prioritetno vrsto v dijkstrinem algoritmu
 ```
-O(n * (insert + delete_min(find, pazi hash table!)) + m * decrease_key(find)))
+O(n * (insert + delete_min(find, pazi hash table!)) + m * decrease_key(rebalance)))
 ```
 
 
@@ -1722,4 +1722,78 @@ public void prim(UGraph g) {
   }
 }
 
+```
+## DOKAZOVANJE PRAVILNOSTI PROGRAMOV (najbol izi snov tbh :wink:)
+
+### Formalizacija
+Program definiramo kot preslikavo:
+
+  `f: X ---> Z` ,
+
+ki preslika vhodne podatke `<x1, .., x_n> \in X` v izhodne podatke `<z1, .., z_n>. Pri tem morajo 
+vhodni podatki izpolnjevati zacetni pogoj:
+
+`\theta(x1, ... x_n)`
+
+Izhodni podatki, pa morajo izpolnjevati zakljucni pogoj:
+
+`\idk(z1, ..., z_n, x1, ... , x_n)`
+
+Pravimo, da je program:
+- **parcialno pravilen**, ce v primeru, da se za vhodne podatke, ki izpolnjujejo zacetni pogoj, ustavi, izhodni podatki pa izpolnjujejo zakljucni pogoj.
+- **totalno pravilen**, ce je parcialno pravilen, in ce se za vse vhodne podatke, ki izpolnjujejo zacetni pogoj, po koncnem stevilu korakov ustavi.
+
+Pri dokazovanju pravilnosti programa iz pogojev P, ki veljajo pred izvrsevanjem stavka, izpeljemo pogoje `Q`, ki veljajo po izvrsitvi stavka.
+```
+// P(Y)
+Stavek;
+// Q(Y)
+
+Prireditev:
+// P(izraz)
+y = izraz;
+// P(y)
+
+Izbira:
+// P(y)
+if(Pogoj(y))
+  // P(y) & Pogoj(y)
+else
+  // P(y) & !Pogoj(y)
+
+Zaporedje:
+// P_0(y)
+{S1; S2; ... ; Sk}
+// P_k(y)
+--> pri cemer velja
+// P_(i-1)(y)
+Si;
+// Pi(y)
+
+```
+- https://www.youtube.com/watch?v=5eGsdrdeBQ8
+- https://www.youtube.com/watch?v=3YP6NP1_tF0
+
+```java
+//Conditionals
+
+max(x, y) {
+  tmp = x; // tmp == x
+  if(y > tmp) // if y > tmp (where tmp == x)
+    tmp = y; // then tmp == y (ow tmp == x)
+  return tmp; // returns max(x, y)
+}
+
+// Loop invariant --> tmp = sum from i=1 to n A[j]
+// base case: i == 1, tmp == A[1]
+// prove that it holds on the i + 1st;
+// induction my friend
+// termination when i = n
+avg(A[n]) {
+  tmp = 0;
+  for(i in n) {
+    tmp = tmp + A[i];
+  }
+  return tmp/n;
+}
 ```
