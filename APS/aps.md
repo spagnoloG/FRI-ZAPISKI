@@ -1255,21 +1255,55 @@ rekurzivno dodamo očetu. Postopek:
   - Casovna zahtevnost : `O(logn)`
 
 
-- **Brisanje**: element zbrišemo tako, da ga nadomestmo z
-maksimalnim iz desnega (ali minimalnim iz levega)
-poddrevesa – torej element je vedno zbrisan v listu. Postopek:
+- **Brisanje**: Element brisemo iz vozlisca na zadnjem nivoju. Pri brisanju elementa, ki **ni** na zadnjem nivoju, ga nadomestimo s **predhodnikom** (z najvecjim elementom ustreznega levega poddrevesa), ki da dejansko zbrisemo. Postopek:
   - Če vozlišče, kjer smo element zbrisali, vsebuje dovoljeno število elementov (vsaj  `floor(m/2) - 1` za koren zadošča 1), je postopek končan.
-- Če vozlišče sedaj vsebuje premalo (`floor(m/2) - 2`) elementov, potem:
-  - Eden izmed sosednih bratov (levi ali desni) vsebuje dovolj elementov, da
+  - Če vozlišče sedaj vsebuje premalo (`floor(m/2) - 2`) elementov, potem:
+    - Eden izmed sosednih bratov (levi ali desni) vsebuje dovolj elementov, da
   si jih razdelita med seboj – v tem primeru se od brata vzame enega ali
   več elementov skupaj z ustreznimi poddrevesi in z zamenjavo
   ustreznega elementa pri očetu. Sepravi ce uzamemo od levega brata, damo max element gor k ocetu, tistega, ki pa je bil do zdaj v root nodeu, premaknemo v tisti node, kjer smo element brisali.
-  - Če nobeden od bratov nima dovolj velikega števila elementov, imamo
+    - Če **nobeden** od bratov nima dovolj velikega števila elementov, imamo
   dva brata (en `floor(m/2)` -1 in drugi `floor(m/2)`-2 elementov), ki ju skupaj z
-  ustreznim elementom v očetu lahko združimo v eno vozlišče, ki ima
+  ustreznim elementom v očetu lahko združimo v eno vozlišče, ki ima `<= m - 1`
   elementov.
   Postopek brisanja zatem rekurzivno ponovimo pri očetu.
 - Povperecna casovbn zahtevnost `O(logn)`
+  ```
+  Primercek deletanja(delet 16)
+                                  [12 | ]
+                                  /   |
+                  ---------------     |
+                /                     \
+            [3 | 9]                 [18 | ]
+           /   |    \               /   |
+       [2 | ] [8 | ] [10 | ]     [16| ] [19| ]
+
+                                    [12 | ]
+                                  /   |
+                  ---------------     |
+                /                     \
+            [3 | 9]                 [18 | ] (prazno vozlisce zdruzimo skupaj z desnim bratom, skupaj z ustreznim elementom od oceta)
+           /   |    \               /   |
+       [2 | ] [8 | ] [10 | ]     [ | ] [19| ]
+
+                                  [12 | ]
+                                  /   |
+                  ---------------     |
+                /                     |
+            [3 | 9]                 [ | ]
+           /   |    \                 |
+       [2 | ] [8 | ] [10 | ]       [18|19]
+
+                                  [9 | ]
+                                  /   |
+                  ---------------     |
+                /                     |
+            [3 |  ]               [12 | ]
+           /   |                /      \
+       [2 | ] [8 | ]        [10| ]    [18|19]
+
+  ```
+- ce ti ni jasno: https://www.youtube.com/watch?v=GKa_t7fF8o0
 
 
 ## ADT DIGRAPH
@@ -1534,7 +1568,7 @@ while(w!=a) {
 }
 ```
 
-### DIJKSTRA
+## DIJKSTRA
 Gradimo vpeto drevo od zacetnega vozlisca, ki je koren do vpetega devesa, proti listom. Vsakic iz mnozice vozlisc, ki se niso v drevesu izberemo tisto z najkrajso potjo od
 zacetnega vozlisa - pozresno (greedy). To zagotavlja, da ne obstaja krajsa pot od zacetnega vozlisca do `v` preko nekega drugega vozlisca `w`, ki se ni v drevesu.
 
@@ -1553,6 +1587,12 @@ Za zmanjsevanje prioritete definiramo novo funkcijo DECREASE_KEY(x, new, Q):
   - postopek se ustavi, bodisi ce je oce manjsi od elementa ali ce element pride v koren kopice
   - casovna zahtevnost je reda `O(logn)` pod pogojem, da imamo direkten dostop do elementa v kopici
 
+#### Operacije nad prioritetno vrsto v dijkstrinem algoritmu
+```
+O(n * (insert + delete_min(find, pazi hash table!)) + m * decrease_key(find)))
+```
+
+
 **Vsako** vozlisce hrani svoj polozaj (indeks) v kopici.
 ```java
 class DijkstraVertex {
@@ -1565,7 +1605,7 @@ class DijkstraVertex {
 Algoritem:
 - Vsako vozlisce dodamo in izbrisemo iz prioritetne vrste, torej `n` operacij INSERT in `n` operacij DELETEMIN
 - notranja zanka gre preko vseh povezav, torej se izvrsi `m`-krat (ena izvrsitev zahteva bodisi INSERT bodisi DECREASEKEY ali pa nobene od teh operacij)
-- ce implementiramo prioritetno vrsto s kopico, potem je casovna zahtevnost v najslabsem primeru reda `O(2nlogn + mlogn) = O((n+m)long)`
+- ce implementiramo prioritetno vrsto s kopico, potem je casovna zahtevnost v najslabsem primeru reda `O(2nlogn + mlogn) = O((n+m)logn)`
 - Ker za povezan graf velja `m >= n -1`, je casovna zahtevnost algoritma reda `O(mlogn)`
 - je pozresen, vendar vseeno zagotavlja optimalno resitev
 
