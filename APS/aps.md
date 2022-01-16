@@ -987,6 +987,152 @@ public class Node {
   - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 2 in oba faktorja **isti** predznak (izvedemo enojno rotacijo)
   - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in oba faktorja imata **razlicna** predznaka (izvedemo dvojno rotacijo)
 
+
+#### Implementacija AVL drevesa
+
+```java
+class Avl {
+
+    public static void main(String [] args) {
+      Node root = new Node(10);
+      AVLTree tree = new AVLTree(root);
+    
+      for(int i = 2; i < 99999999; i++) {
+          if(i!=10)
+            tree.insert(root, i);
+      }
+    }
+}
+
+
+class Node {
+    int key;
+    int height;
+    Node left, right;
+
+    public Node(int key) {
+        this.key = key;
+    }
+}
+
+class AVLTree {
+    private Node root;
+    
+    public AVLTree (Node root) {
+        this.root = root;
+    }
+
+    void updateHeight(Node n) {
+        n.height = 1 + Math.max(height(n.left), height(n.right));
+    }
+
+    int height(Node n) {
+        return n == null ? -1 : n.height;
+    }
+
+    int getBalance(Node n) {
+        return (n == null) ? 0 : height(n.right) - height(n.left);
+    }
+    
+    Node mostLeftChild(Node n) {
+        while(n.left != null)
+            n = n.left;
+        return n;
+    }
+
+    //           Y                   X
+    //        /     \              /   \
+    //       X       R            L     Y
+    //     /   \                      /   \
+    //    L     Z                    Z     R
+    Node rotateRight(Node y) {
+        Node x = y.left;
+        Node z = x.right;
+        x.right = y;
+        y.left = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    //        Y                     X
+    //      /   \                 /   \
+    //     L     X               Y     R
+    //         /   \           /   \
+    //        Z     R         L     Z
+    Node rotateLeft(Node y) {
+        Node x = y.right;
+        Node z = x.left;
+        x.left = y;
+        y.right = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    Node rebalance(Node z) {
+        updateHeight(z);
+        int balance = getBalance(z);
+        if(balance > 1) {
+            if(height(z.right.right) > height(z.right.left)) {
+                z = rotateLeft(z);
+            } else {
+                z.right = rotateRight(z.right);
+                z = rotateLeft(z);
+            }
+            
+        } else if (balance <  -1) {
+            if(height(z.left.left) > height(z.left.right)) {
+                z = rotateRight(z);
+            } else {
+                z.left = rotateLeft(z.left);
+                z = rotateRight(z);
+            }
+        }
+        return z;
+    }
+
+    Node insert(Node node, int key) {
+        if(node == null) {
+            return new Node(key);
+        } else if(node.key > key) {
+            node.left = insert(node.left, key);
+        } else if(node.key < key) {
+            node.right = insert(node.right, key);
+        } else {
+            throw new RuntimeException("Already in tree");
+        }
+        // rebalance tree from inserted node to root
+        return rebalance(node);
+    }
+
+
+
+    Node delete(Node node, int key) {
+        if(node == null) return node;
+        else if(node.key > key) {
+            node.left = delete(node.left, key);
+        } else if(node.key < key) {
+            node.right = delete(node.right, key);
+        } else {
+            if(node.left == null || node.right == null) {
+                node = (node.left == null) ? node.right : node.left;
+            } else {
+                Node mostLeftChild = mostLeftChild(node.right);
+                node.key = mostLeftChild.key;
+                node.right = delete(node.right, node.key);
+            }
+        }
+        if(node != null) {
+            node = rebalance(node);
+        }
+        return node;
+    }
+}
+
+
+```
+
 #### Brisanje elementa iz AVL drevesa
 - Element brisemo kot pri navadnem BST:
   - ce je element list drevesa, ga enostavno izbrisemo
@@ -1721,8 +1867,80 @@ public void prim(UGraph g) {
     }
   }
 }
-
 ```
+## KRUSKALOV algoritem
+Gradi minimalni vpeti gozd, uporaben tudi za nepovezane grafe.
+Na zacetku je vsako vozlisce svoje drevo. V enem koraku v gozd dodamo najkrajso povezavo - zdruzimo dve razlicni drevesi v eno (brez ciklov!)
+
+Basically v enem koraku algoritma z najkrajso povezavo zdruzi dve drevesi v enega.
+
+- Na zacetku je vsako vozlisce svoje drevo. 
+- Na zacetku vse povezave damo v prioritetno vrsto.
+- v enem koraku najkrajso povezavo dodamo v **minimalni vpeti gozd** (MSF), ce povezuje
+razlicni drevesi(stevilo dreves se vsakic zmanjsa za 1)
+- devo je mnzoica vozlisc -> ADT disjunktne mnozice.
+
+Ker je kruskalov algoritem, bascically samo algoritem nad mnzoico elementov, potrebujemo samo spremeniti nekaj operacij v ADT GRAFU,da bodo vracali elemente iz mnozic.
+
+### GRAPH -> KGRAPH
+- MAKENULL(G) ~ naredi prazen graf
+- INSERT_VERTEX(v, G) ~ doda vozlisce v graf G
+- INSERT_EDGE(v1, v2, G) ~ doda povezavo `<v1, v2>` v graf `G`
+- FIRST_VERTEX(G) ~ vrne prvo vozlisce v grafu `G`
+- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce danega vozlisca `v` po nekem vrstnem redu v grafu G
+- FIRST_EDGE(G) ~ vrne prvo povezavo v grafu `G`
+- NEXT_EDGE(e, G) ~ vrne naslednjo povezavo dane povezave `e` v grafu `G` po nekem vrstnem redu.
+- ENDPOINTS(e, G, v1, v2) ~ vrne oba konca, `v1` in `v2` povezave
+
+```java
+public class Kedge extends Edge {
+  KVertex v1, v2;
+  Kedge nextEdge;
+  boolean inForest; // rezultat algoritma
+}
+```
+Algoritm `O(m log m)`:
+```java
+public void kruskal(KGraph g) {
+  KruskalVertex v1, v2;
+  DisjointSubset s1, s2; // dve disj. podmnozici - poddrevesi
+  // inicializcija disjunktnih mnzoizic vozlisc
+  // ena mnozica je vpeto drevo
+  DisjointSet dSet = new DisjointSetForest();
+
+  for(KruskalVertex t = (KruskalVertex)g.firstVertex();
+      t != null;
+      t = (KruskalVertex)g.nextVertex(t)) {
+        t.subset = dSet.makeset(t);
+      }
+  // inicializacija prioritetne vrste povezav
+  PriorityQueue q = new Heap(); // urejena po value
+  KruskalEdge e;
+
+  for(e (KruskalEdge)g.firstEdge();
+      e != null;
+      e = (KruskalEdge)g.nextEdge(e)) {
+        q.insert(e);
+        e.inForest = false;
+      }
+  // zgradi minimalni vpeti gozd
+  // ce je graf povezan, zgradi minimalno vpeto drevo
+  while(!q.empty()) {
+    e = (KruskalEdge)q.deleteMin(); // poberi najcenejsega iz prioritetne vrste
+    v1 = (KruskalVertex)g.endPoint(e);
+    v2 = (KruskalVertex)g.endPoint(e);
+    // doloci poddrevesi obeh vozlisc
+    s1 = dSet.find(v1.subset);
+    s2 = dSet.find(v2.subset);
+
+    if(s1 != s2) {
+      dSet.union(s1, s2);
+      e.inForest = true;
+    }
+  }
+}
+```
+
 ## DOKAZOVANJE PRAVILNOSTI PROGRAMOV (najbol izi snov tbh :wink:)
 
 ### Formalizacija
