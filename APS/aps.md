@@ -1000,7 +1000,7 @@ class Avl {
       for(int i = 2; i < 99999999; i++) {
           if(i!=10)
             tree.insert(root, i);
-      }q
+      }
     }
 }
 
@@ -1290,7 +1290,7 @@ Sledi dogovoru:  nizja je prioriteta, prej bo element prisel iz vrste.
 
 ### Operacije in casovne zahtevnosti (heap, jebes ostalo)
 - MAKENULL(Q) ~ napravi prazno prioritetno vsto Q  `O(1)`
-- INSERT(x, Q) ~ vstavi element x v prioritetno vrsto Q `O(1)`
+- INSERT(x, Q) ~ vstavi element x v prioritetno vrsto Q `<= O(logn)`
 - DELETEMIN(Q) ~ vrne element z najmanjso prioriteto iz prioritetne vrste Q in ga izbrise iz Q `<= O(logn)`
 - EMPTY(Q) ~ ali je prioritetna vrsta Q prazna? `<= O(logn)`
 
