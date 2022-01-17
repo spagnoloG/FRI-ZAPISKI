@@ -1216,7 +1216,7 @@ Initially     Insert 30        first rotation           second rotation
 Tle mamo RL inbalance. Sepravi smo insertali right left od roota.
 ```
 
-### RDECE-CRNO DREVO (more like jebise)
+### RDECE-CRNO DREVO
 Bols ku se piflat teorijo, poglej si raje te prakticne videe, razlaga je top :)
 - https://www.youtube.com/watch?v=3RQtq7PDHog
 - https://www.youtube.com/watch?v=qA02XWRTBdw
@@ -1288,7 +1288,7 @@ V prioritetni ali prednostni vrsti ima vsak element oznako prioritete, ki doloca
 Ne velja FIFO! 
 Sledi dogovoru:  nizja je prioriteta, prej bo element prisel iz vrste.
 
-### Operacije in casovne zahtevnosti (heap, jebes ostalo)
+### Operacije in casovne zahtevnosti
 - MAKENULL(Q) ~ napravi prazno prioritetno vsto Q  `O(1)`
 - INSERT(x, Q) ~ vstavi element x v prioritetno vrsto Q `<= O(logn)`
 - DELETEMIN(Q) ~ vrne element z najmanjso prioriteto iz prioritetne vrste Q in ga izbrise iz Q `<= O(logn)`
@@ -1345,6 +1345,17 @@ Za algoritme na grafih, je potrebna se operacija `DECREASEKEY(x, k, Q)`, ki elem
   - zamenjamo `x` z ocetom, dokler ni:
     - oce manjsi od `x` ali
     - `x` v korenu drevesa
+
+### Implementacija prioritetne vrste s pomocjo razlicnih podatkovnih struktur
+
+|                  | Insert    | Deletemin | decrease_priority |
+|------------------|-----------|-----------|-------------------|
+| neurejeni seznam | O(1)      | O(n)      | O(1)              |
+| urejeni seznam   | <=O(n)    | (1)       | O(n)              |
+| BST              | <=O(n)    | <=O(logn) | O(n)              |
+| AVL, RB-tree     | =O(logn)  | =O(logn)  | O(logn)           |
+| heap             | <=O(logn) | <=O(logn) | O(logn)           |
+| hash table       | O(1)      | O(n)      | O(1)              |
 
 ## ADT BDREVO
 B drevo je popolnoma poravnano isaklno drevo, vsi listi so na istem nivoju. Vsako notranje vozlisce B-drevesa reda `m` ima lahko
@@ -1811,6 +1822,11 @@ Zatem pogledamo sosede dodanega vozilsca:
 Za izbiro vozlisca `v` z najkrajso razdaljo, uporablja algoritem prioritetno vrsto vozlisc, za katera je ze znana dolzina povezave od nekega vozlisca v MST.
 V prioritetni se heranijo dolzine najkrajsih povezav za vsako vozlisce. Z napredovanjem algoritme se te povezave lahko skrajsajo, zato je potrebno tudi skrbeti za zmanjsevanje prioritete.
 
+#### Operacije nad prioritetno vrsto v primovem algoritmu
+```
+O(n * (insert + delete_min(find, pazi hash table!)) + m * decrease_key(rebalance)))
+```
+
 ```java
 class PrimVertex extends Vertex {
   boolean visited; // obiskan
@@ -1881,6 +1897,11 @@ razlicni drevesi(stevilo dreves se vsakic zmanjsa za 1)
 - devo je mnzoica vozlisc -> ADT disjunktne mnozice.
 
 Ker je kruskalov algoritem, bascically samo algoritem nad mnzoico elementov, potrebujemo samo spremeniti nekaj operacij v ADT GRAFU,da bodo vracali elemente iz mnozic.
+
+#### Operacije nad prioritetno vrsto v kruskalovem algoritmu
+```
+O(m * (insert + delete_min(find, pazi hash table!)))
+```
 
 ### GRAPH -> KGRAPH
 - MAKENULL(G) ~ naredi prazen graf
