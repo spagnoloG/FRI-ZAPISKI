@@ -1000,7 +1000,7 @@ class Avl {
       for(int i = 2; i < 99999999; i++) {
           if(i!=10)
             tree.insert(root, i);
-      }
+      }q
     }
 }
 
@@ -2013,5 +2013,60 @@ avg(A[n]) {
     tmp = tmp + A[i];
   }
   return tmp/n;
+}
+```
+Primeri iz starih izpitov
+```java
+// Dan je algoritem za sestevanje dveh nenegativnih celih stevil, ki uporablja operacijo inkrementa
+public static int sum(int x, int y) {
+  // phi(x >= 0, y >= 0)
+  int i, s;
+  s = 0;
+  i = 0;
+
+  // zancna invarianta
+  // s = i, i <= x
+  while(i != x) {
+    i++;
+    s++;
+  }
+
+  i = 0;
+  // zancna invarianta
+  // s = x + i, x + i <= y
+  while(i != y) {
+    i++;
+    s++;
+  }
+
+  return s;
+}
+// psi(x >= 0, y>=0, i = y, s = x + y)
+```
+
+```java
+// basically iskanje z bisekcijo, maxX je stevilo elementov v tabeli
+boolean vsebovan(int y, int x[]) {
+  // phi(every i in x[]: x[i] in N, 0 < i <= maxX, y in N, x[i] < x[i + 1])
+  int min, max, s;
+
+  max = maxX;
+  min = 1;
+
+  // Zancna invarianta
+  //(y is element x[] => x[min] <= y <= x[max])
+  while(min < max) {
+    s = (int) ((min + max) / 2)
+
+    if(y > x[s])
+      min = s + 1;
+    else
+      max = s;
+  }
+
+  if(x[min] == y)
+    return true; // psi x[min] == y ==> true
+  else
+    return false; // psi x[min] != y ==> true
 }
 ```
