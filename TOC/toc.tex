@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\setlength{\columnseprule}{0.5pt}
+
+\begin{document}
+
+\begin{center}
+    {\small TOC/FRI \par}
+\end{center}
+
+\begin{multicols}{2}
+
+\section{\underline{Finite Automata}}
+
+\textbf{1.1 Deterministic finate automaton - DFA}\\
+is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$ where:
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item $Q$ is a finate set of \textit{states},
+    \item $\Sigma$ is a finite \textit{input alphabet}
+    \item $q_0 \in Q$ is the \textit{initial state},
+    \item $F \subseteq Q$ is the set of \textit{final states}, and
+    \item $\delta$ is the \textit{transition function}, i.e. $\delta: Q \times \Sigma \rightarrow Q$ \\
+    For each state, there must be a transition for every input symbol out of $\Sigma$.
+\end{itemize}
+
+\textbf{exp.} Dfa for finding modulo of binary numbers\\
+Suppose our modulo is $m$. Then for every possible remainder, there must be
+a state in fa $\{q_0, q_1, \dots, q_{m-1}\}$.
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item state $q_0$ : $m*k + 0$ \\
+        $m*k\; |0 \Rightarrow$  $2*(5k) + 0 = m*k + 0 $ (on $0$, we go to $q_0$) \\
+        $m*k\; |1 \Rightarrow$  $2*(5k) + 1 = m*k + 1 $ (on $1$, we go to $q_1$)
+    \item state $q_1$ : $k + 1$ \\
+        $m*k\; |0 \Rightarrow$  $2*1 + 0 = 2 $ (go to $q_2$)\\ 
+        $m*k\; |1 \Rightarrow$  $2*1 + 1 = 3 $ (go to $q_3$)
+    \item state $q_{m-1}$ : $k + (m-1)$ \\
+        $m*k\; |0 \Rightarrow$  $2*(m-1) + 0$ \\ 
+        $m*k\; |1 \Rightarrow$  $2*(m-1) + 1$
+\end{itemize}
+If your remainder is bigger than $m$, then you must modulo it!
+
+\textbf{1.2 Nondeterministic finate automaton - NFA}\\
+is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$ where:
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item $Q, \Sigma, q_0, F$ \textit{read dfa}
+    \item $\delta$ is the \textit{transition function}, i.e. $\delta: Q \times \Sigma \rightarrow 2^Q$ \\
+        That is $\delta(q, a)$ is the \textit{set} of all states $p$ such that there is a transition labeled from $a$ to $p$.
+\end{itemize}
+
+\textbf{1.3 NFA} with epsilon moves - $NFA_{\epsilon}$\\
+is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$ where:
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item $Q, \Sigma, q_0, F$ \textit{read dfa}
+    \item $\delta$ is the \textit{transition function}, i.e. $\delta: Q \times (\Sigma \cup \{\epsilon\} )\rightarrow 2^Q$ \\
+    That is $\delta(q, a)$ is the \textit{set} of all states $p$ such that there is a transition labeled from $a$ to $p$, \textit{where \textbf{a} is either a symbol in} $\Sigma$  \textit{or} $\epsilon$.
+\end{itemize}
+$\epsilon$-closure defines which $\epsilon$ transitions are allowed from a single state in a fa (set of states we can reach).
+
+\textbf{exp.} NFA for $L^{c}$\\
+\begin{center}
+    \begin{math}
+        NFA(L) \rightarrow DFA(L) \rightarrow DFA(L^{c})
+    \end{math}
+\end{center}
+Due to the properties of \textbf{DFA}, the complementation is applied just by switching final and non-final states of fa.
+
+\section{\underline{Regular expressions}}
+
+
+\textbf{2.1 Regular operations}\\
+Let $L_1, L_2$ be some regular languages. Then their
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item \textbf{union} $\rightarrow L_1 \cup L_2 = \{\forall x : x \in L_1\; or\; x \in L_2 \} $
+    \item \textbf{concatenation} $\rightarrow L_1 . L_2 = L_1L_2$
+    \item \textbf{kleene closure} $\rightarrow = L^*$
+\end{itemize}
+are also regular languages.\\
+Regexp are equvalent with NFA.
+
+\textbf{2.2 Pumping lemma for regular languages}
+Let $R$ be a class of regular languages.
+Then language $L \in R \rightarrow \exists n > 0:$
+\begin{center}
+    \begin{math}
+        \forall z \in L, |z| \geq n:
+    \end{math}
+    \begin{math}
+        \exists u,v,w:\; |uv| \leq n, |v| \geq 1, z = uvw \rightarrow \forall i \geq 0: uv^iw \in L
+    \end{math}
+\end{center}
+\textit{if we negate lemma, we can prove that some languages are irregular}
+\begin{center}
+    \begin{math}
+        \forall n > 0:  \exists z \in L, |z| \geq n
+    \end{math}
+    \begin{math}
+        \forall u,v,w:\; |uv| \leq n, |v| \geq 1, z = uvw \rightarrow \exists i \geq 0: uv^iw \notin L \Rightarrow L \notin R
+    \end{math}
+\end{center}
+
+\section{\underline{Context-free grammars}}
+
+\textbf{3.1 Definition:} A context-free grammar (CFG) \\
+is a 4-tuple $G = (V, T, P, S)$ where:
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item $V$ is a finite set of \textit{variables}
+    \item $T$ is a finite set of \textit{terminals}
+    \item $P$ is a finite set of \textit{productions}\\
+        each of which is of the form $A \rightarrow \alpha$,\\
+        where $A \in V$ and $\alpha$ is a word in the language $(V \cup T)^*$
+    \item $S$ is a special variable called the \textit{start symbol}
+\end{itemize}
+\textbf{Ambiguity}:
+A CFG is said to be ambiguous if some word has more than one derivation tree.
+
+\textbf{exp.} regex to CFG conversion\\
+Suppose we have a regex: $a(ab)^*bb(aa+b)^*a$\\
+Then we could model a CFG for it as:
+\begin{itemize}
+    \setlength\itemsep{-0.5em}
+    \item $S \rightarrow XYZUV$
+    \item $X \rightarrow a$
+    \item $Y \rightarrow aabY | \epsilon$
+    \item $Z \rightarrow bb$
+    \item $U \rightarrow aaU|bU|\epsilon$
+    \item $V \rightarrow a$
+\end{itemize}
+
+\textbf{3.2 Pumping lemma for context-free languages}
+Let $L$ be a CFL.
+\begin{center}
+    \begin{math}
+        \exists n > 0:
+    \end{math}\\
+    \begin{math}
+        \forall z \in L, |z| \geq n:
+    \end{math}\\
+    \begin{math}
+        \exists u,v,w,x,y:\; |vwx| \leq n, |vx| \geq 1
+    \end{math}\\
+    \begin{math}
+        z = uvwxy \rightarrow \forall i \geq 0: uv^iwx^iy \in L
+    \end{math}
+\end{center}
+\textit{if we negate lemma, we can prove that some languages are not context-free.}
+\begin{center}
+    \begin{math}
+        \forall n > 0:
+    \end{math}\\
+    \begin{math}
+        \exists z \in L, |z| \geq n:
+    \end{math}\\
+    \begin{math}
+        \forall u,v,w,x,y:\; |vwx| \leq n, |vx| \geq 1
+    \end{math}\\
+    \begin{math}
+        z = uvwxy \rightarrow \exists i \geq 0: uv^iwx^iy \notin L
+    \end{math}
+\end{center}
+
+\section{\underline{Pushdown Automata}}
+\textbf{4.1 Definition:} A pushdown automaton (PDA) \\
+is a 7 tuple $M =(Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$ where:
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item $Q$ is a finite set of \textit{states}
+    \item $\Sigma$ is the \textit{input alphabet}
+    \item $\Gamma$ is the \textit{stack alphabet}
+    \item $q_0 \in Q$ is the \textit{initial state}
+    \item $Z_0 \in \Gamma$ is the \textit{start stack symbol}
+    \item $F \subseteq Q$ is the set of \textit{final states}, and
+    \item $\delta$ is the \textit{transition function}\\
+        i.e. a mapping from $Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma$ to finite subsets of $Q \times \Gamma^*$\\
+        $\rightarrow 2^{Q \times \Gamma^*}$
+\end{itemize}
+\textbf{4.2} Accepted languages of the PDA\\
+For PDA $M =(Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$  we define two languages:
+\begin{itemize}
+    \item $L(M)$, the \textit{language accepted by final state}, to be \\
+        \begin{math}
+            L(M) = 
+                \{
+                    w \in \Sigma^* | (q_0, w, Z_0) \rightarrow^* (p, \epsilon, \gamma)$\\$
+                    for\; some\; p\; \in F\; and\; \gamma \in \Gamma^*
+                \}
+        \end{math}
+    \item $L(M)$, the \textit{language accepted by empty stack}, to be \\
+        \begin{math}
+            N(M) = 
+                \{
+                    w \in \Sigma^* | (q_0, w, Z_0) \rightarrow^* (p, \epsilon, \epsilon);\
+                    for\; some\; p\; \in Q
+                \}
+        \end{math}
+\end{itemize}
+
+\section{\underline{Touring Machines}}
+
+\textbf{5.1 Definition:} A simple Toruing Machine (TM)\\
+is a 7-tuple $M = \{Q, \Sigma, \Gamma, \delta, q_0, B, F\}$ where:
+\begin{itemize}
+    \setlength\itemsep{-0.4em}
+    \item $Q$ is a finite set of \textit{states}
+    \item $\Sigma$ is the \textit{input alphabet} 
+    \item $\Gamma$ is the \textit{tape alphabet} \small{$B \in \Gamma => \Sigma \subseteq \Gamma$}
+    \item $\delta$ is the \textit{transition function}
+    \item $q_0$ is the \textit{initial state} and,
+    \item $F \subseteq Q$: is the set of \textit{final states}
+\end{itemize}
+
+\end{multicols}
+\end{document}
