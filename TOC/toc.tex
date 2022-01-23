@@ -81,9 +81,10 @@ Let $L_1, L_2$ be some regular languages. Then their
     \item \textbf{union} $\rightarrow L_1 \cup L_2 = \{\forall x : x \in L_1\; or\; x \in L_2 \} $
     \item \textbf{concatenation} $\rightarrow L_1 . L_2 = L_1L_2$
     \item \textbf{kleene closure} $\rightarrow = L^*$
+    \item \textbf{interscetion} $\rightarrow L_1 \cap L_2$
+    \item \textbf{complementation} $\rightarrow \overline{L}$
 \end{itemize}
-are also regular languages.\\
-Regexp are equvalent with NFA.
+are also regular languages. Regexp are equvalent with NFA.
 
 \textbf{2.2 Pumping lemma for regular languages}
 Let $R$ be a class of regular languages.
@@ -172,12 +173,9 @@ Let $L$ be a CFL.
 is a 7 tuple $M =(Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$ where:
 \begin{itemize}
     \setlength\itemsep{-0.4em}
-    \item $Q$ is a finite set of \textit{states}
-    \item $\Sigma$ is the \textit{input alphabet}
+    \item $Q, \Sigma, q_0, F$ read dfa
     \item $\Gamma$ is the \textit{stack alphabet}
-    \item $q_0 \in Q$ is the \textit{initial state}
-    \item $Z_0 \in \Gamma$ is the \textit{start stack symbol}
-    \item $F \subseteq Q$ is the set of \textit{final states}, and
+    \item $Z_0 \in \Gamma$ is the \textit{start stack symbol}, and
     \item $\delta$ is the \textit{transition function}\\
         i.e. a mapping from $Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma$ to finite subsets of $Q \times \Gamma^*$\\
         $\rightarrow 2^{Q \times \Gamma^*}$
@@ -202,6 +200,11 @@ For PDA $M =(Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$  we define two languages:
                 \}
         \end{math}
 \end{itemize}
+
+\textbf{4.3} The class of CFLs is \textbf{closed} under:\\
+union, concatenation, kleene closure, substitution, inverse homomorphism\\
+The class of CFLs is \textit{not} \textbf{closed} under: interscetion, complementation.\\
+But is closed for intersection if both CFL represent some regular sets.
 
 \section{\underline{Touring Machines}}
 
