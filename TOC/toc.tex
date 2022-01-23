@@ -203,9 +203,9 @@ For PDA $M =(Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$  we define two languages:
         \end{math}
 \end{itemize}
 
-\section{\underline{Touring Machines}}
+\section{\underline{Turing Machines}}
 
-\textbf{5.1 Definition:} A basic Toruing Machine (TM)\\
+\textbf{5.1 Definition:} A basic Turing Machine (TM)\\
 is a 7-tuple $M = \{Q, \Sigma, \Gamma, \delta, q_0, B, F\}$ where:
 \begin{itemize}
     \setlength\itemsep{-0.4em}
@@ -227,8 +227,8 @@ is a 7-tuple $M = \{Q, \Sigma, \Gamma, \delta, q_0, B, F\}$ where:
     \item Multidimensional tape $\Rightarrow \delta: Q \times  \Gamma \rightarrow Q \times \Gamma \times \{L_1, R_1, \dots, L_d, R_d, S\}$
 \end{itemize}
 
-\textbf{5.3 Universal Touring Machine} (UTM)\\
-is a TM, that accepts some \textit{Touring machine} \textbf{M} description and a \textit{word} \textbf{w}. 
+\textbf{5.3 Universal Turing Machine} (UTM)\\
+is a TM, that accepts some \textit{Turing machine} \textbf{M} description and a \textit{word} \textbf{w}. 
 The universal TM then decides if $w \in L(M)$.\smallskip
 
 [TM description$|$w]
@@ -294,7 +294,7 @@ Let $S$, $A$, $B$ be arbitrary sets. Then:
     \item DTIME($T(n)$)  = $\{ L |$ L is a language $\wedge$ L has time complexity T(n)$\}$
     \item DSPACE($S(n)$) = $\{ L |$ L is a language $\wedge$ L has space complexity S(n)$\}$
     \item NTIME($T(n)$)  = $\{ L |$ L is a language $\wedge$ L has nondet. time complexity T(n)$\}$
-    \item DSPACE($S(n)$) = $\{ L |$ L is a language $\wedge$ L has nondet. space complexity S(n)$\}$
+    \item NSPACE($S(n)$) = $\{ L |$ L is a language $\wedge$ L has nondet. space complexity S(n)$\}$
 \end{itemize}
 
 \textbf{6.2 In terms of decision problems:}
@@ -303,7 +303,7 @@ Let $S$, $A$, $B$ be arbitrary sets. Then:
     \item DTIME($T(n)$)  = $\{ D |$ D is a decision problem $\wedge$ L(D) has time complexity T(n)$\}$
     \item DSPACE($S(n)$) = $\{ D |$ D is a decision problem $\wedge$ L(D) has space complexity S(n)$\}$
     \item NTIME($T(n)$)  = $\{ D |$ D is a decision problem $\wedge$ L(D) has nondet. time complexity T(n)$\}$
-    \item DSPACE($S(n)$) = $\{ D |$ D is a decision problem $\wedge$ L(D) has nondet. space complexity S(n)$\}$
+    \item NSPACE($S(n)$) = $\{ D |$ D is a decision problem $\wedge$ L(D) has nondet. space complexity S(n)$\}$
 \end{itemize}
 
 \textbf{6.3 Relations between different complexity classes:}
