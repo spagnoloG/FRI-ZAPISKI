@@ -129,7 +129,7 @@ Then we could model a CFG for it as:
     \setlength\itemsep{-0.5em}
     \item $S \rightarrow XYZUV$
     \item $X \rightarrow a$
-    \item $Y \rightarrow aabY | \epsilon$
+    \item $Y \rightarrow abY | \epsilon$
     \item $Z \rightarrow bb$
     \item $U \rightarrow aaU|bU|\epsilon$
     \item $V \rightarrow a$
@@ -255,7 +255,15 @@ Let $S$, $A$, $B$ be arbitrary sets. Then:
     \item $A$ and $B$ are \textit{decidable} $\Rightarrow$ $A \cap B $ $\&$ $A \cup B$ are \textit{decidable}
 \end{itemize}
 
-\textbf{5.5 Known languages:}\\
+\textbf{5.5 Three possibilities for set complementation:}
+\begin{itemize}
+    \setlength\itemsep{-0.2em}
+    \item $S$ and $\overline{S}$ are \textit{decidable}
+    \item $S$ and $\overline{S}$ are \textit{undecidable}, one is semi, and the other is not.
+    \item $S$ and $\overline{S}$ are \textit{undecidable}, and neither is semi-decidable.
+\end{itemize}
+
+\textbf{5.6 Known languages:}\\
 \begin{itemize}
     \setlength\itemsep{-0.2em}
     \item \textit{Diagonalizable language} $\rightarrow L_d = \{<M >| <M> \notin L(M)\}$ - undecidable / not semi-decidable.
@@ -278,7 +286,7 @@ Let $S$, $A$, $B$ be arbitrary sets. Then:
 \end{center}
 
 
-\section{\underline{Coplexity classes}}
+\section{\underline{Complexity classes}}
 
 \textbf{6.1 In terms of formal languages:}
 \begin{itemize}
@@ -330,6 +338,11 @@ Proof:
     \item (PSPACE = NPSPACE) $\rightarrow$ Trivially, PSPACE $\subseteq$ NPSPACE. \small{The opposite direction:
     NPSPACE = (def) = $\cup$ NSPACE($n^i$) $\subseteq$ (by Savitch) $\subseteq \cup$ DSPACE($n^j$) $\subseteq$ PSPACE}
  \end{itemize}
+
+ \textbf{6.6 NP-complete $\&$ NP-hard problems}\\
+ \textbf{NP-hard:} $D \leq^p D^*$, for every $D \in NP$.\\
+ \textbf{NP-complete:} $D^* \in NP \wedge D \leq^p D^*$, for every $D \in NP$.\\
+ Hence, $D^*$ is NP-complete if $D^*$ is in NP and $D^*$ is NP-hard.
 
 \end{multicols}
 \end{document} 
