@@ -7,9 +7,9 @@
 
 \begin{document}
 
-\begin{center}
+{\centering
     {\small TOC/FRI \par}
-\end{center}
+\par}
 
 \begin{multicols}{2}
 
@@ -64,11 +64,11 @@ is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$ where:
 $\epsilon$-closure defines which $\epsilon$ transitions are allowed from a single state in a fa (set of states we can reach).
 
 \textbf{exp.} NFA for $L^{c}$\\
-\begin{center}
+{\centering
     \begin{math}
         NFA(L) \rightarrow DFA(L) \rightarrow DFA(L^{c})
     \end{math}
-\end{center}
+\par}
 Due to the properties of \textbf{DFA}, the complementation is applied just by switching final and non-final states of fa.
 
 \section{\underline{Regular expressions}}
@@ -89,23 +89,23 @@ are also regular languages. Regexp are equvalent with NFA.
 \textbf{2.2 Pumping lemma for regular languages}
 Let $R$ be a class of regular languages.
 Then language $L \in R \rightarrow \exists n > 0:$
-\begin{center}
+{\centering
     \begin{math}
         \forall z \in L, |z| \geq n:
     \end{math}
     \begin{math}
         \exists u,v,w:\; |uv| \leq n, |v| \geq 1, z = uvw \rightarrow \forall i \geq 0: uv^iw \in L
     \end{math}
-\end{center}
+\par}
 \textit{if we negate lemma, we can prove that some languages are irregular}
-\begin{center}
+{\centering
     \begin{math}
         \forall n > 0:  \exists z \in L, |z| \geq n
     \end{math}
     \begin{math}
         \forall u,v,w:\; |uv| \leq n, |v| \geq 1, z = uvw \rightarrow \exists i \geq 0: uv^iw \notin L \Rightarrow L \notin R
     \end{math}
-\end{center}
+\par}
 
 \section{\underline{Context-free grammars}}
 
@@ -138,7 +138,7 @@ Then we could model a CFG for it as:
 
 \textbf{3.2 Pumping lemma for context-free languages}
 Let $L$ be a CFL.
-\begin{center}
+{\centering
     \begin{math}
         \exists n > 0:
     \end{math}\\
@@ -151,9 +151,9 @@ Let $L$ be a CFL.
     \begin{math}
         z = uvwxy \rightarrow \forall i \geq 0: uv^iwx^iy \in L
     \end{math}
-\end{center}
+\par}
 \textit{if we negate lemma, we can prove that some languages are not context-free.}
-\begin{center}
+{\centering
     \begin{math}
         \forall n > 0:
     \end{math}\\
@@ -166,7 +166,7 @@ Let $L$ be a CFL.
     \begin{math}
         z = uvwxy \rightarrow \exists i \geq 0: uv^iwx^iy \notin L
     \end{math}
-\end{center}
+\par}
 
 \section{\underline{Pushdown Automata}}
 \textbf{4.1 Definition:} A pushdown automaton (PDA) \\
@@ -281,11 +281,11 @@ Let $S$, $A$, $B$ be arbitrary sets. Then:
     \item $L \in S \wedge L\; infinite \Rightarrow \exists L' \subseteq L: L \in S,\; L'\; finite$
     \item innumerability of final sets in $S$
 \end{enumerate}
-\begin{center}
+{\centering
     \begin{math}
         (1) \wedge (2) \wedge (3) \Leftrightarrow L_s $is semi-decidable$
     \end{math}
-\end{center}
+\par}
 
 
 \section{\underline{Complexity classes}}
@@ -329,9 +329,9 @@ Let $S$, $A$, $B$ be arbitrary sets. Then:
 \end{itemize}
 
 \textbf{6.5 Relations between P, NP, PSPACE, NPSPACE:}
-\begin{center}
+{\centering
     $P \subseteq NP \subseteq PSPACE = NPSPACE$
-\end{center}
+\par}
 Proof:
 \begin{itemize}
     \setlength\itemsep{-0.4em}
