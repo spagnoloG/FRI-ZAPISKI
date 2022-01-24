@@ -1,26 +1,55 @@
 # ORS
 
 ## Odgovori na commonly postavljena ustna vprasanja pri predmetu ORS
-![Ram](./images/ram.jpg)
 
+## DRAM
 ### Kaj je banka v DRAM pomnilnikih? 
 ### Kaj je polje DRAM? Kako je organizirano?
 ### Zakaj imamo v polju DRMA celic dolge vrstice?
 ### Koliko polj DRAM vsebuje ena banka?
 ### Do katerih DRAM celic v DRAM banki dostopamo istočasno?
-### Kako osvežujemo vsebino vsrtice v DRAM banki?
+
 DRAM polje je sestavljeno iz **DRAM celic**. Branje in pisanje v celico poteka preko bitne linije (BL). Stanje se za razliko od SRAM celic ohrani v kondenzatorju (realiziran je z uporabo MOS celic). To naredi DRAM celico zelo uporabno, saj je ravno zaradi kondenzatorja veliko manjsa kot SRAM celica. Ker je kondenzator _nestabilen_ - pocasi izpraznjuje svoj naboj na bitno linijo, ga je potrebno regularno osvezevati. Branje iz DRAM celice je **destruktivno**, tako da vsakemu branju sledi pisanje.
-Zaradi fizicnih lastnosti, je bitna linija v bistvu tudi nek kondenzator. Zaradi te lastnosti, pa morajo biti bitne linije nujno **kratke**. Do wordline-a pa dostopa naslovni dekodirnik, kateri da signal, naj kondenzator spusti svoj naboj na bitno linijo. 
+Zaradi fizicnih lastnosti, je bitna linija v bistvu tudi nek kondenzator. Zaradi te lastnosti, pa morajo biti bitne linije nujno **kratke**. Do wordline-a pa dostopa naslovni dekodirnik, kateri da signal, naj kondenzator spusti svoj naboj na bitno linijo.
 
 ![dram-cell](./images/dram-cell.png)
 
 DRAM polje, je v bistvu 2D array DRAM celic. Do naslova v DRAM polju dostopamo s parom indeksa vrstice in indeksa stolpca. Tipicna velikost DRAMA danes je 32k vrstic in 1024 stolpcev. Vsak DRAM cip ima lahko od 4-16 DRAM polj, do katerih lahk dostopa hkrati MCU. Mnozici teh polj, do katerih dostopamo recemo **banka**.
 
+
 <img src="./images/dram-array.png " width="600" height="400"/>
+
+Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovne linije multiplexirane. 
+
+<img src="./images/dram-addressing.png " width="600" height="400"/>
+
+
+### Opišite dostop (bralni ali pisalni) do DRAM banke (časovno zaporedje naslovnih in kontrolnih signalov, časi, ..)
+
+
+### Kako osvežujemo vsebino vsrtice v DRAM banki?
+Ker so celice zgrajene iz kondenzatorjev, kateri *leakajo*, jih je potrebno intervalno osvezevati vrstico po vrstico. To se na modernih ram sistemih dogaja na priblizno 64ms. Frekvenca osvezevanja na DRAM modulih je dolocena s pomocjo internega oscilatorja in stevca, kateri indicira katero vrstico je potrebno osveziti.
+Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
+- CAS signal postavimo na nizki signal, WE signal pa ostane v visokem stanju(ekvivalentno branju)
+- Po dolocenem delay-u, RAS preklopimo na nizek signal.
+- Interni stevec doloci katero vrstico je potrebno osveziti in naslovi dolocene stolpce.
+- Po dolocenem delay-u, CAS vrnemo na visok signal.
+- Po dolocenem delay-u, RAS vrnemo na visok signal.
+
+### Summary: Importatnt timings in DRAMs
+| name                                | symbol | Description                                                                                                                                                                   |
+|-------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Row Active Time                     | tRAS   | The minimum amount of time RAS is required to be active (low) to read or write to a memory location.                                                                          |
+| CAS latency                         | tCL    | This is the time interval it takes to read the first bit of memory from a DRAM with the correct row already open.                                                             |
+| Row Address to Column Address Delay | tRCD   | The minimum time required between activating RAS and activating CAS . It is the time interval between row access and data ready at sense amplifiers.                          |
+| Random Access Time                  | tRAC   | This is the time required to read any random memory cell. It is the time to read the first bit of memory from an DRAM without an active row. tRAC = tRCD + tCL.               |
+| Row Precharge Time                  | tRP    | After a successful data retrieval from the memory, the row that was used to access the data needs to be closed. This is the minimum amount of time that RAS must be inactive. |
+| Row Cycle Time                      | tRC    | This is the time associated with single rad or write cycle. tRC = tRAS + tRP                                                                                                  |
+
+This table is taken from ors book.
 
 ### Zakaj v polju DRAM celic vrstice niso dolge toliko kot je dolga ena pomnilniška beseda?
 ### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
-### Opišite dostop (bralni ali pisalni) do DRAM banke (časovno zaporedje naslovnih in kontrolnih signalov, časi, ..)
 ### Kaj sdo časi tRAS, tRDC, tRP, tRCin tCL?
 ### Kako je definiran čas dosatopa do vrstice tRC?
 ### Kako izboljšamo odzivnost DRAM pomnilnikov? Kaj je Fast Page Mode DRAM? Kaj pa EDO DRAM?
@@ -148,3 +177,27 @@ row access strobe (RAS) and the column access strobe (CAS).
 The write enable (WE) signal is used to choose a read or a write operation.
 During a read operation, the output enable (OE) signal is used to prevent
 data from appearing at the output until needed.
+
+>DRAMs are asynchronous systems, responding to input signals whenever
+they occur. The DRAM will work properly, as long as the input signals are
+applied in the proper sequence, with signal durations and delays between
+signals that meet the specified limits.
+Typical operations in DRAMs are: read, write, and refresh. All these operations are initiated and controlled by the prescribed sequence of input signals.
+The read and write accesses last for a row cycle time (tRC ):
+tRC = tRAS + tRP .
+DRAMs must be refreshed in order to prevent the loss of data. DRAMs are
+refreshed one row at a time. DRAMs use an internal oscillator to determine
+the refresh frequency and initiate a refresh and a counter to keep track of row
+to be refreshed. Such an auto-initiated refresh is referred to as self refresh.
+Self-refresh uses the so-called CAS-before-RAS sequence.
+
+> Due to temporal and spatial locality, we often access two or more consecu-
+tive columns from the same row.
+All methods used to improve the performance of a DRAM chip and to de-
+crease the access time rely on the ability to access all of the data stored in a
+row without having to initiate a completely new memory cycle.
+Fast Page Mode DRAM eliminates the need for a row address if data is
+located in the row previously accessed.
+In EDO DRAMs, data is still present on the output pins, while CAS is chang-
+ing, and a new column address is latched. This allows a certain amount of
+overlap in operation (pipelining), resulting in faster access time.
