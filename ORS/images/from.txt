@@ -1,1 +1,3 @@
 ram.jpg - https://www.idgcdn.com.au/article/images/740x500/dimg/crucial_ddr4_udimm_dynamic_right_angle.jpg
+dram-cell.png - from ors book
+dram-array.png - @Slime
