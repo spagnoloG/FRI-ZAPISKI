@@ -8,6 +8,11 @@
 ### Zakaj imamo v polju DRMA celic dolge vrstice?
 ### Koliko polj DRAM vsebuje ena banka?
 ### Do katerih DRAM celic v DRAM banki dostopamo istočasno?
+### Zakaj v polju DRAM celic vrstice niso dolge toliko kot je dolga ena pomnilniška beseda?
+### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
+### Kaj sdo časi tRAS, tRDC, tRP, tRCin tCL?
+### Kako je definiran čas dosatopa do vrstice tRC?
+Vsi tej odgovori so odgovorjeni v tem spisku spodaj
 
 DRAM polje je sestavljeno iz **DRAM celic**. Branje in pisanje v celico poteka preko bitne linije (BL). Stanje se za razliko od SRAM celic ohrani v kondenzatorju (realiziran je z uporabo MOS celic). To naredi DRAM celico zelo uporabno, saj je ravno zaradi kondenzatorja veliko manjsa kot SRAM celica. Ker je kondenzator _nestabilen_ - pocasi izpraznjuje svoj naboj na bitno linijo, ga je potrebno regularno osvezevati. Branje iz DRAM celice je **destruktivno**, tako da vsakemu branju sledi pisanje.
 Zaradi fizicnih lastnosti, je bitna linija v bistvu tudi nek kondenzator. Zaradi te lastnosti, pa morajo biti bitne linije nujno **kratke**. Do wordline-a pa dostopa naslovni dekodirnik, kateri da signal, naj kondenzator spusti svoj naboj na bitno linijo.
@@ -19,12 +24,36 @@ DRAM polje, je v bistvu 2D array DRAM celic. Do naslova v DRAM polju dostopamo s
 
 <img src="./images/dram-array.png " width="600" height="400"/>
 
-Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovne linije multiplexirane. 
+Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovne linije multiplexirane. Zato za izbiro stolpca in vrstice uvedemo dva nova signala -> CAS(*Column access strobe*) in RAS(*Row access strobe*). Ter uvedemo tudi WE(*write enable*) signal, s katerim izberemo ali bomo pisali al brali. Med branjem nam pride prav tudi OE(*Output enable signal*), s katerim omejimo pretok podatka na bitno linijo, dokler nismo pripravljeni na sprejem podatka. Vsej tej signali so *active low* kar pomeni, da so aktivni, ko je na njih logicna nicla.
 
 <img src="./images/dram-addressing.png " width="600" height="400"/>
 
 
 ### Opišite dostop (bralni ali pisalni) do DRAM banke (časovno zaporedje naslovnih in kontrolnih signalov, časi, ..)
+### Branje
+Za branje potrebujemo najprej izbrati celico, katero bomo brali z dvema signaloma RAS in CAS. Nato pa ta signal zazna tipalni ojacevalnik in poslje podatke na izhodne pine. Postopek branja:
+- Najprej naslovimo vrstico na naslovnih pinih
+- Nato se sprozi RAS signal (*active low*), traja z vnaprej dolocenim casom **tRAS**. Ko je aktiven RAS signal, vse celice v vrstici zacnejo spuscati bite na bitno linijo.
+- Nato naslovimo se stolpce
+- Pred aktivacijo CAS signala je potrebno aktivirati se WE signal (*postavimo ga na visoko*)
+- Po predpisanem casu **tRCD** aktiviramo se CAS signal (*active low*), kateri ostane aktiviran **tCAS** casa. *RAS-to-CAS* zakasnitev nam zagoravlja, da se bo podatek pravilno zaznal na tipalnih ojacevalnikih.
+- Podatki se pojavijo na izhodnih pinih pomnilniske naprave. Podatki se pojavijo na izhodnih pinih po **tCL** casu.
+- Preden lahko recemo da smo uspesno prebrali podatke, moramo se zagotoviti da se deaktivirata RAS in CAS signala. Sele nato se lahko izvede novo branje, po **tRP** (*row precharge*) casu.
+
+En cikel branja traja: **tRC = tRAS + tRP**.
+
+### Pisanje
+Za pisanje potrebujemo najprej izbrati celico, katero bomo brali z dvema signaloma RAS in CAS, ter na vhodne pine napisati podatke, katere zelimo pisati. Nato tipalni ojacevalnik napolni oz. izprazne kondenzatorje v izbranih celicah (*odvisno od vhoda, logicna 0 ali 1*)Postopek pisanja:
+- Najprej naslovimo vrstico na naslovnih pinih
+- Nato se sprozi RAS signal (*active low*), traja z vnaprej dolocenim casom **tRAS**. Ko je aktiven RAS signal, se vrstice odprejo.
+- Zdaj se morajo pojaviti podatki na vhodnih pinih.
+- Po podatkih moramo se nasloviti stolpce.
+- Nato se postavi **WE** na **active low**.
+- Po predpisanem casu **tRCD** se vkljuci CAS signal(*active low*) in ostane odprt **tCAS** casa.
+- [nism 100%] tle tipalni ojacevalniki zapisejo podatke.
+- Preden lahko recemo da smo uspesno prebrali zapisali, moramo se zagotoviti da se deaktivirata RAS in CAS signala. Sele nato se lahko izvede novo branje, po tRP (row precharge) casu.
+
+Cikel pisanja traja ravno toliko casa kakor cikel branja.
 
 
 ### Kako osvežujemo vsebino vsrtice v DRAM banki?
@@ -37,7 +66,7 @@ Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 - Po dolocenem delay-u, RAS vrnemo na visok signal.
 
 ### Summary: Importatnt timings in DRAMs
-| name                                | symbol | Description                                                                                                                                                                   |
+| Name                                | Symbol | Description                                                                                                                                                                   |
 |-------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Row Active Time                     | tRAS   | The minimum amount of time RAS is required to be active (low) to read or write to a memory location.                                                                          |
 | CAS latency                         | tCL    | This is the time interval it takes to read the first bit of memory from a DRAM with the correct row already open.                                                             |
@@ -47,12 +76,12 @@ Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 | Row Cycle Time                      | tRC    | This is the time associated with single rad or write cycle. tRC = tRAS + tRP                                                                                                  |
 
 This table is taken from ors book.
-
-### Zakaj v polju DRAM celic vrstice niso dolge toliko kot je dolga ena pomnilniška beseda?
-### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
-### Kaj sdo časi tRAS, tRDC, tRP, tRCin tCL?
-### Kako je definiran čas dosatopa do vrstice tRC?
 ### Kako izboljšamo odzivnost DRAM pomnilnikov? Kaj je Fast Page Mode DRAM? Kaj pa EDO DRAM?
+Fast page mode DRAM - eliminira potrebo po ponovnem naslavljanju vrstice, ce je ze bila odprta v predhodnjem branju, tako potrebujemo nasloviti samo dolocene stolpce --> eliminiramo RAS signal.
+
+EDO RAM - Dovoljuje, da podatki ostanejo na izhodnih pinih, brez cakanja, da se tej podatki najprej preberejo, tako se lahko prej izvede naslednji cikel.
+
+
 ### Kakšne izboljšave prinaša SDRAM?
 ### Kaj je CAS latenca pri SDRAM-ih? Kako je pri SDRAM-ih definirana (določena)? 
 ### Kakšne so tipične vrednosti časov tRCD, tCL (CAS latency), tRP pri modernih SDRAM-ih? Ali jih lahko tehnološko skrajšamo in kako?
