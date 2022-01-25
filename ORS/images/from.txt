@@ -1,4 +1,9 @@
 ram.jpg - https://www.idgcdn.com.au/article/images/740x500/dimg/crucial_ddr4_udimm_dynamic_right_angle.jpg
 pic8259a.png - lastni zapiski
 pic8259a-cascade.png - Bulić, Patricio - Basic Components Of Computer Systems, A Textbook, Springer, 2021
-
+apic_message.png - lastni zapiski
+round_robin.png - Bulić, Patricio - Basic Components Of Computer Systems, A Textbook, Springer, 2021
+8237a.png - Bulić, Patricio - Zapiski pri predmetu ORS, 2020
+stm32_dma.png - Bulić, Patricio - Zapiski pri predmetu ORS, 2020
+bus_mastering.png - Bulić, Patricio - Zapiski pri predmetu ORS, 2020
+vmem.png - lastni zapiski
