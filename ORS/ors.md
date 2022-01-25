@@ -130,23 +130,49 @@ Ker so vse interne operacije po novem reazlizirane s pomocjo koncnega avtomata, 
 med 13,5ns in 18ns, ne moremo jih tehnolosko skrajsati, saj bi tako potrebovali dodatno zmanjšati celice, kar fizično ni možno.
 ### Kaj je DDR? Kaj je 2n-prefetch? 
 SDRAM-e lahko še dodatno pohitrimo tako, da bi z enim READ/WRITE ukazom namesto ene
-pomnilniške besede prenesli dve zaporedni.
+pomnilniške besede prenesli dve zaporedni. Sepravi na pozitivno urino fronto se prenese prvih 8 bitov in na negativno se dodatnih 8, kateri se bufferajo na koncu v fifo vrsti in se sele nato pojavijo na output pinih.
 ### Kakšna je razlika med eksplozijskim prenosom in 2n-prefetchom? Ali lahko uporabomo oboje?
 The downside of the 2N-prefetch architecture means that short column bursts are
 no longer possible. In DDR SDRAM devices, a minimum burst length of 2 columns
 of data is accessed per column read command.
-### Ali pri DDR(2,3,4) lahko opravimo eksplozijski dostop dolžine 1? 
+### Ali pri DDR(2,3,4) lahko opravimo eksplozijski dostop dolžine 1?
+Da, ampak vec kot 2 ni mozno.
 ### Opišite kako pohitrimo dostope pri DDR(2,3,4) v primerjavi s SDRAM-i?
+DDR2 - 4N prefetch(interna ura tece s polovicno hitrostjo zunanje(zunanja = ura na vodilu))
+
+DDR3,4 - 8N prefetch(interna ura je 4x pocasnejsa kot zunanja)
+
 ### Kako se pri SDRAM-ih mapirajo naslovi iz CPE v naslove vrstice, stolpca, banke?
+```
+[     vrstica        |Hi col.| banka   |    stolpec    ]
+        12              2        3           8
+```
+S takšnim naslavljanjem so zaporedne vrstice v različnih bankah, ki jih lahko med sabo prepletamo. S
+tem maskiramo **tRP**. Ko pri tem naslavljanju pridemo do konca vrstice se naslovi ista vrstica v drugi
+banki. Tipično je velikost bloka v predpomnilniku 64B. Recimo, da je ta blok shranjen v zadnjih 64B vrstice. Če
+pride do zgrešitve v tem bloku, bo potrebno zapreti trenutno vrstico in odpreti naslednjo. Zaradi tega
+je bolje če zaporedne predpomnilniške bloke hranimo v različnih bankah, ki jih lahko med sabo
+prepletamo.
+Naslov vrstice razdelimo na dva dela:
+- Hi col. – naslavlja isti blok predpomnilnika v različnih bankah.
+- Low column – naslavlja posamezne besede v predpomnilniškem bloku.
+
 ### Kaj je DIMM modul?
 ### Kaj je rank?
 ### Do koliko podatkov naenkrat dostopamo pri DDR(2,3,4) DIMM modulu?
-### Kajh pomeniji čai podani kot npr. 9-9-9 pri DIMM modulih?
+### Kajh pomeni ce so casi podani kot npr. 9-9-9 pri DIMM modulih?
+```
+CL-tRCD-tRP
+```
+CL = 9 clock cycles, tRCD=9 clock cycles, tRP = 9 clock cycles
+
 ### Kaj pomeni PC4-19200 pri DDR4 DIMM modulih? 
 ### Kako je določena frkevnca ure na vodilu za DDR(2,3,4)?
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
 ### Kako so kanali označeni na matičnih ploščah? 
+z barvami :))
 ### Predpostavite, da imate dva enaka DIMM modula? Kako jih boste vstavili v sockete na matični plošči? Zakaj?
+v isto pobarvane:)))
 
 ## PREKINITVE
 
