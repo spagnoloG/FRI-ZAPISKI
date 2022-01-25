@@ -6,6 +6,7 @@ trenutno na voljo:
 - [VIS](https://spagnolog.github.io/FRI-ZAPISKI/VIS/vis.pdf)
 - [APS-1](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/APS/aps.md)
 - [TOC](https://spagnolog.github.io/FRI-ZAPISKI/TOC/toc.pdf)
+- [ORS](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/ORS/ors.md)
 
 Best **IRZ** repo --> https://github.com/JakMar17/IRZ-skripta (creds: JakMar17 ) <br>
 Feel free to edit, correct and share these documents. <br>
