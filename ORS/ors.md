@@ -77,19 +77,60 @@ Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 
 This table is taken from ors book.
 ### Kako izboljšamo odzivnost DRAM pomnilnikov? Kaj je Fast Page Mode DRAM? Kaj pa EDO DRAM?
-Fast page mode DRAM - eliminira potrebo po ponovnem naslavljanju vrstice, ce je ze bila odprta v predhodnjem branju, tako potrebujemo nasloviti samo dolocene stolpce --> eliminiramo RAS signal.
+Fast page mode DRAM - eliminira potrebo po ponovnem naslavljanju vrstice, ce je ze bila odprta v predhodnjem branju, tako potrebujemo nasloviti samo dolocene stolpce --> eliminiramo RAS signal in lahko na hitro preberemo se ostale sosednje stolpce. Vrstico osvezimo, sele ko zelimo brati neke podatke, ki niso v isti vrstici(do tedaj so vrednosti shranjene v SRAM celicah na koncu tipalnih ojacevalnikov).
 
 EDO RAM - Dovoljuje, da podatki ostanejo na izhodnih pinih, brez cakanja, da se tej podatki najprej preberejo, tako se lahko prej izvede naslednji cikel.
 
-
+### Opišite dostop (pisalni ali bralni) do banke v SDRAM pomnilniku? 
 ### Kakšne izboljšave prinaša SDRAM?
+Vse operacije (odpiranje vrstice, naslavljanje stolpca, zapiranje vrstice) so sinhronizirane z interno uro. Basically en koncni avtomat, ki prozi te signale na dolocene urine fronte. Bank je pri SDRAMIh vec (2-16), kar nam omogoca prepletanje bank, npr. med tem ko iz ene banke beremo, lahko zraven eno drugo banko osvezujemo. Ali pa ko dostopamo v eni banki do vrstice `i` in do stolpca `j` lahko v drugi banki ta cas odprem vstico `i` in stolpec `j+1`.
+Dodana sta tudi dva nova registra, data input register in data output register, v katerih lahko zacasno shranimo prebrane oz. tiste bite, ki jih zelimo zapisati v SDRAM.
+Cevovodenje READ/WRITE/PRECHARGE ukazov.
+
+### Kaj so ukazi pri SDRAM-ih?
+Potek izvajanja ukazov v SDRAM:
+- ACTIVE + naslov vrstice na A vodilo + naslov banke (odpiranje vrstice) </br>
+  CS-0,
+  WE-1,
+  CAS-1,
+  RAS-0
+- READ + naslov stolpca + naslov banke (beri  stolpec)</br>
+  CS-0,
+  WE-1,
+  CAS-0,
+  RAS-1
+- PRECHARGE + naslov vrstice + naslov banke (osvezi vrstico)
+- WRITE (pisi stolpec)
+
+#### Summary: Importatn timings in SDRAMs
+| Name                                | Symbol | Description                                                                                                                                                                                                                                                                                                                                      |
+|-------------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CAS latency                         | CL     | The number of cycles between sending a column address to the memory and the beginning of the data in response to a READ command. This is the number of cycles it takes to read the first bit of memory from a DRAM with the correct row already open. CL is an exact number that must be agreed on between the memory controller and the memory. |
+| Row Address to Column Address Delay | tRCD   | The minimum number of clock cycles required between opening a row and issuing a READ/WRITE command. The time to read the first bit of memory from an SDRAM without an active row is tRCD+ CL.                                                                                                                                                    |
+| Row Precharge Time                  | tRP    | precharge command and opening the next row. The time to read the first bit of memory from an SDRAM with the wrong row open is tRP+ tRCD + CL.                                                                                                                                                                                                    |
+| Row Active Time                     | tRAS   | The minimum number of clock cycles required between a row active command and issuing the precharge command. This is the time needed to internally refresh the row, and overlaps with tRCD . In SDRAM modules, it is usually tRCD+ CL.                                                                                                            |
+
+This table is taken from ors book.
+
+### Kaj je eksplozijski prenos?  
+Velika novost v SDRAM-ih je tudi **BURST** ali **eksplozijski** prenos. - Z enim samim READ ukazom in enim samim naslovom stolpca, nam SDRAM vrne 2-8 stolpcev, tako da v vsaki urini periodi zapise enega v izhodni register.
+
+Ker so vse interne operacije po novem reazlizirane s pomocjo koncnega avtomata, signali RAS, CAS, WE, CS niso direktno povezani na interno logiko DRAMA (zdaj so tam kot ukazno vodilo za koncni avtomat) - izgubili so pomeni, katerega so imeli pri DRAM-ih.
+
+
+<img src="./images/sdram-commands.png " width="800" height="350"/>
+
+
 ### Kaj je CAS latenca pri SDRAM-ih? Kako je pri SDRAM-ih definirana (določena)? 
 ### Kakšne so tipične vrednosti časov tRCD, tCL (CAS latency), tRP pri modernih SDRAM-ih? Ali jih lahko tehnološko skrajšamo in kako?
+med 13,5ns in 18ns, ne moremo jih tehnolosko skrajsati, saj bi tako potrebovali dodatno zmanjšati celice, kar fizično ni možno.
 ### Kaj je DDR? Kaj je 2n-prefetch? 
-### Kaj so ukazi pri SDRAM-ih?
-### Opišite dostop (pisalni ali bralni) do banke v SDRAM pomnilniku? 
-### Kaj je eksplozijski prenos?  
+SDRAM-e lahko še dodatno pohitrimo tako, da bi z enim READ/WRITE ukazom namesto ene
+pomnilniške besede prenesli dve zaporedni.
 ### Kakšna je razlika med eksplozijskim prenosom in 2n-prefetchom? Ali lahko uporabomo oboje?
+The downside of the 2N-prefetch architecture means that short column bursts are
+no longer possible. In DDR SDRAM devices, a minimum burst length of 2 columns
+of data is accessed per column read command.
 ### Ali pri DDR(2,3,4) lahko opravimo eksplozijski dostop dolžine 1? 
 ### Opišite kako pohitrimo dostope pri DDR(2,3,4) v primerjavi s SDRAM-i?
 ### Kako se pri SDRAM-ih mapirajo naslovi iz CPE v naslove vrstice, stolpca, banke?
@@ -230,3 +271,11 @@ located in the row previously accessed.
 In EDO DRAMs, data is still present on the output pins, while CAS is chang-
 ing, and a new column address is latched. This allows a certain amount of
 overlap in operation (pipelining), resulting in faster access time.
+
+> SDRAM devices have a synchronous device interface, where commands,
+instead of signals, are used to control internal latches.
+In SDRAM devices, signals CAS, RAS, WE and CS form a command bus
+used to transmit commands to the internal state machine.
+SDRAM devices contain multiple independent banks.
+SDRAMs can transfer many columns over several cycles per request without
+sending any new addresses. This type of transfer is referred to as burst mode.
