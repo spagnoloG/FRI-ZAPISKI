@@ -27,7 +27,6 @@ DRAM polje, je v bistvu 2D array DRAM celic. Do naslova v DRAM polju dostopamo s
 
 ### Zakaj v polju DRAM celic vrstice niso dolge toliko kot je dolga ena pomnilniška beseda?
 ### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
-=======
 Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovne linije multiplexirane. Zato za izbiro stolpca in vrstice uvedemo dva nova signala -> CAS(*Column access strobe*) in RAS(*Row access strobe*). Ter uvedemo tudi WE(*write enable*) signal, s katerim izberemo ali bomo pisali al brali. Med branjem nam pride prav tudi OE(*Output enable signal*), s katerim omejimo pretok podatka na bitno linijo, dokler nismo pripravljeni na sprejem podatka. Vsej tej signali so *active low* kar pomeni, da so aktivni, ko je na njih logicna nicla.
 
 <img src="./images/dram-addressing.png " width="600" height="400"/>
