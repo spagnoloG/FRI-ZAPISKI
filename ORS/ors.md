@@ -410,3 +410,42 @@ used to transmit commands to the internal state machine.
 SDRAM devices contain multiple independent banks.
 SDRAMs can transfer many columns over several cycles per request without
 sending any new addresses. This type of transfer is referred to as burst mode.
+
+> Besides being designed for different processors, the main difference between the ARM AIC and Intel 8259A PIC is how the interrupt vector is
+obtained. In ARM AIC, the CPU reads the interrupt vector from an AIC’s
+memory-mapped register using a LOAD instruction, while in 8259A PIC,
+the CPU reads the vector from the data bus, without executing any instruction.
+The former is considered faster (recall that instructions in ARM9 are executed in 5 clock cycles) but requires additional signaling between interrupt
+controller and CPU (INTA) and a special interrupt-acknowledge cycle.
+
+> Direct memory access (DMA) is a mechanism that allows us to offload the
+CPU and to have a DMA controller transfer data directly between a peripheral device and the main memory.
+A DMA transfer starts with a peripheral device placing a DMA request to
+the DMA controller. The DMA controller then requests the bus from the
+CPU and starts the transfer. When the DMA transfer is complete, the DMA
+controller interrupts the CPU.
+Because of the use of cache and memory hierarchy in modern computer systems, a DMA transfer does not prevent the CPU from fetching instructions
+and data.
+
+> Each DMA transfer is driven by at least the DMA controller’s internal two
+registers: the address register and the count register.
+A DMA channel is a pair of two control signals between a peripheral device
+and the DMA controller: DMA request (DREQ) and DMA acknowledge
+(DACK).
+In "Fly-by" DMA transfers, the data, which is transferred between an I/O
+device and memory, does not pass through the DMA controller. Only the
+memory address needs to be specified, while the peripheral device is selected by the DACK signal. Only one memory transaction is needed to accomplish a DMA transfer.
+In "Fly-through" DMA, both source and destination address need to be specified. The data flows through the DMA controller, which has a FIFO buffer
+to store the data temporarily. The "Fly-through" DMA controller first places
+the source address onto the address bus, reads the data from the source into
+its internal FIFO, then places the destination address onto the address bus
+and writes the data from its FIFO into the destination. Two memory trans
+actions are required to accomplish one DMA transfer.
+
+> The Intel 8237A controller is a "fly-by" DMA controller. Subsequently, the
+DMA can only transfer data between an I/O device and a memory. Each
+DMA transfer requires only one memory transaction. It was used in Intelbased PC systems.
+It contains four DMA channels, and any of the channels may be active at
+any moment. Each channel in The 8237A DMA controller has two internal
+registers that control the transfer: the count register and the address register.
+Both registers are programmable by the CPU.
