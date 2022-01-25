@@ -7,3 +7,5 @@ round_robin.png - Bulić, Patricio - Basic Components Of Computer Systems, A Tex
 stm32_dma.png - Bulić, Patricio - Zapiski pri predmetu ORS, 2020
 bus_mastering.png - Bulić, Patricio - Zapiski pri predmetu ORS, 2020
 vmem.png - lastni zapiski
+dram-cell.png - from ors book
+dram-array.png - @Slime
