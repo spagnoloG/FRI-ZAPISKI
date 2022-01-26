@@ -165,6 +165,7 @@ Rank ali rang je množica pomnilniških čipov, vezanih tako, da si delijo kontr
 ### Do koliko podatkov naenkrat dostopamo pri DDR(2,3,4) DIMM modulu?
 Naenkrat lahko dostopamo do podatkov v velikosti enega predpomnilniškega bloka, saj sta velikost in organizacija ranka prilagojena predpomnilniku.  
 Pri DDR4 čipih to pomeni **8** (ker imamo 8n prefetch) * **8 B** (dolžina eksplozijskega prenosa je 8 bajtov) **= 64B**.
+Hkrati lahko dostopamo le do enega ranka na DIMM modulu.
 
 ### Kajh pomeni ce so casi podani kot npr. 9-9-9 pri DIMM modulih?
 ```
