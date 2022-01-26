@@ -179,7 +179,7 @@ CL = 9 clock cycles, tRCD=9 clock cycles, tRP = 9 clock cycles
 ### Kako so kanali označeni na matičnih ploščah? 
 z barvami :))
 ### Predpostavite, da imate dva enaka DIMM modula? Kako jih boste vstavili v sockete na matični plošči? Zakaj?
-v isto pobarvane:)))
+v isto pobarvane:))), saj enako pobarvanim režam pripadajo različni kanali.
 
 ## PREKINITVE
 
