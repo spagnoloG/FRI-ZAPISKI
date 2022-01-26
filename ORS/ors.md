@@ -157,6 +157,8 @@ Naslov vrstice razdelimo na dva dela:
 - Low column – naslavlja posamezne besede v predpomnilniškem bloku.
 
 ### Kaj je DIMM modul?
+Modul (vezje), ki ima na vsaki strani po en rank z 8 čipi (skupaj 16).
+
 ### Kaj je rank?
 ### Do koliko podatkov naenkrat dostopamo pri DDR(2,3,4) DIMM modulu?
 ### Kajh pomeni ce so casi podani kot npr. 9-9-9 pri DIMM modulih?
