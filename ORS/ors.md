@@ -177,6 +177,15 @@ CL = 9 clock cycles, tRCD=9 clock cycles, tRP = 9 clock cycles
 Gre za oznako hitrosti DIMM modula. **PC4** označuje, da modul uporablja DDR4 čipe, **19200** pa pove, da lahko en takšen modul prenese 19200 MB na sekundo.
 
 ### Kako je določena frekvenca ure na vodilu za DDR(2,3,4)?
+Frekvenca ure na vodilu je odvisna od **interne frekvence** pomnilnika in od vrednosti **prefetch**. Ti dve vrednosti **pomnožimo skupaj** (če je prefetch npr. 8n, moramo 8-krat hitreje prenašati podatke po vodilu, kot se prenašajo od celic do registrov vrstice), rezultat pa **delimo z 2**, saj uporabljamo DDR.
+
+V splošnem pa velja:
+DDR  --> 200 MHz
+DDR2 --> 400 MHz
+DDR3 --> 800 MHz
+DDR4 --> 1600 MHz
+DDR5 --> 3200 MHz
+
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
 ### Kako so kanali označeni na matičnih ploščah? 
 z barvami :))
