@@ -187,6 +187,9 @@ DDR4 --> 1600 MHz
 DDR5 --> 3200 MHz
 
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
+Pomnilniški kanal je povezava med RAM in CPE. Sodobni procesorji podpirajo od 2 do 4 kanale.
+(vir: [https://blog.logicalincrements.com/2019/09/ram-channels-explanation-guide/](https://blog.logicalincrements.com/2019/09/ram-channels-explanation-guide/))
+
 ### Kako so kanali označeni na matičnih ploščah? 
 z barvami :))
 ### Predpostavite, da imate dva enaka DIMM modula? Kako jih boste vstavili v sockete na matični plošči? Zakaj?
