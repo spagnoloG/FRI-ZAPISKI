@@ -173,7 +173,9 @@ CL-tRCD-tRP
 ```
 CL = 9 clock cycles, tRCD=9 clock cycles, tRP = 9 clock cycles
 
-### Kaj pomeni PC4-19200 pri DDR4 DIMM modulih? 
+### Kaj pomeni PC4-19200 pri DDR4 DIMM modulih?
+Gre za oznako hitrosti DIMM modula. **PC4** označuje, da modul uporablja DDR4 čipe, **19200** pa pove, da lahko en takšen modul prenese 19200 MB na sekundo.
+
 ### Kako je določena frekvenca ure na vodilu za DDR(2,3,4)?
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
 ### Kako so kanali označeni na matičnih ploščah? 
