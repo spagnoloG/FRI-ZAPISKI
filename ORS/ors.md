@@ -5,12 +5,12 @@
 ## DRAM
 ### Kaj je banka v DRAM pomnilnikih? 
 ### Kaj je polje DRAM? Kako je organizirano?
-### Zakaj imamo v polju DRMA celic dolge vrstice?
+### Zakaj imamo v polju DRAM celic dolge vrstice?
 ### Koliko polj DRAM vsebuje ena banka?
 ### Do katerih DRAM celic v DRAM banki dostopamo istočasno?
-### Zakaj v polju DRAM celic vrstice niso dolge toliko kot je dolga ena pomnilniška beseda?
-### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
-### Kaj sdo časi tRAS, tRDC, tRP, tRCin tCL?
+### Zakaj v polju DRAM celic vrstice niso dolge toliko, kot je dolga ena pomnilniška beseda?
+### Zakaj potrebujemo signala CAS# in RAS#? Zakaj preprosto ne izstavimo naslova pomnilniške besede?
+### Kaj so časi tRAS, tRDC, tRP, tRCin tCL?
 ### Kako je definiran čas dosatopa do vrstice tRC?
 Vsi tej odgovori so odgovorjeni v tem spisku spodaj
 
@@ -25,14 +25,14 @@ DRAM polje, je v bistvu 2D array DRAM celic. Do naslova v DRAM polju dostopamo s
 <img src="./images/dram-array.png " width="600" height="400"/>
 
 
-### Zakaj v polju DRAM celic vrstice niso dolge toliko kot je dolga ena pomnilniška beseda?
+### Zakaj v polju DRAM celic vrstice niso dolge toliko, kot je dolga ena pomnilniška beseda?
 ### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
 Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovne linije multiplexirane. Zato za izbiro stolpca in vrstice uvedemo dva nova signala -> CAS(*Column access strobe*) in RAS(*Row access strobe*). Ter uvedemo tudi WE(*write enable*) signal, s katerim izberemo ali bomo pisali al brali. Med branjem nam pride prav tudi OE(*Output enable signal*), s katerim omejimo pretok podatka na bitno linijo, dokler nismo pripravljeni na sprejem podatka. Vsej tej signali so *active low* kar pomeni, da so aktivni, ko je na njih logicna nicla.
 
 <img src="./images/dram-addressing.png " width="600" height="400"/>
 
 
-### Opišite dostop (bralni ali pisalni) do DRAM banke (časovno zaporedje naslovnih in kontrolnih signalov, časi, ..)
+### Opišite dostop (bralni ali pisalni) do DRAM banke (časovno zaporedje naslovnih in kontrolnih signalov, časi, ...)
 ### Branje
 Za branje potrebujemo najprej izbrati celico, katero bomo brali z dvema signaloma RAS in CAS. Nato pa ta signal zazna tipalni ojacevalnik in poslje podatke na izhodne pine. Postopek branja:
 - Najprej naslovimo vrstico na naslovnih pinih
@@ -84,7 +84,7 @@ Fast page mode DRAM - eliminira potrebo po ponovnem naslavljanju vrstice, ce je 
 
 EDO RAM - Dovoljuje, da podatki ostanejo na izhodnih pinih, brez cakanja, da se tej podatki najprej preberejo, tako se lahko prej izvede naslednji cikel.
 
-### Opišite dostop (pisalni ali bralni) do banke v SDRAM pomnilniku? 
+### Opišite dostop (pisalni ali bralni) do banke v SDRAM pomnilniku. 
 ### Kakšne izboljšave prinaša SDRAM?
 Vse operacije (odpiranje vrstice, naslavljanje stolpca, zapiranje vrstice) so sinhronizirane z interno uro. Basically en koncni avtomat, ki prozi te signale na dolocene urine fronte. Bank je pri SDRAMIh vec (2-16), kar nam omogoca prepletanje bank, npr. med tem ko iz ene banke beremo, lahko zraven eno drugo banko osvezujemo. Ali pa ko dostopamo v eni banki do vrstice `i` in do stolpca `j` lahko v drugi banki ta cas odprem vstico `i` in stolpec `j+1`.
 Dodana sta tudi dva nova registra, data input register in data output register, v katerih lahko zacasno shranimo prebrane oz. tiste bite, ki jih zelimo zapisati v SDRAM.
@@ -105,7 +105,7 @@ Potek izvajanja ukazov v SDRAM:
 - PRECHARGE + naslov vrstice + naslov banke (osvezi vrstico)
 - WRITE (pisi stolpec)
 
-#### Summary: Importatn timings in SDRAMs
+#### Summary: Important timings in SDRAMs
 | Name                                | Symbol | Description                                                                                                                                                                                                                                                                                                                                      |
 |-------------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CAS latency                         | CL     | The number of cycles between sending a column address to the memory and the beginning of the data in response to a READ command. This is the number of cycles it takes to read the first bit of memory from a DRAM with the correct row already open. CL is an exact number that must be agreed on between the memory controller and the memory. |
@@ -130,13 +130,13 @@ med 13,5ns in 18ns, ne moremo jih tehnolosko skrajsati, saj bi tako potrebovali 
 ### Kaj je DDR? Kaj je 2n-prefetch? 
 SDRAM-e lahko še dodatno pohitrimo tako, da bi z enim READ/WRITE ukazom namesto ene
 pomnilniške besede prenesli dve zaporedni. Sepravi na pozitivno urino fronto se prenese prvih 8 bitov in na negativno se dodatnih 8, kateri se bufferajo na koncu v fifo vrsti in se sele nato pojavijo na output pinih.
-### Kakšna je razlika med eksplozijskim prenosom in 2n-prefetchom? Ali lahko uporabomo oboje?
+### Kakšna je razlika med eksplozijskim prenosom in 2n-prefetchem? Ali lahko uporabimo oboje?
 The downside of the 2N-prefetch architecture means that short column bursts are
 no longer possible. In DDR SDRAM devices, a minimum burst length of 2 columns
 of data is accessed per column read command.
 ### Ali pri DDR(2,3,4) lahko opravimo eksplozijski dostop dolžine 1?
 Da, ampak vec kot 2 ni mozno.
-### Opišite kako pohitrimo dostope pri DDR(2,3,4) v primerjavi s SDRAM-i?
+### Opišite, kako pohitrimo dostope pri DDR(2,3,4) v primerjavi s SDRAM-i?
 DDR2 - 4N prefetch(interna ura tece s polovicno hitrostjo zunanje(zunanja = ura na vodilu))
 
 DDR3,4 - 8N prefetch(interna ura je 4x pocasnejsa kot zunanja)
@@ -157,21 +157,43 @@ Naslov vrstice razdelimo na dva dela:
 - Low column – naslavlja posamezne besede v predpomnilniškem bloku.
 
 ### Kaj je DIMM modul?
+Modul (vezje), ki ima na vsaki strani po en rank z 8 čipi (skupaj 16).
+
 ### Kaj je rank?
+Rank ali rang je množica pomnilniških čipov, vezanih tako, da si delijo kontrolne signale (vsaj enega).
+
 ### Do koliko podatkov naenkrat dostopamo pri DDR(2,3,4) DIMM modulu?
-### Kajh pomeni ce so casi podani kot npr. 9-9-9 pri DIMM modulih?
+Naenkrat lahko dostopamo do podatkov v velikosti enega predpomnilniškega bloka, saj sta velikost in organizacija ranka prilagojena predpomnilniku.  
+Pri DDR4 čipih to pomeni **8** (ker imamo 8n prefetch) * **8 B** (dolžina eksplozijskega prenosa je 8 bajtov) **= 64B**.
+Hkrati lahko dostopamo le do enega ranka na DIMM modulu.
+
+### Kaj pomeni, če so časi podani kot npr. 9-9-9 pri DIMM modulih?
 ```
 CL-tRCD-tRP
 ```
 CL = 9 clock cycles, tRCD=9 clock cycles, tRP = 9 clock cycles
 
-### Kaj pomeni PC4-19200 pri DDR4 DIMM modulih? 
-### Kako je določena frkevnca ure na vodilu za DDR(2,3,4)?
+### Kaj pomeni PC4-19200 pri DDR4 DIMM modulih?
+Gre za oznako hitrosti DIMM modula. **PC4** označuje, da modul uporablja DDR4 čipe, **19200** pa pove, da lahko en takšen modul prenese 19200 MB na sekundo.
+
+### Kako je določena frekvenca ure na vodilu za DDR(2,3,4)?
+Frekvenca ure na vodilu je odvisna od **interne frekvence** pomnilnika in od vrednosti **prefetch**. Ti dve vrednosti **pomnožimo skupaj** (če je prefetch npr. 8n, moramo 8-krat hitreje prenašati podatke po vodilu, kot se prenašajo od celic do registrov vrstice), rezultat pa **delimo z 2**, saj uporabljamo DDR.
+
+V splošnem pa velja:
+DDR  --> 200 MHz
+DDR2 --> 400 MHz
+DDR3 --> 800 MHz
+DDR4 --> 1600 MHz
+DDR5 --> 3200 MHz
+
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
+Pomnilniški kanal je povezava med RAM in CPE. Sodobni procesorji podpirajo od 2 do 4 kanale.
+(vir: [https://blog.logicalincrements.com/2019/09/ram-channels-explanation-guide/](https://blog.logicalincrements.com/2019/09/ram-channels-explanation-guide/))
+
 ### Kako so kanali označeni na matičnih ploščah? 
 z barvami :))
 ### Predpostavite, da imate dva enaka DIMM modula? Kako jih boste vstavili v sockete na matični plošči? Zakaj?
-v isto pobarvane:)))
+v isto pobarvane:))), saj enako pobarvanim režam pripadajo različni kanali.
 
 ## PREKINITVE
 
