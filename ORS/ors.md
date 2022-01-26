@@ -170,7 +170,7 @@ CL-tRCD-tRP
 CL = 9 clock cycles, tRCD=9 clock cycles, tRP = 9 clock cycles
 
 ### Kaj pomeni PC4-19200 pri DDR4 DIMM modulih? 
-### Kako je določena frkevnca ure na vodilu za DDR(2,3,4)?
+### Kako je določena frekvenca ure na vodilu za DDR(2,3,4)?
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
 ### Kako so kanali označeni na matičnih ploščah? 
 z barvami :))
