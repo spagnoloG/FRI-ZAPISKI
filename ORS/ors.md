@@ -105,7 +105,7 @@ Potek izvajanja ukazov v SDRAM:
 - PRECHARGE + naslov vrstice + naslov banke (osvezi vrstico)
 - WRITE (pisi stolpec)
 
-#### Summary: Importatn timings in SDRAMs
+#### Summary: Important timings in SDRAMs
 | Name                                | Symbol | Description                                                                                                                                                                                                                                                                                                                                      |
 |-------------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CAS latency                         | CL     | The number of cycles between sending a column address to the memory and the beginning of the data in response to a READ command. This is the number of cycles it takes to read the first bit of memory from a DRAM with the correct row already open. CL is an exact number that must be agreed on between the memory controller and the memory. |
@@ -167,7 +167,7 @@ Naenkrat lahko dostopamo do podatkov v velikosti enega predpomnilniškega bloka,
 Pri DDR4 čipih to pomeni **8** (ker imamo 8n prefetch) * **8 B** (dolžina eksplozijskega prenosa je 8 bajtov) **= 64B**.
 Hkrati lahko dostopamo le do enega ranka na DIMM modulu.
 
-### Kaj, pomeni če so časi podani kot npr. 9-9-9 pri DIMM modulih?
+### Kaj pomeni, če so časi podani kot npr. 9-9-9 pri DIMM modulih?
 ```
 CL-tRCD-tRP
 ```
