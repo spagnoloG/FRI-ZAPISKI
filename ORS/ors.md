@@ -68,7 +68,7 @@ Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 - Po dolocenem delay-u, CAS vrnemo na visok signal.
 - Po dolocenem delay-u, RAS vrnemo na visok signal.
 
-### Summary: Importatnt timings in DRAMs
+### Summary: Important timings in DRAMs
 | Name                                | Symbol | Description                                                                                                                                                                   |
 |-------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Row Active Time                     | tRAS   | The minimum amount of time RAS is required to be active (low) to read or write to a memory location.                                                                          |
