@@ -686,6 +686,25 @@ private booolean printLevel(int l, Tree r) {
   }
 }
 ```
+### Formule za drevesa (min in max št. elementov) 
+```
+BST
+- min: izrojeno drevo => seznam => n = h
+- max: 2^h - 1
+
+RB-TREE
+- min: 2^floor((h+1)/2) + 2^floor(h/2) - 2
+- max: 2^h - 1
+
+AVL-TREE
+- min: st(0) = 0, st(1)= 1, st(h) = st(h - 1) + st(h - 2) + 1
+- max: 2^h - 1
+
+B-TREE
+- min: 2*ceil(m/2)^(h-1) - 1
+- max: m^h - 1
+```
+
 
 ### Implementacija drevesa s poljem
 - vsako vozlisce hrani **stevilo sinov**, celo drevo pa stevilo vozlisc `n`
