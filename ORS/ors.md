@@ -138,7 +138,12 @@ The downside of the 2N-prefetch architecture means that short column bursts are
 no longer possible. In DDR SDRAM devices, a minimum burst length of 2 columns
 of data is accessed per column read command.
 ### Ali pri DDR(2,3,4) lahko opravimo eksplozijski dostop dolžine 1?
-Da, ampak vec kot 2 ni mozno.
+Ne, velikosti eksplozijskih prenosov (min-max) pri DDR(2,3,4) so naslednje:
+- DDR 2-8
+- DDR2 4-8
+- DDR3 8
+- DDR4 8
+- DDR5 16
 ### Opišite, kako pohitrimo dostope pri DDR(2,3,4) v primerjavi s SDRAM-i?
 DDR2 - 4N prefetch(interna ura tece s polovicno hitrostjo zunanje(zunanja = ura na vodilu))
 
