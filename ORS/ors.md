@@ -11,7 +11,7 @@
 ### Zakaj v polju DRAM celic vrstice niso dolge toliko, kot je dolga ena pomnilniška beseda?
 ### Zakaj potrebujemo signala CAS# in RAS#? Zakaj preprosto ne izstavimo naslova pomnilniške besede?
 ### Kaj so časi tRAS, tRDC, tRP, tRCin tCL?
-### Kako je definiran čas dosatopa do vrstice tRC?
+### Kako je definiran čas dostopa do vrstice tRC?
 Vsi tej odgovori so odgovorjeni v tem spisku spodaj
 
 DRAM polje je sestavljeno iz **DRAM celic**. Branje in pisanje v celico poteka preko bitne linije (BL). Stanje se za razliko od SRAM celic ohrani v kondenzatorju (realiziran je z uporabo MOS celic). To naredi DRAM celico zelo uporabno, saj je ravno zaradi kondenzatorja veliko manjsa kot SRAM celica. Ker je kondenzator _nestabilen_ - pocasi izpraznjuje svoj naboj na bitno linijo, ga je potrebno regularno osvezevati. Branje iz DRAM celice je **destruktivno**, tako da vsakemu branju sledi pisanje.
@@ -28,7 +28,7 @@ DRAM polje, je v bistvu 2D array DRAM celic. Do naslova v DRAM polju dostopamo s
 ### Zakaj v polju DRAM celic vrstice niso dolge toliko, kot je dolga ena pomnilniška beseda?
 Ker se do RAM-a dostopa v primeru zgrešitve v predpomnilniku, posledično pa se v RAM in iz njega prenaša za en predpomnilniški blok podatkov, kar je ponavadi več kot ena pomnilniška beseda naenkrat...
 
-### Zakaj potrebujemo signala CAS# in RAS# ? Zakaja preprosto ne izstavimo naslova pomnilniške besede?
+### Zakaj potrebujemo signala CAS# in RAS#? Zakaj preprosto ne izstavimo naslova pomnilniške besede?
 Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovne linije multiplexirane. Zato za izbiro stolpca in vrstice uvedemo dva nova signala -> CAS(*Column access strobe*) in RAS(*Row access strobe*). Ter uvedemo tudi WE(*write enable*) signal, s katerim izberemo ali bomo pisali al brali. Med branjem nam pride prav tudi OE(*Output enable signal*), s katerim omejimo pretok podatka na bitno linijo, dokler nismo pripravljeni na sprejem podatka. Vsej tej signali so *active low* kar pomeni, da so aktivni, ko je na njih logicna nicla.
 
 <img src="./images/dram-addressing.png " width="600" height="400"/>
@@ -194,7 +194,7 @@ Pomnilniški kanal je povezava med RAM in CPE. Sodobni procesorji podpirajo od 2
 
 ### Kako so kanali označeni na matičnih ploščah? 
 z barvami :))
-### Predpostavite, da imate dva enaka DIMM modula? Kako jih boste vstavili v sockete na matični plošči? Zakaj?
+### Predpostavite, da imate dva enaka DIMM modula. Kako jih boste vstavili v sockete na matični plošči? Zakaj?
 v isto pobarvane:))), saj enako pobarvanim režam pripadajo različni kanali.
 
 ## PREKINITVE
