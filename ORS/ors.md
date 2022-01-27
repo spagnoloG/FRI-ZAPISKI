@@ -36,7 +36,7 @@ Ker je naslovni prostor vrstic in stolpcev precej velik (32k vrstic), so naslovn
 ### Branje
 Za branje potrebujemo najprej izbrati celico, katero bomo brali z dvema signaloma RAS in CAS. Nato pa ta signal zazna tipalni ojacevalnik in poslje podatke na izhodne pine. Postopek branja:
 - Najprej naslovimo vrstico na naslovnih pinih
-- Nato se sprozi RAS signal (*active low*), traja z vnaprej dolocenim casom **tRAS**. Ko je aktiven RAS signal, vse celice v vrstici zacnejo spuscati bite na bitno linijo.
+- Nato se sprozi RAS signal (*active low*), traja z vnaprej določenim casom **tRAS**. Ko je aktiven RAS signal, vse celice v vrstici zacnejo spuscati bite na bitno linijo.
 - Nato naslovimo se stolpce
 - Pred aktivacijo CAS signala je potrebno aktivirati se WE signal (*postavimo ga na visoko*)
 - Po predpisanem casu **tRCD** aktiviramo se CAS signal (*active low*), kateri ostane aktiviran **tCAS** casa. *RAS-to-CAS* zakasnitev nam zagoravlja, da se bo podatek pravilno zaznal na tipalnih ojacevalnikih.
@@ -48,7 +48,7 @@ En cikel branja traja: **tRC = tRAS + tRP**.
 ### Pisanje
 Za pisanje potrebujemo najprej izbrati celico, katero bomo brali z dvema signaloma RAS in CAS, ter na vhodne pine napisati podatke, katere zelimo pisati. Nato tipalni ojacevalnik napolni oz. izprazne kondenzatorje v izbranih celicah (*odvisno od vhoda, logicna 0 ali 1*)Postopek pisanja:
 - Najprej naslovimo vrstico na naslovnih pinih
-- Nato se sprozi RAS signal (*active low*), traja z vnaprej dolocenim casom **tRAS**. Ko je aktiven RAS signal, se vrstice odprejo.
+- Nato se sprozi RAS signal (*active low*), traja z vnaprej določenim casom **tRAS**. Ko je aktiven RAS signal, se vrstice odprejo.
 - Zdaj se morajo pojaviti podatki na vhodnih pinih.
 - Po podatkih moramo se nasloviti stolpce.
 - Nato se postavi **WE** na **active low**.
@@ -60,13 +60,13 @@ Cikel pisanja traja ravno toliko casa kakor cikel branja.
 
 
 ### Kako osvežujemo vsebino vsrtice v DRAM banki?
-Ker so celice zgrajene iz kondenzatorjev, kateri *leakajo*, jih je potrebno intervalno osvezevati vrstico po vrstico. To se na modernih ram sistemih dogaja na priblizno 64ms. Frekvenca osvezevanja na DRAM modulih je dolocena s pomocjo internega oscilatorja in stevca, kateri indicira katero vrstico je potrebno osveziti.
+Ker so celice zgrajene iz kondenzatorjev, kateri *leakajo*, jih je potrebno intervalno osvezevati vrstico po vrstico. To se na modernih ram sistemih dogaja na priblizno 64ms. Frekvenca osvezevanja na DRAM modulih je določena s pomocjo internega oscilatorja in stevca, kateri indicira katero vrstico je potrebno osveziti.
 Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 - CAS signal postavimo na nizki signal, WE signal pa ostane v visokem stanju(ekvivalentno branju)
-- Po dolocenem delay-u, RAS preklopimo na nizek signal.
-- Interni stevec doloci katero vrstico je potrebno osveziti in naslovi dolocene stolpce.
-- Po dolocenem delay-u, CAS vrnemo na visok signal.
-- Po dolocenem delay-u, RAS vrnemo na visok signal.
+- Po določenem delay-u, RAS preklopimo na nizek signal.
+- Interni stevec doloci katero vrstico je potrebno osveziti in naslovi določene stolpce.
+- Po določenem delay-u, CAS vrnemo na visok signal.
+- Po določenem delay-u, RAS vrnemo na visok signal.
 
 ### Summary: Importatnt timings in DRAMs
 | Name                                | Symbol | Description                                                                                                                                                                   |
@@ -80,13 +80,13 @@ Za osvezevanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 
 This table is taken from ors book.
 ### Kako izboljšamo odzivnost DRAM pomnilnikov? Kaj je Fast Page Mode DRAM? Kaj pa EDO DRAM?
-Fast page mode DRAM - eliminira potrebo po ponovnem naslavljanju vrstice, ce je ze bila odprta v predhodnjem branju, tako potrebujemo nasloviti samo dolocene stolpce --> eliminiramo RAS signal in lahko na hitro preberemo se ostale sosednje stolpce. Vrstico osvezimo, sele ko zelimo brati neke podatke, ki niso v isti vrstici(do tedaj so vrednosti shranjene v SRAM celicah na koncu tipalnih ojacevalnikov).
+Fast page mode DRAM - eliminira potrebo po ponovnem naslavljanju vrstice, ce je ze bila odprta v predhodnjem branju, tako potrebujemo nasloviti samo določene stolpce --> eliminiramo RAS signal in lahko na hitro preberemo se ostale sosednje stolpce. Vrstico osvezimo, sele ko zelimo brati neke podatke, ki niso v isti vrstici(do tedaj so vrednosti shranjene v SRAM celicah na koncu tipalnih ojacevalnikov).
 
 EDO RAM - Dovoljuje, da podatki ostanejo na izhodnih pinih, brez cakanja, da se tej podatki najprej preberejo, tako se lahko prej izvede naslednji cikel.
 
 ### Opišite dostop (pisalni ali bralni) do banke v SDRAM pomnilniku. 
 ### Kakšne izboljšave prinaša SDRAM?
-Vse operacije (odpiranje vrstice, naslavljanje stolpca, zapiranje vrstice) so sinhronizirane z interno uro. Basically en koncni avtomat, ki prozi te signale na dolocene urine fronte. Bank je pri SDRAMIh vec (2-16), kar nam omogoca prepletanje bank, npr. med tem ko iz ene banke beremo, lahko zraven eno drugo banko osvezujemo. Ali pa ko dostopamo v eni banki do vrstice `i` in do stolpca `j` lahko v drugi banki ta cas odprem vstico `i` in stolpec `j+1`.
+Vse operacije (odpiranje vrstice, naslavljanje stolpca, zapiranje vrstice) so sinhronizirane z interno uro. Basically en koncni avtomat, ki prozi te signale na določene urine fronte. Bank je pri SDRAMIh vec (2-16), kar nam omogoca prepletanje bank, npr. med tem ko iz ene banke beremo, lahko zraven eno drugo banko osvezujemo. Ali pa ko dostopamo v eni banki do vrstice `i` in do stolpca `j` lahko v drugi banki ta cas odprem vstico `i` in stolpec `j+1`.
 Dodana sta tudi dva nova registra, data input register in data output register, v katerih lahko zacasno shranimo prebrane oz. tiste bite, ki jih zelimo zapisati v SDRAM.
 Cevovodenje READ/WRITE/PRECHARGE ukazov.
 
