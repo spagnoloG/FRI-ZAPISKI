@@ -185,12 +185,12 @@ Gre za oznako hitrosti DIMM modula. **PC4** označuje, da modul uporablja DDR4 �
 ### Kako je določena frekvenca ure na vodilu za DDR(2,3,4)?
 Frekvenca ure na vodilu je odvisna od **interne frekvence** pomnilnika in od vrednosti **prefetch**. Ti dve vrednosti **pomnožimo skupaj** (če je prefetch npr. 8n, moramo 8-krat hitreje prenašati podatke po vodilu, kot se prenašajo od celic do registrov vrstice), rezultat pa **delimo z 2**, saj uporabljamo DDR.
 
-V splošnem pa velja:
-DDR  --> 200 MHz
-DDR2 --> 400 MHz
-DDR3 --> 800 MHz
-DDR4 --> 1600 MHz
-DDR5 --> 3200 MHz
+V splošnem pa velja: <br />
+DDR  --> 200 MHz <br />
+DDR2 --> 400 MHz <br />
+DDR3 --> 800 MHz <br />
+DDR4 --> 1600 MHz <br />
+DDR5 --> 3200 MHz <br />
 
 ### Kaj so kanali? Koliko kanalov podpirajo sodobni procesorji in njihovi pomnilniški krmilniki?
 Pomnilniški kanal je povezava med RAM in CPE. Sodobni procesorji podpirajo od 2 do 4 kanale.
@@ -212,7 +212,7 @@ Prekinitve so mehanizem, s katerim zunanja naprava zahteva pozornost procesorja.
 Prekinitve se prožijo tako, da naprava aktivira (nastavi napetost na vodilu na HIGH ali LOW, odvisno od sistema) **IRQ** (*Interrupt Request*) vodilo in čaka na odgovor procesorja. Procesor preveri stanje IRQ pina/pinov vsakič, preden se iz pomnilnika dobi nov ukaz, na katerega kaže programski števec. Če je IRQ vodilo aktivno, potem procesor začne z izvajanjem **Prekinitvenega servisnega podprograma** (*Interrupt Service Program*), ki se nahaja na nekem stalnem naslovu v pomnilniku. Procesor prej izvede še vse ukaze v cevovodu, ki spreminjajo kontekst izvajajočega programa (registri, pomnilnik in zastavice) ter shrani na sklad vse pomembne registre (PC, SP, LR). CPE potem lahko s signalom **INTA** (*Interrupt acknowledge*) sporoči, da je videla prekinitev in da naprava lahko umakne/deaktivira IRQ.
 
 ### Kaj je prekinitvena tabela?
-Prekinitvena (vektorska) tabela je seznam naslovov prekinitvenega servisnega programa za vsako od I/O naprav, ki so povezane z CPE. Tabela je dolga toliko besed, kolikor je možno povezati naprav na CPE.
+Prekinitvena (vektorska) tabela je seznam naslovov prekinitvenega servisnega programa za vsako od I/O naprav, ki so povezane s CPE. Tabela je dolga toliko besed, kolikor je možno povezati naprav na CPE.
 
 ### Kako je organizirana prekinitvena tabela pri ARM Cortex-M procesorjih?
 ARM Cortex-M/ARM9 procesorji uporabljajo vektorsko tabelo, pri kateri je vsak zapis dolg 32 bitov, kar ni dovolj, da bi vseboval celotno kodo PSP-ja, vendar običajno vsebuje kazalec na pomnilniški naslov, kjer je začetek PSP-ja. Osnovna prekinitvena tabela vsebuje vektorje *Reset, Undefined Instruction, Software Interrupt, Prefetch Abort, Data Abort, Interrupt Request* in *Fast Interrupt Request*. Shranjene so tudi prioritete posameznih prekinitev, pri čemer ima v osnovni tabeli *Reset* najvišjo prioriteto (1), *Undefined Instruction* in *Undefined Instruction* pa najnižjo (6).
