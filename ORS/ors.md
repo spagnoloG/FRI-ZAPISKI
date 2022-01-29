@@ -63,6 +63,7 @@ Cikel pisanja traja ravno toliko časa kot cikel branja.
 
 
 ### Kako osvežujemo vsebino vsrtice v DRAM banki?
+
 Ker so celice zgrajene iz kondenzatorjev, ki *leakajo* (puščajo elektrone), jih je potrebno intervalno osveževati vrstico po vrstico. To se na modernih RAM sistemih dogaja na približno 64 ms. Frekvenca osveževanja na DRAM modulih je določena s pomočjo internega oscilatorja in števca, ki indicira, katero vrstico je potrebno osvežiti.
 Za osveževanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 - CAS signal postavimo v nizko stanje, WE signal pa ostane v visokem stanju (ekvivalentno branju).
@@ -70,6 +71,7 @@ Za osveževanje je uporabljena metoda *CAS-before-RAS refresh*. Koraki:
 - Interni števec določi, katero vrstico je potrebno osvežiti, in naslovi določene stolpce.
 - Po določenem delay-u CAS vrnemo v visoko stanje.
 - Po določenem delay-u RAS vrnemo v visoko stanje.
+
 
 ### Summary: Important timings in DRAMs
 | Name                                | Symbol | Description                                                                                                                                                                   |
@@ -139,6 +141,7 @@ no longer possible. In DDR SDRAM devices, a minimum burst length of 2 columns
 of data is accessed per column read command.
 ### Ali pri DDR(2,3,4) lahko opravimo eksplozijski dostop dolžine 1?
 Ne. Dolžina eksplozijskega prenosa mora biti enaka vrednosti prefetcha, ki pa je pri DDR SDRAM vsaj 2.
+
 ### Opišite, kako pohitrimo dostope pri DDR(2,3,4) v primerjavi s SDRAM-i?
 DDR2 - 4N prefetch (interna ura teče s polovično hitrostjo zunanje ure oz. ure na vodilu)
 
@@ -199,67 +202,88 @@ Z barvami.
 ### Predpostavite, da imate dva enaka DIMM modula. Kako jih boste vstavili v sockete na matični plošči? Zakaj?
 V enako pobarvane, saj enako pobarvanim režam pripadajo različni kanali.
 
+
 ## PREKINITVE
 
 ### Kaj so izjeme (prekinitve in pasti)?
-
 Prekinitve so mehanizem, s katerim zunanja naprava zahteva pozornost procesorja. Izvajanje trenutno izvajajočega programa se prekine in prične se izvajati prekinitveni servisni podprogram. Pasti so prekinitve, ki jih aktivira sama CPE, pogosto kot rezultat ilegalnega/napačnega ukaza, ali pa kadar CPE poskusi izvesti ukaz, ki ga ni mogoče pridobiti (*fetch-ati*).
+
 ### Kako se prožijo prekinitve?
 Prekinitve se prožijo tako, da naprava aktivira (nastavi napetost na vodilu na HIGH ali LOW, odvisno od sistema) **IRQ** (*Interrupt Request*) vodilo in čaka na odgovor procesorja. Procesor preveri stanje IRQ pina/pinov vsakič, preden se iz pomnilnika dobi nov ukaz, na katerega kaže programski števec. Če je IRQ vodilo aktivno, potem procesor začne z izvajanjem **Prekinitvenega servisnega podprograma** (*Interrupt Service Program*), ki se nahaja na nekem stalnem naslovu v pomnilniku. Procesor prej izvede še vse ukaze v cevovodu, ki spreminjajo kontekst izvajajočega programa (registri, pomnilnik in zastavice) ter shrani na sklad vse pomembne registre (PC, SP, LR). CPE potem lahko s signalom **INTA** (*Interrupt acknowledge*) sporoči, da je videla prekinitev in da naprava lahko umakne/deaktivira IRQ.
+
 ### Kaj je prekinitvena tabela?
 Prekinitvena (vektorska) tabela je seznam naslovov prekinitvenega servisnega programa za vsako od I/O naprav, ki so povezane z CPE. Tabela je dolga toliko besed, kolikor je možno povezati naprav na CPE.
+
 ### Kako je organizirana prekinitvena tabela pri ARM Cortex-M procesorjih?
 ARM Cortex-M/ARM9 procesorji uporabljajo vektorsko tabelo, pri kateri je vsak zapis dolg 32 bitov, kar ni dovolj, da bi vseboval celotno kodo PSP-ja, vendar običajno vsebuje kazalec na pomnilniški naslov, kjer je začetek PSP-ja. Osnovna prekinitvena tabela vsebuje vektorje *Reset, Undefined Instruction, Software Interrupt, Prefetch Abort, Data Abort, Interrupt Request* in *Fast Interrupt Request*. Shranjene so tudi prioritete posameznih prekinitev, pri čemer ima v osnovni tabeli *Reset* najvišjo prioriteto (1), *Undefined Instruction* in *Undefined Instruction* pa najnižjo (6).
 
 ### Kaj je prekinitveno servisni podprogram (interrupt handler)?
 Prekinitveno servisni podprogram je program, ki ga CPE začne izvajati kot odgovor na prekinitveno zahtevo I/O naprave.
+
 ### Kako CPE pridobi naslov PSP?
 Če imamo samo eno I/O napravo, je izbran en fiksen naslov za PSP, na katerem hranimo naslov začetka PSP-ja. Če imamo več naprav, uporabljamo prekinitveno tabelo. Pri ARM CPE ima vsaka naprava ima svoj IRQ pin, v pomnilniku pa se napravi dodeli ena pomnilniška beseda na fiksnem naslovu, ki hrani naslov PSP-ja za napravo. Intel/x86 CPE pričakuje, da ji naprava, ki prekinja, sporoči, številko prekinitvenega vektorja `[0, 255]`, ki se uporablja kot indeks v tabeli prekinitvenih vektorjev. Indeksi `[0, 31]` so rezervirani za prekinitve in pasti iz CPE, ostale pa se dodeljujejo V/I napravam.
-### Kaj je prekinitveni krmilnik in zakaj ga potrebujemo?
 
+
+### Kaj je prekinitveni krmilnik in zakaj ga potrebujemo?
 Prekinitveni krmilnik je naprava, ki združi vse zunanje zahteve za prekinitve v eno CPE IRQ vodilo in jim določi prioriteto (v katerem vrstnem redu jih bo CPE obravnavala), usmerja zahteve CPE ter informira CPE o tem, katera naprava zahteva prekinitev, in prekinitveni vektor naprave, da CPE ni treba *poll*-ati oz. izpraševati I/O naprav.
+
 ### Opišite delovanje prekinitvenega krmilnika Intel 8259A.
 Intel PIC8259A deluje tako, da I/O naprava aktivira pripadajoči IR vhod na krmilniku. Če več naprav naenkrat zahteva prekinitev, PIC8259A izbere tisto zahtevo z najvišjo prioriteto (IR0 = največja, IR7 = najmanjša) ter aktivira IRQ na vodilu CPE. CPE, ko vidi aktiven IRQ, konča z izvajanjem ukazov v cevovodu ter shrani kontekst. PIC medtem iz **IRR** (*Internal Request Register*) prepiše najbolj desno enico v **ISR** (*In-Service Register*) in jo hkrati pobriše iz IRR. 
 
 CPE z aktiviranjem INTA za 2 urini periodi sporoči PIC-u, da je videla zahtevo. PIC interno pripravi številko prekinitvenega vektorja in po drugem INTA pulzu CPE na podatkovno vodilo postavi številko prekinitvenega vektorja: OFFSET (zgornjih 5b - če je samo en PIC, uporabljamo offset `00100` <-> `32`) ter mesto enice v ISR (spodnjih 3b).
 
 ![PIC8259A](./images/pic8259a.png)
+
 ### Kako bi s prekinitvenim krmilnikom 8259A servisirali več kot 8 prekinitvenih zahtev (kanalov)?
 S PIC8259A lahko servisiramo več kot 8 prekinitvenih zahtev z uporabo **kaskadne povezave PIC-ov**, kjer imamo en *master* PIC ter do 8 *slave* PIC-ov. Po navadi so računalniki uporabljali samo 2 PIC-a: en master in en slave.
-![PIC8259A kaskada](./images/pic8259a-cascade.png)
-### Opišite kaskadno vezavo prekinitvenih krmilnikov 8259A.
 
+![PIC8259A kaskada](./images/pic8259a-cascade.png)
+
+### Opišite kaskadno vezavo prekinitvenih krmilnikov 8259A.
 PIC8259A dopušča kaskadno povezovanje; po navadi sta se uporabljala 2 PIC-a: master in slave. Odmiki posameznih PIC-ov so bili programabilni in so se vpisovali pri inicializaciji. Master PIC ima offset `00100` in pokriva IRQ zahteve I/O naprav med indeksoma `32` in `39`, slave PIC pa je imel offset `00101` in je pokrival naprave med `40` in `47`. IRQ/INT slave-a se po navadi veže na IR2 master PIC-a. Takrat, ko naprava na slave PIC-u aktivira IRQ, master PIC to posreduje CPE. INTA od CPE vidita tudi master in slave PIC, vendar master PIC to ignorira, ker je naslovljeno na `00100010` - slave PIC. Slave PIC gre skozi vse faze navadnega PIC-a in po drugem INTA od CPE na vodilo postavi številko prekinitvenega vektorja z odmikom `00101`. 
+
 ### Kaj je osnova ideja pri APIC? 
 Osnovna ideja APIC-a je, da razporedi prekinitvene zahteve na večje število CPE. 
+
 ### Opišite vlogo LAPIC in I/O APIC?
 Vsaka CPE ima svoj lokalni PIC, ki mu I/O APIC uravnoteženo posreduje prekinitve. Z vidika CPE je LAPIC identičen PIC8259A.
 
 ### Kaj je APIC vodilo? Čemu je namenjeno?
 APIC vodilo je 3-bitno serijsko vodilo, po katerem I/O APIC sporoča, katerega od LAPIC-ov želi ustaviti in kdo ga ustavlja.
+
 ### Opišite delovanje IO APIC krmilnika.
 Ob prekinitveni zahtevi krmilnik prebere pripadajoči vnos v **IRT** (*Interrupt Redirection Table* - vsebuje 24 64-bitnih vnosov, ki hranijo številko vektorja, številko CPE, ki se ji bo poslala prekinitvena zahteva, in prioriteto), iz katere tvori 21-bitno APIC sporočilo, ki ga pošlje po 3-bitnem vodilu (CLK, APICD0 in APICD1). Sporočilo se pošlje kot zaporedje 2x21 bitov.
+
 ![APIC sporočilo](./images/apic_message.png)
+
 ### Kaj je to preusmeritvena tabela v I/O APIC (redirection table)? 
 *Interrupt Redirection Table* (IRT, prekinitvena preusmeritvena tabela) je tabela, ki vsebuje 24 (en za vsaki INT pin) 64-bitnih vnosov, ki hranijo številko vektorja, številko CPE, ki se ji bo poslala prekinitvena zahteva, in prioriteto zahteve.
+
 ### Kaj so to PCI prekinitve? Kako si PCI naprave delijo prekinitvene signale?
 PCI prekinitve so prekinitve, ki jih zahtevajo PCI naprave. Za sisteme so bile predvidene največ 4 PCI naprave, APIC pa ima samo 8 prostih vhodov, kar pomeni da če imajo PCI naprave več kot 8 funkcij, pride do zmanjkovanja vhodov. Rešitev je, da se prekinitve iz PCI naprav prožijo na nivo (*level triggered*), kar pomeni, da si več PCI naprav medsebojno deli eno prekinitveno linijo. Kdo je prekinil, se pa ugotovi s programskim izpraševanjem (polling). Posledično se na APIC-u dodeli le 4 vhode vsem PCI napravam/funkcijam:
 `INT 16 == PIRQA`, `INT 17 == PIRQB`, `INT 18 == PIRQC`, `INT 19 == PIRQD` (**PIR** - *PCI Interrupts Routing*). Po navadi se uporablja *round-robin* princip vezave - na PIRQA vežemo INT A iz prve, INT B iz druge, INT C iz tretje, INT D iz četrte naprave, in tako naprej.
+
 ### Kam se vežejo PCI prekinitveni signali PIRQA - PIRQD na IO APIC?
 PIRQA-PIRQD se vežejo na INT pine 16-23 I/O APIC-a.
+
 ### Kako je pametno povezati INTA-INTD signale med posameznimi PCI napravami? 
 Po *round-robin* principu vezave - na PIRQA vežemo INT A iz prve, INT B iz druge, INT C iz tretje, INT D iz četrte naprave, in tako naprej.
 ![Round-robin metoda vezivanja](./images/round_robin.png)
+
 ### Predpostavite, da v sistem želite vstaviti neko PCI kartico. Kako boste izbrali, na katerem vhodu (PIRQA-PIRQD) bo prožila prekinitve?
 Odvisno od prioritete naprave, PIRQA bi dodelili najbolj pomembni napravi, PIRQD pa najmanj pomembni napravi.
+
 ### Kaj so to MSI prekinitve?
 **MSI** (*Message Signalled Interrupts*) prekinitve so prekinitve, ki uporabljajo sporočila za pisalne transakcije na vodilu. Sporočilo se piše na vnaprej definiran naslov in vsebuje naslov LAPIC-a ter prekinitveni vektor. Pojavil se je z uvodom PCIe standarda leta 2004 in je počasi zamenjal I/O APIC. Prednosti so, da ne rabimo več INT A - INT D žic, ni več deljenja PIRQ žic, ni več *pollinga* in ni več problema prekinitev med pisanjem v RAM.
+
 ### Zakaj potrebujemo DMA krmilnike? Kako bi bilo brez njih?
 Brez DMA (*Direct Memory Access*) krmilnikov bi morale PCI naprave pisati podatke v RAM preko CPE, kar ni učinkovito, ker bremeni CPE. Uporablja se le v manjših vgrajenih sistemih.
+
 ### Kakšna je razlika med fly-by in fly through DMA krmilnik? Navedite dva realna primera.
 **Fly-by DMA krmilnik** - podatki se prenašajo mimo DMA kontrolerja; CPE in kontroler se dogovorita, kdo bo pisal na naslovno vodilo. Ne omogoča direktnega MEM<>MEM prenosa, za to bi potrebovali dva Fly-by krmilnika (primer: Intel 8237A).
 
 **Fly-through DMA krmilnik** - podatki grejo skozi DMA krmilnik, ki jih hrani v FIFO vrstah in omogoča MEM<>MEM prenos. Potrebujemo dva pomnilniška dostopa (branje in pisanje) (primer: STM32Fx).
+
 ### Opišite delovanje 8237A DMA krmilnika.
 Je tipa »Fly-by«, ker podatki letijo mimo njega in potrebuje le en cikel na vodilu. Naslov na vodilu se vedno nanaša na pomnilnik, napravo se »izbere« s pomočjo DRQ/DACK signala. Pred samim prenosom mora CPE nastaviti vrednosti ADDR registra in COUNT registra v DMA krmilniku.Temu pravimo inicializacija DMA krmilnika.
 1. V/I naprava ima nov podatek za v MEM. Zahteva DMA prenos tako, da aktivira DRQ.
@@ -277,6 +301,7 @@ svoje priključke postavi v visokoimpedančno stanje).
 8. CPE deaktivira HACK.
 
 ![Intel 8237A DMA krmilnik](./images/8237a.png)
+
 ### Opišite delovanje DMA krmilnika v sistemih STM32F4.
 Je tipa »Fly-through«. Vsak DMA prenos se definira z izvornim in ciljnim naslovom in vsak tok ima par registrov za shranjevanje teh naslovov (Peripheral Address Register – SxPAR in Memory Address Register – SxMAR). Vsak tok ima tudi shranjeno velikost (Number of Data Register - SxNDR) in tip prenosa.
 
@@ -293,7 +318,9 @@ Najprej se postavi izvorni naslov na naslovno vodilo, nato se prebere podatke iz
 Takšen krmilnik torej omogoča `8 ∗ 8 = 64` I/O naprav. Naprava se najprej določi s CH_SEL, nato pa interno z arbiterjem.
 
 Ni DACK signalov, le DRQ (to so REQ_SX_CX), ampak jih tudi ne potrebujemo - ker imamo 2 porta, se najprej naslovi prva, nato pa druga naprava (MEM) in ne obe hkrati.
+
 ![STM32 DMA krmilnik](./images/stm32_dma.png)
+
 ### Kaj je DMA kanal?
 Kanal je par DRQ/DACQ signalov. Vsak par signalov je vezan na smer prenosa. Torej lahko imamo 4 naprave, ki lahko samo pišejo oz. berejo iz MEM, ali pa dve napravi, ki lahko pišeta in bereta v/iz MEM.
 
@@ -308,30 +335,39 @@ Tok je aktiven DMA prenos med napravo in pomnilnikom oz. med dvema naslovoma v p
 
 ### Opišite inicializacijo DMA krmilnika. Kaj je vse treba nastaviti pred začetkom prenosa?
 Preden lahko pride do kakršnegakoli prenosa, mora CPE inicializirati naslov DMA krmilnika in COUNT registre. CPE zapiše naslov, iz/v katerega se bodo podatki prenesli, v naslovni register in število podatkov (besed) v count register.
+
 ### Kako DMA krmilnik obvesti CPE, da je prenos zaključen?
 DMA med prenosom inkrementira ali dekrementira COUNT register (odvisno od nastavitve). Ko ta pride do ciljnega števila, DMA krmilnik sproži END signal. Ta signal je ponavadi vezan na interrupt pin CPE, ki sproži prekinitev ob koncu prenosa.
 
 ### Kaj je to bus mastering?
 Naprava, ki izvaja prenos na vodilu, je gospodar vodila – CPE ali DMA. Z evolucijo vodil (PCIe) naj bi lahko vsaka naprava (*PCIe Endpoint*) na PCIe vodilu sama dostopala do pomnilnika. To pomeni, da bi vsaka naprava imela vgrajeno DMA funkcionalnost. To pa pomeni, da bi lahko bila vsaka taka naprava gospodar vodila.
+
 ![Bus Mastering](./images/bus_mastering.png)
+
 ### Kaj je to navidezni pomnilnik? Zakaj ga imamo?
 Navidzeni pomnilnik je način naslavljanja pomnilnika tako, da vsak uporabnik ali program vidi ves pomnilnik kot svoj. Program/uporabnik lahko piše na katerkoli naslov hoče, **MMU** (*Memory Managment Unit*) pa skrbi za tom da se ta navidezni naslov lahko preslika v fizični naslov v fizičnem pomnilniku. Navidezni pomnilnik nam omogoča, da so programi pozicijsko in prostorno neodvisni ter da nimamo omejitev števila programov, ki se izvajajo.
-![Navidezni pomilnik](./images/vmem.png)
-### Kaj je stran in kaj je okvir?
-Stran (*page*) je blok v navideznem naslovnem prostoru (navideznem pomnilniku).
 
-Okvir (*frame*) je blok v fizičnem naslovnem prostoru (fizičnem pomnilniku).
+![Navidezni pomilnik](./images/vmem.png)
+
+### Kaj je stran in kaj je okvir?
+Stran (*page*) je blok v navideznem naslovnem prostoru (navideznem pomnilniku). Okvir (*frame*) je blok v fizičnem naslovnem prostoru (fizičnem pomnilniku).
+
 ### Kako velika naj bo stran?
 Strani so po navadi velike 4 kB. To je kompromis med tem, da imamo zelo majhne strani in zato veliko tabelo strani, vendar manj zaman porabljenega prostora, in tem, da imamo zelo velike strani in veliko zaman porabljenega navideznega prostora, vendar manj overhead-a pri
 branju/pisanju.
+
 ### Kaj je napaka strani?
 *Page fault* – ko program poskuša dostopati do navideznega naslova, ki ga ni v fizičnem pomnilniku.
+
 ### Kaj je deskriptor strani?
 Je vnos v tabeli strani, ki vsebuje zastavice **PVD** (*Present, Valid, Dirty*), **RWX** (*Read, Write, eXecute*) in naslov oz. številko okvirja. Če tej številki okvirja pripnemo odmik iz navideznega naslova, dobimo fizični naslov.
+
 ### Kaj vsebuje tabela strani?
 Tabela strani vsebuje deskriptorje strani.
+
 ### Opišite večnivojsko ostranjevanje?
 S tem rešujemo problem prevelike tabele strani. Tabelo strani razsekajmo na enako velike kose. Ti kosi naj bodo veliki toliko, kot je velika 1 stran (4KB). Potrebujemo še eno »korensko« tabelo strani, ki hrani naslove vseh listov. V RAM-u hranimo samo korensko tabelo in podtabelo, ki jo uporabljamo.
+
 ### Najmanj koliko tabel strani moramo hraniti v pomnilniku pri 2(3,4, ..)-nivojskem ostranjevanju?
 Hraniti moramo najmanj toliko tabel, kot imamo nivojev (korensko + eno za vsaki nivo).
 

@@ -1,13 +1,15 @@
 # FRI-ZAPISKI
 
-trenutno na voljo:
+Trenutno na voljo: </br>
+-> Prvi letnik:
 - [LA](https://spagnolog.github.io/FRI-ZAPISKI/LA/la.pdf)
 - [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
+
+-> Drugi letnik
 - [VIS](https://spagnolog.github.io/FRI-ZAPISKI/VIS/vis.pdf)
 - [APS-1](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/APS/aps.md)
-- [TOC](https://spagnolog.github.io/FRI-ZAPISKI/TOC/toc.pdf)
+- [TOC](https://spagnolog.github.io/FRI-ZAPISKI/TOC/toc.pdf), [TOC - JakMar17 ](https://github.com/JakMar17/IRZ-skripta )
 - [ORS](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/ORS/ors.md)
 
-Best **IRZ** repo --> https://github.com/JakMar17/IRZ-skripta (creds: JakMar17 ) <br>
 Feel free to edit, correct and share these documents. <br>
 sG
