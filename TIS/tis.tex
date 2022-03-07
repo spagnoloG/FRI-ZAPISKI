@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\setlength{\columnseprule}{0.5pt}
+
+\begin{document}
+
+\begin{center}
+    {\small TIS/FRI \par}
+\end{center}
+
+\begin{multicols}{3}
+
+\section{\underline{Osnove}}
+
+\textbf{1.1 Ponovitev logaritmov}
+\begin{itemize} 
+    \item $log_a x = \dfrac{log_b x}{log_b a}$
+    \item $log_b(\dfrac{x}{y}) = log_b x - log_b y$
+    \item $x = b^y \implies log_b x = y$
+    \item $log_2 x = log x$
+    \item $0log0 = 0$
+\end{itemize}
+
+\textbf{1.2 Entropija}
+je povprecje vseh lastnih informacij:
+\begin{center}
+    \begin{math}
+        H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log p_i
+    \end{math}
+\end{center}
+Lastnosti: je zvezna, simetricna funckija (vrsni red $p_i$ ni pomemben, sestevanje je komutativno). Je vedno vecja
+od 0 ($p_i \geq 0 \rightarrow -p_i \log p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log n$.\\
+Ce sta dogodka \textbf{neodvisna} velja aditivnost: $H(X, Y) = H(X) + H(Y)$.\\
+Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
+
+\section{\underline{Kodi}}
+
+\textbf{2.1 Uvod}\\
+\textbf{Kod} sestavljajo \textit{kodne zamenjave}, ki so sestavljene iz znakov
+\textbf{kodne abecede}. Stevilo znakov v kodni abecedi oznacujemo z \textbf{r}.\\
+Ce so $\{p_1, \dots, p_n\}$ verjetnosti znakov $\{s_1, \dots, s_n\}$ osnovnega sporocila in $\{l_1, \dots, l_n\}$
+dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
+\begin{center}
+    \begin{math}
+        L = \sum_{i=1}^n p_i l_i
+    \end{math}
+\end{center}
+
+\textbf{2.2 Tipi kodov}
+\begin{itemize}
+    \item \textbf{optimalen} - ce ima najmanjso mozno dolzino kodnih zamenjav
+    \item \textbf{idealen} - ce je povprecna dolzina kodnih zamenjav enaka entropiji
+    \item \textbf{enakomeren} - ce je dolzina vseh kodnih zamenjav enaka
+    \item \textbf{enoznacen} - ce lahko poljuben niz znakov dekodiramo na en sam nacin
+    \item \textbf{trenuten} - ce lahko osnovni znak dekodiramo takoj, ko sprejmemo celotno kodno zamenjavo
+\end{itemize}
+
+\textbf{2.3 Kraftova neenakost}
+Za dolzine kodnih zamenjav $\{l_1, \dots, l_n\}$ in \textit{r} znaki kodne abecede
+obstaja trenutni kod, iff:
+\begin{center}
+    \begin{math}
+        \sum_{i=1}^n r^{-li} \leq 1
+    \end{math}
+\end{center}
+% 7 stran predavanje 2
+
+\end{multicols}
+\end{document}
