@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\setlength{\columnseprule}{0.5pt}
+
+\begin{document}
+
+\begin{center}
+    {\small MM/FRI \par}
+\end{center}
+
+\begin{multicols}{3}
+
+\section{\underline{Linear Models}}
+
+\textbf{1.6 Types of errors}\\
+Errors come from: impercise data, mistakes in the model, computational percision,..
+We know two types of errors:
+\begin{itemize}
+    \item \textbf{Absolute} error = approximate value - correct value
+        \begin{center}
+            \begin{math}
+                \Delta x = \overline{x} - x
+            \end{math}
+        \end{center}
+    \item \textbf{Relative} error = $\dfrac{\text{absolute err}}{\text{correct value}}$ 
+        \begin{center}
+            \begin{math}
+                \delta x = \dfrac{\Delta x}{x}
+            \end{math}
+        \end{center}
+\end{itemize}
+
+\textbf{1.2} Mathematical model is \textbf{linear},
+when the function F is a linear function of the parameters:
+\begin{center}
+    \begin{math}
+        F(x, a_1, \dots, a_p) = a_1 \phi_1(x) + \dots + a_p \phi_p(x) 
+    \end{math}
+\end{center} 
+where $\phi_1, \dots, \phi_p$ are functions of a specific type.
+
+
+\textbf{1.3 Least squares method}
+Given points
+\begin{center}
+    \begin{math}
+        \{ (x_1, y_1), \dots, (x_m, y_m) \}, x_i \in R^n , y_i \in R
+    \end{math}
+\end{center}
+the task is to find a function $F(x, a_1, \dots, a_p)$ that is good fit for the data.
+The values of the parameters $a_1, \dots, a_p$ should be chosen so that the equations
+\begin{center}
+    \begin{math}
+        y_i = F(x, a_1, \dots, a_p), i=1,\dots,m
+    \end{math}
+\end{center} are satisified or, it this is not possible, that the error is as small as possible.\\
+We use \textbf{Least squares method} to determine that the sum od squared errors is as small as possible.
+\begin{center}
+    \begin{math}
+        \sum_{i=1}^m (F(x_i, a_1, \dots, a_p) - y_i)^2
+    \end{math}
+\end{center}
+
+\textbf{1.4 Systems of linear equations}
+
+A system of linear equations in the matrix form is given by $A\vec{x} = \vec{b}$,
+where:
+\begin{itemize}
+    \setlength\itemsep{0.1em}
+    \item A is the matrix of coefficients of order $m \times n$ where $m$ is the number of equations
+        and $n$ is the number of unknowns,
+    \item $\vec{x}$ is the vector of unknowns and
+    \item $\vec{b}$ is the right side vector
+\end{itemize}
+\begin{small}
+    \begin{center}
+        \begin{math}
+        $\begin{bmatrix}
+            \phi_1(x_1) & \phi_2(x_1) & \dots  & \phi_p(x_1) \\
+            \phi_1(x_2) & \phi_2(x_2) & \dots  & \phi_p(x_2) \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \phi_1(x_n) & \phi_2(x_n) & \dots  & \phi_p(x_n)
+        \end{bmatrix}$
+        $\begin{bmatrix}
+             a_1 \\
+             a_2 \\
+             \vdots \\
+             a_p
+        \end{bmatrix}$ = 
+        $\begin{bmatrix}
+             y_1 \\
+             y_2 \\
+             \vdots \\
+             y_p
+        \end{bmatrix}$
+        \end{math}
+    \end{center}
+\end{small}
+
+\textbf{1.5 Existance of solutions} in linear equations\\
+Let A = $[\vec{a_1}, \dots, \vec{a_n} ]$, where $\vec{a_i}$ are vector representing
+the columns of A.
+For any vector $\vec{x} =$ \begin{math}
+                             $\begin{bmatrix}
+                                  y_1 \\
+                                  y_2 \\
+                                  \vdots \\
+                                  y_p
+                             \end{bmatrix}$
+                           \end{math}
+the produdct $A\vec{x}$ is 
+a linear combination $A\vec{x} = \sum_i x_i a_i$. The system is \textbf{solvable} iff the
+vector $\vec{b}$ can be expressed as a linear combination of the columns of A, that is
+it is in the column space of $A$, $\vec{b} \in C(A)$.\\
+By adding \vec{b} to the columns of $A$ we obtain the extended matrix of the system:
+\begin{center}
+    \begin{math}
+        [A| \vec{b}] = [\vec{a_1}, \dots, \vec{a_n} | b]
+    \end{math}
+\end{center}
+The system $A\vec{x} = \vec{b}$ is solvable iff the rank of A equals the rank of the
+extended matrix $[A| \vec{b}]$, i.e.:
+\begin{center}
+    \begin{math}
+        $rank$ A = $rank$ [A| \vec{b}] =: r
+    \end{math}
+\end{center}
+The solution is unique if the rank of the two matrices equals num of unknowns (r = n).
+
+\textbf{1.6} Properties of \textbf{squared matrices}\\
+Let $A \in R^{n \times n}$ be a square matrix. The following conditions are equivalent
+and characterize when a matrix $A$ is \textbf{invertible} or \textbf{nonsingular}:
+\begin{itemize}
+    \setlength\itemsep{0.1em}
+    \item The matrix A has an inverse
+    \item rank A = n
+    \item det(A) $\neq 0$
+    \item The null space $N(A) = \{\vec{x}: A\vec{x} = 0$ is trivial
+    \item All eigenvalues of A are nonzero
+    \item For each $\vec{b}$ the system of equations $A \vec{x} = \vec{b}$ has perciesly one solution
+\end{itemize}
+
+\textbf{1.7 Generalized inverse} of a matrix
+$A \in R^{n \times m}$ is a matrix $G \in R^{m \times n}$ such that
+\begin{center}
+    $AGA = A$
+\end{center}
+
+
+\end{multicols}
+\end{document}
