@@ -11,7 +11,7 @@ Trenutno na voljo: <br>
 - [TOC](https://spagnolog.github.io/FRI-ZAPISKI/TOC/toc.pdf), [TOC - JakMar17 ](https://github.com/JakMar17/IRZ-skripta )
 - [ORS](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/ORS/ors.md)
 - [TIS](https://spagnolog.github.io/FRI-ZAPISKI/TIS/tis.pdf)
-- [MM](https://spagnolog.github.io/FRI-ZAPISKI/TIS/mm.pdf)
+- [MM](https://spagnolog.github.io/FRI-ZAPISKI/MM/mm.pdf)
 
 Feel free to edit, correct and share these documents. <br>
 sG
