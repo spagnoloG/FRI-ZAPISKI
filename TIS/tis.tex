@@ -16,13 +16,15 @@
 \section{\underline{Osnove}}
 
 \textbf{1.1 Ponovitev logaritmov}
-\begin{itemize} 
-    \item $log_a x = \dfrac{log_b x}{log_b a}$
-    \item $log_b(\dfrac{x}{y}) = log_b x - log_b y$
-    \item $x = b^y \implies log_b x = y$
-    \item $log_2 x = log x$
-    \item $0log0 = 0$
-\end{itemize}
+\begin{small}
+    \begin{itemize} 
+        \item $log_a x = \dfrac{log_b x}{log_b a}$
+        \item $log_b(\dfrac{x}{y}) = log_b x - log_b y$
+        \item $x = b^y \implies log_b x = y$
+        \item $log_2 x = log x$
+        \item $0log0 = 0$
+    \end{itemize}
+\end{small}
 
 \textbf{1.2 Entropija}
 je povprecje vseh lastnih informacij:
@@ -60,13 +62,109 @@ dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
 
 \textbf{2.3 Kraftova neenakost}
 Za dolzine kodnih zamenjav $\{l_1, \dots, l_n\}$ in \textit{r} znaki kodne abecede
-obstaja trenutni kod, iff:
+obstaja trenutni kod, iff
 \begin{center}
     \begin{math}
         \sum_{i=1}^n r^{-li} \leq 1
     \end{math}
 \end{center}
-% 7 stran predavanje 2
 
+\textbf{2.4 Povprecna dolzina} in \textbf{ucinkovitost}\\
+Najkrajse kodne zamenjave imamo, ce velja:
+\begin{center}
+    \begin{math}
+        H_r(X) = L \rightarrow l_i = \lceil - \log_r p_i \rceil
+    \end{math}
+\end{center}
+Ucinkovitost koda:
+\begin{center}
+    \begin{math}
+        \eta = \dfrac{H(X)}{L \log_r}, \eta \in [0, 1]
+    \end{math}
+\end{center}
+Kod je \textbf{gospodaren}, ce je $L$ znotraj:
+\begin{center}
+    \begin{math}
+        H_r(X) \leq L < H_r(X) + 1
+    \end{math}
+\end{center}
+kjer je $H_r(X)$:
+\begin{center}
+    \begin{math}
+        H_r(X) = -\sum^{n}_{i=1} \dfrac{\log_{p_i}}{\log_r} = \dfrac{H(X)}{\log_r}
+    \end{math}
+\end{center}
+
+\textbf{2.5 Shannonov prvi teorem}\\
+Za nize neodvisnih znakov dozline \texit{n} obstajajo kodi,
+za katere velja:
+\begin{center}
+    \begin{math}
+        \lim_{n \rightarrow \infty} \dfrac{L_n}{n} = H(X)
+    \end{math}
+\end{center}
+pri cemer je $H(X)$ entropija vira $X$.\\
+Postopek kodiranja po Shannonu:
+\begin{enumerate}
+    \item znake razvrstimo po padajocih verjetnostih
+    \item dolocimo stevilo znakov v vsaki kodni zamenjavi ($l_k$)
+    \item za vse simbole izracunamo komulativne verjetnosti ($P_k = \sum_{i=1}^{k-1} p_i$)
+    \item $P_k$ pretvorimo v bazo $r$. Kodno zamenjavo predstavlja prvih $l_k$ znakov necelega dela stevila
+\end{enumerate}
+
+\textbf{2.6 Fanojev kod}\\
+Postopek kodiranja:
+\begin{enumerate}
+    \item znake razvrstimo po padajocih verjetnostih
+    \item znake razdelimo v $r$ cim bolj enako verjetnih skupin
+    \item Vsaki skupini priredimo enega od r znakov kodne abecede
+    \item Deljenje ponovimo na vsaki od skupin. Postopek ponavljamo, dokler je mogoce
+\end{enumerate}
+
+\textbf{2.7 Huffmanov kod}\\
+Huffmanov postopek kodiranja poteka od spodaj navzgor (Pri Fanoju je ravno obratno).
+Pri huffmanovem kodu imamo dve fazi:
+\begin{enumerate}
+    \item Zdruzevanje
+        \begin{enumerate}
+            \item Posici r najmanj verjetnih znakov in jih zdruzi v sestavljeni znak, katerega verjetnost je vsota verjetnosti vseh znakov
+            \item Preostale znake skupaj z novo sestavljenim znakom spet razvrsti
+            \item Postopek ponavljaj dokler ne ostane samo r znakov
+        \end{enumerate}
+    \item Razdruzevanje
+        \begin{enumerate}
+            \item Vsakemu od preostalih znakov priredi po en znak kodirne abecede
+            \item Vsak sestavljeni znak razstavi in mu priredi po en znak kodirne abecede
+            \item Ko zmanjka sestavljenih znakov, je postopek zakljucen
+        \end{enumerate}
+\end{enumerate}
+Pred kodiranjem, je vedno pametno preveriti, ce imamo zadostno stevilo znakov.
+Veljati mora:
+\begin{center}
+    \begin{math}
+        n = r + k(r-1), k \geq 0
+    \end{math}
+\end{center}
+Ce imamo premalo znakov, jih po potrebi dodamo s verjetnostjo $p=0$.\\
+Huffmanov kod lahko razsirimo tako, da vec osnovnih znakov zdruzujemo v sestavljene znake $\rightarrow$ bolj ucinkoviti kodi. Vendar
+naletimo na nevarnost kombinacijske eksplozije.\\
+
+\textbf{2.9 Aritmeticni kod}\\
+Je \textbf{hiter} in \textbf{blizu optimalnemu} kodu. Je manj ucinkovit kot Huffmanov,
+vendar se izogne kombinacijski eksploziji.
+Vsak niz je predstavljen kot realno stevilo $0 \leq R < 1$, kar nam pove, da daljsi kot bo niz,
+bolj natancno mora biti podano naravno stevilo $R$.\\
+Postopek kodiranja(znakov ni potrebno razvrstiti):
+\begin{enumerate}
+    \item Zacnemo z intervalom $[0, 1]$
+    \item Izbrani interval razdelimo na \texit{n} podintervalov, ki se ne prekrivajo. Sirine podintervalov ustrezajo
+        verjetnostim znakov. Vsak podinterval predstavlja en znak
+    \item Izberemo podintrval, ki ustreza iskanemu znaku
+    \item Ce niz se ni koncan, izbrani podinterval ponovno razdelimo (bne 2.tocka)
+    \item Niz lahko predstavimo s poljubnim realnim stevilom v zadnjem podintervalu
+\end{enumerate}
+Ko dobimo realni interal, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
+iz dec v bin stevilski sistem.
+%Predavanje 04%
 \end{multicols}
 \end{document}
