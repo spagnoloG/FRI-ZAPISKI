@@ -250,7 +250,7 @@ Properties:
     \item $((A^+))^+ = A$
     \item $(A^T)^+ = (A^+)^T$
 \end{itemize}
-Construction of the MP inverse (2 cases):
+Construction of the MP inverse (4 cases):
 \begin{enumerate}
     \item $A^TA \in R^{m \times m}$ is an invertible matrix ($m \leq n$)
         \begin{center}
@@ -264,6 +264,42 @@ Construction of the MP inverse (2 cases):
                 A^+ = A^T(AA^T)^{-1} 
             \end{math}
         \end{center}
+    \item $\Sigma \in R^{n \times m}$ is diagonal matrix of the form
+        \begin{center}
+            \begin{math}
+                \Sigma =
+                $\begin{bmatrix}
+                    \sigma_1 &        & \\
+                             & \ddots & \\
+                             &        & \sigma_n
+                \end{bmatrix}$
+            \end{math}
+        \end{center}
+        Then the MP inverse is:
+        \begin{center}
+            \begin{math}
+                \Sigma =
+                $\begin{bmatrix}
+                    \sigma_1^+ &        & \\
+                               & \ddots & \\
+                               &        & \sigma_n^+
+                \end{bmatrix}$
+            \end{math}
+        \end{center}
+        where \begin{math}
+            \sigma_i^+ =
+            \Bigg \{\begin{tabular}{ccc}
+                $\frac{1}{\sigma_i}$  & $\sigma_i \neq 0$ & \\
+                $0$                   & $\sigma_i = 0$ & \\
+            \end{tabular}
+        \end{math}
+    \item a general matrix A (using SVD)
+        \begin{center}
+            \begin{math}
+                A^+ = V \Sigma^+ U^T
+            \end{math}
+        \end{center}
+
 \end{enumerate}
 \end{multicols}
 \end{document}
