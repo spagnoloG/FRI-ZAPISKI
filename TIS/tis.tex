@@ -163,8 +163,23 @@ Postopek kodiranja(znakov ni potrebno razvrstiti):
     \item Ce niz se ni koncan, izbrani podinterval ponovno razdelimo (bne 2.tocka)
     \item Niz lahko predstavimo s poljubnim realnim stevilom v zadnjem podintervalu
 \end{enumerate}
-Ko dobimo realni interal, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
+Ko dobimo realni interval, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
 iz dec v bin stevilski sistem.
-%Predavanje 04%
+
+\textbf{2.10 Kod Lempel-Ziv}\\
+Stiskanje temelji na osnovi slovarja, tako, da ne potrebujemo
+racunati verjetnosti za posamezne znake. \textbf{Kodirnik}
+med branjem niza gradi slovar, in \textbf{dekodirnik} med branjem
+kodnih zaamenjav rekonstruira slovar in znake.\\
+\textbf{Kodiranje:} uporablja drseca okna, znaki se premikajo iz desne na levo.
+Referenca je podana kot trojcek:
+\begin{itemize}
+    \item odmik - razdalja do zacetka enakega podniza v medpomnilniku
+    \item dolzina enakega podniza
+    \item naslednji znak
+\end{itemize}
+npr. (0, 0, A) - ni ujemanja, (4, 3, B) - 4 znake nazaj se ponovi 3 znakovni podniz, ki se nato zakljuci s B.\\
+\textbf{dekodiranje:} sledimo kodnim zamenjavam
+
 \end{multicols}
 \end{document}
