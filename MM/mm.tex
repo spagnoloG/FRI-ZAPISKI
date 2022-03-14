@@ -148,7 +148,122 @@ $A \in R^{n \times m}$ is a matrix $G \in R^{m \times n}$ such that
 \begin{center}
     $AGA = A$
 \end{center}
+Let $G$ be a generalized inverse of $A$. Multiplying $AGA=A$ with $A^{-1}$ from the
+left and the right side we obtain:\\
+LHS: $A^{-1}GAA^{-1} = IGI = G$\\
+RHS: $A^{-1}AA^{-1} = IA^{-1} = A^{-1}$\\
+where I is the identity matrix. The equality LHS=RHS implies that $G=A^{-1}$.\\
+Every matrix $A \in R^{n \times m}$ \textbf{has} a generalized inverse. When computing
+a generalized inverse we come across two cases:
+\begin{enumerate}
+    \item rank $A$ = rank $A_{11}$ where
+        \begin{center}
+            \begin{math}
+                A=
+                $\begin{bmatrix}
+                    A_{11} & A_{12} \\
+                    A_{21} & A_{22}
+                \end{bmatrix}$
+            \end{math}
+        \end{center}
+        And $A_{11} \in R^{r \times r}, A_{12} \in R^{r \times (m-r)},$
+        $ A_{21} \in R^{(n-r) \times r}, A_{22} \in R^{(n-r)\times (m-r)}$.
+        We claim that
+        \begin{center}
+            \begin{math}
+                G=
+                $\begin{bmatrix}
+                    A_{11}^{-1} & 0 \\
+                    0           & 0
+                \end{bmatrix}$
+            \end{math}
+        \end{center}
+        where 0s denote zero matrices of appropriate sizes, is the generalized inverse of A.
+    \item The upper left $r \times r$ submatrix of $A$ is \textbf{not} invertible.\\
+        One way to hanlde this case is to use permutation matrices $P$ and $Q$, such that
+        \begin{center}
+            \begin{math}
+                PAQ =
+                $\begin{bmatrix}
+                    \tilde{A_{11}} & \tilde{A_{12}} \\
+                    \tilde{A_{21}} & \tilde{A_{22}}
+                \end{bmatrix}$
+            \end{math},
+        \end{center}
+        $\tilde{A_{11}} \in R^{r \times r}$ and rank $\tilde{A_{11}} = r$. By case 1 
+        generalized inverse of $PAQ$ equals to
+        \begin{center}
+            \begin{math}
+                (PAQ)^g=
+                $\begin{bmatrix}
+                    \tilde{A_{11}^{-1}} & 0 \\
+                    0           & 0
+                \end{bmatrix}$
+            \end{math}
+        \end{center}
+        Thus $(PAQ) (PAQ)^g (PAQ) = PAQ$ holds,
+        Multiplying from the left by $P^{-1}$ and from the right
+        by $Q^{-1}$ we get:\\ 
+        $A(Q (PAQ)^g P)A = A$\\
+        So \begin{center}
+            \begin{math}
+                Q (PAQ)^g P
+            \end{math}
+        \end{center}
+        is a \textbf{generalized} inverse of A.
+\end{enumerate}
+\textbf{Algorithm} for computing \textbf{$A^g$}:
+\begin{enumerate}
+    \item Find any nonsingular submatrix B in A of order $r \times r$,
+    \item in A substitute
+        \begin{itemize}
+            \item elements of submatrix B for corresponding elements of $(B^{-1})^T$,
+            \item all other elements with 0
+        \end{itemize}
+    \item the transpose of the obtained matrix is generalized inverse G
+\end{enumerate}
+\textbf{solutions}:\\
+Let $A \in R^{n \times m}$ and $\vec{b} \in R^m$. 
+If the system $A\vec{x} = \vec{b}$ is
+solvable (that is, $\vec{b} \in$ C(A)) and G is a 
+generalized inverse of A, then $\vec{x}=G\vec{b}$ is
+a solution of the system. Moreover, 
+all solutions of system are exactly vectors of the form
+\begin{center}
+    \begin{math}
+        x_z = G\vec{b} + (GA - I)z
+    \end{math}
+\end{center}
 
-
+\textbf{1.8 The Moore-Penrose generalized inverse}\\
+The MP inverse of $A \in R^{n \times m}$ is any matrix 
+$A^+ \in R^{n \times m}$ satisfying the following four conditions:
+\begin{enumerate}
+    \item $A^+$ is a generalized inverse of A: $AA^+A = A$
+    \item A is a generalized inverse of $A^+: A^+AA^+ = A^+$
+    \item The square matrix $AA^+ \in R^{n \times n}$ is symetric: $(AA^+)^T = AA^+$
+    \item The square matrix $A^+A \in R^{m \times m}$ is symetric: $(A^+A)^T = A^+A$
+\end{enumerate}
+Properties:
+\begin{itemize}
+    \item If A is a square invertible matrix, then it $A^+ = A^{-1}$
+    \item $((A^+))^+ = A$
+    \item $(A^T)^+ = (A^+)^T$
+\end{itemize}
+Construction of the MP inverse (2 cases):
+\begin{enumerate}
+    \item $A^TA \in R^{m \times m}$ is an invertible matrix ($m \leq n$)
+        \begin{center}
+            \begin{math}
+                A^+ = (A^TA)^{-1}A^T
+            \end{math}
+        \end{center}
+    \item $AA^T$ is an invertible matrix ($n \leq m$)
+        \begin{center}
+            \begin{math}
+                A^+ = A^T(AA^T)^{-1} 
+            \end{math}
+        \end{center}
+\end{enumerate}
 \end{multicols}
 \end{document}

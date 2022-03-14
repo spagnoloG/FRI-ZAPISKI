@@ -150,16 +150,16 @@ Huffmanov kod lahko razsirimo tako, da vec osnovnih znakov zdruzujemo v sestavlj
 naletimo na nevarnost kombinacijske eksplozije.\\
 
 \textbf{2.9 Aritmeticni kod}\\
-Je \textbf{hiter} in \textbf{blizu optimalnemu} kodu. Je manj ucinkovit kot Huffmanov,
+Je \textbf{hiter} in \textbf{blizu optimalnemu} kodu, ter manj ucinkovit kot Huffmanov,
 vendar se izogne kombinacijski eksploziji.
 Vsak niz je predstavljen kot realno stevilo $0 \leq R < 1$, kar nam pove, da daljsi kot bo niz,
 bolj natancno mora biti podano naravno stevilo $R$.\\
 Postopek kodiranja(znakov ni potrebno razvrstiti):
 \begin{enumerate}
-    \item Zacnemo z intervalom $[0, 1]$
+    \item Zacnemo z intervalom $[0, 1)$
     \item Izbrani interval razdelimo na \texit{n} podintervalov, ki se ne prekrivajo. Sirine podintervalov ustrezajo
         verjetnostim znakov. Vsak podinterval predstavlja en znak
-    \item Izberemo podintrval, ki ustreza iskanemu znaku
+    \item Izberemo podinterval, ki ustreza iskanemu znaku
     \item Ce niz se ni koncan, izbrani podinterval ponovno razdelimo (bne 2.tocka)
     \item Niz lahko predstavimo s poljubnim realnim stevilom v zadnjem podintervalu
 \end{enumerate}
