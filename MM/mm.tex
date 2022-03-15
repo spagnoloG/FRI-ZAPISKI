@@ -299,7 +299,65 @@ Construction of the MP inverse (4 cases):
                 A^+ = V \Sigma^+ U^T
             \end{math}
         \end{center}
-
 \end{enumerate}
+
+\textbf{1.9 SVD computation}
+\begin{enumerate}
+    \item Compute the eigenvalues and an orthonormal basis consistiong of eigenvectors
+        of the symetric matrix $A^TA$ or $AA^T$ (depending on which of them is of smaller size)
+    \item the singular values of the matrix $A \in R^{n \times m}$ are equal to $\sigma_i = \sqrt{\lambda_i}$
+    \item the left singular vectors are the corresponding orthonormal eigenvectors of $AA^T$
+    \item the right singular vectors are the corresponding orthonormal eigenvectors of $A^TA$
+    \item If u (resp. v) is a left (resp. right) singular vector corresponding to the singular
+        value $\sigma_i$, then $v = Au$ (resp. $u = A^Tv$) is a right (resp left) singular
+        vector corresponding to the same singular value
+    \item the remaining columns of U (resp. V) consist of an orthonormal basis of the kernel
+        (i.e., the eigenspace of $\lambda = 0$) of $AA^T$ (resp. $A^TA$)
+\end{enumerate}
+
+\textbf{1.10 General computation of $A^+$}
+\begin{enumerate}
+    \item For $A^TA$ compute its \textbf{nonzero} eigenvalues
+        $\lambda_1 \geq \dots \geq \lambda_r > 0$, and the corresponding
+        orthonormal eigenvectors $v_1, \dots, v_r$, and form the matrices:
+        \begin{center}
+            \begin{math}
+                S = diag(\sqrt{\lambda_1}, \dots, \sqrt{\lambda_r}) \in R^{r \times r}
+            \end{math}
+            \begin{math}
+                V = [v_1 \dots v_r] \in R^{m \times r}
+            \end{math}
+        \end{center}
+    \item Put the vectors \\
+         \begin{math}
+             u_1 = \dfrac{Av_1}{\sigma_1}, \dots, u_r = \dfrac{Av_r}{\sigma_r}
+        \end{math}\\ 
+        in the matrix $U = [u_1, \dots, u_r]$
+    \item Then $A^+ = V \Sigma^+ U^T$
+\end{enumerate}
+
+\textbf{1.11 Undetermined systems}\\
+Let $A \in R^{n \times m}$, where $m > n$. A system of equiations that has more variables than
+constraints. Typically such system has infinitely many solutions, but it may happen that it has no
+solutions $\rightarrow$ such system is undetermined.
+\begin{enumerate}
+    \item An undetermined system of linear equations $Ax=b$ is solvable iff $AA^+b = b$.
+    \item If there are infinitely many solutions, the solution $A^+b$ is the one with the
+        smallest norm, i.e
+        \begin{center}
+            \begin{math}
+                || A^+ b || = min\{||x||: Ax = b\}
+            \end{math}
+        \end{center}
+        Moreover, it is the unique solution of smallest norm.
+\end{enumerate}
+
+\textbf{1.12 Overdetermined systems}\\
+Let $A \in R^{n \times m}$, where $n > m$. A system of equations that has more constraints than
+variables. Typically such system has no soluitons, but it may happen that it migh have one or
+even infinitely many solutions.
+
+\section{\underline{Nonlinear Models}}
+
 \end{multicols}
 \end{document}
