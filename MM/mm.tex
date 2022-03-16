@@ -433,9 +433,26 @@ We construct a recursive sequence with: $x_0$ is an initial term
     \end{math}
 \end{center}
 
+\textbf{2.4.x Broyden's bethod}
+It approximates $JF(x^{(m)})$ with some matrix $B_bn$
+where:
+\begin{center}
+    \begin{math}
+        \text{slope} \approx f'(x_1)
+    \end{math}\\
+    \begin{math}
+        \dfrac{f(x_2) - f(x_1)} {x_2 - x_1} \approx f(x_1)
+    \end{math}\\
+    \begin{math}
+        f(x_2) - f(x_1) \approx f'(x) (x_2 - x_1)
+    \end{math}
+\end{center}
+Where $<f(x_2) - f(x_1)>$ is a vector, $<f(x_1)>$ is a $n \times n$ matrix $B_n$, and
+$<(x_2 - x_1)>$ a vector.
+
 \textbf{2.4.x Conclusion}
 \begin{enumerate}
-    \item Use Broyden method first
+    \item Use Broyden's method first
     \item If it doesn't converge, go and compute derivatives for
         Newtons method.
     \begin{enumerate}
