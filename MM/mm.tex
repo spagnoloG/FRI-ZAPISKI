@@ -78,24 +78,24 @@ where:
 \begin{small}
     \begin{center}
         \begin{math}
-        $\begin{bmatrix}
+        \begin{bmatrix}
             \phi_1(x_1) & \phi_2(x_1) & \dots  & \phi_p(x_1) \\
             \phi_1(x_2) & \phi_2(x_2) & \dots  & \phi_p(x_2) \\
             \vdots & \vdots & \ddots & \vdots \\
             \phi_1(x_n) & \phi_2(x_n) & \dots  & \phi_p(x_n)
-        \end{bmatrix}$
-        $\begin{bmatrix}
+        \end{bmatrix}
+        \begin{bmatrix}
              a_1 \\
              a_2 \\
              \vdots \\
              a_p
-        \end{bmatrix}$ = 
-        $\begin{bmatrix}
+        \end{bmatrix} = 
+        \begin{bmatrix}
              y_1 \\
              y_2 \\
              \vdots \\
              y_p
-        \end{bmatrix}$
+        \end{bmatrix}
         \end{math}
     \end{center}
 \end{small}
@@ -104,18 +104,18 @@ where:
 Let A = $[\vec{a_1}, \dots, \vec{a_n} ]$, where $\vec{a_i}$ are vector representing
 the columns of A.
 For any vector $\vec{x} =$ \begin{math}
-                             $\begin{bmatrix}
+                             \begin{bmatrix}
                                   y_1 \\
                                   y_2 \\
                                   \vdots \\
                                   y_p
-                             \end{bmatrix}$
+                             \end{bmatrix}
                            \end{math}
 the produdct $A\vec{x}$ is 
 a linear combination $A\vec{x} = \sum_i x_i a_i$. The system is \textbf{solvable} iff the
 vector $\vec{b}$ can be expressed as a linear combination of the columns of A, that is
 it is in the column space of $A$, $\vec{b} \in C(A)$.\\
-By adding \vec{b} to the columns of $A$ we obtain the extended matrix of the system:
+By adding $\vec{b}$ to the columns of $A$ we obtain the extended matrix of the system:
 \begin{center}
     \begin{math}
         [A| \vec{b}] = [\vec{a_1}, \dots, \vec{a_n} | b]
@@ -125,7 +125,7 @@ The system $A\vec{x} = \vec{b}$ is solvable iff the rank of A equals the rank of
 extended matrix $[A| \vec{b}]$, i.e.:
 \begin{center}
     \begin{math}
-        $rank$ A = $rank$ [A| \vec{b}] =: r
+        rank A = rank [A| \vec{b}] =: r
     \end{math}
 \end{center}
 The solution is unique if the rank of the two matrices equals num of unknowns (r = n).
@@ -160,10 +160,10 @@ a generalized inverse we come across two cases:
         \begin{center}
             \begin{math}
                 A=
-                $\begin{bmatrix}
+                \begin{bmatrix}
                     A_{11} & A_{12} \\
                     A_{21} & A_{22}
-                \end{bmatrix}$
+                \end{bmatrix}
             \end{math}
         \end{center}
         And $A_{11} \in R^{r \times r}, A_{12} \in R^{r \times (m-r)},$
@@ -172,10 +172,10 @@ a generalized inverse we come across two cases:
         \begin{center}
             \begin{math}
                 G=
-                $\begin{bmatrix}
+                \begin{bmatrix}
                     A_{11}^{-1} & 0 \\
                     0           & 0
-                \end{bmatrix}$
+                \end{bmatrix}
             \end{math}
         \end{center}
         where 0s denote zero matrices of appropriate sizes, is the generalized inverse of A.
@@ -184,10 +184,10 @@ a generalized inverse we come across two cases:
         \begin{center}
             \begin{math}
                 PAQ =
-                $\begin{bmatrix}
+                \begin{bmatrix}
                     \tilde{A_{11}} & \tilde{A_{12}} \\
                     \tilde{A_{21}} & \tilde{A_{22}}
-                \end{bmatrix}$
+                \end{bmatrix}
             \end{math},
         \end{center}
         $\tilde{A_{11}} \in R^{r \times r}$ and rank $\tilde{A_{11}} = r$. By case 1 
@@ -195,10 +195,10 @@ a generalized inverse we come across two cases:
         \begin{center}
             \begin{math}
                 (PAQ)^g=
-                $\begin{bmatrix}
+                \begin{bmatrix}
                     \tilde{A_{11}^{-1}} & 0 \\
                     0           & 0
-                \end{bmatrix}$
+                \end{bmatrix}
             \end{math}
         \end{center}
         Thus $(PAQ) (PAQ)^g (PAQ) = PAQ$ holds,
@@ -268,22 +268,22 @@ Construction of the MP inverse (4 cases):
         \begin{center}
             \begin{math}
                 \Sigma =
-                $\begin{bmatrix}
+                \begin{bmatrix}
                     \sigma_1 &        & \\
                              & \ddots & \\
                              &        & \sigma_n
-                \end{bmatrix}$
+                \end{bmatrix}
             \end{math}
         \end{center}
         Then the MP inverse is:
         \begin{center}
             \begin{math}
                 \Sigma =
-                $\begin{bmatrix}
+                \begin{bmatrix}
                     \sigma_1^+ &        & \\
                                & \ddots & \\
                                &        & \sigma_n^+
-                \end{bmatrix}$
+                \end{bmatrix}
             \end{math}
         \end{center}
         where \begin{math}
