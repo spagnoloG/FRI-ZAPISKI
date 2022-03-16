@@ -381,15 +381,48 @@ $g_m(a_1,..,a_p) = F(x_m,a_1,...a_p) - y_m$
 Solving $F(x_i, a_i, ..., a_p) = y_i,$ is equicalent to solving $G(a_1,..,a_p) = (0,...,0)$. 
 Newton's method will solve the latter system.\\
 
+\textbf{Rate of convergence}\\
+Let us say that $e_i$ is the $i$-th error of some method and $\alpha$ is
+a zero we are searching for.\\
+We can show that $|e_{i+1}| \leq C \cdot \frac{1}{2}|e_i|^r$, where $C \in R>0$ and $r \in N$. $r$ is
+the rate of convergence of the method. \\ \\
 \textbf{2.2 Case 1}\\
 $p = m = 1$\\
 $g: R \rightarrow R$. We have to find a zero of the function $g$ (let's call it $\alpha$).\\
+\\
 \textbf{Tangent method}
 \begin{enumerate}
     \item Select an initial approximation $x_0$.
     \item Iterate $x_{n+1} = x_n - \dfrac{f(x_n)}{f'(x_n)}, n=0,1,...$ until it converges to $\alpha$
 \end{enumerate}
 Problem: the convergence of this method really needs a good initial approximation.
+\textbf{Theorem:} The sequence $x_i$ from the tangent method converges with the rate
+$r = 2$ if:
+\begin{itemize}
+  \item $f'(\alpha) \neq 0$
+  \item $x_0$ was close enough to $\alpha$
+\end{itemize}
 
+\textbf{Bisection}
+\begin{enumerate}
+  \item Start with $x_0, x_1$, such that $f(x_0)f(x_1) < 0$.
+  \item Compute $x_2 = \dfrac{x_0 + x_1}{2}$.
+  \item Choose $[x_0, x_2]$ if $f(x_0)f(x_2) < 0$, otherwise choose $[x_2, x_1]$.
+  \item Repeat.
+\end{enumerate}
+Bisection always converges, but it is slow.\\
+\\
+\underline{Rate of convergence:}
+We can show that $|e_{i+1}| \approx \frac{1}{2}|e_i|$. From here we can see that bisection has
+a linear rate of convergence.\\
+
+\textbf{Stopping criteria}
+Iterative method: $x_0,..., x_n, x_n+1$. How do we find $n$ (how many steps of a method
+do we have to make)? This has to be true:
+\begin{itemize}
+  \item $\dfrac{|x_{n+1} - x_n|}{|x_n|} < tolerance$
+  \item $|f(x_{n+1})|<tolerance$
+\end{itemize}
+Tolerance is usually $10^{-10}$.
 \end{multicols}
 \end{document}
