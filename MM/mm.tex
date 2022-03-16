@@ -15,7 +15,7 @@
 
 \section{\underline{Linear Models}}
 
-\textbf{1.6 Types of errors}\\
+\textbf{1.1 Types of errors}\\
 Errors come from: impercise data, mistakes in the model, computational percision,..
 We know two types of errors:
 \begin{itemize}
@@ -358,6 +358,28 @@ variables. Typically such system has no soluitons, but it may happen that it mig
 even infinitely many solutions.
 
 \section{\underline{Nonlinear Models}}
+
+\textbf{2.1 Definition}\\
+Given is a sample of data points $(x_1, y_1),...,(x_m, y_m) \in R^n \times R$.
+We are searching for
+\begin{center}
+$F: R^n \times R^p \rightarrow R$, \\
+$F(x_i, a_i, ..., a_p) = y_i,$ \\
+$i = 1,...,m$
+\end{center}
+which can be nonlinear in parameters $a_i,...,a_p$. \\
+\textbf{Examples:} exponential decay/growth, Gaussian model, logistic model,...\\
+
+We introduce a vector function 
+\begin{center}
+$G: R^p \rightarrow R^m, G = (g_1,...,g_m)$\\
+$g_1(a_1,..,a_p) = F(x_1,a_1,...a_p) - y_1$\\
+...\\
+$g_m(a_1,..,a_p) = F(x_m,a_1,...a_p) - y_m$
+\end{center}
+
+Solving $F(x_i, a_i, ..., a_p) = y_i,$ is equicalent to solving $G(a_1,..,a_p) = (0,...,0)$. 
+Newton's method will solve the latter system.
 
 \end{multicols}
 \end{document}
