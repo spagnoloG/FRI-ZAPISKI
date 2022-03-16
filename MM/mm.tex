@@ -379,7 +379,17 @@ $g_m(a_1,..,a_p) = F(x_m,a_1,...a_p) - y_m$
 \end{center}
 
 Solving $F(x_i, a_i, ..., a_p) = y_i,$ is equicalent to solving $G(a_1,..,a_p) = (0,...,0)$. 
-Newton's method will solve the latter system.
+Newton's method will solve the latter system.\\
+
+\textbf{2.2 Case 1}\\
+$p = m = 1$\\
+$g: R \rightarrow R$. We have to find a zero of the function $g$ (let's call it $\alpha$).\\
+\textbf{Tangent method}
+\begin{enumerate}
+    \item Select an initial approximation $x_0$.
+    \item Iterate $x_{n+1} = x_n - \dfrac{f(x_n)}{f'(x_n)}, n=0,1,...$ until it converges to $\alpha$
+\end{enumerate}
+Problem: the convergence of this method really needs a good initial approximation.
 
 \end{multicols}
 \end{document}
