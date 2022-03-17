@@ -423,9 +423,37 @@ do we have to make)? This has to be true:
 \end{itemize}
 Tolerance is usually $10^{-10}$.
 
-\textbf{2.4 case 2 for solving nonlinear equations ($n = p < 1$)}\\
+\textbf{2.4 Case 2 for solving nonlinear equations ($n = p > 1$)}\\
+$F: R^n \rightarrow R^n$. We have to find a zero of the function $g$ (let's call it $\alpha \in R^n$).
+In this case we have a vector function of a vector variable.
+$F =
+\begin{bmatrix}
+F_1\\
+\vdots\\
+F_n
+\end{bmatrix}
+, F_i: R^n \rightarrow R$
 
-\textbf{2.4.1 Newton's or Tangent method}\\
+\textbf{2.4.1 Newton's method}\\
+$x^{(m+1)} = x^{m} - JF^{-1}(x^{(m)})F(x^{(m)})$ \textbf{(*)}
+Where $x^{m}, x^{(m+1)} \in R^n$ are some approximations of $\alpha$
+and JF is the \underline{Jacobi matrix of F:} $JF(x^{m}) = 
+  \begin{bmatrix}
+  grad F_1\\
+  \vdots \\
+  grad F_n
+  \end{bmatrix}
+=
+  \begin{bmatrix}
+  \frac{\partial F_1}{\partial x_1} \dots \frac{\partial F_1}{\partial x_n}\\
+  \vdots \ddots \vdots \\
+  \frac{\partial F_n}{\partial x_1} \dots \frac{\partial F_n}{\partial x_n}  
+  \end{bmatrix}
+$ \\
+We multiply \textbf{(*)} by $JF(x^{m})$ and solve this instead:
+$x^{(m+1)} = \Delta x^{m} + x^{m}$
+
+\textbf{2.4.2 Newton's or Tangent method}\\
 We construct a recursive sequence with: $x_0$ is an initial term
 \begin{center}
     \begin{math}
