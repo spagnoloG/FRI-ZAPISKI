@@ -166,7 +166,7 @@ Postopek kodiranja(znakov ni potrebno razvrstiti):
 Ko dobimo realni interval, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
 iz dec v bin stevilski sistem.
 
-\textbf{2.10 Kod Lempel-Ziv}\\
+\textbf{2.10 Kod Lempel-Ziv} (LZ77)\\
 Stiskanje temelji na osnovi slovarja, tako, da ne potrebujemo
 racunati verjetnosti za posamezne znake. \textbf{Kodirnik}
 med branjem niza gradi slovar, in \textbf{dekodirnik} med branjem
@@ -180,6 +180,108 @@ Referenca je podana kot trojcek:
 \end{itemize}
 npr. (0, 0, A) - ni ujemanja, (4, 3, B) - 4 znake nazaj se ponovi 3 znakovni podniz, ki se nato zakljuci s B.\\
 \textbf{dekodiranje:} sledimo kodnim zamenjavam
+
+\textbf{2.11 Deflate}\\
+Gre za predelan LZ77. Uporablja pare (odmik, dolzina). Ce ujemanja v kodni tabeli ni, zapise kar znak.
+Uporablja dve kodni tabeli:
+\begin{itemize}
+    \item \textbf{tabela za znake in dolzine} - 285 simbolov
+        (0-255 za osnovne znake, 256 konec bloka, 257-285 kodira dolzine)
+        Kodne zamenjave brez dodatnih bitov, se zakodira s Huffmanom.
+    \item \textbf{tabela odmikov}
+\end{itemize}
+Niz znakov se razdeli na bloke(64k)
+vsak blok se kodira na enega od treh nacinov:
+\begin{enumerate}
+    \item \textbf{brez stiskanja} osnovni znaki se prepisejo
+    \item \textbf{stiskanje s staticnim Huffmanom} (verjetnosti podane vnaprej), Huffmanovo drevo ni zakodirano v bloku
+    \item \textbf{stiskanje s Huffmanom} izracunamo verjetnosti za vsak blok
+\end{enumerate}
+Glava posameznega bloka: 1bit - zadnji/ni zadnji blok + 2bita tip stiskanja + pri (3) se Huffmanovo drevo
+Ker Huffmanovo drevo ni enolicno, uvedemo kanonicni Huffmanov kod. Postopek:
+\begin{enumerate}
+    \item znake razvrstimo najprej po dolzinah kodnih zamenjav in nato po abecedi
+    \item prvi simbol ima same nicle
+    \item vsakemu naslednjemu znaku dodelimo naslednjo binarno kodo (prejsnji + 1)
+    \item ce je kodna zamenjava daljsa od binarne kode stevila, na koncu pripnemo niclo
+    \item ponavjlaj (3) do konca
+\end{enumerate}
+Na taksen nacin dosezemo, da je potrebno kodirati samo dolzine kodnih zamenjav.
+
+\textbf{2.12 Kod Lempel-Ziv} (LZW)\\
+Osnovni slovar je podan in ga sporti doponjujemo. Alogritem za \textbf{kodiranje}:
+\begin{verbatim}
+N = ""
+ponavljaj:
+    preberi naslednji znak z
+    ce je [N,z] v slovarju:
+        N = [N, z]
+    drugace:
+        izpisi indeks k niza N
+        dodaj [N, z] v slovar
+        N = z
+    izpisi indeks k niza N
+\end{verbatim}
+Algoritem za \textbf{dekodiranje}:
+\begin{verbatim}
+preberi indeks k
+poisci niz N, ki ustreza indeksu k
+izpisi N
+L = N
+ponavljaj:
+    preberi indeks k
+    ce je k v slovarju:
+        poisci niz N
+    drugace:
+        N = [L, L(1)]
+    izpisi N
+    v slovar dodaj [L, N(1)]
+    L = N
+\end{verbatim}
+LZW doseze optimalno stiskanje, pribliza se entropiji. % dodaj dokaz ce bo potrebno
+
+\textbf{2.13 Verizno kodiranje} ali RLE (run lenght encoding)\\
+Namesto originalnih podatkov, sharnjujemo dolzino verige (fffeef $\rightarrow$ 3f2e1f).
+Problemu, ko se podatki ne ponavljajo, se izognemo tako, da izvedemo kombinacijo direktnega kodiranja
+in kodiranja RLE. % dodaj podrobnosti ce bo potrebno
+
+
+\textbf{2.14 Stiskanje z izgubami}\\
+S taksnim nacinom stiskanja lahko dosezemo veliko boljsa kompresijska razmerja, vendar izgubimo podatke.
+Zato ga uporabljamo samo s formati, kjer se ne ukvarjamo z integriteto podatkov(MP3, MPEG, JPEG, $\dots$).
+Postopki kodiranj znanih formatov:
+\begin{itemize}
+    \item \textbf{JPEG}
+        \begin{enumerate}
+            \item priprava slike $\rightarrow$ ker je svetlost bol pomembna, je barvna resolucija obicajno zmanjsana ($YC_RC_B$)
+            \item aproksimacija vsake od treh komponent s 2D DCT
+            \item kvantizacija $\rightarrow$  podatki ki bolj izstopajo so shranjeni manj natancno kot tisti ki so staticni
+            \item kodiranje blokov s pomocjo entropije
+            \item RLE cik-cak po sliki
+            \item RLE kodiramo z Huffmanom ali Aritmenticnim kodom
+        \end{enumerate}
+    \item \textbf{MP3}
+        \begin{enumerate}
+            \item Modified DCT
+            \item odstranitev za cloveka neslisnih frekvenc
+            \item stereo, ce sta si L in R pretvorimo v mono
+            \item Huffman na koncu
+        \end{enumerate}
+    \item \textbf{MPEG}
+        \begin{enumerate}
+            \item uvodno kodiranje $\rightarrow$ celotna slika JPEG
+            \item nato pa kodiramo samo spremembe, ki so se zgodile v sliki JPEG s pomocjo vektorja premika. V
+                primeru, da je prevec razlik, se ponovno kodira JPEG slika.
+        \end{enumerate}
+\end{itemize}
+
+\textbf{2.15 Kompresijsko razmerje}\\
+Izracunamo ga po formuli $\rightarrow$ stisnjeni binarni zapis C(M) / binarni zapis dokumenta (M):
+\begin{center}
+    \begin{math}
+        R = C(M) / M
+    \end{math}
+\end{center}
 
 \end{multicols}
 \end{document}
