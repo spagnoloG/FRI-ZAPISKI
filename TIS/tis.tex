@@ -394,9 +394,59 @@ Kapaciteta kanala je najvecja mozna medsebojna informacija, ki jo lahko prenesem
     $C =\underset{P(X)}{\max} I(X;Y)$
 \end{center}
 \subsubsection{Kapaciteta kanala BSK}
+Lastnosti:
+\begin{itemize}
+    \item $C =\underset{P(X)}{\max} (H(Y) - H(Y|X))$
+    \item $p(x_0) = \alpha, p(x_1) = 1 - \alpha$
+    \item $I(X;Y) = H(Y) - H(Y|X) = \dots = H(Y) - H(p, 1-p)$
+    \item $\frac{dI(X;Y)}{d \alpha} = 0$
+    \item $H(Y) = 1 \Rightarrow C$ je max
+    \item $C=I(X;Y) |_{\alpha = 1/2} = 1 - H(p, 1-p)$
+\end{itemize}
 \subsubsection{Kapacitata kanala BSK z brisanjem}
+Definicija:
+\begin{center}
+    \begin{math}
+        P_k = 
+                \begin{pmatrix}
+                    1-p & p & 0\\
+                    0   & p & 1-p
+                \end{pmatrix}
+    \end{math}
+\end{center}
+Lastnosti:
+\begin{itemize}
+    \item $C = 1 - p$
+    \item $p(x_0) = \alpha, p(x_1) = 1 - \alpha$
+    \item $p(y_0) = (1-p)\alpha, p(y_1) = p, p(y_2) = (1-p)(1-\alpha)$
+    \item $I(X;Y) = (1-p)H(\alpha, 1 - \alpha)$
+    \item $\frac{dI(X;Y)}{d \alpha} = 0 \Rightarrow \alpha = 1/2$
+\end{itemize}
 
 \subsection{Shannonov drugi teorem}
+Shannon je ugotovil, da nam zdruzevanje znakov v nize daje vec moznosti za doseganje zaneslijvega prenosa.\\
+Naj bo $M$ stevilo razlicnih kodnih zamenjav, ki jih lahko oblikujemo z nizi dolzine $n$. Potem je \textbf{hitrost koda}
+(prenosa)  definirana kot:
+\begin{center}
+    \begin{math}
+        R = \frac{max H(X^n)}{n} = \frac{log M}{n}
+    \end{math}
+\end{center}
+Hitrost je najvecja takrat, ko so dovoljene kodne zamenjave na vhodu enako verjetne. Shannonov teorem pravi, da je mozna
+skoraj popolna komunikacija s hitrostjo, enako kapaciteti kanala.
+\textbf{Teorem:}\\
+\begin{center}
+    Za \textbf{R $\leq$ C} obstaja kod, ki zagotavlja tako preverjanje informacije, da je verjetnost napake pri
+    dekodiran  poljubno majhna. Za \textbf{R $>$ C} kod, ki bi omogocal preverjanje informacije s poljubno majhno
+    verjetnostjo napake, \textbf{ne} obstaja.
+\end{center}
+Ce so znaki neodvisni, velja:
+\begin{center}
+    \begin{math}
+        \log(H(X^n)) = n \log H(X) \Rightarrow R = H
+    \end{math}
+\end{center}
+Za $R \leq \frac{\log 2^{nC}}{n} = C$ je mozno najti kodne zamenjave, ki omogocajo zanesljivo komunikacijo.
 
 \end{multicols}
 \end{document}
