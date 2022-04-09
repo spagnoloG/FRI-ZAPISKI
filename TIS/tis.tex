@@ -285,6 +285,109 @@ Izracunamo ga po formuli $\rightarrow$ stisnjeni binarni zapis C(M) / binarni za
 
 \section{Kanali}
 
+\subsection{Uvod}
+Kanali so strukture, ki opisujejo medsebojno povezanost. Kanal prenasa informacijo o spemenljivki
+$X$ do spremenljivke $Y$. Matematicno ga opisemo s \textbf{pogojnimi verjetnostmi}, ki povezujejo izhodne
+verjetnosti z vhodom.
+
+\subsection{Diskretni kanal brez spomina}
+Povezuje diskretni nakljuicni spremenljivki, s koncno mnozico stanj $X=\{x_1, \dots, x_r\}$ in $Y=\{y_1, \dots, y_s\}$.
+Obema nakljicnima spremenljivkama pripadajo tudi posamezne verjetnosti $P_X = \{p(x_1), \dots, p(x_r)\}$ in $P_Y = \{p(y_1), \dots, p(y_s)\}$. Kjer velja, da je vsota posamezne mnozice verjetnosti enaka 1. Kanal je definiran kot mnozica \textbf{pogojnih verjetnosti}
+\begin{center}
+    $p(y_j | x_i)$.
+\end{center}
+Pogojna verjetnost nam pove verjetnost za dogodek $y_j$ na izhodu iz kanala, ce je na vhodu v kanal dogodek $x_i$.
+Brez spomina je zato, ker so pogojne vrjetnosti konstantne in torej neodvisne od prehodnih simbolov, velja
+\begin{center}
+    \begin{math}
+        \sum_j p(y_j | x_i) = 1.
+    \end{math} 
+\end{center}
+Kanal popolnoma podamo z $r \times s$ pogojnimi verjetnostmi.
+
+\subsubsection{Binarni simetricni kanal (BSK)}
+Gre za poseben primer diskretnega kanala brez spomina. Napaka kanala je $p$, saj se z verjetnostjo $p$ znak prenese
+v napacnega.
+\begin{center}
+    \begin{math}
+        P_k = 
+                \begin{pmatrix}
+                    1-p & p\\
+                    p & 1-p 
+                \end{pmatrix}
+    \end{math}
+\end{center}
+
+\subsection{Pogojna entropija}
+Pogojna entropija spremenljivke $Y$ pri znanem $X$ se zapise kot $H(Y|X)$.
+Vzemimo, da se je zgodil dogodek $x_i \in X$. Entropija dogodka $Y$ je potem
+\begin{center}
+    \begin{math}
+        H(Y|x_i) = - \sum_{j=1}^s p(y_j|x_i) \log(p(y_j| x_i)).
+    \end{math}
+\end{center}
+Velja: $0 \leq H(Y| x_i)$.\\
+Ce pa o dogodku X vemo le da se je zgodil, se lahko spomnemo na vis in uporabimo
+\textbf{vezano verjetnost} dogodkov $X$ in $Y$, ki pravi:
+\begin{center}
+    \begin{math}
+        p(x_i, y_i) = p(x_j|x_i)p(x_i)
+    \end{math}
+\end{center}
+Za entropijo:
+\begin{center}
+    \begin{math}
+        H(Y|X) = \sum_{i} p(x_i)H(Y|x_i)
+    \end{math}
+    \begin{math}
+        = -\sum_{i=1}^r \sum_{j=1}^s p(x_i, y_i) \log p(y_i | x_i)
+    \end{math}
+\end{center}
+Splosno velja: $0 \leq H(Y|X) \leq H(Y)$, ce poznamo spremenljivko $X$, se nedolocenost $Y$ ne more povecati (lahko se pomanjsa).
+
+\subsection{Vezana entropija spremeljivk}
+Vezana entropija nakljucnih spremenljivk $X$ in $Y$ je entropija para $(X, Y)$.
+Pomembne zveze:
+\begin{itemize}
+    \item $p(x_i, y_j) = p(y_j| x_i)p(x_i)$,
+    \item $\sum_j p(x_i, y_j) = p(x_i)$,
+    \item $\sum_i p(x_i, y_j) = p(y_j)$,
+    \item $\sum_{i,j} p(x_i, y_j) = 1$
+\end{itemize}
+Velja: $H(X, Y) = H(Y|X) + H(X)$, kar nam pove, da ce najprej izvemo, kaj se je zgodilo v dogodku $X$ in potem
+dobimo se dodatne informacije od dogodku $Y$, vemo vse.
+\subsubsection{Obrat kanala}
+Ker velja tudi $H(X, Y) = H(X|Y) + H(Y)$, kanal lahko \textbf{obrnemo}
+(sepravi vhod $Y$ in izhod $X$). Pri tem ne obracamo fizicnega procesa, ampak samo verjetnostno strukturo, ki definira kanal. \textbf{Pogoj:}  poznati moramo vhodne verjetnosti. Iz njih lahko dolocimo izhodne verjetnosti, ki jih lahko
+uporabimo kot vhodne verjetnosti v obrnjeni kanal.
+Lastnosti:
+\begin{itemize}
+    \item izracun izhodnih verjetnosti $p(y_j) = \sum_i p(y_j, x_i)p(x_i)$
+    \item obratne pogojne vrjetnosti $p(x_i, y_j)= p(y_j|x_i)p(x_i) = p(x_i|y_j)p(y_j)$
+\end{itemize}
+Za sprejemnika sporocila so obratne pogojne verjetnosti zelo pomembne, saj z njimi lahko iz prejetih znakov doloci
+verjetnost za vhodne znake.
+
+\subsection{Medesebojna informacija}
+Pove nam, koliko o eni spremenljivki izvemo iz druge spremenljivke,
+definicija:
+\begin{center}
+    \begin{math}
+        I(X;Y) = H(X) - H(X|Y)
+    \end{math}
+\end{center}
+Lastnosti:
+\begin{itemize}
+    \item $I(X;Y) = H(X, Y) - H(X|Y) - H(Y|X)$
+    \item $I(X;Y) = H(X) - H(X|Y)$
+    \item $I(X;Y) = H(Y) - H(Y|X)$
+    \item $I(X;Y) = H(X) + H(Y) - H(X, Y)$
+    \item $I(X;Y) = \text{simetricna glede na } X \text{ in } Y$
+    \item $I(X;Y) = -\sum_i\sum_j p(x_i, y_j) \log \frac{p(x_i)p(y_j)}{p(x_i, y_j)}$
+    \item $I(X;Y) \geq 0$
+    \item $I(X;X) = H(X)$
+\end{itemize}
+
 \end{multicols}
 \end{document}
 
