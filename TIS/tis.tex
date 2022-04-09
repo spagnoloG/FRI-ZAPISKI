@@ -448,6 +448,82 @@ Ce so znaki neodvisni, velja:
 \end{center}
 Za $R \leq \frac{\log 2^{nC}}{n} = C$ je mozno najti kodne zamenjave, ki omogocajo zanesljivo komunikacijo.
 
+\section{Varno kodiranje}
+
+\subsection{Uvod}
+Omejili se bomo na enostavne linearne blocne kode za BSK. Dolzina bloka je $k$ znakov, abeceda je enaka abecedi
+kanala, torej imamo $M=2^k$ blokov $x_1, \dots x_k$, $x_i \in \{0, 1\}$. Za potrebe varovanja dodamo se nekaj
+varnostnih znakov, celotna dolzina vsake od M kodnih zamenjav je potem n. Namesto enega posljemo n enakih znakov.
+Boljsi pristop pa je, da naredimo kode, kjer se povecujeta $n$ in $k$ hitreje od razilke $n -k$.
+
+\subsection{Kontrolne vsote}
+Varnost komunikacije povecamo tako, da dodamo nekaj bitov za preverjanje parnosti(paritetni biti).
+Nastavljeni so tako, da je vsota bitov v aritmetiki po modulu 2 fiksna vrednost (0 ali 1).\\
+\textit{Spomnimo se arsa}
+\begin{center}
+    \begin{tabular}{ |c|c|c| } 
+        \hline
+        +/-/XOR & 0 & 1 \\ 
+        \hline
+            0   & 0 & 1 \\ 
+            1   & 1 & 0 \\ 
+        \hline
+    \end{tabular}
+    AND $\sim \times$.\\
+\end{center}
+
+npr. $00|0, 01|1, 10|1, 11|1$(detektiramo samo eno napako).
+
+\subsubsection{Pravokotni kodi}
+Zapisemo ga v obliki pravokotnika, gledamo sodost po vrsticah in po stolpcih.
+
+\begin{center}
+    \begin{tabular}{ |c|cc| } 
+        \hline
+            1   & 0 & 1 \\ 
+            0   & 1 & 1 \\ 
+            \hline
+            0   & 1 & 0 \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Trikotni kodi}
+Vsota elementov v stolpcu in vrstici s paritetnim bitom vred mora biti soda. (ravno tako vsota paritetnih bitov)
+\begin{center}
+    \begin{tabular}{ ccc } 
+        1   & 0 & \textbf{1} \\ 
+        0   & \textbf{0} &  \\ 
+        \textbf{1}   &  &  \\ 
+    \end{tabular}
+\end{center}
+
+\subsection{Hammingova razdalja}
+Hammingova razdalja med kodnima zamenjava nam pove stevilo znakov, na katerih se razlikujeta. Kodni zamenjavi sta enaki,
+ce je razdalja 0, razdalja med razlicnimi kodi mora biti vsaj 1, drugace je kod \textbf{singularen}.
+Razdalja je podana kot \textbf{minimalna} Hammingova razdalja med dvema kodnima zamenjavama.
+Stevilo napak, ki jih kod zazna:
+\begin{center}
+    $d \geq e + 1 \rightarrow e_{max} = d-1$
+\end{center}
+\begin{center}
+    $d \geq 2f + 1 \rightarrow f_{max} = \lfloor \frac{d-1}{2} \rfloor$
+\end{center}
+
+\subsubsection{Hammingov pogoj}
+Za bloke dolzine $n$ lahko zgradimo $2^n$ razlicnih kodnih zamenjav. Ce zelimo zagotoviti odpornost na napake,
+mora biti razdalja $d > 1$. Uporabni kodi imajo st. kodnih zamenjav $M = 2^k < 2^n$.
+Hammingov pogoj: da bi lahko dekodirali vse kodne zamenjave, pri katerih je prislo do $e$ ali manj napak
+mora veljati:
+\begin{center}
+    \begin{math}
+        M \leq \frac{2^n}{\sum_{i=0}^e{n \choose i}}
+    \end{math}
+\end{center}
+
+\subsection{Linearni blocni kodi}
+% ostal prosojnice6b str 9
+
 \end{multicols}
 \end{document}
 
