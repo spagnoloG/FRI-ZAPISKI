@@ -13,9 +13,9 @@
 
 \begin{multicols}{3}
 
-\section{\underline{Osnove}}
+\section{Osnove}
 
-\textbf{1.1 Ponovitev logaritmov}
+\subsection{Ponovitev logaritmov}
 \begin{small}
     \begin{itemize} 
         \item $log_a x = \dfrac{log_b x}{log_b a}$
@@ -26,7 +26,7 @@
     \end{itemize}
 \end{small}
 
-\textbf{1.2 Entropija}
+\subsection{Entropija}
 je povprecje vseh lastnih informacij:
 \begin{center}
     \begin{math}
@@ -38,9 +38,9 @@ od 0 ($p_i \geq 0 \rightarrow -p_i \log p_i \geq 0 \rightarrow H(X) \geq 0$) in 
 Ce sta dogodka \textbf{neodvisna} velja aditivnost: $H(X, Y) = H(X) + H(Y)$.\\
 Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
 
-\section{\underline{Kodi}}
+\section{Kodi}
 
-\textbf{2.1 Uvod}\\
+\subsection{Uvod}
 \textbf{Kod} sestavljajo \textit{kodne zamenjave}, ki so sestavljene iz znakov
 \textbf{kodne abecede}. Stevilo znakov v kodni abecedi oznacujemo z \textbf{r}.\\
 Ce so $\{p_1, \dots, p_n\}$ verjetnosti znakov $\{s_1, \dots, s_n\}$ osnovnega sporocila in $\{l_1, \dots, l_n\}$
@@ -51,7 +51,7 @@ dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
     \end{math}
 \end{center}
 
-\textbf{2.2 Tipi kodov}
+\subsection{Tipi kodov}
 \begin{itemize}
     \item \textbf{optimalen} - ce ima najmanjso mozno dolzino kodnih zamenjav
     \item \textbf{idealen} - ce je povprecna dolzina kodnih zamenjav enaka entropiji
@@ -60,7 +60,7 @@ dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
     \item \textbf{trenuten} - ce lahko osnovni znak dekodiramo takoj, ko sprejmemo celotno kodno zamenjavo
 \end{itemize}
 
-\textbf{2.3 Kraftova neenakost}
+\subsection{Kraftova neenakost}
 Za dolzine kodnih zamenjav $\{l_1, \dots, l_n\}$ in \textit{r} znaki kodne abecede
 obstaja trenutni kod, iff
 \begin{center}
@@ -69,7 +69,7 @@ obstaja trenutni kod, iff
     \end{math}
 \end{center}
 
-\textbf{2.4 Povprecna dolzina} in \textbf{ucinkovitost}\\
+\subsection{Povp. dolzina, ucinkovitost}
 Najkrajse kodne zamenjave imamo, ce velja:
 \begin{center}
     \begin{math}
@@ -95,7 +95,7 @@ kjer je $H_r(X)$:
     \end{math}
 \end{center}
 
-\textbf{2.5 Shannonov prvi teorem}\\
+\subsection{Shannonov prvi teorem}
 Za nize neodvisnih znakov dozline \texit{n} obstajajo kodi,
 za katere velja:
 \begin{center}
@@ -112,7 +112,7 @@ Postopek kodiranja po Shannonu:
     \item $P_k$ pretvorimo v bazo $r$. Kodno zamenjavo predstavlja prvih $l_k$ znakov necelega dela stevila
 \end{enumerate}
 
-\textbf{2.6 Fanojev kod}\\
+\subsection{Fanojev kod}
 Postopek kodiranja:
 \begin{enumerate}
     \item znake razvrstimo po padajocih verjetnostih
@@ -121,7 +121,7 @@ Postopek kodiranja:
     \item Deljenje ponovimo na vsaki od skupin. Postopek ponavljamo, dokler je mogoce
 \end{enumerate}
 
-\textbf{2.7 Huffmanov kod}\\
+\subsection{Huffmanov kod}
 Huffmanov postopek kodiranja poteka od spodaj navzgor (Pri Fanoju je ravno obratno).
 Pri huffmanovem kodu imamo dve fazi:
 \begin{enumerate}
@@ -149,7 +149,7 @@ Ce imamo premalo znakov, jih po potrebi dodamo s verjetnostjo $p=0$.\\
 Huffmanov kod lahko razsirimo tako, da vec osnovnih znakov zdruzujemo v sestavljene znake $\rightarrow$ bolj ucinkoviti kodi. Vendar
 naletimo na nevarnost kombinacijske eksplozije.\\
 
-\textbf{2.9 Aritmeticni kod}\\
+\subsection{Aritmeticni kod}
 Je \textbf{hiter} in \textbf{blizu optimalnemu} kodu, ter manj ucinkovit kot Huffmanov,
 vendar se izogne kombinacijski eksploziji.
 Vsak niz je predstavljen kot realno stevilo $0 \leq R < 1$, kar nam pove, da daljsi kot bo niz,
@@ -166,7 +166,7 @@ Postopek kodiranja(znakov ni potrebno razvrstiti):
 Ko dobimo realni interval, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
 iz dec v bin stevilski sistem.
 
-\textbf{2.10 Kod Lempel-Ziv} (LZ77)\\
+\subsection{Kod Lempel-Ziv (LZ77)} 
 Stiskanje temelji na osnovi slovarja, tako, da ne potrebujemo
 racunati verjetnosti za posamezne znake. \textbf{Kodirnik}
 med branjem niza gradi slovar, in \textbf{dekodirnik} med branjem
@@ -181,7 +181,7 @@ Referenca je podana kot trojcek:
 npr. (0, 0, A) - ni ujemanja, (4, 3, B) - 4 znake nazaj se ponovi 3 znakovni podniz, ki se nato zakljuci s B.\\
 \textbf{dekodiranje:} sledimo kodnim zamenjavam
 
-\textbf{2.11 Deflate}\\
+\subsection{Deflate}
 Gre za predelan LZ77. Uporablja pare (odmik, dolzina). Ce ujemanja v kodni tabeli ni, zapise kar znak.
 Uporablja dve kodni tabeli:
 \begin{itemize}
@@ -208,7 +208,7 @@ Ker Huffmanovo drevo ni enolicno, uvedemo kanonicni Huffmanov kod. Postopek:
 \end{enumerate}
 Na taksen nacin dosezemo, da je potrebno kodirati samo dolzine kodnih zamenjav.
 
-\textbf{2.12 Kod Lempel-Ziv} (LZW)\\
+\subsection{Kod Lempel-Ziv (LZW)}
 Osnovni slovar je podan in ga sporti doponjujemo. Alogritem za \textbf{kodiranje}:
 \begin{verbatim}
 N = ""
@@ -240,13 +240,13 @@ ponavljaj:
 \end{verbatim}
 LZW doseze optimalno stiskanje, pribliza se entropiji. % dodaj dokaz ce bo potrebno
 
-\textbf{2.13 Verizno kodiranje} ali RLE (run lenght encoding)\\
+\subsection{Verizno kodiranje ali RLE (run lenght encoding)} 
 Namesto originalnih podatkov, sharnjujemo dolzino verige (fffeef $\rightarrow$ 3f2e1f).
 Problemu, ko se podatki ne ponavljajo, se izognemo tako, da izvedemo kombinacijo direktnega kodiranja
 in kodiranja RLE. % dodaj podrobnosti ce bo potrebno
 
 
-\textbf{2.14 Stiskanje z izgubami}\\
+\subsection{Stiskanje z izgubami}
 S taksnim nacinom stiskanja lahko dosezemo veliko boljsa kompresijska razmerja, vendar izgubimo podatke.
 Zato ga uporabljamo samo s formati, kjer se ne ukvarjamo z integriteto podatkov(MP3, MPEG, JPEG, $\dots$).
 Postopki kodiranj znanih formatov:
@@ -275,7 +275,7 @@ Postopki kodiranj znanih formatov:
         \end{enumerate}
 \end{itemize}
 
-\textbf{2.15 Kompresijsko razmerje}\\
+\subsection{Kompresijsko razmerje}
 Izracunamo ga po formuli $\rightarrow$ stisnjeni binarni zapis C(M) / binarni zapis dokumenta (M):
 \begin{center}
     \begin{math}
@@ -283,5 +283,8 @@ Izracunamo ga po formuli $\rightarrow$ stisnjeni binarni zapis C(M) / binarni za
     \end{math}
 \end{center}
 
+\section{Kanali}
+
 \end{multicols}
 \end{document}
+
