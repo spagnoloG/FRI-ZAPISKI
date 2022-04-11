@@ -517,12 +517,84 @@ Hammingov pogoj: da bi lahko dekodirali vse kodne zamenjave, pri katerih je pris
 mora veljati:
 \begin{center}
     \begin{math}
-        M \leq \frac{2^n}{\sum_{i=0}^e{n \choose i}}
+        M \leq \dfrac{2^n}{\sum_{i=0}^e{n \choose i}}
     \end{math}
 \end{center}
 
 \subsection{Linearni blocni kodi}
-% ostal prosojnice6b str 9
+Kode oznacimo kot dvojcek $(n, k)$. $n$ predstavlja stevilo varnostnih bitov, k pa podatkovnih.
+O linearnih blocnih kodih govorimo, kadar:
+\begin{itemize}
+    \item je vsota vsakega para kodnih zamenjav spet kodna zamenjava.
+    \item da produkt kodne zamenjave z 1 in 0 spet kodno zamenjavo.
+    \item vedno obstaja kodna zamenjava s samimi niclami
+\end{itemize}
+Oznacimo jih z $L(n, k)$. \textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
+z najmanj enicami.
+Naj bodo podatkovni biti oznaceni kot $z_1, z_2 \text{ in } z_3$, varnostni pa kot $s_1, s_2 \text{ in } s_3$:
+\begin{center}
+    \begin{tabular}{ ccc } 
+        z_1   & z_2 & s_3 \\ 
+        z_3   & s_2 &  \\ 
+        s_1   &  &  \\ 
+    \end{tabular}
+\end{center}
+Potem vrednosti zlozimo v vektor, in opravimo kodno zamenjavo.
+\begin{center}
+    \begin{math}
+        \vec{x} = (x_1, x_2, x_3, x_4, x_5, x_6) = (z_1, z_2, z_3, s_1, s_2, s_3)
+    \end{math}
+\end{center}
+Velja:
+\begin{center}
+        $z_1 + z_2 + s_1 = 0 = x_1 + x_2 + x_4$\\
+        $z_3 + s_2 + z_2 = 0 = x_2 + x_3 + x_5$\\
+        $s_3 + s_3 + z_1 = 0 = x_1 + x_3 + x_6$\\
+\end{center}
+
+
+\subsubsection{Generatorska matrika}
+Generiranje kodne zamenjave lahko opisemo z generatorsko matriko.
+
+\begin{center}
+    \begin{math}
+        \vec{x} = \vec{z}G =  
+        \begin{bmatrix}
+            1 & 0 & 0 & 1 & 0 & 1\\
+            0 & 1 & 0 & 1 & 1 & 0\\
+            0 & 0 & 1 & 0 & 1 & 1\\ 
+        \end{bmatrix}
+    \end{math}
+\end{center}
+
+V splosnem podatkovni vektor $1 \times k$ mnozimo z generatorsko matriko $k \times n$, da dobimo kodno zamenjavo
+$1 \times n$. Matrika mora imeti linearno neodvisne vrstice. Kod, cigar generatorska matrika ima to obliko, je
+\tetbf{sistematicni kod} - prvih $k$ znakov koda je enakih sporocilu (podatkovnim bitom), ostalih $n-k$ znakov pa so
+paritetni biti.
+
+Za diskretne kanale brez spomina jo vedno lahko zapisemo v obliki $G = (I_k | A)$.
+
+\subsubsection{Matrika za preverjanje sodosti}
+Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti:
+
+\begin{center}
+    \begin{math}
+        H =
+        \begin{bmatrix}
+            1 & 1 & 0 & 1 & 0 & 0 \\
+            0 & 1 & 1 & 0 & 1 & 0 \\
+            1 & 0 & 1 & 0 & 0 & 1 
+        \end{bmatrix}
+    \end{math}
+\end{center}
+
+Lastnosti:
+\begin{itemize}
+    \item $\vec{x}H^T = 0$
+    \item $GH^T = 0$
+    \item $G = (I_k | A) \Rightarrow H = (A^T | I_{n-k})$
+    \item vsota dveh kodnih zamenjav je nova kodna zamenjava.
+\end{itemize}
 
 \end{multicols}
 \end{document}
