@@ -3,7 +3,7 @@
 Trenutno na voljo: <br>
 -> Prvi letnik:
 - [LA](https://spagnolog.github.io/FRI-ZAPISKI/LA/la.pdf)
-- [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
+- [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf) ~ outdated
 
 -> Drugi letnik
 - [VIS](https://spagnolog.github.io/FRI-ZAPISKI/VIS/vis.pdf), [VIS-teorija](https://github.com/bl4ko/statistics-theory)
