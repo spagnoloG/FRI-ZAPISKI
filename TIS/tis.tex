@@ -596,6 +596,132 @@ Lastnosti:
     \item vsota dveh kodnih zamenjav je nova kodna zamenjava.
 \end{itemize}
 
+\subsection{Sindrom v kanalu}
+Predpostavimo da se med posiljanjem v kanalu zgodi napaka:
+\begin{center}
+    \begin{math}
+        z \rightarrow x = zG \rightarrow err\rightarrow y = x + e \rightarrow s = yH^T
+    \end{math}
+\end{center}
+Napako pri prenosu preprosto ugotavljamo tako, da pogledamo, ce je $s = 0$. Vendar to nam ne garantira da pri prenosu ni prislo do napake.
+Sindrom izracunamo na naslednji nacin(vektor velikosti $1 \times n - k$):
+\begin{center}
+    \begin{math}
+        yH^T = (x + e)H^T = eH^T = s
+    \end{math}
+\end{center}
+Ker je verjetnost za napako obicajno $p << 1$, je niz s $t$ napakami veliko
+verjetnejsi od niza s t + 1 napakami.
+
+\subsubsection{Standardna tabela}
+Imejmo ponavljalni kod $(0|00)$ in $(1|11)$. Sestavimo matrki G in H.
+
+\begin{math}
+    G = [1|11] \text{ in } H = 
+        \begin{bmatrix}
+            1 |& 1 & 0\\
+            1 |& 0 & 1
+        \end{bmatrix}
+\end{math}
+
+
+Imamo 4 mozne sindrome: (00), (01), (10), (11). Na izhodu lahko dobimo $2^n = 8$
+razlicnih nizov.
+
+Mozne nize na izhodu in njihove sindrome obicajno razvrstimo v std. tabelo:
+\begin{center}
+    \begin{tabular}{ c|cc }
+        \text{sindrom}   & popravljalnik & \\ 
+        \hline
+        00   & 000 & 111\\ 
+        01   & 001 & 110\\ 
+        10   & 010 & 101\\ 
+        11   & 100 & 011
+    \end{tabular}
+\end{center}
+
+V isti vrstici so nizi, ki dajo enak sindrom. V prvi vrstici so vedno kodne zamenjave, ki
+imajo sindrom 0. Skrajno levo je vedno niz, ki ima najmanj enic, saj je najbolj verjeten.
+Imenujemo ga popravljalnik. Ostale nize dobimo tako, da popravljalnik pristevamo k kodnim
+zamenjavam v prvi vrsti. Popravljanje je sedaj enostavno: izracunamo sindrom, popravljalnik
+odstejemo(pristejemo) od prejetega niza.
+
+\subsection{Hammingov kod}
+Hammingovi kodi so druzina linearnih blocnih kodov, ki lahko popravijo eno napako.
+Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolpci
+nenicelni vektorji. Spadajo med \textbf{popolne kode} - sfere z radijem 1 okrog kodnih
+zamenjav ravno napolnijo prostor z $2^n$ tockami.
+
+Kod z $m$ varnostnimi biti ima kodne zamenjave dolzine $2^m - 1$.  Oznaka koda je potem
+$H(2^m - 1, 2^m - 1 - m)$. Ce stolpce v matriki H interpretiramo kot stevila v binarni
+obliki, nam oznaka stolpca doloca polozaj napake. Stolpci v Hammingovem kodu so lahko
+poljubno razmetani. Pomembno je le to, da nastopajo \textbf{vsa} stevila od 1 do $2^m - 1$.
+
+Hammingov kod je lahko:
+\begin{itemize}
+    \item \textbf{leksikografski} - oznake stolpcev si sledijo po vrsti
+    \item \textbf{sistematicni} - oznake stolpcev so pomesane
+\end{itemize}
+
+ V Hammingovem kodu se za varnostne bite obicajno vzamejo tisti stolpci, ki imajo samo \textbf{eno} enico.
+
+\subsubsection{Dekodiranje}
+Dekodiranje leksikografskega Hammingovega koda je preprosto:
+\begin{enumerate}
+    \item izracunamo sindrom $s = yH^T$
+    \item ce je $s = 0$, je $x' = y$
+    \item ce $s \neq 0$, decimalno stevilo $S$ predstavlja mesto napake.
+\end{enumerate}
+Za kod, ki pa ni leksikografski potrebujemo tabelo povezav med indeksi sindromov in stolpci(sepravi pogledamo, na kateri indeks se slika izracunani sindrom).
+
+\subsection{Ciklicni kodi}
+Ciklicni kod $C(n, k)$ je linearni blocni kod, v katerem vsak krozni premik kodne zamenjave
+da drugo kodno zamenjavo. Zapisemo jih s polinomi po padajocih potencah (ravno tako jih sestevamo po mod 2). 
+
+\subsubsection{Zapis s polinomi}
+Imejmo osnovni vektor: 
+\begin{center}
+    $x = (x_{n-1}, x_{n-2}, \dots, x_0) \Leftrightarrow$
+    $x(p) = x_{n-1}p^{n-1} + x_{n-2}p^{n-2} + \dots + x_0$ 
+\end{center}
+Izvedemo premik za eno mesto:
+\begin{center}
+    $x' = (x_{n-2}, \dots, x_0, x_{n-1}) \Leftrightarrow$
+    $x'(p) = x_{n-2}p^{n-2} + \dots + x_0p + x_{n-1}$ 
+\end{center}
+Velja zveza: $x'(p) = px(p) - x_{n-1}(p^n -1)$.
+
+V mod $2$ aritmetiki:
+\begin{center}
+    $\Rightarrow$ $x'(p) = px(p) + x_{n-1}(p^n -1)$.
+\end{center}
+
+V $\text{mod}(p^n + 1)$ aritmetiki:
+\begin{center}
+    $\Rightarrow$ $x'(p) = px(p) \text{ mod}(p^n + 1)$.
+\end{center}
+
+\textbf{Pozor:} aritmetiko po mod 2 izvajamo na \textbf{istih} stopnjah polinoma (na bitih), aritmetiko
+po mod $(p^n + 1)$ pa na \textbf{polinomu}.
+
+Izvajanje kroznega prekmika za $i$ mest:
+\begin{center}
+    \begin{math}
+        x^i(p) = p^i x(p) \text{ mod} (p^n + 1)
+    \end{math}
+\end{center}
+
+\subsubsection{Generatorski polinomi}
+Vrstice generatorske matrike lahko razumemo kot kodne zamenjave.
+Za ciklicne kode v splosnem velja: \textbf{Generatorski polinom} je stopnje $m$, kjer je $m$ stevilo
+varnostnih bitov, in ga oznacimo kot:
+\begin{center}
+    \begin{math}
+        g(p) = p^m + g_{m-1}p^{m-1} + \dots + g_1p + 1
+    \end{math}
+\end{center}
+Za sistematicni kod velja: $G = [I_k | A_{k, n-k}]$.
+%predavanje07s.pdf -> page 15
 \end{multicols}
 \end{document}
 
