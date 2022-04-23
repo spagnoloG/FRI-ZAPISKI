@@ -721,7 +721,93 @@ varnostnih bitov, in ga oznacimo kot:
     \end{math}
 \end{center}
 Za sistematicni kod velja: $G = [I_k | A_{k, n-k}]$.
-%predavanje07s.pdf -> page 15
+Generatorska matrika:
+\begin{center}
+    $G= $
+    \begin{tiny}
+        \begin{math}
+            \begin{bmatrix}
+                1 & g_{m - 1} &  \dots & g_1 & 1 & 0 & \dots & 0 & 0 \\
+                0 & 1         & g_{m-1} & \dots & g_1 & 1 & 0 & \dots & 0 \\
+                \vdots & & & & & & & & \vdots  \\
+                0 & 0 & \dots & 0 & 1 & g_{m-1} & \dots & g_1 & 1
+            \end{bmatrix}
+        \end{math}
+    \end{tiny}
+\end{center}
+Sistematicni lahko dobimo z linearnimi operacijami nad vrsticami.
+Velja:
+\begin{center}
+    \begin{math}
+        p^n + 1 = g(p)h(p)
+    \end{math}
+\end{center}
+Sepravi vsak polinom, ki polinom $p^n + 1$ deli brez ostanka, je generatorski polinom.
+
+\subsubsection{Polinom za preverjanje sodosti}
+Velja: $x(p)h(p) \mod(p^n + 1) = 0$ $\Rightarrow \sum_{i=0}^{n-i} x_i h_{j-i} = 0$
+
+V matricni obliki: $\vec{x} H^T = H\vec{x}^T = 0$
+\begin{center}
+    \begin{tiny}
+        \begin{math}
+            \begin{bmatrix}
+                h_0 & \dots & h_k & 0 & \dots & 0 & 0\\
+                0 & h_0 & \dots & h_k & 0 & \dots & 0 \\
+                \vdots & & & & & & \vdots \\
+                0 & 0 & \dots & 0 & h_0 & \dots & h_k
+            \end{bmatrix}
+            \begin{bmatrix}
+                x_{n-1}\\
+                \vdots\\
+                x_0
+            \end{bmatrix} = 0
+        \end{math}
+    \end{tiny}
+\end{center}
+
+\subsubsection{Kodiranje z mnozenjem}
+Kodne zamenjave so veckratniki generatorskega polinoma.
+Velja:
+\begin{center}
+    \begin{math}
+        x(p) = z(p) g(p) mod (p^n + 1)
+    \end{math}
+\end{center}, kjer je z(p) polinom, ki ustreza podatkovnemu vektorju $\vec{z}$
+Kod, ki smo ga dobili z mnozenjem, ustreza generatorski matriki, ki ima v vrsticah
+koeficiente $p^{k-1}g(p), \dots, pg(p), g(p)$, zato ni sistematicen.
+
+\subsubsection{kodiranje z deljenjem}
+Kodiranje na osnovi deljenja ustvari sistematicen ciklicen kod. Kodna zamenjava je zato sestavljena iz sporocila
+(podatkovnega bloka) in varnostnega bloka znakov, $x = (z | r)$.
+Polinom podatkovnega bloka je:
+\begin{center}
+    \begin{math}
+        z(p) = z_{k-1}p^{n-1} + \dots + z_1p^{1} + z_0p^0
+    \end{math}
+\end{center}
+Ce pa polinom pomnozimo s $p^m$, dobimo na desni $m$ nicel.
+\begin{center}
+    \begin{math}
+        $p^m z(p) = z_{k-1}p^{k-1} + \dots + z_1p^{m+1} + z_0p^m$
+    \end{math}
+\end{center}
+To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 0, \dots, 0$).
+
+V splosnem nastavek seveda ne bo deljiv, velja pa $p^mz(p) = g(p)t(p) + r(p)$, kjer je $t(p)$ kolicnik,
+$r(p)$ pa ostanek, s stopnjo manj od $m$.
+
+Ostanek lahko zapisemo v obliki niza, kot $(0, \dots, 0, r_{m-1}, \dots, r_0)$.
+
+Polinom $p^m z(p) + r(p) = g(p)t(p)$ je deljiv z $g(p)$ in je zato ustrazna kodna zamenjava.
+Kodno zamenjavo tako dobimo, ce ostanek deljenja z generatorskim polinomom pristejemo k osnovnemu
+nastavku, $(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
+
+\subsubsection{Strojna izvedba}
+\begin{verbatim}
+// todo, if needed
+\end{verbatim}
+
 \end{multicols}
 \end{document}
 
