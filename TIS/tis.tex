@@ -534,9 +534,9 @@ z najmanj enicami.
 Naj bodo podatkovni biti oznaceni kot $z_1, z_2 \text{ in } z_3$, varnostni pa kot $s_1, s_2 \text{ in } s_3$:
 \begin{center}
     \begin{tabular}{ ccc } 
-        z\_1   & z\_2 & s\_3 \\ 
-        z\_3   & s\_2 &  \\ 
-        s\_1   &  & \\
+        z_1   & z_2 & s_3 \\ 
+        z_3   & s_2 &  \\ 
+        s_1   &  & \\
     \end{tabular}
 \end{center}
 Potem vrednosti zlozimo v vektor, in opravimo kodno zamenjavo.
@@ -803,11 +803,145 @@ Polinom $p^m z(p) + r(p) = g(p)t(p)$ je deljiv z $g(p)$ in je zato ustrazna kodn
 Kodno zamenjavo tako dobimo, ce ostanek deljenja z generatorskim polinomom pristejemo k osnovnemu
 nastavku, $(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
 
-\subsubsection{Strojna izvedba}
-\begin{verbatim}
-// todo, if needed
-\end{verbatim}
+\subsubsection{Strojna izvedba kodirnika}
+Uporabljeni so trije tipi elementov: pomnilna celica tipa $D$, sestevalnik (XOR), mnozenje s konstanto (1 $|$ 0).
+Poznamo kodrianje na osnovi deljenja in na osnovi mnozenja. (insert pics here).
+Pri kodiranju se sepravi najprej na izhod posiljajo kar vhodni znaki, potem v naslednjih korakih se vsebina pomnilnih celic od zadaj naprej.
+
+\subsubsection{Dekodiranje}
+Dekodiranje ciklicnih kodov sloni na linearnih blocnih kodih. Vzemimo, da je pri prenosu prislo do napake $y = x + e$, ali pa zapisano v polinomski
+obliki $y(p) = x(p) + e(p) = z(p)g(p) + e(p)$.
+\begin{itemize}
+    \item Najprej izracunamo sindrom. Ekvivalent enacbe $s = yH^T$ v polinomskem zapisu je $y(p) = q(p)*g(p) + s(p)$, oz. $s(p) = y(p) \text{ mod } g(p)$.
+    \item Ce je ostanek deljenja $y(p)$ z $g(p)$ razlicen od nic, je prislo do napake.
+\end{itemize}
+Iz $s(p) = y(p) \text{ mod } g(p)$ sledi, da je v primeru, ko je napaka na zadnjih $m$ mestih, stopnja $e(p)$ manj kot $m$ in velja kar $e(p) = s(p)$.
+Za ostale napake pa lahko izkoristimo ciklicnost kodov:
+\begin{itemize}
+    \item Naredimo trik, osnovno enacbo premaknemo za $i$ mest:
+        \begin{center}
+            $p^iy(p) = p^ix(p) + p^i e(p)$
+        \end{center}
+    \item Ce najdemo pravi $i$, bo veljalo $p^i e(p) = s(p)$
+    \item Pravi $i$ je tisti, pri katerem bo $e(p)$ imel najmanj enic
+\end{itemize}
+
+\subsubsection{Klasifikacija napak}
+Napaki, ki se pojavi na izhodu odposlane kodne zamenjave neodvisno od morebitnih napak
+na sosednjih znakih, pravimo \textbf{posamicna} ali \textbf{neodvisna} napaka. Do posamicnih 
+napak pride zaradi motenj, ki so krajse od casa posiljanja enega znaka.
+
+Povezanim napakam na vec zaporednih znakih pravimo \textbf{izbruh}. Dolzina izbruha je stevilo znakov med
+prvim in zadnjim napacno sprejetim znakom. Do izbruha pride, ce je trajanje motenj daljse od casa posiljanja enega znaka.
+
+Ciklicni kodi so posebej primerni za \textbf{ ugotavljanje izbruhov napak }.
+
+\subsubsection{Zmoznosti ciklicnih kodov}
+Odkrivanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
+\begin{itemize}
+    \item Kod odkrije vsako posamicno napako: $e(p) = p^i$
+    \item Za dolocene generatorske polinome odkrije tudi dve posamicni napaki do dolzine bloka $n = 2^m -1$
+    \item Odkrije poljubno stevilo lihih napak, ce $p + 1$ deli $g(p)$
+    \item Odkrije vsak izbruh napak do dolzine $m$
+    \item Odkrije vse razen $2^{-(m-1)}$ izbruhov dozline $m + 1$
+    \item Odkrije tudi vse razen delez $2^{-m}$ izbruhov daljsih od $m + 1$
+\end{itemize}
+Popravljanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
+\begin{itemize}
+    \item Izracun sindroma
+    \item Ciklicno prilaganje sindroma prenesenemu blok $y$.
+    \item Popravijo lahko do $e = \lfloor \frac{d-1}{2} \rfloor$ posamicnih napak, kjer je
+        $d$ Hammingova razdalja koda.
+    \item Popravijo lahko tudi izbruhe napak do dolzine $e = \lfloor \frac{m}{2} \rfloor$
+\end{itemize}
+
+\subsubsection{CRC}
+Ali Cyclic Redundancy Check, temelji na coklicnih kodih.
+Po standardu velja:
+\begin{itemize}
+    \item Registri v \textbf{LSFR} so na zacetku nastavljeni na \textbf{1}; osnovni CRC ne loci sporocil,
+        ki imajo razlicno stevilo vodilnih nicel. Ta sprememba, ki je ekvivalentna negiranju prvih $m$ bitov,
+        to tezavo odpravi.
+    \item Na koncu sporocila dodamo $m$ - bitov, odvisno od implementacije LSFR. Pri nasi se to ne dela!
+    \item \textbf{Operacija XOR} na fiksnem ostanku deljenja, obicajno je to kar negacija vseh bitov.
+    \item \textbf{Vrstni red bitov v bajtu} - nekateri serijski protokoli najprej oddajo najmanj pomembne bite
+        (najmanj pomembni bit ima najvisjo stopnjo polinoma).
+    \item \textbf{Vrsni red bajtov} - pomnilniska organizacija, odvisna od arhitekture (LE, BE).
+    \item Notacija CRC polinomov - biti oznacujejo prisotnost faktorja. Veckrat se izpusca en izmed faktorjev $p^m \text{ ali } 1$.
+\end{itemize}
+Ciklicni kodi so odlicni za detekcijo napak. Za popravljanje napak pa danes obstajajo boljsi kodi.
+
+\subsubsection{Prepletanje}
+Motnje so mnogokrat v obliki izbruhov. V takih primerih pride na dolocenih kodnih zamenjavah do velikega stevila napak, na drugih pa napak ni.
+S prepletanjem bitov se da napake porazdeliti med vec kodnih zamenjav.
+Resitev:
+\begin{itemize}
+    \item Kodne zamenjave v kodirnik vpisujemo vrstico po vrstico, oddaja pa jih stolpec po stolpec. Obratno je na strani dekodirnika.
+    \item Naceloma je vzorec skoraj nakljucen. Matriko prepletanja poznata kodirnik in dekodirnik.
+    \item Dodamo zakasnitev, izmenicno signali potujejo gor/dol, ena veja je zakasnjena.
+\end{itemize}
+Dejanske resitve so bolj kompleksne: vec vej, zakasnitve tudi do 20 vej.
+
+\subsubsection{Konvolucijski kodi}
+Primerni za popravljanje napak. Konvolucijske kode genriramo z linearnimi premikalnimi registri, ki so sestavljeni iz 
+pomnilnih celic D in vrat XOR. Spadajo pod nelinearne kode.
+
+\section{Analiza signalov}
+Pri analizi signalov in sistemov je izjemno pomembna kolicina frekvenca.
+
+\subsection{Invariantnost sinusoid}
+Vzemimo zvezni signal, ki prehaja skozi linearni medij (sistem) kot je na primer elektricno vezje.
+
+V splosnem bo signal na izhodu drugacen od signala na vhody(zvok, ki ga poslusamo pod vodo je bistveno bolj popacen od tistega,
+ki ga poslusamo na zraku)
+
+Pomembno pri signalih pa je, da se vhodni signal v obliki sinusoide
+\begin{center}
+    \begin{math}
+        x(t) = A \sin (2 \pi \nu t + \theta)
+    \end{math}
+\end{center}
+popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$. Razlog, da se frekvenca
+ohrani je v tem, da linearne sisteme lahko zapisemo v obliki elementarnih operacij, kot so (mnozenje s konstanto, odvajanje,
+integracija, zakasnitev, vsota).
+
+\subsection{Fourierova transformacija}
+Vsako periodicno funkcijo ( ce je dovolj lepa ), lahko zapisemo kot kombinacijo sinusoid.
+V kombinaciji z invariantnostjo sinusoid to pomeni, da lahko:
+\begin{itemize}
+    \item vsako funkcijo razstavimo na sinusoide
+    \item obravnavamo obnasanje vsake sinusoide v sistemu posebej
+    \item na koncu zdruzimo locene rezultate
+\end{itemize}
+Ta koncep se danes uporablja pri vsaki analizi signalov.
+
+\subsection{Resonanca}
+Do resonance pride, ko je frekvenca vsiljenega nihanja enaka frekvenci lastnega nihanja. Takrat pride do ojacitve amplitud.
+Resonanca je pomembna lastnost elektricnih vezij, s katero zagotovimo nihanja, nastavljanje radijskih sprejemnikov na pravo postajo,
+odstranimo sum.
+
+\subsection{Modulacija in frekvencni premik}
+Iz analize vemo, da nelinearne operacije nad signali (kvadriranje, mnozenje) privedejo do 
+pomembnih transformacij v frekvencnem prostoru.
+
+Iz osnovne trigonometrije vemo:
+\begin{center}
+    \begin{math}
+        \sin(2 \pi \nu_1 t) \sin(2 \pi \nu_2 t) = \frac{1}{2} [\cos(2 \pi(\nu_1 - \nu_2)t) - \cos(2 \pi (\nu_1 + \nu_2)t)]
+    \end{math}\\
+    \begin{math}
+        \cos(2 \pi \nu t) = \sin(2 \pi \nu t + \pi / 2)
+    \end{math}
+\end{center}
+Produkt sinusoid s frekvencama $\nu_1$ in $\nu_2$ lahko torej zapisemo kot vsoto sinusoide s frekvenco $\nu_1 + \nu_2$ in 
+sinusoide s frekvenco $\nu_1 - \nu_2$.
+
+To lastnost izkorisca amplitudna modulacija (radijske postaje AM) in frekvencni premik, s katerim lahko zagotovimo
+hkraten prenos vec signalov po istem mediju.
+
+\subsection{Teorem vzorcenja}
+Signal moramo vzorciti vsaj s frekvenco $2 \nu_c$, ce je najvisja opazena frekvenca v signalu $\nu_c$. Na tem zakljucku
+sloni vsa danasnja tehnologija.
 
 \end{multicols}
 \end{document}
-
