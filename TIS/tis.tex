@@ -913,6 +913,94 @@ V kombinaciji z invariantnostjo sinusoid to pomeni, da lahko:
 \end{itemize}
 Ta koncep se danes uporablja pri vsaki analizi signalov.
 
+\subsubsection{Fourierova vrsta}
+Funkcija je periodicna s periodo $T$, ce velja:
+\begin{center}
+    \begin{math}
+        x(t + T) = x(t), \forall t: -\infty < t < \infty
+    \end{math}
+\end{center}
+kjer je $T$ najmanjsa pozitivna vrednost s to lastnostjo.
+
+Funkciji $\sin(t)$ in $\cos(t)$ sta periodicni s periodo $2\pi$  $\Rightarrow$
+Funkciji $\sin(\frac{2 \pi t}{T})$ in $cos(\frac{2 \pi t}{T})$ sta potem periodicni funkciji 
+s periodo $T$ in frekvenco $\nu_0 = \frac{1}{T}$.
+
+Cas merimo v sekundah, frekvenco pa v stevilu ciklov na sekundo. Pri analizi
+signalov zapis veckrat poenostavimo tako, da namesto frekvence uporabimo kotno hitrost
+\begin{center}
+    \begin{math}
+        \omega_0 = 2 \pi \nu_0 = \frac{2\pi}{T}
+    \end{math}
+\end{center}
+
+Visji harmoniki sinusoid s frekvenco $\nu_0$ so $\sin$ in $\cos$ funkcije s frekvencami,
+ki so veckratniki osnovne frekvence, $n \nu_0$.
+
+Fourier je pokazal, da lahko \textbf{vsako} periodicno funkcijo $x(t)$ s periodo $T$ zapisemo kot:
+\begin{center}
+    \begin{math}
+        x(t) = \frac{a_0}{2} + \sum_{n = 1}^{\infty} a_n \cos(n \omega_0 t) +
+        \sum_{n = 1}^{\infty} b_n \sin(n \omega_0 t)
+    \end{math}
+\end{center}
+za $n \geq 1$.
+
+To velja za vsako funkcijo, ki zadosca Dirichletovim pogojem:
+\begin{itemize}
+    \item je enoznacna (za vsak $t$ ena sama vrednost)
+    \item je koncna povsod, oz. njen integral je koncen
+    \item je absolutno integrabilna (ima koncno energijo)
+        \begin{center}
+            $\int_0^T |x(t)| dt < \infty$
+        \end{center}
+    \item mora imeti koncno stevilo ekstremov v vsakem obmocju
+    \item imeti mora kncno stevilo koncnih nezveznosti v vsakem obmocju
+\end{itemize}
+
+Bolj kompaktna predstavitev je z uporabo \textbf{Eulerjeve formule} $e^{i \phi} = \cos(\phi) + i \sin(\phi)$, $i = \sqrt{-1}$:
+\begin{center}
+    \begin{math}
+        x(t) = \sum_{n = - \infty}^{\infty} c_n e^{i n \omega_0 t}
+    \end{math}
+\end{center}
+Koeficienti so kompleksni:
+\begin{center}
+    \begin{math}
+        c_n = \frac{1}{T} \int_0^T x(t)e^{-in \omega_0} dt = \int_{\frac{-T/2}{T/2}} x(t) e^{-in \omega_0} dt
+    \end{math}
+\end{center}
+Zveza med obema zapisoma:
+\begin{itemize}
+    \item $n = 0: c_0 = \frac{a_0}{2}$
+    \item $n > 0: c_n = \frac{a_n - i b_n}{2}$
+    \item $n < 0: c_n = \frac{a_{-n} - i b_{-n}}{2}$
+\end{itemize}
+
+Negativne frekvence so matematicni konstrukt, ki nam pride prav pri opisovanju singalov.
+Vsako sinusoido opisemo z dvema parametroma, prej $a_n$, $b_n$, sedaj pa elegantno
+s $c_n$ in $c_{-n}$.
+
+\subsubsection{Fourierova transformacija}
+Fourierovo vrsto lahko posplosimo tako, da spustimo $T \rightarrow \infty$ in dobimo Fourierovo transformacijo.
+Predstavlja jedro vseh frekvencnih analiz.
+Enacba:
+\begin{center}
+    \begin{math}
+        x(t) = \int_{-\infty}^{\infty} X(\nu)e^{-i2 \pi \nu t} dt = \int_{-\infty}^{\infty} x(t) e^{-i \omega t} dt
+    \end{math}
+\end{center}
+Manjsi kot je $T$ v casovnem prostoru, sirsi je signal v frekvencnem prostoru.
+
+Lastnosti Fourierove transformacije:
+\begin{itemize}
+    \item linearnost: $f(t) = ax(t) + by(t) \rightarrow F(\nu) = a X(\nu) + bY(\nu)$
+    \item skaliranje: $f(t) = x(at) \rightarrow F(\nu) = \frac{1}{|a|} X(\frac{1}{a} \nu)$
+    \item premik: $f(t) = x(t - t_0) \rightarrow F(\nu) = e^{-i2\pi \nu t_0} X(\nu)$
+    \item modulacija: $f(t) = e^{i 2 \pi t \nu_0} x(t) \rightarrow F(\nu) = X(\nu - \nu_0)$
+    \item konvolucija: $f(t) = \int_{- \infty}^{\infty} x(t - \tau)y(\tau) d\tau \rightarrow F(\nu) = X(\nu) Y(\nu)$
+\end{itemize}
+
 \subsection{Resonanca}
 Do resonance pride, ko je frekvenca vsiljenega nihanja enaka frekvenci lastnega nihanja. Takrat pride do ojacitve amplitud.
 Resonanca je pomembna lastnost elektricnih vezij, s katero zagotovimo nihanja, nastavljanje radijskih sprejemnikov na pravo postajo,
