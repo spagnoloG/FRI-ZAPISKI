@@ -1001,6 +1001,66 @@ Lastnosti Fourierove transformacije:
     \item konvolucija: $f(t) = \int_{- \infty}^{\infty} x(t - \tau)y(\tau) d\tau \rightarrow F(\nu) = X(\nu) Y(\nu)$
 \end{itemize}
 
+\subsubsection{Diskretna Fourierova transformacija - DFT}
+Frekvenca vzorcenja $\nu_s $ (sampling) je obratno sorazmerna periodi vzorcenja $\nu_s = \frac{1}{\Delta}$.
+Postopek:
+\begin{itemize}
+    \item Ocenimo Fourierovo transformacijo iz $N$ zaporednih vzorcev.
+        \begin{center}
+            \begin{math}
+                x_k = x(k \Delta), k = 0,1, \dots, N - 1
+            \end{math}
+        \end{center}
+    \item Iz $N$ vzorcev na vhodu v DFT bomo lahko izracunali natanko $N$ neodvisnih tock na izhodu.
+    \item Namesto, da bi dolocili DFT za vse tocke od $- \nu_C$ do $+ \nu_C$, se lahko omejimo samo 
+        na dolocene vrednosti
+        \begin{center}
+            \begin{math}
+                \nu_n = \frac{n}{N \Delta}, n = - \frac{N}{2}, \dots, \frac{N}{2}
+            \end{math}
+        \end{center}
+        spodnja in zgornja meja ustrezata ravno Nyquistovi frekvenci.
+    \item Trenuten zapis vkljucuje $N + 1$ vrednost. Izkazalo se bo, da sta obe robni vrednosti enaki. Imamo
+        jih zaradi lepsega zapisa.
+    \item Naprej so stvari trivialne
+        \begin{center}
+            \begin{math}
+                X(\nu_n) = \int_{-\infty}^{\infty} x(t) e^{-i2 \pi \nu_n t} dt = \sum^{N-1}_{k=0} x_k e^{-i2 \pi \nu_n k \Delta} \Delta
+            \end{math}
+        \end{center}
+    \item Ce v zgornji enacbi izpustimo $\Delta$, dobimo enacbo za DFT:
+        \begin{center}
+            \begin{math}
+                X_n = \sum_{k=0}^{N-1} x_k e^{\frac{-i2 \pi n k}{N}}
+            \end{math}
+        \end{center}
+\end{itemize}
+
+Povezava s Fourierovo transformacijo je $X(\nu_n) \approx \Delta X_n$
+Iz enacbe za DFT sledi, da je DFT periodicna s periodo $N$. To pomeni, da je $X_{-n} = X_{N-n}$
+Koeficiente $X_n$ lahko zato namesto na intervalu $[-\frac{N}{2}, \frac{N}{2}]$ racunamo na
+intervalu $[0, N - 1]$.
+
+Zveza med koeficienti $X_0, \dots, X_{N-1}$ in frekvencami $- \nu_C, \dots, \nu_C$:
+\begin{center}
+    \begin{tabular}{ cc } 
+        indeks & frekvenca \\
+        \hline
+            $n = 0$                             &  $\nu = 0$ \\
+            $1 \leq n \leq \frac{N}{2-1}$       &  $0 < \nu < \nu_C$ \\
+            $\frac{N}{2}$                       &  $-\nu_C, + \nu_C$ \\
+            $\frac{N}{2} + 1 \leq n \leq N - 1$ &  $\nu_C < \nu < 0$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Inverzna DFT}
+\begin{center}
+    \begin{math}
+        x_k = \frac{1}{N} \sum_{n=0}^{N-1} X_{n}e^{\frac{i2 \pi n k}{N}}
+    \end{math}
+\end{center}
+
 \subsection{Resonanca}
 Do resonance pride, ko je frekvenca vsiljenega nihanja enaka frekvenci lastnega nihanja. Takrat pride do ojacitve amplitud.
 Resonanca je pomembna lastnost elektricnih vezij, s katero zagotovimo nihanja, nastavljanje radijskih sprejemnikov na pravo postajo,
@@ -1028,6 +1088,47 @@ hkraten prenos vec signalov po istem mediju.
 \subsection{Teorem vzorcenja}
 Signal moramo vzorciti vsaj s frekvenco $2 \nu_c$, ce je najvisja opazena frekvenca v signalu $\nu_c$. Na tem zakljucku
 sloni vsa danasnja tehnologija.
+
+\subsubsection{Zajem signalov}
+Zvezni signal $x(t)$ je funkcija zvezne spremenljivke $t$. Diskreten signal je definiran samo za dolocene case, ki
+si najpogosteje sledijo v enakih casovnih intervalih $x_k = x(k \Delta)$, $\Delta$ je perioda vzorcenja.
+
+Signale danes obicajno zajemamo z racuanlniki. Za to se uporabljajo vezja $A/D$ pretvorniki. Imajo koncno natancnost,
+na primer 12bit. Signal torej opisemo s koncno mnogo razlicnimi amplitudami $2^{12}$.
+
+Diskretnemu in kvantiziranemu signalu recemo tudi digitalni signal. Kvantizacija je obicajno tako fina, da jo lahko zanemarimo.
+
+\subsection{Energija signala}
+Definicija:
+\begin{center}
+    \begin{math}
+        E = \int_{-\infty}^{\infty} x(t)^2 dt
+    \end{math}
+\end{center}
+
+\textbf{Parsevalov teorem}
+\begin{center}
+    \begin{math}
+        \int_{-\infty}^{\infty} x(t)^2 dt = \int_{-\infty}{\infty} |X(\nu)|^2 d\nu
+    \end{math}
+\end{center}
+
+Porazdelitev energije po frekvencah podaja funckija $|X(\nu)|^2$, ki jo imenujemo \textbf{energijska spektralna gostota}.
+
+\subsubsection{Mocnostni spekter diskretnega kanala}
+Diskretna razlicica Parsevalovega teorema:
+\begin{center}
+    \begin{math}
+        \sum_{k=1}^{N-1} |x_k|^2 = \frac{1}{N} \sum_{n=0}^{N-1} |X_n|^2
+    \end{math}
+\end{center}
+Pri diskretni razlicici je PSD vedno v intervalu $[- \nu_C, \nu_C]$.
+Mocnostni spekter je potem:
+\begin{itemize}
+    \item $P(0) = \frac{1}{N^2} |X_0|^2$
+    \item $P(\nu_n) = \frac{1}{N^2} [|X_n|^2 + |X_{N-n}|^2]$, $n = 1, 2, \dots, \frac{n}{2-1}$
+    \item $P(\nu_C) = \frac{1}{N^2}|X_{\frac{N}{2}}|^2$
+\end{itemize}
 
 \end{multicols}
 \end{document}
