@@ -98,7 +98,7 @@ Najkrajse kodne zamenjave imamo, ce velja:
 Ucinkovitost koda:
 \begin{center}
     \begin{math}
-        \eta = \dfrac{H(X)}{L \log_r}, \eta \in [0, 1]
+        \eta = \dfrac{H(X)}{L \log_2 r}, \eta \in [0, 1]
     \end{math}
 \end{center}
 Kod je \textbf{gospodaren}, ce je $L$ znotraj:
@@ -139,6 +139,7 @@ Postopek kodiranja:
     \item Vsaki skupini priredimo enega od r znakov kodne abecede
     \item Deljenje ponovimo na vsaki od skupin. Postopek ponavljamo, dokler je mogoce
 \end{enumerate}
+$l_i$ dolocimo s pomocjo tabele.
 
 \subsection{Huffmanov kod}
 Huffmanov postopek kodiranja poteka od spodaj navzgor (Pri Fanoju je ravno obratno).
@@ -166,7 +167,7 @@ Veljati mora:
 \end{center}
 Ce imamo premalo znakov, jih po potrebi dodamo s verjetnostjo $p=0$.\\
 Huffmanov kod lahko razsirimo tako, da vec osnovnih znakov zdruzujemo v sestavljene znake $\rightarrow$ bolj ucinkoviti kodi. Vendar
-naletimo na nevarnost kombinacijske eksplozije.\\
+naletimo na nevarnost kombinacijske eksplozije. $l_i$ dolocimo s pomocjo tabele.
 
 \subsection{Aritmeticni kod}
 Je \textbf{hiter} in \textbf{blizu optimalnemu} kodu, ter manj ucinkovit kot Huffmanov,
@@ -189,7 +190,7 @@ iz dec v bin stevilski sistem.
 Stiskanje temelji na osnovi slovarja, tako, da ne potrebujemo
 racunati verjetnosti za posamezne znake. \textbf{Kodirnik}
 med branjem niza gradi slovar, in \textbf{dekodirnik} med branjem
-kodnih zaamenjav rekonstruira slovar in znake.\\
+kodnih zamenjav rekonstruira slovar in znake.\\
 \textbf{Kodiranje:} uporablja drseca okna, znaki se premikajo iz desne na levo.
 Referenca je podana kot trojcek:
 \begin{itemize}
@@ -219,7 +220,7 @@ vsak blok se kodira na enega od treh nacinov:
 Glava posameznega bloka: 1bit - zadnji/ni zadnji blok + 2bita tip stiskanja + pri (3) se Huffmanovo drevo
 Ker Huffmanovo drevo ni enolicno, uvedemo kanonicni Huffmanov kod. Postopek:
 \begin{enumerate}
-    \item znake razvrstimo najprej po dolzinah kodnih zamenjav in nato po abecedi
+    \item znake razvrstimo najprej po dolzinah kodnih zamenjav in nato po abecedi(narascujoce)
     \item prvi simbol ima same nicle
     \item vsakemu naslednjemu znaku dodelimo naslednjo binarno kodo (prejsnji + 1)
     \item ce je kodna zamenjava daljsa od binarne kode stevila, na koncu pripnemo niclo
