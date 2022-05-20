@@ -53,7 +53,7 @@ je povprecje vseh lastnih informacij:
     \end{math}
 \end{center}
 Lastnosti: je zvezna, simetricna funckija (vrsni red $p_i$ ni pomemben, sestevanje je komutativno). Je vedno vecja
-od 0 ($p_i \geq 0 \rightarrow -p_i \log p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log n$.\\
+od 0 ($p_i \geq 0 \rightarrow -p_i \log p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log_r n$.\\
 Ce sta dogodka \textbf{neodvisna} velja aditivnost: $H(X, Y) = H(X) + H(Y)$.\\
 Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
 
@@ -365,6 +365,34 @@ Za entropijo:
 \end{center}
 Splosno velja: $0 \leq H(Y|X) \leq H(Y)$, ce poznamo spremenljivko $X$, se nedolocenost $Y$ ne more povecati (lahko se pomanjsa).
 
+\subsubsection{Pogojna verjetnost}
+Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
+\begin{center}
+    \begin{math}
+        P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
+    \end{math}
+\end{center}
+Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
+$P(A B) = P(A)P(B)$.
+Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
+pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
+
+\subsubsection{Popolna verjetnost}
+Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
+ce se nobena dva dogodka ne moreta zgoditi hrkati in se vedno
+zgodi vsaj en od njih. Ce dogodki izpolnjujejo ta pogoj, potem po
+nacelu vkljucitev/izkljucitev velja:
+\begin{center}
+    \begin{math}
+        P(A) =
+    \end{math}
+    \smallskip
+    \begin{math}
+        \sum_{i=1}^{\infty} P(A \cap H_{i}) =
+        \sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
+    \end{math}
+\end{center}
+
 \subsection{Vezana entropija spremeljivk}
 Vezana entropija nakljucnih spremenljivk $X$ in $Y$ je entropija para $(X, Y)$.
 Pomembne zveze:
@@ -372,7 +400,7 @@ Pomembne zveze:
     \item $p(x_i, y_j) = p(y_j| x_i)p(x_i)$,
     \item $\sum_j p(x_i, y_j) = p(x_i)$,
     \item $\sum_i p(x_i, y_j) = p(y_j)$,
-    \item $\sum_{i,j} p(x_i, y_j) = 1$
+    \item $\sum_{i,j} p(x_i, y_j) = 1$ (pazi pri racunskih!)
 \end{itemize}
 Velja: $H(X, Y) = H(Y|X) + H(X)$, kar nam pove, da ce najprej izvemo, kaj se je zgodilo v dogodku $X$ in potem
 dobimo se dodatne informacije od dogodku $Y$, vemo vse.
