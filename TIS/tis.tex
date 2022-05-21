@@ -41,7 +41,7 @@
 Opisuje dogodek, ki se je zgodil:
 \begin{center}
     \begin{math}
-        I_i = \log(\frac{1}{p_i}) = - \log(p_i)
+        I_i = \log_2(\frac{1}{p_i}) = - \log_2(p_i)
     \end{math}
 \end{center}
 
@@ -49,11 +49,11 @@ Opisuje dogodek, ki se je zgodil:
 je povprecje vseh lastnih informacij:
 \begin{center}
     \begin{math}
-        H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log p_i
+        H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log_2 p_i
     \end{math}
 \end{center}
 Lastnosti: je zvezna, simetricna funckija (vrsni red $p_i$ ni pomemben, sestevanje je komutativno). Je vedno vecja
-od 0 ($p_i \geq 0 \rightarrow -p_i \log p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log_r n$.\\
+od 0 ($p_i \geq 0 \rightarrow -p_i \log_2 p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log_r n$.\\
 Ce sta dogodka \textbf{neodvisna} velja aditivnost: $H(X, Y) = H(X) + H(Y)$.\\
 Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
 
@@ -122,7 +122,9 @@ za katere velja:
         \lim_{n \rightarrow \infty} \dfrac{L_n}{n} = H(X)
     \end{math}
 \end{center}
-pri cemer je $H(X)$ entropija vira $X$.\\
+pri cemer je $H(X)$ entropija vira $X$.
+
+\subsection{Shannonov kod}
 Postopek kodiranja po Shannonu:
 \begin{enumerate}
     \item znake razvrstimo po padajocih verjetnostih
