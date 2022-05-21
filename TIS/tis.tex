@@ -188,6 +188,16 @@ Postopek kodiranja(znakov ni potrebno razvrstiti):
 Ko dobimo realni interval, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
 iz dec v bin stevilski sistem.
 
+\subsubsection{Dekodiranje}
+Recimo, da dobimo k.z. 0101. Potem sta spodnji in zgornji meji izracunani na
+naslednji nacin\\
+\begin{math}
+    \text{sp. meja: } 0.0101 \rightarrow 2^{-2} + 2^{-4}
+\end{math}\\
+\begin{math}
+    \text{zg. meja: } 0.0110 \rightarrow 2^{-2} + 2^{-3} \text{(sp. meja + 1)}
+\end{math}
+
 \subsection{Kod Lempel-Ziv (LZ77)} 
 Stiskanje temelji na osnovi slovarja, tako, da ne potrebujemo
 racunati verjetnosti za posamezne znake. \textbf{Kodirnik}
