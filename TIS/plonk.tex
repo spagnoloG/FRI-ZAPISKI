@@ -184,18 +184,7 @@ Pogojna verjetnost nam pove verjetnost za dogodek $y_j$ na izhodu iz kanala, ce 
     \end{math} 
 \end{center}
 Kanal popolnoma podamo z $r \times s$ pogojnimi verjetnostmi.
-
-\subsubsection{Binarni simetricni kanal (BSK)}
-Napaka kanala je $p$, saj se z verjetnostjo $p$ znak prenese v napacnega.
-\begin{center}
-    \begin{math}
-        P_k = 
-                \begin{pmatrix}
-                    1-p & p\\
-                    p & 1-p 
-                \end{pmatrix}
-    \end{math}
-\end{center}
+$H(X|Y) =$ dvoumnost, $H(Y|X) =$ sum
 
 \subsection{Pogojna entropija}
 Pogojna entropija spremenljivke $Y$ pri znanem $X$ se zapise kot $H(Y|X)$.
@@ -286,6 +275,15 @@ Pove nam, koliko o eni spremenljivki izvemo iz druge spremenljivke,
     $C =\underset{P(X)}{\max} I(X;Y)$
 \end{center}
 \subsubsection{Kapaciteta kanala BSK}
+\begin{center}
+    \begin{math}
+        P_k = 
+                \begin{pmatrix}
+                    1-p & p\\
+                    p & 1-p 
+                \end{pmatrix}
+    \end{math}
+\end{center}
 Lastnosti:
 \begin{itemize}
     \item $C =\underset{P(X)}{\max} (H(Y) - H(Y|X))$
@@ -296,7 +294,6 @@ Lastnosti:
     \item $C=I(X;Y) |_{\alpha = 1/2} = 1 - H(p, 1-p)$
 \end{itemize}
 \subsubsection{Kapacitata kanala BSK z brisanjem}
-Definicija:
 \begin{center}
     \begin{math}
         P_k = 
@@ -314,6 +311,12 @@ Lastnosti:
     \item $I(X;Y) = (1-p)H(\alpha, 1 - \alpha)$
     \item $\frac{dI(X;Y)}{d \alpha} = 0 \Rightarrow \alpha = 1/2$
 \end{itemize}
+
+\subsubsection{Klasicna izpitna naloga}
+Mas podane prehodne verjetnosti. $p(x_0) = \alpha$, $p(x_1) = 1 - \alpha$. Nato izracunas
+vse $p(y_i) = \sum p(x_j) * p(y_i | x_j)$. Max kapaciteto izracunas tko da odvajas
+$C = \max I (X;Y) = \max (H(Y) - H(Y|X)) = \max (H(Y) - (\alpha H(Y | x = 0) + (1 - \alpha) H(Y | x = 1)))$. Kjer za $H(Y | x_i)$ velja, da samo
+zracunas entropijo pri danih prehodnih verejtnostih.
 
 \subsection{Shannonov drugi teorem}
 Shannon je ugotovil, da nam zdruzevanje znakov v nize daje vec moznosti za doseganje zaneslijvega prenosa.\\
