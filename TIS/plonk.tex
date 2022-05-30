@@ -9,6 +9,7 @@
 \begin{multicols}{4}
 
 \section{Osnove}
+\input{ponovitev-analize.tex}
 
 \subsection{Ponovitev logaritmov}
 \begin{small}
@@ -566,11 +567,6 @@ $r(p)$ pa ostanek, s stopnjo manj od $m$.
 Sepravi delimo $(p^m *z(p)) / g(p)$ in ostanek bodo nasi varnostni biti.
 $(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
 
-\subsubsection{Strojna izvedba kodirnika}
-Uporabljeni so trije tipi elementov: pomnilna celica tipa $D$, sestevalnik (XOR), mnozenje s konstanto (1 $|$ 0).
-Poznamo kodrianje na osnovi deljenja in na osnovi mnozenja. (insert pics here).
-Pri kodiranju se sepravi najprej na izhod posiljajo kar vhodni znaki, potem v naslednjih korakih se vsebina pomnilnih celic od zadaj naprej.
-
 \subsubsection{Dekodiranje}
 Dekodiranje ciklicnih kodov sloni na linearnih blocnih kodih. Vzemimo, da je pri prenosu prislo do napake $y = x + e$, ali pa zapisano v polinomski
 obliki $y(p) = x(p) + e(p) = z(p)g(p) + e(p)$.
@@ -588,16 +584,6 @@ Za ostale napake pa lahko izkoristimo ciklicnost kodov:
     \item Ce najdemo pravi $i$, bo veljalo $p^i e(p) = s(p)$
     \item Pravi $i$ je tisti, pri katerem bo $e(p)$ imel najmanj enic
 \end{itemize}
-
-\subsubsection{Klasifikacija napak}
-Napaki, ki se pojavi na izhodu odposlane kodne zamenjave neodvisno od morebitnih napak
-na sosednjih znakih, pravimo \textbf{posamicna} ali \textbf{neodvisna} napaka. Do posamicnih 
-napak pride zaradi motenj, ki so krajse od casa posiljanja enega znaka.
-
-Povezanim napakam na vec zaporednih znakih pravimo \textbf{izbruh}. Dolzina izbruha je stevilo znakov med
-prvim in zadnjim napacno sprejetim znakom. Do izbruha pride, ce je trajanje motenj daljse od casa posiljanja enega znaka.
-
-Ciklicni kodi so posebej primerni za \textbf{ ugotavljanje izbruhov napak }.
 
 \subsubsection{Zmoznosti ciklicnih kodov}
 Odkrivanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
