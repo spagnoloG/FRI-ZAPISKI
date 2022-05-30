@@ -114,7 +114,6 @@ za katere velja:
 \end{center}
 pri cemer je $H(X)$ entropija vira $X$.
 
-
 \subsection{Huffmanov kod}
 Veljati mora:
 \begin{center}
@@ -455,9 +454,7 @@ zamenjavam v prvi vrsti.
 Hammingovi kodi so druzina linearnih blocnih kodov, ki lahko popravijo eno napako.
 Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolpci
 nenicelni vektorji. 
-
-Kod z $m$ varnostnimi biti ima kodne zamenjave dolzine $2^m - 1$.  Oznaka koda je potem
-$H(2^m - 1, 2^m - 1 - m)$.Stolpci v Hammingovem kodu so lahko
+$H(2^m - 1 = n, 2^m - 1 - m = k)$.Stolpci v Hammingovem kodu so lahko
 poljubno razmetani. Pomembno je le to, da nastopajo \textbf{vsa} stevila od 1 do $2^m - 1$.
 
 Hammingov kod je lahko:
@@ -548,8 +545,7 @@ Kod, ki smo ga dobili z mnozenjem, ustreza generatorski matriki, ki ima v vrstic
 koeficiente $p^{k-1}g(p), \dots, pg(p), g(p)$, zato ni sistematicen.
 
 \subsubsection{kodiranje z deljenjem}
-Kodiranje na osnovi deljenja ustvari sistematicen ciklicen kod. Kodna zamenjava je zato sestavljena iz sporocila
-(podatkovnega bloka) in varnostnega bloka znakov, $x = (z | r)$.
+Kodiranje na osnovi deljenja ustvari sistematicen ciklicen kod. Kodna zamenjava je zato sestavljena iz podatkovnega in varnostnega bloka znakov, $x = (z | r)$.
 Polinom podatkovnega bloka je:
 \begin{center}
     \begin{math}
@@ -559,7 +555,7 @@ Polinom podatkovnega bloka je:
 Ce pa polinom pomnozimo s $p^m$, dobimo na desni $m$ nicel.
 \begin{center}
     \begin{math}
-        p^m z(p) = z_{k-1}p^{k-1} + \dots + z_1p^{m+1} + z_0p^m
+        p^m z(p)
     \end{math}
 \end{center}
 To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 0, \dots, 0$).
@@ -567,11 +563,8 @@ To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 
 V splosnem nastavek seveda ne bo deljiv, velja pa $p^mz(p) = g(p)t(p) + r(p)$, kjer je $t(p)$ kolicnik,
 $r(p)$ pa ostanek, s stopnjo manj od $m$.
 
-Ostanek lahko zapisemo v obliki niza, kot $(0, \dots, 0, r_{m-1}, \dots, r_0)$.
-
-Polinom $p^m z(p) + r(p) = g(p)t(p)$ je deljiv z $g(p)$ in je zato ustrazna kodna zamenjava.
-Kodno zamenjavo tako dobimo, ce ostanek deljenja z generatorskim polinomom pristejemo k osnovnemu
-nastavku, $(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
+Sepravi delimo $(p^m *z(p)) / g(p)$ in ostanek bodo nasi varnostni biti.
+$(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
 
 \subsubsection{Strojna izvedba kodirnika}
 Uporabljeni so trije tipi elementov: pomnilna celica tipa $D$, sestevalnik (XOR), mnozenje s konstanto (1 $|$ 0).
