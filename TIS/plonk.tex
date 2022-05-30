@@ -2,7 +2,7 @@
 \usepackage[margin=0.15cm]{geometry}
 \usepackage{amsmath}
 \usepackage{multicol}
-\usepackage[fontsize=6pt]{fontsize}
+\usepackage[fontsize=5pt]{fontsize}
 
 \begin{document}
 
@@ -477,8 +477,7 @@ Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolp
 nenicelni vektorji. 
 
 Kod z $m$ varnostnimi biti ima kodne zamenjave dolzine $2^m - 1$.  Oznaka koda je potem
-$H(2^m - 1, 2^m - 1 - m)$. Ce stolpce v matriki H interpretiramo kot stevila v binarni
-obliki, nam oznaka stolpca doloca polozaj napake. Stolpci v Hammingovem kodu so lahko
+$H(2^m - 1, 2^m - 1 - m)$.Stolpci v Hammingovem kodu so lahko
 poljubno razmetani. Pomembno je le to, da nastopajo \textbf{vsa} stevila od 1 do $2^m - 1$.
 
 Hammingov kod je lahko:
@@ -498,9 +497,7 @@ Dekodiranje leksikografskega Hammingovega koda je preprosto:
 \end{enumerate}
 Za kod, ki pa ni leksikografski pogledamo, na kateri indeks se slika izracunani sindrom.
 
-\subsection{Ciklicni kodi}
-Ciklicni kod $C(n, k)$ je linearni blocni kod, v katerem vsak krozni premik kodne zamenjave
-da drugo kodno zamenjavo. Zapisemo jih s polinomi po padajocih potencah (ravno tako jih sestevamo po mod 2). 
+\subsection{Ciklicni kodi C(n, k)}
 
 \subsubsection{Zapis s polinomi}
 Imejmo osnovni vektor: 
@@ -545,20 +542,6 @@ varnostnih bitov, in ga oznacimo kot:
     \end{math}
 \end{center}
 Za sistematicni kod velja: $G = [I_k | A_{k, n-k}]$.
-Generatorska matrika:
-\begin{center}
-    $G= $
-    \begin{tiny}
-        \begin{math}
-            \begin{bmatrix}
-                1 & g_{m - 1} &  \dots & g_1 & 1 & 0 & \dots & 0 & 0 \\
-                0 & 1         & g_{m-1} & \dots & g_1 & 1 & 0 & \dots & 0 \\
-                \vdots & & & & & & & & \vdots  \\
-                0 & 0 & \dots & 0 & 1 & g_{m-1} & \dots & g_1 & 1
-            \end{bmatrix}
-        \end{math}
-    \end{tiny}
-\end{center}
 Sistematicni lahko dobimo z linearnimi operacijami nad vrsticami.
 Velja:
 \begin{center}
@@ -573,24 +556,6 @@ Kako narediti kod leksikografski in hkrati sistematicni? $H_L \rightarrow H_s \r
 Velja: $x(p)h(p) \mod(p^n + 1) = 0$ $\Rightarrow \sum_{i=0}^{n-i} x_i h_{j-i} = 0$
 
 V matricni obliki: $\vec{x} H^T = H\vec{x}^T = 0$
-\begin{center}
-    \begin{tiny}
-        \begin{math}
-            \begin{bmatrix}
-                h_0 & \dots & h_k & 0 & \dots & 0 & 0\\
-                0 & h_0 & \dots & h_k & 0 & \dots & 0 \\
-                \vdots & & & & & & \vdots \\
-                0 & 0 & \dots & 0 & h_0 & \dots & h_k
-            \end{bmatrix}
-            \begin{bmatrix}
-                x_{n-1}\\
-                \vdots\\
-                x_0
-            \end{bmatrix} = 0
-        \end{math}
-    \end{tiny}
-\end{center}
-
 \subsubsection{Kodiranje z mnozenjem}
 Kodne zamenjave so veckratniki generatorskega polinoma.
 Velja:
