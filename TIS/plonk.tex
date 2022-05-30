@@ -375,26 +375,6 @@ O linearnih blocnih kodih govorimo, kadar:
 \end{itemize}
 \textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
 z najmanj enicami.
-Naj bodo podatkovni biti oznaceni kot $z_1, z_2 \text{ in } z_3$, varnostni pa kot $s_1, s_2 \text{ in } s_3$:
-\begin{center}
-    \begin{tabular}{ ccc } 
-        z_1   & z_2 & s_3 \\ 
-        z_3   & s_2 &  \\ 
-        s_1   &  & \\
-    \end{tabular}
-\end{center}
-Potem vrednosti zlozimo v vektor, in opravimo kodno zamenjavo.
-\begin{center}
-    \begin{math}
-        \vec{x} = (x_1, x_2, x_3, x_4, x_5, x_6) = (z_1, z_2, z_3, s_1, s_2, s_3)
-    \end{math}
-\end{center}
-Velja:
-\begin{center}
-        $z_1 + z_2 + s_1 = 0 = x_1 + x_2 + x_4$\\
-        $z_3 + s_2 + z_2 = 0 = x_2 + x_3 + x_5$\\
-        $s_3 + s_3 + z_1 = 0 = x_1 + x_3 + x_6$\\
-\end{center}
 
 \subsubsection{Generatorska matrika}
 Generiranje kodne zamenjave lahko opisemo z generatorsko matriko.
