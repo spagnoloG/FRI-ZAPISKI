@@ -49,18 +49,12 @@ je povprecje vseh lastnih informacij:
         H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log_2 p_i
     \end{math}
 \end{center}
-Lastnosti: je zvezna, simetricna funckija (vrsni red $p_i$ ni pomemben, sestevanje je komutativno). Je vedno vecja
-od 0 ($p_i \geq 0 \rightarrow -p_i \log_2 p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log_r n$.\\
-Ce sta dogodka \textbf{neodvisna} velja aditivnost: $H(X, Y) = H(X) + H(Y)$.\\
 Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
 
 \section{Kodi}
 
 \subsection{Uvod}
-\textbf{Kod} sestavljajo \textit{kodne zamenjave}, ki so sestavljene iz znakov
-\textbf{kodne abecede}. Stevilo znakov v kodni abecedi oznacujemo z \textbf{r}.\\
-Ce so $\{p_1, \dots, p_n\}$ verjetnosti znakov $\{s_1, \dots, s_n\}$ osnovnega sporocila in $\{l_1, \dots, l_n\}$
-dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
+Povprecna dolzina k.z.
 \begin{center}
     \begin{math}
         L = \sum_{i=1}^n p_i l_i
@@ -120,114 +114,21 @@ za katere velja:
 \end{center}
 pri cemer je $H(X)$ entropija vira $X$.
 
-\subsection{Shannonov kod}
-Postopek kodiranja po Shannonu:
-\begin{enumerate}
-    \item znake razvrstimo po padajocih verjetnostih
-    \item dolocimo stevilo znakov v vsaki kodni zamenjavi ($l_k$)
-    \item za vse simbole izracunamo komulativne verjetnosti ($P_k = \sum_{i=1}^{k-1} p_i$)
-    \item $P_k$ pretvorimo v bazo $r$. Kodno zamenjavo predstavlja prvih $l_k$ znakov necelega dela stevila
-\end{enumerate}
-
-\subsection{Fanojev kod}
-Postopek kodiranja:
-\begin{enumerate}
-    \item znake razvrstimo po padajocih verjetnostih
-    \item znake razdelimo v $r$ cim bolj enako verjetnih skupin
-    \item Vsaki skupini priredimo enega od r znakov kodne abecede
-    \item Deljenje ponovimo na vsaki od skupin. Postopek ponavljamo, dokler je mogoce
-\end{enumerate}
-$l_i$ dolocimo s pomocjo tabele.
 
 \subsection{Huffmanov kod}
-Huffmanov postopek kodiranja poteka od spodaj navzgor (Pri Fanoju je ravno obratno).
-Pri huffmanovem kodu imamo dve fazi:
-\begin{enumerate}
-    \item Zdruzevanje
-        \begin{enumerate}
-            \item Posici r najmanj verjetnih znakov in jih zdruzi v sestavljeni znak, katerega verjetnost je vsota verjetnosti vseh znakov
-            \item Preostale znake skupaj z novo sestavljenim znakom spet razvrsti
-            \item Postopek ponavljaj dokler ne ostane samo r znakov
-        \end{enumerate}
-    \item Razdruzevanje
-        \begin{enumerate}
-            \item Vsakemu od preostalih znakov priredi po en znak kodirne abecede
-            \item Vsak sestavljeni znak razstavi in mu priredi po en znak kodirne abecede
-            \item Ko zmanjka sestavljenih znakov, je postopek zakljucen
-        \end{enumerate}
-\end{enumerate}
 Veljati mora:
 \begin{center}
     \begin{math}
         n = r + k(r-1), k \geq 0
     \end{math}
 \end{center}
-$l_i$ dolocimo s pomocjo tabele.
-
-\subsection{Aritmeticni kod}
-Izogne kombinacijski eksploziji.
-Vsak niz je predstavljen kot realno stevilo $0 \leq R < 1$.
-Postopek kodiranja(znakov ni potrebno razvrstiti):
-\begin{enumerate}
-    \item Zacnemo z intervalom $[0, 1)$
-    \item Izbrani interval razdelimo na \textit{n} podintervalov, ki se ne prekrivajo. Sirine podintervalov ustrezajo
-        verjetnostim znakov. Vsak podinterval predstavlja en znak
-    \item Izberemo podinterval, ki ustreza iskanemu znaku
-    \item Ce niz se ni koncan, izbrani podinterval ponovno razdelimo (bne 2.tocka)
-    \item Niz lahko predstavimo s poljubnim realnim stevilom v zadnjem podintervalu
-\end{enumerate}
-Ko dobimo realni interval, ga samo se pretvorimo v binarnega s pomocjo klasicnega pretvarjanja
-iz dec v bin stevilski sistem.
-
-\subsubsection{Dekodiranje}
-Recimo, da dobimo k.z. 0101. Potem sta spodnji in zgornji meji izracunani na
-naslednji nacin\\
-\begin{math}
-    \text{sp. meja: } 0.0101 \rightarrow 2^{-2} + 2^{-4}
-\end{math}\\
-\begin{math}
-    \text{zg. meja: } 0.0110 \rightarrow 2^{-2} + 2^{-3} \text{(sp. meja + 1)}
-\end{math}
-Nato binarno razdeljujemo mejo. Ustavimo se ko zapolnimo eno izmed mej.
 
 \subsection{Kod Lempel-Ziv (LZ77)} 
 Gre za kodiranje na osnovi slovarja
 \textbf{Kodiranje:} uporablja drseca okna, znaki se premikajo iz desne na levo.
-Referenca je podana kot trojcek:
-\begin{itemize}
-    \item odmik - razdalja do zacetka enakega podniza v medpomnilniku
-    \item dolzina enakega podniza
-    \item naslednji znak
-\end{itemize}
+Referenca je podana kot trojcek(odmik, dolzina, naslednji znak):
 npr. (0, 0, A) - ni ujemanja, (4, 3, B) - 4 znake nazaj se ponovi 3 znakovni podniz, ki se nato zakljuci s B.\\
 \textbf{dekodiranje:} sledimo kodnim zamenjavam
-
-\subsection{Deflate}
-Gre za predelan LZ77. Uporablja pare (odmik, dolzina). Ce ujemanja v kodni tabeli ni, zapise kar znak.
-Uporablja dve kodni tabeli:
-\begin{itemize}
-    \item \textbf{tabela za znake in dolzine} - 285 simbolov
-        (0-255 za osnovne znake, 256 konec bloka, 257-285 kodira dolzine)
-        Kodne zamenjave brez dodatnih bitov, se zakodira s Huffmanom.
-    \item \textbf{tabela odmikov}
-\end{itemize}
-Niz znakov se razdeli na bloke(64k)
-vsak blok se kodira na enega od treh nacinov:
-\begin{enumerate}
-    \item \textbf{brez stiskanja} osnovni znaki se prepisejo
-    \item \textbf{stiskanje s staticnim Huffmanom} (verjetnosti podane vnaprej), Huffmanovo drevo ni zakodirano v bloku
-    \item \textbf{stiskanje s Huffmanom} izracunamo verjetnosti za vsak blok
-\end{enumerate}
-Glava posameznega bloka: 1bit - zadnji/ni zadnji blok + 2bita tip stiskanja + pri (3) se Huffmanovo drevo
-Ker Huffmanovo drevo ni enolicno, uvedemo kanonicni Huffmanov kod. Postopek:
-\begin{enumerate}
-    \item znake razvrstimo najprej po dolzinah kodnih zamenjav in nato po abecedi(narascujoce)
-    \item prvi simbol ima same nicle
-    \item vsakemu naslednjemu znaku dodelimo naslednjo binarno kodo (prejsnji + 1)
-    \item ce je kodna zamenjava daljsa od binarne kode stevila, na koncu pripnemo niclo
-    \item ponavjlaj (3) do konca
-\end{enumerate}
-Na taksen nacin dosezemo, da je potrebno kodirati samo dolzine kodnih zamenjav.
 
 \subsection{Kod Lempel-Ziv (LZW)}
 Osnovni slovar je podan in ga sporti doponjujemo. Alogritem za \textbf{kodiranje}:
@@ -263,13 +164,6 @@ LZW doseze optimalno stiskanje, pribliza se entropiji. % dodaj dokaz ce bo potre
 
 \subsection{Verizno kodiranje ali RLE (run lenght encoding)} 
 Namesto originalnih podatkov, sharnjujemo dolzino verige (fffeef $\rightarrow$ 3f2e1f).
-Problemu, ko se podatki ne ponavljajo, se izognemo tako, da izvedemo kombinacijo direktnega kodiranja
-in kodiranja RLE. % dodaj podrobnosti ce bo potrebno
-
-\subsection{Stiskanje z izgubami}
-S taksnim nacinom stiskanja lahko dosezemo veliko boljsa kompresijska razmerja, vendar izgubimo podatke.
-Zato ga uporabljamo samo s formati, kjer se ne ukvarjamo z integriteto podatkov(MP3, MPEG, JPEG, $\dots$).
-Postopki kodiranj znanih formatov:
 
 \subsection{Kompresijsko razmerje}
 \begin{center}
@@ -281,13 +175,11 @@ Postopki kodiranj znanih formatov:
 \section{Kanali}
 
 \subsection{Diskretni kanal brez spomina}
-Povezuje diskretni nakljuicni spremenljivki, s koncno mnozico stanj $X=\{x_1, \dots, x_r\}$ in $Y=\{y_1, \dots, y_s\}$.
-Obema nakljicnima spremenljivkama pripadajo tudi posamezne verjetnosti $P_X = \{p(x_1), \dots, p(x_r)\}$ in $P_Y = \{p(y_1), \dots, p(y_s)\}$. Kjer velja, da je vsota posamezne mnozice verjetnosti enaka 1. Kanal je definiran kot mnozica \textbf{pogojnih verjetnosti}
+Kanal je definiran kot mnozica \textbf{pogojnih verjetnosti}
 \begin{center}
     $p(y_j | x_i)$.
 \end{center}
 Pogojna verjetnost nam pove verjetnost za dogodek $y_j$ na izhodu iz kanala, ce je na vhodu v kanal dogodek $x_i$.
-Brez spomina je zato, ker so pogojne vrjetnosti konstantne in torej neodvisne od prehodnih simbolov, velja
 \begin{center}
     \begin{math}
         \sum_j p(y_j | x_i) = 1.
@@ -296,8 +188,7 @@ Brez spomina je zato, ker so pogojne vrjetnosti konstantne in torej neodvisne od
 Kanal popolnoma podamo z $r \times s$ pogojnimi verjetnostmi.
 
 \subsubsection{Binarni simetricni kanal (BSK)}
-Gre za poseben primer diskretnega kanala brez spomina. Napaka kanala je $p$, saj se z verjetnostjo $p$ znak prenese
-v napacnega.
+Napaka kanala je $p$, saj se z verjetnostjo $p$ znak prenese v napacnega.
 \begin{center}
     \begin{math}
         P_k = 
@@ -369,11 +260,10 @@ Pomembne zveze:
     \item $\sum_i p(x_i, y_j) = p(y_j)$,
     \item $\sum_{i,j} p(x_i, y_j) = 1$ (pazi pri racunskih!)
 \end{itemize}
-Velja: $H(X, Y) = H(Y|X) + H(X)$, kar nam pove, da ce najprej izvemo, kaj se je zgodilo v dogodku $X$ in potem
-dobimo se dodatne informacije od dogodku $Y$, vemo vse.
+Velja: $H(X, Y) = H(Y|X) + H(X)$.
 \subsubsection{Obrat kanala}
 Ker velja tudi $H(X, Y) = H(X|Y) + H(Y)$, kanal lahko \textbf{obrnemo}
-(sepravi vhod $Y$ in izhod $X$). Pri tem ne obracamo fizicnega procesa, ampak samo verjetnostno strukturo, ki definira kanal. \textbf{Pogoj:}  poznati moramo vhodne verjetnosti. Iz njih lahko dolocimo izhodne verjetnosti, ki jih lahko
+\textbf{Pogoj:}  poznati moramo vhodne verjetnosti. Iz njih lahko dolocimo izhodne verjetnosti, ki jih lahko
 uporabimo kot vhodne verjetnosti v obrnjeni kanal.
 Lastnosti:
 \begin{itemize}
@@ -383,26 +273,17 @@ Lastnosti:
 
 \subsection{Medesebojna informacija}
 Pove nam, koliko o eni spremenljivki izvemo iz druge spremenljivke,
-definicija:
-\begin{center}
-    \begin{math}
-        I(X;Y) = H(X) - H(X|Y)
-    \end{math}
-\end{center}
-Lastnosti:
 \begin{itemize}
     \item $I(X;Y) = H(X, Y) - H(X|Y) - H(Y|X)$
     \item $I(X;Y) = H(X) - H(X|Y)$
     \item $I(X;Y) = H(Y) - H(Y|X)$
     \item $I(X;Y) = H(X) + H(Y) - H(X, Y)$
     \item $I(X;Y) = \text{simetricna glede na } X \text{ in } Y$
-    \item $I(X;Y) = -\sum_i\sum_j p(x_i, y_j) \log \frac{p(x_i)p(y_j)}{p(x_i, y_j)}$
     \item $I(X;Y) \geq 0$
     \item $I(X;X) = H(X)$
 \end{itemize}
 
 \subsection{Kapaciteta kanala}
-Kapaciteta kanala je najvecja mozna medsebojna informacija, ki jo lahko prenesemo od vhoda na izhod.
 \begin{center}
     $C =\underset{P(X)}{\max} I(X;Y)$
 \end{center}
@@ -442,11 +323,10 @@ Naj bo $M$ stevilo razlicnih kodnih zamenjav, ki jih lahko oblikujemo z nizi dol
 (prenosa)  definirana kot:
 \begin{center}
     \begin{math}
-        R = \frac{max H(X^n)}{n} = \frac{log M}{n}
+        R = \frac{max H(X^n)}{n} = \frac{log M}{n} = \frac{k}{n}
     \end{math}
 \end{center}
-Hitrost je najvecja takrat, ko so dovoljene kodne zamenjave na vhodu enako verjetne. Shannonov teorem pravi, da je mozna
-skoraj popolna komunikacija s hitrostjo, enako kapaciteti kanala.
+Hitrost je najvecja takrat, ko so dovoljene kodne zamenjave na vhodu enako verjetne.
 \textbf{Teorem:}\\
 \begin{center}
     Za \textbf{R $\leq$ C} obstaja kod, ki zagotavlja tako preverjanje informacije, da je verjetnost napake pri
@@ -463,38 +343,8 @@ Za $R \leq \frac{\log 2^{nC}}{n} = C$ je mozno najti kodne zamenjave, ki omogoca
 
 \section{Varno kodiranje}
 
-\subsection{Kontrolne vsote}
-Varnost komunikacije povecamo tako, da dodamo nekaj bitov za preverjanje parnosti(paritetni biti).
-Nastavljeni so tako, da je vsota bitov v aritmetiki po modulu 2 fiksna vrednost (0 ali 1).\\
-npr. $00|0, 01|1, 10|1, 11|1$(detektiramo samo eno napako).
-
-\subsubsection{Pravokotni kodi}
-Zapisemo ga v obliki pravokotnika, gledamo sodost po vrsticah in po stolpcih.
-
-\begin{center}
-    \begin{tabular}{ |c|cc| } 
-        \hline
-            1   & 0 & 1 \\ 
-            0   & 1 & 1 \\ 
-            \hline
-            0   & 1 & 0 \\ 
-        \hline
-    \end{tabular}
-\end{center}
-
-\subsubsection{Trikotni kodi}
-Vsota elementov v stolpcu in vrstici s paritetnim bitom vred mora biti soda. (ravno tako vsota paritetnih bitov)
-\begin{center}
-    \begin{tabular}{ ccc } 
-        1   & 0 & \textbf{1} \\ 
-        0   & \textbf{0} &  \\ 
-        \textbf{1}   &  &  \\ 
-    \end{tabular}
-\end{center}
-
 \subsection{Hammingova razdalja}
-Hammingova razdalja med kodnima zamenjava nam pove stevilo znakov, na katerih se razlikujeta. Kodni zamenjavi sta enaki,
-ce je razdalja 0, razdalja med razlicnimi kodi mora biti vsaj 1, drugace je kod \textbf{singularen}.
+Razdalja med razlicnimi kodi mora biti vsaj 1, drugace je kod \textbf{singularen}.
 Razdalja je podana kot \textbf{minimalna} Hammingova razdalja med dvema kodnima zamenjavama.
 Stevilo napak, ki jih kod zazna:
 \begin{center}
@@ -505,9 +355,9 @@ Stevilo napak, ki jih kod zazna:
 \end{center}
 
 \subsubsection{Hammingov pogoj}
-Za bloke dolzine $n$ lahko zgradimo $2^n$ razlicnih kodnih zamenjav. Ce zelimo zagotoviti odpornost na napake,
+Ce zelimo zagotoviti odpornost na napake,
 mora biti razdalja $d > 1$. Uporabni kodi imajo st. kodnih zamenjav $M = 2^k < 2^n$.
-Hammingov pogoj: da bi lahko dekodirali vse kodne zamenjave, pri katerih je prislo do $e$ ali manj napak
+Da bi lahko dekodirali vse kodne zamenjave, pri katerih je prislo do $e$ ali manj napak
 mora veljati:
 \begin{center}
     \begin{math}
@@ -516,14 +366,14 @@ mora veljati:
 \end{center}
 
 \subsection{Linearni blocni kodi}
-Kode oznacimo kot dvojcek $(n, k)$. $n$ predstavlja stevilo vseh bitov, $k$ podatkovnih, $n - k$ pa st. paritetnih.
+Kode oznacimo kot dvojcek $L(n, k)$. 
 O linearnih blocnih kodih govorimo, kadar:
 \begin{itemize}
     \item je vsota vsakega para kodnih zamenjav spet kodna zamenjava.
     \item da produkt kodne zamenjave z 1 in 0 spet kodno zamenjavo.
     \item vedno obstaja kodna zamenjava s samimi niclami
 \end{itemize}
-Oznacimo jih z $L(n, k)$. \textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
+\textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
 z najmanj enicami.
 Naj bodo podatkovni biti oznaceni kot $z_1, z_2 \text{ in } z_3$, varnostni pa kot $s_1, s_2 \text{ in } s_3$:
 \begin{center}
@@ -546,42 +396,24 @@ Velja:
         $s_3 + s_3 + z_1 = 0 = x_1 + x_3 + x_6$\\
 \end{center}
 
-
 \subsubsection{Generatorska matrika}
 Generiranje kodne zamenjave lahko opisemo z generatorsko matriko.
 
 \begin{center}
     \begin{math}
-        \vec{x} = \vec{z}G =  
-        \begin{bmatrix}
-            1 & 0 & 0 & 1 & 0 & 1\\
-            0 & 1 & 0 & 1 & 1 & 0\\
-            0 & 0 & 1 & 0 & 1 & 1\\ 
-        \end{bmatrix}
+        \vec{x} = \vec{z}G
     \end{math}
 \end{center}
 
 V splosnem podatkovni vektor $1 \times k$ mnozimo z generatorsko matriko $k \times n$, da dobimo kodno zamenjavo
-$1 \times n$. Matrika mora imeti linearno neodvisne vrstice. Kod, cigar generatorska matrika ima to obliko, je
+$1 \times n$. Kod, cigar generatorska matrika ima to obliko, je
 \textbf{sistematicni kod} - prvih $k$ znakov koda je enakih sporocilu (podatkovnim bitom), ostalih $n-k$ znakov pa so
 paritetni biti.
 
 Za diskretne kanale brez spomina jo vedno lahko zapisemo v obliki $G = (I_k | A)$.
 
 \subsubsection{Matrika za preverjanje sodosti}
-Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti:
-
-\begin{center}
-    \begin{math}
-        H =
-        \begin{bmatrix}
-            1 & 1 & 0 & 1 & 0 & 0 \\
-            0 & 1 & 1 & 0 & 1 & 0 \\
-            1 & 0 & 1 & 0 & 0 & 1 
-        \end{bmatrix}
-    \end{math}
-\end{center}
-
+Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti
 Lastnosti:
 \begin{itemize}
     \item $\vec{x}H^T = 0$
@@ -637,14 +469,12 @@ Mozne nize na izhodu in njihove sindrome obicajno razvrstimo v std. tabelo:
 V isti vrstici so nizi, ki dajo enak sindrom. V prvi vrstici so vedno kodne zamenjave, ki
 imajo sindrom 0. Skrajno levo je vedno niz, ki ima najmanj enic, saj je najbolj verjeten.
 Imenujemo ga popravljalnik. Ostale nize dobimo tako, da popravljalnik pristevamo k kodnim
-zamenjavam v prvi vrsti. Popravljanje je sedaj enostavno: izracunamo sindrom, popravljalnik
-odstejemo(pristejemo) od prejetega niza.
+zamenjavam v prvi vrsti. 
 
 \subsection{Hammingov kod}
 Hammingovi kodi so druzina linearnih blocnih kodov, ki lahko popravijo eno napako.
 Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolpci
-nenicelni vektorji. Spadajo med \textbf{popolne kode} - sfere z radijem 1 okrog kodnih
-zamenjav ravno napolnijo prostor z $2^n$ tockami.
+nenicelni vektorji. 
 
 Kod z $m$ varnostnimi biti ima kodne zamenjave dolzine $2^m - 1$.  Oznaka koda je potem
 $H(2^m - 1, 2^m - 1 - m)$. Ce stolpce v matriki H interpretiramo kot stevila v binarni
@@ -666,7 +496,7 @@ Dekodiranje leksikografskega Hammingovega koda je preprosto:
     \item ce je $s = 0$, je $x' = y$
     \item ce $s \neq 0$, decimalno stevilo $S$ predstavlja mesto napake.
 \end{enumerate}
-Za kod, ki pa ni leksikografski potrebujemo tabelo povezav med indeksi sindromov in stolpci(sepravi pogledamo, na kateri indeks se slika izracunani sindrom).
+Za kod, ki pa ni leksikografski pogledamo, na kateri indeks se slika izracunani sindrom.
 
 \subsection{Ciklicni kodi}
 Ciklicni kod $C(n, k)$ je linearni blocni kod, v katerem vsak krozni premik kodne zamenjave
@@ -737,6 +567,7 @@ Velja:
     \end{math}
 \end{center}
 Sepravi vsak polinom, ki polinom $p^n + 1$ deli brez ostanka, je generatorski polinom.
+Kako narediti kod leksikografski in hkrati sistematicni? $H_L \rightarrow H_s \rightarrow G_s$.
 
 \subsubsection{Polinom za preverjanje sodosti}
 Velja: $x(p)h(p) \mod(p^n + 1) = 0$ $\Rightarrow \sum_{i=0}^{n-i} x_i h_{j-i} = 0$
