@@ -612,18 +612,16 @@ Popravljanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
 \end{itemize}
 
 \subsubsection{CRC}
-Po standardu velja:
-\begin{itemize}
-    \item Registri v \textbf{LSFR} so na zacetku nastavljeni na \textbf{1}; osnovni CRC ne loci sporocil,
-        ki imajo razlicno stevilo vodilnih nicel. Ta sprememba, ki je ekvivalentna negiranju prvih $m$ bitov,
-        to tezavo odpravi.
-    \item Na koncu sporocila dodamo $m$ - bitov, odvisno od implementacije LSFR. Pri nasi se to ne dela!
-    \item \textbf{Operacija XOR} na fiksnem ostanku deljenja, obicajno je to kar negacija vseh bitov.
-    \item \textbf{Vrstni red bitov v bajtu} - nekateri serijski protokoli najprej oddajo najmanj pomembne bite
-        (najmanj pomembni bit ima najvisjo stopnjo polinoma).
-    \item \textbf{Vrsni red bajtov} - pomnilniska organizacija, odvisna od arhitekture (LE, BE).
-    \item Notacija CRC polinomov - biti oznacujejo prisotnost faktorja. Veckrat se izpusca en izmed faktorjev $p^m \text{ ali } 1$.
-\end{itemize}
+tabela: $p^0$ -> $p^{n-1}$, vhod, res
+\begin{verbatim}
+ce XOR (p^n-1, vhod) == 0:
+    shift register v desno, na zacetku dodaj 0
+drugace:
+    shift register v desno, na zacetku dodaj 1
+    XOR g(p) z r
+XOR g(p) z r
+[1, 0, 1, 1] -> 1101
+\end{verbatim}
 
 \section{Analiza signalov}
 
