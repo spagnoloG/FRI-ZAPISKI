@@ -501,9 +501,6 @@ V $\text{mod}(p^n + 1)$ aritmetiki:
     $\Rightarrow$ $x'(p) = px(p) \text{ mod}(p^n + 1)$.
 \end{center}
 
-\textbf{Pozor:} aritmetiko po mod 2 izvajamo na \textbf{istih} stopnjah polinoma (na bitih), aritmetiko
-po mod $(p^n + 1)$ pa na \textbf{polinomu}.
-
 Izvajanje kroznega prekmika za $i$ mest:
 \begin{center}
     \begin{math}
@@ -532,9 +529,18 @@ Sepravi vsak polinom, ki polinom $p^n + 1$ deli brez ostanka, je generatorski po
 Kako narediti kod leksikografski in hkrati sistematicni? $H_L \rightarrow H_s \rightarrow G_s$.
 
 \subsubsection{Polinom za preverjanje sodosti}
-Velja: $x(p)h(p) \mod(p^n + 1) = 0$ $\Rightarrow \sum_{i=0}^{n-i} x_i h_{j-i} = 0$
+\begin{center}
+    \begin{math}
+        x(p)h(p) \mod(p^n + 1) = 0   
+    \end{math}
+    \begin{math}
+        \Rightarrow h(p) = (p^n + 1) : g(p)
+    \end{math}
+\end{center}
+Pazi ko gradis matriko $H$, vrstice so indeksirane po narascujoci stopnji polinoma $h(p)$, medtem,
+ko pa pri gradnji matrike $G$, so vrstice indeksirane po padajoci stonji polinoma $g(p)$!
 
-V matricni obliki: $\vec{x} H^T = H\vec{x}^T = 0$
+
 \subsubsection{Kodiranje z mnozenjem}
 Kodne zamenjave so veckratniki generatorskega polinoma.
 Velja:
@@ -606,7 +612,6 @@ Popravljanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
 \end{itemize}
 
 \subsubsection{CRC}
-Ali Cyclic Redundancy Check, temelji na coklicnih kodih.
 Po standardu velja:
 \begin{itemize}
     \item Registri v \textbf{LSFR} so na zacetku nastavljeni na \textbf{1}; osnovni CRC ne loci sporocil,
@@ -619,31 +624,10 @@ Po standardu velja:
     \item \textbf{Vrsni red bajtov} - pomnilniska organizacija, odvisna od arhitekture (LE, BE).
     \item Notacija CRC polinomov - biti oznacujejo prisotnost faktorja. Veckrat se izpusca en izmed faktorjev $p^m \text{ ali } 1$.
 \end{itemize}
-Ciklicni kodi so odlicni za detekcijo napak. Za popravljanje napak pa danes obstajajo boljsi kodi.
-
-\subsubsection{Prepletanje}
-Motnje so mnogokrat v obliki izbruhov. V takih primerih pride na dolocenih kodnih zamenjavah do velikega stevila napak, na drugih pa napak ni.
-S prepletanjem bitov se da napake porazdeliti med vec kodnih zamenjav.
-Resitev:
-\begin{itemize}
-    \item Kodne zamenjave v kodirnik vpisujemo vrstico po vrstico, oddaja pa jih stolpec po stolpec. Obratno je na strani dekodirnika.
-    \item Naceloma je vzorec skoraj nakljucen. Matriko prepletanja poznata kodirnik in dekodirnik.
-    \item Dodamo zakasnitev, izmenicno signali potujejo gor/dol, ena veja je zakasnjena.
-\end{itemize}
-Dejanske resitve so bolj kompleksne: vec vej, zakasnitve tudi do 20 vej.
-
-\subsubsection{Konvolucijski kodi}
-Primerni za popravljanje napak. Konvolucijske kode genriramo z linearnimi premikalnimi registri, ki so sestavljeni iz 
-pomnilnih celic D in vrat XOR. Spadajo pod nelinearne kode.
 
 \section{Analiza signalov}
-Pri analizi signalov in sistemov je izjemno pomembna kolicina frekvenca.
 
 \subsection{Invariantnost sinusoid}
-Vzemimo zvezni signal, ki prehaja skozi linearni medij (sistem) kot je na primer elektricno vezje.
-
-V splosnem bo signal na izhodu drugacen od signala na vhody(zvok, ki ga poslusamo pod vodo je bistveno bolj popacen od tistega,
-ki ga poslusamo na zraku)
 
 Pomembno pri signalih pa je, da se vhodni signal v obliki sinusoide
 \begin{center}
@@ -651,9 +635,7 @@ Pomembno pri signalih pa je, da se vhodni signal v obliki sinusoide
         x(t) = A \sin (2 \pi \nu t + \theta)
     \end{math}
 \end{center}
-popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$. Razlog, da se frekvenca
-ohrani je v tem, da linearne sisteme lahko zapisemo v obliki elementarnih operacij, kot so (mnozenje s konstanto, odvajanje,
-integracija, zakasnitev, vsota).
+popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$.
 
 \subsection{Fourierova transformacija}
 Vsako periodicno funkcijo ( ce je dovolj lepa ), lahko zapisemo kot kombinacijo sinusoid.
@@ -663,7 +645,6 @@ V kombinaciji z invariantnostjo sinusoid to pomeni, da lahko:
     \item obravnavamo obnasanje vsake sinusoide v sistemu posebej
     \item na koncu zdruzimo locene rezultate
 \end{itemize}
-Ta koncep se danes uporablja pri vsaki analizi signalov.
 
 \subsubsection{Fourierova vrsta}
 Funkcija je periodicna s periodo $T$, ce velja:
@@ -815,12 +796,8 @@ Zveza med koeficienti $X_0, \dots, X_{N-1}$ in frekvencami $- \nu_C, \dots, \nu_
 
 \subsection{Resonanca}
 Do resonance pride, ko je frekvenca vsiljenega nihanja enaka frekvenci lastnega nihanja. Takrat pride do ojacitve amplitud.
-Resonanca je pomembna lastnost elektricnih vezij, s katero zagotovimo nihanja, nastavljanje radijskih sprejemnikov na pravo postajo,
-odstranimo sum.
 
 \subsection{Modulacija in frekvencni premik}
-Iz analize vemo, da nelinearne operacije nad signali (kvadriranje, mnozenje) privedejo do 
-pomembnih transformacij v frekvencnem prostoru.
 
 Iz osnovne trigonometrije vemo:
 \begin{center}
@@ -847,8 +824,6 @@ si najpogosteje sledijo v enakih casovnih intervalih $x_k = x(k \Delta)$, $\Delt
 
 Signale danes obicajno zajemamo z racuanlniki. Za to se uporabljajo vezja $A/D$ pretvorniki. Imajo koncno natancnost,
 na primer 12bit. Signal torej opisemo s koncno mnogo razlicnimi amplitudami $2^{12}$.
-
-Diskretnemu in kvantiziranemu signalu recemo tudi digitalni signal. Kvantizacija je obicajno tako fina, da jo lahko zanemarimo.
 
 \subsection{Energija signala}
 Definicija:
