@@ -683,6 +683,21 @@ Fourier je pokazal, da lahko \textbf{vsako} periodicno funkcijo $x(t)$ s periodo
 \end{center}
 za $n \geq 1$.
 
+\begin{center}
+    \begin{math}
+        b_n = \frac{2}{T} \int_T^0 x(t) \sin( n \omega_0 t ) dt
+    \end{math}\\
+    \begin{math}
+        a_n = \frac{2}{T} \int_0^T x(t) \cos( n \omega_0 t ) dt
+    \end{math}
+\end{center}
+
+\begin{center}
+    \begin{math}
+    \sum_{n = -\infty} ^n C_n e^{i n \omega_0 t}
+    \end{math}
+\end{center}
+
 To velja za vsako funkcijo, ki zadosca Dirichletovim pogojem:
 \begin{itemize}
     \item je enoznacna (za vsak $t$ ena sama vrednost)
@@ -772,6 +787,8 @@ Postopek:
             \end{math}
         \end{center}
 \end{itemize}
+
+Stevilo vzorcenj: $N = \frac{\nu_s}{\min(\Delta \nu_s)}$
 
 Povezava s Fourierovo transformacijo je $X(\nu_n) \approx \Delta X_n$
 Iz enacbe za DFT sledi, da je DFT periodicna s periodo $N$. To pomeni, da je $X_{-n} = X_{N-n}$
