@@ -33,6 +33,13 @@
     \end{math}        
 \end{center}
 
+\subsection{Binomska}
+\begin{center}
+    \begin{math}
+        P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.
+    \end{math}
+\end{center}
+
 \subsection{Lastna informacija}
 Opisuje dogodek, ki se je zgodil:
 \begin{center}
@@ -477,6 +484,7 @@ Dekodiranje leksikografskega Hammingovega koda je preprosto:
 Za kod, ki pa ni leksikografski pogledamo, na kateri indeks se slika izracunani sindrom.
 
 \subsection{Ciklicni kodi C(n, k)}
+$d_H$ v matriki H dobimo tako, da pristejemo stolpce, dokler ne dobimo nicelnega vektorja.
 
 \subsubsection{Zapis s polinomi}
 Imejmo osnovni vektor: 
@@ -569,9 +577,7 @@ Ce pa polinom pomnozimo s $p^m$, dobimo na desni $m$ nicel.
 To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 0, \dots, 0$).
 
 V splosnem nastavek seveda ne bo deljiv, velja pa $p^mz(p) = g(p)t(p) + r(p)$, kjer je $t(p)$ kolicnik,
-$r(p)$ pa ostanek, s stopnjo manj od $m$.
-
-Sepravi delimo $(p^m *z(p)) / g(p)$ in ostanek bodo nasi varnostni biti.
+$r(p)$ pa ostanek, s stopnjo manj od $m$. Sepravi delimo $(p^m z(p)) / g(p)$ in ostanek bodo nasi varnostni biti.
 $(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
 
 \subsubsection{Dekodiranje}
@@ -612,7 +618,7 @@ Popravljanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
 \end{itemize}
 
 \subsubsection{CRC}
-tabela: $p^0$ -> $p^{n-1}$, vhod, res
+tabela: $p^0$ -> $p^{m-1}$, vhod, res
 \begin{verbatim}
 ce XOR (p^n-1, vhod) == 0:
     shift register v desno, na zacetku dodaj 0
