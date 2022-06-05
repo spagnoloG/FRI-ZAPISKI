@@ -49,7 +49,7 @@ Psevdokoda:
 todo ko izvemo kateri algo je pravilen
 
 \subsubsection{Casovna zahtevnost}
-V najslabsem primeru izberemo prvi element za pivotni in dobimo ze urejeno tabelo. Tako se z indeksom i na vsakem nivoju sprehodimo do konca tabele (V rekurziji dobimo izrojeno drevo visine n). Iz tega sledi $\mathcal{O}(n^2)$. V splosnem pa za quicksort velja casovna zahtevnost $\Theta (nlog_2 n)$.
+V najslabsem primeru izberemo prvi element za pivotni in zacnemo z ze urejeno tabelo. Tako se z indeksom i na vsakem nivoju sprehodimo do konca tabele (V rekurziji se nam pojavi vzorec izrojenega drevesa visine n). Iz tega sledi $\mathcal{O}(n^2)$. V splosnem pa za quicksort velja casovna zahtevnost $\Theta (nlog_2 n)$.
 
 \subsection{Urejanje z zlivanjem}
 Gre za stabilni sortirni algoritem.
@@ -57,16 +57,17 @@ Tabelo najprej razdeljujemo na $\lceil \text{polovico }\rceil$ dolzine tabele.
 Ko pridemo do konca se ustavimo in zacnemo urejati navzgor po drevesu.
 
 \subsubsection{Casovna zahtevnost}
-Vedno $\mathcal{O}(nlog_2n)$, saj tabelo razdeljujemo na polovico, tako da se rekurzivno drevo ne mora izroditi.
+Vedno $\mathcal{O}(nlog_2n)$. Tabelo v vsaki iteraciji razpolovimo, tako se vzorec rekurzivnih klicov v obliki drevesa ne mora izroditi.
 
 \subsection{Urejanje s stetjem}
 Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
+
 Imejmo tabelo $[2, 1, 0, 0, 1,  2, 1]$, prestejemo pojavitve stevil $0, 1, \text{ in } 2$. Ter jih zapisemo v dodatno tabelo.
 
 $[2, 3, 2] \rightarrow \text{cumsum} \rightarrow [2, 5 , 7] \rightarrow  \text{popravek indeksov} \rightarrow [1, 4, 6]$.
-Potem ustvarimo novo tabelo velikosti originalne tabele. Urejanje zacnemo tako, da se sprehodimo po originalni tabeli (od zadaj proti zacetku)
+Potem ustvarimo novo tabelo velikosti originalne tabele.
 
-In pogledamo v tabelo s kumulativno vsoto, kam se slika trenutni element, ter stevilo v kumilativni vsoti zmanjsamo za 1. Postopek ponavljamo.
+\textbf{Urejanje} zacnemo tako, da se sprehodimo po originalni tabeli (od zadaj proti zacetku) preberemo element iz orig. tabele in ga uporabimo kot indeks tabele komulativne vsote. Tam se nahaja indeks kam v novo tabelo je potrebno napisati urejeni element. Element zapisemo v novo tabelo in indeks v tabeli komulativne vsote zmanjsamo. Postopek ponavljamo do zacetka orig. tabele.
 
 \subsection{Korensko urejanje}
 Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
