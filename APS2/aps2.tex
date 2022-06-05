@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\begin{document}
+
+\begin{center}
+    {\small APS2/FRI \par}
+\end{center}
+
+
+\begin{multicols}{2}
+
+\section{Asimptoticna Notacija}
+
+Naj bo dana funkcija $g: N \rightarrow N$, potem funkcijo $f: N \rightarrow N$ pisemo:
+\begin{itemize}
+    \item $f(n) = \mathcal{O}(g(n))$, ce $\exists c > 0$, da je $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq c$.\\
+        oz. $f(n) = \mathcal{O}(g(n))$, ce $\exists c > 0, n_0 > 0  \forall n \geq n_0: f(n) \leq cg(n)$. $\Rightarrow$
+        sklepamo, da $f$ narasca \textbf{kvecjemu tako hitro} kot $g$.
+    \item $f(n) = \Omega(g(n))$, ce $\exists c > 0$, da je $c \leq \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)}$.\\
+        oz. $f(n) = \Omega(g(n))$, ce $\exists c > 0, n_0 > 0  \forall n \geq n_0: cg(n) \leq f(n)$. $\Rightarrow$
+        sklepamo, da $f$ narasca \textbf{vsaj tako hitro} kot $g$.
+    \item $f(n) = \Theta(g(n))$, ce $\exists c_1, c_2. c_2 > 0$, da je $c_1 \leq \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq c_2$.\\
+        oz. $f(n) = \Theta(g(n))$, ce $\exists c_1, c_2 > 0, n_0 > 0  \forall n \geq n_0: c_1 g(n) \leq f(n) \leq c_2 g(n)$. $\Rightarrow$
+        sklepamo, da $f$ narasca \textbf{podobno hitro} kot $g$.
+    \item $f(n) = o(g(n))$, ce je $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0$.\\
+        oz. $f(n) = o(g(n))$, ce $\forall c > 0, \exists n_0 > 0  \forall n \geq n_0: f(n) < cg(n)$. $\Rightarrow$
+        sklepamo, da $f$ narasca \textbf{pocasneje} kot $g$.
+    \item $f(n) = \omega(g(n))$, ce  je $ \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = + \infty$.\\
+        oz. $f(n) = \omega(g(n))$, ce $\forall c > 0, \exists n_0 > 0  \forall n \geq n_0: cg(n) < f(n)$. $\Rightarrow$
+        sklepamo, da $f$ narasca \textbf{hitreje} kot $g$.
+\end{itemize}
+
+\section{Urejanje}
+\subsection{Urejanje s kopico}
+Gre za nestabilen sortirni algoritem.
+Operacije:
+\begin{itemize}
+    \item \textbf{Vstavljanje:} Visina drevesa je $h$. Element vstavimo na zadnji nivo, k prvemu prostemu listu. V najslabsem primeru moramo popravljati navzgor do korena. $\mathcal{O}(log_2 n)$.
+    \item \textbf{Odstranjevanje: } Odstranimo korenski element in ga zamenjamo s skrajno desnim otrokom, na zadnjem nivoju. Element, katerega smo ustavili v koren popravljamo v najslabsem primeru spet do najnizjega nivoja. $\mathcal{O}(log_2 n)$.
+    \item \textbf{Ustvarjanje kopice iz podane tabele:} Sestavis kopico iz podane tabele. Najnizjega nivoja ne tikas. Nato se sprehodis po vseh nivojih navzgor iz desne proti levi, pa popravljas kopico navzdol. $\mathcal{O}(n)$.
+\end{itemize}
+\subsection{Hitro urejanje}
+Gre za nestabilen sortirni algoritem. Za pivotni element obicajno izberemo najbol levi element v tabeli.
+
+Psevdokoda:
+todo ko izvemo kateri algo je pravilen
+
+\subsubsection{Casovna zahtevnost}
+V najslabsem primeru izberemo prvi element za pivotni in dobimo ze urejeno tabelo. Tako se z indeksom i na vsakem nivoju sprehodimo do konca tabele (V rekurziji dobimo izrojeno drevo visine n). Iz tega sledi $\mathcal{O}(n^2)$. V splosnem pa za quicksort velja casovna zahtevnost $\Theta (nlog_2 n)$.
+
+\subsection{Urejanje z zlivanjem}
+Gre za stabilni sortirni algoritem.
+Tabelo najprej razdeljujemo na $\lceil \text{polovico }\rceil$ dolzine tabele.
+Ko pridemo do konca se ustavimo in zacnemo urejati navzgor po drevesu.
+
+\subsubsection{Casovna zahtevnost}
+Vedno $\mathcal{O}(nlog_2n)$, saj tabelo razdeljujemo na polovico, tako da se rekurzivno drevo ne mora izroditi.
+
+\subsection{Urejanje s stetjem}
+Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
+Imejmo tabelo $[2, 1, 0, 0, 1,  2, 1]$, prestejemo pojavitve stevil $0, 1, \text{ in } 2$. Ter jih zapisemo v dodatno tabelo.
+
+$[2, 3, 2] \rightarrow \text{cumsum} \rightarrow [2, 5 , 7] \rightarrow  \text{popravek indeksov} \rightarrow [1, 4, 6]$.
+Potem ustvarimo novo tabelo velikosti originalne tabele. Urejanje zacnemo tako, da se sprehodimo po originalni tabeli (od zadaj proti zacetku)
+
+In pogledamo v tabelo s kumulativno vsoto, kam se slika trenutni element, ter stevilo v kumilativni vsoti zmanjsamo za 1. Postopek ponavljamo.
+
+\subsection{Korensko urejanje}
+Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
+Urejas samo po stevkah.
+Primer sledi izvajanja:
+\begin{itemize}
+    \item $a = [36, 12, 27, 17]$
+    \item $a_e = [12, 36, 27, 17]$ (sortiramo po enicah)
+    \item $a_d = [12, 17, 27, 36]$ (sortiramo po deseticah)
+\end{itemize}
+
+\section{Deli in vladaj}
+Problem razdelimo na vec \textbf{enakih} podproblemov. 
+
+\subsection{Masters Theorem}
+
+\begin{center}
+    \begin{math}
+        T(n) = a T(\frac{n}{b}) + \mathcal{O}(n^d)
+    \end{math}
+\end{center}
+
+\begin{itemize}
+    \item $a$ - stevilo delitev problema
+    \item $b$ - faktor deljenja problema
+    \item $d$ - Zahtevnost zdruzevanja problemov 
+\end{itemize}
+
+\subsubsection{Ocena casovne zahtevnosti algoritma:}
+\begin{enumerate}
+    \item $a < b^d \Rightarrow T(n) = \mathcal{O}(n^d)$
+    \item $a = b^d \Rightarrow T(n) = \mathcal{O}(n^d \log_2 n)$
+    \item $a > b^d \Rightarrow T(n) = \mathcal{O}(n^{log_b a})$
+\end{enumerate}
+
+\subsection{Naivni algoritem za mnozenje stevil}
+Stevili $a$ in $b$ delimo na polovico, dokler ne pridemo do same stevke.
+$a = [a_1, a_0]$, $b =[b_1, b_0]$. $n$ je stevilo stevk v posamezni iteraciji.
+
+\begin{center}
+    \begin{math}
+        ab = 10^n a_1 b_1 + 10^{\frac{n}{2}}(a_0 b_1 + a_1 b_0) + a_0 b_0
+    \end{math}
+\end{center}
+
+\subsection{Karacubov algoritem}
+Gre za izboljsavo naivnega mnozenja, saj potrebujemo mnoziti samo 3x.
+\begin{itemize}
+    \item $c_0 = a_0 b_0$
+    \item $c_1 = (a_1 + a_0) (b_1 + b_0) - c_0 - c_2$
+    \item $c_2 = a_1 b_1$
+\end{itemize}
+
+\begin{center}
+    \begin{math}
+        ab = 10^n c_0 + 10^{\frac{n}{2}} c_1 + a_1 b_1
+    \end{math}
+\end{center}
+
+
+\end{multicols}
+\end{document}
