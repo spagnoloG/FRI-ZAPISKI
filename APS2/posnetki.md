@@ -15,9 +15,16 @@
 - [Heapsort](https://www.youtube.com/watch?v=HqPJF2L5h9U)
 - [Mergesort](https://www.youtube.com/watch?v=mB5HXBb_HY8)
 - [Mergesort - analiza](https://www.youtube.com/watch?v=ak-pz7tS5DE)
+- [Urejanje s stetjem O(n)](https://www.youtube.com/watch?v=OKd534EWcdk)
+    Pri nas gre za nekoliko drugacno implementacijo. Gremo iz konca tabele, pa gledamo indeks na katerega se slika v kumulativni vsoti. Preden gremo slikati, moramo
+    vsakemu elementu v kumulativni vsoti odsteti enico.
+- [Korensko urejanje](https://www.youtube.com/watch?v=nu4gDuFabIM)
 
 ## Deli in vladaj
 - [deli in vladaj](https://youtu.be/2Rr2tW9zvRg)
+- [Master Theorem 1](https://youtu.be/OynWkEj0S-s)
+- [Master Theorem 2](https://youtu.be/CyknhZbfMqc)
+- [Strassnov algoritem](https://youtu.be/0oJyNmEbS4w)
 - neovbezno:
     - [rekurencna analiza 1](https://youtu.be/4V30R3I1vLI)
     - [rekurencna analiza 2](https://youtu.be/IawM82BQ4II)
