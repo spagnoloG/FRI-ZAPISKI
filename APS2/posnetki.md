@@ -8,7 +8,6 @@
     - [analiza kode 2](https://youtu.be/9SgLBjXqwd4)
     - [analiza kode 3](https://youtu.be/p1EnSvS3urU)
 
-
 ## Urejanje
 - [Quickort - implementacija](https://www.youtube.com/watch?v=7h1s2SojIRw) 
 - [Quicksort - analiza](https://www.youtube.com/watch?v=-qOVVRIZzao)
@@ -31,3 +30,8 @@
     - [rekurencna analiza 3](https://youtu.be/MhT7XmxhaCE)
     - [rekurencna analiza 4](https://youtu.be/JvcqtZk2mng)
 
+## FFT
+- [FFT - razlaga](https://www.youtube.com/watch?v=h7apO7q16V0)
+- [FFT - nadaljevanje](https://www.youtube.com/watch?v=Ty0JcR6Dvis)
+- neovbezno:
+    - [FFT - vizualizacija](https://www.youtube.com/watch?v=spUNpyF58BY)
