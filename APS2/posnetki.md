@@ -33,5 +33,8 @@
 ## FFT
 - [FFT - razlaga](https://www.youtube.com/watch?v=h7apO7q16V0)
 - [FFT - nadaljevanje](https://www.youtube.com/watch?v=Ty0JcR6Dvis)
+- [Primitivni koren (kompleksno)](https://www.youtube.com/watch?v=bme6sLcpYgA)
 - neovbezno:
     - [FFT - vizualizacija](https://www.youtube.com/watch?v=spUNpyF58BY)
+## Grafi
+- nvjm vaje iguess
