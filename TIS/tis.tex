@@ -10,7 +10,7 @@
 \end{center}
 
 
-\begin{multicols}{3}
+\begin{multicols}{2}
 \input{../VIS/ponovitev-analize.tex}
 
 \section{Osnove}
@@ -54,8 +54,13 @@ je povprecje vseh lastnih informacij:
         H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log_2 p_i
     \end{math}
 \end{center}
-Lastnosti: je zvezna, simetricna funckija (vrsni red $p_i$ ni pomemben, sestevanje je komutativno). Je vedno vecja
-od 0 ($p_i \geq 0 \rightarrow -p_i \log_2 p_i \geq 0 \rightarrow H(X) \geq 0$) in navzgor omejena z $\log_r n$.\\
+Lastnosti: 
+\begin{enumerate}
+    \item je zvezna, simetricna funckija (vrsni red $p_i$ ni pomemben, sestevanje je komutativno).
+    \item $p_i \geq 0 \rightarrow -p_i \log_2 p_i \geq 0 \Rightarrow H(X) \geq 0$
+    \item je navzgor omejena z $log_r n$.
+\end{enumerate}
+
 Ce sta dogodka \textbf{neodvisna} velja aditivnost: $H(X, Y) = H(X) + H(Y)$.\\
 Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
 
@@ -72,7 +77,7 @@ dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
     \end{math}
 \end{center}
 
-\subsection{Tipi kodov}
+\subsection{Tipi kodov} % dodaj slikco
 \begin{itemize}
     \item \textbf{optimalen} - ce ima najmanjso mozno dolzino kodnih zamenjav
     \item \textbf{idealen} - ce je povprecna dolzina kodnih zamenjav enaka entropiji
@@ -89,7 +94,8 @@ obstaja trenutni kod, iff
         \sum_{i=1}^n r^{-li} \leq 1
     \end{math}
 \end{center}
-
+Kraftova neenakost je \textbf{potrebni} pogoj za trenutnost koda.
+\textbf{Zadosten} pogoj za trenutnost koda: Nobena kodna zamenjava \textbf{ni} predpona drugi.
 \subsection{Povp. dolzina, ucinkovitost}
 Najkrajse kodne zamenjave imamo, ce velja:
 \begin{center}
@@ -109,6 +115,8 @@ Kod je \textbf{gospodaren}, ce je $L$ znotraj:
         H_r(X) \leq L < H_r(X) + 1
     \end{math}
 \end{center}
+Ce pa imamo vec neodvisnih znakov:
+
 kjer je $H_r(X)$:
 \begin{center}
     \begin{math}
@@ -124,7 +132,22 @@ za katere velja:
         \lim_{n \rightarrow \infty} \dfrac{L_n}{n} = H(X)
     \end{math}
 \end{center}
-pri cemer je $H(X)$ entropija vira $X$.
+pri cemer je $H(X)$ entropija vira $X$. Neformalno: \textit{Vec znakov kot bomo 
+zdruzevali, bolj se bomo priblizali entropiji.}
+
+$\Rightarrow$ Posledica prvega Shannonovega teorema, ce zdruzujemo znake v vecje, sestavljene
+znake potem velja:
+\begin{center}
+    \begin{math}
+        H_r(X^n) \leq L_n < H_r(X^n) + 1 
+    \end{math} \\
+    \begin{math}
+        nH_r(X) \leq L_n < nH_r(X) + 1
+    \end{math} \\
+    \begin{math}
+        H_r(X) \leq \frac{L_n}{n} < H_r(X) + \frac{1}{n}
+    \end{math}
+\end{center}
 
 \subsection{Shannonov kod}
 Postopek kodiranja po Shannonu:
@@ -175,7 +198,14 @@ naletimo na nevarnost kombinacijske eksplozije. $l_i$ dolocimo s pomocjo tabele.
 
 \subsection{Aritmeticni kod}
 Je \textbf{hiter} in \textbf{blizu optimalnemu} kodu, ter manj ucinkovit kot Huffmanov,
-vendar se izogne kombinacijski eksploziji.
+vendar se izogne kombinacijski  eksploziji. Aritmeticni kod ni \textbf{gospodaren} saj zanj velja:
+\begin{center}
+    \begin{math}
+        \mathcal{H}(X) \leq L_n \leq \mathcal{H}(X) + 2
+    \end{math}
+\end{center}
+Sepravi se nam lahko zgodi, da pri kodiranju niza uporabimo dva znaka prevec.
+
 Vsak niz je predstavljen kot realno stevilo $0 \leq R < 1$, kar nam pove, da daljsi kot bo niz,
 bolj natancno mora biti podano naravno stevilo $R$.\\
 Postopek kodiranja(znakov ni potrebno razvrstiti):
@@ -233,7 +263,10 @@ vsak blok se kodira na enega od treh nacinov:
     \item \textbf{stiskanje s Huffmanom} izracunamo verjetnosti za vsak blok
 \end{enumerate}
 Glava posameznega bloka: 1bit - zadnji/ni zadnji blok + 2bita tip stiskanja + pri (3) se Huffmanovo drevo
-Ker Huffmanovo drevo ni enolicno, uvedemo kanonicni Huffmanov kod. Postopek:
+Ker Huffmanovo drevo ni enolicno, uvedemo kanonicni Huffmanov kod.
+
+\subsubsection{Kanonicni Huffmanov kod}
+Postopek kodiranja:
 \begin{enumerate}
     \item znake razvrstimo najprej po dolzinah kodnih zamenjav in nato po abecedi(narascujoce)
     \item prvi simbol ima same nicle
@@ -417,7 +450,12 @@ Pomembne zveze:
     \item $\sum_i p(x_i, y_j) = p(y_j)$,
     \item $\sum_{i,j} p(x_i, y_j) = 1$ (pazi pri racunskih!)
 \end{itemize}
-Velja: $H(X, Y) = H(Y|X) + H(X)$, kar nam pove, da ce najprej izvemo, kaj se je zgodilo v dogodku $X$ in potem
+Velja:
+
+\begin{center}
+    $H(X, Y) = H(Y|X) + H(X)$
+\end{center}
+kar nam pove, da ce najprej izvemo, kaj se je zgodilo v dogodku $X$ in potem
 dobimo se dodatne informacije od dogodku $Y$, vemo vse.
 \subsubsection{Obrat kanala}
 Ker velja tudi $H(X, Y) = H(X|Y) + H(Y)$, kanal lahko \textbf{obrnemo}
@@ -450,6 +488,10 @@ Lastnosti:
     \item $I(X;Y) \geq 0$
     \item $I(X;X) = H(X)$
 \end{itemize}
+Iz definicije medsebojne informacije lahko sklepamo:
+\begin{center}
+    $0 \leq H(X|Y) \leq H(X)$.
+\end{center}
 
 \subsection{Kapaciteta kanala}
 Kapaciteta kanala je najvecja mozna medsebojna informacija, ki jo lahko prenesemo od vhoda na izhod.
@@ -522,7 +564,6 @@ Boljsi pristop pa je, da naredimo kode, kjer se povecujeta $n$ in $k$ hitreje od
 \subsection{Kontrolne vsote}
 Varnost komunikacije povecamo tako, da dodamo nekaj bitov za preverjanje parnosti(paritetni biti).
 Nastavljeni so tako, da je vsota bitov v aritmetiki po modulu 2 fiksna vrednost (0 ali 1).\\
-\textit{Spomnimo se arsa}
 \begin{center}
     \begin{tabular}{ |c|c|c| } 
         \hline
@@ -532,7 +573,6 @@ Nastavljeni so tako, da je vsota bitov v aritmetiki po modulu 2 fiksna vrednost 
             1   & 1 & 0 \\ 
         \hline
     \end{tabular}
-    AND $\sim \times$.\\
 \end{center}
 
 npr. $00|0, 01|1, 10|1, 11|1$(detektiramo samo eno napako).
@@ -597,9 +637,9 @@ z najmanj enicami.
 Naj bodo podatkovni biti oznaceni kot $z_1, z_2 \text{ in } z_3$, varnostni pa kot $s_1, s_2 \text{ in } s_3$:
 \begin{center}
     \begin{tabular}{ ccc } 
-        z_1   & z_2 & s_3 \\ 
-        z_3   & s_2 &  \\ 
-        s_1   &  & \\
+        $z_1$   & $z_2$ & $s_3$ \\ 
+        $z_3$   & $s_2$ &  \\ 
+        $1$   &  & \\
     \end{tabular}
 \end{center}
 Potem vrednosti zlozimo v vektor, in opravimo kodno zamenjavo.
