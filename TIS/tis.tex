@@ -82,7 +82,7 @@ dolzine prejetih kodnih zmanjav, je povprecna dolzina kodne zamenjave
     \item \textbf{optimalen} - ce ima najmanjso mozno dolzino kodnih zamenjav
     \item \textbf{idealen} - ce je povprecna dolzina kodnih zamenjav enaka entropiji
     \item \textbf{enakomeren} - ce je dolzina vseh kodnih zamenjav enaka
-    \item \textbf{enoznacen} - ce lahko poljuben niz znakov dekodiramo na en sam nacin
+    \item \textbf{enoznacen/enolicen} - ce lahko poljuben niz znakov dekodiramo na en sam nacin
     \item \textbf{trenuten} - ce lahko osnovni znak dekodiramo takoj, ko sprejmemo celotno kodno zamenjavo
 \end{itemize}
 
@@ -534,7 +534,7 @@ Naj bo $M$ stevilo razlicnih kodnih zamenjav, ki jih lahko oblikujemo z nizi dol
 (prenosa)  definirana kot:
 \begin{center}
     \begin{math}
-        R = \frac{max H(X^n)}{n} = \frac{log M}{n}
+        R = \frac{max H(X^n)}{n} = \frac{log M}{n} = \frac{k}{n}
     \end{math}
 \end{center}
 Hitrost je najvecja takrat, ko so dovoljene kodne zamenjave na vhodu enako verjetne. Shannonov teorem pravi, da je mozna
@@ -607,10 +607,10 @@ ce je razdalja 0, razdalja med razlicnimi kodi mora biti vsaj 1, drugace je kod 
 Razdalja je podana kot \textbf{minimalna} Hammingova razdalja med dvema kodnima zamenjavama.
 Stevilo napak, ki jih kod zazna:
 \begin{center}
-    $d \geq e + 1 \rightarrow e_{max} = d-1$
+    $d_H \geq e + 1 \rightarrow e_{max} = d_H-1$
 \end{center}
 \begin{center}
-    $d \geq 2f + 1 \rightarrow f_{max} = \lfloor \frac{d-1}{2} \rfloor$
+    $d_H \geq 2f + 1 \rightarrow f_{max} = \lfloor \frac{e_{max}}{2} \rfloor = \lfloor \frac{d_H-1}{2} \rfloor$
 \end{center}
 
 \subsubsection{Hammingov pogoj}
@@ -623,6 +623,10 @@ mora veljati:
         M \leq \dfrac{2^n}{\sum_{i=0}^e{n \choose i}}
     \end{math}
 \end{center}
+\textit{Spomnimo se:}
+\begin{math}
+    {n \choose i} = \frac{n!} {i! (n - i)!}, n! = n(n -1)
+\end{math}
 
 \subsection{Linearni blocni kodi}
 Kode oznacimo kot dvojcek $(n, k)$. $n$ predstavlja stevilo vseh bitov, $k$ podatkovnih, $n - k$ pa st. paritetnih.
@@ -634,12 +638,18 @@ O linearnih blocnih kodih govorimo, kadar:
 \end{itemize}
 Oznacimo jih z $L(n, k)$. \textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
 z najmanj enicami.
+\begin{center}
+    \begin{math}
+        d_H = \min d(\vec{a}, \vec{b}) = \min d(0, \vec{b} - \vec{a}) = \min d(0 , \vec{b} + \vec{a})
+    \end{math}
+\end{center}
+   
 Naj bodo podatkovni biti oznaceni kot $z_1, z_2 \text{ in } z_3$, varnostni pa kot $s_1, s_2 \text{ in } s_3$:
 \begin{center}
     \begin{tabular}{ ccc } 
         $z_1$   & $z_2$ & $s_3$ \\ 
         $z_3$   & $s_2$ &  \\ 
-        $1$   &  & \\
+        $s_1$   &  & \\
     \end{tabular}
 \end{center}
 Potem vrednosti zlozimo v vektor, in opravimo kodno zamenjavo.
@@ -675,7 +685,7 @@ $1 \times n$. Matrika mora imeti linearno neodvisne vrstice. Kod, cigar generato
 \textbf{sistematicni kod} - prvih $k$ znakov koda je enakih sporocilu (podatkovnim bitom), ostalih $n-k$ znakov pa so
 paritetni biti.
 
-Za diskretne kanale brez spomina jo vedno lahko zapisemo v obliki $G = (I_k | A)$.
+Za diskretne kanale brez spomina (sistematicne kode) jo vedno lahko zapisemo v obliki $G = (I_k | A)$.
 
 \subsubsection{Matrika za preverjanje sodosti}
 Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti:
@@ -690,12 +700,16 @@ Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti:
         \end{bmatrix}
     \end{math}
 \end{center}
-
-Lastnosti:
+Lastnosti sist. kodov:
 \begin{itemize}
     \item $\vec{x}H^T = 0$
-    \item $GH^T = 0$
     \item $G = (I_k | A) \Rightarrow H = (A^T | I_{n-k})$
+    \item $GH^T = 0$
+    \begin{center}
+        \begin{math}
+            GH^T = (I_k | A) {A^{T^{T}} \choose I_m} = (I_k | A) {A \choose I_m} = I_k A + A I_m = AA = \vec{0}
+        \end{math}
+    \end{center}
     \item vsota dveh kodnih zamenjav je nova kodna zamenjava.
 \end{itemize}
 
@@ -710,7 +724,7 @@ Napako pri prenosu preprosto ugotavljamo tako, da pogledamo, ce je $s = 0$. Vend
 Sindrom izracunamo na naslednji nacin(vektor velikosti $1 \times n - k$):
 \begin{center}
     \begin{math}
-        yH^T = (x + e)H^T = eH^T = s
+        yH^T = (x + e)H^T = 0 + eH^T = s
     \end{math}
 \end{center}
 Ker je verjetnost za napako obicajno $p << 1$, je niz s $t$ napakami veliko
@@ -749,6 +763,7 @@ Imenujemo ga popravljalnik. Ostale nize dobimo tako, da popravljalnik pristevamo
 zamenjavam v prvi vrsti. Popravljanje je sedaj enostavno: izracunamo sindrom, popravljalnik
 odstejemo(pristejemo) od prejetega niza.
 
+
 \subsection{Hammingov kod}
 Hammingovi kodi so druzina linearnih blocnih kodov, ki lahko popravijo eno napako.
 Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolpci
@@ -763,7 +778,11 @@ poljubno razmetani. Pomembno je le to, da nastopajo \textbf{vsa} stevila od 1 do
 Hammingov kod je lahko:
 \begin{itemize}
     \item \textbf{leksikografski} - oznake stolpcev si sledijo po vrsti
-    \item \textbf{sistematicni} - oznake stolpcev so pomesane
+
+    \item \textbf{sistematicni} - oznake stolpcev so pomesane 
+
+        \textit{Iz pozicije varnostnih bitov lahko pridobimo enacbe, s pomocjo katerih
+        lahko potem sestavimo generatorsko matriko. Sepravi vsota vseh $z_i$, kjer se nahaja $s_i$}
 \end{itemize}
 
  V Hammingovem kodu se za varnostne bite obicajno vzamejo tisti stolpci, ki imajo samo \textbf{eno} enico.
@@ -784,12 +803,12 @@ da drugo kodno zamenjavo. Zapisemo jih s polinomi po padajocih potencah (ravno t
 \subsubsection{Zapis s polinomi}
 Imejmo osnovni vektor: 
 \begin{center}
-    $x = (x_{n-1}, x_{n-2}, \dots, x_0) \Leftrightarrow$
+    $x = (x_{n-1}, x_{n-2}, \dots, x_0) \Leftrightarrow$\\
     $x(p) = x_{n-1}p^{n-1} + x_{n-2}p^{n-2} + \dots + x_0$ 
 \end{center}
 Izvedemo premik za eno mesto:
 \begin{center}
-    $x' = (x_{n-2}, \dots, x_0, x_{n-1}) \Leftrightarrow$
+    $x' = (x_{n-2}, \dots, x_0, x_{n-1}) \Leftrightarrow$\\
     $x'(p) = x_{n-2}p^{n-2} + \dots + x_0p + x_{n-1}$ 
 \end{center}
 Velja zveza: $x'(p) = px(p) - x_{n-1}(p^n -1)$.
@@ -827,7 +846,6 @@ Za sistematicni kod velja: $G = [I_k | A_{k, n-k}]$.
 Generatorska matrika:
 \begin{center}
     $G= $
-    \begin{tiny}
         \begin{math}
             \begin{bmatrix}
                 1 & g_{m - 1} &  \dots & g_1 & 1 & 0 & \dots & 0 & 0 \\
@@ -836,7 +854,6 @@ Generatorska matrika:
                 0 & 0 & \dots & 0 & 1 & g_{m-1} & \dots & g_1 & 1
             \end{bmatrix}
         \end{math}
-    \end{tiny}
 \end{center}
 Sistematicni lahko dobimo z linearnimi operacijami nad vrsticami.
 Velja:
@@ -852,7 +869,6 @@ Velja: $x(p)h(p) \mod(p^n + 1) = 0$ $\Rightarrow \sum_{i=0}^{n-i} x_i h_{j-i} = 
 
 V matricni obliki: $\vec{x} H^T = H\vec{x}^T = 0$
 \begin{center}
-    \begin{tiny}
         \begin{math}
             \begin{bmatrix}
                 h_0 & \dots & h_k & 0 & \dots & 0 & 0\\
@@ -866,7 +882,6 @@ V matricni obliki: $\vec{x} H^T = H\vec{x}^T = 0$
                 x_0
             \end{bmatrix} = 0
         \end{math}
-    \end{tiny}
 \end{center}
 
 \subsubsection{Kodiranje z mnozenjem}
@@ -897,7 +912,11 @@ Ce pa polinom pomnozimo s $p^m$, dobimo na desni $m$ nicel.
 \end{center}
 To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 0, \dots, 0$).
 
-V splosnem nastavek seveda ne bo deljiv, velja pa $p^mz(p) = g(p)t(p) + r(p)$, kjer je $t(p)$ kolicnik,
+V splosnem nastavek seveda ne bo deljiv, velja pa:
+\begin{center}
+    $p^mz(p) = g(p)t(p) + r(p)$
+\end{center}
+kjer je $t(p)$ kolicnik
 $r(p)$ pa ostanek, s stopnjo manj od $m$.
 
 Ostanek lahko zapisemo v obliki niza, kot $(0, \dots, 0, r_{m-1}, \dots, r_0)$.
@@ -943,8 +962,31 @@ Ciklicni kodi so posebej primerni za \textbf{ ugotavljanje izbruhov napak }.
 Odkrivanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
 \begin{itemize}
     \item Kod odkrije vsako posamicno napako: $e(p) = p^i$
+        \begin{center}
+            \begin{math}
+                e(p) = p^i \text{ ni deljiv z } g(p)
+            \end{math}
+        \end{center}
     \item Za dolocene generatorske polinome odkrije tudi dve posamicni napaki do dolzine bloka $n = 2^m -1$
+        \begin{center}
+            \begin{math}
+                e(p) = p^i + p^j = p^j(p^{i-j} + 1) 
+            \end{math}
+        \end{center}
+        \textit{Pri pogoju, da $p^j$ ni deljiv z $g(p)$ in $p^{i-j}$ ni deljiv z $g(p)$ za vsak $i-j$}
+        
     \item Odkrije poljubno stevilo lihih napak, ce $p + 1$ deli $g(p)$
+        \begin{center}
+            \begin{math}
+                g(p) = (p + 1) g_g(p)
+            \end{math}\\
+            \begin{math}
+                (p + 1) p^i =  p^{i+1} + p^i
+            \end{math}\\
+            \begin{math}
+                (p + 1)(p^i + p^{i - 1}) = p^{i + 1} + p^i + p^i + p^{i-1} = p^{i + 1} + p^{i-1}
+            \end{math}\\
+        \end{center}
     \item Odkrije vsak izbruh napak do dolzine $m$
     \item Odkrije vse razen $2^{-(m-1)}$ izbruhov dozline $m + 1$
     \item Odkrije tudi vse razen delez $2^{-m}$ izbruhov daljsih od $m + 1$
@@ -1004,7 +1046,13 @@ Pomembno pri signalih pa je, da se vhodni signal v obliki sinusoide
         x(t) = A \sin (2 \pi \nu t + \theta)
     \end{math}
 \end{center}
-popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$. Razlog, da se frekvenca
+popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$.
+\begin{center}
+    \begin{math}
+        x(t) = A' \sin (2 \pi \nu t + \theta')
+    \end{math}
+\end{center}
+Razlog, da se frekvenca
 ohrani je v tem, da linearne sisteme lahko zapisemo v obliki elementarnih operacij, kot so (mnozenje s konstanto, odvajanje,
 integracija, zakasnitev, vsota).
 
@@ -1050,6 +1098,70 @@ Fourier je pokazal, da lahko \textbf{vsako} periodicno funkcijo $x(t)$ s periodo
     \end{math}
 \end{center}
 za $n \geq 1$.
+
+Lastnosti preden se lotimo dokaza:
+\begin{itemize}
+    \item
+        \begin{center}
+            $\int_{0}^T \cos (\omega_0 t) dt = \int_{0}^T \sin (\omega_0 t) dt = 0$
+        \end{center}
+    \item
+        \begin{center}
+            $\int_{0}^T \sin (n \omega_0 t) dt = \int_{0}^T \sin (n \omega_0 t) dt = 0$ (visji harmoniki)
+        \end{center}
+    \item 
+        \begin{center}
+            $\sin (2 \pi \nu_1 t) \sin (2 \pi \nu_2 t) = \frac{1}{2} (\cos (2 \pi (\nu_1 - \nu_2) t) - \cos (2 \pi (\nu_1 + \nu_2) t))$
+        \end{center}
+\end{itemize}
+
+Se nekaj lastnosti z dokazi:
+\begin{itemize}
+    \item
+        \begin{center}
+            \begin{math}
+                \cos(n \omega_0 t) cos(m \omega_0 t) = \frac{1}{2} (cos((n+m)\omega_0 t) + cos((n-m) \omega_0 t))
+            \end{math} \\
+            ce $n \neq m$ \\
+            \begin{math}
+                = \frac{1}{2} \int_0^T (cos((n+m)\omega_0 t)dt + \frac{1}{2} \int_0^T cos((n-m) \omega_0 t))dt = 0
+            \end{math} \\
+            ker velja $n + m > 0$  in $|n - m| \geq 1$ \\
+            ce pa $n = m$ \\
+            \begin{math}
+                = \frac{1}{2} \int_0^T (cos((2n)\omega_0 t)dt + \frac{1}{2} \int_0^T cos(0))dt = \frac{T}{2}
+            \end{math} \\
+        \end{center}
+    \item
+        \begin{center}
+            Enako velja za produkt dveh sinusoid.
+        \end{center}
+    \item
+        \begin{center}
+            \begin{math}
+                \int_0^T \sin(n \omega_0 t) \cos(n \omega_0 t) dt = 0
+            \end{math}
+        \end{center}
+\end{itemize}
+
+Dokaz:
+\begin{center}
+    \begin{math}
+        x(t) = \frac{a_0}{2} + \sum_{n = 1}^{\infty} a_n \cos(n \omega_0 t) +
+        \sum_{n = 1}^{\infty} b_n \sin(n \omega_0 t)
+    \end{math}
+\end{center}
+\begin{center}
+    \begin{math}
+        \int_0^T x(t) dt = \frac{a_0}{2} \int_0^T dt + \int \sum + \int \sum = \frac{a_0} T \rightarrow a_0 \frac{2}{T} \int_0^T x(t) dt
+    \end{math}
+\end{center}
+\begin{center}
+    \begin{math}
+        \int_0^T x(t) \cos(n \omega_0 t) dt = a_n \frac{T}{2} \rightarrow a_n = \int_0^T x(t) \cos (n \omega_0 t) dt
+    \end{math}
+\end{center}
+Enako bi lahko pokazali za $b_n$.
 
 To velja za vsako funkcijo, ki zadosca Dirichletovim pogojem:
 \begin{itemize}
@@ -1193,6 +1305,9 @@ hkraten prenos vec signalov po istem mediju.
 \subsection{Teorem vzorcenja}
 Signal moramo vzorciti vsaj s frekvenco $2 \nu_c$, ce je najvisja opazena frekvenca v signalu $\nu_c$. Na tem zakljucku
 sloni vsa danasnja tehnologija.
+\begin{center}
+    $\nu_s \geq 2 \nu_c$
+\end{center}
 
 \subsubsection{Zajem signalov}
 Zvezni signal $x(t)$ je funkcija zvezne spremenljivke $t$. Diskreten signal je definiran samo za dolocene case, ki
