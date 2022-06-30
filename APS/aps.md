@@ -1983,6 +1983,8 @@ public void kruskal(KGraph g) {
 
 ## DOKAZOVANJE PRAVILNOSTI PROGRAMOV (najbol izi snov tbh :wink:)
 
+!!! Vse narobe !!! (popravki dobrodosli)
+
 ### Formalizacija
 Program definiramo kot preslikavo:
 
