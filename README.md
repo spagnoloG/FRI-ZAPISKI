@@ -16,7 +16,7 @@
 
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
-z opisom napake in razlago zakaj bi tam popravil(a^{-1}) :)
+z opisom napake in razlago zakaj bi tam popravil(a^{-1}) :smiley:
 
 ## Repozitorij
 Nahaja se na naslednji [povezavi](https://github.com/spagnoloG/FRI-ZAPISKI) in bo **vedno** opensource. Ce so ti zapiski pomagali, klikni na zvezdico ;).
