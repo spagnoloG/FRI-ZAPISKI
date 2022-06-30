@@ -3,8 +3,7 @@
 ## Trenutno na voljo:
 
 ### Prvi letnik:
-- [LA](https://spagnolog.github.io/FRI-ZAPISKI/LA/la.pdf)
-- [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
+- [LA](https://spagnolog.github.io/FRI-ZAPISKI/LA/la.pdf), [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
 
 ### Drugi letnik
 - [VIS](https://spagnolog.github.io/FRI-ZAPISKI/VIS/vis.pdf), [VIS-teorija](https://github.com/bl4ko/statistics-theory)
@@ -16,9 +15,8 @@
 - [MM](https://spagnolog.github.io/FRI-ZAPISKI/MM/mm.pdf)
 
 ## Popravki
-Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi odpres samo [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues), 
+Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
 z opisom napake in razlago zakaj bi tam popravil(a^{-1}) :)
 
 ## Repozitorij
 Nahaja se na naslednji [povezavi](https://github.com/spagnoloG/FRI-ZAPISKI) in bo **vedno** opensource. Ce so ti zapiski pomagali, klikni na zvezdico ;).
-
