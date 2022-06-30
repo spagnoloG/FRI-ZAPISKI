@@ -1,7 +1,5 @@
 # FRI-ZAPISKI
 
-## Trenutno na voljo:
-
 ### Prvi letnik:
 - [LA](https://spagnolog.github.io/FRI-ZAPISKI/LA/la.pdf), [LA-plonk](https://spagnolog.github.io/FRI-ZAPISKI/LA/plonk/la-plonk.pdf)
 
