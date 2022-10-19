@@ -12,6 +12,9 @@
 - [TIS-teorija](https://spagnolog.github.io/FRI-ZAPISKI/TIS/tis.pdf), [TIS-plonk](https://spagnolog.github.io/FRI-ZAPISKI/TIS/plonk.pdf)
 - [MM](https://spagnolog.github.io/FRI-ZAPISKI/MM/mm.pdf)
 
+### Tretji letnik
+- [OUI](https://spagnolog.github.io/FRI-ZAPISKI/OUI/oui.pdf)
+
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
 z opisom napake in razlago zakaj bi tam popravil(a^{-1}).

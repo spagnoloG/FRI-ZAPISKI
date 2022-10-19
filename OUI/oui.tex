@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\begin{document}
+
+\begin{center}
+    {\small OUI/FRI \par}
+\end{center}
+
+
+\begin{multicols}{2}
+
+\section{Osnove}
+
+\subsection{Kaj je umetna inteligenca?}
+  \begin{itemize} 
+    \item  \textbf{cilji:} Razumeti in zgraditi inteligentne sisteme na osnovi razumevanja
+      cloveskega \textit{razmisljanja, sklepanja, ucenja} in \textit{komuniciranja}.
+  \end{itemize}
+
+\section{Strojno Ucenje}
+
+\subsection{Kaj je stronjo ucenje?}
+Je \textit{podrocje umetne inteligence}, ki raziskuje kako se lahko algorimti samodejno izboljusjejo ob pridobivanju izkusenj.
+
+\subsection{Vrste ucenja:}
+
+\begin{itemize}
+  \item \textbf{Nadzorovano ucenje} \textit{supervised learning}:
+      Ucni primeri so oznaceni in podani kot vrednosti vhodov in izhodov.
+      Ucimo se funkcije, ki vhode preslika v izhode. (npr. odlocitveno drevo)
+  \item \textbf{Nenadzorovano ucenje} \textit{unsupervised learning}:
+      Ucni primeri niso oznaceni $\rightarrow$ nimajo ciljne spremenljivke. Ucimo
+      se iz vzorcev v podatkih. (npr. grucenje)
+  \item \textbf{Spodbujevalno ucenje} \textit{reinforcment learning}:
+      Inteligentni agen se uci iz zaporedja nagrad in kazni.
+\end{itemize}
+
+\subsection{Nadzorovano ucenje}
+Podano imamo mnozico \textbf{ucnih} primerov:
+
+\begin{center}
+  \begin{math}
+    (x_1, y_1), (x_2, y_2), \dots, (x_N, y_N)
+  \end{math}
+\end{center}
+kjer je vsak $y_j$ vrednost neznane funkcije $y = f(x)$.
+Nasa naloga je posikati hipoteticno funkcijo $h$, ki je najboljsi
+mozen priblizek funkciji $f$.
+
+Locimo dve vrsti problemov:
+\begin{enumerate}
+  \item \textbf{Klasifikacijski}: $y_j$ je \textit{diskretna(kategoricna)} spremenljivka
+      \begin{itemize}
+        \item $y$ pripada \textbf{koncnemu naboru vrednosti} (diskretna spremenljivka)
+        \item $y$ imenujemo \textbf{razred} (class)
+      \end{itemize}
+  \item \textbf{Regresijski}: $y_j$ je \textit{zvezna} spremenljivka
+      \begin{itemize}
+        \item $y$ je stevilo (obicajno $y \in R$, je zvezna spremenljivka)
+        \item $y$ imenujemo \textbf{oznacba} (label)
+      \end{itemize}
+\end{enumerate}
+
+\subsubsection{Prostor in evalviranje hipotez}
+Denimo da imamo:
+\begin{itemize}
+   \item binarno klasifikacijo
+   \item $n$ binarnih atributov
+\end{itemize}
+Iz tega sledi:
+\begin{itemize}
+  \item $2^n$ razlicnih ucnih primerov
+  \item $2^{2^n}$ hipotez (celotno odlocitveno drevo)
+\end{itemize}
+
+Pomembni kriteriji pri \textit{evalviranju} hipotez:
+\begin{itemize}
+  \item \textbf{konsistentnost} hipotez s (ucnimi) primeri
+  \item \textbf{splosnost} tocnost za nevidene primere 
+  \item \textbf{razumljivost} (\textit{interpretability, comprehensibility}) hipotez
+\end{itemize}
+
+Poznamo 4 razrede za ocenjevanje uspesnosti pri klasifikaciji na podlagi njihove \textbf{tocnosti}:
+\begin{itemize}
+  \item \textbf{TP} - pravilno pozitivno klasificirani primeri
+  \item \textbf{TN} - pravilno negativno klasificirani primeri 
+  \item \textbf{FP} - napacno pozitivno klasificirani primeri
+  \item \textbf{FN} - napacno negiativno klasificirani primeri
+\end{itemize}
+
+\textbf{Klasifikacijska tocnost} je potem definirana:
+
+\begin{center}
+  \begin{math}
+    CA = \frac{TP + TN}{TP + TN + FP + FN} = \frac{TP + TN}{N}
+  \end{math}
+\end{center}
+
+\subsubsection{Odlocitveno drevo}
+Ponazarja relacijo med vhodnimi \textit{vrednostmi/atributi} in \textit{odlocitvojo/ciljno} spremenljivko.
+
+Z \textbf{notranjimi vozlisci} opravljamo test glede na vrednost posameznega atributa. Na koncu pridemo do \textbf{lista}, ki nam
+s poroci odlocitev (vrednost ciljne spremenljivke). Konjunkcijo pogojev v \textit{notranjih vozliscih} katera vodi do \textit{lista}
+imenujemo \textbf{pot}.
+
+Gradnja odlocitvenega drevesa:
+Nas cilj je zgraditi \textbf{cim manjse drevo}, ki je \textbf{konsistentno} z ucnimi podatki.
+
+\textbf{Hevristicni pozrezsni algoritem - TDIDT} s strategijo \textbf{razveji in omeji}:
+\begin{itemize}
+  \item Izberi najbolj pomemben atribut - tisti, ki najbolj odlocilno vpliva na klasifikacijo primera in razdeli
+    primere v poddrevesa glede na njegove vrednosti
+  \item  rekurizvno ponovi za vsa drevesa
+  \item ce vsi elementi v listu pripadajo istemu razredu ali vozlisca ni mozno deliti naprej(ni razpolozljivih atributov), ustavi gradnjo
+\end{itemize}
+
+\textbf{Kratovidnost} TDIDT:
+Ker je TDIDT pozresni algoritem, ki "lokalno" izbira najboljsi atribut, ne upsteva kako dobro drugi algoritmi
+doplnjujejo izbrani atribut.
+
+
+\subsubsection{Izbor najbolj pomembnega atributa in informacijski prispevek}
+Najboljsi atribut je tisti, ki razdeli ucno mnozico v najbolj ciste podmnozice.
+Uporabimo lahko mero entropije:
+\begin{center}
+    \begin{math}
+        H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log_2 p_i
+    \end{math}
+\end{center}
+
+Zanima nas \textbf{znizanje} entropije ( \textit{nedolocenosti} ) ob delitvi ucne mnozice glede
+na vrednosti atributa $A$. 
+
+Definirajmo \textbf{informacijski prispevek} na taksen nacin,
+da najbolj informativni atribut \textbf{maksimizira informacijski prispevek} oz. minimizira $I_{res}$.
+\begin{center}
+  \begin{math}
+    Gain(A) = I - I_{res}(A)
+  \end{math}
+
+  \begin{math}
+    I_{res} = - \sum_{v_i \in A} p_{v_i} \sum_c p(c|v_i) log_2 p(c|v_i)
+  \end{math}
+\end{center}
+
+\subsubsection{Vecvrednostni atributi}
+Tezava z atributi, ki imajo vec kot dve vrednosti: Informacijski prispevek precenjuje
+njihovo kakovost(entropija je visja na racun vecjega stevila vrednosti in ne na racun kakovosti atributa)
+
+resitve:
+\begin{itemize}
+  \item normalizacija informacijskega prispevka: \textbf{relativni informacijski prispevek} ali IGR (information gain ratio)
+    \begin{center}
+      \begin{math}
+        Gain(a) = I - I_{res}(A)
+      \end{math},
+      \begin{math}
+        I(A) = - \sum_v p_v log_2 p_v
+      \end{math}
+      \begin{math}
+        GainRatio(A) = \frac{Gain(A)}{I(A)} = \frac{I - I_{res}(A)}{I(A)}
+      \end{math}
+    \end{center}
+  
+  \item uporaba \textbf{alternativnih mer}: npr. \textbf{Gini index}
+    \textit{Ocena pricakovane klasifikacijske napake, vsota produktov verjetnosti razredov}
+    \begin{center}
+      \begin{math}
+          Gini = \sum_{c1 \neq c2} p(c_1) p(c_2)
+      \end{math}
+      \begin{math}
+          Gini(A) = \sum_{v} p(v) \sum_{c1 \neq c2} p(c_1 | v) p(c_2 | v)
+      \end{math}
+    \end{center}
+  \item \textbf{binarizacija} atributov:
+    Je alternativa za resevanje problematike z vecvrednostmi atributi.
+    Prednosti binarizacije so manjsa vejanja drevesa, kar je statisticno bolj zaneslijvo. Razlicni nacini
+    binarizacije atributa lahko nastopajo kot samostojni atributi, ki se v drevesu pojavijo veckrat.
+\end{itemize}
+% p02-16
+
+\end{multicols}
+\end{document}
