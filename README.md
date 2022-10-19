@@ -20,4 +20,4 @@ Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tu
 z opisom napake in razlago zakaj bi tam popravil(a^{-1}).
 
 ## Repozitorij
-Nahaja se na naslednji [povezavi](https://github.com/spagnoloG/FRI-ZAPISKI) in bo **vedno** opensource. Ce so ti zapiski pomagali, klikni na zvezdico ;).
+Nahaja se na naslednji [povezavi](https://github.com/spagnoloG/FRI-ZAPISKI) in bo **vedno** opensource. 
