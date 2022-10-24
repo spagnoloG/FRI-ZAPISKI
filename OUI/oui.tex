@@ -2,7 +2,14 @@
 \usepackage[margin=0.15cm]{geometry}
 \usepackage{amsmath}
 \usepackage{multicol}
+\usepackage{titlesec}
 
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \begin{document}
 
 \begin{center}
@@ -99,6 +106,20 @@ Poznamo 4 razrede za ocenjevanje uspesnosti pri klasifikaciji na podlagi njihove
   \end{math}
 \end{center}
 
+Poznamo dva tipa atributov:
+
+\begin{enumerate}
+  \item \textbf{diskretni} atributi:
+    \begin{itemize}
+      \item  \textbf{nominalni} npr. ['soncno', 'dezevno']
+      \item  \textbf{ordinalni} npr. ['nizko', 'srednje', 'visoko']
+    \end{itemize}
+    Odlocitvena drevesa delijo prvotno ucno mnozico na vse manjse podmnozice
+  \item \textbf{zvezni} atributi:
+
+    Delitev podmnozice glede na smislno mejo izbranega atributa
+\end{enumerate}
+
 \subsubsection{Odlocitveno drevo}
 Ponazarja relacijo med vhodnimi \textit{vrednostmi/atributi} in \textit{odlocitvojo/ciljno} spremenljivko.
 
@@ -122,7 +143,7 @@ Ker je TDIDT pozresni algoritem, ki "lokalno" izbira najboljsi atribut, ne upste
 doplnjujejo izbrani atribut.
 
 
-\subsubsection{Izbor najbolj pomembnega atributa in informacijski prispevek}
+\paragraph{Izbor najbolj pomembnega atributa in informacijski prispevek}
 Najboljsi atribut je tisti, ki razdeli ucno mnozico v najbolj ciste podmnozice.
 Uporabimo lahko mero entropije:
 \begin{center}
@@ -146,7 +167,7 @@ da najbolj informativni atribut \textbf{maksimizira informacijski prispevek} oz.
   \end{math}
 \end{center}
 
-\subsubsection{Vecvrednostni atributi}
+\paragraph{Vecvrednostni atributi}
 Tezava z atributi, ki imajo vec kot dve vrednosti: Informacijski prispevek precenjuje
 njihovo kakovost(entropija je visja na racun vecjega stevila vrednosti in ne na racun kakovosti atributa)
 
@@ -163,6 +184,7 @@ resitve:
       \begin{math}
         GainRatio(A) = \frac{Gain(A)}{I(A)} = \frac{I - I_{res}(A)}{I(A)}
       \end{math}
+      Oba zelimo maksimizirati
     \end{center}
   
   \item uporaba \textbf{alternativnih mer}: npr. \textbf{Gini index}
@@ -180,7 +202,37 @@ resitve:
     Prednosti binarizacije so manjsa vejanja drevesa, kar je statisticno bolj zaneslijvo. Razlicni nacini
     binarizacije atributa lahko nastopajo kot samostojni atributi, ki se v drevesu pojavijo veckrat.
 \end{itemize}
-% p02-16
+
+\subsubsection{Privzeta tocnost in Pristranost na ucni mnozici}
+
+Smiselna mera za \textbf{Privzeto tocnost} odlocitvenega drevesa je \textbf{verjetnost vecinskega razreda} v
+ucni mnozici. Drevo je uporabno, ce je njegova tocnost \textbf{visja} od privzete tocnosti.
+
+npr. [\#Da, \#Ne] = [3, 7] $\rightarrow$ verjetnost vecinskega razreda: 7/10
+
+
+Nas cilj je maksimizirati pricakovano tocnost na testnih podatkih vendar se zelimo izogniti pretiranemu prilaganju. Zato obicajno podatke
+razdelimo na \textbf{ucno} (70\%) in \textbf{testno} mnozico (30\%).
+
+\paragraph{Ucenje dreves iz sumnih podatkov}
+V primeru da podatki niso popolni(premalo primerov / atributov) ali napake
+se lahko pojavijo tezave:
+\begin{itemize}
+  \item \textbf{Ucenje suma} in ne dejanske aproksimacijske funkcije
+  \item Pretirano prilaganje vodi v \textbf{prevelika drevesa} $\rightarrow$ overfitting
+  \item \textbf{Slaba razumljivost} dreves
+\end{itemize}
+Posledica: \textbf{nizja klasifikacijska tocnost} na novih nevidenih podatkih.
+
+\paragraph{Rezanje odlocitvenih dreves}
+Resujemo problem prevelikega prilaganja ucnim podatkom.
+Nizji deli drevesa predstavljajo vecje lokalno prilaganje ucnim podatkom, ki so lahko posledica suma.
+Poznamo dve metodi rezanja dreves:
+
+\begin{enumerate}
+  \item Rezanje z zmanjsevanjem napake \textbf{(REP)}
+  \item Rezanje z minimizacijo napake \textbf{(MEP)}
+\end{enumerate}
 
 \end{multicols}
 \end{document}
