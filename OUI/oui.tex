@@ -203,7 +203,7 @@ resitve:
     binarizacije atributa lahko nastopajo kot samostojni atributi, ki se v drevesu pojavijo veckrat.
 \end{itemize}
 
-\subsubsection{Privzeta tocnost in Pristranost na ucni mnozici}
+\paragraph{Privzeta tocnost in Pristranost na ucni mnozici}
 
 Smiselna mera za \textbf{Privzeto tocnost} odlocitvenega drevesa je \textbf{verjetnost vecinskega razreda} v
 ucni mnozici. Drevo je uporabno, ce je njegova tocnost \textbf{visja} od privzete tocnosti.
@@ -224,14 +224,98 @@ se lahko pojavijo tezave:
 \end{itemize}
 Posledica: \textbf{nizja klasifikacijska tocnost} na novih nevidenih podatkih.
 
-\paragraph{Rezanje odlocitvenih dreves}
-Resujemo problem prevelikega prilaganja ucnim podatkom.
-Nizji deli drevesa predstavljajo vecje lokalno prilaganje ucnim podatkom, ki so lahko posledica suma.
-Poznamo dve metodi rezanja dreves:
+ \paragraph{Rezanje odlocitvenih dreves}
+ Resujemo problem prevelikega prilaganja ucnim podatkom.
+ Nizji deli drevesa predstavljajo vecje lokalno prilaganje ucnim podatkom, ki so lahko posledica suma.
+ Poznamo dve strategiji rezanja dreves:
+ \begin{enumerate}
+   \item \textbf{Rezanje vnaprej}: uporaba dodatnega kriterija za zaustavitev 
+     gradnje devesa glede na obseg suma. Je hitrejsi pristop, vendar kratkoviden (uposteva samo zgornji del drevesa)
+   \item \textbf{Rezanje nazaj}: Rezanje, ki po gradnji celotnega drevesa, odstrani manj zanesljive
+     dele drevesa(opisujejo sum, zgrajeni iz manj podatkov in z manj informirani atributi)
+     Je pocasneje, in upostecva informacijo iz \textbf{celega drevesa}.
+ \end{enumerate}
 
 \begin{enumerate}
-  \item Rezanje z zmanjsevanjem napake \textbf{(REP)}
-  \item Rezanje z minimizacijo napake \textbf{(MEP)}
+  \item \textbf{Rezanje z zmanjsevanjem napake (REP)}
+
+    Uporablja posebno reazalno (validacijsko) mnozico:
+      \begin{itemize}
+        \item \textbf{Ucna mnozica} (70\%):
+          \begin{itemize}
+            \item mnozica za gradnjo \textit{growing set} (70\%)
+            \item rezalna mnozica \textit{prunning set} (30\%)
+          \end{itemize}
+        \item \textbf{Testna mnozica} (30\%)
+      \end{itemize}
+    Postopek:
+    \begin{enumerate}
+      \item Potuj od listov navzgor(pricni s starsi listov)
+      \item Za vsako vozlisce \textbf{v} izracunaj \textbf{dobitek rezanja}
+          
+        Dobitek rezanja izracunamo: st. napacnih klasifikacij v drevesu \textbf{T} - st. napacnih klasifikacij v vozliscu \textbf{v}.
+      \item Ce je dobitek $\geq 0$, obrezi in nadaljuj postopek s starsem, sicer ustavi postopek 
+    \end{enumerate}
+  \item \textbf{Rezanje z minimizacijo napake (MEP)}
+
+  Uporablja mnozico za gradnjo drevesa in ne locene rezalne mnozice.
+  Postopek: Za vozlisce \textbf{v} izracunamo:
+  \begin{enumerate}
+    \item \textbf{staticno napako} (verjetnost klasifikacije v napacen razred)
+      \begin{center}
+        \begin{math}
+          e(v) = p(razred \neq C | v)
+        \end{math},
+        C je vecinski razred v \textbf{v}
+      \end{center}
+    \item \textbf{vzvratno napako} (\textit{backed-up error})
+      \begin{center}
+        \begin{math}
+          \sum_i p_i E(T_i) = p_1 E(T_1) + p_2 E(T_2) + \dots
+        \end{math}
+      \end{center}
+  \end{enumerate}
+  Rezemo, ce je \textbf{staticna napaka} $<$ \textbf{vzvratna napaka}.
+  
+  Napaka \textbf{optimalno} obrezanega drevesa je torej:
+  \begin{center}
+    \begin{math}
+      E(T) = min(e(v), \sum_i p_i E(T_i))
+    \end{math} in
+    \begin{math}
+      E(T) = e(v)
+    \end{math}, ce je \textbf{v} list.
+  \end{center}
+
+  Namesto \textbf{minimizacije} napake E, lahko provblem obrnemo in \textbf{maksimiziramo} tocnost CA.
+\end{enumerate}
+
+\paragraph{Ocenjevanje verjetnosti}
+
+\begin{enumerate}
+  \item \textbf{Laplaceova ocena verjetnosti}
+    \begin{center}
+      \begin{math}
+        p = \frac{n+1}{N+k}
+      \end{math}
+    \end{center}
+
+    n - st. primerov, ki pripadajo razredu C\\
+    N - st. vseh primerov\\
+    k - st. vseh razredov\\
+    $k$ je problematicen parameter, saj ocena ne uposetva apriorne verjetnosti
+
+  \item \textbf{m-ocena verjetnosti}
+    \begin{center}
+      \begin{math}
+        p = \frac{n+ p_a m}{N+m} = p_a \frac{m}{N+m} + \frac{n}{N}\frac{N}{N + m}
+      \end{math}
+    \end{center}
+
+    $p_a$ - Apriorna verjetnost razreda C\\
+    $m$ - parameter ocene (vpliva na delez upostevanja apriorne verjetnosti)\\
+    Ce imamo malo suma, potem $m$ nastavimo na majno vrednost in imamo malo rezanja. Obratno v primeru ce imamo veliko suma.
+    Gre se za posplositev Laplaceove ocene za $m=k$ in $p_a = 1/k$.
 \end{enumerate}
 
 \end{multicols}
