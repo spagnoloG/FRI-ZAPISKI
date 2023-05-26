@@ -1,7 +1,7 @@
 # KNN
 very slow algo:
-prostorska zahtevnost: O(n2), casovna O(m3). -> m krat racunas matriko razdalj in povezes dva najblizja primera / clusterja.
-pac se da malo pohitrit da prides na O(m2*logm).
+prostorska zahtevnost: `O(n2)`, casovna `O(m3)`. -> m krat racunas matriko razdalj in povezes dva najblizja primera / clusterja.
+pac se da malo pohitrit da prides na `O(m2*logm)`.
 
 ### mere razdalj:
 
@@ -33,7 +33,7 @@ cas zahtevnost O(I * k * m):
 - pricni s K nakljcno izbranimi voditelji `C_1, C_2, C_k`.
 - ponavljaj:
     - doloci razvrstitev C tako, da vsak primer priredis najblizjemu voditelju
-    - novi voditelji naj bodo centroidi naj bodo centroidi `R_Ci`. -> `RC_i` = (1 / | C_i| )* sum(x)
+    - novi voditelji naj bodo centroidi naj bodo centroidi `R_Ci`. -> `RC_i` = $$ (1 / | C_i| )* sum(x) $$
 
 - dokler se lega voditeljev spreminja ali pac setas nek max iter ce zadeva ne konvergira.
 
@@ -141,11 +141,11 @@ Zaradi razlicnih dolzin dokumentov se raje zavrzemo k pojmu relativne frekvence.
 Naceloma imamo raje elemente, ki se pojavijo v manj dokumentih in so zaradi tega bolj specificni.
 Zato uporabimo inverse document frequency. Kjer uzamemo logaritem stevila useh dokumentov deljeno s stevilom terma v tem dokumentu.
 
-$ idf(t) = log \frac{|D|}{|d: t \in d|} $
+$$ idf(t) = log \frac{|D|}{|d: t \in d|} $$
 
 Utez posameznega elementa je potem:
 
-$ tf-idf(t, d) = tf(t, d) \times idf(t) $
+$$ tf-idf(t, d) = tf(t, d) \times idf(t) $$
 
 ### Kosinusna podobnost
 Evklidska razdalja ni gud ker meri samo razdalje v posameznih dimenzijah. Denimo da sta vektorja kratka vendar kazeta v cisto drugo smer.
@@ -185,3 +185,55 @@ Primer: Ce imamo visoko korelirane 2d primere -> potem jih lahko lepo spravimo v
 $$ S = \frac{1}{m} \sum_{i=1}^{m} (x^{(i)} - \overline{x}) (x^{(i)} - \overline{x}) ^ T $$
 
 $$ Var(u_1^T X^T) =  u_1^T S u_1 $$
+
+Dokaz z uporabo Lagrangeovih multiplikatorjev:
+
+
+predpogoj:
+
+$$ u_1^T u_1 = 1 $$
+
+
+minimiziramo:
+
+$$ f(u_1) = u_1^T S u_1 + \lambda_1 (1 - u_1^T u_1) $$
+
+$$ \frac{ \partial f(u_1) } {\partial u_1} = S u_1 - \lambda_1 u_1  = 0 \Rightarrow S u_1 = \lambda_1 u_1 $$
+
+Sepravi iscemo tisti lastni vektor pri najvecji lastni vrednosti:
+
+$$ u_1^T S u_1 = u_1^T \lambda_1 u_1 = \lambda_1 u_1^T u_1 = \lambda_1 $$
+
+### Potencna metoda za iskanje N prvih lastnih vektorjev
+
+Ker je obicajno racunanje SVDja zahteven postpek se zatecemo k optimizcaijskim numericnim metodam.
+
+Pri potencni metodi izkoristimo dejstvo, da ce prvi lastni vektor pomnozimo s kovariancno matriko, se potem vekor ne spremeni (mogoce se malo scalea), ne bo  tudi spremenil svoje orientacije(kota).
+Zato najprej inicializiramo nek random vektor, ga pomnozimo s kovariancno matriko in potem ta postopek ponavljamo, dokler ne ta vektor skonvergira do ustavitvenega pogoja. Serpavi
+konvergiramo takrat, ko se dolzina vektorja v koraku x ne spremeni vec veliko.
+
+$$ | u_1 | - | u_2 | <= \epsilon $$
+
+Pripadajoco lastno vrednost pa izracunamo na sledeci nacin:
+
+$$ Mu = \lambda u $$
+
+$$ u^T M u = u^T \lambda u = \lambda u^T u = \lambda $$
+
+## MDS (vecrazredno lestvicenje)
+
+Pri MDS iscemo ulozitve, basically iscemo taksne projekcije v nizji prostor, tako, da se razdalje med primeri ohranijo.
+
+Kriterijsko funkcijo sepravi zastavimo takole:
+
+$$ J(X)  = \sum_{i \neq j} (d_{ij} - \delta{ij}) ^2 $$
+
+Kjer $ d_{ij} $ predstavlja, razdaljo med i-tim in j-tim primerom v originalmem prostoru. $ \delta_{ij}$ pa v novem nizje projeciranem prostoru.
+
+Slabost MDS-a je to, da ze ohranjajo tudi razdalje mogoce zelo oddaljenih primerov, kar nam vizualizacijo in interpretabilnost zelo pokvari.
+
+
+## t-SNE (stohasticna ulozitev sosedov)
+Gre za isto metodo kot MDS, kriterijska funkcija pa je nekoliko drugacna.
+Tle gledamo samo skupine ki so si blizu. Sepravi razdalje utezimo s pomocjo t-statisticne krivulje. Bolj kot so si primeri blizu, vecjo tezo imajo. Bolj kot so si oddaljeni, manjso tezo imajo.
+
