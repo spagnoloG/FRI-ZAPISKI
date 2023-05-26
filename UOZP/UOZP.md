@@ -237,3 +237,44 @@ Slabost MDS-a je to, da ze ohranjajo tudi razdalje mogoce zelo oddaljenih primer
 Gre za isto metodo kot MDS, kriterijska funkcija pa je nekoliko drugacna.
 Tle gledamo samo skupine ki so si blizu. Sepravi razdalje utezimo s pomocjo t-statisticne krivulje. Bolj kot so si primeri blizu, vecjo tezo imajo. Bolj kot so si oddaljeni, manjso tezo imajo.
 
+
+# Linearna regresija
+
+Kriterijska funkcija (sum of squared errors): 
+
+$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2 $$
+
+Gradientni sestop:
+
+$$ \theta_i \leftarrow \theta_i - \alpha \frac{\delta}{\delta \theta_i} J(\theta) $$
+
+Po veriznem odvajanju pridemo do sledecega:
+
+$$ \theta_i \leftarrow \theta_i - \frac{\alpha}{m} \sum_{j=1}^{m} (h_{\theta} (x^{(j)}) - y^{(j)}) x_i^{(j)} $$
+
+
+### Napovedna tocnost
+
+
+$$ \text{RMSE} = \sqrt{\frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{n}} $$
+$$ R^2 = 1 - \frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{{\sum_{i=1}^{n} (y_i - \bar{y})^2}} $$
+
+
+
+### Polinomska regresija
+Atribut x razsirimo na:
+
+$$ x^2, x^3, x^4, ... $$
+Obicajno se nam z dviganjem stopnje polinoma nas model vedno bolje prilega ucnim podatkom.
+
+
+### Regularizacija
+Kriterijska funkcija (sum of squared errors) dodamo se omejitev, naj se optimizira velikost koeficientov:
+
+#### L1 (Lasso):
+$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \eta \sum_{j=1}^{n} |\theta_j|$$
+
+#### L2 (Ridge):
+$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \eta \sum_{j=1}^{n} \theta^2_j$$
+
+Razlika pri obeh je da Lasso bo spravil nekatere koeficente na cisto 0, Ridge-ovi koeficienti pa ne bodo nikoli cisto na nic. Samo blizu (zaradi kriterija).
