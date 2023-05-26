@@ -16,6 +16,7 @@
 - [OUI](https://spagnolog.github.io/FRI-ZAPISKI/OUI/oui.pdf)
 - [UZ](https://spagnolog.github.io/FRI-ZAPISKI/UZ/uz.pdf)
 - [IS-plonk - njezersek](https://github.com/njezersek/Zapiski-vprasanja-inteligentni-sistemi)
+- [UOZP](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/UOZP/UOZP.md)
 
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
