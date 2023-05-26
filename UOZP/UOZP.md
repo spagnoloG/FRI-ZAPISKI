@@ -49,7 +49,7 @@ cas zahtevnost O(I * k * m):
 Ce imamo osamelca, je silhueata 0, drugace se silhueto izracuna tako:
 
 #### Izracun silhuete za en primer
-s_i = (b-a) / max(b,a)
+$$ s_i = \frac{(b-a) }{ max(b,a) }$$
 
 a -> povprecna oddaljenost primera do vseh v istem clusterju
 b -> povprecna oddaljenost primera do vseh v najblizjem clusterju temu, v kateremu se primer nahaja.
@@ -156,9 +156,32 @@ zelo dolg v vseh dimenzijah. Drugi, pa ima zelo majhne vrednosti. Potem si ne bo
 Zato se razje zavrzemo k kosinusni razdalji, saj raje meri kot med vektorji kakor razdaljo. Izkaze se da je to boljsa metrika za merjenje razdalj, med visoko dimenzionalnimi
 vektorji. 
 
-$ a b = ||a|| ||b|| cos \theta $
+$$ a b = ||a|| ||b|| cos \theta $$
 
-$ sim(X,Y) = cos(\theta) = \frac{X Y}{||X|| ||Y||}$
+$$ sim(X,Y) = cos(\theta) = \frac{X Y}{||X|| ||Y||} $$
 
+Kadar imamo opraviti z oznakami (labels) torej ne z besedami besedila, je poleg kosinusne razdalje se smiselno opazovati
+tudi podobnost po Jaccardu:
+
+```python
+def jaccard(data, k1, k2):
+    """jaccard similarity"""
+    s1 = data[k1]
+    s2 = data[k2]
+    return len(s1 & s2) / len(s1 | s2)
+```
+
+$$ J(X, Y) = \frac{X \cap Y}{ X \cup Y} $$
 
 # Projekcije in zmanjsevanje dimenzionalnosti podatkov
+
+## PCA
+
+pri PCAju iscemo projekcije iz visjih dimenzij v nizje, tako da ohranjamo varianco med primeri. 
+
+Primer: Ce imamo visoko korelirane 2d primere -> potem jih lahko lepo spravimo v 1d.
+
+
+$$ S = \frac{1}{m} \sum_{i=1}^{m} (x^{(i)} - \overline{x}) (x^{(i)} - \overline{x}) ^ T $$
+
+$$ Var(u_1^T X^T) =  u_1^T S u_1 $$
