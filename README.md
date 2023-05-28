@@ -13,6 +13,7 @@
 - [MM](https://spagnolog.github.io/FRI-ZAPISKI/MM/mm.pdf)
 
 ### Tretji letnik
+- [PS](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/PS/PS.md)
 - [OUI](https://spagnolog.github.io/FRI-ZAPISKI/OUI/oui.pdf)
 - [UZ](https://spagnolog.github.io/FRI-ZAPISKI/UZ/uz.pdf)
 - [IS-plonk - njezersek](https://github.com/njezersek/Zapiski-vprasanja-inteligentni-sistemi)
