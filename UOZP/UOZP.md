@@ -352,3 +352,55 @@ Kar vkljuci dodatno varianco, vendar ne pokvari predikcij. (to je zlo powerfull 
 $$ \hat{y}^{(i)} = \sum^{N}_{j=1} \frac{h_{\theta, j} (x^{(i)})}{N} $$
 
 
+# Logisticna regresija (klasifikacija)
+
+Obicajno nas poleg klasifikacije zanima se verjetnost pripadnosti razreda. Pri tem si pomagamo z logisticno regresijo.
+
+
+$$ h_{\theta} (x) = g(\theta^T x) = \frac{1}{1 + e^{-\theta^T x}} = \frac{1}{1 + e^{-\sum_{i=0}^m \theta_i x_i}} $$
+
+### Logisticna funkcija
+
+$$ g(z) = \frac{1}{1 + e^{-z}} $$
+
+$$ \frac{dg(z)}{dz} = g(z) * (1-g(z)) $$
+
+![log fun](./img/log_fun2.png)
+![Logisticna funkcija](./img/log_fun.png)
+
+### Verjetje
+
+$$ P(y=1 | x; \theta) = h_{\theta}(x) $$
+
+$$ P(y=0 | x; \theta) = 1 - h_{\theta}(x) $$
+
+splosno:
+
+$$ P(y | x; \theta) = (h_{\theta}(x))^y  (1 - h_{\theta}(x))^{1-y} $$
+
+definirajmo kriterijsko funkcijo za verjetje:
+
+$$ L(\theta) = \prod^{m}_{i=1} h_{\theta} (x^{(i)})^{y^{(i)}} ( 1 - h_{\theta} (x^{(i)}))^{1-y^{(i)}} $$
+
+cilj je maksimizirati verjetje:
+
+$$ \theta^{*} = argmax_{\theta} L(\theta) $$
+
+Zaradi lazjega odvajanja ter numericnih aproksimacij, funkcijo transformiramo v utezeno vsoto logaritmicnega verjetja.
+
+$$ l(\theta) = \sum_{i=1}^{m} y^{(i)} \log h_{\theta}(x^{(i)}) + (1 - y^{(i)}) \log (1 - h_{\theta}(x^{(i)})) $$
+
+$$ \frac{\partial l(\theta)}{\partial \theta_j} = \sum^{m}_{i=1} (y^{(i)} - h_{\theta} (x^{(i)}) ) x_j^{(i)} $$
+
+potem lahko izvedemo gradientni dvig (zelimo maksimizirati verjetje)
+
+$$ \theta \leftarrow \theta + \alpha \bigtriangledown_{\theta} l(\theta) $$
+
+## Vpeljava regularizacije
+
+$$ J'(\theta) = J(\theta) - \frac{\lambda}{2m} \sum \theta_j^2 $$
+
+gradientni dvig:
+
+$$ \theta \leftarrow \theta (1 - \alpha \frac{\lambda}{m}) +  \alpha \bigtriangledown_{\theta} l(\theta)   $$
+
