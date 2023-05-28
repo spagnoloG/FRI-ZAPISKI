@@ -270,14 +270,34 @@ $$ x^2, x^3, x^4, ... $$
 
 Obicajno se nam z dviganjem stopnje polinoma nas model vedno bolje prilega ucnim podatkom.
 
+Model je se vedno linearen, saj imamo linearno kombinacijo thet, atributi nas ne zanimajo.
+
+$$ h(x) = \theta_0 + \theta_1 x + \theta_2 x^2 + ... $$
+
 
 ### Regularizacija
 Kriterijska funkcija (sum of squared errors) dodamo se omejitev, naj se optimizira velikost koeficientov:
 
 #### L1 (Lasso):
-$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \eta \sum_{j=1}^{n} |\theta_j|$$
+$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \lambda \sum_{j=1}^{n} |\theta_j|$$
 
 #### L2 (Ridge):
-$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \eta \sum_{j=1}^{n} \theta^2_j$$
+$$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \frac{\lambda}{2m} \sum_{j=1}^{n} \theta^2_j$$
+$$ \frac{\partial J(\theta)}{\partial \theta_j} = \frac{1}{m} \sum_{i=1}^{m} [(h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}] + \frac{\lambda}{m} \theta_j $$
+
+gradientni sestop:
+
+$$ \theta_j \leftarrow \theta_j (1 - \frac{\lambda}{m}) - \frac{1}{m}\sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^{(i)}) x_j^{(i)} $$
+
+
+recimo da $$ \lim_{\lambda \rightarrow \infty} J(\theta) $$
+potem minimiziramo:
+
+$$ (\theta_0 - y) ^2 $$
+
+posledica:
+
+$$ \theta_i \rightarrow 0, \forall i=1, \dots n $$
+$$ \theta_0 \rightarrow \frac{1}{n} \sum_{i=1}^m y^{(i)}, \text{povprecna vrednost koncne spremenljivke}$$ 
 
 Razlika pri obeh je da Lasso bo spravil nekatere koeficente na cisto 0, Ridge-ovi koeficienti pa ne bodo nikoli cisto na nic. Samo blizu (zaradi kriterija).
