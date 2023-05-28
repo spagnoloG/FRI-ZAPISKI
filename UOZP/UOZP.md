@@ -283,6 +283,7 @@ $$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \
 
 #### L2 (Ridge):
 $$ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}) ^2  + \frac{\lambda}{2m} \sum_{j=1}^{n} \theta^2_j$$
+
 $$ \frac{\partial J(\theta)}{\partial \theta_j} = \frac{1}{m} \sum_{i=1}^{m} [(h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}] + \frac{\lambda}{m} \theta_j $$
 
 gradientni sestop:
@@ -290,7 +291,10 @@ gradientni sestop:
 $$ \theta_j \leftarrow \theta_j (1 - \frac{\lambda}{m}) - \frac{1}{m}\sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^{(i)}) x_j^{(i)} $$
 
 
-recimo da $$ \lim_{\lambda \rightarrow \infty} J(\theta) $$
+recimo da
+
+$$ \lim_{\lambda \rightarrow \infty} J(\theta) $$
+
 potem minimiziramo:
 
 $$ (\theta_0 - y) ^2 $$
@@ -298,6 +302,7 @@ $$ (\theta_0 - y) ^2 $$
 posledica:
 
 $$ \theta_i \rightarrow 0, \forall i=1, \dots n $$
+
 $$ \theta_0 \rightarrow \frac{1}{n} \sum_{i=1}^m y^{(i)}, \text{povprecna vrednost koncne spremenljivke}$$ 
 
 Razlika pri obeh je da Lasso bo spravil nekatere koeficente na cisto 0, Ridge-ovi koeficienti pa ne bodo nikoli cisto na nic. Samo blizu (zaradi kriterija).
