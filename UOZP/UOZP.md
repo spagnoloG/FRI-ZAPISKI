@@ -1,4 +1,4 @@
-# KNN
+# Hierarhicno grucenje
 very slow algo:
 prostorska zahtevnost: `O(n2)`, casovna `O(m3)`. -> m krat racunas matriko razdalj in povezes dva najblizja primera / clusterja.
 pac se da malo pohitrit da prides na `O(m2*logm)`.
