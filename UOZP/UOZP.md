@@ -258,10 +258,13 @@ $$ \theta_i \leftarrow \theta_i - \frac{\alpha}{m} \sum_{j=1}^{m} (h_{\theta} (x
 
 $$ \text{RMSE} = \sqrt{\frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{n}} $$
 
-
 $$ R^2 = 1 - \frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{{\sum_{i=1}^{n} (y_i - \bar{y})^2}} $$
 
+$$ \text{Specificity} = \frac{TN}{TN + FP} $$
 
+$$ \text{Sensitivity} = \frac{TP}{TP + FN} $$
+
+$$ \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} $$
 
 ### Polinomska regresija
 Atribut x razsirimo na:
@@ -306,3 +309,46 @@ $$ \theta_i \rightarrow 0, \forall i=1, \dots n $$
 $$ \theta_0 \rightarrow \frac{1}{n} \sum_{i=1}^m y^{(i)}, \text{povprecna vrednost koncne spremenljivke}$$ 
 
 Razlika pri obeh je da Lasso bo spravil nekatere koeficente na cisto 0, Ridge-ovi koeficienti pa ne bodo nikoli cisto na nic. Samo blizu (zaradi kriterija).
+
+# KNN za regresijo
+
+Leno ucenje. Izracunas razdalje iskanega primera z vsemi v train mnozici. Uzames k najblizjih ter averageas njihove vrednosti.
+
+Tipicno se uporablja k=10, ali 
+
+$$ k = \sqrt{n} \text{, kjer je n stevilo vseh primerov v datasetu} $$
+
+
+# Regresijska drevesa
+
+Train set je zacetna mnozica. Potem to mnozico delimo:
+tako da gremo najprej cez vse atribute in cez vse mozne vrednosti praga, da dobimo cimanjso residualno napako pri delitvi.
+Basically napoved je potem mean value subseta iz train seta.
+
+$$ \epsilon_1 = \frac{\sum_{i=0}^{k_1} ( y^{(i)} - \overline{y})^2} {k_1} $$
+
+$$ \epsilon_{RES} = \frac{k_1}{n} \epsilon_1 + \frac{k_2}{n} \epsilon_2 $$
+
+
+Delimo dokler 
+
+$$ \epsilon_{RES} < \epsilon $$
+
+Prednosti:
+- Dobra interpretacija (gledas pac kaksne atribute je uporabilo v vozliscih)
+- Hitrost napovedovanja, globje kot gremo, kompleksnost pada
+- Odkrivanje interakcij
+
+Slabosti:
+- nestabilnost (visoka varianca), ce spremenimo en primer, se lahko struktura drevesa cisto spremeni.
+
+
+## Regresijski gozdovi
+Namesto ene hipoteze gradimo N hipotez. Koncna napoved je povprecje napovedi N dreves. Vsako drevo ima isto glasovalno pravico.
+Obicajno train mnozico za grajenje dreves vzorcimo po metodi stremena (bootstraping). Serpavi en vzorec se lahko veckrat pojavi noter.
+Zadevo lahko se dodatno ponakljucimo. Tako da med izracunom rezidualne napake izberemo nekaj najboljsih atributov ter vzorcimo se iz tega.
+Kar vkljuci dodatno varianco, vendar ne pokvari predikcij. (to je zlo powerfull metoda).
+
+$$ \hat{y}^{(i)} = \sum^{N}_{j=1} \frac{h_{\theta, j} (x^{(i)})}{N} $$
+
+
