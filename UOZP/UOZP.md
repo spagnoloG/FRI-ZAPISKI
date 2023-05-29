@@ -255,16 +255,32 @@ $$ \theta_i \leftarrow \theta_i - \frac{\alpha}{m} \sum_{j=1}^{m} (h_{\theta} (x
 
 ### Napovedna tocnost
 
+#### Regresijska
 
 $$ \text{RMSE} = \sqrt{\frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{n}} $$
 
 $$ R^2 = 1 - \frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{{\sum_{i=1}^{n} (y_i - \bar{y})^2}} $$
 
-$$ \text{Specificity} = \frac{TN}{TN + FP} $$
 
-$$ \text{Sensitivity} = \frac{TP}{TP + FN} $$
+#### Klasifikacijska
 
 $$ \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} $$
+
+$$ \text{Specificity/TNR} = \frac{TN}{TN + FP} = \frac{TN}{N} $$
+
+$$ \text{Sensitivity/TPR} = \frac{TP}{TP + FN} = \frac{TP}{P}$$
+
+denimo da vse primere klasificiramo kot T potem:
+TPR = 1, TNR = 0 
+
+#### AUC
+
+![AUC](./img/AUC.png)
+
+Basically sortas po verjetnostih, potem pa premikas mejo za positive.
+Za vsako novo mejo poracunas za y-os: TPR, za x-os pa 1-TNR.
+Koncno ROC krivuljo dobimo tako da cez tocke modeliramo kompleksno krivuljo(basically preko najboljsih tock, tako da maksimiziramo AUC).
+
 
 ### Polinomska regresija
 Atribut x razsirimo na:
@@ -404,3 +420,51 @@ gradientni dvig:
 
 $$ \theta \leftarrow \theta (1 - \alpha \frac{\lambda}{m}) +  \alpha \bigtriangledown_{\theta} l(\theta)   $$
 
+
+# Softmax regresija
+Gre za posplositev logisticne regresije na vec razredov (za k=2 dobimo logisticno regresijo).
+
+$$ z = [2, 4, 7, 10] ^ T $$
+
+$$ P( y_k^{(i)} | x^{(i)}; \theta) = \frac{e^{z^{(i)}}}{\sum e^{z^{(i)}}} $$
+
+Kar je nice o softmax regresiji je to, da lahko outpute poljubnega modela predstavimo z vrjetnostmi.
+Obicajno lahko izpeljemo tudi kriterijsko funkcijo s pomocjo tega pravila. + vektorizirat se da.
+
+
+# Naivni Bayes
+
+$$ P(A | B) = \frac{P(B|A) P(A)}{P(B)} $$
+
+$$ p(e|x) = p(e) \frac{p(x|e)}{p(x)} $$
+
+$$ p(e|x) \text{ - posteriorna verjetnost} $$
+
+$$ p(e) \text{ - apriorna verjetnost} $$
+
+$$ p(x) \text{ - brezpogojna verjetnost}  $$
+
+$$ p(x|e) \text{ - verjetje} \Rightarrow  \text{Predposravimo neodvisnost atributov pri danem razredu} \Rightarrow \prod p(x^{(i)} | e) $$
+
+#### Lastnosti
+- Je statisticni model, ki predpostavi, da so posamezni atributi medseboj neodvisni
+- Hiter za treniranje (enkrat gres skoz dataset, poracunas verjetnosti in to je to)
+- Predstavimo ga lahko z nomogrami
+- Dobro deluje z visoko dimenzionalnimi podatki (kakor je text naprimer, pred velikimi language modeli se je uporabljal za nlp)
+- Handla missing vrednosti, tako, da jih preprosto izpusti
+
+# Nevronske mreze
+- [globoke nevronske mreze](https://www.youtube.com/watch?v=FBpPjjhJGhk)
+- [konvolucijske nevronske mreze](https://www.youtube.com/watch?v=8iIdWHjleIs)
+- [backprop 3b1b, chapter4](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
+
+#### Backprop
+
+![backprop](./img/backprop.png)
+
+$$ \frac{\partial C_0}{ \partial w^{(L)}} = \frac{\partial z^{(L)}}{\partial w^{(L)}} \frac{\partial a^{(L)}}{\partial z^{(L)}} \frac{\partial C_0}{\partial a^{(L)}} $$
+
+### SHAP
+
+![shap](./img/shap.png)
