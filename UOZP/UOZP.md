@@ -468,3 +468,41 @@ $$ \frac{\partial C_0}{ \partial w^{(L)}} = \frac{\partial z^{(L)}}{\partial w^{
 ### SHAP
 
 ![shap](./img/shap.png)
+
+# Priporocilni sistemi
+
+### Racunanje podobnosti med uporabniki
+- evklidska razdalja
+- kosinusna razdalja (ce imamo zvezne ocene). Najde nam podobnosti glede na kot med vektorjema, sepravi scale ocen ni vazen ;).
+- podobnost po Jaccardu (ce imamo diskretne ocene (T/F)) 
+
+### Priporocila na podlagi uporabniskih profilov in podobnosti med uporabniki
+Za danega uporanika u zelimo z uporabo ucnih podatkov oceniti, kaksna je njegova preferencna ocena za stvar i.
+Za izdelek i, gremo skozi use uporabnike, ki so ta izdelek ocenili. Oceno usakega uporabnika utezimo s razdaljo do iskanega uporabnika, ter normirmo z vsoto vseh utezi.
+
+$$ r_{ui} = \frac{\sum s(u, u') \times r_{u'i}}{\sum s(u, u')} $$
+
+
+### Priporocila na podlagi profilov stvari in podobnosti med stvarmi
+Ta izracun je na moc podoben izracunu iz prejnsega razdelka, le da tu utezimo ocene nasega ciljnega uporabnika, v prejnsem razdelu pa smo utezili ocene ostalih uporabnikov.
+
+$$ r_{ui} = \frac{\sum s(i, i') \times r_{ui'}}{\sum s(i, i')} $$
+
+### Priporocanje na podlagi podobnosti uporabnikov in stvari
+Zdruzimo prejsni tehniki. Sepravi podobnosti med uporabniki ter podobnosti med stvarmi, ki jih je uporabnik ze ocenil.
+Tehnika je kul, vendar je njena casovna zahtevnost zelo velika. Saj rabimo iti skozi vse stvari in vse uporabnike.
+
+$$ r_{ui} = \frac{\sum s(u, u') \times s(i, i') \times r_{ui'}}{\sum s(i, i') \times s(u, u') } $$
+
+### "Priporocanje kar tako"
+Uporabniku damo povprecno oceno vseh uporabnikov za ta izdelek.
+
+###  Kako se izognemo pristranosti uporabniskih ocen?
+Nekateri uporabniki bolj vedre narave ocenljevali z visijimi ocenami, nekateri bodo pa dajali ekstremno visoke ocene.
+Problemu pristranosti uporabnikov se lahko delno izognemo tako, da pred ucenjem vsem uporabnikom odstejemo povprecno
+oceno uporabnika. In jo potem pri napovedi pristejemo.
+
+### Kako ucimo in ocenjujemo
+Cros validation, R2 ocena in RMSE ocena. Podobno kot pri regresijskih problemih.
+
+### Matricni razcep
