@@ -575,7 +575,8 @@ $$ \frac{\partial e_{ui}}{\partial p_{uk}} = -e_{ui} q_{ki} $$
 
 $$ \frac{\partial e_{ui}}{\partial q_{ki}} = -e_{ui} p_{uk} $$
 
-Algoritem za aproksimacijo P pa Q matirke (gradientni sestop):
+### Algoritem za aproksimacijo P pa Q matirke (stohasticni gradientni sestop):
+Stohasticni - vsak primer posebej obravnavamo in ne hkrati celotne matrike P pa Q
 
 ```
 P, Q inicializiramo z nakljucnimi vrednostmi na intervalu [-0.001, ..., 0.001]
@@ -585,6 +586,10 @@ do konvergence:
             p_uk <- p_uk + alpha * e_ui * q_ki
             q_ki <- q_ki + alpha * e_ui * p_uk
 ```
+
+konvergenca:
+- stevilo iteracij
+- ni sprememb po K korakih iteracije (na train ali prefreably test setu)
 
 ### Regularizacija
 Kot pri metodah do sedaj, skusamo minimizirati se koeficente modela.
@@ -597,4 +602,70 @@ odvod:
 $$ \frac{\partial e_{ui}}{\partial p_{uk}} = -e_{ui} q_{ki} + \lambda p_{uk} $$
 
 $$ \frac{\partial e_{ui}}{\partial q_{ki}} = -e_{ui} p_{uk} + \lambda q_{ki} $$
+
+### Pristranost
+Nastavis stolpce/vrstice na 1.
+
+
+# Povezovalna pravila in pogosti nabori stvari
+V primeru iskanja podobnih vzorcev v transakcijah hitro naletimo na ogromne casovne zahtevnosti.
+Zato je potrebno uvesti razne hevristike.
+
+## Algoritem apriori (pogosti nabori stvari)
+
+definirajmo funkcijo, ki steje ali je podmnozica usebovana v neki mnozici:
+
+$$ \sigma(X)=|\{t_i|X\subseteq t_i, t_i\in {\mathcal T}\}| $$
+
+
+Potem lahko izracunamo delez podprtih transakcij:
+
+$$ \sigma(X)=|\{t_i|X\subseteq t_i, t_i\in {\mathcal T}\}| $$
+
+zanima nas: 
+
+$$ s(X)\geq{\rm minsupp} $$
+
+minsupp doloci uporabnik algoritma.
+
+
+#### Teoremi, ki veljajo za algoritem apriori
+
+- Ce je nabor pogost, so pogoste tudi vse njegove podmnozice:
+
+$$ s(X)\geq{\rm minsupp}\implies s(Y)\geq{\rm minsupp}, Y\subseteq X $$ 
+
+- ce je nabor nepogost, so nepogosti tudi vsi nabori, ki ga vsebujejo:
+
+$$s(X)<{\rm minsupp}\implies s(Y)<{\rm minsupp}, X\subseteq Y$$
+
+
+![Algoritem apriori](./img/algoritem-apriori.png)
+
+Tukaj na sliki imamo primer algoritma apriori, vidimo, da visoko kombinatoricni prostor lahko rezemo s pomocjo hevristike minsupp, ter z uporabo zgornjih  teoremov.
+Prostor iskanja je zelo zmanjsan, kar nam pohitri casovno zahtevnost in naredi algoritem dejansko uporaben.
+
+
+## Povezovalna pravila
+Tukaj gledamo kdaj se nam nek element pojavi skupaj z se enim drugim (npr u nakupovalni kosarici, ko kupimo mleko kupimo pogosto se moko zraven)
+
+Ce X potem Y:
+
+$$ X \rightarrow Y, X \cap Y \neq 0 $$
+
+Podporo tukaj merimo z pogostostjo tega pravila v ucni mnozici (mnozici transakcij)
+
+$$ s( X \rightarrow Y) = \frac{\sigma(X \cup Y)}{N} $$
+
+Zaupanje:
+
+$$ c( X \rightarrow Y) = \frac{\sigma(X \cup Y)}{\sigma(X)} $$
+
+![primer](./img/povezovalna-pravila-primer.png)
+
+
+Kako pa zgleda algoritem? Ja najprej gremo skozi algoritem apriori, dobimo mnozice, ki ustrezajo minsuppu.
+Naslednji korak je oceniti zaupanje, zacnemo iz najvecjih mnozic:
+
+![zaupanje](./img/zaupanje.png)
 
