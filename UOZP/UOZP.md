@@ -506,3 +506,95 @@ oceno uporabnika. In jo potem pri napovedi pristejemo.
 Cros validation, R2 ocena in RMSE ocena. Podobno kot pri regresijskih problemih.
 
 ### Matricni razcep
+
+Imamo matriko uporabnikov in njihove ocene za izdelke.
+
+```bash
+| -  A  B  C  D  E |
+| U1 4  -  -  2  2 |
+| U2 -  5  3  1  - |
+| U3 2  -  -  3  - |
+| U4 1  1  -  5  3 |
+| U5 5  -  5  -  4 |
+```
+
+To matriko razcepimo tako, da je k << n in k << m.
+
+```bash
+R matrix (m x n):
+
+| r11 r12 r13 ... r1n |
+| r21 r22 r23 ... r2n |
+|  .   .   .  ...  .  |
+|  .   .   .  ...  .  |
+|  .   .   .  ...  .  |
+| rm1 rm2 rm3 ... rmn |
+
+P matrix (m x k):
+
+| p11 p12 ... p1k |
+| p21 p22 ... p2k |
+|  .   .  ...  .  |
+|  .   .  ...  .  |
+|  .   .  ...  .  |
+| pm1 pm2 ... pmk |
+
+Q matrix (k x n):
+
+| q11 q12 q13 ... q1n |
+| q21 q22 q23 ... q2n |
+|  .   .   .  ...  .  |
+| qk1 qk2 qk3 ... qkn |
+```
+
+Uporabniski deskriptor (stvari so skompresirane; v primeru netflixa, niso vec filimi ampak bol kategorije ze npr. science fiction, komedije,...):
+$$ p_u = [p11, p12, \dots, p1k] $$
+
+Deskriptor stvari(ocene uporabnikov so skompresirane):
+$$ q_i = [q13, q23, \dots, qk3] $$
+
+Iz analize P pa Q matrik, bi lahko tudi izvedeli kaksni so tipicni uporabniki in tipicne stvari, ki spadajo v iste skupine.
+
+Oceno uporabnika iz P in Q matrik potem izracunamo kot produkt:
+
+$$ r_{ui} = \sum_{k=1}^{K} p_{uk} q_{ki} $$
+
+ali vektorsko:
+
+$$ r_{ui} = p_u q_i $$
+
+Kriterijska funkcija (samo za primere, ki so na voljo v originalni matriki):
+
+$$ e_{ui}' = \frac{1}{2} (r_{ui} - r_{ui}')^2 $$
+
+$$ = \frac{1}{2} (r_{ui} - \sum_{k=1}^{K} p_{uk} q_{ki}) $$
+
+Potem lahko odvajamo kriterijsko funkcijo po p in q:
+
+$$ \frac{\partial e_{ui}}{\partial p_{uk}} = -e_{ui} q_{ki} $$
+
+$$ \frac{\partial e_{ui}}{\partial q_{ki}} = -e_{ui} p_{uk} $$
+
+Algoritem za aproksimacijo P pa Q matirke (gradientni sestop):
+
+```
+P, Q inicializiramo z nakljucnimi vrednostmi na intervalu [-0.001, ..., 0.001]
+do konvergence:
+    za vse (u, i) v ucni mnozici:
+        za k=1...k:
+            p_uk <- p_uk + alpha * e_ui * q_ki
+            q_ki <- q_ki + alpha * e_ui * p_uk
+```
+
+### Regularizacija
+Kot pri metodah do sedaj, skusamo minimizirati se koeficente modela.
+Pri veliko podatkih in majhinh modelih, nima velikega upliva. Je pa fajn ce mamo malo podatkov.
+
+$$ e_{ui}' = \frac{1}{2} (e_{ui}^2 + \lambda p_u p_u^T + \lambda q_i q_i^T) $$
+
+odvod:
+
+$$ \frac{\partial e_{ui}}{\partial p_{uk}} = -e_{ui} q_{ki} + \lambda p_{uk} $$
+
+$$ \frac{\partial e_{ui}}{\partial q_{ki}} = -e_{ui} p_{uk} + \lambda q_{ki} $$
+
