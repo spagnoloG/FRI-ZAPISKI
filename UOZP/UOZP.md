@@ -23,7 +23,7 @@ obicanjo si izberemo se kaksno napako bomo merili (razdaljo basically) al evklid
 # K-means
 better friend, works on any size of dataset
 
-( ful je hitrejsi ker sta obicajno K in i ful majhni stevilki, edino m je pac lahko ful velik ampak ne mors primerjat szi knn)
+( ful je hitrejsi ker sta obicajno K in i ful majhni stevilki, edino m je pac lahko ful velik ampak ne mors primerjat szi hierarhicnim)
 cas zahtevnost O(I * k * m):
     - I je stevilo iteracij
     - k je stevilo prvih centroidov
@@ -42,7 +42,7 @@ cas zahtevnost O(I * k * m):
 - **Random** ( ampak lahko nas pripelje v stanje nekonvergence -> neoptimalno razbtije) 
     - Temu se izognemo tako, da postopek veckrat ponovimo in med poiskanimi razbijti izberemo najboljse.
 - **Razprseni voditelji** poiscemo primer, ki je nabolj oddaljen od vsem. Potem pa poiscemo se k-1 najbolj oddaljenih  temu primeru. To bojo nasi zacetni centroidi
-- **Uporabis knn na subsamplu** in potem so tej centrodi dober priblizek originalnim centroidom.
+- **Uporabis hierarhicno na subsamplu** in potem so tej centrodi dober priblizek originalnim centroidom.
 
 
 ### Izracun silhuete
@@ -151,7 +151,7 @@ Na spletu so oznaceni tudi dokumenti, pomagajo nam lahko pri treniranju modelov 
 ### Transformacija tf-idf
 Zaradi razlicnih dolzin dokumentov se raje zavrzemo k pojmu relativne frekvence.
 Naceloma imamo raje elemente, ki se pojavijo v manj dokumentih in so zaradi tega bolj specificni.
-Zato uporabimo inverse document frequency. Kjer uzamemo logaritem stevila useh dokumentov deljeno s stevilom terma v tem dokumentu.
+Zato uporabimo inverse document frequency. Kjer uzamemo logaritem stevila useh dokumentov deljeno s stevilom pojavitev terma v vseh dokumentih.
 
 $$ idf(t) = log \frac{|D|}{|d: t \in d|} $$
 
@@ -215,6 +215,8 @@ $$ \frac{ \partial f(u_1) } {\partial u_1} = S u_1 - \lambda_1 u_1  = 0 \Rightar
 Sepravi iscemo tisti lastni vektor pri najvecji lastni vrednosti:
 
 $$ u_1^T S u_1 = u_1^T \lambda_1 u_1 = \lambda_1 u_1^T u_1 = \lambda_1 $$
+
+Naslednji vektor lahko najdemo tako da ta algoritem pozenemo se enkrat na podatkih katerim smo odsteli projekcijoi podatkov na prvotni dobljeni vektor.
 
 ### Potencna metoda za iskanje N prvih lastnih vektorjev
 
