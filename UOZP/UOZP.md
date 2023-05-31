@@ -669,3 +669,7 @@ Naslednji korak je oceniti zaupanje, zacnemo iz najvecjih mnozic:
 
 ![zaupanje](./img/zaupanje.png)
 
+Včasih hočemo vedeti, kako bolj pogosto se pojavi $X$ z $Y$ v primerjavi z samo $X$ brez $Y$. Tej meri pravimo lift.
+
+$$ lift(x) = \dfrac{c(X \rightarrow Y}{s(Y)} $$
+
