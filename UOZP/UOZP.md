@@ -273,7 +273,7 @@ $$ \theta_i \leftarrow \theta_i - \frac{\alpha}{m} \sum_{j=1}^{m} (h_{\theta} (x
 
 $$ \text{RMSE} = \sqrt{\frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{n}} $$
 
-$$ R^2 = 1 - \frac{{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{{\sum_{i=1}^{n} (y_i - \bar{y})^2}} $$
+$$ R^2 = 1 - \frac{ \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{ \sum_{i=1}^{n} (y_i - \bar{y})^2} $$
 
 
 #### Klasifikacijska
