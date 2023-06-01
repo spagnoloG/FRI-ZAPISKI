@@ -634,7 +634,7 @@ $$ \sigma(X)=|\{t_i|X\subseteq t_i, t_i\in {\mathcal T}\}| $$
 
 Potem lahko izracunamo delez podprtih transakcij:
 
-$$ \sigma(X)=|\{t_i|X\subseteq t_i, t_i\in {\mathcal T}\}| $$
+$$ s(X)=\frac{\sigma(X)}{|\mathcal T|}=\frac{\sigma(X)}{N}$$
 
 zanima nas: 
 
