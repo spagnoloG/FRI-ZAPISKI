@@ -634,7 +634,7 @@ $$ \sigma(X)=|\{t_i|X\subseteq t_i, t_i\in {\mathcal T}\}| $$
 
 Potem lahko izracunamo delez podprtih transakcij:
 
-$$ \sigma(X)=|\{t_i|X\subseteq t_i, t_i\in {\mathcal T}\}| $$
+$$ s(X)=\frac{\sigma(X)}{|\mathcal T|}=\frac{\sigma(X)}{N}$$
 
 zanima nas: 
 
@@ -685,5 +685,5 @@ Naslednji korak je oceniti zaupanje, zacnemo iz najvecjih mnozic:
 
 Včasih hočemo vedeti, kako bolj pogosto se pojavi $X$ z $Y$ v primerjavi z samo $X$ brez $Y$. Tej meri pravimo lift.
 
-$$ lift(x) = \dfrac{c(X \rightarrow Y}{s(Y)} $$
+$$ lift(x) = \dfrac{c(X \rightarrow Y)}{s(Y)} $$
 
