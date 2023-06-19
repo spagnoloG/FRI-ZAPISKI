@@ -1,0 +1,345 @@
+% Povzeto po https://github.com/Kljunas2/AAHRP-zapiski/blob/master/zapiskuskompaktus.tex - hvala :^) %
+
+\documentclass[a4paper]{article}
+\usepackage[margin=0.15cm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{amssymb}
+\usepackage{upgreek}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\begin{document}
+	
+\begin{center}
+	{\small AAHRP/FRI \par}
+\end{center}
+
+\begin{multicols*}{2}
+\setlength{\parindent}{0pt}{
+
+\section{Integrali}
+\begin{center}
+    \begin{small}
+        \begin{compactenum}
+            \item \begin{math}
+                \int x^a\,dx =
+                \Bigg\{\begin{tabular}{ccc}
+                    $\frac{x^{a+1}}{a+1} + C$  & $a \neq -1$ & \\
+                    $ \ln{\left|x\right|} + C$ & $a = -1$ & \\
+                  \end{tabular}
+            \end{math}
+            \item \begin{math}
+                \int \ln {x}\,dx = x \ln {x} - x + C
+            \end{math}
+            \item \begin{math}
+                \int \frac {1}{\sqrt{x}}\,dx=2\sqrt{x} + C 
+            \end{math}
+            \item \begin{math}
+                \int e^x\,dx = e^x + C
+            \end{math}
+            \item \begin{math}
+                \int a^x\,dx = \frac{a^x}{\ln{a}} + C
+            \end{math}
+            \item \begin{math}
+                \int \cos({ax}) \, dx = { \frac{sin (ax)}{a} } + C
+            \end{math}
+            \item \begin{math}
+                \int \sin({ax}) \, dx = { \frac{-cos(ax)}{a} } + C
+            \end{math}
+            \item \begin{math}
+                \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{dx}{\cos^2 x}=\int \sec^2 x \, dx = \tan x + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
+            \end{math}
+            \item \begin{math}
+                \int {\frac{1}{\sqrt{1-x^2}}} \, dx = \arcsin {x} + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{dx}{ax + b} = \frac{1}{a} ln |ax + b| + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{1}{x^2 + 1} \, dx = arctan x + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{dx}{x^2 + a^2} = \frac{1}{a} arctan \frac{x}{a} + C
+            \end{math}
+            \item \begin{math}
+                \int \frac{f'(x)}{f(x)} \, dx = ln|f(x)| + C
+            \end{math}
+        \end{compactenum}
+    \end{small}
+\end{center}
+
+\section{Bounds}
+\begin{compactitem}
+    \item $\Theta(g) = \{f; \exists c_1,c_2,n_0>0, \forall n>n_0: 0 \leq c_1g(n)\leq f(n) \leq c_2g(n)\}$
+	\item $\mathcal{O}(g) = \{f; \exists c,n_0>0, \forall n>n_0: 0 \leq f(n) \leq cg(n)\}$
+	\item $\Omega(g) = \{f; \exists c,n_0>0, \forall n>n_0: 0 \leq cg(n) \leq f(n)\}$
+	\item $o(g) = \{f;\forall c>0,\exists n_0>0,\forall n > n_0: 0 \leq f(n) < cg(n)\}$
+	\item $\omega(g) = \{f;\forall c>0,\exists n_0>0,\forall n > n_0: 0 \leq cg(n) < f(n)\}$
+\end{compactitem}
+
+
+\subsection{Properties}
+\begin{compactitem}
+	\item transitivity $f \in \Theta(g) \land g \in \Theta(h) \Rightarrow f \in \Theta(h)$ (for all bounds)
+	\item reflexivity $f \in \Theta(f)$ (for $\Theta$, $\mathcal{O}$ and $\Omega$)
+	\item symmetry $f \in \Theta(g) \Leftrightarrow g \in \Theta(f)$
+	\item transpose symmetry $f \in \mathcal{O}(g) \Leftrightarrow g \in \Omega(f)$ \\
+	$f \in o(g) \Leftrightarrow g \in \omega(f)$
+\end{compactitem}
+
+\subsection{Simplified Masters}
+
+\begin{compactitem}
+	\item $T(n) = aT(\frac{n}{b})+\Theta(n^d) \\
+	a \geq 1; b > 1; d \geq 0$
+	\item $a > b^d \rightarrow T(n) = \Theta(n^{\log_ba})$
+	\item $a = b^d \rightarrow T(n) = \Theta(n^d\log_bn)$
+	\item $a < b^d \rightarrow T(n) = \Theta(n^d)$
+\end{compactitem}
+
+\subsection{Masters}
+
+\begin{compactitem}
+	\item $T(n) = aT(\frac{n}{b})+f(n) \\
+	a \geq 1; b > 1$
+	\item $f(n) = \mathcal{O}(n^{log_ba-\epsilon})\rightarrow T(n) = \Theta(n^{\log_ba}), \epsilon > 0$
+	\item $f(n) = \Theta(n^{log_ba})\rightarrow T(n) = \Theta(n^{log_ba}\log(n))$
+	\item $f(n) = \Omega(n^{log_ba+\epsilon})\rightarrow T(n) = \Theta(f(n)), \epsilon > 0$
+	and $af(\frac{n}{b}) \leq cf(n)$ for some $c < 1$ and big enough $n$
+	\item case2 ext: $f(n) = \Theta(n^{log_ba}log^k(n)) \rightarrow T(n) = \Theta(n^{log_ba}log^{k+1}(n))$
+\end{compactitem}
+
+
+\subsection{Akra-Bazzi}
+\[
+T(n) = \sum_{i=1}^ka_iT(b_in)+f(n), n > n_0
+\]
+\begin{compactitem}
+	\item $n_0 \geq \frac{1}{b_i}$, $n_0 \geq \frac{1}{1-b_i}$ for each $i$,
+	\item $a_i > 0$ for each $i$,
+	\item $0<b_i$ for each $i$,
+	\item $k \geq 1$,
+	\item $f(n)$ is non-negative function,
+	\item $c_1f(n) \leq f(u) \leq c_2f(n)$, for each $u$ satisfying condition: $b_in\leq u\leq n$
+	\item $T(n) = \Theta(n^p(1+\int_1^n\frac{f(u)}{u^{p+1}}du))$
+	we get $p$ from:
+	$\sum_{i=1}^ka_ib_i^p=1$
+\end{compactitem}
+
+
+\subsection{Extended Akra-Bazzi}
+$T(n) = \sum_{i=1}^ka_iT(b_in+h_i(n))+f(n), n > n_0$
+all of the conditions from Akra-Bazzi still hold plus:
+$|h_i(n)| = \mathcal{O}(\frac{n}{\log^2n})$
+
+\subsection{Annihilators}
+Steps:
+\begin{compactitem}
+	\item Write the recurrence in operator form.
+	\item Extract the annihilator for the recurrence.
+	\item Factor the annihilator (if necessary).
+	\item Extract the generic solution form the annihilator.
+	\item Solve for coefficients using base cases (if known).
+\end{compactitem}
+
+
+\setlength{\tabcolsep}{0.5em}{\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{ | c | c | }
+		\hline
+		\textbf{Operator} & \textbf{Definition}\\\hline
+		addition & $(f+g)(n) := f(n)+g(n)$ \\
+		subtraction & $(f-g)(n) := f(n)-g(n)$ \\
+		multiplication & $(a\cdot f)(n) := a\cdot (f(n))$ \\
+		shift & $E f(n) := f(n+1)$ \\
+		$k$-fold shift & $E^k f(n) := f(n+k)$ \\ \hline
+		composition & $(X+Y)f:= Xf+Yf$ \\
+		& $(X-Y)f:= Xf-Yf$ \\
+		& $XYf:= X(Yf)=Y(Xf)$ \\
+		distribution & $X(f+g)= Xf+Xg$ \\\hline
+	\end{tabular}
+}
+
+
+\setlength{\tabcolsep}{0.5em}{\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{ | c | l | }
+		\hline
+		\textbf{Operator} & \textbf{Functions annihilated}\\\hline
+		$E -1$ & $\alpha$ \\
+		$E -a$ & $\alpha a^n$ \\
+		$(E-a)(E-b)$ & $\alpha a^n+\beta b^n$\hfill ($a \neq b$) \\
+		$(E-a_0)(E-a_1)\cdots(E-a_k)$ & $\sum_{i=0}^k\alpha_ia_i^n$\hfill ($a_i$ distinct) \\
+		$(E - 1)^2$ & $\alpha n + \beta$ \\
+		$(E - a)^2$ & $(\alpha n + \beta)a^n$ \\
+		$(E - a)^2(E-b)$ & $(\alpha n + \beta)a^n+\gamma b^n$\hfill ($a\neq b$)\\
+		$(E - a)^d$ & $(\sum_{i=0}^{d-1}\alpha_in^i)a^n$ \\\hline\hline
+		\multicolumn{2}{|c|}{If $X$ annihilates $f$, then $X$ also annihilates $E f$.} \\
+		\multicolumn{2}{|c|}{If $X$ annihilates both $f$ and $g$,} \\
+		\multicolumn{2}{|c|}{then $X$ also annihilates $f\pm g$.} \\
+		\multicolumn{2}{|c|}{If $X$ annihilates $f$, then $X$ also annihilates $\alpha f$,} \\
+		\multicolumn{2}{|c|}{for any constant $\alpha$.} \\\hline\hline
+		\multicolumn{2}{|c|}{If $X$ annihilates $f$ and $Y$ annihilates $g$,}\\
+		\multicolumn{2}{|c|}{then $XY$ annihilates $f\pm g$.} \\\hline
+	\end{tabular}
+}
+\section{Pseudo random generator}
+\subsection{Linear congruential generators}
+\[
+x_i = (a x_{i-1} + c) \mod m
+\]
+\begin{compactitem}
+	\item RANDU: $x_i = 65539 x_{i-1}\pmod {2^{31}}$
+	\item MINSTD $x_i = 16807 x_{i-1}\pmod {2^{31}-1}$
+\end{compactitem}
+\subsection{Blum-Blum-Shrub}
+\begin{compactitem}
+	\item $p, q\in \mathbb{P}$, large (at least 40 decimal places)
+	\item $m = pq$
+	\item $X_i=X_{i-1}^2 \pmod m$
+	\item $b_i = \text{parity}(X_i)$
+\end{compactitem}
+
+
+\section{Amortized analysis}
+\begin{compactitem}
+	\item Aggregated analysis -
+	Determine upper bound $T(n)$ for the total cost of a sequence of $n$ operations.
+	Amortized cost per operation is $\frac{T(n)}{n}$.
+	\item Accounting method -
+	Some operations are overcharged to pay for other operations.
+	\item Potential method 
+	$c'_i = c_i + \Phi(D_i) - \Phi({D_{i - 1}})$;
+	$\Phi(D_n) \geq \Phi(D_0)$
+\end{compactitem}
+
+\subsection{Vsote zaporedji}
+\begin{compactitem}
+	\item $\sum_{i=1}^{n}i=\frac{n(n+1)}{2}$
+	\item $\sum_{i=m}^{n}z^i=\frac{z^m-z^{n+1}}{1-z}; \sum_{i=0}^{\inf}ar^i = \frac{a}{1 - r}$ pri $|r| < 1$
+	\item $H_n = \sum_{i=1}^{n}\frac{1}{i} = \ln n + \gamma + \frac{1}{2n}$
+\end{compactitem}
+
+\subsection{Parallel programming}
+
+\begin{compactitem}
+	\item Amdahl $S = \frac{1}{\frac{f}{P}+(1-f)}$
+	\item Gustafson $S_P = \frac{T_s + P T_p}{T_s + T_p}$
+\end{compactitem}
+
+\section{Linear programming}
+\subsection{Standard LP}
+\begin{compactitem}
+	\item given $n$ real numbers $c_1,c_2,\ldots,c_n$
+	\item $m$ real numbers $b_1,b_2,\ldots,b_m$
+	\item $m\times n$ real numbers $a_{ij}$ for $i=1,\ldots,m$ and $j=1,\ldots,n$
+	\item we wish to find $n$ real numbers $x_1,\ldots,x_n$ that
+\end{compactitem}
+maximize $\sum_{j=1}^nc_jx_j$ subject to
+$\sum_{j=1}^na_{ij}x_j\leq b_i, \forall i=1,\ldots,m; x_j\geq 0$
+
+\subsection{Transformations}
+\begin{compactitem}
+	\item $\min{f(x)} \rightarrow \max{-f(x)}$
+	\item $a \geq b \rightarrow -a \leq -b$
+	\item $x \in \Re \rightarrow x = x' - x''$
+	\item $a = b \rightarrow a \leq b; -a \leq -b$
+\end{compactitem}
+
+\subsection{Metroplis algorithm}
+\begin{compactitem}
+	\item If better neighbour exists, move to it.
+	\item Otherwise choose a random neighbour, but accept better neighbours with larger probability.
+	\item Decrease the probability of acceptance.
+	\item In time, stohastic search turns into deterministic LS.
+\end{compactitem}
+\subsection{Simulated annealing}
+\begin{compactitem}
+	\item Start with a random state $S$.
+	\item Select random neighbour $S\prime$
+	\item If $q(S\prime) < q(S)$, move to $S\prime$.
+	\item Otherwise, move with probability $e^\frac{-(q(S\prime)-q(S))}{T}$
+\end{compactitem}
+Decrease temperature while it's not close to zero.
+Usually a geometrical rule is used: $T\prime = \lambda T$, $0<\lambda<1$ (typically $\lambda = 0.95$)
+\section{Metaheuristics}
+\subsection{Tabu search}
+Idea: to prevent returning back to the same local extreme, supress (parts of) solutions.
+\subsection{Guided local search}
+Metaheuristics which guide local search and helps it avoid local extremes.
+\begin{compactitem}
+	\item define properties (attributes) of solutions
+	\item penalize attributes, which occur too often in local extrema
+	\item auxiliary objective function
+	\[h(s) = g(s) + \lambda \cdot \sum_{i\text{ is a feature}}(p_i\cdot I_i(s))\]
+\end{compactitem}
+Utility of punishment for property $i$ in local extreme $s*$
+\[
+\text{util}_i(s*) = I_i(s*) \cdot \frac{c_i}{1+p}
+\]
+$c_i$ is cost, $p_i$ is current punishment for property $i$ \\
+In local extreme we punish the property with the largest utility (we increment $p_i$ by 1).
+\subsection{Variable neighbourhood search}
+Idea: define several neighbourhood structures and change neighbourhood when reaching local extreme
+in one of them. Order neighbourhoods by the efficiency of computation.
+
+\subsection{Differential evolution}
+DE/vector/n/scheme
+
+vector - rand,best,current-to-best,pbest; scheme - bin,exp,arith
+
+\section{Swarm intelligence}
+\begin{compactitem}
+	\item fixed population
+	\item autonomous individual
+	\item communication between agents
+	\item aggregation of similar animals, generally cruising in the same direction
+	\item simple rules for each individual
+	\item decentralized
+	\item emergent behaviour
+\end{compactitem}
+\subsection{Ant colony optimization}
+\begin{compactitem}
+	\item ants find the shortest path to food source from the nest
+	\item they deposit pheromone along traveled path, which is used by other ants to follow the trail
+	\item this kind of indirect communication via the local environment is called stigmergy
+	\item adaptability, robustness and redundancy
+\end{compactitem}
+Possible daemon actions to apply centralized actions.
+\subsection{Particle swarm optimization}
+\begin{compactitem}
+	\item Individuals strive to improve themselves and often achieve this by observing and imitating their neighbours.
+	\item Each individual has the ability to remember.
+	\item Each particle is represented with two vectors, location and velocity.
+\end{compactitem}
+\subsubsection{Information exchange in the swarm}
+\begin{compactitem}
+	\item historically best location $x^*$
+	\item best location of informants $x^+$
+	\item globally best location $x^!$
+\end{compactitem}
+\subsubsection{Moving}
+\begin{compactitem}
+	\item Compute the fitness of each particle and update $x^*$, $x^+$ and $x^!$.
+	\item Update the representation of particle.
+	Velocity vector takes into account updated directions $x^*$, $x^+$ and $x^!$.
+	Each direction is updated with some random noise.
+	\item Move the particle in the direction of the velocity vector.
+\end{compactitem}
+
+}
+\end{multicols*}
+\end{document}
