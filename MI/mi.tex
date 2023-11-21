@@ -3,6 +3,8 @@
 \usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{hyperref}
+\usepackage{amssymb}
+
 
 \begin{document}
 
@@ -175,11 +177,9 @@ $\vec{a} \times \vec{b}$ in $\vec{c}$:
 \textbf{Premice v $R^{3}$} \\
 Premico določata smerni vektor $\vec{p} = [a, b, c]^{T}$ in točka $A(x_0, y_0, z_0)$.
 \begin{itemize}
-    \item Parametrična oblika\\
+    \item Parametrična oblika:
         $\vec{r} = \vec{r}_{A} + t\vec{p}$, $t \in R$
-    \vfill\null
-    \columnbreak
-    \item Kanonična oblika\\
+    \item Kanonična oblika:
         $\dfrac{x - x_{0}}{a} = \dfrac{y - y_{0}}{b} = \dfrac{z - z_{0}}{c}$
 \end{itemize}
 
@@ -1250,6 +1250,41 @@ potem lahko matriko A zapisemo kot:
     \item Vsako realno simetricno matriko A lahko zapisemo kot $A = QDQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, D pa diagonalna matrika,
     ki ima na diagonali pripadajoce lastne vrednosti matrike A.
 \end{itemize}
+
+\section{Napredna linearna algebra}
+
+
+\subsection{Kroneckerjev produkt}
+
+Kroneckerjev produkt (tudi tenzorski produkt) matrik \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{p \times q} \) je \( mp \times nq \) matrika
+
+\begin{math}
+A \otimes B = 
+\begin{bmatrix}
+a_{11}B & a_{12}B & \cdots & a_{1n}B \\
+a_{21}B & a_{22}B & \cdots & a_{2n}B \\
+\vdots  & \vdots  & \ddots & \vdots  \\
+a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
+\end{bmatrix}
+\in \mathbb{R}^{mp \times nq}.
+\end{math}
+
+Če so matrike $A, B, C$ in $D$ primerne velikosti, potem veljajo naslednje enakosti:
+\begin{enumerate}
+\item $0 \otimes A = A \otimes 0 = 0$
+\item $\alpha \otimes A = A \otimes \alpha = \alpha A$ za vsak $\alpha \in \mathbb{R}$
+\item $(\alpha A) \otimes B = A \otimes (\alpha B) = \alpha (A \otimes B)$
+\item $(A + B) \otimes C = A \otimes C + B \otimes C$ in $A \otimes (B + C) = A \otimes B + A \otimes C$
+\item $(A \otimes B)^T = A^T \otimes B^T$
+\item $(A \otimes B) \otimes C = A \otimes (B \otimes C)$.
+\item $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$.
+\item $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ če $A$ in $B$ obrnljivi.
+\item $\text{tr}(A \otimes B) = \text{tr}(A) \text{tr}(B)$
+\item $\text{rang}(A \otimes B) = \text{rang}(A) \text{rang}(B)$
+\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka 
+$\{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\}$.
+\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n$.
+\end{enumerate}
 
 \end{multicols}
 \end{document}

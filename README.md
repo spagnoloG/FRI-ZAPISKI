@@ -22,7 +22,7 @@
 
 ### MAG
 
-- [MI](https://spagnolog.github.io/FRI-ZAPISKI/LA/mi.pdf)
+- [MI](https://spagnolog.github.io/FRI-ZAPISKI/MI/mi.pdf)
 
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
