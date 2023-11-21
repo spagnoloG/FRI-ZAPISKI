@@ -20,6 +20,10 @@
 - [UOZP](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/UOZP/UOZP.md)
 - [AAHRP](https://spagnolog.github.io/FRI-ZAPISKI/AAHRP/aahrp.pdf)
 
+### MAG
+
+- [MI](https://spagnolog.github.io/FRI-ZAPISKI/LA/mi.pdf)
+
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
 z opisom napake in razlago zakaj bi tam popravil(a^{-1}).
