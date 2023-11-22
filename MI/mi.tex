@@ -1286,5 +1286,54 @@ $\{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna v
 \item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n$.
 \end{enumerate}
 
+\subsection{Frobeinusova norma}
+
+Za matriki \( A \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{m \times n} \) definiramo
+\[
+\langle A, B \rangle = \text{tr}(A^T B).
+\]
+
+Za produkt \( \langle A, B \rangle: \mathbb{R}^{m \times n} \times \mathbb{R}^{m \times n} \rightarrow \mathbb{R} \) velja za vse matrike \( A, B, C \in \mathbb{R}^{m \times n} \) in za vse \( \alpha, \beta \in \mathbb{R} \),
+\begin{enumerate}
+    \item \( \langle A, B \rangle = \langle B, A \rangle \),
+    \item \( \langle \alpha A + \beta B, C \rangle = \alpha \langle A, C \rangle + \beta \langle B, C \rangle \),
+    \item \( \langle A, A \rangle \geq 0 \),
+    \item \( \langle A, A \rangle = 0 \) natanko tedaj, ko je \( A = 0 \).
+\end{enumerate}
+Zato \( \langle A, B \rangle \) imenujemo skalarni produkt matrik \( A \) in \( B \).
+
+Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{m \times k} \) in \( C \in \mathbb{R}^{k \times n} \) velja
+\[
+\langle A, BC \rangle = \langle B^T A, C \rangle = \langle A C^T, B \rangle.
+\]
+
+
+\textbf{Frobeniusova norma matrike} \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) je definirana kot
+\[
+\|A\|_F = \|A\| = \sqrt{\langle A, A \rangle} = \sqrt{\text{tr}(A^T A)}.
+\]
+
+Velja:
+\[
+\|A\|_F^2 = \sum_{i=1}^{n} \sum_{j=1}^{m} a_{ij}^2 = \sum_{i=1}^{\text{min}(m,n)} \sigma_i^2.
+\]
+
+Posledica:
+
+\[
+\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
+\]
+
+\textbf{(Eckart, Young).} Naj bo \( A = U\Sigma V^T \) razcep singularnih vrednosti matrike \( A \in \mathbb{R}^{m \times n}, m \geq n \), kjer \( U = [u^{(1)} \ldots u^{(m)}] \) in \( \mathbb{R}^{m \times m} \) in \( V = [v^{(1)} \ldots v^{(n)}] \) in \( \mathbb{R}^{n \times n} \). Potem je matrika \( A_k \) iz \( \mathbb{R}^{m \times n} \) ranga \( k \), \( k \leq n \), ki je med vsemi matrikami ranga \( k \) v Frobeniusovi normi najbližje matriki \( A \), enaka
+\[
+A_k = \sigma_1 u^{(1)}(v^{(1)})^T + \sigma_2 u^{(2)}(v^{(2)})^T + \ldots + \sigma_k u^{(k)}(v^{(k)})^T
+\]
+in velja
+\[
+\| A - A_k \|_F = \sqrt{\sigma_{k+1}^2 + \ldots + \sigma_n^2}.
+\]
+(Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
+
+
 \end{multicols}
 \end{document}
