@@ -1120,6 +1120,23 @@ determinanta matrike pa \textit{produktu} lastnih vrednosti
     \end{math}.
 \end{center}
 
+\textbf{Lastnosti sledi} Za matrike \( A, B, P \in \mathbb{R}^{n \times n} \) velja
+\begin{enumerate}
+    \item \( \text{tr}(\alpha A) = \alpha \text{tr}(A) \),
+    \item \( \text{tr}(A + B) = \text{tr}(A) + \text{tr}(B) \),
+    \item \( \text{tr}(A^T) = \text{tr}(A) \),
+    \item \( \text{tr}(AB) = \text{tr}(BA) \),
+    \item \( \text{tr}(PAP^{-1}) = \text{tr}(A) \) za vsako obrnljivo matriko \( P \).
+    \item \( \text{tr}(ABP) = \text{tr}(APB\), ce so A,B,P simetricne matirke. 
+    \item \( \text{tr}(ABP) = \text{tr}(A^TB^TP^T)\).
+\end{enumerate}
+
+Za poljubna vektorja \( x,y \in \mathbb{R}^n \) velja:
+\[
+    \text{tr} (xy^T) = \text{tr}(x^Ty)
+\]
+
+
 \textbf{7.7} Ce ima matrika A lastno vrednost $\lambda$, ki ji pripada lastni vektor $\vec{x}$,
 potem ima matrika $A + cI$ lastno vrednost $\lambda + c$ z istim lastnim vektorjem $\vec{x}$ (velja samo z
 enotskimi matrikami I).
@@ -1253,38 +1270,27 @@ potem lahko matriko A zapisemo kot:
 
 \section{Napredna linearna algebra}
 
+\subsection{Schurov izrek}
 
-\subsection{Kroneckerjev produkt}
+\textbf{(Schur)}: Naj bo \( A \in \mathbb{R}^{n \times n} \) matrika z lastnimi vrednostmi \( \lambda_1, \ldots, \lambda_n \). Potem obstaja ortogonalna matrika \( Q \in \mathbb{R}^{n \times n} \) in zgornje trikotna matrika \( Z \), ki ima na diagonali \( \lambda_1, \ldots, \lambda_n \), da velja
+\[ A = QZQ^{-1} = QZQ^T. \]
 
-Kroneckerjev produkt (tudi tenzorski produkt) matrik \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{p \times q} \) je \( mp \times nq \) matrika
-
-\begin{math}
-A \otimes B = 
-\begin{bmatrix}
-a_{11}B & a_{12}B & \cdots & a_{1n}B \\
-a_{21}B & a_{22}B & \cdots & a_{2n}B \\
-\vdots  & \vdots  & \ddots & \vdots  \\
-a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
-\end{bmatrix}
-\in \mathbb{R}^{mp \times nq}.
-\end{math}
-
-Če so matrike $A, B, C$ in $D$ primerne velikosti, potem veljajo naslednje enakosti:
-\begin{enumerate}
-\item $0 \otimes A = A \otimes 0 = 0$
-\item $\alpha \otimes A = A \otimes \alpha = \alpha A$ za vsak $\alpha \in \mathbb{R}$
-\item $(\alpha A) \otimes B = A \otimes (\alpha B) = \alpha (A \otimes B)$
-\item $(A + B) \otimes C = A \otimes C + B \otimes C$ in $A \otimes (B + C) = A \otimes B + A \otimes C$
-\item $(A \otimes B)^T = A^T \otimes B^T$
-\item $(A \otimes B) \otimes C = A \otimes (B \otimes C)$.
-\item $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$.
-\item $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ če $A$ in $B$ obrnljivi.
-\item $\text{tr}(A \otimes B) = \text{tr}(A) \text{tr}(B)$
-\item $\text{rang}(A \otimes B) = \text{rang}(A) \text{rang}(B)$
-\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka 
-$\{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\}$.
-\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n$.
-\end{enumerate}
+\begin{itemize}
+    \item \textbf{Posledica:} Vsaka matrika \( A \in \mathbb{R}^{n \times n} \) je podobna zgornje trikotni matriki.
+    
+    \item \textbf{Posledica:} Vsaka simetrična matrika \( A \in \mathbb{R}^{n \times n} \) je ortogonalno podobna diagonalni matriki.
+    
+    \item \textbf{Posledica:} Če ima matrika \( A \in \mathbb{R}^{n \times n} \) lastne vrednosti enake \( \lambda_1, \lambda_2, \ldots, \lambda_n \), potem je
+    \[
+    \text{tr}(A) = \lambda_1 + \lambda_2 + \ldots + \lambda_n
+    \]
+    in
+    \[
+    \text{det}(A) = \lambda_1 \lambda_2 \ldots \lambda_n.
+    \]
+    
+    \item \textbf{Posledica (Cayley-Hamilton):} Če je \( \Delta_A(x) = \text{det}(A - xI_n) \) karakteristični polinom matrike \( A \), potem velja \( \Delta_A(A) = 0 \).
+\end{itemize}
 
 \subsection{Frobeinusova norma}
 
@@ -1334,6 +1340,55 @@ in velja
 \]
 (Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
 
+\subsection{Kroneckerjev produkt}
+
+Kroneckerjev produkt (tudi tenzorski produkt) matrik \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{p \times q} \) je \( mp \times nq \) matrika
+
+\begin{math}
+A \otimes B = 
+\begin{bmatrix}
+a_{11}B & a_{12}B & \cdots & a_{1n}B \\
+a_{21}B & a_{22}B & \cdots & a_{2n}B \\
+\vdots  & \vdots  & \ddots & \vdots  \\
+a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
+\end{bmatrix}
+\in \mathbb{R}^{mp \times nq}.
+\end{math}
+
+Če so matrike $A, B, C$ in $D$ primerne velikosti, potem veljajo naslednje enakosti:
+\begin{enumerate}
+\item $0 \otimes A = A \otimes 0 = 0$
+\item $\alpha \otimes A = A \otimes \alpha = \alpha A$ za vsak $\alpha \in \mathbb{R}$
+\item $(\alpha A) \otimes B = A \otimes (\alpha B) = \alpha (A \otimes B)$
+\item $(A + B) \otimes C = A \otimes C + B \otimes C$ in $A \otimes (B + C) = A \otimes B + A \otimes C$
+\item $(A \otimes B)^T = A^T \otimes B^T$
+\item $(A \otimes B) \otimes C = A \otimes (B \otimes C)$.
+\item $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$.
+\item $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ če $A$ in $B$ obrnljivi.
+\item $\text{tr}(A \otimes B) = \text{tr}(A) \text{tr}(B)$
+\item $\text{rang}(A \otimes B) = \text{rang}(A) \text{rang}(B)$
+\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka 
+$\{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\}$.
+\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n$.
+\end{enumerate}
+
+\subsection{Vektorizacija}
+
+Za matriko \( A \in \mathbb{R}^{m \times n} \) označimo vektorizacijo matrike \( A \) kot
+\[
+\text{vec}(A) = \begin{bmatrix}
+A^{(1)} \\
+A^{(2)} \\
+\vdots \\
+A^{(n)}
+\end{bmatrix} \in \mathbb{R}^{mn}.
+\]
+vec je preslikava iz \( \mathbb{R}^{m \times n} \) v \( \mathbb{R}^{mn} \).
+
+Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{n \times p} \) in \( C \in \mathbb{R}^{p \times r} \) velja:
+\[
+\text{vec}(ABC) = (C^T \otimes A)\text{vec}(B).
+\]
 
 \end{multicols}
 \end{document}
