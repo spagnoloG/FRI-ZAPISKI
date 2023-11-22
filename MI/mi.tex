@@ -1460,6 +1460,87 @@ Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
 \[ A = LL^T, \]
 kjer je \( L \in \mathbb{R}^{n \times n} \) spodnje trikotna matrika, natanko tedaj, ko je \( A \) simetrična in pozitivno definitna.
 
+\subsection{Vektorski prostori}
+
+\textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
+\begin{itemize}
+    \item seštevanje vektorjev \( (u, v \in V \Rightarrow u+v \in V) \),
+    \item množenje vektorjev z realnimi števili \( (v \in V, \alpha \in \mathbb{R} \Rightarrow \alpha v = \alpha \cdot v \in V) \),
+\end{itemize}
+z lastnostmi
+\begin{enumerate}
+    \item \( u + v = v + u \) in \( (u + v) + w = u + (v + w) \),
+    \item obstaja ničelni vektor \( 0 \) in velja \( v + 0 = 0 + v = v \),
+    \item za vsak \( v \in V \) obstaja nasprotni vektor \( -v \), za katerega velja \( v + (-v) = (-v) + v = 0 \),
+    \item \( 1 \cdot v = v \) za vsak \( v \in V \),
+    \item \( (\alpha\beta) \cdot v = \alpha \cdot (\beta \cdot v) \),
+    \item \( (\alpha + \beta) \cdot v = \alpha \cdot v + \beta \cdot v \),
+    \item \( \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v \),
+\end{enumerate}
+za poljubne \( u, v, w \in V \) in \( \alpha, \beta \in \mathbb{R} \).
+
+
+
+\textbf{Izrek:} Naj bo \( V \) vektorski prostor. Potem velja
+\begin{enumerate}
+    \item \( V \) vsebuje ničelni vektor \( 0 \),
+    \item v vsakem vektorskem prostoru \( V \) je ničelni vektor \( 0 \) en sam,
+    \item \( \alpha \cdot 0 = 0 \) za vsak \( \alpha \in \mathbb{R} \),
+    \item \( 0 \cdot v = 0 \) za vsak \( v \in V \).
+\end{enumerate}
+Za vektorje \( v_1, v_2, \ldots, v_n \in V \) in skalare \( \alpha_1, \alpha_2, \ldots, \alpha_n \in \mathbb{R} \) imenujemo vektor
+\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n \]
+\textbf{linearna kombinacija vektorjev} \( v_1, v_2, \ldots, v_n \).
+Denimo, ničelni vektor \( 0 \) je
+\[ 0 \cdot v_1 + 0 \cdot v_2 + \ldots + 0 \cdot v_n \]
+je linearna kombinacija poljubnih vektorjev \( v_1, v_2, \ldots, v_n \in V \). Linearno kombinacijo z izključno ničelnimi koeficienti imenujemo \textbf{trivialna linearna kombinacija}.
+
+Če je podmnožica \( U \) vektorskega prostora \( V \)
+\begin{itemize}
+    \item[(1)] zaprta za seštevanje \( (u, v \in U \Rightarrow u + v \in U) \) in
+    \item[(2)] zaprta za množenje vektorjev z realnimi števili \( (v \in U, \alpha \in \mathbb{R} \Rightarrow \alpha v \in U) \),
+\end{itemize}
+potem jo imenujemo \textbf{vektorski podprostor} prostora \( V \).
+
+\textbf{Izrek:} Podmnožica \( U \) vektorskega prostora \( V \) je vektorski podprostor natanko tedaj, ko je poljubna linearna kombinacija \( \alpha u + \beta v \) vektorjev \( u, v \in U \) tudi vsebovana v \( U \).
+
+Vsak vektorski podprostor po (2) vsebuje tudi vektor \( 0 \cdot v = 0 \). Zatorej podmnožica vektorskega prostora, ki ne vsebuje ničelnega vektorja, ne more biti vektorski podprostor.
+
+Ker lastnosti (1)-(7) veljajo za poljubne elemente vektorskega prostora \( V \), veljajo tudi za vse elemente vektorskega podprostora \( U \) v \( V \). Poleg tega je vektorski podprostor po definiciji zaprt za seštevanje in množenje s števili. Zatorej je vsak vektorski podprostor hkrati tudi vektorski prostor.
+
+\subsubsection{Linearna ogrinjača} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) vektorjev \( v_1, v_2, \ldots, v_n \) je množica vseh linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \).
+
+Ker je linearna kombinacija linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \in V \) zopet linearna kombinacija vektorjev \( v_1, v_2, \ldots, v_n \), je po Izreku 2 linearna ogrinjača \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) linearni podprostor v \( V \). Pravimo, da vektorji \( v_1, v_2, \ldots, v_n \) \textbf{napenjajo prostor} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \).
+
+Ne le, da je linearna ogrinjača vektorski prostor. Velja celo več.
+
+ Linearna ogrinjača vektorjev \( v_1, v_2, \ldots, v_n \), vektorskega prostora \( V \) je najmanjši vektorski podprostor v \( V \), ki vsebuje vektorje \( v_1, v_2, \ldots, v_n \).
+
+\subsubsection{Baza vektorskega prostora}
+
+Vektorji \( v_1, v_2, \ldots, v_n \) v \( V \) so \textbf{linearno odvisni}, če obstaja vektor \( v_k \), ki je linearna kombinacija ostalih \( v_1, v_2, \ldots, v_{k-1}, v_{k+1}, \ldots, v_n \):
+\[ v_k = \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_{k-1}v_{k-1} + \alpha_{k+1}v_{k+1} + \ldots + \alpha_nv_n, \]
+kjer \( \alpha_i \in \mathbb{R} \).
+
+Vektorji \( v_1, v_2, \ldots, v_n \) v \( V \) so \textbf{linearno neodvisni}, če niso linearno odvisni. Ekvivalentno, \( v_1, v_2, \ldots, v_n \) v \( V \) so linearno neodvisni, če je njihova trivialna linearna kombinacija edina njihova linearna kombinacija, ki je enaka ničelnemu vektorju \( 0 \). Z drugimi besedami, \( v_1, v_2, \ldots, v_n \) v \( V \) so linearno neodvisni, če iz
+\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = 0 \]
+sledi
+\[ \alpha_1 = \alpha_2 = \ldots = \alpha_n = 0. \]
+
+
+Množica vektorjev \( \{v_1, v_2, \ldots, v_n\} \) je \textbf{baza} vektorskega prostora \( V \), če 
+\begin{enumerate}
+    \item[(B1)] so \( v_1, v_2, \ldots, v_n \) linearno neodvisni in
+    \item[(B2)] \( v_1, v_2, \ldots, v_n \) napenjajo prostor \( V \).
+\end{enumerate}
+
+\textbf{Izrek:} Vsak vektorski prostor ima neštevno baz. Vse baze vektorskega prostora imajo enako število vektorjev.
+
+\emph{Dimenzija prostora} \( V \) je enaka moči (poljubne) baze prostora \( V \). Označimo jo z \(\dim V\).
+
+\textbf{Izrek:} Za vsako bazo vektorskega prostora \( V \) je zapis poljubnega vektorja \( v \in V \) kot linearna kombinacija baznih vektorjev vedno enoličen.
+
+
 
 
 \end{multicols}
