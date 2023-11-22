@@ -1268,7 +1268,7 @@ potem lahko matriko A zapisemo kot:
     ki ima na diagonali pripadajoce lastne vrednosti matrike A.
 \end{itemize}
 
-\section{Napredna linearna algebra}
+\section{\underline{Napredna linearna algebra}}
 
 \subsection{Schurov izrek}
 
@@ -1367,10 +1367,17 @@ a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
 \item $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ če $A$ in $B$ obrnljivi.
 \item $\text{tr}(A \otimes B) = \text{tr}(A) \text{tr}(B)$
 \item $\text{rang}(A \otimes B) = \text{rang}(A) \text{rang}(B)$
-\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka 
-$\{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\}$.
-\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n$.
+\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka:
+$$ S_\lambda  = \{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\} $$
+$$\text{in } |S_\lambda| \leq mn$$
+\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n.$
 \end{enumerate}
+
+Posledica:
+
+\[
+||A \otimes B||_F = ||A||_F \cdot ||B||_F
+\]
 
 \subsection{Vektorizacija}
 
@@ -1389,6 +1396,71 @@ Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{n \times p}
 \[
 \text{vec}(ABC) = (C^T \otimes A)\text{vec}(B).
 \]
+
+\subsection{Definitnost matrik}
+
+Spomnimo se, da ima simetrična matrika \( A \in \mathbb{R}^{n \times n} \) vse lastne vrednosti realne.
+
+Simetrični matriki \( A \in \mathbb{R}^{n \times n} \) pravimo
+\begin{itemize}
+  \item \textbf{pozitivno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \geq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
+  \item \textbf{pozitivno definitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
+  \item \textbf{negativno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \leq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
+  \item \textbf{negativno definitna}, če je \( \mathbf{x}^T A \mathbf{x} < 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
+  \item \textbf{nedefinitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za nekatere \( \mathbf{x} \in \mathbb{R}^n \) in \( \mathbf{y}^T A \mathbf{y} < 0 \) za nekatere \( \mathbf{y} \in \mathbb{R}^n \).
+\end{itemize}
+
+Posledica: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična z lastnimi vrednostmi \( \lambda_i, \ldots, \lambda_n \).
+\begin{itemize}
+  \item \( A \) je \textbf{PSD} (pozitivno semidefinitna) \( \Leftrightarrow \lambda_i \geq 0 \) za \( i=1,\ldots,n \).
+  \item \( A \) je \textbf{PD} (pozitivno definitna) \( \Leftrightarrow \lambda_i > 0 \) za \( i=1,\ldots,n \).
+  \item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
+  \item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
+  \item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako pozitivne kot negativne lastne vrednosti.
+\end{itemize}
+\( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
+
+\textbf{(Sylvester)}. Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
+
+\[
+\text{det} \left[
+\begin{array}{cccc}
++ & + & + & + \\
++ & + & + & + \\
++ & + & + & + \\
++ & + & + & + \\
+\end{array}
+\right] > 0 \quad \sim \text{PD} \\
+\]
+
+Simetrična matrika \( A \) je negativno definitna natanko tedaj, ko je determinanta vsake \( k \times k \) vodilne glavne podmatrike \( A \) pozitivna, če je \( k \) sodo število, ter negativna, če je \( k \) liho število.
+
+\[
+\text{det} \left[
+\begin{array}{cccc}
+- & + & - & + \\
++ & - & + & - \\
+- & + & - & + \\
++ & - & + & - \\
+\end{array}
+\right] \quad \sim \text{ND}
+\]
+
+Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
+\begin{itemize}
+    \item \( A \) je PSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
+    \item \( A \) je PD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
+    \item \( A \) je NSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
+    \item \( A \) je ND \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
+    \item \( A \) je nedefinirana \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
+\end{itemize}
+\( A \) je PD \( \Leftrightarrow A \) je PSD in \( A \) obrnljiva.
+
+\textbf{(Razcep Choleskega)}. Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
+\[ A = LL^T, \]
+kjer je \( L \in \mathbb{R}^{n \times n} \) spodnje trikotna matrika, natanko tedaj, ko je \( A \) simetrična in pozitivno definitna.
+
+
 
 \end{multicols}
 \end{document}
