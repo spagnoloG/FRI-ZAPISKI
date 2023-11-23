@@ -1505,12 +1505,16 @@ Ponovimo na simetrični matriki \( A_2 := B - \frac{1}{a_{11}} bb^T \in \mathbb{
 Naj bodo \( L_2, L_3, \ldots, L_n \) matrike, ki jih dobimo v ponovljenih korakih. Matrika \( L \) je potem
 
 \[
-L = L_1 \begin{bmatrix}
-1 & 0^T & \ldots & 0 \\
-0 & L_2 & \ldots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \ldots & L_n
-\end{bmatrix}.
+L = L_1 \cdot \left[ \begin{array}{cc}
+1 & 0^T \\
+0 & L_2
+\end{array} \right] \cdot \left[ \begin{array}{cc}
+I_2 & 0 \\
+0 & L_3
+\end{array} \right] \cdot \ldots \cdot \left[ \begin{array}{cc}
+I_{n-1} & 0 \\
+0 & L_n
+\end{array} \right]
 \]
 
 \subsection{Vektorski prostori}
