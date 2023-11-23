@@ -1541,6 +1541,99 @@ Množica vektorjev \( \{v_1, v_2, \ldots, v_n\} \) je \textbf{baza} vektorskega 
 \textbf{Izrek:} Za vsako bazo vektorskega prostora \( V \) je zapis poljubnega vektorja \( v \in V \) kot linearna kombinacija baznih vektorjev vedno enoličen.
 
 
+\subsubsection{Linearne preslikave}
+Naj bosta \( V \) in \( U \) vektorska prostora. Preslikava \( \tau: V \to U \) je \textbf{linearna preslikava}, če velja
+\begin{itemize}
+    \item[(1)] \( \tau(v + u) = \tau(v) + \tau(u) \) za vsaka \( v, u \in V \) in
+    \item[(2)] \( \tau(\alpha v) = \alpha \tau(v) \) za vsak \( v \in V \) in vsak \( \alpha \in \mathbb{R} \).
+\end{itemize}
+
+Preslikava \( \tau: V \to U \) je linearna natanko tedaj, ko velja
+\[ \tau(\alpha v + \beta u) = \alpha \tau(v) + \beta \tau(u) \]
+za vse \( v, u \in V \) ter vse \( \alpha, \beta \in \mathbb{R} \).
+
+Za poljubno linearno preslikavo \( \tau: V \to U \) velja \( \tau(0_V) = 0_U \).
+
+Naj bodo \( \tau, \psi: V \to U \) ter \( \theta: U \to W \) linearne preslikave in naj bo \( \gamma \in \mathbb{R} \).
+\begin{enumerate}
+    \item[(1)] \textbf{Vsota} \( \tau + \psi: V \to U \) je preslikava, definirana s predpisom
+    \[ (\tau + \psi)(v) = \tau(v) + \psi(v). \]
+    \item[(2)] \textbf{Produkt s skalarjem} \( \gamma\tau: V \to U \) je preslikava, definirana s predpisom
+    \[ (\gamma\tau)(v) = \gamma \tau(v). \]
+    \item[(3)] \textbf{Kompozitum} \( \theta \circ \tau: V \to W \) je preslikava, definirana s predpisom
+    \[ (\theta \circ \tau)(v) = \theta(\tau(v)). \]
+\end{enumerate}
+
+\textbf{Izrek:} Vsota, produkt s skalarjem in kompozitum linearnih preslikav so linearne preslikave.
+
+\textbf{Posledica:} Množica vseh linearnih preslikav iz vektorskega prostora \( V \) v vektorski prostor \( U \) je vektorski prostor
+
+\textbf{Izrek:} Naj bodo \( \tau, \psi: V \to U \) ter \( \theta: U \to W \) linearne preslikave in naj bo \( \alpha \in \mathbb{R} \).
+\begin{enumerate}
+    \item Matrika, ki ustreza vsoti preslikav \( \tau + \psi \), je enaka vsoti matrik posameznih preslikav.
+    \[ A_{\tau+\psi,B}^C = A_{\tau,B}^C + A_{\psi,B}^C \]
+    \item Matrika, ki ustreza produktu s skalarjem \( \alpha\tau \), je enaka večkratniku matrike preslikave.
+    \[ A_{\alpha\tau,B}^C = \alpha A_{\tau,B}^C \]
+    \item Matrika, ki ustreza kompozitumu preslikav, je enaka produktu matrik posameznih preslikav.
+    \[ A_{\theta\circ\tau,B}^D = A_{\theta,C}^D \cdot A_{\tau,B}^C \]
+    \item Matrika, ki ustreza inverzu obrnljive preslikave, je enaka inverzu matrike te preslikave. Torej, če je \( \tau \) obrnljiva preslikava, je obrnljiva tudi matrika \( A_{\tau,B}^C \). Velja
+    \[ A_{\tau^{-1},C}^B = (A_{\tau,B}^C)^{-1} \].
+\end{enumerate}
+
+
+Neničelnemu vektorju \( v \) v \( V \) pravimo \textit{lastni vektor} linearne preslikave \( \tau: V \to V \), če velja
+\[ \tau(v) = \lambda v. \]
+Številu \( \lambda \) pravimo \textit{lastna vrednost} linearne preslikave \( \tau \).
+
+\textbf{Izrek:} Vsaka lastna vrednost linearne preslikave \( \tau \) je tudi lastna vrednost poljubne matrike \( A_{\tau} \), ki pripada preslikavi \( \tau \). Vse matrike, ki pripadajo dani linearni preslikavi \( \tau \) imajo enake lastne vrednosti.
+
+Pravimo, da je linearno preslikavo \( \tau: V \to V \) mogoče \textit{diagonalizirati}, če obstaja baza, v kateri pripada preslikavi diagonalna matrika.
+
+\textbf{Izrek:} Linearno preslikavo \( \tau: V \to V \) je mogoče diagonalizirati natanko tedaj, ko obstaja baza prostora \( V \) sestavljena iz lastnih vektorjev preslikave \( \tau \).
+
+Naj bo \( \tau: V \rightarrow U \) linearna preslikava vektorskega prostora \( V \) v vektorski prostor \( U \).
+
+\textbf{Def:} Jedro linearne preslikave \( \tau \) je množica \( \ker(\tau) \) vseh vektorjev \( v \in V \), za katere velja
+\[ \tau(v) = 0. \]
+
+\textbf{Def:} Slika linearne preslikave je množica \( \text{im}(\tau) = \{ \tau(v) : v \in V \} \subseteq U \).
+
+\textbf{Izrek:} Jedro \( \ker \tau \) linearne preslikave \( \tau: V \rightarrow U \) je vektorski podprostor v \( V \), slika \( \text{im} \tau \) pa vektorski podprostor v \( U \).
+
+\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava iz vektorskega prostora \( V \) v vektorski prostor \( U \).
+\begin{enumerate}
+    \item \( \tau \) je injektivna natanko tedaj, ko je \( \ker \tau = \{0\} \).
+    \item \( \tau \) je surjektivna natanko tedaj, ko je \( \text{im} \tau = U \).
+\end{enumerate}
+
+\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava in naj bo \( A = A_{\tau,B,C} \) matrika, ki pripada preslikavi \( \tau \). Potem je
+\begin{enumerate}
+    \item \( \text{dim}(\text{im}(\tau)) = \text{rank}(A) \),
+    \item \( \text{dim}(\text{ker}(\tau)) + \text{dim}(\text{im}(\tau)) = \text{dim}(V) \).
+\end{enumerate}
+
+\textbf{Posledica:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\text{dim} V = \text{dim} U = n\) in naj bo \( A \) neka matrika, ki pripada \( \tau \). Naslednje trditve so ekvivalentne:
+\begin{enumerate}
+    \item \( \tau \) je bijektivna.
+    \item \( \tau \) je injektivna.
+    \item \( \tau \) je surjektivna.
+    \item \( A \) je obrnljiva.
+    \item \( \text{ker} \tau = \{0\} \).
+    \item \( N(A) = \{0\} \).
+    \item \( \text{im} \tau = U \).
+    \item \( C(A) = \mathbb{R}^n \).
+    \item Rang matrike \( A \) je \( n \).
+    \item Vrstice matrike \( A \) so linearno neodvisne.
+    \item Vrstice matrike \( A \) razpenjajo \( \mathbb{R}^n \).
+    \item Vrstice matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
+    \item Stolpci matrike \( A \) so linearno neodvisni.
+    \item Stolpci matrike \( A \) razpenjajo \( \mathbb{R}^n \).
+    \item Stolpci matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
+    \item \( \det A \neq 0 \).
+    \item Homogeni sistem enačb \( Ax = 0 \) ima le trivialno rešitev.
+    \item Sistem enačb \( Ax = b \) ima rešitev za vsak \( b \in \mathbb{R}^n \).
+\end{enumerate}
+
 
 
 \end{multicols}
