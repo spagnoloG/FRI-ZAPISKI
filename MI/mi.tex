@@ -947,6 +947,15 @@ po gaussovi eliminaciji zgornje enacbe, dobimo spremenljivke, ki predstavljao na
 
 \textbf{6.2} Determinanta spremeni predznak, ce med seboj zamenjamo dve vrstici.
 
+Dodatna lastnost:
+
+\[
+    \left| \begin{array}{cc}
+A & C \\
+0 & B \\
+\end{array} \right| = \det(A) \det(B)
+\]
+
 \textbf{6.3} Determinanta je linearna funkcija vsake vrstice posebej. To pomeni, da se
 \begin{enumerate}
     \item determinanta pomnozi s faktorjem t, ce eno vrstico determinante(vsak element v tej vrstici)
@@ -1460,6 +1469,50 @@ Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
 \[ A = LL^T, \]
 kjer je \( L \in \mathbb{R}^{n \times n} \) spodnje trikotna matrika, natanko tedaj, ko je \( A \) simetrična in pozitivno definitna.
 
+Z uporabo spodnjega (rekurzivnega) algoritma:
+Simetrično matriko \( A \in \mathbb{R}^{n \times n} \) zapišemo v bločni obliki
+
+\[
+A_1 := A = \begin{bmatrix}
+a_{11} & b^T \\
+b & B
+\end{bmatrix}
+\]
+
+in definiramo
+
+\[
+L_1 := \begin{bmatrix}
+\sqrt{a_{11}} & 0^T \\
+\frac{1}{\sqrt{a_{11}}} b & I_{n-1}
+\end{bmatrix}.
+\]
+
+Tedaj je
+
+\[
+A_1 = \begin{bmatrix}
+a_{11} & b^T \\
+b & B
+\end{bmatrix} = L_1 \begin{bmatrix}
+1 & 0^T \\
+0 & B - \frac{1}{a_{11}} bb^T
+\end{bmatrix} L_1^T.
+\]
+
+Ponovimo na simetrični matriki \( A_2 := B - \frac{1}{a_{11}} bb^T \in \mathbb{R}^{(n-1) \times (n-1)} \).
+
+Naj bodo \( L_2, L_3, \ldots, L_n \) matrike, ki jih dobimo v ponovljenih korakih. Matrika \( L \) je potem
+
+\[
+L = L_1 \begin{bmatrix}
+1 & 0^T & \ldots & 0 \\
+0 & L_2 & \ldots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \ldots & L_n
+\end{bmatrix}.
+\]
+
 \subsection{Vektorski prostori}
 
 \textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
@@ -1478,7 +1531,6 @@ z lastnostmi
     \item \( \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v \),
 \end{enumerate}
 za poljubne \( u, v, w \in V \) in \( \alpha, \beta \in \mathbb{R} \).
-
 
 
 \textbf{Izrek:} Naj bo \( V \) vektorski prostor. Potem velja
@@ -1633,7 +1685,6 @@ Naj bo \( \tau: V \rightarrow U \) linearna preslikava vektorskega prostora \( V
     \item Homogeni sistem enačb \( Ax = 0 \) ima le trivialno rešitev.
     \item Sistem enačb \( Ax = b \) ima rešitev za vsak \( b \in \mathbb{R}^n \).
 \end{enumerate}
-
 
 
 \end{multicols}
