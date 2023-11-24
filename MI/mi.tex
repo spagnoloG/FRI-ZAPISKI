@@ -1379,6 +1379,7 @@ a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
 \item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka:
 $$ S_\lambda  = \{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\} $$
 $$\text{in } |S_\lambda| \leq mn$$
+%Ravno tako velja potem za lastne vektorje $ v_i \otimes w_j$, da dobimo lastne vektorje matrike $A \otimes B$.
 \item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n.$
 \end{enumerate}
 
@@ -1387,6 +1388,19 @@ Posledica:
 \[
 ||A \otimes B||_F = ||A||_F \cdot ||B||_F
 \]
+
+\subsection{Kroneckerjeva vsota}
+
+Kroneckerjeva vsota je definirana za kvadratni matriki \( A \) in \( B \):
+\[ A \oplus B = A \otimes I_m + I_n \otimes B \]
+kjer \( A \in \mathbb{R}^{n \times n} \), \( B \in \mathbb{R}^{m \times m} \).
+
+\(\text{Če so } \lambda_1, \ldots, \lambda_n \) lastne vrednosti \( A \) za lastne vektorje \( u_1, \ldots, u_n \) in \( \mu_1, \ldots, \mu_m \) lastne vrednosti \( B \) za lastne vektorje \( v_1, \ldots, v_n \), potem so
+\[ \lambda_i \cdot \mu_j, \quad i = 1, \ldots, n; j = 1, \ldots, m \]
+lastne vrednosti za \( A \oplus B \), lastni vektorji pa so
+\[ u_i \otimes v_j \]
+za \( i \) in \( j \). Lastni vektorji \( A \oplus B \) so enaki \( u_i \otimes v_j \).
+
 
 \subsection{Vektorizacija}
 
