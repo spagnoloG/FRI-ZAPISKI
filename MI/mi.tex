@@ -1288,18 +1288,18 @@ potem lahko matriko A zapisemo kot:
 
 Firstly, pick an eigenvalue and corresponding eigenvector:
 \[
-Aq_1 = \lambda_1 q_1 \quad \text{with} \quad q_1^*q_1=1
+Aq_1 = \lambda_1 q_1 \quad \text{with} \quad q_1^Tq_1=1
 \]
 Then, find all orthogonal vectors such that you compose a matrix \( Q = [q_1 \dots q_n] \).
 
 Then:
 \[
-T = Q^*AQ
+T = Q^TAQ
 \]
 Compute:
 \[
 T = \begin{bmatrix}
-\lambda_1 & b^* \\
+\lambda_1 & b^T \\
 0 & A_2
 \end{bmatrix}
 \]
@@ -1326,7 +1326,7 @@ q_1 & 0 & \dots & 0 \\
 
 We get:
 \[
-A = QZQ^*
+A = QZQ^T
 \]
 Where \( Z \) is the upper triangular matrix.
 
