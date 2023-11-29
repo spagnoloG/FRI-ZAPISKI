@@ -1284,6 +1284,53 @@ potem lahko matriko A zapisemo kot:
 \textbf{(Schur)}: Naj bo \( A \in \mathbb{R}^{n \times n} \) matrika z lastnimi vrednostmi \( \lambda_1, \ldots, \lambda_n \). Potem obstaja ortogonalna matrika \( Q \in \mathbb{R}^{n \times n} \) in zgornje trikotna matrika \( Z \), ki ima na diagonali \( \lambda_1, \ldots, \lambda_n \), da velja
 \[ A = QZQ^{-1} = QZQ^T. \]
 
+\textbf{Postopek za izračun Schurovega razcepa:}
+
+Firstly, pick an eigenvalue and corresponding eigenvector:
+\[
+Aq_1 = \lambda_1 q_1 \quad \text{with} \quad q_1^*q_1=1
+\]
+Then, find all orthogonal vectors such that you compose a matrix \( Q = [q_1 \dots q_n] \).
+
+Then:
+\[
+T = Q^*AQ
+\]
+Compute:
+\[
+T = \begin{bmatrix}
+\lambda_1 & b^* \\
+0 & A_2
+\end{bmatrix}
+\]
+(not upper triangular)
+
+Continue with \( A_2 \). Final schur:
+\[
+Q = \begin{bmatrix}
+q_1 & 0 \\
+0 & Q_2
+\end{bmatrix}
+\]
+\[
+\vdots
+\]
+\[
+Q = \begin{bmatrix}
+q_1 & 0 & \dots & 0 \\
+0 & q_2 & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & q_{n-1}
+\end{bmatrix}
+\]
+
+We get:
+\[
+A = QZQ^*
+\]
+Where \( Z \) is the upper triangular matrix.
+
+
 \begin{itemize}
     \item \textbf{Posledica:} Vsaka matrika \( A \in \mathbb{R}^{n \times n} \) je podobna zgornje trikotni matriki.
     
