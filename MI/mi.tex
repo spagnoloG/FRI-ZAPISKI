@@ -1751,6 +1751,105 @@ Naj bo \( \tau: V \rightarrow U \) linearna preslikava vektorskega prostora \( V
     \item Sistem enačb \( Ax = b \) ima rešitev za vsak \( b \in \mathbb{R}^n \).
 \end{enumerate}
 
+\section{\underline{Analiza}}
+
+\subsection{Funkcije več spremenljivk}
+Funkcija več spremenljivk
+
+\[
+    f : D_f \subseteq \mathbb{R}^n \to \mathbb{R},
+\]
+
+kjer
+
+\[
+    \mathbf{x} = (x_1, x_2, \ldots, x_n) \mapsto f(x_1, x_2, \ldots, x_n)
+\]
+
+je funkcija, ki predpiše realno vrednost $f(\mathbf{x}) = f(x_1, x_2, \ldots, x_n) \in \mathbb{R}$ vsaki točki $\mathbf{x} = (x_1, x_2, \ldots, x_n) \in D_f \subseteq \mathbb{R}^n$. Množici $D_f$ pravimo \textbf{definicijsko območje} funkcije $f$.
+
+V primeru, ko je $n = 2$, je graf funkcije $f = f(x, y): D_f \subseteq \mathbb{R}^2 \to \mathbb{R}$ ploskev v $\mathbb{R}^3$.
+
+\[
+    \Gamma_f = \{ (x, y, f(x, y)) : (x, y) \in D_f \}
+\]
+
+\textbf{Nivojska krivulja} (ali nivojnica) funkcije $f = f(x, y)$ je množica vseh točk $(x, y) \in D_f$, za katere velja $f(x, y) = c$ za dano realno število $c \in \mathbb{R}$. Tako vsaka točka $(x, y) \in D_f$ leži na natanko eni nivojski krivulji in zato se definicijsko območje $D_f$ razsloji na nivojske krivulje.
+
+\subsubsection{Parcialni odvod}
+Parcialni odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki a = \( (a_1, a_2, \ldots, a_n) \) po spremenljivki \( x_i \) definiramo kot
+\[
+f_{x_i}(a) = \frac{\partial f}{\partial x_i}(a) = \lim_{h \to 0} \frac{f(a_1, \ldots, a_{i-1}, a_i + h, a_{i+1}, \ldots, a_n) - f(a)}{h}.
+\]
+Tako nam torej parcialni odvod funkcije \( f \) po \( x_i \), v točki a = \( (a_1, a_2, \ldots, a_n) \) pove relativno spremembo funkcisjke vrednosti pri zelo majhni spremembi spremenljivke \( x_i \), kjer so ostale spremenljivke fiksne.
+
+
+\subsubsection{Gradient funkcije}
+
+\textbf{Vektor}
+\[
+(\nabla f)(a) = (f_{x_1}(a), f_{x_2}(a), \ldots, f_{x_n}(a))
+\]
+imenjujemo \textbf{gradient} funkcije \( f \) v točki \( a \).
+
+\textbf{Smerni odvod funkcije} \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki \( a = (a_1, a_2, \ldots, a_n) \) \textbf{v smeri vektorja} \( \vec{e} \) je enak
+\[
+f_{\vec{e}}(a) = (\nabla f)(a) \cdot \frac{\vec{e}}{\| \vec{e} \|} = \sum_{i=1}^n \frac{f_{x_i}(a) e_i}{\| \vec{e} \|}
+\]
+
+Za funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) velja:
+\begin{enumerate}
+\item Gradient funkcije \( f \) v točki \( a \) kaže v smeri najhitrejšega naraščanja funkcije \( f \) v točki \( a \).
+\item V primeru \( n = 2 \) je gradient funkcije \( f = f(x, y) \) v točki \( a \) pravokoten na nivojsko krivuljo v tej točki.
+\item Smerni odvod \( f_{\vec{e}}(a) \) je relativna sprememba funkcisjke vrednosti \( f(a) \) ob majhnem premiku iz točke \( a \) v smeri vektorja \( \vec{e} \). Zato velja:
+\begin{itemize}
+\item Če je \( f_{\vec{e}}(a) > 0 \), potem \( f \) ob majhnem pomiku iz točke \( a \) v smeri vektorja \( \vec{e} \) narašča.
+\item Če je \( f_{\vec{e}}(a) < 0 \), potem \( f \) ob majhnem pomiku iz točke \( a \) v smeri vektorja \( \vec{e} \) pada.
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{Linearna aproksimacija}
+Za dano funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) lahko v točki a + h blizu a njeno funkcijso vrednost ocenimo s formulo
+\[
+f(a + h) \approx f(a) + (\nabla f(a)) \cdot h.
+\]
+
+
+\subsubsection{Visji odvodi}
+Parcialne odvode drugega reda izračunamo s parcialnim odvajanjem parcialnih odvodov prvega reda. Definiramo jih kot
+\[
+f_{x_i x_j}(x) = \frac{\partial^2 f}{\partial x_j \partial x_i}(x) = \frac{\partial}{\partial x_j} \left( \frac{\partial f}{\partial x_i}(x) \right).
+\]
+\( n \times n \) matriko
+\[
+H_f(x) = \left[ \frac{\partial^2 f}{\partial x_i \partial x_j}(x) \right]_{i,j=1,...,n}
+\]
+imenujemo \textit{Hessejeva matrika} funkcije \( f \) v točki \( x \). Če sta pri tem \( f_{x_i x_j}, f_{x_j x_i} \) zvezni funkciji, potem sta omenjena druga parcialna odvoda enaka. Zato je v primeru, ko so vsi parcialni odvodi \( f_{x_i x_j} \) zvezni, Hessejeva matrika \( H_f(x, y) \) simetrična matrika.
+
+
+\subsubsection{Vektorska funkcija}
+Za vektorsko funkcijo 
+\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m, \]
+kjer je
+\[ \mathbf{x} \mapsto \mathbf{F}(\mathbf{x}) = [f_1(\mathbf{x}), f_2(\mathbf{x}), \ldots, f_m(\mathbf{x})]^T \]
+je \( m \)-terica funkcij več spremenljivk.
+
+\subsubsection{Jacobijeva matrika}
+Jacobijeva matrika vektorske funkcije 
+\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
+je \( m \times n \) matrika prvih odvodov funkcij \( f_1, \ldots, f_m \):
+\[ 
+J_F(\mathbf{x}) = \begin{bmatrix}
+\frac{\partial f_1}{\partial x_1}(\mathbf{x}) & \frac{\partial f_1}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_1}{\partial x_n}(\mathbf{x}) \\
+\frac{\partial f_2}{\partial x_1}(\mathbf{x}) & \frac{\partial f_2}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_2}{\partial x_n}(\mathbf{x}) \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial f_m}{\partial x_1}(\mathbf{x}) & \frac{\partial f_m}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_m}{\partial x_n}(\mathbf{x})
+\end{bmatrix}
+\]
+Absolutna vrednost determinante Jacobijeve matrike vektorske funkcije 
+\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
+pove, za kakšen faktor funkcija lokalno raztegne prostor.
+
 \section{Dodatek 1: Vrste}
 
 \input{vrste.tex}
