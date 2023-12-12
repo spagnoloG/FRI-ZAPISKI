@@ -1850,6 +1850,90 @@ Absolutna vrednost determinante Jacobijeve matrike vektorske funkcije
 \[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
 pove, za kakšen faktor funkcija lokalno raztegne prostor.
 
+\subsection{Večkratni integrali}
+
+\subsubsection{Izrek (Fubini, 1)} 
+Če je \( f: R \rightarrow \mathbb{R} \) zvezna funkcija na pravokotniku \( R = [a, b] \times [c, d] \subseteq \mathbb{R}^2 \), potem
+\[
+\iint_R f(x,y) \,dx\,dy = \int_c^d \left( \int_a^b f(x,y) \,dx \right) dy
+\]
+\[
+= \int_a^b \left( \int_c^d f(x,y) \,dy \right) dx.
+\]
+
+
+\subsubsection{Dvojni integrali}
+
+Če je \( D \subseteq \mathbb{R}^2 \) neko omejeno območje in če \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, izberimo tak pravokotnik \( R \), da velja \( D \subseteq R \). Sedaj definiramo dvojni integral funkcije \( f \) na območju \( D \) kot
+\[
+\iint_D f(x,y) \,dx\,dy = \iint_R F(x,y) \,dx\,dy,
+\]
+kjer
+\[
+F(x,y) = \begin{cases} 
+f(x,y), & (x,y) \in D \\
+0, & (x,y) \not\in D.
+\end{cases}
+\]
+
+\subsubsection{Izrek (Fubini, 2)} 
+\begin{enumerate}
+\item Če je \( D = \{(x,y); a \leq x \leq b \text{ in } \varphi_1(x) \leq y \leq \varphi_2(x)\} \) \( \subseteq \mathbb{R}^2 \) in \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, potem je
+\[
+\iint_D f(x,y) \,dx\,dy = \int_a^b \left( \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \,dy \right) dx.
+\]
+
+\item Če je \( D = \{(x,y); \varphi_1(y) \leq x \leq \varphi_2(y) \text{ in } c \leq y \leq d\} \) \( \subseteq \mathbb{R}^2 \) in \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, potem je
+\[
+\iint_D f(x,y) \,dx\,dy = \int_c^d \left( \int_{\varphi_1(y)}^{\varphi_2(y)} f(x,y) \,dx \right) dy.
+\]
+\end{enumerate}
+
+\subsubsection{Izrek o menjavi spremenljivk} 
+Naj bo \( f: D \rightarrow \mathbb{R} \) zvezna funkcija na \( D \subseteq \mathbb{R}^2 \). Če je \( x = \varphi(u, v) \), \( y = \psi(u, v) \), takašna menjava spremenljivk, da je \( \det J_{\varphi,\psi} \neq 0 \), potem
+\[
+\iint_D f(x, y) \,dx\,dy = \iint_{D'} f(\varphi(u, v), \psi(u, v)) \left| \det J_{\varphi,\psi} \right| \,du\,dv.
+\]
+
+Podobno, če je \( f: D \rightarrow \mathbb{R} \) zvezna funkcija na \( D \subseteq \mathbb{R}^3 \) ter \( x = \varphi(u, v, w) \), \( y = \psi(u, v, w) \), \( z = \chi(u, v, w) \), takašna menjava spremenljivk, da je \( \det J_{\varphi,\psi,\chi} \neq 0 \), potem velja
+\[
+\iiint_D f(x, y, z) \,dx\,dy\,dz = 
+\]
+\[
+ = \iiint_{D'} f(\varphi(u, v, w), \psi(u, v, w), \chi(u, v, w)) \left| \det J_{\varphi,\psi,\chi} \right| \,du\,dv\,dw.
+\]
+
+\subsubsection{Primeri menjave spremenljivk}
+
+\begin{enumerate}
+\item \textbf{Polarne koordinate} v \( \mathbb{R}^2 \) so podane z
+\[ 
+x = r \cos \varphi, \quad y = r \sin \varphi, 
+\]
+\[ 
+r \geq 0, \quad \varphi \in [0, 2\pi], \quad \text{in velja} \quad |\det J_{\text{polar}}| = r.
+\]
+
+\item \textbf{Cilindrične koordinate} v \( \mathbb{R}^3 \) so podane z
+\[ 
+x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z, 
+\]
+\[ 
+r > 0, \quad \varphi \in [0, 2\pi], \quad z \in \mathbb{R}, \quad \text{in velja} \quad |\det J_{\text{cylindrical}}| = r.
+\]
+
+\item \textbf{Sferične koordinate} v \( \mathbb{R}^3 \) so podane z
+\[ 
+x = r \cos \varphi \cos \theta, \quad y = r \sin \varphi \cos \theta, \quad z = r \sin \theta,
+\]
+\[ 
+r > 0, \quad \varphi \in [0, 2\pi], \quad \theta \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right], 
+\]
+\[
+\quad \text{in velja} \quad |\det J_{\text{spherical}}| = r^2 \cos \theta.
+\]
+\end{enumerate}
+
 \section{Dodatek 1: Vrste}
 
 \input{vrste.tex}
