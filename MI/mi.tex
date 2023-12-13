@@ -1826,6 +1826,17 @@ H_f(x) = \left[ \frac{\partial^2 f}{\partial x_i \partial x_j}(x) \right]_{i,j=1
 \]
 imenujemo \textit{Hessejeva matrika} funkcije \( f \) v točki \( x \). Če sta pri tem \( f_{x_i x_j}, f_{x_j x_i} \) zvezni funkciji, potem sta omenjena druga parcialna odvoda enaka. Zato je v primeru, ko so vsi parcialni odvodi \( f_{x_i x_j} \) zvezni, Hessejeva matrika \( H_f(x, y) \) simetrična matrika.
 
+Pravila: 
+\begin{enumerate}
+\item \(\frac{\partial \mathbf{x}}{\partial \mathbf{x}} = I_n\)
+\item Če je \(A \in \mathbb{R}^{m \times n}\), potem \(\frac{\partial (A\mathbf{x})}{\partial \mathbf{x}} = A\).
+\item Če je \(\mathbf{a} \in \mathbb{R}^n\), potem \(\frac{\partial (\mathbf{a}^T \mathbf{x})}{\partial \mathbf{x}} = \mathbf{a}^T\).
+\item Če je \(A \in \mathbb{R}^{n \times n}\), potem \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = \mathbf{x}^T(A + A^T)\).
+\item Če je \(A \in \mathbb{R}^{n \times n}\) simetrična matrika, potem velja \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = 2A^T\mathbf{x}\).
+\item \(\frac{\partial^2 \mathbf{x}}{\partial \mathbf{x}^2} = 2I_n\).
+\item Če \(G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n\) in \(F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p\) in \( \mathbf{H} = F \circ G\), potem \(\frac{\partial \mathbf{H}}{\partial \mathbf{x}} = \frac{\partial F}{\partial \mathbf{G}}(\mathbf{G}(\mathbf{x})) \cdot \frac{\partial \mathbf{G}}{\partial \mathbf{x}}\).
+\end{enumerate}
+
 
 \subsubsection{Vektorska funkcija}
 Za vektorsko funkcijo 
@@ -1933,6 +1944,49 @@ r > 0, \quad \varphi \in [0, 2\pi], \quad \theta \in \left[-\frac{\pi}{2}, \frac
 \quad \text{in velja} \quad |\det J_{\text{spherical}}| = r^2 \cos \theta.
 \]
 \end{enumerate}
+
+
+\subsection{Optimizacija}
+
+\subsection{Klasifikacija Lokalnih ekstremov}
+
+Naj bo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) ter a v definicijskem območju funkcije \( f \).
+Če za vse točke \( x \neq a \), ki so "dovolj blizu" točke a (tj. \( \| x - a \| < \varepsilon \) za nek dovolj majhen \( \varepsilon \)) velja \( f(x) < f(a) \), 
+potem pravimo, da ima funkcija \( f \) v točki a \textbf{lokalni maksimum}.
+
+Če za vse točke \( x \neq a \), ki so "dovolj blizu" točke a (tj. \( \| x - a \| < \varepsilon \) za nek dovolj majhen \( \varepsilon \)) velja \( f(x) > f(a) \), 
+potem pravimo, da ima funkcija \( f \) v točki a \textbf{lokalni minimum}.
+
+Če je funkcija \( f \) zvezno parcialno odvedljiva, potem je jasno, da ima lahko lokalne ekstreme le v stacionarnih točkah. Torej je potreben pogoj za lokalni ekstrem funkcije \( f \) v točki a:
+
+\[ (\nabla f)(a) = 0, \]
+
+kar pomeni, da moramo lokalne ekstreme iskati zgolj med stacionarnimi točkami.
+
+\subsubsection{Izrek}
+Naj bo \( a \) stacionarna točka dvakrat parcialno zvezno odvedljive funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \).
+
+\begin{enumerate}
+    \item Če so vse lastne vrednosti matrike \( H_f(a) \) pozitivne, ima \( f \) v \( a \) lokalni minimum.
+    \item Če so vse lastne vrednosti matrike \( H_f(a) \) negativne, ima \( f \) v \( a \) lokalni maksimum.
+    \item Če so vse lastne vrednosti matrike \( H_f(a) \) neničelne, vendar različno predznačene, lokalnega ekstrema v \( a \) ni.
+    \item Če je kakšna od lastnih vrednosti matrike \( H_f(a) \) enaka 0, o lokalnih ekstremih funkcije \( f \) v točki \( a \) iz matrike \( H_f(a) \) ne moremo sklepati.
+\end{enumerate}
+
+
+\subsubsection{Lokalni ekstremi z omejitvami}
+
+Pogosto naletimo na problem iskanja ekstremalnih vrednosti funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pri pogojih
+
+\[ g_1(x) = g_2(x) = \ldots = g_m(x) = 0. \]
+
+Izkaže se, da lahko lokalni ekstremi funkcije \( f \) pri pogoju \( g_i(x) = 0, i = 1, \ldots, m, \) nastopijo le v stacionarnih točkah funkcije
+
+\[ L = f - \lambda_1 g_1 - \ldots - \lambda_m g_m, \]
+
+ki je funkcija \( n + m \) spremenljivk \( x_1, x_2, \ldots, x_n, \lambda_1, \lambda_2, \ldots, \lambda_m \).\\
+Funkciji \( L \) pravimo \textbf{Lagrangeova funkcija}, novim spremenljivkam \( \lambda_1, \lambda_2, \ldots, \lambda_m \) pa \textbf{Lagrangevi multiplikatorji}.\\
+Omenjeni pogoj ni zadosten. Nekatere kritične točke funkcije \( L \) so ekstremalne točke funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pod pogoji \( g_1(x) = g_2(x) = \ldots = g_m(x) = 0 \), ostale pa ne.
 
 \section{Dodatek 1: Vrste}
 
