@@ -1988,6 +1988,62 @@ ki je funkcija \( n + m \) spremenljivk \( x_1, x_2, \ldots, x_n, \lambda_1, \la
 Funkciji \( L \) pravimo \textbf{Lagrangeova funkcija}, novim spremenljivkam \( \lambda_1, \lambda_2, \ldots, \lambda_m \) pa \textbf{Lagrangevi multiplikatorji}.\\
 Omenjeni pogoj ni zadosten. Nekatere kritične točke funkcije \( L \) so ekstremalne točke funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pod pogoji \( g_1(x) = g_2(x) = \ldots = g_m(x) = 0 \), ostale pa ne.
 
+
+\subsubsection{Odvodi vektorskih funkcij}
+Naj bo \( F: \mathbb{R}^n \rightarrow \mathbb{R}^m, F(x) = 
+\begin{bmatrix}
+    f_1(x) \\
+    f_2(x) \\
+    \vdots \\
+    f_m(x)
+\end{bmatrix} \)
+vektorska funkcija na spremenljivk x = \( (x_1, ..., x_n) \).
+
+Spomnimo se, da je odvod vektorske funkcije \( F \) po vektorju spremenljivk \( \tilde{x} \) definiran kot
+
+\[ 
+\frac{\partial \tilde{F}}{\partial \tilde{x}} = J_F(\tilde{x}) = 
+\begin{bmatrix}
+    \frac{\partial f_1}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_1}{\partial x_n} (\tilde{x}) \\
+    \vdots & \ddots & \vdots \\
+    \frac{\partial f_m}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_m}{\partial x_n} (\tilde{x})
+\end{bmatrix}
+\]
+
+Drugi odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) (tu m = 1) pa kot
+
+\[ 
+\frac{\partial^2 f}{\partial \tilde{x}^2} = \frac{\partial}{\partial \tilde{x}} \left( \frac{\partial f}{\partial \tilde{x}} \right)^T 
+\].
+
+Funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
+
+\[ 
+f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y}) 
+\]
+
+za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
+
+\subsubsection{Pravila za odvajanje vektorskih funkcij}
+
+\begin{enumerate}
+    \item \(\frac{\partial \tilde{x}}{\partial \tilde{x}} = I_n\)
+    \item Če je \( A \in \mathbb{R}^{m \times n} \), potem \( \frac{\partial A\tilde{x}}{\partial \tilde{x}} = A \).
+    \item Če je \( \tilde{a} \in \mathbb{R}^n \), potem \( \frac{\partial \tilde{a}^T\tilde{x}}{\partial \tilde{x}} = \tilde{a}^T \).
+    \item Če je \( A \in \mathbb{R}^{n \times n} \), potem \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = \tilde{x}^T(A + A^T) \).
+    \item Če je \( A \in \mathbb{R}^{n \times n} \) simetrična matrika, potem velja \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = 2\tilde{x}^T A \).
+    \item \( \frac{\partial \|\tilde{x}\|^2}{\partial \tilde{x}} = 2\tilde{x}^T \).
+    \item Če \( \tilde{z} = \tilde{z}(\tilde{x}) \) in \( \tilde{y} = \tilde{y}(\tilde{x}) \), potem \( \frac{\partial (\tilde{y}^T \tilde{z})}{\partial \tilde{x}} = \tilde{y}^T \frac{\partial \tilde{z}}{\partial \tilde{x}} + \tilde{z}^T \frac{\partial \tilde{y}}{\partial \tilde{x}} \).
+    \item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
+\end{enumerate}
+
+
+\subsubsection{Izrek} 
+Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna natanko tedaj, 
+ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) pozitivno semidefinitna matrika na \( D \), in je konkavna natanko tedaj, 
+ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) negativno semidefinitna matrika na \( D \).
+
+
 \section{Dodatek 1: Vrste}
 
 \input{vrste.tex}
