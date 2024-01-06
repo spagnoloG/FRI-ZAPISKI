@@ -2043,12 +2043,127 @@ Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \m
 ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) pozitivno semidefinitna matrika na \( D \), in je konkavna natanko tedaj, 
 ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) negativno semidefinitna matrika na \( D \).
 
+\subsubsection{Prirejene funckije}
 
-\section{Dodatek 1: Vrste}
+Naj bodo \( f, g_i, h_j: \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev naslednjega problema
+\[
+\text{(P)}^* \quad \min f(\vec{x})
+\]
+pri pogojih
+\[
+g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m
+\]
+\[
+h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r.
+\]
+
+Definirajmo še množice \( D_g \), \( D_h \):
+\[
+D_g = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m \right\},
+\]
+
+\[
+D_h = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r \right\}
+\]
+
+\[
+D = D_f \cap \left( \bigcap_{i=1}^m D_g \right) \cap \left( \bigcap_{j=1}^r D_h \right).
+\]
+
+Sedaj lahko problem \( (P^*) \) zapišemo ekvivalentno kot
+\[
+    \text{(P)}^* \quad \min_{\vec{x} \in D} f(\vec{x}).
+\]
+
+Definirajmo Lagrangevo funkcijo
+\[
+L(\vec{x}, \vec{\lambda}, \vec{\mu}) = f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x}) 
+\]
+\[
+= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
+\]
+kjer je
+\[
+\mathbf{G}(\vec{x}) = 
+\begin{pmatrix}
+g_1(\vec{x}) \\
+\vdots \\
+g_m(\vec{x})
+\end{pmatrix},
+\mathbf{H}(\vec{x}) = 
+\begin{pmatrix}
+h_1(\vec{x}) \\
+\vdots \\
+h_r(\vec{x})
+\end{pmatrix},
+\]
+\[
+\vec{\lambda} = 
+\begin{pmatrix}
+\lambda_1 \\
+\vdots \\
+\lambda_m
+\end{pmatrix},
+\vec{\mu} = 
+\begin{pmatrix}
+\mu_1 \\
+\vdots \\
+\mu_r
+\end{pmatrix}.
+\]
+
+Funkcijo
+\[
+K(\vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} L(\vec{x}, \vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} \{ f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x}) \}
+\]
+imenujemo \textbf{prirejena funkcija} problema  $(P^*) $. Pri tem spremenljivke $ \vec{\lambda} $ in $ \vec{\mu} $ imenujemo \textbf{prirejene spremenljivke}. Opazimo:
+
+\begin{enumerate}
+\item \( K(\vec{\lambda}, \vec{\mu}) \) je konkavna funkcija (neodvisno od lastnosti funkcij \( f, g_i, h_j \) originalnega problema).
+\item Če je \( \lambda_i \leq 0 \) za \( i = 1,2,\ldots,m \), potem velja \( K(\vec{\lambda}, \vec{\mu}) \leq \min_{\vec{x} \in D} f(\vec{x}) \) za vse \( \vec{\lambda} \) ter vse \( \vec{\mu} \).
+\end{enumerate}
+
+
+\textbf{Problem}
+\[
+\text{(D}^*\text{)} \quad \max_{\vec{x},\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
+\]
+pri pogojih
+\[
+\lambda_i \leq 0 \quad za \ i = 1,2,\ldots,m
+\]
+imenujemo \textbf{prirejeni problem} problema \( (P^*) \).
+
+Označimo z \( \vec{x}^* \) vektor iz \( D \), ki reši problem \( (P^*) \) in \( \vec{\lambda}^* \), \( \vec{\mu}^* \) prirejene spremenljivke, ki rešita prirejeni problem \( (D^*) \). Naj bo torej \( p^* = f(\vec{x}^*) \) rešitev problema \( (P^*) \) in \( d^* = K(\vec{\lambda}^*, \vec{\mu}^*) \) rešitev problema \( (D^*) \). Potem iz (2) sledi
+\[
+d^* \leq p^*.
+\]
+
+Če
+\begin{itemize}
+\item je \( (P^*) \) linearni program (t.j., \( f \) je linearna in \( h_j \) so afine funkcije), ali če
+\item so \( f, g_i \) konveksne funkcije in \( h_j \) afine,
+\end{itemize}
+potem velja \( d^* = p^* \).
+
+V primeru, ko je \( d^* = p^* \), sledi, da morajo \( \vec{x}^*, \vec{\lambda}^* \) in \( \vec{\mu}^* \) zadostiti Karush-Kuhn-Tuckerjevim pogojem:
+\[
+\begin{aligned}
+&\frac{\partial L(\vec{x}^*, \vec{\lambda}^*, \vec{\mu}^*)}{\partial \vec{x}} = 0, \\
+&g_i(\vec{x}^*) \leq 0 \quad za \ i = 1,2,\ldots,m, \\
+&h_j(\vec{x}^*) = 0 \quad za \ j = 1,2,\ldots,r, \\
+&\lambda_i^* \leq 0 \quad za \ i = 1,2,\ldots,m, \\
+&\lambda_i^* g_i(\vec{x}^*) = 0 \quad za \ i = 1,2,\ldots,m.
+\end{aligned}
+\]
+(KKT)
+
+
+\subsection{Dodatek 1: Vrste}
 
 \input{vrste.tex}
 
-\section{Dodatki 2: Ponovitev analize}
+\subsection{Dodatek 2: Ponovitev analize}
 
 \input{../VIS/ponovitev-analize.tex}
 
