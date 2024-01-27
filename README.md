@@ -24,6 +24,7 @@
 
 - [MI](https://spagnolog.github.io/FRI-ZAPISKI/MI/mi.pdf)
 - [OBSS](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/OBSS/OBSS.md)
+- [IBB](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/IBB/IBB.md)
 
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
