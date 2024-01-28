@@ -300,3 +300,211 @@ Facial feature points are categorized into three levels based on the level of de
 ### Limitations
 - **Rotation Sensitivity**: Less effective with rotated faces or objects.
 - **Background Sensitivity**: Performance can be affected by complex backgrounds.
+
+
+## Eigenfaces for Facial Recognition
+
+
+### Principal Component Analysis (PCA)
+- **Purpose**: Reduces the dimensionality of facial image data, retaining only the most variance-contributing features.
+- **Process**: 
+    - Converts correlated facial images into a smaller set of uncorrelated variables (principal components).
+    - Based on the eigenvectors of the covariance matrix of the facial image dataset.
+
+### Creating Eigenfaces
+- **Training Phase**:
+    - **Data Preparation**: Collect a large set of facial images.
+    - **Normalization**: Align and normalize these faces.
+    - **Covariance Matrix Calculation**: Compute this matrix from the normalized images.
+    - **Eigenvalue Decomposition**: Find eigenvectors and eigenvalues of the covariance matrix.
+    - **Principal Components Selection**: Choose a subset of eigenvectors as eigenfaces, representing significant facial features.
+- **Eigenfaces**: 
+    - Principal components of the face dataset.
+    - Represent standard facial components.
+
+### Recognition Process
+- **Representation**: Express each face as a weighted sum of eigenfaces.
+- **Weight Calculation**: For a new face, calculate weights by projecting onto the eigenfaces.
+- **Classification**: Identify the closest match by comparing weights.
+
+### Handling N_samples < N_dim
+- **The Small Sample Size Problem**: When the number of samples is less than the number of dimensions, it leads to computational challenges.
+- **Consequence**: The covariance matrix becomes singular, making it difficult to compute eigenvectors directly.
+- **Solution**:
+    - **Dimensionality Reduction**: Reduce the dimensionality to less than the number of samples before applying PCA.
+    - **Regularization Techniques**: Apply techniques to stabilize the covariance matrix.
+
+### Limitations
+- **Sensitivity to Variations**: Less effective in changing lighting, expressions, and angles.
+- **Generalization Issues**: Performance may suffer with unfamiliar faces.
+
+
+## Fisherfaces: Facial Recognition Technique
+
+
+### Principal Component Analysis (PCA)
+- **Purpose**: To reduce the dimensionality of facial image data while preserving most of the variance.
+- **Process**: 
+    - Transforms the original set of images into a new set of uncorrelated variables, known as principal components.
+    - This is achieved by eigendecomposition of the data covariance matrix or singular value decomposition.
+- **Benefits**: 
+    - Reduces the computational cost and complexity.
+    - Helps in noise reduction and data simplification.
+
+### Linear Discriminant Analysis (LDA)
+- **Application**: Applied to the dimensionality-reduced data from PCA.
+- **Goal**: 
+    - To maximize the ratio of between-class variance to within-class variance.
+    - This enhances the separability between different facial classes.
+- **Result**: Yields a set of linear combinations, or Fisherfaces, that best distinguish between individual faces.
+
+### Fisherfaces Method
+- **Combination of PCA and LDA**: 
+    - PCA is used first for dimensionality reduction.
+    - LDA is then applied to the reduced data for optimal class separation.
+- **Advantage**: Fisherfaces are less sensitive to variations in lighting and facial expressions compared to using PCA alone (Eigenfaces).
+
+### Handling \( N < d \) in Fisherfaces
+- **The Problem**: When the number of samples \( N \) is less than the dimensionality of the data \( d \), the "small sample size" problem arises.
+- **Consequence**: The within-class scatter matrix becomes singular, and LDA cannot be computed directly.
+- **Solution**:
+    - **PCA for Dimensionality Reduction**: PCA is used to reduce the dimension to \( N - 1 \) or less, preventing singularity.
+    - **LDA for Classification**: With reduced dimensions, LDA can be effectively applied for facial classification.
+
+### Conclusion
+Fisherfaces method, by combining PCA and LDA, provides an efficient and effective solution for facial recognition, adept at handling variations in lighting and expressions. 
+The PCA step is crucial, especially in scenarios where the dataset has high dimensionality and a relatively small number of samples.
+
+
+## Comparison of Principal Component Analysis (PCA) and Independent Component Analysis (ICA)
+
+### Principal Component Analysis (PCA)
+#### Purpose
+- **Dimensionality Reduction**: Reduces the dimensionality of data while preserving as much variance as possible.
+#### Method
+- **Orthogonal Transformation**: Transforms the data to a new coordinate system, where the greatest variances lie on the first coordinates.
+#### Key Aspect
+- **Variance Maximization**: Aims to find the directions (principal components) that maximize the variance in the dataset.
+#### Applications
+- **Data Compression**: Reduces the size of the dataset.
+- **Noise Reduction**: Eliminates irrelevant features.
+- **Visualization**: Helps in visualizing high-dimensional data. (but usefull only for 2D or 3D, otherwise t-SNE is better ;) )
+
+### Independent Component Analysis (ICA)
+#### Purpose
+- **Signal Separation**: Separates a multivariate signal into additive, independent non-Gaussian signals.
+#### Method
+- **Statistical Independence**: Assumes components are statistically independent and non-Gaussian.
+#### Key Aspect
+- **Independence Maximization**: Focuses on maximizing the statistical independence of the components.
+
+### Key Differences
+- **Statistical Property Used**:
+  - **PCA**: Uses covariance. Seeks directions that maximize variance.
+  - **ICA**: Seeks components that are statistically independent.
+- **Assumptions**:
+  - **PCA**: Assumes Gaussian distribution of components.
+  - **ICA**: Works best with non-Gaussian distributions.
+- **End Result**:
+  - **PCA**: Principal components are orthogonal.
+  - **ICA**: Independent components are not necessarily orthogonal.
+
+### Conclusion
+While PCA is primarily used for reducing dimensionality by focusing on variance, 
+ICA is used for separating independent sources from mixed signals. Both have distinct applications and are chosen based on the specific requirements of the data analysis task.
+
+## Score-Level Fusion in Biometric Systems
+
+### Overview
+Score-level fusion is a technique used in biometric systems to combine scores from multiple biometric modalities, enhancing the accuracy and reliability of identity verification or identification.
+
+### Concept
+- **Integration of Scores**: Involves combining the individual scores from different biometric sources, such as fingerprints, facial recognition, or iris scans.
+- **Decision Making**: The fused score is then used to make a final decision regarding the identity of an individual.
+
+### Methods of Score-Level Fusion
+1. **Sum Rule**: Adds the scores from each biometric system.
+2. **Weighted Sum Rule**: Similar to sum rule but assigns different weights to each score based on reliability.
+3. **Product Rule**: Multiplies the individual scores, assuming they are independent.
+4. **Max Rule**: Takes the maximum of the individual scores.
+5. **Min Rule**: Takes the minimum of the individual scores.
+6. **Bayesian Fusion**: Based on Bayesian inference, combining scores using prior probabilities.
+
+### Advantages
+- **Improved Accuracy**: Combining multiple scores reduces the error rate compared to single modality systems.
+- **Flexibility**: Can be adjusted for different security levels by varying the fusion method or weights.
+- **Robustness**: More resilient to spoofing attacks and environmental variations.
+
+### Challenges
+- **Score Normalization**: Requires normalization of scores from different modalities to a common scale.
+- **Optimal Weighting**: Determining the best weights for the weighted sum rule can be complex. (it can be learned tho :D )
+- **Dependency Assumption**: In methods like product rule, the independence assumption may not hold true.
+
+
+## Multibiometric Systems
+
+### Overview
+Multibiometric systems are advanced biometric solutions that integrate multiple physiological or behavioral characteristics for identification or verification. 
+They aim to enhance accuracy, security, and robustness compared to single-modality biometric systems.
+
+### Key Aspects
+
+#### Multiple Modalities
+- **Traits Used**: Combines different biometric traits like fingerprints, facial recognition, iris scans, voice recognition, etc.
+- **Diversity**: Offers a range of biometric options to cater to different situations and user preferences.
+
+#### Improved Accuracy
+- **Error Reduction**: By leveraging multiple biometric indicators, these systems significantly lower the probability of identification errors.
+- **Reliability**: Provides more consistent results across diverse user groups and conditions.
+
+#### Enhanced Security
+- **Spoof Resistance**: More challenging for intruders to spoof multiple biometric traits simultaneously.
+- **Robustness**: Offers a higher degree of security, making it suitable for critical applications.
+
+#### User-Friendly
+- **Flexibility**: Users can choose from multiple biometric options for authentication.
+- **Inclusivity**: Accommodates users who might have difficulties with a specific biometric trait.
+
+#### Reduced Failure to Enroll Rates
+- **Backup Options**: In case one biometric trait is unusable (e.g., injured finger), another trait can be used.
+- **Versatility**: Ensures broader coverage and usability.
+
+#### Fusion Methods
+- **Integration Levels**: Can combine biometric data at sensor level, feature level, score level, or decision level.
+- **Customization**: The system can be tailored to specific security needs and contexts.
+
+### Applications
+- **High-Security Areas**: Ideal for places requiring stringent security measures.
+- **Border Control**: Enhances efficiency and accuracy in identity verification.
+- **Financial Transactions**: Used in banking for secure customer authentication.
+- **Personal Devices**: Common in smartphones and laptops for robust security.
+
+
+## Rank-Level Fusion in Biometric Systems
+
+### Overview
+Rank-level fusion is a method used in biometric systems, especially in identification mode, where the system outputs a ranking of enrolled identities. 
+This technique consolidates the ranks from individual biometric subsystems to derive a consensus rank for each identity.
+
+### Key Concepts
+- **Rank vs. Match Scores**: Ranks provide less information than match scores but are inherently comparable across different systems, eliminating the need for normalization.
+- **Rank Matrix**: Denoted as `R = [rn,m]`, where `rn,m` is the rank assigned to identity `In` by the `m-th` matcher.
+- **Statistic for Identity**: Denoted as `rˆn`, a statistic computed for each user such that the user with the lowest value is assigned the highest consensus rank.
+
+### Highest Rank Method
+- **Process**: Assigns each user the highest rank (minimum `r` value) as computed by different matchers.
+- **Application**: Effective when the number of users is large compared to the number of matchers.
+
+### Borda Count Method
+- **Process**: Utilizes the sum of the ranks assigned by the individual matchers.
+- **Statistic**: Measures the degree of agreement among different matchers.
+- **Assumptions**: 
+    - Ranks assigned by matchers are statistically independent.
+    - All matchers perform equally well.
+
+### Logistic Regression Method
+- **Process**: A generalization of the Borda count method, calculating a weighted sum of individual ranks.
+- **Statistic**: Weights are determined through logistic regression.
+- **Advantages**:
+    - Useful when there are significant differences in the accuracies of different biometric matchers.
+    - Requires a training phase for determining the weights.
