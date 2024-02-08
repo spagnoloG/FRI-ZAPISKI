@@ -491,6 +491,7 @@ This technique consolidates the ranks from individual biometric subsystems to de
 - **Rank Matrix**: Denoted as `R = [rn,m]`, where `rn,m` is the rank assigned to identity `In` by the `m-th` matcher.
 - **Statistic for Identity**: Denoted as `rˆn`, a statistic computed for each user such that the user with the lowest value is assigned the highest consensus rank.
 
+
 ### Highest Rank Method
 - **Process**: Assigns each user the highest rank (minimum `r` value) as computed by different matchers.
 - **Application**: Effective when the number of users is large compared to the number of matchers.
@@ -508,3 +509,37 @@ This technique consolidates the ranks from individual biometric subsystems to de
 - **Advantages**:
     - Useful when there are significant differences in the accuracies of different biometric matchers.
     - Requires a training phase for determining the weights.
+
+
+## Construction of FBG Model for Fiducial Points
+
+### Stage 1: Initial Model Construction
+1. **Manual Marking of Fiducial Points**:
+    - Select desired fiducial points and define the geometric structure of the image graph on initial image(s).
+    - This step is done manually for one or a few images.
+2. **Semi-automatic Extension**:
+    - Expand the model to new images by comparing them with already marked model graphs.
+    - Utilize extracted Gabor jets for comparison, acknowledging potential inaccuracies in certain areas (e.g., chin, top and bottom of the ear).
+3. **Node Correspondence**:
+    - Manually specify the correspondence between nodes of bunch graphs belonging to different poses.
+
+### Stage 2: Combining Individual Graphs
+1. **Stack-like Structure Formation**:
+    - Combine a representative set of individual graphs into a stack-like structure.
+2. **Bunch Creation**:
+    - A set of jets corresponding to the same fiducial point is termed a 'bunch'.
+    - Each bunch represents local variations in the associated fiducial point among the population (e.g., eye bunch includes jets from open, closed, male, female eyes).
+
+### Recognition with FBG Model
+1. **Elastic Bunch Graph Matching**:
+    - Use mean model Gabor jets at each bunch to find the approximate face position.
+    - Refine the position by comparing a Gabor jet in the probe image with a bunch of jets in the FBG model.
+    - Precisely locate fiducial points by optimizing the graph similarity, adjusting nodes locally and relative to each other.
+
+2. **Comparison with Model Graphs**:
+    - Compute similarity between the image graph from the probe image and the model graph.
+    - The similarity is the average similarity between the jets at the corresponding fiducial points.
+    - Matching can be successful even with some missing nodes.
+
+3. **Determining a Valid Match**:
+    - Choose the best similarity score and apply a threshold to decide if it's a valid match.
