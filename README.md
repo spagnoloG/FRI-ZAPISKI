@@ -22,9 +22,10 @@
 
 ### MAG
 
-- [MI](https://spagnolog.github.io/FRI-ZAPISKI/MI/mi.pdf)
-- [OBSS](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/OBSS/OBSS.md)
-- [IBB](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/IBB/IBB.md)
+- [MI - Mathematics I](https://spagnolog.github.io/FRI-ZAPISKI/MI/mi.pdf)
+- [OBSS - Biomedical Signal and Image Processing ](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/OBSS/OBSS.md)
+- [IBB - Image Based Biometry](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/IBB/IBB.md)
+- [ACVM - Advanced Computer Vision Methods ](https://spagnolog.github.io/FRI-ZAPISKI/ACVM/acvm.pdf)
 
 ## Popravki
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues) 
