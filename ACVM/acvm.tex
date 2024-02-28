@@ -112,6 +112,72 @@ for all \( \tilde{x}, \tilde{y} \in D \) and for all \( t \in [0, 1] \). The fun
     \item If \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) and \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) and \( H = F \circ G \), then \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
 \end{enumerate}
 
+
+\subsection{Linear Approximation of Vector Functions}
+
+\[
+f(X(p_1, p_2, \ldots, p_m), S(p_1, p_2, \ldots, p_m)) \approx k_n (p_1, p_2, \ldots, p_m)
+\]
+
+\[
+X = \begin{bmatrix}
+X_1(p_1, \ldots, p_m) \\
+\vdots \\
+X_n(p_1, \ldots, p_m) \\
+\end{bmatrix},
+\quad
+\delta = \begin{bmatrix}
+\delta_1 \\
+\vdots \\
+\delta_n \\
+\end{bmatrix},
+\quad
+p = \begin{bmatrix}
+p_1 \\
+\vdots \\
+p_m \\
+\end{bmatrix}
+\]
+
+\[
+f(X(p_0 + \delta)) \approx f(X(p_0)) + df
+\]
+
+\[
+df = \frac{\partial f}{\partial X} \frac{\partial X}{\partial p} \delta = J_f \delta,
+\quad
+\text{take expansion of } \frac{\partial X}{\partial p} \text{ around } p_0
+\]
+
+\[
+dX = \begin{bmatrix}
+\frac{\partial X_1}{\partial p_1} & \frac{\partial X_1}{\partial p_2} & \ldots & \frac{\partial X_1}{\partial p_m} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial X_n}{\partial p_1} & \frac{\partial X_n}{\partial p_2} & \ldots & \frac{\partial X_n}{\partial p_m} \\
+\end{bmatrix}
+\begin{bmatrix}
+\delta_1 \\
+\vdots \\
+\delta_m \\
+\end{bmatrix}
+= \begin{bmatrix}
+\sum \limits_{j=1}^{m} \frac{\partial X_1}{\partial p_j} \delta_j \\
+\vdots \\
+\sum \limits_{j=1}^{m} \frac{\partial X_n}{\partial p_j} \delta_j \\
+\end{bmatrix}
+\]
+
+
+\[
+J_f = \frac{\partial f}{\partial X} \frac{\partial X}{\partial p}
+\]
+
+\[
+f(X(p_0 + \delta)) \approx f(X(p_0)) + J_f \delta
+\]
+
+
+
 \end{multicols}
 
 \end{document}
