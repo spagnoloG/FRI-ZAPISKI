@@ -1,12 +1,15 @@
 # APS
+
 (to je nastalo zto k mi ni biu usec font na slajdih, like are we in the 90's bro?)
 
 -> vizualizacije raznih implementacij algoritmov in podatkovnih struktur
 https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 ## REKURZIJA
+
 Zahteva vec rezije kot iteracija in je pomnilnisko bol zahtevna od iteracije(sklici se shranijo na stacku). Globina rekurzije = potrebna velikost sklada.
 Rekurzivne probleme lahko resujemoo tudi z iteracijami:
+
 - vsako repno rekurzijo lahko zamenjamo z iterativno zanko
 - vsak rekurzivni program lahko spremenimo v iterativnega s skladom
 
@@ -17,11 +20,13 @@ very good article: https://www.cs.odu.edu/~zeil/cs361/latest/Public/recursionCon
 alpa pitonka: https://www.youtube.com/watch?v=Z35sLFyLBek&t=301s
 
 Na sklad shranimo:
+
 - argumente
 - lokalne spremenljivke
 - naslov (adreso) za nadaljevanje
 
 Primer rekurzivne funckije:
+
 ```java
 public void recursive(ArgumentType args0) {
   LocalVarsType
@@ -39,8 +44,8 @@ public void recursive(ArgumentType args0) {
 }
 ```
 
-
 Definicija skladovnega elementa:
+
 ```java
 class StackElementType {
   Argument type args; // vrednosti argumentov, bodisi za zacetek rekurzivnega klica, bodisi za povraztek iz rekurzivnega klica
@@ -48,7 +53,9 @@ class StackElementType {
   int address; // vrednosti med 0 in RECCALS (st. rekurzivnih klicev, ne globina!)
 }
 ```
+
 Pretvorba rekurzije v iteracijo
+
 ```java
 public void iterative(ArgumentType args0) {
   LocalVarsType locals0;
@@ -80,7 +87,7 @@ public void iterative(ArgumentType args0) {
               e.locals = locals0; // dodamo trenunto spremenjene lokalne spremenljivke
               st.push(e); /// dodamo element na sklad
               // priprava za zacetek rek. klica
-              e.address = 0; 
+              e.address = 0;
               e.args = args1;
               st.push(e);
             }
@@ -106,14 +113,16 @@ public void iterative(ArgumentType args0) {
 
 }
 ```
+
 Primer iz linkanega clanka
+
 ```cs
-template <class T> 
+template <class T>
 void quickSort(T[] v, unsigned int numberOfElements)
 {
-  if (numberOfElements > 1) 
+  if (numberOfElements > 1)
     { // quickSort(v, 0, numberOfElements - 1);
-     stack<pair<unsigned int, unsigned int>, list<pair<unsigned int, unsigned int> > > stk; 
+     stack<pair<unsigned int, unsigned int>, list<pair<unsigned int, unsigned int> > > stk;
      stk.push (make_pair(0, numberOfElements - 1)); // initialize the stack
 
      while (!stk.empty())
@@ -145,7 +154,9 @@ void quickSort(T[] v, unsigned int numberOfElements)
 ```
 
 ### PRIMER REPNE REKURZIJE
+
 Ali je ta rekurzija repna?
+
 ```java
 int fakulteta(int n) {
   if(n == 0)
@@ -154,8 +165,10 @@ int fakulteta(int n) {
     return n * fakulteta(n - 1);
 }
 ```
+
 Odgovor je **ne**, saj tukaj se pomnozimo rezultat klica funkcije s spremenljivko `n`. O Repni rekurziji lahko govorimo le v primeru, ko imamo v zadnji vrstici funkcije en sam `return function_call(params);` rekurzivni klic, enako velja za sestevanje z `n` in sestevanjem rekurzivnih klicov. V repni rekurziji je klic **eden**.
 No pa pretvorimo tale primer v **pravilno** repno rekurzijo:
+
 ```java
 int fakulteta(int n, int acc) {
   if(n == 0)
@@ -168,25 +181,29 @@ int fakulteta(int n, int acc) {
 ## ANALIZA CASOVNE KOMPLEKSNOSTI
 
 #### Racunanje z O(n)
+
 - eliminacija konstante:
-`c > 0 --> O(c * f(n)) = O(f(n))`
+  `c > 0 --> O(c * f(n)) = O(f(n))`
 - vsota:
-`O(f(n)) + O(g(n)) = O(max(f(n), g(n))) // sepravi pri vsoti izberemo tisto, ki ima visjo casovno kompleksnost`
+  `O(f(n)) + O(g(n)) = O(max(f(n), g(n))) // sepravi pri vsoti izberemo tisto, ki ima visjo casovno kompleksnost`
 - prevladujoca funkcija:
-`Ce je za vsak n: f(n) > g(n) --> O(f(n)) + O(g(n)) = O(f(n))`
+  `Ce je za vsak n: f(n) > g(n) --> O(f(n)) + O(g(n)) = O(f(n))`
 - produkt:
-`O(f(n)) * O(g(n)) = O(f(n) * g(n))`
+  `O(f(n)) * O(g(n)) = O(f(n) * g(n))`
 - tranzitivnost:
-`f(n) = O(g(n)), g(n) = O(h(n)) --> f(n) = O(h(n))`
+  `f(n) = O(g(n)), g(n) = O(h(n)) --> f(n) = O(h(n))`
 - refleksivnost
-`f(n) = O(f(n))`
+  `f(n) = O(f(n))`
+
 #### Dolocitev parametrov kompleksnosti
+
 - Osnovne operacije: O(1) // e.g. int a = 10;
 - pri zaporedju ukazov **sestevamo** zahtevnosti
 - pri pogojih stejemo kompleksnost **izracuna** pogoja in **max** vseh moznih izbir
 - pri zankah sestejemo kompleksnost izracuna pofoja in enkratne izvedbe zanke ter pomnozimo s stevilom izvajanja zanke
 - pri rekurziji pa zahtevnost izrazimo kot rekurencno enacbo
---> primer izracuna rekurencne Enacbe
+  --> primer izracuna rekurencne Enacbe
+
 ```java
 void p(int n, int m) {
   if(m > 0)
@@ -198,7 +215,9 @@ void p(int n, int m) {
 // pole pa se rekurencno enacbo
 // T(n, m) = O(1 + n(1+1+1+T(n, m -1))) = O(n * T(n, m -1)) = O(n*n*T(n, m-2)) = O(n^m)
 ```
+
 --> se en primer
+
 ```java
 void hanoi(char A, char B, char C, int n) {
   if(n > 0) {
@@ -212,14 +231,18 @@ void hanoi(char A, char B, char C, int n) {
 // pazi, isto velja ce mas T(n-1)+T(n-2) = O(2^n)
 // PAZI 2, vedno mors T(0) * T(n) = O(n) -- > ker lahko T(0) != O(1)
 ```
+
 ### OCENA DEJANSKEGA CASA IZVAJANJA
-  `T(n) = a * O(g(n)) + c`
+
+`T(n) = a * O(g(n)) + c`
 
 Postopek:
+
 - najprej izracunas `a` in `c`, tako da izberes tisto matematicno funkcijo`g(n)`, katera se ti zdi najbolj primerna in v njo ustavis `n` pa enacis s casom izvajanja
 - ko imas `a` in `c`, izracunas `T(n)` s pomocjo dobljenega `a`-ja in `c`-ja pa matematicne funkcije `g(n)`. Ce se cas ujema --> success :)
 
 ### POGOSTE KOMPLEKSNOSTI
+
 - `log(n)` ~ zelo pocasi raste
 - `n` ~ linearno narascanje
 - `n * log(n)` ~ blizu linearnega narascanja (rahlo vec)
@@ -231,6 +254,7 @@ Postopek:
 ## ADT ENOSMERNI SEZNAM S KAZALCI
 
 #### Implementacija
+
 ```java
 class LinkedListNode {
   Object element;
@@ -242,20 +266,23 @@ public class LinkedList{
   ...
 }
 ```
+
 Polozaj kazalcev je v enosmernem seznamu zamaknjen
+
 ```
 (first)[header| next] -> [a1|next] -> ... -> (last)[a_n-1| next] -> [a_n | next] -> null
 ```
 
 #### Operacije in casovne zahtevnosti
+
 - MAKENULL(L) ~ naredi prazen seznam `O(1)`
 - FIRST(L) ~ vrne polozaj prvega elementa v seznamu `O(1)`
 - LAST(L) ~ vrne polozaj zadnjega elementa v seznamu `O(1)`
 - NEXT(p, L) ~ vrne naslednji polozaj polozaja p `O(1)`
 - PREVIOUS(p, L) ~ vrne predhodni polozaj `O(n)`
-- RETRIEVE(p, L) ~ vrne element a_p na polozaju p  `O(1)`
+- RETRIEVE(p, L) ~ vrne element a_p na polozaju p `O(1)`
 - INSERT(x, p, L) ~ vstavi element x na polozaj p `O(1)`
-- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc al zacetk)  `O(1)`
+- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc al zacetk) `O(1)`
 - DELETE(p, L) ~ zbrise element a_p na polozaju p `O(1) - O(n)` -> ce brisemo zadnjega, moremo it skoz ceu seznam, da nastavimo pointer last, v nasprotnem je O(1), ker imampo pac zamaknjen polozaj elementov, in imamo ze takoj podan element `prev`
 - EMPTY(L) ~ preveri ce je seznam prazen `O(1)`
 - END(L) ~ vrne polozaj, ki sledi zadnjemu elementu seznama `O(1)`
@@ -263,10 +290,12 @@ Polozaj kazalcev je v enosmernem seznamu zamaknjen
 - LOCATE(x, L) ~ poisce polozaj elementa x v seznamu `O(n)`
 - PRINTLIST(L) ~ po vrsti izpise vse elemente v seznamu `O(n)`
 
-
 ## ADT DVOSMERNI SEZNAM S KAZALCI
+
 Glavni + dvosmernega seznama s kazalci je **ucinkovito** iskanje predhodnika v seznamu -> O(1). Polozaj kazalcev v dvosmernem seznamu ne potrebuje biti zamaknjen.
+
 #### Implementacija
+
 ```java
 class LinkedListNode {
   Object element;
@@ -280,14 +309,15 @@ public class LinkedList{
 ```
 
 #### Operacije in casovne zahtevnosti
+
 - MAKENULL(L) ~ naredi prazen seznam `O(1)`
 - FIRST(L) ~ vrne polozaj prvega elementa v seznamu `O(1)`
 - LAST(L) ~ vrne polozaj zadnjega elementa v seznamu `O(1)`
 - NEXT(p, L) ~ vrne naslednji polozaj polozaja p `O(1)`
 - PREVIOUS(p, L) ~ vrne predhodni polozaj `O(1)` --> izboljsava proti ENOSMERNEMU
-- RETRIEVE(p, L) ~ vrne element a_p na polozaju p  `O(1)`
+- RETRIEVE(p, L) ~ vrne element a_p na polozaju p `O(1)`
 - INSERT(x, p, L) ~ vstavi element x na polozaj p `O(1)`
-- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc al zacetk)  `O(1)` --> izboljsava proti ENOSMERNEMU
+- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc al zacetk) `O(1)` --> izboljsava proti ENOSMERNEMU
 - DELETE(p, L) ~ zbrise element a_p na polozaju p `O(1)`
 - EMPTY(L) ~ preveri ce je seznam prazen `O(1)`
 - END(L) ~ vrne polozaj, ki sledi zadnjemu elementu seznama `O(1)`
@@ -296,9 +326,11 @@ public class LinkedList{
 - PRINTLIST(L) ~ po vrsti izpise vse elemente v seznamu `O(n)`
 
 ## ADT SEZNAM S POLJEM
+
 Polozaj elementa v seznamu je podan z indeksom polja. Potrebujemo se indeks zadnjega elementa v polju. Imamo omejeno dozlino seznama in ves cas zaseda **maximalno** kolicino pomnilnika.
 
 #### Implementacija
+
 ```java
 class ListArray {
   public Object elements[];
@@ -315,15 +347,17 @@ class ListArray {
   // ustavljanja/brisanja tega elementa premakniti
 }
 ```
+
 #### Operacije in casovne zahtevnosti
+
 - MAKENULL(L) ~ naredi prazen seznam `O(1)`
 - FIRST(L) ~ vrne polozaj prvega elementa v seznamu `O(1)`
 - LAST(L) ~ vrne polozaj zadnjega elementa v seznamu `O(1)`
 - NEXT(p, L) ~ vrne naslednji polozaj polozaja p `O(1)`
 - PREVIOUS(p, L) ~ vrne predhodni polozaj `O(1)` // itk je array tko da previous dobis z index - 1
-- RETRIEVE(p, L) ~ vrne element a_p na polozaju p  `O(1)`
+- RETRIEVE(p, L) ~ vrne element a_p na polozaju p `O(1)`
 - INSERT(x, p, L) ~ vstavi element x na polozaj p `O(n)`
-- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc) ` O(1)`  
+- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc) ` O(1)`
 - DELETE(p, L) ~ zbrise element a_p na polozaju p `O(n)`
 - EMPTY(L) ~ preveri ce je seznam prazen `O(1)`
 - END(L) ~ vrne polozaj, ki sledi zadnjemu elementu seznama `O(1)`
@@ -332,11 +366,13 @@ class ListArray {
 - PRINTLIST(L) ~ po vrsti izpise vse elemente v seznamu `O(n)`
 
 ## ADT SEZNAM Z INDEKSNIMI KAZALCI
+
 Uporaba v jezikih, ki ne omogocajo dinamicnih podatkovnih struktur.
 Vsaka celica polja je sestavljena iz elementa in indeksa naslednjega elementa.
 Definicije operacij so podobne operacijam s kazalci, le da programer sam
-skrbi za dodeljevanje in *ciscenje* pomnilnika. Polozaj je **zamaknjen**.
+skrbi za dodeljevanje in _ciscenje_ pomnilnika. Polozaj je **zamaknjen**.
 Potrebujemo dva seznama:
+
 - prvi seznam vsebuje elemene dejanskega seznama
 - drugi seznam povezuje vse prazne celive v polju
 
@@ -344,6 +380,7 @@ Inicalizacija, iskanje in vstavljanje so pocasne operacije `O(n)`. Za brisanje e
 pa velja enako kakor pri enosmernemu seznamu s kazalci. Vse elemente elemente, razen zadnjega brisemo s casovno kompleksnostjo `O(n)`.
 
 ### Implmementacija
+
 ```java
 class ListCursorNode {
   Object element;
@@ -358,15 +395,17 @@ public class ListCursor {
 }
 
 ```
+
 #### Operacije in casovne zahtevnosti
+
 - MAKENULL(L) ~ naredi prazen seznam `O(cells.length)`
 - FIRST(L) ~ vrne polozaj prvega elementa v seznamu `O(1)`
 - LAST(L) ~ vrne polozaj zadnjega elementa v seznamu `O(1)`
 - NEXT(p, L) ~ vrne naslednji polozaj polozaja p `O(1)`
-- PREVIOUS(p, L) ~ vrne predhodni polozaj `O(n)` 
-- RETRIEVE(p, L) ~ vrne element a_p na polozaju p  `O(1)`
+- PREVIOUS(p, L) ~ vrne predhodni polozaj `O(n)`
+- RETRIEVE(p, L) ~ vrne element a_p na polozaju p `O(1)`
 - INSERT(x, p, L) ~ vstavi element x na polozaj p `O(n)`
-- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc) ` O(1)`  
+- INSERT(x, L) ~ vstavi element x na poljuben polozaj (konc) ` O(1)`
 - DELETE(p, L) ~ zbrise element a_p na polozaju p `O(1)...O(n)`
 - EMPTY(L) ~ preveri ce je seznam prazen `O(1)`
 - END(L) ~ vrne polozaj, ki sledi zadnjemu elementu seznama `O(1)`
@@ -375,9 +414,11 @@ public class ListCursor {
 - PRINTLIST(L) ~ po vrsti izpise vse elemente v seznamu `O(n)`
 
 ## ADT MNOZICA
+
 > Mnozica (angl. set) - zbirka elementov, kjer vrstni red ni pomembern in elementi se ne ponavljajo
 
 ### Operacije
+
 - MAKENULL(S) ~ naredi prazno mnozico S `O(1)`
 - FIRST(S) ~ vrne polozaj prvega elementa v mnozici S `O(1)`
 - NEXT(p, S) ~ vrne naslednji polozaj polozaja p `O(1)`
@@ -392,15 +433,16 @@ public class ListCursor {
 - INTERSECTION(S1, S) ~ iz mnozice S zbrise vse elemente, ki se ne nahajajo tudi v S1 `odvisno od implementacije`
 
 ### Mnozico lahko implementiramo:
+
 - S povezanim seznamom:
-    - INSERT(x, S) `O(n)`
-    - LOCATE(x, S) `O(n)`
-    - UNION:
-      - enosmerni seznam `O(m*n)` (gremo skozi obe mnozici)
-      - urejeni seznam `O(m + n)`
-    - INTERSECTION:
-      - enosmerni seznam `O((m+n)*n)` (element poiscemo, plus brisemo)
-      - urejeni seznam `O(m + n)`
+  - INSERT(x, S) `O(n)`
+  - LOCATE(x, S) `O(n)`
+  - UNION:
+    - enosmerni seznam `O(m*n)` (gremo skozi obe mnozici)
+    - urejeni seznam `O(m + n)`
+  - INTERSECTION:
+    - enosmerni seznam `O((m+n)*n)` (element poiscemo, plus brisemo)
+    - urejeni seznam `O(m + n)`
 - Z zgosceno tabelo:
   - ucinkoviti operaciji INSERT(x, S) in LOCATE(x, S) `O(1)` (btw pod pogoji, da hash funkcija dela tko ku je trea)
   - UNION(S1, S) `O(m)`
@@ -412,24 +454,27 @@ public class ListCursor {
   - INTERSECTION(S1, S) `O(m log n)`
   - Hitre operacije, ki so vezane na urejenost elementov
 
-
 ## ADT VRSTA Z ENOSMERNIM SEZNAMOM S KAZALCI
+
 Vrsta je zbirka elementov, kjer vedno elemente:
+
 - dodajamo na konec vrste
 - brisemo na zacetku vrste
- 
+
 Vrsta sledi principu FIFO (first-in-first-out).
 Implementiramo jo lahko ucinkovito, vse operacije so `O(1)`
 Polozaj **ni** zamaknjen.
 
 ### Operacije in casovne zahtevnosti
+
 - MAKENULL(Q) ~ naredi prazno vrsto `O(1)`
 - EMPTY(Q) ~ ali je vrsta prazna? `O(1)`
 - FRONT(Q) ~ vrne prvi element v vrsti `O(1)`
 - ENQUEUE(x, Q) ~ vstavi element x na konec vrste `O(1)`
 - DEQUEUE(Q) ~ zbrise prvi element iz vrste `O(1)`
-  
+
 ## ADT VRSTA S KROZNIM POLJEM
+
 Vrsta se krozno premika po polju, pomagamo si z operatorjem ostanka pri deljenju.
 Velikost taksne vrste je navzgor omejena s predefinirano velikostjo arraya, tudi ves
 cas zavzema maximalno prostorsko zahtevnost pomnilnika. Vse casovne zahtevnosti so ravno tako `O(1)`
@@ -441,16 +486,18 @@ int rear = (front + count -1) % items.length;
 ```
 
 ## ADT SKLAD
+
 Elemente vedno dodajanmo na vrh sklada, in jih tudi brisemo iz vrha sklada
-Skladu pravimo tudi LIFO vrsta (last in first out). 
+Skladu pravimo tudi LIFO vrsta (last in first out).
 Slad lahko ucinkovit impementiramo z enosmernim seznamom s kazalci, kjer polozaj ravno
 tako ni zamaknjen. Vrh je zacetek
 
 ```
 (top) [a1| next] --> [a_n| next] --> null
- ```
+```
 
 #### Operacije v slkadu
+
 - MAKENULL(S) ~ naredi prazen sklad `O(1)`
 - EMPTY(S) ~ preveri ce je sklad prazen `O(1)`
 - TOP(S) ~ vrne zadnji element iz sklada `O(1)`
@@ -459,20 +506,23 @@ tako ni zamaknjen. Vrh je zacetek
 
 slklad lahko implementiramo tudi s **poljem**, komplesnost operacij ostane ista,
 vendar pride do nekaj slabosti:
+
 - velikost sklada je navzgor omejena (z velikostjo polja)
 - ves cas zaseda maksimalno pomnilnika
 
-
 ## ADT PRESKOCNI SEZNAM
+
 ```
 n1: []--------->[]--------->[]--------->[]--------->[]--------->[]
 n0: []->[]->[]->[]->[]->[]->[]->[]->[]->[]->[]->[]->[]->[]->[]->[]
 ```
+
 Imamo `n` elementov v seznamu `n0`. V preskocnem seznamu, pa se splaca
 prilagotiti stevilo elementov na `0 < n1 <= n/2`, ce bi sli cez polovico,
 ne bi pridobili prav nic, saj bi na nekaterih segmentih iskali linearno, enako
 kot pri klasicnem seznamu.
 Koliksen pa naj bo n1, da bomo imeli mininalno stevilo korakov?
+
 - `n1 = n/n1 = sqrt(n)`
 
 Lahko pa tudi povecamo stevilo nivojev, recemo jim ekspresni nivoji.
@@ -480,23 +530,28 @@ Lahko pa tudi povecamo stevilo nivojev, recemo jim ekspresni nivoji.
 ## ADT PRESLIKAVA (HASH MAP)
 
 Preslikava vsakemu elementu `d` iz domene priredi ustrezn r iz zaloge vrednosti:
- - `M(d) = r`
+
+- `M(d) = r`
 
 ### Operacije definirane za ADT MAPPING
+
 - MAKENULL(M) ~ inicializira prazno preslikavo
 - ASIGN(M, d, r) ~ definira, da je M(d) = r
 - COMPUTE(M, d) ~ vrne vrednost M(d) ce je definirana, sicer `null`
 
 Pri implementaciji preslikave lahko uporabimo:
-- seznam parov(d, r) `O(n)` 
+
+- seznam parov(d, r) `O(n)`
 - iskalna drevesa `O(logn)`
 - polje `O(1)`
-  
+
 ### Implementacija preslikave s poljem
+
 Indeksi polja predstavljajo elemente domene `d`, hitro dodajanje, iskanje, brisanje(`O(1)`). Na zalost pa zahteva veliko pomnilnika, zaradi tega je potrebno, da je domena dovolj majhna.
 
 Ampak, v praksi je moc domene velika, ali celo neskonca, zato uporaimo **zgoscevalno** funkcijo,
 ki preslika (zgosti) originalno domeni v manjso domeno.
+
 - h: domaintype -> smalldomaintype
 
 Zgoscevalna funkcija "razprsi" elemente po manjsi domeni. Podatkovni strukturi, ki uporablja zgoscevalno
@@ -504,10 +559,12 @@ funkcijo, pravimo zgoscevalna tabela (hash table). Zelimo funkcijo, ki cim bolj 
 elemente po polju.
 
 #### Zgoscevanje
+
 Problemi:
+
 - izbira velikosti polja:
   - dovolj veliko, da lahko vanj spravimo vse elemente
-  -  ne preveliko, saj sicer zavzame prevec pomnilnika
+  - ne preveliko, saj sicer zavzame prevec pomnilnika
 - Izbira ustrezne zgoscevalne funkcije:
   - zelimo funkcijo, ki enakomerno razprsi elemente
   - najbolj preprosta: h(x) = x mod m
@@ -520,15 +577,17 @@ Do problemov pride, tudi ko se zgoscevalna tabela napolni, potrebno je izvesti p
 To naredimo tako, da zgradimo vecjo tabelo, ter vse elemente iz manjse tabele uvrstimo v novo tabelo z novo
 zgoscevalno funkcijo. Rehashing zahteva `O(n)` casa :((
 
-V povprecju za `n` elementov najmanj `n`  vstavljanj:
+V povprecju za `n` elementov najmanj `n` vstavljanj:
 n operacij O(1) in in 1 operacija O(n) -> v povprecju `2n/(n+1) = O(2) = O(1)`
 
 #### ZAPRTA ZGOSCENA TABELA
+
 Z zaprto zgosceno tabelo in z zaporednim naslavljanjem: uporabljamo zaporedje zgoscevalnih
 funkcij - v primeru sovpadanja izracunane vrednosti uporabim drugo funkicjo za naslednji mozni polozaj elementa.
-Najpreprostejse zaporedje: 
+Najpreprostejse zaporedje:
+
 - `h_1(h) = (h(x) + i) mod m`
-  
+
 Sepravi poskusamo dokler ne najdemo prostega placa.
 
 Better option : `h'_i(x) =((h_1(x) + i  * h_2(x)) mod m)` // zaradi mnozenja se elementi bolj razprsijo <br/>
@@ -536,14 +595,17 @@ Better option : `h'_i(x) =((h_1(x) + i  * h_2(x)) mod m)` // zaradi mnozenja se 
 `h_2(x) = (x mod m')` &emsp; &emsp; &emsp; `m' = m - 2` <br/>
 
 Slabosti:
+
 - Pri iskanju elementa je potrebno preiskovati do prvega praznega prostora
 - Pri brisanju elementa je potrebno zapisati posebno vrednost, ki ne zakljuci iskanja
 - Velikost tabele mora biti vecja od stevila elementov `m > n`
 - Ce se `n` pribliza `m`, postanejo operacije nespremenljivo pocasne
 
 #### ODPRTA ZGOSCENA TABELA
+
 Tukaj pa elemente preslikamo z zgoscevalo funkcijo, in ce pride do sovpadanja,
 dodamo element na konec povezanega seznama
+
 ```
 [/]
 [0] --> [element | next] -> [element | next] --> null
@@ -554,17 +616,21 @@ dodamo element na konec povezanega seznama
 [/]
 ...
 ```
+
 Pricakovana zahtevnost iskanja elementa je `O(n/m)`, kjer je `n` stevilo vstavljenih elementov in `m` velikost zgoscene tabele.
 
 Ce imamo dobro izbrano velikost tabele in zgoscevalno funkcijo, so vse operacije reda `O(1)`
 
 Recap:
+
 - zaprta zgoscena tabela zasede manj pomnilnika
-- odprta zgoscena tabela je bol dinamicna  / flekisbilna
+- odprta zgoscena tabela je bol dinamicna / flekisbilna
 - vstavljanje v **odprto** zgosceno tabelo je vedno `O(1)`
 
 ### SLABOSTI ZGOSCENIH TABEL
+
 Zaradi fiksne zgoscevalne funkcije, zgoscena tabela ne more biti dinamicna struktura
+
 - vleikosti tabele moramo vnaprej definirati
 - ce je tabela prevelika, zapravljamo pomnilnik
 - ce je tabela premajhna, pride do prevelikega sovpadanja elemntov
@@ -578,23 +644,24 @@ Ce so slabosti nesprejemljive, uporabimo drevo.
 
 ```
           A
-        / | \ 
+        / | \
        B  C  D
-      /     /  \ 
-     E     H    J  
+      /     /  \
+     E     H    J
     / \
    F   G
 ```
 
-
 Terminologija:
- - **stopnja** (degree) **vozlisca** ~ stevilo sinov vozlisca (stopnja vozlisca E = 2)
- - **stopnja drevesa** ~ najvecje stevilo sinov od korena drevesa (v tem primeru 3)
- - **pot** (path) ~ zaporedje root vozlisc vozlisc (npr A -> B -> E -> G)
- - **nivo vozlisca** (level) ~ dolzina  poti od korena do vozlisca(nivo vozlisca E = 3)
- - **visina drevesa** (height) ~ dolzina najdaljse poti od korena do list(za zgornje drevo je 4)
+
+- **stopnja** (degree) **vozlisca** ~ stevilo sinov vozlisca (stopnja vozlisca E = 2)
+- **stopnja drevesa** ~ najvecje stevilo sinov od korena drevesa (v tem primeru 3)
+- **pot** (path) ~ zaporedje root vozlisc vozlisc (npr A -> B -> E -> G)
+- **nivo vozlisca** (level) ~ dolzina poti od korena do vozlisca(nivo vozlisca E = 3)
+- **visina drevesa** (height) ~ dolzina najdaljse poti od korena do list(za zgornje drevo je 4)
 
 Primer izracuna visine drevesa
+
 ```java
 public int height(TreeNode n) {
   if(n == null)
@@ -603,15 +670,19 @@ public int height(TreeNode n) {
     return Math.max(height(leftomostChild(n)) + 1, height(rightSibling(n)); // pri levemu prisetejemo se oceta
 }
 ```
+
 ### OBHOD DREVESA (TRAVERSAL)
+
 ```
           A
-        /   \ 
+        /   \
        B     C
-      / \   /  \ 
+      / \   /  \
      D   E F    G
 ```
+
 **Premi (preorder)** ~ izpisemo oznako korena pred oznakami poddreves. (`A, B, D, E, C, F, G`)
+
 ```java
 public void preorder(Tree r) {
   if(r != null) {
@@ -624,6 +695,7 @@ public void preorder(Tree r) {
   }
 }
 ```
+
 **obratni (postorder)** ~ izpisemo najprej oznake vozlisc vseh poddreves in zatem oznako korena(`D, E, B, F, G, C, A`)
 
 ```java
@@ -640,6 +712,7 @@ public void postorder(Tree r) {
 }
 
 ```
+
 **vmesni (inorder)** ~ izpisemo najprej oznake vozlisc najbolj levega drevesa, nato oznako korena in zatem oznake vozlisc vseh ostalih poddreves korena. (`D, B, E, A, F, C, G`). Je najbolj zanimiv za binarna iskalna drevesa, saj tako lahko izpisemo elemente po narascujocem vrstnem redu, ker so v levem poddrevesu elementi vedno manjsi od korena, v desnem pa vecji.
 
 ```java
@@ -657,7 +730,9 @@ public void inorder(Tree r) {
   }
 }
 ```
+
 **nivojski** ~ izpisemo najprej vsa vozlisca na 1. nivoju, zatem na 2. nivoju itn. (`A, B, C, D, E, F, G`).
+
 ```java
 pubic void printByLevel() {
   int l = 1;
@@ -686,7 +761,9 @@ private booolean printLevel(int l, Tree r) {
   }
 }
 ```
-### Formule za drevesa (min in max št. elementov) 
+
+### Formule za drevesa (min in max št. elementov)
+
 ```
 BST
 - min: izrojeno drevo => seznam => n = h
@@ -705,8 +782,8 @@ B-TREE
 - max: m^h - 1
 ```
 
-
 ### Implementacija drevesa s poljem
+
 - vsako vozlisce hrani **stevilo sinov**, celo drevo pa stevilo vozlisc `n`
 - koren drevesa je **prvi** element polja
 - sledijo vsa vozlisca prvega najbolj levega pddrevesa, nato vsa vozlisca drugega poddrevesa in tako naprej
@@ -714,27 +791,29 @@ B-TREE
 
 ```
           A
-        / | \ 
+        / | \
        B  C  D
-      /     /  \ 
-     E     H    J  
+      /     /  \
+     E     H    J
     / \
    F   G
 
    [A][3] -- root
    [B][1] \
-   [E][2]  | 
-   [F][0]  | -- prvo poddrevo 
+   [E][2]  |
+   [F][0]  | -- prvo poddrevo
    [G][0] /
    [C][0] -- drugo poddrevo
    [D][2] \
    [H][0]  | - tretje poddrevo
    [J][0] /
 ```
+
 ### Operacije in casovne zahtevnosti
+
 - PARENT(n, T) ~ vrne oceta vozlisca `n` v drevesu T `O(1)`
 - LEFTOMOST_CHILD(n, T) ~ vrne najbollj levega sina vozlisca `n` `O(1)`
-- RIGHT_SIBLING(n, T) ~ vrne desnega brata vozlisca `n` `O(k)`, `k` je setevilo 
+- RIGHT_SIBLING(n, T) ~ vrne desnega brata vozlisca `n` `O(k)`, `k` je setevilo
 - LABEL(n, T) ~ vrne oznako vozlisca `n`
 - ROOT(T) ~ vrne koren drevesa, ce eksplicitno shranjen `O(1)`
 - MAKENULL(T) ~ naredi prazno drevo `O(1)`
@@ -742,10 +821,11 @@ B-TREE
 
 Ker polje ni dinamicna struktura, vstavljanje pomeni premikanje vseh elementov v tabeli, se redko uporablja za implementacijo dreves. Ce se ze uporabi se uporabi za storage.
 
-
 ### Implementacija drevesa s kazalci
+
 Poznamo dve obliki implementacije dreves:
-- vsako vozlisce vsebuje kazalca na **levega otroka** in **desnega brata** 
+
+- vsako vozlisce vsebuje kazalca na **levega otroka** in **desnega brata**
   ```java
   public class Tree {
     public Node parent, leftSon, rightSibling;
@@ -753,7 +833,7 @@ Poznamo dve obliki implementacije dreves:
   ```
   ```
         A -> n
-      /       \ 
+      /       \
      B   ->    C -> n
    /   \       /  \
   D ->  E->n  F -> G -> n
@@ -766,15 +846,16 @@ Poznamo dve obliki implementacije dreves:
   ```
   ```
           A
-        /   \ 
+        /   \
        B     C
-      / \   /  \ 
+      / \   /  \
      D   E F    G
   ```
 
 Ponavadi dodamo tem implementacijam se kazalec na oceta.
 
 ### Operacije in casovne zahtevnosti
+
 - PARENT(n, T) ~ vrne oceta vozlisca `n` v drevesu T `O(1)`
 - LEFTOMOST_CHILD(n, T) ~ vrne najbollj levega sina vozlisca `n` `O(1)`
 - RIGHT_SIBLING(n, T) ~ vrne desnega brata vozlisca `n` `O(1)`
@@ -784,17 +865,20 @@ Ponavadi dodamo tem implementacijam se kazalec na oceta.
 - CREATE(r, v, T1, ... , Ti) ~ generira drevo s korenom `r` z oznako v, ter s stopnjo `i` s poddrevesi `T1, ..., Ti` `O(1)` Za razliko od implementacije s poljem, je tukaj CREATE operacija zelo hitrejsa, saj je potrebno samo prevezati pointerje in ne dodajati novih elementov tabelo (`i` je tudi navzgor omejen, zato ga tretiramo kot konstantno operacijo)
 
 ### Binarna drevesa
+
 vsa vozlisca s stopnjo manjso ali enako 2
 vozlisce ima lahko tudi samo desnega sina
 
 Lastnosti binarnih dreves:
+
 - binarno drevo visine `v` ima najvec `2^n - 1` vozlisc
 - visina binarnega drevesa z `n` vozlisci `n >= v >= [log_2(n+1)]`
 - v binarnem drevesu z `n` vozlisci je `n + 1` praznih poddreves
 
 Binarno drevo lahko izrodimo(degenerate) na `2^(n-1)` nacinov.
+
 ```
-   A   1 
+   A   1
  /   \  *
 null  B  2
     /   \  *
@@ -805,25 +889,31 @@ null  B  2
         null   E 2
                ... (n - 1)
 ```
+
 ## KONTEKSTNO NEODVISNE GRAMATIKE
-*this year skipped* 
+
+_this year skipped_
 
 ## ADT SLOVAR
+
 Je poseben primer ADT mnozice, ki omogoca samo vstavljanje, brisanje in iskanje elementa.
 Za ucinkovito iskanje elementov, potrebujemo relacijo **urejenosti** med elementi.
 Urejenost je definirana bodisi na elementih samih bodisi na delih elementov - kljucih (keys).
 
 Vsaka podatkovna baza je pravzaprav slovar:
+
 - elementi so urejeni po kljucih, zaradi hitrega iskanja
 - ker so baze shranjene na (relativno) pocasnem disku, je potrebno izbrati podatkovno strukturo, ki minimizira stevilo dostopov do diska
 
 ### Osnovne operacije
+
 - MAKENULL(D) ~ naredi prazen slovar D `O(1)`
 - MEMBER(x, D) ~ preveri ce je element `x` v slovarju `D`
 - INSERT(x, D) ~ vstavi element `x` v slovar `D`
 - DELETE(x, D) ~ zbrise element `x` iz slovarja `D`
 
 Zaradi urejenosti elementov v slovarju je mozno ucinkovito implementirati tudi operacije:
+
 - iskanje minimalnega elementa
 - iskanje maksimalnega elementa
 - iskanje predhodnika(predecessor)
@@ -831,22 +921,27 @@ Zaradi urejenosti elementov v slovarju je mozno ucinkovito implementirati tudi o
 - izpis elementov na danem intervalu
 
 ### Implementacija slovarja z zgosceno tabelo
+
 Se ne uporablja, uporablja se implementacija z drevesom.
 Ampak in special cases zna prit prav, saj so osnovne operacije `O(1)` (pod dolocenimi pogoji, cene pa niti ne vec tolko kjut (rehashing ipd.)
 
 Slabosti:
+
 - fiksna podatkovna struktura
 - fiksna zgoscevalna funkcija (zaradi sovpadanja se lahko izrodi v seznam)
 - neucinkovite operacije, ki temeljijo na urejenosti po kljucih
 
 ### Implementacija slovarja z drevesom
+
 Casovna kompleksnost osnovnih operacij je reda `O(log n)`. Ravno isto velja
 za operacije na podlagi urejenosti elementov. (`n` je stevilo elementov slovarja)
 
 ## BINARNO ISKALNO DREVO
+
 :tipspepe: https://www.youtube.com/watch?v=cySVml6e_Fc (samo pazi k prns je retardirana implementacija,tko da tisti element, ki ga ustavis, pole samo se traversas do roota)
 
 Binarno iskalno drevo je najbolj preprosta drevesna implementacija slovarja.
+
 ```java
 public class BSTree implements Dictionary {
   Node rootNode;
@@ -857,23 +952,27 @@ public class Node {
   Node left, right;
 }
 ```
+
 #### Iskanje elementa v BST
+
 ```java
 private Node member(Comparable x, Node node) {
   if(node == null)
     return null;
   else if(x.compareTo(node.key) == 0)
     return node;
-  else if(x.compareTo(node.key) < 0) 
+  else if(x.compareTo(node.key) < 0)
     return member(x, noder.left);
   else
     return member(x, node.right);
 }
 ```
+
 #### Dodajanje elementa v list
+
 ```java
 private Node insertLeaf(Comparable x, Node node) {
-  if(node == null) 
+  if(node == null)
     node = new Node(x);
   else if(x.compareTo(x.node.left) < 0)
     node.left = insertLef(x.node.left);
@@ -884,12 +983,13 @@ private Node insertLeaf(Comparable x, Node node) {
   return node;
 }
 ```
+
 #### Desna rotacija
 
 ```
 Dodamo nov element X < A
 
-   A       -->   A    -->      X 
+   A       -->   A    -->      X
  /   \         /   \         /   \
 L     R       X     R       L1    A
             /   \               /   \
@@ -905,17 +1005,18 @@ private Node rightRotation(Node node) {
   return node;
 }
 ```
+
 #### Leva rotacija
 
 ```
 Dodamo nov element X > A
 
-   A       -->   A    -->        X 
+   A       -->   A    -->        X
  /   \         /   \           /   \
 L     R       L     X         A    R2
                   /   \     /   \
                  R1   R2   L    R1
-```       
+```
 
 ```java
 private Node leftRotation(Node node) {
@@ -926,9 +1027,12 @@ private Node leftRotation(Node node) {
   return node;
 }
 ```
+
 #### Dodajanje elementa v koren
+
 Rekurzija gre najprej v globino, in element se doda kot list. Pri vracanju iz rekurzije se izvaja zaporedje
 rotacij, ki dvigne element v koren. Casovna zahtevnost je sorazmerna visini drevesa.
+
 ```java
 private Node insertRoot(Comparable x, Node node) {
   if(node == null)
@@ -947,6 +1051,7 @@ private Node insertRoot(Comparable x, Node node) {
 ```
 
 #### Brisanje elementa
+
 ```java
 // za prenos minimalnega kljuca iz poddrevesa
 private Comparable minNodeKey;
@@ -963,12 +1068,12 @@ public Node delete(Comparable x, Node node) {
         node.key = minNodeKey;
       }
     }
-  } 
+  }
   else if(x.compareTo(node.key) < 0)
     node.left = delete(x, node.left);
   else
     node.right = delete(x, node.right);
-  retrun node; 
+  retrun node;
 }
 
 
@@ -983,13 +1088,17 @@ private Node deleteMin(Node node) {
   }
 }
 ```
+
 ## AVL DREVO
+
 Bols ku se piflat teorijo, poglej si raje ta prakticn video, razlaga je top :)
+
 - https://www.youtube.com/watch?v=jDM6_TnYIqE
 
 Je delno poravnano binarno iskalno drevo. Za vsako vozlisce velja, da se visini obeh poddreves razlikujeta za najvec 1. Visina maximalno izrojenega AVL dervesa z `n` elementi je: `h = 1.44log_2(n+1)`. Zahtevnost osnovnih operacij je reda O(logn).
 
 Primer AVL - node-a
+
 ```java
 public class Node {
   Comparable key;
@@ -997,15 +1106,16 @@ public class Node {
   int balance; // ravnotezni faktor
 }
 ```
+
 #### Dodajanje elementa v AVL drevo
+
 - Element dodamo v list drevesa kot pri navadnem BST
 - Preverimo ravnotezni faktor vseh vozlisc na poti navzgor od vstavljenega lista do korena drevesa.
-    - ce je absolutna vrednost ravnoteznega faktorja vecja kot 1, je potrebno drevo popravljati
-    - v najslabsem primeru je potrebno popravljati ravnotezni faktor vse do korena - ko pride do rotacije(enojne ali dvojne), je postopek zakljucen
+  - ce je absolutna vrednost ravnoteznega faktorja vecja kot 1, je potrebno drevo popravljati
+  - v najslabsem primeru je potrebno popravljati ravnotezni faktor vse do korena - ko pride do rotacije(enojne ali dvojne), je postopek zakljucen
 - popravljanje -> moozna sta 2 primera:
   - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 2 in oba faktorja **isti** predznak (izvedemo enojno rotacijo)
   - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in oba faktorja imata **razlicna** predznaka (izvedemo dvojno rotacijo)
-
 
 #### Implementacija AVL drevesa
 
@@ -1015,7 +1125,7 @@ class Avl {
     public static void main(String [] args) {
       Node root = new Node(10);
       AVLTree tree = new AVLTree(root);
-    
+
       for(int i = 2; i < 99999999; i++) {
           if(i!=10)
             tree.insert(root, i);
@@ -1036,7 +1146,7 @@ class Node {
 
 class AVLTree {
     private Node root;
-    
+
     public AVLTree (Node root) {
         this.root = root;
     }
@@ -1052,7 +1162,7 @@ class AVLTree {
     int getBalance(Node n) {
         return (n == null) ? 0 : height(n.right) - height(n.left);
     }
-    
+
     Node mostLeftChild(Node n) {
         while(n.left != null)
             n = n.left;
@@ -1099,7 +1209,7 @@ class AVLTree {
                 z.right = rotateRight(z.right);
                 z = rotateLeft(z);
             }
-            
+
         } else if (balance <  -1) {
             if(height(z.left.left) > height(z.left.right)) {
                 z = rotateRight(z);
@@ -1153,6 +1263,7 @@ class AVLTree {
 ```
 
 #### Brisanje elementa iz AVL drevesa
+
 - Element brisemo kot pri navadnem BST:
   - ce je element list drevesa, ga enostavno izbrisemo
   - ce ima element samo enega sina, ga izbrisemo ter na njegovo mesto postavimo njegovega sina
@@ -1161,9 +1272,9 @@ class AVLTree {
   - ce je absolutna vrednost ravnoteznega faktorja vecja kot 1, je potrebno drevo popravljati
   - v najslabsem primeru je potrebno popravljati ravnotezni faktor vse do korena poravnati drevo
 - popravljanje -> mozna sta 2 primera:
-    - Ob brisanju elementa je mozen primer, da ima sin ravnotezni faktor enak 0 (enojna rotacija)
-    - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in imata oba faktorja **isti** predznak (enojna rotacija)
-    - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in faktorja imata **razlicna*2
+  - Ob brisanju elementa je mozen primer, da ima sin ravnotezni faktor enak 0 (enojna rotacija)
+  - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in imata oba faktorja **isti** predznak (enojna rotacija)
+  - koren ima absolutno vrednost ravnoteznega faktorja 2, sin pa 1 in faktorja imata \**razlicna*2
 
 #### LL ROTACIJA (enojna)
 
@@ -1182,13 +1293,15 @@ Primer na vecjem drevesu
           /   \             /       \
          B     Ar          C         A
        /   \             /   \     /   \
-      C     Br          Cl   Cr   Br   Ar 
+      C     Br          Cl   Cr   Br   Ar
     /   \
-  Cl     Cr 
+  Cl     Cr
 
 Tle mamo LL inbalance. Sepravi smo insertali Left left od roota.
 ```
+
 #### LR ROTACIJA (dvojna)
+
 ```
 Initially     Insert 20      first rotation   second rotation
 
@@ -1203,26 +1316,30 @@ Primer na vecjem drevesu
             A                       C
           /   \                   /   \
          B     Ar                B     A
-       /   \                   /  \     \  
+       /   \                   /  \     \
       Bl     C                Bl  Cl     Ar
            /   \
           Cl    Cr
 
 Tle mamo LR inbalance. Sepravi smo insertali Left right od roota.
 ```
+
 #### RR ROTACIJA (enojna)
+
 ```
 Initially     Insert 30             after rotation
 
   10 [-1]        10 [-2]                  20 [0]
     \              \                     /  \
-     20 [0]         20 [-1]         [0] 10   30 [0] 
+     20 [0]         20 [-1]         [0] 10   30 [0]
                       \
                        30 [0]
 
 Tle mamo RR inbalance. Sepravi smo insertali right right od roota.
 ```
+
 #### RL ROTACIJA (dvojna)
+
 ```
 Initially     Insert 30        first rotation           second rotation
 
@@ -1236,7 +1353,9 @@ Tle mamo RL inbalance. Sepravi smo insertali right left od roota.
 ```
 
 ### RDECE-CRNO DREVO
+
 Bols ku se piflat teorijo, poglej si raje te prakticne videe, razlaga je top :)
+
 - https://www.youtube.com/watch?v=3RQtq7PDHog
 - https://www.youtube.com/watch?v=qA02XWRTBdw
 - https://www.youtube.com/watch?v=w5cvkTXY0vQ
@@ -1258,7 +1377,9 @@ Bol ku tko se ne more izrodit
            \
             F
 ```
+
 Primer RB - node-a
+
 ```java
 public class Node {
   Comparable key;
@@ -1266,7 +1387,9 @@ public class Node {
   int color;
 }
 ```
+
 #### Osnovne operacije so hitre `O(logn)`
+
 - iskanje ~ enako kot pri obicajnem BST `O(logn)`
 - dodajanje ~ dodamo **rdeci** list, vendar je ob dodajanju potrebno popraviti strukturo drevesa, od spodaj navzgor (v najslabsem primeru od najnizjega lista do korena -> `O(logn)`)
 - brisanje ~ nadomestimo element z minimalnim iz desnega poddrevesa(ali z maksimalnim iz legega poddrevesa), ce je minimalni (izbrisani) **crn**, potem je potrebno ravno tako popravljanje strukture drevesa, ki se nadaljuje do korena (`O(logn)`).
@@ -1274,57 +1397,61 @@ public class Node {
 Honestly se res splaca pogledat videe za te operacije..
 
 #### Dodajanje elementa v rdece-crno drevo
+
 - Element dodamo v list drevesa kot pri navadnem BST
 - Dodano vozlisce (list) pobarvamo **rdece**
 - Ce je oce dodanega lista **rdec**, je potrebno drevo popraviti(rekurizvna definicja):
   - oce je koren drevesa -> postopek se zakljuci
   - stric je **rdec** --> stari oce postane **rdec** --> **ponovi** 3. pri starem ocetu
   - stric ni **rdec** -> postopek se zakluci
-  
+
 #### Brisanje elementa iz rdece-crnega drevesa
+
 - Element izbrisemo iz drevesa kot pri navadnem BST:
-    - ce je element list drevesa, ga enostavno izbirsemo
-    - ce ima element samo enega sina, ga izbrisemo, ter na njegovo mesto postavimo njegovega sina
-    - ce ima element dva sina, zbrisemo najvecji element iz desnega poddrevesa, ki nadomesti dejansko izbrisano vozlisce
+
+  - ce je element list drevesa, ga enostavno izbirsemo
+  - ce ima element samo enega sina, ga izbrisemo, ter na njegovo mesto postavimo njegovega sina
+  - ce ima element dva sina, zbrisemo najvecji element iz desnega poddrevesa, ki nadomesti dejansko izbrisano vozlisce
 
 - Barvanje:
   - Ce je izbrisano **rdece** vozlisce, koncamo
   - Ce je izbrisano **crno** vozlisce, je potrebno drevo popraviti (crna visina danega poddrevesa je je znizala za ena)
-  
 - Brsianje crnega vozlisca:
-  -  ce je koren problematicnega poddrevesa **rdec** -> zakljuci
-  -  ce je izbrisan koren drevesa -> zakljuci
+  - ce je koren problematicnega poddrevesa **rdec** -> zakljuci
+  - ce je izbrisan koren drevesa -> zakljuci
   - v nasprotnem primeru:
     - 1. brat je **rdec** -> **crn** brat -> skoci v 2.
     - 2. **crn** brat in ni **rdecega** necaka -> ponovi cel postopek pri ocetu
     - 3. **crn** brat in **crn** zunanji necak -> **rdec** zunanji necak -> skoci v 4.
     - 4. **crn** brat in **rdec** zunanji necak -> postopek se zakljuci
-  
-
 
 ## ADT PRIORITETNA VRSTA
+
 V prioritetni ali prednostni vrsti ima vsak element oznako prioritete, ki doloca vrstni red brisanja elementov iz vrste.
-Ne velja FIFO! 
-Sledi dogovoru:  nizja je prioriteta, prej bo element prisel iz vrste.
+Ne velja FIFO!
+Sledi dogovoru: nizja je prioriteta, prej bo element prisel iz vrste.
 
 ### Operacije in casovne zahtevnosti
-- MAKENULL(Q) ~ napravi prazno prioritetno vsto Q  `O(1)`
+
+- MAKENULL(Q) ~ napravi prazno prioritetno vsto Q `O(1)`
 - INSERT(x, Q) ~ vstavi element x v prioritetno vrsto Q `<= O(logn)`
 - DELETEMIN(Q) ~ vrne element z najmanjso prioriteto iz prioritetne vrste Q in ga izbrise iz Q `<= O(logn)`
 - EMPTY(Q) ~ ali je prioritetna vrsta Q prazna? `<= O(logn)`
 
 ### Heap implementacija
+
 - je levo poravnano, na najglobljem nivoju drevesa eventuelno manjkajo elementi samo iz desne strani
 - je delno urejeno, za vsako poddravo velja, da je v korenu najmanjsi element tega poddrevesa
 - **vozlisca hranimo po vrsti po nivojih**
 - hranimo se stevilo elementov `n`
 
 V vozliscih ne potrebujemo dodatnih indeksov, saj jih lahko sproti izracunamo:
+
 - ce z `i`(`i` gre od **1** naprej) oznaciom indeks vozlisca, potem velja:
-    - `2*i` je indeks levega sina
-    - `2*i + 1` je indeks desnega sina
-    - `i/2` je indeks oceta
-  
+  - `2*i` je indeks levega sina
+  - `2*i + 1` je indeks desnega sina
+  - `i/2` je indeks oceta
+
 ```java
 public class Heap {
   static final int DEFAULT_SIZE = 100;
@@ -1333,42 +1460,48 @@ public class Heap {
   int noNodes, size;
 }
 ```
+
 #### Insert procedure:
+
 - element `x` najprej dodamo na prvo prazno mesto z leve na zadnjem nivoju drevesa
   - ce je zadnji nivo zapolnjen, ga dodamo kot prvega z leve na naslednjem nivoju
 - zamenjamo `x` z ocetom, dokler ni:
   - oce manjsi od `x` ali
   - `x` v korenu drevesa
-Casovna zahtevnos je reda `O(logn)`
+    Casovna zahtevnos je reda `O(logn)`
 
 ### Deletemin procedure:
+
 - Najmanjsi element se nahaja v korenu
 - Nadomestimo ga z najbolj desnim elementom `x` na zadnjem nivoju kopice
 - zaporedno zamenjujemo `x` z najmanjsim od obeh sinov, dokler ni:
   - `x` manjsi od obeh sinov
   - `x` list drevesa
-  
+
 Casovna zahtevnost reda `O(logn)`
 
 ### Izgradnja kopice
+
 Kopico z `n` elementi zgradimo v casu reda
+
 - O(nlogn), ce `n` krat uporabimo `INSERT`
 - O(n), ce so vsi elementi podani na zacetku
-    - elemente najprej kar v poljubnem vrstnem redu postavimo v kopico, ki je tako levo poravnana
-    - kopico urejamo po nivojih od spodaj navzgor
+  - elemente najprej kar v poljubnem vrstnem redu postavimo v kopico, ki je tako levo poravnana
+  - kopico urejamo po nivojih od spodaj navzgor
 
 **Heapsort** -> najprej zgradimo kopico, nato pa se po vrsti jemlji od najmanjsega do najvecjega `O(nlogn)`.
 
 Za algoritme na grafih, je potrebna se operacija `DECREASEKEY(x, k, Q)`, ki elementu v kopici zmanjsa kljuc na `k` :
-  - najprej posicemo element `x` `O(logn)` in mu priredimo vrednost `k`
-  - zamenjamo `x` z ocetom, dokler ni:
-    - oce manjsi od `x` ali
-    - `x` v korenu drevesa
+
+- najprej posicemo element `x` `O(logn)` in mu priredimo vrednost `k`
+- zamenjamo `x` z ocetom, dokler ni:
+  - oce manjsi od `x` ali
+  - `x` v korenu drevesa
 
 ### Implementacija prioritetne vrste s pomocjo razlicnih podatkovnih struktur
 
 |                  | Insert    | Deletemin | decrease_priority |
-|------------------|-----------|-----------|-------------------|
+| ---------------- | --------- | --------- | ----------------- |
 | neurejeni seznam | O(1)      | O(n)      | O(1)              |
 | urejeni seznam   | <=O(n)    | (1)       | O(n)              |
 | BST              | <=O(n)    | <=O(logn) | O(n)              |
@@ -1377,29 +1510,30 @@ Za algoritme na grafih, je potrebna se operacija `DECREASEKEY(x, k, Q)`, ki elem
 | hash table       | O(1)      | O(n)      | O(1)              |
 
 ## ADT BDREVO
+
 B drevo je popolnoma poravnano isaklno drevo, vsi listi so na istem nivoju. Vsako notranje vozlisce B-drevesa reda `m` ima lahko
 od `m/2` do `m`.
 
 Visina: `h <= log_[m/2](n+1/2) + 1`
 
 Properties:
-  - vsako vozlisce ima max `m` otrok
-  - minimum otrok:
-    - koren: `2` (ce mamo seveda sploh enough elementov)
-    - list: `0`
-    - notranja vozlisca `floor(m/2)`
-  - vsako vozlisce ima `max(m-1)` kljucev
-  - vsako vozlisca ima min kljucev:
-    - koren `1`
-    - vsa ostala vozlisca  `floor(m/2) - 1`
 
-
+- vsako vozlisce ima max `m` otrok
+- minimum otrok:
+  - koren: `2` (ce mamo seveda sploh enough elementov)
+  - list: `0`
+  - notranja vozlisca `floor(m/2)`
+- vsako vozlisce ima `max(m-1)` kljucev
+- vsako vozlisca ima min kljucev:
+  - koren `1`
+  - vsa ostala vozlisca `floor(m/2) - 1`
 
 Zelo so upoorabna za velike podatkovne baze, saj s pomocjo bdreves zminimiziramo stevilo dostopov do diska.
 
 V praksi se uprablja `m=512, 1024,.. ++`, tako da prva dva ali celo tri nivjoe drevesa hranimo v GP --> kar pomeni da potrebujemo za dostop do enega izmed 100T podatkov, samo 2 ali 3 branja iz diska.
 
 #### Implementacija
+
 ```java
 public class BtreeNode {
   int count; // st kljucev v vozliscu
@@ -1407,10 +1541,12 @@ public class BtreeNode {
   BtreeNode children[]; // [0, m]
 }
 ```
+
 ### Operacije
 
 - **Iskanje** je posplošitev iskanja v BST: v vozlišču bodisi
-najdemo element ali pa ustrezno poddrevo. Postopek:
+  najdemo element ali pa ustrezno poddrevo. Postopek:
+
   - Iskanje zacnemo v vozliscu, ki je koren drevesa
   - Iskani element **zaporedno** preverjamo z elementi v vozliscu, dokler:
     - ne naletimo na iskani element
@@ -1418,32 +1554,32 @@ najdemo element ali pa ustrezno poddrevo. Postopek:
     - ne peregledamo zadnjega elementa in se iskanje rekurzivno nadaljuje v zadnjem poddrevesu
   - Casovna zahtevnost : `O(mlogn)` (Ce uporabimo bisekcijo, za iskanje po kljucih --> `O(logm * logn))`
 
-
 - **Dodajanje**: element dodamo v list; če ni dovolj prostora,
-se list razbije na dva lista z ustreznim ključem, ki ga
-rekurzivno dodamo očetu. Postopek:
+  se list razbije na dva lista z ustreznim ključem, ki ga
+  rekurzivno dodamo očetu. Postopek:
+
   - ce opazovano vozlisce vsebuje manj kot `m-1` elementov, dodamo element na ustrezno mesto in koncamo
   - ce v opazovanem vozliscu ni prostora(ima ze m-1 elementov in z dodajanjem imamo `m` elementov), ga razbijemo na dve vozlisci:
-    - dolocimo sredinski `floor(m/2)` - ti elementi med `m` elementi 
+    - dolocimo sredinski `floor(m/2)` - ti elementi med `m` elementi
     - `floor(m/2)-1` elementov, ki so manjsi od sredinskega elementa, damo v novo levo vozlisce.
     - `m - floor(m/2)` elementov, ki so vecji od sredinskega elementa, damo v novo desno vozlisce.
     - sredinski element dodamo one level up, in ce pridemo do konfliktov, ponovimo vse postopke :)))).
   - Casovna zahtevnost : `O(logn)`
 
-
 - **Brisanje**: Element brisemo iz vozlisca na zadnjem nivoju. Pri brisanju elementa, ki **ni** na zadnjem nivoju, ga nadomestimo s **predhodnikom** (z najvecjim elementom ustreznega levega poddrevesa), ki da dejansko zbrisemo. Postopek:
-  - Če vozlišče, kjer smo element zbrisali, vsebuje dovoljeno število elementov (vsaj  `floor(m/2) - 1` za koren zadošča 1), je postopek končan.
+  - Če vozlišče, kjer smo element zbrisali, vsebuje dovoljeno število elementov (vsaj `floor(m/2) - 1` za koren zadošča 1), je postopek končan.
   - Če vozlišče sedaj vsebuje premalo (`floor(m/2) - 2`) elementov, potem:
     - Eden izmed sosednih bratov (levi ali desni) vsebuje dovolj elementov, da
-  si jih razdelita med seboj – v tem primeru se od brata vzame enega ali
-  več elementov skupaj z ustreznimi poddrevesi in z zamenjavo
-  ustreznega elementa pri očetu. Sepravi ce uzamemo od levega brata, damo max element gor k ocetu, tistega, ki pa je bil do zdaj v root nodeu, premaknemo v tisti node, kjer smo element brisali.
+      si jih razdelita med seboj – v tem primeru se od brata vzame enega ali
+      več elementov skupaj z ustreznimi poddrevesi in z zamenjavo
+      ustreznega elementa pri očetu. Sepravi ce uzamemo od levega brata, damo max element gor k ocetu, tistega, ki pa je bil do zdaj v root nodeu, premaknemo v tisti node, kjer smo element brisali.
     - Če **nobeden** od bratov nima dovolj velikega števila elementov, imamo
-  dva brata (en `floor(m/2)` -1 in drugi `floor(m/2)`-2 elementov), ki ju skupaj z
-  ustreznim elementom v očetu lahko združimo v eno vozlišče, ki ima `<= m - 1`
-  elementov.
-  Postopek brisanja zatem rekurzivno ponovimo pri očetu.
+      dva brata (en `floor(m/2)` -1 in drugi `floor(m/2)`-2 elementov), ki ju skupaj z
+      ustreznim elementom v očetu lahko združimo v eno vozlišče, ki ima `<= m - 1`
+      elementov.
+      Postopek brisanja zatem rekurzivno ponovimo pri očetu.
 - Povperecna casovbn zahtevnost `O(logn)`
+
   ```
   Primercek deletanja(delet 16)
                                   [12 | ]
@@ -1479,15 +1615,17 @@ rekurzivno dodamo očetu. Postopek:
        [2 | ] [8 | ]        [10| ]    [18|19]
 
   ```
+
 - ce ti ni jasno: https://www.youtube.com/watch?v=GKa_t7fF8o0
 
-
 ## ADT DIGRAPH
+
 Usmerjeni graf je podan z mnozico vozlisc `V` in mnozico povezav `E` `G=<V, E>`
 
 Povezava je **urejen** par vozlisc:
-  - prvemu vozliscu pravimo **zacetek** povezave, drugemu pa konec povezave.
-  - Zacetek in konec povezave je lahko isto vozlisce
+
+- prvemu vozliscu pravimo **zacetek** povezave, drugemu pa konec povezave.
+- Zacetek in konec povezave je lahko isto vozlisce
 
 **Izstopna stopnja**(outdegree) vozlisca `v` je stevilo povezav, ki imajo to vozlisce kot svoj zacetek.
 
@@ -1496,14 +1634,15 @@ Povezava je **urejen** par vozlisc:
 Graf je **poln** (fully connected), ce je vsako vozlisce povezano z vsakim dugim vozliscem(vkljucno s samim seboj) `n*2` povezav.
 
 **Pot** (path) v grafu (`G=<V,E>`) je zaporedje vozlisc `v_1, ... v_k`, tako da velja:
-  - `v_i` je vsebovan v `V`
-  - `<v_i, v_i+1>` je vsebovan v `E`
+
+- `v_i` je vsebovan v `V`
+- `<v_i, v_i+1>` je vsebovan v `E`
 
 Pot je **enostavna** ce se vsako vozlisce na poti ponovi samo enkrat - sicer imamo cikel.
 
 **aciklicen graf** --> graf brez ciklov
 
-Vozlisce `v_k` je  **dosegljivo** iz v_1, ce v grafu obstaja pot `v_1, ... v_k`.
+Vozlisce `v_k` je **dosegljivo** iz v_1, ce v grafu obstaja pot `v_1, ... v_k`.
 
 **drevo** je usmerjeni aciklicni graf, kjer je vsako vozlisce dosegljivo iz korena po natanko eni poti
 
@@ -1512,50 +1651,55 @@ Vozlisce `v_k` je  **dosegljivo** iz v_1, ce v grafu obstaja pot `v_1, ... v_k`.
 Za ocenjevanje casovne zahtevnosti algoritmov na fraf
 
 ### Operacije nad usmerjeni grafi
+
 - MAKENULL(G) ~ naredi prazen usmerjen graf `G` `O(1)`
 - INSERT_VERTEX(v, G) ~ doda vozlisce v graf `G` `O(1)`
 - INSERT_EDGE(v1, v2, G) ~ doda povezavo `<v1, v2>` v graf `G` `O(1)`
 - FIRST_VERTEX(G) ~ vrne prvo vozlisce v grafu `G` `O(1)`
-- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce v  grafu `G` `O(1)`
+- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce v grafu `G` `O(1)`
 - FIRST_EDGE(v, G) ~ vrne prvo povezavo v grafu `G` z zacetkom `v` `O(1)`
-- NEXT_EDGE(e,v,G) ~ vrne naslednjo povezavo dane povezave `e` z  zacetkom `v` po nekem vrstnem redu `O(1)`
+- NEXT_EDGE(e,v,G) ~ vrne naslednjo povezavo dane povezave `e` z zacetkom `v` po nekem vrstnem redu `O(1)`
 - END_POINT(e, G) ~ vrne konec povezave `e` v grafu `G` `O(1)`
 
 Usmerjeni graf ucinkovito implemenitramo s **seznamom sosednosti** (adjanceny list)
+
 - vozlisca hranimo v seznamu
 - vsako vozlisce ima seznam povezav, ki vodijo iz vozlisca
 - vsaka povezava hrani se kazalec na konec povezave
 
 ### Neusmerjeni graf
+
 Podoben kot digraf, z nekaj izmemami
 
 Povezava je **neurejen** par vozlisc:
-  - vozlisci sta dva **konca** povezave
-  - povezani vozlisci sta **sosedni** (adjacent)
-  - dva konca povezave sta **razlicni** vozlisci
-  
+
+- vozlisci sta dva **konca** povezave
+- povezani vozlisci sta **sosedni** (adjacent)
+- dva konca povezave sta **razlicni** vozlisci
 
 **stopnja vozlisca** `v` je stevilo povezav, katerim je to vozlisce eden od koncev (stevilo sosedov
 
 graf je **poln** (fully connected), ce je vsako vozlisce povezano z vsakim drugim vozliscem (**sam s seboj ne more biti**)
 
 ### Operacije nad neusmerjenimi grafi
+
 - MAKENULL(G) ~ naredi prazen usmerjen graf `G` `O(1)`
 - INSERT_VERTEX(v, G) ~ doda vozlisce v graf `G` `O(1)`
 - INSERT_EDGE(v1, v2, G) ~ doda povezavo `<v1, v2>` v graf `G` `O(1)`
 - FIRST_VERTEX(G) ~ vrne prvo vozlisce v grafu `G` `O(1)`
-- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce v  grafu `G` `O(1)`
+- NEXT_VERTEX(v, G) ~ vrne naslednje vozlisce v grafu `G` `O(1)`
 - FIRST_EDGE(v, G) ~ vrne prvo povezavo v grafu `G` z zacetkom `v` `O(1)`
-- NEXT_EDGE(e,v,G) ~ vrne naslednjo povezavo dane povezave `e` z  zacetkom `v` po nekem vrstnem redu `O(1)`
+- NEXT_EDGE(e,v,G) ~ vrne naslednjo povezavo dane povezave `e` z zacetkom `v` po nekem vrstnem redu `O(1)`
 - ADJECENT_POINT(e, v, G) ~ vrne drugi konec povezave e v grafu `G` z enim koncem v `v` `O(1)`
 
 Implementiramo ga kot usmerjeni graf, kjer je vsaka povezava podvojena (dvosmerna):
+
 ```
         /  /              /  /
      /        /        /        /
     /          /------/          /
     /          /      /          /
-     /        /        /        /   
+     /        /        /        /
         /  /              /  /
 
         /  /              /  /
@@ -1567,24 +1711,28 @@ Implementiramo ga kot usmerjeni graf, kjer je vsaka povezava podvojena (dvosmern
 ```
 
 ## Disjunktne mnzoice
+
 Mnozico elementov zelimo razbiti na disjunktne podmnozice glede na neko relacijo med elementi.
 
 Gradimo mnozice od spodaj navzgor
+
 - Vsak element je ena podmnozica
 - Manjse podmnozice zdruzujemo v vecje podmnozice, ce so elementi iz ene in druge podmnozice v dani relaciji
 
 Za vsak element mormo vedeti kateri podmnozici pripada.
 
 ### Operacije:
+
 - MAKENULL(S) ~ generira prazno mnozico mnozic S `O(1)`
 - MAKESET(x, S) ~ tvori novo mnzoico `{x}` in jo doda v S `O(1)`
 - UNION(A1, A2, S) ~ zdruzi dve disjunktni podmnozici A1 in A2 v novo podmnozico. `O(1)`
-- FIND(x, S) ~ vrne podmnozico, katere element je `x` 
+- FIND(x, S) ~ vrne podmnozico, katere element je `x`
 
 Find operacija ima zabavno casovno kompleksnost --> na dolgi rok, m operacij v povprecju `(m \alpha (m,n) \aprrox O(m)) ` Sledi ackermanovi funkciji ~ `O(m)`.
 Sepravi ker je rekurzivnih klicov `m` in je `m <<< n`. `m` tretiramo kot konstantno in lahko predpostavimo, da ima operacija FIND `O(1)` casovno zahtevnost.
 
 #### Implementacija z gozdom
+
 - vsaka mnozica je drevo
 - vsak element kaze na oceta v drevesu
 - koren kaze sam nase
@@ -1601,6 +1749,7 @@ public class DisjointSubset {
 ```
 
 Operacija MAKESET iz enega elementa `x` tvori mnzoico `{x}` --> `O(1)`
+
 ```java
 public DisjointSubset makeset(Object x) {
   DisjointSubset newEl = new DijsointSubset();
@@ -1610,10 +1759,12 @@ public DisjointSubset makeset(Object x) {
   return newEl;
 }
 ```
+
 Operacija FIND(X): vrne mnnozico(t.j. koren drevesa), ki ji pripada element `x`. Ce je drevo izrojeno, je plezanje
 do korena lahko reda `O(n)`. Da se izrojenosti na dolgi rok izognemo, vsa vozlisca na poti prevezemo na koren:
 
 Ackermanova funkcija ce te zanima zakaj :kekw:
+
 ```java
 public disjointSubset find(DisjointSubset x) {
   if(x == x.parent)
@@ -1626,12 +1777,13 @@ public disjointSubset find(DisjointSubset x) {
 ```
 
 `O(n)` -> `O(1)`
+
 ```
 FIND (d):
 
     a
-    ^                                a    
-    |                              / | \ 
+    ^                                a
+    |                              / | \
     b       ===>                  d  c  b
     ^                                    \
     |                                     i
@@ -1639,9 +1791,11 @@ FIND (d):
    /  \
   d    e
 ```
+
 Operacija UNION: Koren ene podmnozice prevezemno na koren druge. Ker zelimo cimmanj izrojeno drevo, vedno prevezemo manjso mnozico na vecjo.
 
 Ce ignoriramo finde, je casovna zahtevnost `O(1)`.
+
 ```java
 public void union(DisjointSubset a1, DisjointSubset a2) {
   DisjointSubset s1 = find(a1);
@@ -1657,10 +1811,11 @@ public void union(DisjointSubset a1, DisjointSubset a2) {
 }
 ```
 
-
 ## Analiza kriticne poti
-Basically isces najdaljso pot od zacetka do konca. To je NP hard problem :tipspepe:. 
+
+Basically isces najdaljso pot od zacetka do konca. To je NP hard problem :tipspepe:.
 No pa pejmo skozi dinamicen alogritem(predpostavimo da ni ciklov!):
+
 - Graf pregledujemo od zacetka proti koncu
 - Hranimo seznam vozlisc, za katere smo pregledali ze vse poti do njih, nismo pa se pregledali njihovih naslednikov
 - za vsako vozlisce hranimo cas maksimalne poti, ki vodi do njega
@@ -1668,6 +1823,7 @@ No pa pejmo skozi dinamicen alogritem(predpostavimo da ni ciklov!):
 - ce zelimo izpisati se kriticno pot, shranimo se predhodnika na maksimalni poti
 
 ### inicializacija
+
 - izracunamo vstopne stopnje vseh vozlisc, postavimo zacetne case/razdalje na 0;
 
 ```java
@@ -1678,7 +1834,9 @@ class ValueType {
   double time; // alpa dist
 }
 ```
+
 Algorithm:
+
 ```java
 // a - zacetno vozlisce, c - zakljucno vozlisce
 public double tDynimic(Vertex a, Vertex c, DiGraph g) {
@@ -1697,7 +1855,7 @@ public double tDynimic(Vertex a, Vertex c, DiGraph g) {
 
     // poberemo prvo povezavo, iz elementa katerega smo pobrali iz seznama
     e = g.firstEdge(v);
-  
+
 
     while(e != null) {
       w = g.endPoint(e); // vrne vozlisce, ka katerega kaze e
@@ -1719,17 +1877,20 @@ public double tDynimic(Vertex a, Vertex c, DiGraph g) {
   return ((ValueType)c.value).time;
 }
 ```
+
 **Inicialzizacija** grafa ima zahtevnost `O(n+m)`
+
 - izracunamo vstopne stopnje vseh vozlisc
 - postavimo zacetne case za vsa vozlisca na 0
 - sepravi sprehod preko vseh vozlisc `n` in vseh povezav `m`
 
 Casovna zahtevnost algoritma za iskanje kriticne poti z dinamicnim programiranjem je `O(n+m) = O(m)`
 
-  - pregledamo vse povezave (m) in vsa vozlisca (n)
-  - ker je graf povezan, velja `n-1 <= m`
+- pregledamo vse povezave (m) in vsa vozlisca (n)
+- ker je graf povezan, velja `n-1 <= m`
 
 Izpis kriticne poti
+
 ```java
 w = c;
 while(w!=a) {
@@ -1738,17 +1899,19 @@ while(w!=a) {
 
   while(g.endPoint(e) != w)
     e = g.nextEdge(v, e);
-  
+
   System.out.println("<" + v + ", " + w ", " + e + ">");
   w = v;
 }
 ```
 
 ## DIJKSTRA
+
 Gradimo vpeto drevo od zacetnega vozlisca, ki je koren do vpetega devesa, proti listom. Vsakic iz mnozice vozlisc, ki se niso v drevesu izberemo tisto z najkrajso potjo od
 zacetnega vozlisa - pozresno (greedy). To zagotavlja, da ne obstaja krajsa pot od zacetnega vozlisca do `v` preko nekega drugega vozlisca `w`, ki se ni v drevesu.
 
 Ko vozlisce dodamo, pregledamo njegove naslednike:
+
 - ce je naslednik ze v drevesu, ga ignoriramo
 - ce je ze v prioritetni vrsti, eventuelno zmanjsamo prioriteto
 - sicer ga vstavimo v prioritetno vrsto
@@ -1758,18 +1921,20 @@ V prioritetni vrsti se hranijo dolzine **najkrajsih** znanih poti za vsako vozli
 Za napredovanje algoritme se te poti lahko skrajsajo, zato je potrebno uvesti se operacijo zmanjsanja prioritete.
 
 Za zmanjsevanje prioritete definiramo novo funkcijo DECREASE_KEY(x, new, Q):
-  - zmanjsa prioriteto elementa `x` na `new`
-  - v kopici operacijo implementiramo tako, da element z zmanjsano prioriteto zamenjujemo z ocetom
-  - postopek se ustavi, bodisi ce je oce manjsi od elementa ali ce element pride v koren kopice
-  - casovna zahtevnost je reda `O(logn)` pod pogojem, da imamo direkten dostop do elementa v kopici
+
+- zmanjsa prioriteto elementa `x` na `new`
+- v kopici operacijo implementiramo tako, da element z zmanjsano prioriteto zamenjujemo z ocetom
+- postopek se ustavi, bodisi ce je oce manjsi od elementa ali ce element pride v koren kopice
+- casovna zahtevnost je reda `O(logn)` pod pogojem, da imamo direkten dostop do elementa v kopici
 
 #### Operacije nad prioritetno vrsto v dijkstrinem algoritmu
+
 ```
 O(n * (insert + delete_min(find, pazi hash table!)) + m * decrease_key(rebalance)))
 ```
 
-
 **Vsako** vozlisce hrani svoj polozaj (indeks) v kopici.
+
 ```java
 class DijkstraVertex {
   boolean visited;
@@ -1778,7 +1943,9 @@ class DijkstraVertex {
   int heapIndex;
 }
 ```
+
 Algoritem:
+
 - Vsako vozlisce dodamo in izbrisemo iz prioritetne vrste, torej `n` operacij INSERT in `n` operacij DELETEMIN
 - notranja zanka gre preko vseh povezav, torej se izvrsi `m`-krat (ena izvrsitev zahteva bodisi INSERT bodisi DECREASEKEY ali pa nobene od teh operacij)
 - ce implementiramo prioritetno vrsto s kopico, potem je casovna zahtevnost v najslabsem primeru reda `O(2nlogn + mlogn) = O((n+m)logn)`
@@ -1820,20 +1987,22 @@ public void dijkstra(DijkstraVertex a, DiGraph g) {
         q.insert(w);
       } else if(v.distance +
                 ((Double)e.value).doubleValue() <
-                w.distance 
+                w.distance
               ) {
         w.parent = v;
         q.decreaseKey(w, new Double(v.distance + ((Double)e.value).doubleValue()));
       }
       e = g.nextEdge(v,e);
     }
-  }  
+  }
 }
 ```
 
 ## PRIMOV algoritem
+
 Je pozresen in zelo podoben algoritmu Dijkstra(le da je graf neusmerjen). Gradimo MST od poljubnega zacetnega vozlisca. Vsakic iz mnozice vozlisc, ki se niso v drevesu, izberemo tisto z najkrajso povezavo od nekega vozlisca v **MST**.
 Zatem pogledamo sosede dodanega vozilsca:
+
 - ce je sosed ze v MST, ga ignoriramo
 - ce je sosed ze v prioritetni vrsti, mu posodobimo prioriteto
 - sicer ga dodamo v prioritetno vrsto
@@ -1842,6 +2011,7 @@ Za izbiro vozlisca `v` z najkrajso razdaljo, uporablja algoritem prioritetno vrs
 V prioritetni se heranijo dolzine najkrajsih povezav za vsako vozlisce. Z napredovanjem algoritme se te povezave lahko skrajsajo, zato je potrebno tudi skrbeti za zmanjsevanje prioritete.
 
 #### Operacije nad prioritetno vrsto v primovem algoritmu
+
 ```
 O(n * (insert + delete_min(find, pazi hash table!)) + m * decrease_key(rebalance)))
 ```
@@ -1855,7 +2025,9 @@ class PrimVertex extends Vertex {
   int heapIndex;
 }
 ```
+
 Algortim `O(mlogn) ~ greedy`:
+
 ```java
 public void prim(UGraph g) {
   PQDecrease q = new HeapPos(); // urejena po razdaljah
@@ -1903,26 +2075,30 @@ public void prim(UGraph g) {
   }
 }
 ```
+
 ## KRUSKALOV algoritem
+
 Gradi minimalni vpeti gozd, uporaben tudi za nepovezane grafe.
 Na zacetku je vsako vozlisce svoje drevo. V enem koraku v gozd dodamo najkrajso povezavo - zdruzimo dve razlicni drevesi v eno (brez ciklov!)
 
 Basically v enem koraku algoritma z najkrajso povezavo zdruzi dve drevesi v enega.
 
-- Na zacetku je vsako vozlisce svoje drevo. 
+- Na zacetku je vsako vozlisce svoje drevo.
 - Na zacetku vse povezave damo v prioritetno vrsto.
 - v enem koraku najkrajso povezavo dodamo v **minimalni vpeti gozd** (MSF), ce povezuje
-razlicni drevesi(stevilo dreves se vsakic zmanjsa za 1)
+  razlicni drevesi(stevilo dreves se vsakic zmanjsa za 1)
 - devo je mnzoica vozlisc -> ADT disjunktne mnozice.
 
 Ker je kruskalov algoritem, bascically samo algoritem nad mnzoico elementov, potrebujemo samo spremeniti nekaj operacij v ADT GRAFU,da bodo vracali elemente iz mnozic.
 
 #### Operacije nad prioritetno vrsto v kruskalovem algoritmu
+
 ```
 O(m * (insert + delete_min(find, pazi hash table!)))
 ```
 
 ### GRAPH -> KGRAPH
+
 - MAKENULL(G) ~ naredi prazen graf
 - INSERT_VERTEX(v, G) ~ doda vozlisce v graf G
 - INSERT_EDGE(v1, v2, G) ~ doda povezavo `<v1, v2>` v graf `G`
@@ -1939,7 +2115,9 @@ public class Kedge extends Edge {
   boolean inForest; // rezultat algoritma
 }
 ```
+
 Algoritm `O(m log m)`:
+
 ```java
 public void kruskal(KGraph g) {
   KruskalVertex v1, v2;
@@ -1986,11 +2164,12 @@ public void kruskal(KGraph g) {
 !!! Vse narobe !!! (popravki dobrodosli)
 
 ### Formalizacija
+
 Program definiramo kot preslikavo:
 
-  `f: X ---> Z` ,
+`f: X ---> Z` ,
 
-ki preslika vhodne podatke `<x1, .., x_n> \in X` v izhodne podatke `<z1, .., z_n>. Pri tem morajo 
+ki preslika vhodne podatke `<x1, .., x_n> \in X` v izhodne podatke `<z1, .., z_n>. Pri tem morajo
 vhodni podatki izpolnjevati zacetni pogoj:
 
 `\theta(x1, ... x_n)`
@@ -2000,10 +2179,12 @@ Izhodni podatki, pa morajo izpolnjevati zakljucni pogoj:
 `\idk(z1, ..., z_n, x1, ... , x_n)`
 
 Pravimo, da je program:
+
 - **parcialno pravilen**, ce v primeru, da se za vhodne podatke, ki izpolnjujejo zacetni pogoj, ustavi, izhodni podatki pa izpolnjujejo zakljucni pogoj.
 - **totalno pravilen**, ce je parcialno pravilen, in ce se za vse vhodne podatke, ki izpolnjujejo zacetni pogoj, po koncnem stevilu korakov ustavi.
 
 Pri dokazovanju pravilnosti programa iz pogojev P, ki veljajo pred izvrsevanjem stavka, izpeljemo pogoje `Q`, ki veljajo po izvrsitvi stavka.
+
 ```
 // P(Y)
 Stavek;
@@ -2031,6 +2212,7 @@ Si;
 // Pi(y)
 
 ```
+
 - https://www.youtube.com/watch?v=5eGsdrdeBQ8
 - https://www.youtube.com/watch?v=3YP6NP1_tF0
 
@@ -2057,7 +2239,9 @@ avg(A[n]) {
   return tmp/n;
 }
 ```
+
 Primeri iz starih izpitov
+
 ```java
 // Dan je algoritem za sestevanje dveh nenegativnih celih stevil, ki uporablja operacijo inkrementa
 public static int sum(int x, int y) {
