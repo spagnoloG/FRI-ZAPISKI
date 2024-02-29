@@ -6,1106 +6,1106 @@
 \begin{document}
 
 \begin{center}
-    {\small VIS/FRI \par}
+	{\small VIS/FRI \par}
 \end{center}
 
 \begin{multicols}{2}
 
-\input{ponovitev-analize.tex}
-
-\section{\underline{Kombinatorika}}
-
-
-\textbf{1.1 Permutacije}
-\begin{small}
-    \begin{enumerate}
-        \item brez ponavljanja: $P_{n} = n!$
-        \item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
-    \end{enumerate}        
-\end{small}
-
-\textbf{1.2 Variacije}
-    \begin{small}
-        \begin{enumerate}
-            \item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
-            \item s ponavljanjem: $V_{n}^{r} = n^{r}$
-        \end{enumerate}                
-    \end{small}
-
-\textbf{1.3 Kombinacije}
-\begin{small}
-    \begin{enumerate}
-        \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
-        \item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
-    \end{enumerate}
-    \begin{center}
-        Lastnosti binomskega simbola:
-        \begin{math}
-            {n \choose n} = 1 \quad
-            {n \choose 0} = 1 \quad
-            {n \choose 1} = n \quad
-            {n \choose r} = {n \choose n - r} 
-        \end{math}
-        Binomski izrek:\\
-        \begin{math}
-            (a + b)^{n} =
-            {n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
-            {n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
-        \end{math}
-    
-    \end{center}        
-
-Za kombinacije velja, da vrstni red \textbf{ni} pomemben. Medtem pa
-ko v splosnem za variacije in permutacije velja, da vrstni red \textbf{je}
-pomemben.
-\end{small}
-
-
-\section{\underline{Verjetnost}}
-
-
-\textbf{2.1 Elementarna verjetnost}
-\smallskip
-
-Izid iz dane mnozice izidov je izbran na slepo, ce so vsi izidi
-iz te mnozice enako verjetni. Takrat se dogodek $A$ zgodi z verjetnostjo:
-\begin{center}
-    \begin{math}
-        P(A) = \dfrac{st.\: izidov,\: ki\: so\: v\: A\:}{st.\: vseh\: izidov}
-    \end{math}    
-\end{center}
-Nasprotni dogodek pa z verjetnostjo:
-\begin{center}
-    \begin{math}
-        P(\overline{A}) = 1 - P(A)
-    \end{math}    
-\end{center}
-Nacelo vkljucitev in izkljucitev dogodkov:
-\begin{center}
-    \begin{small}
-        \begin{math}
-            P(A_{1} \cup \dots \cup A_{n}) =
-        \end{math}
-        \begin{math}
-            P(A_{1}) + \dots + P(A_{n})
-        \end{math}
-        \begin{math}
-            - P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
-        \end{math}
-        \begin{math}
-            + P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
-        \end{math}
-        \begin{math}
-            - \dots
-        \end{math}
-        \begin{math}
-            + (-1)^{n + 1} P(A_{1} \dots A_{n})
-        \end{math}
-    \end{small}
-\end{center}
-Dogodki $A_{1}, A_{2}, \dots , A_{k}$ in $B$ so \textbf{neodvisni}, ce velja
-\begin{center}
-    \begin{math}
-        P(A_{1} \dots A_{k}) = P(A_{1}) \dots P(A_{k})
-    \end{math}
-\end{center}
-\textit{ali z drugimi besedami...} Verjetnost produkta paroma neodvisnih
-dogodkov je enaka produktu vrjetnosti teh dogodkov.
-
-\textbf{2.2 Pogojna verjetnost}
-Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
-\begin{center}
-    \begin{math}
-        P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
-    \end{math}
-\end{center}
-Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
-$P(A B) = P(A)P(B)$ .
-Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
-pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
-
-\textbf{2.3 Popolna verjetnost}
-
-Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
-ce se nobena dva dogodka ne moreta zgoditi hrkati in se vedno
-zgodi vsaj en od njih. Ce dogodki izpolnjujejo ta pogoj, potem po
-nacelu vkljucitev/izkljucitev velja:
-\begin{center}
-    \begin{math}
-        P(A) =
-    \end{math}
-    \smallskip
-    \begin{math}
-        \sum_{i=1}^{\infty} P(A \cap H_{i}) =
-        \sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
-    \end{math}
-\end{center}
-Za \textbf{popolni sistem dogodkov} velja unija hipotez:
-\begin{center}
-    \begin{math}
-        P(A|H_{1} \cup \dots \cup H_{n}) = 
-    \end{math}
-    \bigskip
-    \begin{math}
-        \frac{
-            P(A | H_{1}) P(H_{1}) + \dots +
-            P(A | H_{n}) P(H_{n})
-        }
-        {
-            P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
-        }
-    \end{math}    
-\end{center}
-Zanje velja tudi \textbf{Bayesova formula}:
-\begin{center}
-    \begin{math}
-        P(H_{i} | A) = 
-    \end{math}
-    \begin{math}
-        \frac{
-            P(H_{i}) P(A | H_{i})
-        }
-        {
-            P(A)
-        }
-    \end{math}
-    \begin{math}
-        = \frac{
-            P(H_{i}) P(A | H_{i})
-        }
-        {
-            \sum_{k=1}^{n} P(H_{k}) P(A | H_{k})
-        }
-    \end{math}        
-\end{center}
-
-\textbf{2.4 Geometrijska verjetnost}
-
-
-Tocka je izbrana \textit{na slepo} iz intervala, lika, telesa.. ce za
-vsak dogodek $A$ velja:
-\begin{center}
-    \begin{math}
-        P(A) =
-    \end{math}
-    \smallskip
-    \begin{math}
-       \dfrac{
-        mera\: izidov,\: ki\: so\: v\: A\:
-        }
-       {mera\: vseh\: izidov\:}
-    \end{math}
-\end{center}
-Pri tem je mera lahko dolzina, ploscina, volumen,..
-Basically upas da narises graf pravilno.
-
-Splosno za vse nastete verjetnosti velja:
-\begin{center}
-    \begin{math}
-    P(A \cup B) = P(A) + P(B) - P(A \cap B)
-    \end{math} in 
-    \begin{math}
-        P(A \cap B) = P(A | B) P(B) = P(B | A) P(A)
-    \end{math}
-\end{center}
-
-\section{\underline{Diskretne s.s.}}
-
-\textbf{3.1 Diskretna slucjana spremenljivka}
-Naj bo $X$ diskretna slucajna spremenljivka $\implies$ $X$ je funkcija
-s koncno ali stevno zalogo  vrednosti ${ a_{1}, a_{2}, \dots}$ Verjetnost, 
-da $X$ zavzame vrednost $a_{i} \in R$, oznacimo z $P(X = a_{i}) = p_{i}$. Porazdelitev
-$X$ lahko podamo na dva enakovredna nacina, in sicer s:
-\begin{enumerate}
-    \item s \textbf{porazdelitveno shemo}
-        \begin{center}
-            \begin{math}
-                X \sim
-                \begin{pmatrix}
-                    a_{1} & a_{2} & a_{3} & \dots \\
-                    p_{1} & p_{2} & p_{3} & \dots
-                \end{pmatrix}
-            \end{math}
-        \end{center}
-        velja $0 \leq p_{i} \leq 1$ in $p_{1} + p_{2} + \dots = 1$
-    \item s \textbf{porazdelitveno funkcijo}
-        \begin{center}
-            \begin{math}
-                F_{x}(x) := P(X \leq x)
-            \end{math}
-        \end{center}
-\end{enumerate}
-
-\textbf{3.2 Bernoullijeva} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim B(p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item V vsakem poskusu ima dogodek $A$ verjetnost $p$, $X$ pa ima vrednost 1, ce se je zgodil dogodek A, in 0 sicer.
-    \item $P(X = 1) = p, P(X = 0) = 1 - p$
-\end{itemize}
-
-
-\textbf{3.3 Binomska} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim B(n, p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo pojavitev izida $A$ v $n$ ponovitvah poskusa
-    \item $P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.$
-\end{itemize}
-Izvajamo $n$ neodvisnih slucajnih poskusov. V vsakem poskusu se lahko zgodi dogodek $A$ s 
-konstantno verjetnostjo $p$, $p =  P(A)$. 
-$X$ nam pove kolikokrat se je zgodil dogodek $A$ v $n$ poskusih.
-npr. kovanec vrzemo 10x, koliksne so vrjetnosti, da pade cifra 0x, 2x, vsaj 3x,..
-ali 5x vrzemo posteno kocko, izracunaj stevilo sestic, ki pade $\implies B(5, \dfrac{1}{6})$
-
-\textbf{3.4 Geometrijska} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim G(p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo ponovitev poskusa do (vkljucno) prve ponovitve izida $A$.
-    \item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$ 
-    \item $P(X \leq k) = 1 - (1 - p)^{k}$ za $k = 1,2, \dots$
-\end{itemize}
-Izvajamo  neodvisne slucajne poskuse, dokler se ne zgodi dogodek $A$. V vsakem poskusu
-se lahko zgodi dogodek $A$  s \textbf{konstantno} verjetnostjo $p$, $p =  P(A)$.
-npr. koliko metov kocke je potrebnih, do prve sestice $\implies G(1/6)$.
-
-\textbf{3.5 Pascalova} oz. \textbf{negativna binomska} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim P(n, p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo ponovitev poskusa do (vkljucno) $n$-te ponovitve izida $A$.
-    \item \begin{math}
-        P(X = k) = {k - 1 \choose n - 1 }(1 - p)^{k - n} p^{n} $ za $ k = n, n + 1, n + 2, \dots
-    \end{math}
-\end{itemize}
-npr. koliko metov kocke je potrebnih, dokler sestica ne pade 5x $\implies P(5, \dfrac{1}{6})$. Stevilo metov kovanca,
-dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
-
-\textbf{3.6 Hipergeometrijska} slucjana spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim H(K, N - K, n)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo elementov z doloceno lastnostjo med izbranimi.
-    \item \begin{math}
-        P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, K \}
-    \end{math}
-\end{itemize}
-V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
-npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
-imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna verjetnost je da sta 
-2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$.
-\textbf{Pozor!} Na kolokviju/izpitu moras nujno zapisati tudi mozne vrednosti k-ja.
-
-\textbf{3.7 Poissonova} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim P(\lambda)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo ponovitev dogodka A na danem intervalu, pri cemer:
-        \begin{itemize}
-            \item se dogodki pojavljajo neodvisno
-            \item povprecno stevilo dogodgov $\lambda$, ki se pojavjio na dolocenem intervalu, je konstantno.
-        \end{itemize}
-    \item \begin{math}
-        P(X = k) =  \dfrac{ \lambda^{k} }{k!} e^{- \lambda}$ za k = $ 0,1,2,\dots
-    \end{math}
-\end{itemize}
-npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
-kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki preckajo cesto v 1min.
-
-\section{\underline{Zvezne s.s.}}
-
-\textbf{4.1 Zvezna slucajna spremenljivka}
-Naj bo $X$ zvezna slucajna spremenljivka $\implies$ $X$ je realna funkcija,
-za katero obstaja integrabilna funkcija $p_{X}: R \rightarrow [0, \infty)$,
-tako da za vsak $x \in R$ velja:
-
-\begin{center}
-    \begin{math}
-        F_{X}(x) := P(X \leq x) = \int_{- \infty}^{x} p_{X}(t) \,dt
-    \end{math}
-\end{center}
-
-Funkciji $p_{X}$ pravimo \textbf{gostota verjetnosti}, funkciji $F_{X}$ pa
-\textbf{porazdelitvena} funkcija. Mnozici vrednosti, ki jih zavzame spremenljivka
-$X$, pravimo \textbf{zaloga vrednosti} in jo oznacimo z $Z_{X}$.
-Lastnosti:
-\begin{itemize}
-    \item \begin{math}
-        \int_{- \infty}^{+ \infty} p_{X}(x) \,dx = 1
-    \end{math}
-    \item \begin{math}
-        P(a < X < b) = \int_{a}^{b} p_{X}(x) \,dx = F_{X}(b) - F_{X}(a),\: a,b \in R,\: a < b
-    \end{math}
-    \item \begin{math}
-        P(X = a) = 0, a \in R
-    \end{math}
-    \item \begin{math}
-        P(|X| < 1) = P(-1 < X < 1)
-    \end{math}
-\end{itemize}
-\textbf{ce} je funkcija zvezna v $x$, potem za njo velja tudi $F'(x) = p(x)$.
-Za zvezno slucajno spremenljivko $X$ je \textit{funkcija prezivetja} $S(x) = P(X > x)$
-vedno zvezna, nenarascujoca in zavzema vrednosti na intervalu $[0, 1]$.
-\textbf{4.2 Enakomerna zvezna} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim U[a, b]
-    \end{math}
-\end{center}
-
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \Bigg \{\begin{tabular}{ccc}
-          $\frac{1}{b-a}$  & $x \in [a, b]$ & \\
-          $0$ & $sicer$ & \\
-        \end{tabular}
-    \end{math} 
-    
-     \item \begin{math}
-        F_{X}(x) =
-        \Bigg \{\begin{tabular}{ccc}
-          $0$ & $x < a$ & \\
-          $\frac{x - a}{b - a}$  & $x \in [a, b]$ & \\
-          $1$ & $x > b$  & \\
-        \end{tabular}
-    \end{math}
-\end{itemize}
-
-Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
-
-\textbf{4.3 Eksponentna} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim \epsilon(\lambda)
-    \end{math}
-\end{center}
-
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \Bigg \{\begin{tabular}{ccc}
-          $0$  & $x < 0$ & \\
-          $\lambda e^{- \lambda x}$ & $x \geq 0$ & \\
-        \end{tabular}
-    \end{math} 
-    
-     \item \begin{math}
-        F_{X}(x) =
-        \Bigg \{\begin{tabular}{ccc}
-          $0$ & $x < 0$ & \\
-          $1 - e^{- \lambda x}$ & $x \geq 0$  & \\
-        \end{tabular}
-    \end{math}
-\end{itemize}
-
-Slucajna spremenljivka $X$ - cas med zaporednima dogodkoma,
-pri cemer so dogodki neodvisni in se pojavijo s konstantno
-stopnjo $\lambda$. $\lambda$ predstavlja povprecno stevilo dogodkov
-na izbrano casovno enoto.
-
-\textbf{4.4 Normalna} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim N(\mu, \sigma )
-    \end{math}
-\end{center}
-
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(x - \mu)^{2}}{2 \sigma^{2}}}
-    \end{math} za $x \in R$ 
-    
-     \item Za $F_{X}(x)$ ne obstaja eksplicitna formula. Vrednost preberemo iz porazdelitvenih tabel.
-\end{itemize}
-Po centralnem limitnem izreku sta vsota in povprecje veliko neodvisnih, enako porazdeljenih
-spremenljivk, \textit{normalno porazdeljeni}.
-Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev $\implies$ potem za vsak $x$ velja
-\begin{math}
-    P(X < x) = 1 - P(X > x)
-\end{math}.
-
-\textbf{4.5 Gamma} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim \Gamma(n, \lambda)
-    \end{math}
-\end{center}
-
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \Bigg\{\begin{tabular}{ccc}
-          $0$  & $x \leq 0$ & \\
-          $\frac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$ & \\
-        \end{tabular}
-    \end{math} 
-\end{itemize}
-
-V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
-prvo in $(n + 1)$ ponovitvijo dogodka $A$.
-
-\textbf{4.6 Hi kvadrat} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim \chi^{2}(n) = \Gamma(\frac{n}{2}, \frac{1}{2})
-    \end{math}
-\end{center}
-
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \Bigg\{\begin{tabular}{ccc}
-          $0$  & $x \leq 0$ & \\
-          $\dfrac{x^{\frac{n}{2} - 1} e ^{- \frac{x}{2}}}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})}$ & $x > 0$ & \\
-        \end{tabular}
-    \end{math} 
-\end{itemize}
-
-Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
-
-\section{\underline{Matematicno upanje}}
-
-\textbf{5.1 Matematicno upanje} diskretne slucajne spremenljivke
-\begin{center}
-    \begin{small}
-        \begin{math}
-            X \sim
-            \begin{pmatrix}
-                a_{1} & a_{2} & a_{3} & \dots \\
-                p_{1} & p_{2} & p_{3} & \dots \\
-            \end{pmatrix}
-        \end{math}
-    \end{small}
-\end{center}
-oz. zvezne slucajne spremenljivke z gostoto $p_X$ je
-\begin{center}
-    \begin{math}
-        E(X^n) = \sum_{k=0}^{\infty} x_k^n p_k\;
-    \end{math} oz.\\
-    \begin{math}
-        E(X^n) = \int_{- \infty}^{ \infty} \textbf{x}^n p_X(x)\, dx
-    \end{math}.
-\end{center}
-Za vsaki slucajni spremenljivki $X$ in $Y$ (lahko sta odvisni, lahko je ena zvezna in druga diskretna)
-ter $a, b, n \in R$ velja 
-\begin{center}
-    \begin{math}
-        E(aX + bY) = aE(X) + bE(Y)
-    \end{math}
-\end{center} in
-\begin{center}
-    \begin{math}
-        nE(X^a Y^b) = nE(X^a) E(Y^b)
-    \end{math}
-\end{center} in
-\begin{center}
-    \begin{math}
-        E((X + Y)^2) = E(X^2 + 2XY + Y^2)
-    \end{math} itn...
-\end{center}
-Matematicno upanje nam pove pricakovano vrednost, kolikokrat oz. kdaj (odvisno od porazdelitve) 
-se bo dolocen dogodek zgodil. Po definiciji disperzije velja tudi:
-\begin{center}
-    $E(X^2) = D(X) + E(X)^2$    
-\end{center}
-
-\textbf{5.2 Matematicno upanje funkcije}\\
-$f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
-\begin{center}
-    \begin{math}
-        E(f(X)) = \sum_{k=0}^{\infty} f(x_k) p_k\;
-    \end{math} oz.\\
-    \begin{math}
-        E(f(X)) = \int_{- \infty}^{ \infty} f(x) p_X (x)\, dx
-    \end{math}.
-\end{center}
-
-\textbf{5.3 Matematicna upanja} dss in zss
-\begin{itemize}
-    \item \begin{math}
-        X \sim Bernoulli(p) \implies E(X) = p
-    \end{math}
-    \item \begin{math}
-        X \sim Binom(n, p) \implies E(X) = np
-    \end{math}
-    \item \begin{math}
-        X \sim G(p) \implies E(X) = \frac{1}{p}
-    \end{math}
-    \item \begin{math}
-        X \sim Pascal(n, p) \implies E(X) = \frac{n}{p}
-    \end{math}
-    \item
-    \begin{math}
-        X \sim H(R, B, n) \implies E(X) = \frac{nR}{R + B}
-    \end{math}
-    \item \begin{math}
-        X \sim Pois(\lambda) \implies E(X) = \lambda
-    \end{math}
-    \item \begin{math}
-        X \sim U[a, b] \implies E(X) = \frac{a + b}{2}
-    \end{math}
-    \item  \begin{math}
-        X \sim \epsilon(\lambda) \implies E(X) = \frac{1}{\lambda}
-    \end{math}
-    \item \begin{math}
-        X \sim N(\mu, \sigma ) \implies E(X) = \mu
-    \end{math}
-    \item \begin{math}
-        X \sim \chi^{2}(n) \implies E(X) = n
-    \end{math}
-\end{itemize}
-
-\section{\underline{Disperzija in std. odklon}}
-
-\textbf{6.1 Disperzija} ali \textit{varianca} slucajnje spremenljivke $X$
-je definirana kot
-\begin{center}
-    \begin{math}
-        D(X) = E((X - E(X))^2) = E(X^2) - E(X)^2
-    \end{math}
-\end{center}
-Za $a, b \in R$ velja
-\begin{center}
-    \begin{math}
-        D(aX + b) = a^2 D(X)
-    \end{math}.
-\end{center} 
-Ce sta $X$ in $Y$ \textit{neodvisni} je 
-\begin{center}
-    \begin{small}
-        \begin{math}
-            D(aX + bY) = a^2D(X) + b^2D(Y)
-        \end{math}in
-        \begin{math}
-            D(XY) = E(X^2Y^2) - E(XY)^2 = E(X^2)E(Y^2) - E(X)^2E(Y)^2
-        \end{math}
-    \end{small}
-\end{center}
-
-\textbf{6.2 Standardni odklon} slucajnje spremenljivke $X$
-je enak 
-\begin{center}
-    \begin{math}
-        \sigma(X) = \sqrt{D(X)}
-    \end{math}.
-\end{center}
-
-\textbf{6.3 Disperzije} dss in zss
-\begin{itemize}
-    \item \begin{math}
-        X \sim B(p) \implies D(X) = p(1 - p)
-    \end{math}
-    \item \begin{math}
-        X \sim B(n, p) \implies D(X) = np(1 - p)
-    \end{math}
-    \item \begin{math}
-        X \sim G(p) \implies D(X) = \frac{1 - p}{p^2}
-    \end{math}
-    \item \begin{math}
-        X \sim P(n, p) \implies D(X) = \frac{n(1 - p)}{p^2}
-    \end{math}
-    \item
-    \begin{math}
-        X \sim H(R, B, n) \implies
-    \end{math}
-    \begin{center}
-        \begin{math}
-            \frac{
-                nRB(R + B - n)
-            }{
-                (R + B)^2 (R + B - 1)
-            }
-        \end{math}
-    \end{center}
-    \item \begin{math}
-        X \sim P(\lambda) \implies D(x) = \lambda
-    \end{math}
-    \item \begin{math}
-        X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{12}
-    \end{math}
-    \item  \begin{math}
-        X \sim \epsilon(\lambda) \implies D(X) = \frac{1}{\lambda^2}
-    \end{math}
-    \item \begin{math}
-        X \sim N(\mu, \sigma ) \implies D(X) = \sigma^2
-    \end{math}
-    \item \begin{math}
-        X \sim \chi^{2}(n) \implies D(X) = 2n
-    \end{math}
-\end{itemize}
-
-\section{\underline{Slucajni vektorji}}
-
-\textbf{7.1} Diskretni slcuajni spremenljivki $X$ in $Y$  lahko
-dolocata (dvorazsesni) \textbf{diskretni slucajni vektor} (X, Y).
-Verjetnost, da (X, Y) zavzame vrednost $(x_i, y_i) \in R$,
-
-\begin{center}
-    oznacimo s $P(X = x_i, Y = y_j) = p_{ij}$.
-\end{center}
-
-Porazdelitev (X, Y) lahko podamo na dva enakovredna nacina, in sicer:
-
-\begin{enumerate}
-    \item s \textbf{porazdelitveno tabelo}
-        \begin{center}
-            \begin{tiny}
-                (X, Y)
-                \begin{tabular}{ |c|c|c|c|c|c|c| } 
-                    \hline
-                        $ X \symbol{92} Y $ & $y_1$ & $y_2$ & $\dots$ & $y_m$ & $\dots$ & $X$ \\
-                        \cline{1-7}
-                        $x_1$ & $p_{11}$ & $p_{12}$ & $\dots$ & $p_{1m}$ & $\dots$ & $p_1$ \\
-                        $x_2$ & $p_{21}$ & $p_{22}$ & $\dots$ & $p_{2m}$ & $\dots$ & $p_2$ \\
-                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots $ & $\vdots$ & $\vdots$ \\
-                        $x_n$ & $p_{n1}$ & $p_{n2}$ & $\dots$ & $p_{nm}$ & $\dots$ & $p_n$ \\
-                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots $ & $\vdots$ & $\vdots$ \\
-                        \cline{1-7}
-                        $ Y $ & $q_1$ & $q_2$ & $\dots$ & $q_m$ & $\dots$ & $1$ \\
-                    \hline
-                    \end{tabular}
-            \end{tiny}
-        \end{center}
-        pri cemer je $0 \leq p_{ij} \leq 1$,
-        \begin{math}
-            \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty} p_{ij} = 1,\:
-            \sum_{i = 1}^{\infty} p_{ij} = p_i
-        \end{math} za vsak $i \in N$ in
-        \begin{math}
-            \sum_{i = 1}^{\infty} p_{ij} = q_j
-        \end{math} za vsak $j \in N$.
-    \item s \textbf{porazdelitveno funkcijo}
-        \begin{center}
-            \begin{math}
-                F_{X,Y}(x, y) = P(X \leq x, Y \leq y).
-            \end{math}
-            
-        \end{center}
-        Velja
-        \begin{math}
-            F_{X,Y}(x, y) =
-        \end{math}\\
-        \begin{math}
-            \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty} p_{ij}  I_{[x_i, \infty)} (x) I_{[y_j, \infty)} (y)
-        \end{math}
-        , kjer je
-        \begin{center}
-            \begin{math}
-                I_{[x_i, \infty)} (x) = 
-                \Bigg\{\begin{tabular}{cc}
-                    $1$  & $x_i \leq x$ \\
-                    $0$  & $sicer$ \\
-                  \end{tabular}
-            \end{math} \\
-            \begin{math}
-                I_{[y_j, \infty)} (y) = 
-                \Bigg\{\begin{tabular}{cc}
-                    $1$  & $y_j \leq y$ \\
-                    $0$  & $sicer$ \\
-                  \end{tabular}
-            \end{math}
-        \end{center}
-\end{enumerate}
-Podan imamo vektor $(X \in [0, a], Y \in [0,b])$. Potem velja slednje:
-\begin{itemize}
-    \item $P(X < 1 ) = P(X \leq 1, Y \leq b)$
-    \item $P(X < 1, Y > \frac{1}{2}) = P(X \leq 1, Y \leq 1) - P(X \leq 1, Y \leq \frac{1}{2})$
-    \item \begin{math}
-        P(X > 1, Y > \frac{1}{2}) = 
-    \end{math}
-\end{itemize}
-\begin{center}
-    \begin{small}
-        \begin{math}
-            P(X \leq a, \frac{1}{2} \leq Y \leq b) - P(X \leq 1, \frac{1}{2} \leq Y \leq b) =
-            (P(X \leq a, Y \leq b) - P(X \leq a, Y \leq \frac{1}{2})) - (P(X \leq 1, Y \leq b) - P(X \leq 1, Y \leq \frac{1}{2}))
-        \end{math}
-    \end{small}
-\end{center}
-
-\textbf{Robne porazdelitve} so porazdelitve komponent\\
-\begin{center}
-    \begin{math}
-        p_i = P(X = x_i) = \sum_{i = 1}^{\infty} p_{ij}
-    \end{math}\\
-    \begin{math}
-        q_j = P(Y = y_i) = \sum_{j = 1}^{\infty} p_{ij}
-    \end{math}
-\end{center}
-Slucajni spremenljivki X in Y sta \textbf{neodvisni},
-ce za poljublni stevili $x,y \in R$ velja
-\begin{center}
-    \begin{math}
-        P(X = x, Y = y) = P(X = x)P(Y = y)
-    \end{math} in
-\end{center}
-\begin{center}
-    \begin{math}
-        P(X = x\, |\, Y = y) = \frac{P(X = x, Y = y)}{P(Y = y)}
-    \end{math}
-\end{center}
-
-\textbf{7.2 dvorazsezna gostota verjetnosti}
-Naj bosta X,Y z.s.s. Par (X, Y) je \textit{zvezni slucajni vektor},
-ce obstaja integrabilna funkcija $p_{X,Y}: R^2 \rightarrow R$ (gostota verjetnosti), tako da za
-vsak par $(x,y) \in R^2$ velja
-\begin{center}
-    \begin{math}
-        F_{X,Y}(x, y) = P(X \leq x, Y \leq y) = \int_{-\infty}^{x}\int_{-\infty}^{y} p_{X,Y}(x,y)\,dx\,dy
-    \end{math}.
-\end{center}
-\begin{small}
-Funkciji $F_{X,Y}$ pravimo \textit{porazdelitvena funkcija}.    
-\end{small}
-Velja
-\begin{center}
-    \begin{math}
-        \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} p_{X,Y}(x,y)\,dx\,dy = 1
-    \end{math}
-\end{center}
-\textbf{Robni gostoti} sta
-\begin{center}
-    \begin{math}
-        p_X(x) = \int_{-\infty}^{\infty} p_{XY}(x,y)\, dy
-    \end{math} in
-    \begin{math}
-        p_Y(y) = \int_{-\infty}^{\infty} p_{XY}(x,y)\, dx
-    \end{math}
-\end{center}
-Zvezni slucajni spremenljivki $X$ in $Y$ sta \textbf{neodvisni}, ce
-za vsaki realni stevili $x, y \in R$ velja
-\begin{center}
-    \begin{math}
-        p_{X,Y}(x,y) = p_X(x)p_Y(y)
-    \end{math}.
-\end{center}
-
-\textbf{7.3 Matematicno upanje} funkcije\\
-$f: R^2 \rightarrow R$ dvorazseznega slucajnega vektorja (X, Y) je 
-za diskretni slucajni vektor definirano s predpisom
-\begin{center}
-    \begin{math}
-        E(f(X,Y)) = 
-    \end{math}\\
-    \begin{math}
-        \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} f(x_i, y_i) P(X = x_i, Y = y_i)
-    \end{math}
-\end{center}
-za zvezni slucjani vektor pa s predpisom
-\begin{center}
-    \begin{math}
-        E(f(X,Y)) = 
-    \end{math}\\
-    \begin{math}
-        \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) P_{X,Y}(x,y)\,dx\,dy
-    \end{math}.
-\end{center}
-Ce sta $X$ in $Y$ \textbf{neodvisni} velja
-\begin{center}
-    \begin{math}
-        E(XY) = E(X)E(Y)
-    \end{math}.
-\end{center}
-
-\textbf{7.4 Kovarianca} slucajnih spremenljivk $X$ in $Y$ je definirana kot
-\begin{center}
-    \begin{math}
-        Cov(X,Y) = E((X - E(X)) (Y - E(Y))) = E(\underline{XY}) - E(X)E(Y)
-    \end{math}.
-\end{center}
-\textbf{XY} mores posebi zracunat porazdelitev(ampak pazi, ni nujno da sta neodvisni, zato, ce imas tabelo, poberi vrednosti za npr. $P(XY = 1)$ iz tabele)!\\
-Za disperzijo velja
-\begin{center}
-    \begin{math}
-        D(X) = Cov(X, X)
-    \end{math} in\\
-    \begin{math}
-        D(aX + bY) = a^2D(X) + b^2D(Y) + 2abCov(X, Y)
-    \end{math}
-\end{center}
-Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
-\begin{itemize}
-    \item \begin{math}
-        Cov(X + a, Y + b) = Cov(X, Y)
-    \end{math},
-    \item \begin{math}
-        Cov(aX + bY, Z) =\\ aCov(X, Z) + bCov(Y,Z)
-    \end{math},
-    \item \begin{math}
-        Cov(X, Y) = Cov(Y, X)
-    \end{math},
-    \item \begin{math}
-        |Cov(X, Y)| \leq \sqrt{D(X)D(Y)}
-    \end{math},
-    \item \begin{math}
-        Cov(aX, bY) = abCov(X, Y)
-    \end{math}
-    \item \begin{math}
-        Cov(a, X) = 0 
-    \end{math} \textit{(neodvisni)}
-\end{itemize}
-
-Ce sta s.s $X$ in $Y$ \textit{neodvisni} je njuna kovarianca enaka \textbf{0},
-$Cov(X,Y) = 0$.
-
-\textbf{7.5 Korelacijski koeficient} izracunamo po formuli
-\begin{center}
-    \begin{math}
-        \rho(X,Y) = \frac{Cov(X,Y)}
-                      {\sigma(X) \sigma(Y)}
-    \end{math}
-\end{center}
-Korelacijski koeficient zavzema vrednosti na intervalu [-1, 1].
-Ce velja $\rho(X, Y) = 0$, lahko sklepamo da sta spremenljivki $X$ in $Y$ \textbf{nekorelirani}.
-Za $a, b, c, d \in R$ ter $a, c > 0$ velja:
-\begin{center}
-    $\rho(aX + b, cY + d) = \rho(X, Y)$
-\end{center}
-Ce je $|Cov(X, Y)| = \sqrt{D(X)D(Y)}$, tj. $\rho(X, Y) = \pm 1$, potem sta $X$ in $Y$ v \textbf{linearni zvezi}
-\begin{center}
-    \begin{math}
-        Y = \pm \frac{D(Y)}{D(X)}(X - E(X)) + E(Y)
-    \end{math}.
-\end{center}
-Ker iz neodvisnosti sledi E(XY) = E(X)E(Y), sta neodvisni slucajni spremenljivki tudi nekorelirani. Obratno
-pa ne velja!
-
-\section{\underline{Normalna porazdelitev}}
-
-\textbf{8.1} Normalna porazdelitev je odvisna od dveh parametrov:
-$\mu = E(X)\, in\, \sigma = \sigma(X)$. Gostota njene porazdelitve je:
-\begin{center}
-    \begin{math}
-        p_{X}(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(x - \mu)^{2}}{2 \sigma^{2}}}
-    \end{math}        
-\end{center}
-Standardizacija: 
-\begin{center}
-    \begin{math}
-        Z = \frac{X - \mu}{\sigma} \sim N(\mu =  0, \sigma = 1)
-    \end{math}
-\end{center}
-Vrednost $F(X) = P(X \leq x)$ dobimo tako da integriramo
-funkcijo gostote na intervalu $[-\infty, x]$:
-\begin{center}
-    \begin{math}
-        F(x) = \frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-t^2 / 2}\, dt
-    \end{math}.
-\end{center}
-Velja : $P (a \leq Z \leq b) = F(b) - F(a)$ in $x \geq 4 \Rightarrow F(x) \approx 1 (std.\, napaka)$.\\
-Ce je spremenljivka $X \sim N(0,1)$ normalno porazdeljena, velja tudi da so lihi momenti normalne porazdelitve enaki 0 ($E(X^3) = E(X^5) = 0$).
-
-\textbf{8.2 $\sigma$}  pravila
-
-\begin{itemize}
-    \item \begin{math}
-        1 \sigma \Rightarrow P(\mu - \sigma \leq X \leq \mu + \sigma) = 0.683
-    \end{math}
-
-    \item \begin{math}
-        2 \sigma \Rightarrow P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) = 0.954
-    \end{math}
-
-    \item \begin{math}
-        3 \sigma \Rightarrow P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) = 0.997
-    \end{math}
-\end{itemize}
-
-\textbf{8.3 $q_x$} pravila
-
-\begin{itemize}
-    \item $P (X \leq q_1) = 0.25$
-    \item $P (X \leq q_2(m)) = 0.5$
-    \item $P (X \leq q_3) = 0.75$
-\end{itemize}
-
-\textbf{8.4 Standardizacija binomske} porazdelitve
-\begin{center}
-    \begin{math}
-        X_B \sim B(n, p)
-    \end{math}
-\end{center}
-kjer velja $\mu = np$ in $\sigma = \sqrt{np(1-p)}$.
-velja:
-\begin{center}
-    \begin{math}
-        P(a \leq X_B \leq b) \approx P(a - \frac{1}{2} \leq X_N \leq b + \frac{1}{2})
-        = F(\frac{b + \frac{1}{2} - \mu}{\sigma}) - F(\frac{a - \frac{1}{2} - \mu}{\sigma})
-    \end{math}
-\end{center}
-in
-\begin{center}
-    \begin{math}
-        P(X_B \leq b) \approx P(X_N \leq b + \frac{1}{2}) = F(\frac{b + \frac{1}{2} - \mu}{\sigma})
-    \end{math}
-\end{center}.
-\textbf{Pazi} za normalizirane \textit{diskretne} porazdelitve velja:
-\begin{itemize}
-    \item $P(X_B < k) = P(X_B \leq k - 1)$
-    \item $P(X_B > k) = P(X_B \geq k + 1) = 1 - P(X_B \leq k)$
-\end{itemize}
-
-
-\textbf{8.5 Aproksimacija binomske} porazdelitve\\
-
-\textbf{8.5.1 Poissonov Priblizek}
-
-Naj bo 
-\begin{center}
-    \begin{math}
-        X_B \sim B(n, p)\: in\: X_P \sim P(np)
-    \end{math}
-\end{center}
-Ce je 
-\begin{itemize}
-    \item $n \geq 20$ in $p \in (0, 0.05)$ ali pa
-    \item $n \geq 100$ in $np \in (0, 10]$,
-\end{itemize}
-ponavadi velja:
-\begin{center}
-    \begin{math}
-        P(X_B = k) \approx P(X_P = k) = \frac{(np)^k}{k!} e^{-np} 
-    \end{math}.
-\end{center}
-
-\textbf{8.5.2 Laplaceov Priblizek}
-
-Naj bo 
-\begin{center}
-    \begin{math}
-        X_B \sim B(n, p)\: in\: X_N \sim N(np, \sqrt{np(1-p)})
-    \end{math}.
-\end{center}
-Ce je $np \geq 10$ in $n(1 - p) \geq 10$, potem za $k$ dovolj blizu $np$ velja:
-\begin{center}
-    \begin{math}
-        P(X = k) \approx P(X_N = k) = 
-        \frac{
-            e^{-(k - np)^2/ (2np(1 - p))}
-        }{\sqrt{2 \pi np(1 - p)}}
-    \end{math}
-\end{center}
-
-\section{\underline{CLI}}
-
-\textbf{9.1 Normalne spremenljivke:} Naj bosta $X \sim N(\mu_1, \sigma_1), Y \sim N(\mu_2, \sigma_2)$ neodvisni.
-Potem je 
-\begin{center}
-    \begin{math}
-        X + Y \sim N(\mu_1 + \mu_2, \sqrt{\sigma_1^2 + \sigma_2^2})    
-    \end{math}
-\end{center}
-Posledica: Naj bodo
-\begin{center}
-    \begin{math}
-        X_1 \sim N(\mu_1, \sigma_1), \dots , X_n \sim  N(\mu_n, \sigma_n)
-    \end{math}
-\end{center}
-neodvisne, normalno porazdeljene s.s. Potem velja:
-\begin{center}
-    \begin{math}
-        X_1 + \dots + X_n \sim N (
-            \sum_{i=1}^{n} \mu_i, \sqrt{\sum_{i=1}^{n} \sigma_i^2}
-        )
-    \end{math}.
-\end{center}
-
-\textbf{9.2 CLI za vsoto sl. spremenljivk}
-Naj bodo $X_1, + \dots +, X_n$ neodvisne in enako porazdeljene
-slucajne spremenljivke, kjer velja $E(X_i) = \mu, D(X_i) = \sigma^2 < \infty$. Potem za 
-dovolj velik $n$ (dobra aproksimacija : $n \geq 30$)  velja, da je porazdelitev vsote
-$S = X_1, + \dots +, X_n$ priblizno normalna.
-
-\begin{center}
-    \begin{math}
-        S \sim  N(n \mu, \sigma \sqrt{n})
-    \end{math}
-\end{center}
-
-Pri aproksimaciji \textbf{diskretne} porazdelitvene vsote z normalno porazdelitvijo, uporbljamo
-popravek za zveznost.
-
-\begin{center}
-    \begin{math}
-        P(a \leq S \leq b) \approx P(a - \frac{1}{2} \leq Y \leq b + \frac{1}{2}) =
-        F(
-            \frac{b + \frac{1}{2} - n \mu}{\sigma \sqrt{n}}
-        ) -
-        F(
-            \frac{b - \frac{1}{2} - n \mu}{\sigma \sqrt{n}}
-        )
-    \end{math}
-\end{center}
-
-\textbf{9.3 Enostavni slucajni vzorec}
-Naj bo $X$ s.s. Enostavni slucajni vzorec je slucajni vektor $(X_1, + \dots +, X_n)$,
-za katerega velja:
-\begin{itemize}
-    \item vsi cleni vektorja $X_i$ imajo isto porazdelitev kot spremenljivka $X$ in
-    \item cleni $X_i$ so med seboj neodvisni
-\end{itemize}
-
-\textbf{9.4 Vzorcno povprecje} normalno porazdeljenega \textbf{vzorca}
-Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec, $X_i \sim N(\mu, \sigma)$.
-Potem je porazdelitev vzorcnega povprecja $\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$
-tudi normalna:
-\begin{center}
-    \begin{math}
-        \overline{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})
-    \end{math}
-\end{center}
-
-Pozor! Pri racunanju disperzije ne pozabi kvadrirati \textbf{$\frac{1}{n}$}.
-
-\textbf{9.5 CLI} za \textbf{vzorcno povprecje}
-Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec in
-\begin{center}
-    \begin{math}
-        E(X_i) = \mu, D(X_i) = \sigma^2
-    \end{math}
-    \begin{math}
-        (\mu\; in\; \sigma^2\; morata\; biti\; koncni)
-    \end{math}
-\end{center}
-Za dovolj veliki vzorec $(n \geq 30)$ je porazdelitev vzorcnega povprecja
-$\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$ priblizno normalna
-\begin{center}
-    \begin{math}
-        \overline{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})
-    \end{math}
-\end{center}
-
-\textbf{9.6 Racunanje razpona}
-Naj bo s.s. $X$ normalno porazdeljena $X \sim N(\mu, \sigma)$
-\begin{center}
-    \begin{math}
-        P(E(X) - a \leq X \leq E(X) + a) = p
-    \end{math}\\
-    \begin{math}
-        I = [E(X) -a, E(X) + a]
-    \end{math}
-\end{center}
-
-\bigskip
+	\input{ponovitev-analize.tex}
+
+	\section{\underline{Kombinatorika}}
+
+
+	\textbf{1.1 Permutacije}
+	\begin{small}
+		\begin{enumerate}
+			\item brez ponavljanja: $P_{n} = n!$
+			\item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
+		\end{enumerate}
+	\end{small}
+
+	\textbf{1.2 Variacije}
+	\begin{small}
+		\begin{enumerate}
+			\item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
+			\item s ponavljanjem: $V_{n}^{r} = n^{r}$
+		\end{enumerate}
+	\end{small}
+
+	\textbf{1.3 Kombinacije}
+	\begin{small}
+		\begin{enumerate}
+			\item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
+			\item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
+		\end{enumerate}
+		\begin{center}
+			Lastnosti binomskega simbola:
+			\begin{math}
+				{n \choose n} = 1 \quad
+				{n \choose 0} = 1 \quad
+				{n \choose 1} = n \quad
+				{n \choose r} = {n \choose n - r}
+			\end{math}
+			Binomski izrek:\\
+			\begin{math}
+				(a + b)^{n} =
+					{n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
+				{n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
+			\end{math}
+
+		\end{center}
+
+		Za kombinacije velja, da vrstni red \textbf{ni} pomemben. Medtem pa
+		ko v splosnem za variacije in permutacije velja, da vrstni red \textbf{je}
+		pomemben.
+	\end{small}
+
+
+	\section{\underline{Verjetnost}}
+
+
+	\textbf{2.1 Elementarna verjetnost}
+	\smallskip
+
+	Izid iz dane mnozice izidov je izbran na slepo, ce so vsi izidi
+	iz te mnozice enako verjetni. Takrat se dogodek $A$ zgodi z verjetnostjo:
+	\begin{center}
+		\begin{math}
+			P(A) = \dfrac{st.\: izidov,\: ki\: so\: v\: A\:}{st.\: vseh\: izidov}
+		\end{math}
+	\end{center}
+	Nasprotni dogodek pa z verjetnostjo:
+	\begin{center}
+		\begin{math}
+			P(\overline{A}) = 1 - P(A)
+		\end{math}
+	\end{center}
+	Nacelo vkljucitev in izkljucitev dogodkov:
+	\begin{center}
+		\begin{small}
+			\begin{math}
+				P(A_{1} \cup \dots \cup A_{n}) =
+			\end{math}
+			\begin{math}
+				P(A_{1}) + \dots + P(A_{n})
+			\end{math}
+			\begin{math}
+				- P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
+			\end{math}
+			\begin{math}
+				+ P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
+			\end{math}
+			\begin{math}
+				- \dots
+			\end{math}
+			\begin{math}
+				+ (-1)^{n + 1} P(A_{1} \dots A_{n})
+			\end{math}
+		\end{small}
+	\end{center}
+	Dogodki $A_{1}, A_{2}, \dots , A_{k}$ in $B$ so \textbf{neodvisni}, ce velja
+	\begin{center}
+		\begin{math}
+			P(A_{1} \dots A_{k}) = P(A_{1}) \dots P(A_{k})
+		\end{math}
+	\end{center}
+	\textit{ali z drugimi besedami...} Verjetnost produkta paroma neodvisnih
+	dogodkov je enaka produktu vrjetnosti teh dogodkov.
+
+	\textbf{2.2 Pogojna verjetnost}
+	Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
+	\begin{center}
+		\begin{math}
+			P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
+		\end{math}
+	\end{center}
+	Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
+	$P(A B) = P(A)P(B)$ .
+	Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
+	pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
+
+	\textbf{2.3 Popolna verjetnost}
+
+	Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
+	ce se nobena dva dogodka ne moreta zgoditi hrkati in se vedno
+	zgodi vsaj en od njih. Ce dogodki izpolnjujejo ta pogoj, potem po
+	nacelu vkljucitev/izkljucitev velja:
+	\begin{center}
+		\begin{math}
+			P(A) =
+		\end{math}
+		\smallskip
+		\begin{math}
+			\sum_{i=1}^{\infty} P(A \cap H_{i}) =
+			\sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
+		\end{math}
+	\end{center}
+	Za \textbf{popolni sistem dogodkov} velja unija hipotez:
+	\begin{center}
+		\begin{math}
+			P(A|H_{1} \cup \dots \cup H_{n}) =
+		\end{math}
+		\bigskip
+		\begin{math}
+			\frac{
+				P(A | H_{1}) P(H_{1}) + \dots +
+				P(A | H_{n}) P(H_{n})
+			}
+			{
+				P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
+			}
+		\end{math}
+	\end{center}
+	Zanje velja tudi \textbf{Bayesova formula}:
+	\begin{center}
+		\begin{math}
+			P(H_{i} | A) =
+		\end{math}
+		\begin{math}
+			\frac{
+				P(H_{i}) P(A | H_{i})
+			}
+			{
+				P(A)
+			}
+		\end{math}
+		\begin{math}
+			= \frac{
+				P(H_{i}) P(A | H_{i})
+			}
+			{
+				\sum_{k=1}^{n} P(H_{k}) P(A | H_{k})
+			}
+		\end{math}
+	\end{center}
+
+	\textbf{2.4 Geometrijska verjetnost}
+
+
+	Tocka je izbrana \textit{na slepo} iz intervala, lika, telesa.. ce za
+	vsak dogodek $A$ velja:
+	\begin{center}
+		\begin{math}
+			P(A) =
+		\end{math}
+		\smallskip
+		\begin{math}
+			\dfrac{
+				mera\: izidov,\: ki\: so\: v\: A\:
+			}
+			{mera\: vseh\: izidov\:}
+		\end{math}
+	\end{center}
+	Pri tem je mera lahko dolzina, ploscina, volumen,..
+	Basically upas da narises graf pravilno.
+
+	Splosno za vse nastete verjetnosti velja:
+	\begin{center}
+		\begin{math}
+			P(A \cup B) = P(A) + P(B) - P(A \cap B)
+		\end{math} in
+		\begin{math}
+			P(A \cap B) = P(A | B) P(B) = P(B | A) P(A)
+		\end{math}
+	\end{center}
+
+	\section{\underline{Diskretne s.s.}}
+
+	\textbf{3.1 Diskretna slucjana spremenljivka}
+	Naj bo $X$ diskretna slucajna spremenljivka $\implies$ $X$ je funkcija
+	s koncno ali stevno zalogo  vrednosti ${ a_{1}, a_{2}, \dots}$ Verjetnost,
+	da $X$ zavzame vrednost $a_{i} \in R$, oznacimo z $P(X = a_{i}) = p_{i}$. Porazdelitev
+	$X$ lahko podamo na dva enakovredna nacina, in sicer s:
+	\begin{enumerate}
+		\item s \textbf{porazdelitveno shemo}
+		      \begin{center}
+			      \begin{math}
+				      X \sim
+				      \begin{pmatrix}
+					      a_{1} & a_{2} & a_{3} & \dots \\
+					      p_{1} & p_{2} & p_{3} & \dots
+				      \end{pmatrix}
+			      \end{math}
+		      \end{center}
+		      velja $0 \leq p_{i} \leq 1$ in $p_{1} + p_{2} + \dots = 1$
+		\item s \textbf{porazdelitveno funkcijo}
+		      \begin{center}
+			      \begin{math}
+				      F_{x}(x) := P(X \leq x)
+			      \end{math}
+		      \end{center}
+	\end{enumerate}
+
+	\textbf{3.2 Bernoullijeva} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim B(p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item V vsakem poskusu ima dogodek $A$ verjetnost $p$, $X$ pa ima vrednost 1, ce se je zgodil dogodek A, in 0 sicer.
+		\item $P(X = 1) = p, P(X = 0) = 1 - p$
+	\end{itemize}
+
+
+	\textbf{3.3 Binomska} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim B(n, p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo pojavitev izida $A$ v $n$ ponovitvah poskusa
+		\item $P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.$
+	\end{itemize}
+	Izvajamo $n$ neodvisnih slucajnih poskusov. V vsakem poskusu se lahko zgodi dogodek $A$ s
+	konstantno verjetnostjo $p$, $p =  P(A)$.
+	$X$ nam pove kolikokrat se je zgodil dogodek $A$ v $n$ poskusih.
+	npr. kovanec vrzemo 10x, koliksne so vrjetnosti, da pade cifra 0x, 2x, vsaj 3x,..
+	ali 5x vrzemo posteno kocko, izracunaj stevilo sestic, ki pade $\implies B(5, \dfrac{1}{6})$
+
+	\textbf{3.4 Geometrijska} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim G(p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo ponovitev poskusa do (vkljucno) prve ponovitve izida $A$.
+		\item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$
+		\item $P(X \leq k) = 1 - (1 - p)^{k}$ za $k = 1,2, \dots$
+	\end{itemize}
+	Izvajamo  neodvisne slucajne poskuse, dokler se ne zgodi dogodek $A$. V vsakem poskusu
+	se lahko zgodi dogodek $A$  s \textbf{konstantno} verjetnostjo $p$, $p =  P(A)$.
+	npr. koliko metov kocke je potrebnih, do prve sestice $\implies G(1/6)$.
+
+	\textbf{3.5 Pascalova} oz. \textbf{negativna binomska} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim P(n, p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo ponovitev poskusa do (vkljucno) $n$-te ponovitve izida $A$.
+		\item \begin{math}
+			      P(X = k) = {k - 1 \choose n - 1 }(1 - p)^{k - n} p^{n} $ za $ k = n, n + 1, n + 2, \dots
+		      \end{math}
+	\end{itemize}
+	npr. koliko metov kocke je potrebnih, dokler sestica ne pade 5x $\implies P(5, \dfrac{1}{6})$. Stevilo metov kovanca,
+	dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
+
+	\textbf{3.6 Hipergeometrijska} slucjana spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim H(K, N - K, n)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo elementov z doloceno lastnostjo med izbranimi.
+		\item \begin{math}
+			      P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, K \}
+		      \end{math}
+	\end{itemize}
+	V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
+	npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
+	imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna verjetnost je da sta
+	2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$.
+	\textbf{Pozor!} Na kolokviju/izpitu moras nujno zapisati tudi mozne vrednosti k-ja.
+
+	\textbf{3.7 Poissonova} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim P(\lambda)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo ponovitev dogodka A na danem intervalu, pri cemer:
+		      \begin{itemize}
+			      \item se dogodki pojavljajo neodvisno
+			      \item povprecno stevilo dogodgov $\lambda$, ki se pojavjio na dolocenem intervalu, je konstantno.
+		      \end{itemize}
+		\item \begin{math}
+			      P(X = k) =  \dfrac{ \lambda^{k} }{k!} e^{- \lambda}$ za k = $ 0,1,2,\dots
+		      \end{math}
+	\end{itemize}
+	npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
+	kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki preckajo cesto v 1min.
+
+	\section{\underline{Zvezne s.s.}}
+
+	\textbf{4.1 Zvezna slucajna spremenljivka}
+	Naj bo $X$ zvezna slucajna spremenljivka $\implies$ $X$ je realna funkcija,
+	za katero obstaja integrabilna funkcija $p_{X}: R \rightarrow [0, \infty)$,
+	tako da za vsak $x \in R$ velja:
+
+	\begin{center}
+		\begin{math}
+			F_{X}(x) := P(X \leq x) = \int_{- \infty}^{x} p_{X}(t) \,dt
+		\end{math}
+	\end{center}
+
+	Funkciji $p_{X}$ pravimo \textbf{gostota verjetnosti}, funkciji $F_{X}$ pa
+	\textbf{porazdelitvena} funkcija. Mnozici vrednosti, ki jih zavzame spremenljivka
+	$X$, pravimo \textbf{zaloga vrednosti} in jo oznacimo z $Z_{X}$.
+	Lastnosti:
+	\begin{itemize}
+		\item \begin{math}
+			      \int_{- \infty}^{+ \infty} p_{X}(x) \,dx = 1
+		      \end{math}
+		\item \begin{math}
+			      P(a < X < b) = \int_{a}^{b} p_{X}(x) \,dx = F_{X}(b) - F_{X}(a),\: a,b \in R,\: a < b
+		      \end{math}
+		\item \begin{math}
+			      P(X = a) = 0, a \in R
+		      \end{math}
+		\item \begin{math}
+			      P(|X| < 1) = P(-1 < X < 1)
+		      \end{math}
+	\end{itemize}
+	\textbf{ce} je funkcija zvezna v $x$, potem za njo velja tudi $F'(x) = p(x)$.
+	Za zvezno slucajno spremenljivko $X$ je \textit{funkcija prezivetja} $S(x) = P(X > x)$
+	vedno zvezna, nenarascujoca in zavzema vrednosti na intervalu $[0, 1]$.
+	\textbf{4.2 Enakomerna zvezna} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim U[a, b]
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \Bigg \{\begin{tabular}{ccc}
+				      $\frac{1}{b-a}$ & $x \in [a, b]$ & \\
+				      $0$             & $sicer$        & \\
+			      \end{tabular}
+		      \end{math}
+
+		\item \begin{math}
+			      F_{X}(x) =
+			      \Bigg \{\begin{tabular}{ccc}
+				      $0$                   & $x < a$        & \\
+				      $\frac{x - a}{b - a}$ & $x \in [a, b]$ & \\
+				      $1$                   & $x > b$        & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
+
+	Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
+
+	\textbf{4.3 Eksponentna} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim \epsilon(\lambda)
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \Bigg \{\begin{tabular}{ccc}
+				      $0$                       & $x < 0$    & \\
+				      $\lambda e^{- \lambda x}$ & $x \geq 0$ & \\
+			      \end{tabular}
+		      \end{math}
+
+		\item \begin{math}
+			      F_{X}(x) =
+			      \Bigg \{\begin{tabular}{ccc}
+				      $0$                   & $x < 0$    & \\
+				      $1 - e^{- \lambda x}$ & $x \geq 0$ & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
+
+	Slucajna spremenljivka $X$ - cas med zaporednima dogodkoma,
+	pri cemer so dogodki neodvisni in se pojavijo s konstantno
+	stopnjo $\lambda$. $\lambda$ predstavlja povprecno stevilo dogodkov
+	na izbrano casovno enoto.
+
+	\textbf{4.4 Normalna} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim N(\mu, \sigma )
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(x - \mu)^{2}}{2 \sigma^{2}}}
+		      \end{math} za $x \in R$
+
+		\item Za $F_{X}(x)$ ne obstaja eksplicitna formula. Vrednost preberemo iz porazdelitvenih tabel.
+	\end{itemize}
+	Po centralnem limitnem izreku sta vsota in povprecje veliko neodvisnih, enako porazdeljenih
+	spremenljivk, \textit{normalno porazdeljeni}.
+	Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev $\implies$ potem za vsak $x$ velja
+	\begin{math}
+		P(X < x) = 1 - P(X > x)
+	\end{math}.
+
+	\textbf{4.5 Gamma} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim \Gamma(n, \lambda)
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \Bigg\{\begin{tabular}{ccc}
+				      $0$                                                       & $x \leq 0$ & \\
+				      $\frac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$    & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
+
+	V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
+	prvo in $(n + 1)$ ponovitvijo dogodka $A$.
+
+	\textbf{4.6 Hi kvadrat} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim \chi^{2}(n) = \Gamma(\frac{n}{2}, \frac{1}{2})
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \Bigg\{\begin{tabular}{ccc}
+				      $0$                                                                                   & $x \leq 0$ & \\
+				      $\dfrac{x^{\frac{n}{2} - 1} e ^{- \frac{x}{2}}}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})}$ & $x > 0$    & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
+
+	Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
+
+	\section{\underline{Matematicno upanje}}
+
+	\textbf{5.1 Matematicno upanje} diskretne slucajne spremenljivke
+	\begin{center}
+		\begin{small}
+			\begin{math}
+				X \sim
+				\begin{pmatrix}
+					a_{1} & a_{2} & a_{3} & \dots \\
+					p_{1} & p_{2} & p_{3} & \dots \\
+				\end{pmatrix}
+			\end{math}
+		\end{small}
+	\end{center}
+	oz. zvezne slucajne spremenljivke z gostoto $p_X$ je
+	\begin{center}
+		\begin{math}
+			E(X^n) = \sum_{k=0}^{\infty} x_k^n p_k\;
+		\end{math} oz.\\
+		\begin{math}
+			E(X^n) = \int_{- \infty}^{ \infty} \textbf{x}^n p_X(x)\, dx
+		\end{math}.
+	\end{center}
+	Za vsaki slucajni spremenljivki $X$ in $Y$ (lahko sta odvisni, lahko je ena zvezna in druga diskretna)
+	ter $a, b, n \in R$ velja
+	\begin{center}
+		\begin{math}
+			E(aX + bY) = aE(X) + bE(Y)
+		\end{math}
+	\end{center} in
+	\begin{center}
+		\begin{math}
+			nE(X^a Y^b) = nE(X^a) E(Y^b)
+		\end{math}
+	\end{center} in
+	\begin{center}
+		\begin{math}
+			E((X + Y)^2) = E(X^2 + 2XY + Y^2)
+		\end{math} itn...
+	\end{center}
+	Matematicno upanje nam pove pricakovano vrednost, kolikokrat oz. kdaj (odvisno od porazdelitve)
+	se bo dolocen dogodek zgodil. Po definiciji disperzije velja tudi:
+	\begin{center}
+		$E(X^2) = D(X) + E(X)^2$
+	\end{center}
+
+	\textbf{5.2 Matematicno upanje funkcije}\\
+	$f:\; R \rightarrow R$ slucajne spremenljivke $X$ je
+	\begin{center}
+		\begin{math}
+			E(f(X)) = \sum_{k=0}^{\infty} f(x_k) p_k\;
+		\end{math} oz.\\
+		\begin{math}
+			E(f(X)) = \int_{- \infty}^{ \infty} f(x) p_X (x)\, dx
+		\end{math}.
+	\end{center}
+
+	\textbf{5.3 Matematicna upanja} dss in zss
+	\begin{itemize}
+		\item \begin{math}
+			      X \sim Bernoulli(p) \implies E(X) = p
+		      \end{math}
+		\item \begin{math}
+			      X \sim Binom(n, p) \implies E(X) = np
+		      \end{math}
+		\item \begin{math}
+			      X \sim G(p) \implies E(X) = \frac{1}{p}
+		      \end{math}
+		\item \begin{math}
+			      X \sim Pascal(n, p) \implies E(X) = \frac{n}{p}
+		      \end{math}
+		\item
+		      \begin{math}
+			      X \sim H(R, B, n) \implies E(X) = \frac{nR}{R + B}
+		      \end{math}
+		\item \begin{math}
+			      X \sim Pois(\lambda) \implies E(X) = \lambda
+		      \end{math}
+		\item \begin{math}
+			      X \sim U[a, b] \implies E(X) = \frac{a + b}{2}
+		      \end{math}
+		\item  \begin{math}
+			      X \sim \epsilon(\lambda) \implies E(X) = \frac{1}{\lambda}
+		      \end{math}
+		\item \begin{math}
+			      X \sim N(\mu, \sigma ) \implies E(X) = \mu
+		      \end{math}
+		\item \begin{math}
+			      X \sim \chi^{2}(n) \implies E(X) = n
+		      \end{math}
+	\end{itemize}
+
+	\section{\underline{Disperzija in std. odklon}}
+
+	\textbf{6.1 Disperzija} ali \textit{varianca} slucajnje spremenljivke $X$
+	je definirana kot
+	\begin{center}
+		\begin{math}
+			D(X) = E((X - E(X))^2) = E(X^2) - E(X)^2
+		\end{math}
+	\end{center}
+	Za $a, b \in R$ velja
+	\begin{center}
+		\begin{math}
+			D(aX + b) = a^2 D(X)
+		\end{math}.
+	\end{center}
+	Ce sta $X$ in $Y$ \textit{neodvisni} je
+	\begin{center}
+		\begin{small}
+			\begin{math}
+				D(aX + bY) = a^2D(X) + b^2D(Y)
+			\end{math}in
+			\begin{math}
+				D(XY) = E(X^2Y^2) - E(XY)^2 = E(X^2)E(Y^2) - E(X)^2E(Y)^2
+			\end{math}
+		\end{small}
+	\end{center}
+
+	\textbf{6.2 Standardni odklon} slucajnje spremenljivke $X$
+	je enak
+	\begin{center}
+		\begin{math}
+			\sigma(X) = \sqrt{D(X)}
+		\end{math}.
+	\end{center}
+
+	\textbf{6.3 Disperzije} dss in zss
+	\begin{itemize}
+		\item \begin{math}
+			      X \sim B(p) \implies D(X) = p(1 - p)
+		      \end{math}
+		\item \begin{math}
+			      X \sim B(n, p) \implies D(X) = np(1 - p)
+		      \end{math}
+		\item \begin{math}
+			      X \sim G(p) \implies D(X) = \frac{1 - p}{p^2}
+		      \end{math}
+		\item \begin{math}
+			      X \sim P(n, p) \implies D(X) = \frac{n(1 - p)}{p^2}
+		      \end{math}
+		\item
+		      \begin{math}
+			      X \sim H(R, B, n) \implies
+		      \end{math}
+		      \begin{center}
+			      \begin{math}
+				      \frac{
+					      nRB(R + B - n)
+				      }{
+					      (R + B)^2 (R + B - 1)
+				      }
+			      \end{math}
+		      \end{center}
+		\item \begin{math}
+			      X \sim P(\lambda) \implies D(x) = \lambda
+		      \end{math}
+		\item \begin{math}
+			      X \sim U[a, b] \implies D(X) = \frac{(b - a)^2}{12}
+		      \end{math}
+		\item  \begin{math}
+			      X \sim \epsilon(\lambda) \implies D(X) = \frac{1}{\lambda^2}
+		      \end{math}
+		\item \begin{math}
+			      X \sim N(\mu, \sigma ) \implies D(X) = \sigma^2
+		      \end{math}
+		\item \begin{math}
+			      X \sim \chi^{2}(n) \implies D(X) = 2n
+		      \end{math}
+	\end{itemize}
+
+	\section{\underline{Slucajni vektorji}}
+
+	\textbf{7.1} Diskretni slcuajni spremenljivki $X$ in $Y$  lahko
+	dolocata (dvorazsesni) \textbf{diskretni slucajni vektor} (X, Y).
+	Verjetnost, da (X, Y) zavzame vrednost $(x_i, y_i) \in R$,
+
+	\begin{center}
+		oznacimo s $P(X = x_i, Y = y_j) = p_{ij}$.
+	\end{center}
+
+	Porazdelitev (X, Y) lahko podamo na dva enakovredna nacina, in sicer:
+
+	\begin{enumerate}
+		\item s \textbf{porazdelitveno tabelo}
+		      \begin{center}
+			      \begin{tiny}
+				      (X, Y)
+				      \begin{tabular}{ |c|c|c|c|c|c|c| }
+					      \hline
+					      $ X \symbol{92} Y $ & $y_1$    & $y_2$    & $\dots$  & $y_m$     & $\dots$  & $X$      \\
+					      \cline{1-7}
+					      $x_1$               & $p_{11}$ & $p_{12}$ & $\dots$  & $p_{1m}$  & $\dots$  & $p_1$    \\
+					      $x_2$               & $p_{21}$ & $p_{22}$ & $\dots$  & $p_{2m}$  & $\dots$  & $p_2$    \\
+					      $\vdots$            & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots $ & $\vdots$ & $\vdots$ \\
+					      $x_n$               & $p_{n1}$ & $p_{n2}$ & $\dots$  & $p_{nm}$  & $\dots$  & $p_n$    \\
+					      $\vdots$            & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots $ & $\vdots$ & $\vdots$ \\
+					      \cline{1-7}
+					      $ Y $               & $q_1$    & $q_2$    & $\dots$  & $q_m$     & $\dots$  & $1$      \\
+					      \hline
+				      \end{tabular}
+			      \end{tiny}
+		      \end{center}
+		      pri cemer je $0 \leq p_{ij} \leq 1$,
+		      \begin{math}
+			      \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty} p_{ij} = 1,\:
+			      \sum_{i = 1}^{\infty} p_{ij} = p_i
+		      \end{math} za vsak $i \in N$ in
+		      \begin{math}
+			      \sum_{i = 1}^{\infty} p_{ij} = q_j
+		      \end{math} za vsak $j \in N$.
+		\item s \textbf{porazdelitveno funkcijo}
+		      \begin{center}
+			      \begin{math}
+				      F_{X,Y}(x, y) = P(X \leq x, Y \leq y).
+			      \end{math}
+
+		      \end{center}
+		      Velja
+		      \begin{math}
+			      F_{X,Y}(x, y) =
+		      \end{math}\\
+		      \begin{math}
+			      \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty} p_{ij}  I_{[x_i, \infty)} (x) I_{[y_j, \infty)} (y)
+		      \end{math}
+		      , kjer je
+		      \begin{center}
+			      \begin{math}
+				      I_{[x_i, \infty)} (x) =
+				      \Bigg\{\begin{tabular}{cc}
+					      $1$ & $x_i \leq x$ \\
+					      $0$ & $sicer$      \\
+				      \end{tabular}
+			      \end{math} \\
+			      \begin{math}
+				      I_{[y_j, \infty)} (y) =
+				      \Bigg\{\begin{tabular}{cc}
+					      $1$ & $y_j \leq y$ \\
+					      $0$ & $sicer$      \\
+				      \end{tabular}
+			      \end{math}
+		      \end{center}
+	\end{enumerate}
+	Podan imamo vektor $(X \in [0, a], Y \in [0,b])$. Potem velja slednje:
+	\begin{itemize}
+		\item $P(X < 1 ) = P(X \leq 1, Y \leq b)$
+		\item $P(X < 1, Y > \frac{1}{2}) = P(X \leq 1, Y \leq 1) - P(X \leq 1, Y \leq \frac{1}{2})$
+		\item \begin{math}
+			      P(X > 1, Y > \frac{1}{2}) =
+		      \end{math}
+	\end{itemize}
+	\begin{center}
+		\begin{small}
+			\begin{math}
+				P(X \leq a, \frac{1}{2} \leq Y \leq b) - P(X \leq 1, \frac{1}{2} \leq Y \leq b) =
+				(P(X \leq a, Y \leq b) - P(X \leq a, Y \leq \frac{1}{2})) - (P(X \leq 1, Y \leq b) - P(X \leq 1, Y \leq \frac{1}{2}))
+			\end{math}
+		\end{small}
+	\end{center}
+
+	\textbf{Robne porazdelitve} so porazdelitve komponent\\
+	\begin{center}
+		\begin{math}
+			p_i = P(X = x_i) = \sum_{i = 1}^{\infty} p_{ij}
+		\end{math}\\
+		\begin{math}
+			q_j = P(Y = y_i) = \sum_{j = 1}^{\infty} p_{ij}
+		\end{math}
+	\end{center}
+	Slucajni spremenljivki X in Y sta \textbf{neodvisni},
+	ce za poljublni stevili $x,y \in R$ velja
+	\begin{center}
+		\begin{math}
+			P(X = x, Y = y) = P(X = x)P(Y = y)
+		\end{math} in
+	\end{center}
+	\begin{center}
+		\begin{math}
+			P(X = x\, |\, Y = y) = \frac{P(X = x, Y = y)}{P(Y = y)}
+		\end{math}
+	\end{center}
+
+	\textbf{7.2 dvorazsezna gostota verjetnosti}
+	Naj bosta X,Y z.s.s. Par (X, Y) je \textit{zvezni slucajni vektor},
+	ce obstaja integrabilna funkcija $p_{X,Y}: R^2 \rightarrow R$ (gostota verjetnosti), tako da za
+	vsak par $(x,y) \in R^2$ velja
+	\begin{center}
+		\begin{math}
+			F_{X,Y}(x, y) = P(X \leq x, Y \leq y) = \int_{-\infty}^{x}\int_{-\infty}^{y} p_{X,Y}(x,y)\,dx\,dy
+		\end{math}.
+	\end{center}
+	\begin{small}
+		Funkciji $F_{X,Y}$ pravimo \textit{porazdelitvena funkcija}.
+	\end{small}
+	Velja
+	\begin{center}
+		\begin{math}
+			\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} p_{X,Y}(x,y)\,dx\,dy = 1
+		\end{math}
+	\end{center}
+	\textbf{Robni gostoti} sta
+	\begin{center}
+		\begin{math}
+			p_X(x) = \int_{-\infty}^{\infty} p_{XY}(x,y)\, dy
+		\end{math} in
+		\begin{math}
+			p_Y(y) = \int_{-\infty}^{\infty} p_{XY}(x,y)\, dx
+		\end{math}
+	\end{center}
+	Zvezni slucajni spremenljivki $X$ in $Y$ sta \textbf{neodvisni}, ce
+	za vsaki realni stevili $x, y \in R$ velja
+	\begin{center}
+		\begin{math}
+			p_{X,Y}(x,y) = p_X(x)p_Y(y)
+		\end{math}.
+	\end{center}
+
+	\textbf{7.3 Matematicno upanje} funkcije\\
+	$f: R^2 \rightarrow R$ dvorazseznega slucajnega vektorja (X, Y) je
+	za diskretni slucajni vektor definirano s predpisom
+	\begin{center}
+		\begin{math}
+			E(f(X,Y)) =
+		\end{math}\\
+		\begin{math}
+			\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} f(x_i, y_i) P(X = x_i, Y = y_i)
+		\end{math}
+	\end{center}
+	za zvezni slucjani vektor pa s predpisom
+	\begin{center}
+		\begin{math}
+			E(f(X,Y)) =
+		\end{math}\\
+		\begin{math}
+			\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) P_{X,Y}(x,y)\,dx\,dy
+		\end{math}.
+	\end{center}
+	Ce sta $X$ in $Y$ \textbf{neodvisni} velja
+	\begin{center}
+		\begin{math}
+			E(XY) = E(X)E(Y)
+		\end{math}.
+	\end{center}
+
+	\textbf{7.4 Kovarianca} slucajnih spremenljivk $X$ in $Y$ je definirana kot
+	\begin{center}
+		\begin{math}
+			Cov(X,Y) = E((X - E(X)) (Y - E(Y))) = E(\underline{XY}) - E(X)E(Y)
+		\end{math}.
+	\end{center}
+	\textbf{XY} mores posebi zracunat porazdelitev(ampak pazi, ni nujno da sta neodvisni, zato, ce imas tabelo, poberi vrednosti za npr. $P(XY = 1)$ iz tabele)!\\
+	Za disperzijo velja
+	\begin{center}
+		\begin{math}
+			D(X) = Cov(X, X)
+		\end{math} in\\
+		\begin{math}
+			D(aX + bY) = a^2D(X) + b^2D(Y) + 2abCov(X, Y)
+		\end{math}
+	\end{center}
+	Za slucajne spremenljivke $X, Y, Z$ ter $a,b \in R$ velja:
+	\begin{itemize}
+		\item \begin{math}
+			      Cov(X + a, Y + b) = Cov(X, Y)
+		      \end{math},
+		\item \begin{math}
+			      Cov(aX + bY, Z) =\\ aCov(X, Z) + bCov(Y,Z)
+		      \end{math},
+		\item \begin{math}
+			      Cov(X, Y) = Cov(Y, X)
+		      \end{math},
+		\item \begin{math}
+			      |Cov(X, Y)| \leq \sqrt{D(X)D(Y)}
+		      \end{math},
+		\item \begin{math}
+			      Cov(aX, bY) = abCov(X, Y)
+		      \end{math}
+		\item \begin{math}
+			      Cov(a, X) = 0
+		      \end{math} \textit{(neodvisni)}
+	\end{itemize}
+
+	Ce sta s.s $X$ in $Y$ \textit{neodvisni} je njuna kovarianca enaka \textbf{0},
+	$Cov(X,Y) = 0$.
+
+	\textbf{7.5 Korelacijski koeficient} izracunamo po formuli
+	\begin{center}
+		\begin{math}
+			\rho(X,Y) = \frac{Cov(X,Y)}
+			{\sigma(X) \sigma(Y)}
+		\end{math}
+	\end{center}
+	Korelacijski koeficient zavzema vrednosti na intervalu [-1, 1].
+	Ce velja $\rho(X, Y) = 0$, lahko sklepamo da sta spremenljivki $X$ in $Y$ \textbf{nekorelirani}.
+	Za $a, b, c, d \in R$ ter $a, c > 0$ velja:
+	\begin{center}
+		$\rho(aX + b, cY + d) = \rho(X, Y)$
+	\end{center}
+	Ce je $|Cov(X, Y)| = \sqrt{D(X)D(Y)}$, tj. $\rho(X, Y) = \pm 1$, potem sta $X$ in $Y$ v \textbf{linearni zvezi}
+	\begin{center}
+		\begin{math}
+			Y = \pm \frac{D(Y)}{D(X)}(X - E(X)) + E(Y)
+		\end{math}.
+	\end{center}
+	Ker iz neodvisnosti sledi E(XY) = E(X)E(Y), sta neodvisni slucajni spremenljivki tudi nekorelirani. Obratno
+	pa ne velja!
+
+	\section{\underline{Normalna porazdelitev}}
+
+	\textbf{8.1} Normalna porazdelitev je odvisna od dveh parametrov:
+	$\mu = E(X)\, in\, \sigma = \sigma(X)$. Gostota njene porazdelitve je:
+	\begin{center}
+		\begin{math}
+			p_{X}(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(x - \mu)^{2}}{2 \sigma^{2}}}
+		\end{math}
+	\end{center}
+	Standardizacija:
+	\begin{center}
+		\begin{math}
+			Z = \frac{X - \mu}{\sigma} \sim N(\mu =  0, \sigma = 1)
+		\end{math}
+	\end{center}
+	Vrednost $F(X) = P(X \leq x)$ dobimo tako da integriramo
+	funkcijo gostote na intervalu $[-\infty, x]$:
+	\begin{center}
+		\begin{math}
+			F(x) = \frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^x e^{-t^2 / 2}\, dt
+		\end{math}.
+	\end{center}
+	Velja : $P (a \leq Z \leq b) = F(b) - F(a)$ in $x \geq 4 \Rightarrow F(x) \approx 1 (std.\, napaka)$.\\
+	Ce je spremenljivka $X \sim N(0,1)$ normalno porazdeljena, velja tudi da so lihi momenti normalne porazdelitve enaki 0 ($E(X^3) = E(X^5) = 0$).
+
+	\textbf{8.2 $\sigma$}  pravila
+
+	\begin{itemize}
+		\item \begin{math}
+			      1 \sigma \Rightarrow P(\mu - \sigma \leq X \leq \mu + \sigma) = 0.683
+		      \end{math}
+
+		\item \begin{math}
+			      2 \sigma \Rightarrow P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) = 0.954
+		      \end{math}
+
+		\item \begin{math}
+			      3 \sigma \Rightarrow P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) = 0.997
+		      \end{math}
+	\end{itemize}
+
+	\textbf{8.3 $q_x$} pravila
+
+	\begin{itemize}
+		\item $P (X \leq q_1) = 0.25$
+		\item $P (X \leq q_2(m)) = 0.5$
+		\item $P (X \leq q_3) = 0.75$
+	\end{itemize}
+
+	\textbf{8.4 Standardizacija binomske} porazdelitve
+	\begin{center}
+		\begin{math}
+			X_B \sim B(n, p)
+		\end{math}
+	\end{center}
+	kjer velja $\mu = np$ in $\sigma = \sqrt{np(1-p)}$.
+	velja:
+	\begin{center}
+		\begin{math}
+			P(a \leq X_B \leq b) \approx P(a - \frac{1}{2} \leq X_N \leq b + \frac{1}{2})
+			= F(\frac{b + \frac{1}{2} - \mu}{\sigma}) - F(\frac{a - \frac{1}{2} - \mu}{\sigma})
+		\end{math}
+	\end{center}
+	in
+	\begin{center}
+		\begin{math}
+			P(X_B \leq b) \approx P(X_N \leq b + \frac{1}{2}) = F(\frac{b + \frac{1}{2} - \mu}{\sigma})
+		\end{math}
+	\end{center}.
+	\textbf{Pazi} za normalizirane \textit{diskretne} porazdelitve velja:
+	\begin{itemize}
+		\item $P(X_B < k) = P(X_B \leq k - 1)$
+		\item $P(X_B > k) = P(X_B \geq k + 1) = 1 - P(X_B \leq k)$
+	\end{itemize}
+
+
+	\textbf{8.5 Aproksimacija binomske} porazdelitve\\
+
+	\textbf{8.5.1 Poissonov Priblizek}
+
+	Naj bo
+	\begin{center}
+		\begin{math}
+			X_B \sim B(n, p)\: in\: X_P \sim P(np)
+		\end{math}
+	\end{center}
+	Ce je
+	\begin{itemize}
+		\item $n \geq 20$ in $p \in (0, 0.05)$ ali pa
+		\item $n \geq 100$ in $np \in (0, 10]$,
+	\end{itemize}
+	ponavadi velja:
+	\begin{center}
+		\begin{math}
+			P(X_B = k) \approx P(X_P = k) = \frac{(np)^k}{k!} e^{-np}
+		\end{math}.
+	\end{center}
+
+	\textbf{8.5.2 Laplaceov Priblizek}
+
+	Naj bo
+	\begin{center}
+		\begin{math}
+			X_B \sim B(n, p)\: in\: X_N \sim N(np, \sqrt{np(1-p)})
+		\end{math}.
+	\end{center}
+	Ce je $np \geq 10$ in $n(1 - p) \geq 10$, potem za $k$ dovolj blizu $np$ velja:
+	\begin{center}
+		\begin{math}
+			P(X = k) \approx P(X_N = k) =
+			\frac{
+				e^{-(k - np)^2/ (2np(1 - p))}
+			}{\sqrt{2 \pi np(1 - p)}}
+		\end{math}
+	\end{center}
+
+	\section{\underline{CLI}}
+
+	\textbf{9.1 Normalne spremenljivke:} Naj bosta $X \sim N(\mu_1, \sigma_1), Y \sim N(\mu_2, \sigma_2)$ neodvisni.
+	Potem je
+	\begin{center}
+		\begin{math}
+			X + Y \sim N(\mu_1 + \mu_2, \sqrt{\sigma_1^2 + \sigma_2^2})
+		\end{math}
+	\end{center}
+	Posledica: Naj bodo
+	\begin{center}
+		\begin{math}
+			X_1 \sim N(\mu_1, \sigma_1), \dots , X_n \sim  N(\mu_n, \sigma_n)
+		\end{math}
+	\end{center}
+	neodvisne, normalno porazdeljene s.s. Potem velja:
+	\begin{center}
+		\begin{math}
+			X_1 + \dots + X_n \sim N (
+			\sum_{i=1}^{n} \mu_i, \sqrt{\sum_{i=1}^{n} \sigma_i^2}
+			)
+		\end{math}.
+	\end{center}
+
+	\textbf{9.2 CLI za vsoto sl. spremenljivk}
+	Naj bodo $X_1, + \dots +, X_n$ neodvisne in enako porazdeljene
+	slucajne spremenljivke, kjer velja $E(X_i) = \mu, D(X_i) = \sigma^2 < \infty$. Potem za
+	dovolj velik $n$ (dobra aproksimacija : $n \geq 30$)  velja, da je porazdelitev vsote
+	$S = X_1, + \dots +, X_n$ priblizno normalna.
+
+	\begin{center}
+		\begin{math}
+			S \sim  N(n \mu, \sigma \sqrt{n})
+		\end{math}
+	\end{center}
+
+	Pri aproksimaciji \textbf{diskretne} porazdelitvene vsote z normalno porazdelitvijo, uporbljamo
+	popravek za zveznost.
+
+	\begin{center}
+		\begin{math}
+			P(a \leq S \leq b) \approx P(a - \frac{1}{2} \leq Y \leq b + \frac{1}{2}) =
+			F(
+			\frac{b + \frac{1}{2} - n \mu}{\sigma \sqrt{n}}
+			) -
+			F(
+			\frac{b - \frac{1}{2} - n \mu}{\sigma \sqrt{n}}
+			)
+		\end{math}
+	\end{center}
+
+	\textbf{9.3 Enostavni slucajni vzorec}
+	Naj bo $X$ s.s. Enostavni slucajni vzorec je slucajni vektor $(X_1, + \dots +, X_n)$,
+	za katerega velja:
+	\begin{itemize}
+		\item vsi cleni vektorja $X_i$ imajo isto porazdelitev kot spremenljivka $X$ in
+		\item cleni $X_i$ so med seboj neodvisni
+	\end{itemize}
+
+	\textbf{9.4 Vzorcno povprecje} normalno porazdeljenega \textbf{vzorca}
+	Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec, $X_i \sim N(\mu, \sigma)$.
+	Potem je porazdelitev vzorcnega povprecja $\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$
+	tudi normalna:
+	\begin{center}
+		\begin{math}
+			\overline{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})
+		\end{math}
+	\end{center}
+
+	Pozor! Pri racunanju disperzije ne pozabi kvadrirati \textbf{$\frac{1}{n}$}.
+
+	\textbf{9.5 CLI} za \textbf{vzorcno povprecje}
+	Naj bo  $(X_1, + \dots +, X_n)$ enostavni slucajni vzorec in
+	\begin{center}
+		\begin{math}
+			E(X_i) = \mu, D(X_i) = \sigma^2
+		\end{math}
+		\begin{math}
+			(\mu\; in\; \sigma^2\; morata\; biti\; koncni)
+		\end{math}
+	\end{center}
+	Za dovolj veliki vzorec $(n \geq 30)$ je porazdelitev vzorcnega povprecja
+	$\overline{X} = \frac{1}{n} \sum_{i = 1}^{n} X_i$ priblizno normalna
+	\begin{center}
+		\begin{math}
+			\overline{X} \sim N(\mu, \frac{\sigma}{\sqrt{n}})
+		\end{math}
+	\end{center}
+
+	\textbf{9.6 Racunanje razpona}
+	Naj bo s.s. $X$ normalno porazdeljena $X \sim N(\mu, \sigma)$
+	\begin{center}
+		\begin{math}
+			P(E(X) - a \leq X \leq E(X) + a) = p
+		\end{math}\\
+		\begin{math}
+			I = [E(X) -a, E(X) + a]
+		\end{math}
+	\end{center}
+
+	\bigskip
 \end{multicols}
 \end{document}

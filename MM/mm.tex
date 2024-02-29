@@ -6,488 +6,488 @@
 \begin{document}
 
 \begin{center}
-    {\small MM/FRI \par}
+	{\small MM/FRI \par}
 \end{center}
 
 \begin{multicols}{2}
 
-\section{\underline{Linear Models}}
+	\section{\underline{Linear Models}}
 
-\textbf{1.1 Types of errors}\\
-Errors come from: impercise data, mistakes in the model, computational percision,..
-We know two types of errors:
-\begin{itemize}
-    \item \textbf{Absolute} error = approximate value - correct value
-        \begin{center}
-            \begin{math}
-                \Delta x = \overline{x} - x
-            \end{math}
-        \end{center}
-    \item \textbf{Relative} error = $\dfrac{\text{absolute err}}{\text{correct value}}$ 
-        \begin{center}
-            \begin{math}
-                \delta x = \dfrac{\Delta x}{x}
-            \end{math}
-        \end{center}
-\end{itemize}
+	\textbf{1.1 Types of errors}\\
+	Errors come from: impercise data, mistakes in the model, computational percision,..
+	We know two types of errors:
+	\begin{itemize}
+		\item \textbf{Absolute} error = approximate value - correct value
+		      \begin{center}
+			      \begin{math}
+				      \Delta x = \overline{x} - x
+			      \end{math}
+		      \end{center}
+		\item \textbf{Relative} error = $\dfrac{\text{absolute err}}{\text{correct value}}$
+		      \begin{center}
+			      \begin{math}
+				      \delta x = \dfrac{\Delta x}{x}
+			      \end{math}
+		      \end{center}
+	\end{itemize}
 
-\textbf{1.2} Mathematical model is \textbf{linear},
-when the function F is a linear function of the parameters:
-\begin{center}
-    \begin{math}
-        F(x, a_1, \dots, a_p) = a_1 \phi_1(x) + \dots + a_p \phi_p(x) 
-    \end{math}
-\end{center} 
-where $\phi_1, \dots, \phi_p$ are functions of a specific type.
+	\textbf{1.2} Mathematical model is \textbf{linear},
+	when the function F is a linear function of the parameters:
+	\begin{center}
+		\begin{math}
+			F(x, a_1, \dots, a_p) = a_1 \phi_1(x) + \dots + a_p \phi_p(x)
+		\end{math}
+	\end{center}
+	where $\phi_1, \dots, \phi_p$ are functions of a specific type.
 
 
-\textbf{1.3 Least squares method}
-Given points
-\begin{center}
-    \begin{math}
-        \{ (x_1, y_1), \dots, (x_m, y_m) \}, x_i \in R^n , y_i \in R
-    \end{math}
-\end{center}
-the task is to find a function $F(x, a_1, \dots, a_p)$ that is good fit for the data.
-The values of the parameters $a_1, \dots, a_p$ should be chosen so that the equations
-\begin{center}
-    \begin{math}
-        y_i = F(x, a_1, \dots, a_p), i=1,\dots,m
-    \end{math}
-\end{center} are satisified or, it this is not possible, that the error is as small as possible.\\
-We use \textbf{Least squares method} to determine that the sum od squared errors is as small as possible.
-\begin{center}
-    \begin{math}
-        \sum_{i=1}^m (F(x_i, a_1, \dots, a_p) - y_i)^2
-    \end{math}
-\end{center}
+	\textbf{1.3 Least squares method}
+	Given points
+	\begin{center}
+		\begin{math}
+			\{ (x_1, y_1), \dots, (x_m, y_m) \}, x_i \in R^n , y_i \in R
+		\end{math}
+	\end{center}
+	the task is to find a function $F(x, a_1, \dots, a_p)$ that is good fit for the data.
+	The values of the parameters $a_1, \dots, a_p$ should be chosen so that the equations
+	\begin{center}
+		\begin{math}
+			y_i = F(x, a_1, \dots, a_p), i=1,\dots,m
+		\end{math}
+	\end{center} are satisified or, it this is not possible, that the error is as small as possible.\\
+	We use \textbf{Least squares method} to determine that the sum od squared errors is as small as possible.
+	\begin{center}
+		\begin{math}
+			\sum_{i=1}^m (F(x_i, a_1, \dots, a_p) - y_i)^2
+		\end{math}
+	\end{center}
 
-\textbf{1.4 Systems of linear equations}
+	\textbf{1.4 Systems of linear equations}
 
-A system of linear equations in the matrix form is given by $A\vec{x} = \vec{b}$,
-where:
-\begin{itemize}
-    \setlength\itemsep{0.1em}
-    \item A is the matrix of coefficients of order $m \times n$ where $m$ is the number of equations
-        and $n$ is the number of unknowns,
-    \item $\vec{x}$ is the vector of unknowns and
-    \item $\vec{b}$ is the right side vector
-\end{itemize}
-\begin{small}
-    \begin{center}
-        \begin{math}
-        \begin{bmatrix}
-            \phi_1(x_1) & \phi_2(x_1) & \dots  & \phi_p(x_1) \\
-            \phi_1(x_2) & \phi_2(x_2) & \dots  & \phi_p(x_2) \\
-            \vdots & \vdots & \ddots & \vdots \\
-            \phi_1(x_n) & \phi_2(x_n) & \dots  & \phi_p(x_n)
-        \end{bmatrix}
-        \begin{bmatrix}
-             a_1 \\
-             a_2 \\
-             \vdots \\
-             a_p
-        \end{bmatrix} = 
-        \begin{bmatrix}
-             y_1 \\
-             y_2 \\
-             \vdots \\
-             y_p
-        \end{bmatrix}
-        \end{math}
-    \end{center}
-\end{small}
+	A system of linear equations in the matrix form is given by $A\vec{x} = \vec{b}$,
+	where:
+	\begin{itemize}
+		\setlength\itemsep{0.1em}
+		\item A is the matrix of coefficients of order $m \times n$ where $m$ is the number of equations
+		      and $n$ is the number of unknowns,
+		\item $\vec{x}$ is the vector of unknowns and
+		\item $\vec{b}$ is the right side vector
+	\end{itemize}
+	\begin{small}
+		\begin{center}
+			\begin{math}
+				\begin{bmatrix}
+					\phi_1(x_1) & \phi_2(x_1) & \dots  & \phi_p(x_1) \\
+					\phi_1(x_2) & \phi_2(x_2) & \dots  & \phi_p(x_2) \\
+					\vdots      & \vdots      & \ddots & \vdots      \\
+					\phi_1(x_n) & \phi_2(x_n) & \dots  & \phi_p(x_n)
+				\end{bmatrix}
+				\begin{bmatrix}
+					a_1    \\
+					a_2    \\
+					\vdots \\
+					a_p
+				\end{bmatrix} =
+				\begin{bmatrix}
+					y_1    \\
+					y_2    \\
+					\vdots \\
+					y_p
+				\end{bmatrix}
+			\end{math}
+		\end{center}
+	\end{small}
 
-\textbf{1.5 Existance of solutions} in linear equations\\
-Let A = $[\vec{a_1}, \dots, \vec{a_n} ]$, where $\vec{a_i}$ are vector representing
-the columns of A.
-For any vector $\vec{x} =$ \begin{math}
-                             \begin{bmatrix}
-                                  y_1 \\
-                                  y_2 \\
-                                  \vdots \\
-                                  y_p
-                             \end{bmatrix}
-                           \end{math}
-the produdct $A\vec{x}$ is 
-a linear combination $A\vec{x} = \sum_i x_i a_i$. The system is \textbf{solvable} iff the
-vector $\vec{b}$ can be expressed as a linear combination of the columns of A, that is
-it is in the column space of $A$, $\vec{b} \in C(A)$.\\
-By adding $\vec{b}$ to the columns of $A$ we obtain the extended matrix of the system:
-\begin{center}
-    \begin{math}
-        [A| \vec{b}] = [\vec{a_1}, \dots, \vec{a_n} | b]
-    \end{math}
-\end{center}
-The system $A\vec{x} = \vec{b}$ is solvable iff the rank of A equals the rank of the
-extended matrix $[A| \vec{b}]$, i.e.:
-\begin{center}
-    \begin{math}
-        rank A = rank [A| \vec{b}] =: r
-    \end{math}
-\end{center}
-The solution is unique if the rank of the two matrices equals num of unknowns (r = n).
+	\textbf{1.5 Existance of solutions} in linear equations\\
+	Let A = $[\vec{a_1}, \dots, \vec{a_n} ]$, where $\vec{a_i}$ are vector representing
+	the columns of A.
+	For any vector $\vec{x} =$ \begin{math}
+		\begin{bmatrix}
+			y_1    \\
+			y_2    \\
+			\vdots \\
+			y_p
+		\end{bmatrix}
+	\end{math}
+	the produdct $A\vec{x}$ is
+	a linear combination $A\vec{x} = \sum_i x_i a_i$. The system is \textbf{solvable} iff the
+	vector $\vec{b}$ can be expressed as a linear combination of the columns of A, that is
+	it is in the column space of $A$, $\vec{b} \in C(A)$.\\
+	By adding $\vec{b}$ to the columns of $A$ we obtain the extended matrix of the system:
+	\begin{center}
+		\begin{math}
+			[A| \vec{b}] = [\vec{a_1}, \dots, \vec{a_n} | b]
+		\end{math}
+	\end{center}
+	The system $A\vec{x} = \vec{b}$ is solvable iff the rank of A equals the rank of the
+	extended matrix $[A| \vec{b}]$, i.e.:
+	\begin{center}
+		\begin{math}
+			rank A = rank [A| \vec{b}] =: r
+		\end{math}
+	\end{center}
+	The solution is unique if the rank of the two matrices equals num of unknowns (r = n).
 
-\textbf{1.6} Properties of \textbf{squared matrices}\\
-Let $A \in R^{n \times n}$ be a square matrix. The following conditions are equivalent
-and characterize when a matrix $A$ is \textbf{invertible} or \textbf{nonsingular}:
-\begin{itemize}
-    \setlength\itemsep{0.1em}
-    \item The matrix A has an inverse
-    \item rank A = n
-    \item det(A) $\neq 0$
-    \item The null space $N(A) = \{\vec{x}: A\vec{x} = 0$ is trivial
-    \item All eigenvalues of A are nonzero
-    \item For each $\vec{b}$ the system of equations $A \vec{x} = \vec{b}$ has perciesly one solution
-\end{itemize}
+	\textbf{1.6} Properties of \textbf{squared matrices}\\
+	Let $A \in R^{n \times n}$ be a square matrix. The following conditions are equivalent
+	and characterize when a matrix $A$ is \textbf{invertible} or \textbf{nonsingular}:
+	\begin{itemize}
+		\setlength\itemsep{0.1em}
+		\item The matrix A has an inverse
+		\item rank A = n
+		\item det(A) $\neq 0$
+		\item The null space $N(A) = \{\vec{x}: A\vec{x} = 0$ is trivial
+		\item All eigenvalues of A are nonzero
+		\item For each $\vec{b}$ the system of equations $A \vec{x} = \vec{b}$ has perciesly one solution
+	\end{itemize}
 
-\textbf{1.7 Generalized inverse} of a matrix
-$A \in R^{n \times m}$ is a matrix $G \in R^{m \times n}$ such that
-\begin{center}
-    $AGA = A$
-\end{center}
-Let $G$ be a generalized inverse of $A$. Multiplying $AGA=A$ with $A^{-1}$ from the
-left and the right side we obtain:\\
-LHS: $A^{-1}GAA^{-1} = IGI = G$\\
-RHS: $A^{-1}AA^{-1} = IA^{-1} = A^{-1}$\\
-where I is the identity matrix. The equality LHS=RHS implies that $G=A^{-1}$.\\
-Every matrix $A \in R^{n \times m}$ \textbf{has} a generalized inverse. When computing
-a generalized inverse we come across two cases:
-\begin{enumerate}
-    \item rank $A$ = rank $A_{11}$ where
-        \begin{center}
-            \begin{math}
-                A=
-                \begin{bmatrix}
-                    A_{11} & A_{12} \\
-                    A_{21} & A_{22}
-                \end{bmatrix}
-            \end{math}
-        \end{center}
-        And $A_{11} \in R^{r \times r}, A_{12} \in R^{r \times (m-r)},$
-        $ A_{21} \in R^{(n-r) \times r}, A_{22} \in R^{(n-r)\times (m-r)}$.
-        We claim that
-        \begin{center}
-            \begin{math}
-                G=
-                \begin{bmatrix}
-                    A_{11}^{-1} & 0 \\
-                    0           & 0
-                \end{bmatrix}
-            \end{math}
-        \end{center}
-        where 0s denote zero matrices of appropriate sizes, is the generalized inverse of A.
-    \item The upper left $r \times r$ submatrix of $A$ is \textbf{not} invertible.\\
-        One way to hanlde this case is to use permutation matrices $P$ and $Q$, such that
-        \begin{center}
-            \begin{math}
-                PAQ =
-                \begin{bmatrix}
-                    \tilde{A_{11}} & \tilde{A_{12}} \\
-                    \tilde{A_{21}} & \tilde{A_{22}}
-                \end{bmatrix}
-            \end{math},
-        \end{center}
-        $\tilde{A_{11}} \in R^{r \times r}$ and rank $\tilde{A_{11}} = r$. By case 1 
-        generalized inverse of $PAQ$ equals to
-        \begin{center}
-            \begin{math}
-                (PAQ)^g=
-                \begin{bmatrix}
-                    \tilde{A_{11}^{-1}} & 0 \\
-                    0           & 0
-                \end{bmatrix}
-            \end{math}
-        \end{center}
-        Thus $(PAQ) (PAQ)^g (PAQ) = PAQ$ holds,
-        Multiplying from the left by $P^{-1}$ and from the right
-        by $Q^{-1}$ we get:\\ 
-        $A(Q (PAQ)^g P)A = A$\\
-        So \begin{center}
-            \begin{math}
-                Q (PAQ)^g P
-            \end{math}
-        \end{center}
-        is a \textbf{generalized} inverse of A.
-\end{enumerate}
-\textbf{Algorithm} for computing \textbf{$A^g$}:
-\begin{enumerate}
-    \item Find any nonsingular submatrix B in A of order $r \times r$,
-    \item in A substitute
-        \begin{itemize}
-            \item elements of submatrix B for corresponding elements of $(B^{-1})^T$,
-            \item all other elements with 0
-        \end{itemize}
-    \item the transpose of the obtained matrix is generalized inverse G
-\end{enumerate}
-\textbf{solutions}:\\
-Let $A \in R^{n \times m}$ and $\vec{b} \in R^m$. 
-If the system $A\vec{x} = \vec{b}$ is
-solvable (that is, $\vec{b} \in$ C(A)) and G is a 
-generalized inverse of A, then $\vec{x}=G\vec{b}$ is
-a solution of the system. Moreover, 
-all solutions of system are exactly vectors of the form
-\begin{center}
-    \begin{math}
-        x_z = G\vec{b} + (GA - I)z
-    \end{math}
-\end{center}
+	\textbf{1.7 Generalized inverse} of a matrix
+	$A \in R^{n \times m}$ is a matrix $G \in R^{m \times n}$ such that
+	\begin{center}
+		$AGA = A$
+	\end{center}
+	Let $G$ be a generalized inverse of $A$. Multiplying $AGA=A$ with $A^{-1}$ from the
+	left and the right side we obtain:\\
+	LHS: $A^{-1}GAA^{-1} = IGI = G$\\
+	RHS: $A^{-1}AA^{-1} = IA^{-1} = A^{-1}$\\
+	where I is the identity matrix. The equality LHS=RHS implies that $G=A^{-1}$.\\
+	Every matrix $A \in R^{n \times m}$ \textbf{has} a generalized inverse. When computing
+	a generalized inverse we come across two cases:
+	\begin{enumerate}
+		\item rank $A$ = rank $A_{11}$ where
+		      \begin{center}
+			      \begin{math}
+				      A=
+				      \begin{bmatrix}
+					      A_{11} & A_{12} \\
+					      A_{21} & A_{22}
+				      \end{bmatrix}
+			      \end{math}
+		      \end{center}
+		      And $A_{11} \in R^{r \times r}, A_{12} \in R^{r \times (m-r)},$
+		      $ A_{21} \in R^{(n-r) \times r}, A_{22} \in R^{(n-r)\times (m-r)}$.
+		      We claim that
+		      \begin{center}
+			      \begin{math}
+				      G=
+				      \begin{bmatrix}
+					      A_{11}^{-1} & 0 \\
+					      0           & 0
+				      \end{bmatrix}
+			      \end{math}
+		      \end{center}
+		      where 0s denote zero matrices of appropriate sizes, is the generalized inverse of A.
+		\item The upper left $r \times r$ submatrix of $A$ is \textbf{not} invertible.\\
+		      One way to hanlde this case is to use permutation matrices $P$ and $Q$, such that
+		      \begin{center}
+			      \begin{math}
+				      PAQ =
+				      \begin{bmatrix}
+					      \tilde{A_{11}} & \tilde{A_{12}} \\
+					      \tilde{A_{21}} & \tilde{A_{22}}
+				      \end{bmatrix}
+			      \end{math},
+		      \end{center}
+		      $\tilde{A_{11}} \in R^{r \times r}$ and rank $\tilde{A_{11}} = r$. By case 1
+		      generalized inverse of $PAQ$ equals to
+		      \begin{center}
+			      \begin{math}
+				      (PAQ)^g=
+				      \begin{bmatrix}
+					      \tilde{A_{11}^{-1}} & 0 \\
+					      0                   & 0
+				      \end{bmatrix}
+			      \end{math}
+		      \end{center}
+		      Thus $(PAQ) (PAQ)^g (PAQ) = PAQ$ holds,
+		      Multiplying from the left by $P^{-1}$ and from the right
+		      by $Q^{-1}$ we get:\\
+		      $A(Q (PAQ)^g P)A = A$\\
+		      So \begin{center}
+			      \begin{math}
+				      Q (PAQ)^g P
+			      \end{math}
+		      \end{center}
+		      is a \textbf{generalized} inverse of A.
+	\end{enumerate}
+	\textbf{Algorithm} for computing \textbf{$A^g$}:
+	\begin{enumerate}
+		\item Find any nonsingular submatrix B in A of order $r \times r$,
+		\item in A substitute
+		      \begin{itemize}
+			      \item elements of submatrix B for corresponding elements of $(B^{-1})^T$,
+			      \item all other elements with 0
+		      \end{itemize}
+		\item the transpose of the obtained matrix is generalized inverse G
+	\end{enumerate}
+	\textbf{solutions}:\\
+	Let $A \in R^{n \times m}$ and $\vec{b} \in R^m$.
+	If the system $A\vec{x} = \vec{b}$ is
+	solvable (that is, $\vec{b} \in$ C(A)) and G is a
+	generalized inverse of A, then $\vec{x}=G\vec{b}$ is
+	a solution of the system. Moreover,
+	all solutions of system are exactly vectors of the form
+	\begin{center}
+		\begin{math}
+			x_z = G\vec{b} + (GA - I)z
+		\end{math}
+	\end{center}
 
-\textbf{1.8 The Moore-Penrose generalized inverse}\\
-The MP inverse of $A \in R^{n \times m}$ is any matrix 
-$A^+ \in R^{n \times m}$ satisfying the following four conditions:
-\begin{enumerate}
-    \item $A^+$ is a generalized inverse of A: $AA^+A = A$
-    \item A is a generalized inverse of $A^+: A^+AA^+ = A^+$
-    \item The square matrix $AA^+ \in R^{n \times n}$ is symetric: $(AA^+)^T = AA^+$
-    \item The square matrix $A^+A \in R^{m \times m}$ is symetric: $(A^+A)^T = A^+A$
-\end{enumerate}
-Properties:
-\begin{itemize}
-    \item If A is a square invertible matrix, then it $A^+ = A^{-1}$
-    \item $((A^+))^+ = A$
-    \item $(A^T)^+ = (A^+)^T$
-\end{itemize}
-Construction of the MP inverse (4 cases):
-\begin{enumerate}
-    \item $A^TA \in R^{m \times m}$ is an invertible matrix ($m \leq n$)
-        \begin{center}
-            \begin{math}
-                A^+ = (A^TA)^{-1}A^T
-            \end{math}
-        \end{center}
-    \item $AA^T$ is an invertible matrix ($n \leq m$)
-        \begin{center}
-            \begin{math}
-                A^+ = A^T(AA^T)^{-1} 
-            \end{math}
-        \end{center}
-    \item $\Sigma \in R^{n \times m}$ is diagonal matrix of the form
-        \begin{center}
-            \begin{math}
-                \Sigma =
-                \begin{bmatrix}
-                    \sigma_1 &        & \\
-                             & \ddots & \\
-                             &        & \sigma_n
-                \end{bmatrix}
-            \end{math}
-        \end{center}
-        Then the MP inverse is:
-        \begin{center}
-            \begin{math}
-                \Sigma =
-                \begin{bmatrix}
-                    \sigma_1^+ &        & \\
-                               & \ddots & \\
-                               &        & \sigma_n^+
-                \end{bmatrix}
-            \end{math}
-        \end{center}
-        where \begin{math}
-            \sigma_i^+ =
-            \Bigg \{\begin{tabular}{ccc}
-                $\frac{1}{\sigma_i}$  & $\sigma_i \neq 0$ & \\
-                $0$                   & $\sigma_i = 0$ & \\
-            \end{tabular}
-        \end{math}
-    \item a general matrix A (using SVD)
-        \begin{center}
-            \begin{math}
-                A^+ = V \Sigma^+ U^T
-            \end{math}
-        \end{center}
-\end{enumerate}
+	\textbf{1.8 The Moore-Penrose generalized inverse}\\
+	The MP inverse of $A \in R^{n \times m}$ is any matrix
+	$A^+ \in R^{n \times m}$ satisfying the following four conditions:
+	\begin{enumerate}
+		\item $A^+$ is a generalized inverse of A: $AA^+A = A$
+		\item A is a generalized inverse of $A^+: A^+AA^+ = A^+$
+		\item The square matrix $AA^+ \in R^{n \times n}$ is symetric: $(AA^+)^T = AA^+$
+		\item The square matrix $A^+A \in R^{m \times m}$ is symetric: $(A^+A)^T = A^+A$
+	\end{enumerate}
+	Properties:
+	\begin{itemize}
+		\item If A is a square invertible matrix, then it $A^+ = A^{-1}$
+		\item $((A^+))^+ = A$
+		\item $(A^T)^+ = (A^+)^T$
+	\end{itemize}
+	Construction of the MP inverse (4 cases):
+	\begin{enumerate}
+		\item $A^TA \in R^{m \times m}$ is an invertible matrix ($m \leq n$)
+		      \begin{center}
+			      \begin{math}
+				      A^+ = (A^TA)^{-1}A^T
+			      \end{math}
+		      \end{center}
+		\item $AA^T$ is an invertible matrix ($n \leq m$)
+		      \begin{center}
+			      \begin{math}
+				      A^+ = A^T(AA^T)^{-1}
+			      \end{math}
+		      \end{center}
+		\item $\Sigma \in R^{n \times m}$ is diagonal matrix of the form
+		      \begin{center}
+			      \begin{math}
+				      \Sigma =
+				      \begin{bmatrix}
+					      \sigma_1 &        &          \\
+					               & \ddots &          \\
+					               &        & \sigma_n
+				      \end{bmatrix}
+			      \end{math}
+		      \end{center}
+		      Then the MP inverse is:
+		      \begin{center}
+			      \begin{math}
+				      \Sigma =
+				      \begin{bmatrix}
+					      \sigma_1^+ &        &            \\
+					                 & \ddots &            \\
+					                 &        & \sigma_n^+
+				      \end{bmatrix}
+			      \end{math}
+		      \end{center}
+		      where \begin{math}
+			      \sigma_i^+ =
+			      \Bigg \{\begin{tabular}{ccc}
+				      $\frac{1}{\sigma_i}$ & $\sigma_i \neq 0$ & \\
+				      $0$                  & $\sigma_i = 0$    & \\
+			      \end{tabular}
+		      \end{math}
+		\item a general matrix A (using SVD)
+		      \begin{center}
+			      \begin{math}
+				      A^+ = V \Sigma^+ U^T
+			      \end{math}
+		      \end{center}
+	\end{enumerate}
 
-\textbf{1.9 SVD computation}
-\begin{enumerate}
-    \item Compute the eigenvalues and an orthonormal basis consistiong of eigenvectors
-        of the symetric matrix $A^TA$ or $AA^T$ (depending on which of them is of smaller size)
-    \item the singular values of the matrix $A \in R^{n \times m}$ are equal to $\sigma_i = \sqrt{\lambda_i}$
-    \item the left singular vectors are the corresponding orthonormal eigenvectors of $AA^T$
-    \item the right singular vectors are the corresponding orthonormal eigenvectors of $A^TA$
-    \item If u (resp. v) is a left (resp. right) singular vector corresponding to the singular
-        value $\sigma_i$, then $v = Au$ (resp. $u = A^Tv$) is a right (resp left) singular
-        vector corresponding to the same singular value
-    \item the remaining columns of U (resp. V) consist of an orthonormal basis of the kernel
-        (i.e., the eigenspace of $\lambda = 0$) of $AA^T$ (resp. $A^TA$)
-\end{enumerate}
+	\textbf{1.9 SVD computation}
+	\begin{enumerate}
+		\item Compute the eigenvalues and an orthonormal basis consistiong of eigenvectors
+		      of the symetric matrix $A^TA$ or $AA^T$ (depending on which of them is of smaller size)
+		\item the singular values of the matrix $A \in R^{n \times m}$ are equal to $\sigma_i = \sqrt{\lambda_i}$
+		\item the left singular vectors are the corresponding orthonormal eigenvectors of $AA^T$
+		\item the right singular vectors are the corresponding orthonormal eigenvectors of $A^TA$
+		\item If u (resp. v) is a left (resp. right) singular vector corresponding to the singular
+		      value $\sigma_i$, then $v = Au$ (resp. $u = A^Tv$) is a right (resp left) singular
+		      vector corresponding to the same singular value
+		\item the remaining columns of U (resp. V) consist of an orthonormal basis of the kernel
+		      (i.e., the eigenspace of $\lambda = 0$) of $AA^T$ (resp. $A^TA$)
+	\end{enumerate}
 
-\textbf{1.10 General computation of $A^+$}
-\begin{enumerate}
-    \item For $A^TA$ compute its \textbf{nonzero} eigenvalues
-        $\lambda_1 \geq \dots \geq \lambda_r > 0$, and the corresponding
-        orthonormal eigenvectors $v_1, \dots, v_r$, and form the matrices:
-        \begin{center}
-            \begin{math}
-                S = diag(\sqrt{\lambda_1}, \dots, \sqrt{\lambda_r}) \in R^{r \times r}
-            \end{math}
-            \begin{math}
-                V = [v_1 \dots v_r] \in R^{m \times r}
-            \end{math}
-        \end{center}
-    \item Put the vectors \\
-         \begin{math}
-             u_1 = \dfrac{Av_1}{\sigma_1}, \dots, u_r = \dfrac{Av_r}{\sigma_r}
-        \end{math}\\ 
-        in the matrix $U = [u_1, \dots, u_r]$
-    \item Then $A^+ = V \Sigma^+ U^T$
-\end{enumerate}
+	\textbf{1.10 General computation of $A^+$}
+	\begin{enumerate}
+		\item For $A^TA$ compute its \textbf{nonzero} eigenvalues
+		      $\lambda_1 \geq \dots \geq \lambda_r > 0$, and the corresponding
+		      orthonormal eigenvectors $v_1, \dots, v_r$, and form the matrices:
+		      \begin{center}
+			      \begin{math}
+				      S = diag(\sqrt{\lambda_1}, \dots, \sqrt{\lambda_r}) \in R^{r \times r}
+			      \end{math}
+			      \begin{math}
+				      V = [v_1 \dots v_r] \in R^{m \times r}
+			      \end{math}
+		      \end{center}
+		\item Put the vectors \\
+		      \begin{math}
+			      u_1 = \dfrac{Av_1}{\sigma_1}, \dots, u_r = \dfrac{Av_r}{\sigma_r}
+		      \end{math}\\
+		      in the matrix $U = [u_1, \dots, u_r]$
+		\item Then $A^+ = V \Sigma^+ U^T$
+	\end{enumerate}
 
-\textbf{1.11 Undetermined systems}\\
-Let $A \in R^{n \times m}$, where $m > n$. A system of equiations that has more variables than
-constraints. Typically such system has infinitely many solutions, but it may happen that it has no
-solutions $\rightarrow$ such system is undetermined.
-\begin{enumerate}
-    \item An undetermined system of linear equations $Ax=b$ is solvable iff $AA^+b = b$.
-    \item If there are infinitely many solutions, the solution $A^+b$ is the one with the
-        smallest norm, i.e
-        \begin{center}
-            \begin{math}
-                || A^+ b || = min\{||x||: Ax = b\}
-            \end{math}
-        \end{center}
-        Moreover, it is the unique solution of smallest norm.
-\end{enumerate}
+	\textbf{1.11 Undetermined systems}\\
+	Let $A \in R^{n \times m}$, where $m > n$. A system of equiations that has more variables than
+	constraints. Typically such system has infinitely many solutions, but it may happen that it has no
+	solutions $\rightarrow$ such system is undetermined.
+	\begin{enumerate}
+		\item An undetermined system of linear equations $Ax=b$ is solvable iff $AA^+b = b$.
+		\item If there are infinitely many solutions, the solution $A^+b$ is the one with the
+		      smallest norm, i.e
+		      \begin{center}
+			      \begin{math}
+				      || A^+ b || = min\{||x||: Ax = b\}
+			      \end{math}
+		      \end{center}
+		      Moreover, it is the unique solution of smallest norm.
+	\end{enumerate}
 
-\textbf{1.12 Overdetermined systems}\\
-Let $A \in R^{n \times m}$, where $n > m$. A system of equations that has more constraints than
-variables. Typically such system has no soluitons, but it may happen that it migh have one or
-even infinitely many solutions.
+	\textbf{1.12 Overdetermined systems}\\
+	Let $A \in R^{n \times m}$, where $n > m$. A system of equations that has more constraints than
+	variables. Typically such system has no soluitons, but it may happen that it migh have one or
+	even infinitely many solutions.
 
-\section{\underline{Nonlinear Models}}
+	\section{\underline{Nonlinear Models}}
 
-\textbf{2.1 Definition}\\
-Given is a sample of data points $\{(x_1, y_1), \dots ,(x_m, y_m)\} \in R^n \times R$.
-We are searching for
-\begin{center}
-$F: R^n \times R^p \rightarrow R$, \\
-$F(x_i, a_i, ..., a_p) = y_i,$ \\
-$i = 1,...,m$
-\end{center}
-which can be nonlinear in parameters $a_i, \dots ,a_p$.
-\textbf{Examples:} exponential decay/growth, Gaussian model, logistic model,...
+	\textbf{2.1 Definition}\\
+	Given is a sample of data points $\{(x_1, y_1), \dots ,(x_m, y_m)\} \in R^n \times R$.
+	We are searching for
+	\begin{center}
+		$F: R^n \times R^p \rightarrow R$, \\
+		$F(x_i, a_i, ..., a_p) = y_i,$ \\
+		$i = 1,...,m$
+	\end{center}
+	which can be nonlinear in parameters $a_i, \dots ,a_p$.
+	\textbf{Examples:} exponential decay/growth, Gaussian model, logistic model,...
 
-We introduce a \textbf{vector function}
-\begin{center}
-$G: R^p \rightarrow R^m, G = (g_1,...,g_m)$\\
-$g_1(a_1,..,a_p) = F(x_1,a_1,...a_p) - y_1$\\
-$\vdots$\\
-$g_m(a_1,..,a_p) = F(x_m,a_1,...a_p) - y_m$
-\end{center}
+	We introduce a \textbf{vector function}
+	\begin{center}
+		$G: R^p \rightarrow R^m, G = (g_1,...,g_m)$\\
+		$g_1(a_1,..,a_p) = F(x_1,a_1,...a_p) - y_1$\\
+		$\vdots$\\
+		$g_m(a_1,..,a_p) = F(x_m,a_1,...a_p) - y_m$
+	\end{center}
 
-Solving $F(x_i, a_i, ..., a_p) = y_i,$ is equivalent to solving $G(a_1,..,a_p) = (0,...,0)$. 
-Newton's method will solve the latter system.
+	Solving $F(x_i, a_i, ..., a_p) = y_i,$ is equivalent to solving $G(a_1,..,a_p) = (0,...,0)$.
+	Newton's method will solve the latter system.
 
-\textbf{2.2 Rate of convergence}\\
-Let us say that $e_i$ is the $i$-th error of some method and $\alpha$ is
-a zero we are searching for. We can show that $|e_{i+1}| \leq C \cdot \frac{1}{2}|e_i|^r$, where $C \in R>0$ and $r \in N$. $r$ is
-the rate of convergence of the method.
+	\textbf{2.2 Rate of convergence}\\
+	Let us say that $e_i$ is the $i$-th error of some method and $\alpha$ is
+	a zero we are searching for. We can show that $|e_{i+1}| \leq C \cdot \frac{1}{2}|e_i|^r$, where $C \in R>0$ and $r \in N$. $r$ is
+	the rate of convergence of the method.
 
-\textbf{2.3 Case 1 for solving nonlinear equations  $(p = m = 1)$}\\
-$g: R \rightarrow R$. We have to find a zero of the function $g$ (let's call it $\alpha$).
+	\textbf{2.3 Case 1 for solving nonlinear equations  $(p = m = 1)$}\\
+	$g: R \rightarrow R$. We have to find a zero of the function $g$ (let's call it $\alpha$).
 
-\textbf{2.3.1 Tangent method}
-\begin{enumerate}
-    \item Select an initial approximation $x_0$.
-    \item Iterate $x_{n+1} = x_n - \dfrac{f(x_n)}{f'(x_n)}, n=0,1,...$ until it converges to $\alpha$
-\end{enumerate}
-Problem: the convergence of this method really needs a good initial approximation.
-\textbf{Theorem:} The sequence $x_i$ from the tangent method converges with the rate
-$r = 2$ if:
-\begin{itemize}
-  \item $f'(\alpha) \neq 0$
-  \item $x_0$ was close enough to $\alpha$
-\end{itemize}
+	\textbf{2.3.1 Tangent method}
+	\begin{enumerate}
+		\item Select an initial approximation $x_0$.
+		\item Iterate $x_{n+1} = x_n - \dfrac{f(x_n)}{f'(x_n)}, n=0,1,...$ until it converges to $\alpha$
+	\end{enumerate}
+	Problem: the convergence of this method really needs a good initial approximation.
+	\textbf{Theorem:} The sequence $x_i$ from the tangent method converges with the rate
+	$r = 2$ if:
+	\begin{itemize}
+		\item $f'(\alpha) \neq 0$
+		\item $x_0$ was close enough to $\alpha$
+	\end{itemize}
 
-\textbf{2.3.2 Bisection}
-\begin{enumerate}
-  \item Start with $x_0, x_1$ such that $f(x_0)f(x_1) < 0$.
-  \item Compute $x_2 = \dfrac{x_0 + x_1}{2}$.
-  \item Choose $[x_0, x_2]$ if $f(x_0)f(x_2) < 0$, otherwise choose $[x_2, x_1]$.
-  \item Repeat.
-\end{enumerate}
-Bisection always converges, but it is slow.
-\underline{Rate of convergence:}
-We can show that $|e_{i+1}| \approx \frac{1}{2}|e_i|$. From here we can see that bisection has
-a linear rate of convergence.\\
+	\textbf{2.3.2 Bisection}
+	\begin{enumerate}
+		\item Start with $x_0, x_1$ such that $f(x_0)f(x_1) < 0$.
+		\item Compute $x_2 = \dfrac{x_0 + x_1}{2}$.
+		\item Choose $[x_0, x_2]$ if $f(x_0)f(x_2) < 0$, otherwise choose $[x_2, x_1]$.
+		\item Repeat.
+	\end{enumerate}
+	Bisection always converges, but it is slow.
+	\underline{Rate of convergence:}
+	We can show that $|e_{i+1}| \approx \frac{1}{2}|e_i|$. From here we can see that bisection has
+	a linear rate of convergence.\\
 
-\textbf{2.3.3 Stopping criteria}\\
-Iterative method: $x_0,..., x_n, x_n+1$. How do we find $n$ (how many steps of a method
-do we have to make)? This has to be true:
-\begin{itemize}
-  \item $\dfrac{|x_{n+1} - x_n|}{|x_n|} <$ tolerance
-  \item $|f(x_{n+1})|<$ tolerance
-\end{itemize}
-Tolerance is usually $10^{-10}$.
+	\textbf{2.3.3 Stopping criteria}\\
+	Iterative method: $x_0,..., x_n, x_n+1$. How do we find $n$ (how many steps of a method
+	do we have to make)? This has to be true:
+	\begin{itemize}
+		\item $\dfrac{|x_{n+1} - x_n|}{|x_n|} <$ tolerance
+		\item $|f(x_{n+1})|<$ tolerance
+	\end{itemize}
+	Tolerance is usually $10^{-10}$.
 
-\textbf{2.4 Case 2 for solving nonlinear equations ($n = p > 1$)}\\
-$F: R^n \rightarrow R^n$. We have to find a zero of the function $g$ (let's call it $\alpha \in R^n$).
-In this case we have a vector function of a vector variable.
-$F =
-\begin{bmatrix}
-F_1\\
-\vdots\\
-F_n
-\end{bmatrix}
-, F_i: R^n \rightarrow R$
+	\textbf{2.4 Case 2 for solving nonlinear equations ($n = p > 1$)}\\
+	$F: R^n \rightarrow R^n$. We have to find a zero of the function $g$ (let's call it $\alpha \in R^n$).
+	In this case we have a vector function of a vector variable.
+	$F =
+		\begin{bmatrix}
+			F_1    \\
+			\vdots \\
+			F_n
+		\end{bmatrix}
+		, F_i: R^n \rightarrow R$
 
-\textbf{2.4.1 Newton's method}\\
-$x^{(m+1)} = x^{m} - JF^{-1}(x^{(m)})F(x^{(m)})$ \textbf{(*)}
-Where $x^{m}, x^{(m+1)} \in R^n$ are some approximations of $\alpha$
-and JF is the \underline{Jacobi matrix of F:} $JF(x^{m}) = 
-  \begin{bmatrix}
-  grad F_1\\
-  \vdots \\
-  grad F_n
-  \end{bmatrix}
-=
-  \begin{bmatrix}
-  \frac{\partial F_1}{\partial x_1} \dots \frac{\partial F_1}{\partial x_n}\\
-  \vdots \ddots \vdots \\
-  \frac{\partial F_n}{\partial x_1} \dots \frac{\partial F_n}{\partial x_n}  
-  \end{bmatrix}
-$ \\
-We multiply \textbf{(*)} by $JF(x^{m})$ and solve this instead:
-$x^{(m+1)} = \Delta x^{m} + x^{m}$
+	\textbf{2.4.1 Newton's method}\\
+	$x^{(m+1)} = x^{m} - JF^{-1}(x^{(m)})F(x^{(m)})$ \textbf{(*)}
+	Where $x^{m}, x^{(m+1)} \in R^n$ are some approximations of $\alpha$
+	and JF is the \underline{Jacobi matrix of F:} $JF(x^{m}) =
+		\begin{bmatrix}
+			grad F_1 \\
+			\vdots   \\
+			grad F_n
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\frac{\partial F_1}{\partial x_1} \dots \frac{\partial F_1}{\partial x_n} \\
+			\vdots \ddots \vdots                                                      \\
+			\frac{\partial F_n}{\partial x_1} \dots \frac{\partial F_n}{\partial x_n}
+		\end{bmatrix}
+	$ \\
+	We multiply \textbf{(*)} by $JF(x^{m})$ and solve this instead:
+	$x^{(m+1)} = \Delta x^{m} + x^{m}$
 
-\textbf{2.4.2 Newton's or Tangent method}\\
-We construct a recursive sequence with: $x_0$ is an initial term
-\begin{center}
-    \begin{math}
-        x_{n+1} = x_n - \dfrac{f(x_n)}{f'(x_n)}
-    \end{math}
-\end{center}
+	\textbf{2.4.2 Newton's or Tangent method}\\
+	We construct a recursive sequence with: $x_0$ is an initial term
+	\begin{center}
+		\begin{math}
+			x_{n+1} = x_n - \dfrac{f(x_n)}{f'(x_n)}
+		\end{math}
+	\end{center}
 
-\textbf{2.4.x Broyden's bethod}
-It approximates $JF(x^{(m)})$ with some matrix $B_bn$
-where:
-\begin{center}
-    \begin{math}
-        \text{slope} \approx f'(x_1)
-    \end{math}\\
-    \begin{math}
-        \dfrac{f(x_2) - f(x_1)} {x_2 - x_1} \approx f(x_1)
-    \end{math}\\
-    \begin{math}
-        f(x_2) - f(x_1) \approx f'(x) (x_2 - x_1)
-    \end{math}
-\end{center}
-Where $<f(x_2) - f(x_1)>$ is a vector, $<f(x_1)>$ is a $n \times n$ matrix $B_n$, and
-$<(x_2 - x_1)>$ a vector.
+	\textbf{2.4.x Broyden's bethod}
+	It approximates $JF(x^{(m)})$ with some matrix $B_bn$
+	where:
+	\begin{center}
+		\begin{math}
+			\text{slope} \approx f'(x_1)
+		\end{math}\\
+		\begin{math}
+			\dfrac{f(x_2) - f(x_1)} {x_2 - x_1} \approx f(x_1)
+		\end{math}\\
+		\begin{math}
+			f(x_2) - f(x_1) \approx f'(x) (x_2 - x_1)
+		\end{math}
+	\end{center}
+	Where $<f(x_2) - f(x_1)>$ is a vector, $<f(x_1)>$ is a $n \times n$ matrix $B_n$, and
+	$<(x_2 - x_1)>$ a vector.
 
-\textbf{2.4.x Conclusion}
-\begin{enumerate}
-    \item Use Broyden's method first
-    \item If it doesn't converge, go and compute derivatives for
-        Newtons method.
-    \begin{enumerate}
-        \item Do a few steps of gradient descent(GD)
-        \item Use the final approximate of GD as entry into Newton's method
-    \end{enumerate}
-\end{enumerate}
+	\textbf{2.4.x Conclusion}
+	\begin{enumerate}
+		\item Use Broyden's method first
+		\item If it doesn't converge, go and compute derivatives for
+		      Newtons method.
+		      \begin{enumerate}
+			      \item Do a few steps of gradient descent(GD)
+			      \item Use the final approximate of GD as entry into Newton's method
+		      \end{enumerate}
+	\end{enumerate}
 
-\section{\underline{Curves}}
+	\section{\underline{Curves}}
 
 \end{multicols}
 \end{document}

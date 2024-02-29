@@ -1,120 +1,120 @@
 \textbf{Geometrijska vrsta}
 \[
-\lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a_1(1-q^n)}{1-q}, \quad |q|<1
+	\lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a_1(1-q^n)}{1-q}, \quad |q|<1
 \]
 \[
-\lim_{n \to \infty} S_n = \frac{a_1}{1-q}, \quad |q|<1
+	\lim_{n \to \infty} S_n = \frac{a_1}{1-q}, \quad |q|<1
 \]
 
 \textbf{Pravila za računanje z vrstami}
 \[
-\sum a_n, \sum b_n \text{ konvergentni, potem velja:}
+	\sum a_n, \sum b_n \text{ konvergentni, potem velja:}
 \]
 \[
-\sum (a_n \pm b_n) = \sum a_n \pm \sum b_n
+	\sum (a_n \pm b_n) = \sum a_n \pm \sum b_n
 \]
 \[
-\alpha \in \mathbb{R}, \sum (\alpha a_n) = \alpha \sum a_n
+	\alpha \in \mathbb{R}, \sum (\alpha a_n) = \alpha \sum a_n
 \]
 
 \textbf{Dominirana konvergenca / divergenca}
 \[
-\sum a_n, \sum b_n \text{ vrsti z nenegativnimi členi}
+	\sum a_n, \sum b_n \text{ vrsti z nenegativnimi členi}
 \]
 \[
-a_n \geq 0, b_n \geq 0, a_n \leq b_n \ \forall n \in \mathbb{N}
+	a_n \geq 0, b_n \geq 0, a_n \leq b_n \ \forall n \in \mathbb{N}
 \]
 \[
-\text{če velja } \sum b_n \text{ konvergira, potem tudi } \sum a_n
+	\text{če velja } \sum b_n \text{ konvergira, potem tudi } \sum a_n
 \]
 \[
-\text{če je } \sum b_n \text{ divergentna, je divergentna tudi } \sum a_n
+	\text{če je } \sum b_n \text{ divergentna, je divergentna tudi } \sum a_n
 \]
 
 \textbf{Kvocientni kriterij}
 \[
-\sum a_n, a_n>0 \ \forall n \in \mathbb{N}, D_n = \frac{a_{n+1}}{a_n}
+	\sum a_n, a_n>0 \ \forall n \in \mathbb{N}, D_n = \frac{a_{n+1}}{a_n}
 \]
 \[
-D = \lim_{n \to \infty} D_n = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}
+	D = \lim_{n \to \infty} D_n = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}
 \]
 \[
-D \leq 1 \Rightarrow \sum a_n \text{ konvergira}
+	D \leq 1 \Rightarrow \sum a_n \text{ konvergira}
 \]
 \[
-D > 1 \Rightarrow \sum a_n \text{ divergira}
+	D > 1 \Rightarrow \sum a_n \text{ divergira}
 \]
 \[
-D = 0 \Rightarrow \text{ne moremo sklepati}
+	D = 0 \Rightarrow \text{ne moremo sklepati}
 \]
 
 \textbf{Korenski kriterij}
 \[
-\sum a_n, a_n>0 \ \forall n \in \mathbb{N}, C_n = \sqrt[n]{a_n}
+	\sum a_n, a_n>0 \ \forall n \in \mathbb{N}, C_n = \sqrt[n]{a_n}
 \]
 \[
-C = \lim_{n \to \infty} C_n = \lim_{n \to \infty} \sqrt[n]{a_n}
+	C = \lim_{n \to \infty} C_n = \lim_{n \to \infty} \sqrt[n]{a_n}
 \]
 \[
-C < 1 \Rightarrow \sum a_n \text{ konvergira}
+	C < 1 \Rightarrow \sum a_n \text{ konvergira}
 \]
 \[
-C > 1 \Rightarrow \sum a_n \text{ divergira}
+	C > 1 \Rightarrow \sum a_n \text{ divergira}
 \]
 \[
-C = 1 \Rightarrow \text{ne moremo sklepati}
+	C = 1 \Rightarrow \text{ne moremo sklepati}
 \]
 
 \textbf{Absolutna konvergenca}
 \[
-\sum |a_n| \text{ konvergira } \Rightarrow \sum a_n \text{ konvergira}
+	\sum |a_n| \text{ konvergira } \Rightarrow \sum a_n \text{ konvergira}
 \]
 \[
-\sum a_n \text{ konvergira absolutno, če } \sum |a_n| \text{ konvergira}
+	\sum a_n \text{ konvergira absolutno, če } \sum |a_n| \text{ konvergira}
 \]
 
 \textbf{Hipergeometrična vrsta}
 \[
-\sum \frac{1}{n^p} \text{ konvergira, } \Leftrightarrow p>1 \ (p \in \mathbb{R})
+	\sum \frac{1}{n^p} \text{ konvergira, } \Leftrightarrow p>1 \ (p \in \mathbb{R})
 \]
 
 \textbf{Primerjalni kriterij 2}
 \[
-\sum b_n \text{ abs. konvergentna in } |a_n| \leq |b_n|
+	\sum b_n \text{ abs. konvergentna in } |a_n| \leq |b_n|
 \]
 \[
-\Rightarrow \sum a_n \text{ abs. konvergentna}
+	\Rightarrow \sum a_n \text{ abs. konvergentna}
 \]
 
 \textbf{Raabejev kriterij}
 \[
-\sum a_n, a_n>0, R_n = n \left( \frac{a_n}{a_{n+1}} - 1 \right)
+	\sum a_n, a_n>0, R_n = n \left( \frac{a_n}{a_{n+1}} - 1 \right)
 \]
 \[
-R = \lim_{n \to \infty} R_n = \lim_{n \to \infty} n \left( \frac{a_n}{a_{n+1}} - 1 \right)
+	R = \lim_{n \to \infty} R_n = \lim_{n \to \infty} n \left( \frac{a_n}{a_{n+1}} - 1 \right)
 \]
 \[
-R < 1 \Rightarrow \sum a_n \text{ divergira}
+	R < 1 \Rightarrow \sum a_n \text{ divergira}
 \]
 \[
-R > 1 \Rightarrow \sum a_n \text{ konvergira}
+	R > 1 \Rightarrow \sum a_n \text{ konvergira}
 \]
 \[
-R = 1 \Rightarrow \text{ne moremo sklepati}
+	R = 1 \Rightarrow \text{ne moremo sklepati}
 \]
 
 \textbf{Leibnizov kriterij}
 \[
-\sum (-1)^n a_n, a_n>0 \ \forall n \in \mathbb{N}, \text{ alternirajoča vrsta}
+	\sum (-1)^n a_n, a_n>0 \ \forall n \in \mathbb{N}, \text{ alternirajoča vrsta}
 \]
 \[
-\lim_{n \to \infty} a_n = 0 \text{ in } a_{n+1} \leq a_n \ \forall n \Rightarrow \sum (-1)^n a_n \text{ konvergira}
+	\lim_{n \to \infty} a_n = 0 \text{ in } a_{n+1} \leq a_n \ \forall n \Rightarrow \sum (-1)^n a_n \text{ konvergira}
 \]
 
 \textbf{Primerjalni kriterij}
 \[
-\sum b_n \text{ absolutno konvergentna in } |a_n| \leq |b_n| \text{ za vse } n \geq n_0.
+	\sum b_n \text{ absolutno konvergentna in } |a_n| \leq |b_n| \text{ za vse } n \geq n_0.
 \]
 \[
-\Rightarrow \sum a_n \text{ je absolutno konvergentna}
+	\Rightarrow \sum a_n \text{ je absolutno konvergentna}
 \]

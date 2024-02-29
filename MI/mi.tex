@@ -9,2163 +9,2163 @@
 \begin{document}
 
 \begin{center}
-    {\small MI/FRI \par}
+	{\small MI/FRI \par}
 \end{center}
 
 \begin{multicols}{2}
 
-\section{\underline{Vektorji in matrike}}
-
-\textbf{1.1} Vektor je \textit{urejena n-terica stevil}, ki jo obicajno
-zapisemo kot stolpec\smallskip
-\begin{center}
-    $\vec{x}$ =
-    $\begin{bmatrix}
-        x_{1}\\
-        \vdots \\
-        x_{n}\\
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.2} Produkt \textit{vektorja} $\vec{x}$ s skalarjem $\alpha$ je vektor
-\begin{center}
-    $\alpha \vec{x}$ =
-    $\alpha$
-    $\begin{bmatrix}
-        x_{1}\\
-        \vdots \\
-        x_{n}\\
-    \end{bmatrix}$ =
-    $\begin{bmatrix}
-        \alpha x_{1}\\
-        \vdots \\
-        \alpha x_{n}\\
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.3} Vsota \textit{vektorjev} $\vec{x}$ in $\vec{y}$ je vektor
-\begin{center}
-    $\vec{x} + \vec{y} = 
-    \begin{bmatrix}
-        x_{1}\\
-        \vdots \\
-        x_{n}\\
-    \end{bmatrix} +
-    \begin{bmatrix}
-        y_{1}\\
-        \vdots \\
-        y_{n}\\
-    \end{bmatrix} =
-    \begin{bmatrix}
-        x_{1}  +  y_{1}\\
-        \vdots\\
-        x_{n} + y_{n}\\
-    \end{bmatrix} 
-    $
-\end{center}
-
-\textbf{1.4} Nicelni vektor $\vec{0}$ je tisti vektor, za katerega
-je $\vec{a} + \vec{0} = \vec{0} + \vec{a} = \vec{a}$ za vsak vektor
-$\vec{a}$. Vse komponente nicelnega vektorja so enake 0. Vsakemu vektorju
-$\vec{a}$ priprada nasprotni vektor -$\vec{a}$, tako da je $\vec{a} + (-\vec{a}) = \vec{0}$
-Razlika vektorjev $\vec{a}$ in $\vec{b}$ je vsota $\vec{a} + (-\vec{b})$ in jo
-navadno zapisemo kot  $\vec{a} - \vec{b}$.
-
-\textbf{Lastnosti vektorske vsote}
-\begin{itemize}
-    \item $\vec{a} + \vec{b} = \vec{b} + \vec{a}$ (komutativnost)
-    \item $\vec{a} + (\vec{b} + \vec{c}) = (\vec{a} + \vec{b}) + \vec{c}$ (asociativnost)
-    \item $a(\vec{a} + \vec{b}) = a\vec{a} + a\vec{b}$ (distributivnost)
-\end{itemize}
-
-\textbf{1.5} Linearna kombinacija vektorjev $\vec{x}$ in $\vec{y}$ je vsota
-\begin{center}
-    $a\vec{x} + b\vec{y}$
-\end{center}
-
-\textbf{1.6} Skalarni produkt vektorjev\\
-\begin{center}
-    $\begin{bmatrix} 
-        x_{1}\\ 
-        \vdots\\ 
-        x_{n}\\
-    \end{bmatrix}$ in
-    $\begin{bmatrix} 
-        y_{1}\\ 
-        \vdots\\ 
-        y_{n}\\
-    \end{bmatrix}$ je stevilo    
-\end{center}
-\begin{center}
-    $\vec{x} \cdot \vec{y} = x_{1}y_{1} + x_{2}y_{2} + \dots + x_{n}y_{n}$
-\end{center} \textit{alternativno:}
-\begin{center}
-    $\vec{x} \cdot \vec{y} = ||\vec{x}|| ||\vec{y}|| \cos \phi$
-\end{center}
-
-\textbf{Lastnosti skalarnega produkta}
-\begin{itemize}
-    \item $\vec{x} \cdot \vec{y} = \vec{y} \cdot \vec{x}$ (komutativnost)
-    \item $\vec{x} \cdot (\vec{y} + \vec{z}) = \vec{x} \cdot \vec{y} + \vec{x} \cdot \vec{z}$ (aditivnost)
-    \item $\vec{x} \cdot (a \vec{y}) = a(\vec{x} \cdot \vec{y}) = (a \vec{x}) \cdot \vec{y}$ (homogenost)
-    \item $\forall \vec{x}$ \textit{velja} $\vec{x} \cdot \vec{x} \geq 0$
-\end{itemize}
-
-\textbf{1.7} Dolzina vektorja $\vec{x}$ je
-\begin{center}
-    $||\vec{x}|| = \sqrt{\vec{x} \cdot \vec{x}}$
-\end{center}
-
-\textbf{1.8} Enotski vektor je vektor z dolzino 1.
-
-\textbf{1.9} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
-\begin{center}
-    $|\vec{u} \cdot \vec{v}| \leq ||\vec{u}||||\vec{v}||$,
-\end{center}
-enakost velja, v primeru, da sta vektorja vzporedna.
-
-
-\textbf{1.10} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
-\begin{center}
-    $||\vec{u} + \vec{v}|| \leq ||\vec{u}||+||\vec{v}||$.
-\end{center}
-
-\textbf{1.11} Vektorja $\vec{x}$ in $\vec{y}$ sta ortogonalna
-(pravokotna) natakno takrat, kadar je
-\begin{center}
-    $\vec{x} \cdot \vec{y} = $ 0    
-\end{center}
-
-\textbf{1.12} Ce je $\phi$ kot med vektorjema $\vec{x}$ in $\vec{y}$, potem je
-\begin{center}
-    $\dfrac{\vec{x} \cdot \vec{y}}{||\vec{x}|| ||\vec{y}||} =
-    \cos \phi$
-\end{center}
-
-\textbf{1.13} Vektorski produkt:
-\begin{center}
-    $\vec{a} \times \vec{b} = (a_{2}b_{3} - a_{3}b_{2}) \textbf{i}$ +
-    $(a_{3}b_{1} - a_{1}b_{3}) \textbf{j} + (a_{1}b_{2} - a_{2}b_{1}) \textbf{k}$
-\end{center}
-
-\textbf{Lastnosti vektorskega produkta}
-\begin{itemize}
-    \item $\vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$ (aditivnost)
-    \item $\vec{b} \times \vec{a} = -\vec{a} \times \vec{b}$ (!komutativnost)
-    \item $ (a \vec{a}) \times \vec{b} = a(\vec{a} \times \vec{b}) =  \vec{a} \times (a \vec{b})$ (homogenost)
-    \item $\vec{a} \times \vec{a} = 0$
-    \item $\vec{a} \times \vec{b}$  \textit{je}  $\perp$ \textit{na vektorja} $\vec{a}$ \textit{in} $\vec{b}$
-    \item $||\vec{a} \times \vec{b}|| = ||\vec{a}|| ||\vec{b}|| \sin \phi$
-    \item Dolzina vektorskega produkta je ploscina paralelograma, katerega vektorja oklepata 
-\end{itemize}
-
-\textbf{1.14} Mesani produkt($\vec{a}, \vec{b}, \vec{c}$) vektorjev
-$\vec{a}, \vec{b}$ in $\vec{c}$ v $R^{3}$ je skalarni produkt vektorjev
-$\vec{a} \times \vec{b}$ in $\vec{c}$:
-\begin{center}
-    $(\vec{a}, \vec{b}, \vec{c}) = (\vec{a} \times \vec{b})\cdot \vec{c}$
-\end{center}
-
-\textbf{Lastnosti mesanega produkta}
-\begin{itemize}
-    \item $(\vec{a}, \vec{b}, \vec{c}) = (\vec{b}, \vec{c}, \vec{a}) = (\vec{c}, \vec{a}, \vec{b})$
-    \item $(x\vec{a}, \vec{b}, \vec{c}) = x(\vec{a}, \vec{b}, \vec{c})$ (homogenost)
-    \item $(\vec{a}, \vec{u} + \vec{v}, \vec{c}) = (\vec{a}, \vec{u}, \vec{c}) + (\vec{a}, \vec{v}, \vec{c})$
-    \item Absolutna vrednost mesanega produkta ($\vec{a}, \vec{b}, \vec{c}$) je enaka prostornini paralepipeda
-\end{itemize}
-    
-\textbf{Premice v $R^{3}$} \\
-Premico določata smerni vektor $\vec{p} = [a, b, c]^{T}$ in točka $A(x_0, y_0, z_0)$.
-\begin{itemize}
-    \item Parametrična oblika:
-        $\vec{r} = \vec{r}_{A} + t\vec{p}$, $t \in R$
-    \item Kanonična oblika:
-        $\dfrac{x - x_{0}}{a} = \dfrac{y - y_{0}}{b} = \dfrac{z - z_{0}}{c}$
-\end{itemize}
-
-\textbf{Ravnine v $R^{3}$} \\
-Ravnina z normalo $\vec{n} = [a, b, c]^T$ skozi točko $A(x_0, y_0, z_0)$ ima enačbo
-\begin{center}
-    $(\vec{r} - \vec{r}_A) \cdot \vec{n} = 0$
-\end{center}
-oziroma
-\begin{center}
-    $ax + by + cz = d$
-\end{center}
-
-\textbf{Razdalje}\\
-Razdalja od tocke $P$ do ravnine, v kateri lezi tocka $A$ :
-\begin{center}
-    $\cos\phi = \dfrac{\vec{n} \cdot ( \vec{r_{P}} - \vec{r_{A}})} {||\vec{n}|| ||\vec{r_{P}} - \vec{r_{A}}||}$ oz.
-    $d = |\dfrac{\vec{n}}{||\vec{n}||} ( \vec{r_{P}} - \vec{r_{A}})|$
-\end{center}
-Razdalja od tocke $P$ do premice, katera gre skozi tocko $A$:
-\begin{center}
-    $d = \dfrac{||\vec{e} \times ( \vec{r_{P}} - \vec{r_{A}})||}{||\vec{e}||}$
-\end{center}
-
-\textbf{Projekcije vektorjev}\\
-Naj bo $proj_{\vec{a}}\vec{b} = \vec{x}$ projekcija vektorja $\vec{b}$ na vektor $\vec{a}$.
-Izracunamo jo po sledeci formuli:
-\begin{center}
-    \begin{math}
-        proj_{\vec{a}}\vec{b} = \frac{\vec{a}\vec{b}}{\vec{a}\vec{a}} \vec{a}
-    \end{math}
-\end{center}
-
-\textbf{1.15} Matrika dimenzije $m \times n$ je tabela $m \times n$ stevil, urejenih
-v $m$ vrstic in $n$ stolpcev:
-\begin{center}
-    $A^{m \times n} =$
-    $\begin{bmatrix}
-        x_{11} & x_{12} & x_{13} & \dots  & x_{1n} \\
-        x_{21} & x_{22} & x_{23} & \dots  & x_{2n} \\
-        \vdots & \vdots & \vdots & \ddots & \vdots \\
-        x_{m1} & x_{m2} & x_{m3} & \dots  & x_{mn}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.16} Matrika, katere elementi so enaki nic povsod
-zunaj glavne diagonale, se imenuje diagonalna matrika. Za
-diagonalno matriko je $a_{ij} = 0$, kadarkoli velja $i \neq j$
-
-\textbf{1.17} Matrika $A^{n \times n}$ je spodnjetrikotna, kadar
-so vsi elementi nad glavno diagonalo enaki 0:
-\begin{center}
-    $a_{ij} = 0$  \textit{kadar je} $i < j$
-\end{center}
-
-\textbf{1.18} Matrika $A^{n \times n}$ je zgornjetrikotna, kadar
-so vsi elementi pod glavno diagonalo enaki 0:
-\begin{center}
-    $a_{ij} = 0$  \textit{kadar je} $i > j$
-\end{center}
-
-\textbf{1.19} Matrika je trikotna, ce je zgornjetrikotna ali spodnjetrikotna.
-
-\textbf{1.20} Dve matriki $A$ in $B$ sta enaki natanko takrat,
-kadar imata enaki dimenziji in kadar so na istih mestih v obeh
-matrikah enaki elementi:
-\begin{center}
-    $A^{m \times n} = B^{p \times q} \implies m=p$ in $n=q$,\\
-    $a_{ij} = b_{ij}$ \textit{za vsak} $i= 1,...,m$ in $j=1,...,n$ 
-\end{center}
-
-\textbf{1.21} Produkt matrike s skalarjem dobimo tako, da 
-vsak element matrike pomnozimo s $skalarjem$
-\begin{center}
-    $aA^{m \times n} =$
-    $\begin{bmatrix}
-        ax_{11} & ax_{12} & ax_{13} & \dots  & ax_{1n} \\
-        ax_{21} & ax_{22} & ax_{23} & \dots  & ax_{2n} \\
-        \vdots  & \vdots  & \vdots  & \ddots  & \vdots \\
-        ax_{m1} & ax_{m2} & ax_{m3} & \dots  & ax_{mn}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.22} Vsoto dveh matrik enake dimenzije dobimo tako,
-da sestejemo istolezne elemente obeh matrik:
-\begin{center}
-    $A + B =$
-    $\begin{bmatrix}
-        a_{11} + b_{11} & ax_{12} + b_{12}  & \dots  & ax_{1n} + b_{1n} \\
-        a_{21} + b_{21} & ax_{22} + b_{22}  & \dots  & ax_{2n} + b_{2n}\\
-        \vdots          & \vdots            & \ddots & \vdots \\
-        a_{m1} + b_{m1} & ax_{m2} + b_{m3} & \dots  & ax_{mn} + b_{mn}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{Osnovne matricne operacije}
-\begin{itemize}
-    \item $A + B = B + A$ (komutativnost)
-    \item $(A + B) + C = A + (B + C)$ (asociativnost)
-    \item $a(A + B) = aA + aB$ (mnozenje s skalarjem)
-    \item $A + (-A) = 0$
-    \item $x(yA) = (xy)A$ \textit{in} $1 \cdot A = A$
-\end{itemize}
-
-\textbf{1.23} Transponirana matrika k matriki A reda $m \times n$
-je matrika reda $n \times m$
-\begin{center}
-    $A =$
-    $\begin{bmatrix}
-        x_{11} & x_{12} & \dots  & x_{1n} \\
-        x_{21} & x_{22} & \dots  & x_{2n} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        x_{m1} & x_{m2} & \dots  & x_{mn}
-    \end{bmatrix}$\\
-    \smallskip
-    $A^{T} =$
-    $\begin{bmatrix}
-        x_{11} & x_{21} & \dots  & x_{m1} \\
-        x_{12} & x_{22} & \dots  & x_{m2} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        x_{1n} & x_{2n} & \dots  & x_{mn}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{Lastnosti transponiranja matrik}
-\begin{itemize}
-    \item $(A + B)^{T} = A^{T} + B^{T}$
-    \item $(A \cdot B)^{T} = B^{T} \cdot A^{T}$
-    \item $(xA)^{T} = xA^{T}$
-    \item $(A^{T})^{T} = A$
-\end{itemize}
-
-\textbf{1.24} Produkt matrike A in vektorja $\vec{x}$ je
-linearna kombinacija stolpcev matrike A, utezi linearne
-kombinacije so komponente vektorja $\vec{x}$:
-\begin{center}
-    $A \vec{x} =
-    \begin{bmatrix}
-                &         & \\
-        \vec{u} & \vec{v} & \vec{w} \\
-                &         & \\
-    \end{bmatrix}
-    \cdot
-    \begin{bmatrix}
-        a\\
-        b\\
-        c
-    \end{bmatrix} =$
-    $a\vec{u} + b\vec{v} + c\vec{w}$
-\end{center}
-
-\textbf{1.25} Produkt vrstice $\vec{x}$ z matriko A je
-linearna kombinacija vrstic matrike A, koeficienti linearne
-kombinacije so komponente vrstice $\vec{y}$:
-\begin{center}
-    $\vec{y} \cdot A =
-    \begin{bmatrix}
-        y_{1}, y_{2}, y_{3}
-    \end{bmatrix} \cdot
-    \begin{bmatrix}
-        \vec{u}\\
-        \vec{v}\\
-        \vec{w}
-    \end{bmatrix} =
-    \begin{bmatrix}
-        y_{1}\vec{u}\\
-        y_{2}\vec{v}\\
-        y_{3}\vec{w}
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{1.26} Produkt matrik A in B je matrika, katere stolpci
-so zaporedoma produkti matrike A s stolpci matrike B:
-\begin{center}
-    $AB = A
-    \begin{bmatrix}
-        b_{1}, b_{2}, \dots ,b_{n}
-    \end{bmatrix} =
-    \begin{bmatrix}
-        Ab_{1}, Ab_{2}, \dots ,Ab_{n}
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{1.27} Element $c_{ij}$ v $i-ti$ vrstici in $j-tem$ stolpcu
-produkta C = AB je skalarni produkt $i-te$ vrstice A in $j-tega$
-stolpca matrike B
-\begin{center}
-    $c_{ij} =
-    \sum_{k=1}^{n} a_{ik}b_{kj}
-    $
-\end{center}
-
-\textbf{1.28} Produkt matrik A in B je matrika, katere vrstice
-so zaporedoma produkti vrstic matrike A z matriko B:
-\begin{center}
-    $
-    \begin{bmatrix}
-        i-ta\; vrstica\; A
-    \end{bmatrix}B =
-    \begin{bmatrix}
-        i-ta\; vrstica\; AB
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{Lastnosti matricnega produkta}
-\begin{itemize}
-    \item $AB \neq BA$ (!komutativnost)
-    \item $(xA)B = x(AB) = A(xB)$ (homogenost)
-    \item $C(A + B) = CA + CB$ (distributivnost)
-    \item $A(BC) = (AB)C$ (asociativnost)
-    \item $(AB)^{T} = B^{T}A^{T}$
-\end{itemize}
-V splosnem; komutativnost matricnega mnozenja velja
-samo, ko sta matriki diagonalizabilni.
-
-\textbf{1.29} Vrstice matrike A z $n$ stolpci naj bodo
-$a^{1}, \dots, a^{n}$, stolpci matrike B z $n$ vrsticami pa
-$b_{1}, \dots, b_{n}$. Potem je
-\begin{center}
-    $AB = a^{1}b_{1} + \dots + a^{n}b_{n}$
-\end{center}
-
-\textbf{1.30} Ce delitev na bloke v matriki A ustreza delitvi v matirki B,
-potem lahko matriki pomnozimo blocno:
-\begin{center}
-    $\begin{bmatrix}
-        A_{11} & A_{12}\\
-        A_{21} & A_{22}
-    \end{bmatrix}
-    \begin{bmatrix}
-        B_{11} & B_{12}\\
-        B_{21} & B_{22}
-    \end{bmatrix} =
-    \begin{bmatrix}
-        A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22}\\
-        A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22}
-    \end{bmatrix}$
-\end{center}
-
-\textbf{1.31} Kvadratna matrika $I_{k}$ reda $k \times k$, ki ima vse diagonalne
-elemente enake 1, vse ostale elemente pa 0 ima lastnost, da za vsako matriko A
-reda $m \times n$ velja $AI_{n} = A$ in $I_{m}A = A$. Matrika $I_{k}$ se imenuje
-enotska ali identicna matirka.
-\begin{center}
-    $I_{k}=
-    \begin{bmatrix}
-        1 & 0 & \hdots & 0\\
-        0 & 1 & \hdots & 0 \\
-        \vdots & \vdots & \ddots & \vdots\\
-        0 & 0 & \hdots & 1
-    \end{bmatrix} 
-    $
-\end{center}
-
-\section{\underline{Sistemi linearnih enacb}}
-
-\textbf{2.1} Kvadratna matrika A je obrnljiva, ce obstaja taka matrika
-$A^{-1}$, da je
-\begin{center}
-    $AA^{-1} = I\;
-    in\;
-    A^{-1}A = I
-    $
-\end{center}
-Matrika $A^{-1}$ (ce obstaja) se imenuje matriki A inverzna matrika.
-Matrika, ki ni obrnljiva, je singularna. Matrika \textbf{NI} obrnljiva, kadar je
-$rang(A) < n$ !
-
-\textbf{2.2} Kvadratna matirka reda $n$ je obrnljiva natanko tedaj, ko pri
-gaussovi eliminaciji dobimo $n$ pivotov.
-
-\textbf{2.3} Vsaka obrnljiva matrika ima eno samo inverzno matriko.
-
-\textbf{2.4} Inverzna matrika inverzne matrike $A^{-1}$ je matrika A
-\begin{center}
-    $(A^{-1})^{-1} = A$
-\end{center}
-
-\textbf{2.5} Ce je matrika A obrnljiva, potem ima sistem enacb
-$A\vec{x} = \vec{b}$ edino resitev $\vec{x} = A^{-1} \vec{b}$
-
-\textbf{2.6} Ce obstaja nenicelna resitev $\vec{x}$ enacbe $A\vec{x} = \vec{0}$,
-matrika A ni obrnljiva(je singularna).
-
-\textbf{2.7} Ce sta matirki A in B istega reda obrnljivi, je obrnljiv tudi
-produkt $A \cdot B$ in
-\begin{center}
-    $(A \cdot B)^{-1} =
-    B^{-1} \cdot A^{-1}
-    $
-\end{center}
-
-\textbf{Pozor!} Pravilo
-\begin{center}
-    $(AB)^{p} = A^{p}B^{p}$
-\end{center}
-velja le v primeru, ko matriki A in B komutirata, torej $AB = BA$.
-
-\textbf{2.8} Inverz transponirane matrike je transponirana matrika inverza
-\begin{center}
-    $(A^{T})^{-1} = (A^{-1})^{T}$
-\end{center}
-
-\textbf{2.9} Inverz diagonalne matrike z diagonalnimi elementi $a_{ii}$ je
-diagonalna matrika, ki ima na diagonali elemente $a_{ii}^{-1}$
-\begin{center}
-    $\begin{bmatrix}
-        a_{11} &        & 0\\
-               & \ddots &\\
-        0      &        & a_{nn}
-    \end{bmatrix}=
-    \begin{bmatrix}
-        a_{11}^{-1} &        & 0\\
-                    & \ddots &\\
-        0           &        & a_{nn}^{-1}
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{2.10} Za izracun inverza matrike A, uporabimo gausovo eliminacijo nad
-matriko $\begin{bmatrix}A|I\end{bmatrix}$
-\begin{center}
-    $\begin{bmatrix}A|I\end{bmatrix} =
-    \begin{bmatrix}I|A^{-1}\end{bmatrix}
-    $
-\end{center}
-
-\textbf{2.11} Matrika A je simetricna $\Leftrightarrow A^{T} = A$. Za elemente
-$a_{ij}$ simetricne matirke velja $a_{ij} = a_{ji}$. Za simetricno matriko vedno velja,
-da je kvadratna $A \in R^{n \times n}$.
-
-\textbf{2.12} Ce je matrika A simetricna in obrnljiva, je tudi $A^{-1}$ simetricna.
-
-\textbf{2.13} Ce je R poljubna (lahko tudi pravokotna) matrika, sta $R^{T}R$ in
-$RR^{T}$ simetricni matriki.
-
-\section{\underline{Vektorski prostori}}
-
-\textbf{3.1} Realni vektorski prostor V je mnozica "vektorjev" skupaj z pravili za
-\begin{itemize}
-    \item sestevanje vektorjev,
-    \item mnozenje vektorja z realnim stevilom (skalarjem)
-\end{itemize}
-Ce sta $\vec{x}$ in $\vec{y}$ poljubna vektorja v V, morajo biti v V tudi
-\begin{itemize}
-    \item vsota $\vec{x} + \vec{y}$ in 
-    \item produkti $\alpha\vec{x}$ za vse $\alpha \in R$
-\end{itemize}
-V vektorskem prostoru V morajo biti tudi VSE linearne kombinacije
-$\alpha\vec{x} + \beta\vec{y}$
-
-\textbf{Pravila za operacije v vektorskih prostorih}\\
-Operaciji sestevanja vektorjev in mnozenja vektorja s skalarjem v vektorskem prostoru
-morajo zadoscati naslednjim pravilom:
-\begin{itemize}
-    \item $\vec{x} + \vec{y} = \vec{y} + \vec{x}$ (komutativnost)
-    \item $\vec{x} + (\vec{y} + \vec{z}) = (\vec{x} + \vec{y}) + \vec{z}$ (asociativnost)
-    \item obstaja en sam nenicelni vektor $\vec{0}$, da velja $\vec{x} + \vec{0} = \vec{x}$
-    \item za vsak $\vec{x}$ obstaja natanko en $-\vec{x}$, da je $\vec{x} + (-\vec{x}) = \vec{0}$
-    \item $1 \cdot \vec{x} = \vec{x}$
-    \item $(\alpha\beta)\vec{x} = \alpha(\beta\vec{x})$
-    \item $\alpha(\vec{x} + \vec{y}) = \alpha\vec{x} + \alpha\vec{y}$ (distributivnost)
-    \item $(\alpha + \beta)\vec{x} = \alpha\vec{x} + \beta\vec{x}$
-\end{itemize}
-
-\textbf{3.2} Podmnozica U vektorskega prostora V je \textit{vektorski podprostor}, ce je za
-vsak par vektorjev $\vec{x}$ in $\vec{y}$ iz U in vsako realno stevilo $\alpha$ tudi
-\begin{itemize}
-    \item $\vec{x} + \vec{y} \in U$ in
-    \item $\alpha\vec{x} \in U$.
-\end{itemize}
-
-\textbf{3.3} Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
-kombinacija vektorjev iz U tudi v U.
-
-\textbf{Lastnosti vektorskih podprostorov}
-\begin{itemize}
-    \item Vsak vektorski podprostor nujno vsebuje nicelni vektor $\vec{0}$
-    \item Presek dveh podprostorov vektorskega podprostora je tudi podprostor
-\end{itemize}
-
-\textbf{3.4} Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
-vektorskega prostora $R^{m}$, ki vsebuje natanko vse linearne kombinacije stolpcev matrike A.\\
-Izracunamo ga tako, da matriko A transponiramo in izvedemo operacijo gaussove eliminacije nad $A^{T}$. Vrstice katere ostanejo po gaussivi eliminaciji
-so linearno neodvisni vektorji, kateri tvorijo stoplicni prostor matrike A, $C(A)$.
-\textit{neformalno: linearna ogrinjaca stolpcev matrike (npr. ce imas 5 stolpcev pa lahko 2 zapises kot linearno kombinacijo ostalih 3 bo imel column space 3 elemente)}
-
-\textbf{3.5} Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
-$\vec{b} \in C(A)$
-
-\textbf{3.6} Naj bo matrika $A \in R^{m \times n}$. Mnozica resitev homogenega sistema linearnih
-enacb je podprostor v vektorskem prostoru $R^{n}$.
-
-\textbf{3.7} Mnozica vseh resitev sistema linearnih enacb $A\vec{x} = \vec{0}$ se imenuje nicelni
-prostor matirke A. Oznacujemo ga z N(A).\\
-\textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor. Matriko A samo eliminiras po gaussu in nato dobljene resitve enacis z 0.}
-
-\textbf{3.8} Ce je matrika A kvadratna in obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
-
-\textbf{3.9} Matrika ima \textit{stopnicasto} obliko, kadar se vsaka od njenih vrstic zacne z vsaj eno
-niclo vec kot prejsnja vrstica.
-
-\textbf{3.10} Prvi element, razlicen od nic v vsaki vrstici, je \textit{pivot}. Stevilo pivotov v matriki
-se imenuje rang matrike. Rang matrike A zapisemo kot $rang(A)$.
-
-\textbf{3.11} Rang matrike ni vecji od stevila vrstic in ni vecji od stevila stolpcev matrike.
-
-\textbf{3.12}
-\begin{center}
-    \textit{Stevilo prostih neznank matrike = st. stolpcev - rang matrike}   
-\end{center}
-
-\textbf{3.13}
-\begin{enumerate}
-    \item Visoka in ozka matrika $(m > n)$ ima poln stolpicni rang, kadar je $rang(A) = n$
-    \item Nizka in siroka matrika $(m < n)$ ima poln vrsticni rang, kadar je $rang(A) = m$
-    \item Kvadratna matrika $(n = m)$ ima poln rang, kadar je $rang(A) = m = n$
-\end{enumerate}
-
-\textbf{3.14} Za vsako matriko A s polnim stolpicnim rangom $r = n \leq m$, velja:
-\begin{enumerate}
-    \item Vsi stolpci A so pivotni stolpci
-    \item Sistem enacb $A\vec{x} = \vec{0}$ nima prostih neznank, zato tudi nima posebnih resitev
-    \item Nicelni prostor $N(A)$ vsebuje le nicelni vektor $N(A) = \{\vec{0}\}$
-    \item Kadar ima sistem enacb $A\vec{x} = \vec{b}$ resitev(kar ni vedno res!), je resitev ena sama
-    \item Reducirana vrsticna oblika matrike (A) se da zapisati kot
-\end{enumerate}
-\begin{center}
-    $R =
-    \begin{bmatrix}
-        I\\
-        0
-    \end{bmatrix}
-    \begin{bmatrix}
-        n \times n\; enotska\; matrika\\
-        m - n\; vrstic\; samih\; nicel\;
-    \end{bmatrix}
-    $
-\end{center}
-
-\textbf{3.15} Za vsako matriko A s polnim vrsticnim rangom $r = m \leq n$ velja:
-\begin{enumerate}
-    \item Vse vrstice so pivotne, ni prostih vrstic in U (stopnicasta oblika) in R(reducirana stopnicasta oblika) nimata nicelnih vrstic
-    \item Sistem enacb $A\vec{x} = \vec{b}$ je resljiv za vsak vektor $\vec{b}$
-    \item Sistem $A\vec{x} = \vec{b}$ ima $n-r = n-m$ prostih neznank, zato tudi prav toliko posebnih resitev
-    \item Stolpicni prostor $C(A)$ je ves prostor $R^{m}$
-\end{enumerate}
-
-\textbf{3.16} Za vsako kvadratno matriko A polnega ranga (rang(A) = m = n) velja:
-\begin{enumerate}
-    \item Reducirana vrsticna oblika matrike A je enotska matrika
-    \item Sistem enacb $A\vec{x} = \vec{b}$ ima natancno eno resitev za vsak vektor desnih strani $\vec{b}$
-    \item Matrika A je obrnljiva
-    \item Nicelni prostor matrike A je samo nicelni vektor $N(A) = \{\vec{0}\}$
-    \item Stolpicni prostor matrike A je cel prostor $C(A) = R^{m}$
-\end{enumerate}
-
-\textbf{3.17} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so linearno neodvisni, ce je
-\begin{center}
-    $ 0\vec{x_{1}} + 0\vec{x_{2}} + \dots + 0\vec{x_{n}}$
-\end{center}
-edina njihova linearna kombinacija, ki je enaka vektorju $\vec{0}$. Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so
-linearno odvisni, \textit{ce niso linearno neodvisni}.
-
-\textbf{3.18} Ce so vektorji \textit{odvisni}, lahko vsaj enega izrazimo z ostalimi.
-
-\textbf{3.19} Ce je med vektorji  $\vec{u_{1}}, \dots,\vec{u_{n}}$ tudi nicelni vektor, so 
-vektorji \textit{linearno odvisni}.
-
-\textbf{3.20} Vsaka mnozica n vektorjev iz $R^{n}$ je odvisna, kadar je $n > m $.
-
-\textbf{3.21} Stolpci matrike A so linearno neodvisni natanko tedaj, ko ima homogena enacba
-$A\vec{x} = \vec{0}$ edino resitev $\vec{x} = \vec{0}$.
-
-\textbf{3.22} Kadar je $rang(A) = n$, so stolpci matrike $A \in R^{m \times n}$ linearno
-neodvisni. Kadar je pa $rang(A) < n$, so stolpci matrike $A \in R^{m \times n}$ linearno odvisni.
-
-\textbf{3.23} Kadar je $rang(A) = m$, so vrstice matrike $A \in R^{m \times n}$ linearno neodvisne.
-Kadar je pa $rang(A) < m$, so vrstice matrike $A \in R^{m \times n}$ linearno odvisne.
-
-\textbf{3.24} Vrsticni prostor matrike A je podprostor v $R^{n}$, ki ga razpenjajo vrstice matrike A.
-
-\textbf{3.25} Vrsticni prostor matrike A je $C(A^{T})$, stolpicni prostor matrike $A^{T}$.
-
-\textbf{3.26} \textit{Baza vektorskega prostora} je mnozica vektorjev, ki
-\begin{enumerate}
-    \item je linearno neodvisna in
-    \item napenja cel prostor.
-\end{enumerate}
-
-\textbf{3.27} Vsak vektor iz vektorskega prostora lahko na en sam nacin izrazimo
-kot linearno kombinacijo baznih vektorjev.
- 
-\textbf{3.28} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so baza prostora $R^{n}$ natanko tedaj, kadar 
-je matrika, sestavljena iz stolpcev $\vec{x_{1}}, \dots,\vec{x_{n}}$, obrnljiva.
-
-\textbf{3.29} Prostor $R^{n}$ ima za $n > 0$ neskoncno mnogo razlicnih baz.
-
-\textbf{3.30} Ce sta mnozici vekotrjev {$\vec{v_{1}}, \dots,\vec{v_{m}}$} in $\vec{u_{1}}, \dots,\vec{u_{n}}$
-obe bazi istega vektorskega prostora, potem je $m = n \implies$ vse baze istega vektorskega prostora imajo
-isto stevilo vektorjev.
-
-\textbf{3.31} \textit{Dimenzija} vektroskega prostora je stevilo baznih vektorjev.
-
-\textbf{3.32} Dimenziji stolpicnega prostora $C(A)$ in vrsticnega prostora $C(A^{T})$ sta enaki rangu matrike $A$
-\begin{center}
-    $dim(C(A)) = dim(C(A^{T})) = rang(A)$.
-\end{center}
-
-\textbf{3.33} Dimenzija nicelnega prostora $N(A)$ matrike A z $n$ stolpci in ranga $r$
-je enaka $dim(N(A)) = n - r$.
-
-\textbf{3.34} Stolpicni prostor $C(A)$ in vrsticni prostor $C(A^{T})$ imata oba dimenzijo r. Dimenzija
-nicelnega prostora $N(A)$ je $n -r$, Dimenzija levega nicelnega prostora $N(A^{T})$ pa je $m - r$.
-
-\textbf{3.35} Vsako matriko ranga 1 lahko zapisemo kot produkt(stolpcnega) vektorja z vrsticnim
-vektorjem $A = \vec{u}\vec{v}^{T}$.
-
-\section{\underline{Linearne preslikave}}
-
-\textbf{4.1} Preslikava $A: U \rightarrow V$ je linearna, ce velja
-\begin{enumerate}
-    \item aditivnost: $A(\vec{u}_{1} + \vec{u}_{2}) = A\vec{u}_{1} + A\vec{u}_{2}$ za vse $\vec{u}_{1}, \vec{u}_{2} \in U$,
-    \item homogenost: $A(\alpha \vec{u}) = \alpha(A\vec{u})$ za vse $\alpha \in R$ in $\vec{u} \in U$.
-\end{enumerate}
-Oziroma v enem koraku:
-\begin{center}
-    \begin{math}
-        A(\alpha\vec{u}_{1} + \beta\vec{u}_{2}) = \alpha A(\vec{u}_{1}) + \beta A(\vec{u}_{2}).
-    \end{math}
-\end{center}
-\textbf{Pozor!} Preslikava ni linearna, ce $A(\vec{0}) \neq  \vec{0}$.
-
-\textbf{4.2} Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
-\begin{center}
-    $A(\alpha_{1}\vec{u}_{1} + \alpha_{2}\vec{u}_{2}) = \alpha_{1}A\vec{u}_{1} + \alpha_{2}A\vec{u}_{2}$
-\end{center}
-za vse $\alpha_{1}, \alpha_{2} \in R$ in vse $\vec{u}_{1}, \vec{u}_{2} \in U$.
-
-\textbf{4.3} Ce je A \textit{linearna preslikava}, je $A\vec{0} = \vec{0}$.
-
-\textbf{4.4} Naj bo $A: U \rightarrow V$ linearna preslikava in $\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$
-linearna kombinacija vektorjev. Potem je A($\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$) = $\sum_{i=1}^{k} \alpha_{i}A\vec{u}_{i}$.
-
-\textbf{4.5} Naj bo $\beta =$ $\{ \vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za vektorski prostor U. Potem je linearna
-preslikava $A: U \rightarrow V$ natanko dolocena, ce poznamo slike baznih vektorjev.
-
-\textbf{4.6} Naj bo $\beta =$ $\{\vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za U in $\{\vec{v_{1}}, \dots,\vec{v_{n}}\}$.
-Potem obstaja natanko ena linearna preslikava $A: U \rightarrow V$, za katero je $A\vec{u}_{i} = \vec{v}_{i}$ za $i = 1, 2, \dots, n$.
-
-\textbf{4.7} Naj bo $A: U \rightarrow V$ linearna preslikava. Potem mnozico
-\begin{center}
-    $ker A = \{ \vec{u} \in U; A\vec{u} = \vec{0}\}$
-\end{center}
-imenujemo \textit{jedro} linearne preslikave. Ker je $A\vec{0} = \vec{0}$, je $\vec{0} \in$ ker A za vse A.
-Zato je jedro vedno neprazna mnozica.
-\textit{Ce je matrika A$\phi$ \textbf{enotska} preslikava za } $\phi$, \textit{potem velja}
-\begin{center}
-    \begin{math}
-        ker \phi = N(A).
-    \end{math}
-\end{center}
-
-\textbf{4.8} Jedro linearne preslikave $A: U \rightarrow V$ je vektorski podprostor v U.
-
-\textbf{4.9} Mnozico
-\begin{center}
-    $im\; A = \{ \vec{v} \in V; obstaja\; tak\; \vec{u} \in U,\; da\; je\; \vec{v} = A\vec{u} \}$
-\end{center}
-imenujemo \textit{slika} linearne preslikave $A: U \rightarrow V$.
-\textit{Ce je matrika A$\phi$ \textbf{enotska} preslikava za } $\phi$, \textit{potem velja}
-\begin{center}
-    \begin{math}
-        im \phi = C(A).
-    \end{math}
-\end{center}
-
-\textbf{4.10} Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
-vektorski podprostor v V.
-
-\textbf{4.11} Ce je $A: U \rightarrow V$ linearna preslikava, in je rang matrike te preslikave v standardni bazi poln,
-potem lahko sklepamo, da ima  ta preslikava \textbf{trivialno jedro}.
-
-
-\section{\underline{Ortogonalnost}}
-
-\textbf{5.1} Podprostora $U$ in $V$ vektorskega prostora sta med seboj ortogonalna,
-ce je vsak vektor $\vec{u} \in U$ ortogonalen na vsak vektor $\vec{v} \in V$.
-
-\textbf{5.2} Za vsako matriko $A \in R^{m \times n}$ velja:
-\begin{enumerate}
-    \item Nicelni prostor $N(A)$ in vrsticni prostor $C(A^{T})$ sta ortogonalna podprostora $R^{n}$
-    \item Levi nicelni prostor $N(A^{T})$ in stolpicni prostor $C(A)$ sta ortogonalna podprostora prostora $R^{m}$.
-\end{enumerate}
-
-\textbf{5.3} Ortogonalni komplement $V^{\perp}$ podprostora V vsebuje VSE vektorje, ki so ortogonalni na V.
-
-\textbf{5.4} Naj bo A matrika dimenzije $m \times n$.
-\begin{itemize}
-    \item Nicelni prostor $N(A)$ je ortogonalni\\ komplement vrsticnega prostora $C(A^{T})$ v prostoru $R^{n}$
-    \item Levi nicelni prostor $N(A^{T})$ je ortogonalni komplement stolpicnega prostora $C(A)$ v prostoru $R^{m}$.
-\end{itemize}
-\textbf{krajse:}
-\begin{center}
-    $N(A)$ = $C(A^{T})^{\perp}$\\
-    $N(A^{T})$ = $C(A)^{\perp}$ \\
-    tukaj lahko vedno pomnozimo s komplementom, da dobimo npr.\\
-    $N(A)^{\perp}$ = $C(A^{T})$
-\end{center}
-\textit{dodatek:}
-\begin{center}
-    $dim N(A) = st. stolpcev - rang(A)$\\
-    $dim N(A^{T}) = st. vrstic - rang(A)$\\
-    $dim C(A) = dim C(A^{T}) = rang(A)$
-\end{center}
-
-\textbf{5.5} Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
-vektor $\vec{x}$, da je $A\vec{x} = \vec{y}$.
-
-\textbf{5.6} Ce so stolpci matrike A linearno neodvisni, je matrika $A^{T}A$ obrnljiva.
-
-\textbf{5.7} Matrika P je projekcijska, kadar
-\begin{itemize}
-    \item je simetricna: $P^{T} = P$ in
-    \item velja $P^{2} = P$.
-\end{itemize}
-
-\textbf{5.8} Ce je P projekcijska matrika, ki projecira na podprostor U, potem je $I -P$ projekcijska
-matrika, ki projecira na $U^{\perp}$, ortogonalni komplement podprostora U.
-
-\textbf{5.9} Vektorji $\vec{q_{1}}, \vec{q_{2}}, \dots, \vec{q_{n}}$ so ortonormiranim kadar so ortogonalni in imanjo vsi
-dolzino 1, torej
-\begin{center}
-    $\vec{q_{i}}^{T}\vec{q_{i}} = $ \Bigg\{ 
-    $\begin{matrix}
-        0\;  ko\; je\; i \neq j\; pravokotni\; vektorji\\
-        1\;  ko\; je\; i = j\; enotski\; vektorji
-    \end{matrix}$
-\end{center}
-za matriko $Q =$ [$\vec{q_{1}}, \vec{q_{2}} \dots \vec{q_{n}}$]  velja $Q^{T}Q = I$.
-
-\textbf{5.10} Vektorji $\vec{q_{1}}, \dots, \vec{q_{n}}$ naj bodo ortonormirani v prostoru $R^{m}$. Potem
-za matriko
-\begin{center}
-    $Q = \begin{bmatrix}
-        \vec{q_{1}} \vec{q_{2}} \dots \vec{q_{n}}
-    \end{bmatrix}$
-\end{center}
-velja, da je $Q^{T}Q = I_{n}$ enotska matrika reda n.
-
-\textbf{5.11} Matrika Q je ortogonalna, kadar je
-\begin{enumerate}
-    \item kvadratna in
-    \item ima ortonormirane stolpce.
-\end{enumerate}
-
-\textbf{5.12} Ce je Q ortogonalna matirka, potem je obrnljiva in
-\begin{center}
-    $Q^{-1} = Q^{T}$\\
-    $dimU^{\perp} = n - dimU$\\
-    $(U^{\perp})^{\perp} = U$
-\end{center}
-
-\textbf{5.13} Mnozenje z ortogonalno matriko ohranja dolzino vektorjev in kote med njimi. Ce je Q
-ortogonalna matrika, potem je 
-\begin{center}
-    $|| Q \vec{x} || = || \vec{x} ||$ za vsak vektor $\vec{x}$ in\\
-    $(Q\vec{x})^{T}Q\vec{y} = \vec{x^{T}} \vec{y}$ za vsak vektor $\vec{x}$ in $\vec{y}$
-\end{center}
-
-\textbf{5.14} Ce sta $Q_{1}$ in $Q_{2}$ ortogonalni matriki, je tudi produkt $Q = Q_{1}Q_{2}$ ortogonalna
-matrika.
-
-\textbf{5.15 Gram-Schmidtova} ortogonalizacija. Za vhod uporabimo Linearno ogrinjaco linearno neodvisnih vekotrjev. Po 
-gram-schmidtovi ortogonalizaciji pa dobimo paroma ortogonalne vektorje.
-Postopek:
-\begin{center}
-    \begin{math}
-        \vec{u}_{1} = \vec{v}_{1}
-    \end{math}\\
-    \begin{math}
-        \vec{u}_{2} = \vec{v}_{2} - proj_{\vec{u}_{1}}\vec{v}_{2}
-    \end{math}\\
-    \begin{math}
-        \vec{u}_{3} = \vec{v}_{3} - proj_{\vec{u}_{1}}\vec{v}_{3} - proj_{\vec{u}_{2}}\vec{v}_{3}
-    \end{math}\\
-    \begin{math}
-        \vdots
-    \end{math}
-\end{center}
-Po tem postopku dobimo paroma ortogonalne vektorje po Gram-Schmidtovi ortogonalizaciji.
-
-
-\textbf{5.16 QR Razcep:} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
-dobimo ortonormirane vektorje $q_{1}, \dots, q_{n}$. Matriki A in Q s temi stolpci zadoscajo enacbi $A = QR$, kjer
-je R zgornjetrikotna matrika.
-\begin{itemize}
-    \item Najprej z Gram-Schmidtovo ortogonalizacijo poiscemo linearno neodvisne vektorje matrike A
-    \item Vektorje normiramo in jih zapisemo v matriko Q.
-    \item Matriko R dobimo tako, da matriko $Q^{T}$ pomnozimo z matriko $A$
-    \begin{center}
-        \begin{math}
-            R = Q^{T}A
-        \end{math}
-    \end{center}
-    Tako smo prisli do vseh elementov v QR razcepu matrike A.
-\end{itemize}
-Sedaj ko imamo izracunane vse elemente lahko zapisemo se projekcijsko matriko. To je matrika pravokotne projekcije na $C(Q) = C(A)$.
-Njen izracun je preprost:
-\begin{center}
-    \begin{math}
-        QQ^{T} = pravokotna\; projekcija\; na\; C(Q)\; = C(A)
-    \end{math}
-\end{center}
-Sedaj lahko to projekcijsko matriko pomnozimo z desne s poljubnim vektorjem in ugotovimo kam se preslika v prostoru $C(A)$.
-V nasprotnem primeru, ce bi pa zeleli imeti projekcijsko matriko, s katero bi radi videli kam se vektor preslika v prostoru $N(A^{T})$, bi pa od identicne matrike
-odsteli projekcijsko matriko za $C(Q)$.
-\begin{center}
-    \begin{math}
-        I - QQ^{T} = pravokotna\; projekcija\; na\; C(A)^{\perp}\; = N(A^{T})
-    \end{math}
-\end{center}
-
-\textbf{5.17} Vektorski prostor $\iota$ je mnozica vseh neskoncnih zaporedij $\vec{u}$ s koncno
-dolzino
-\begin{center}
-    $||\vec{u}||^{2} = \vec{u} \cdot \vec{u} = \vec{u_{1}}^{2} + \vec{u_{2}}^{2} + \dots < \infty$
-\end{center}
-
-\textbf{5.18 Predoloceni sistemi}
-\begin{center}
-    \begin{math}
-        A^{T}A
-        \begin{bmatrix}
-            a\\
-            b
-        \end{bmatrix}
-        = A^{T}\vec{f}
-    \end{math}
-\end{center}
-Kjer je A matrika sistemov linearnih enacb in $\vec{f}$ vektor pricakovanih resitev
-po gaussovi eliminaciji zgornje enacbe, dobimo spremenljivke, ki predstavljao najboljso aproksimacijo vseh kombinaicij rezultatov in vhodnih spremenljivk.
-
-\section{\underline{Determinante}}
-
-\textbf{6.1} Determinanta enotske matirke je\\ $det(I) = 1$.
-\begin{center}
-    \begin{math}
-        \begin{vmatrix}
-            1 & 0\\
-            0 & 1
-        \end{vmatrix}
-        = 1\; in\;
-        \begin{vmatrix}
-            1 & & 0\\
-            & \ddots &\\
-            0 & & 1\\
-        \end{vmatrix}
-        = 1.
-    \end{math}
-\end{center}
-
-\textbf{6.2} Determinanta spremeni predznak, ce med seboj zamenjamo dve vrstici.
-
-Dodatna lastnost:
-
-\[
-    \left| \begin{array}{cc}
-A & C \\
-0 & B \\
-\end{array} \right| = \det(A) \det(B)
-\]
-
-\textbf{6.3} Determinanta je linearna funkcija vsake vrstice posebej. To pomeni, da se
-\begin{enumerate}
-    \item determinanta pomnozi s faktorjem t, ce eno vrstico determinante(vsak element v tej vrstici)
-    pomnozimo s faktorjem t.
-    \begin{center}
-        \begin{math}
-            \begin{vmatrix}
-                ta & tb\\
-                c  & d\\
-            \end{vmatrix}
-            = t
-            \begin{vmatrix}
-                a & b\\
-                c & d\\
-            \end{vmatrix}
-        \end{math}
-    \end{center}
-    \item determinanta je vsota dveh determinant, ki se razlikujeta le v eni vrstici,
-    ce je v provitni determinanti ta vrstica vsota obeh vrstic, ostale vrstice pa so enake
-    v vseh treh determinantah.
-    \begin{center}
-        \begin{math}
-            \begin{vmatrix}
-                a + a' & b + b'\\
-                c      &      d\\
-            \end{vmatrix} =
-            \begin{vmatrix}
-                a & b\\
-                c & d\\
-            \end{vmatrix} +
-            \begin{vmatrix}
-                a' & b'\\
-                c & d\\
-            \end{vmatrix}
-        \end{math}
-    \end{center}
-\end{enumerate}
-
-\textbf{Pozor!} Kadar mnozimo matriko A s skalarjem t, se vsak element matrike pomnozi s skalarjem.
-Ko racunamo determinanto produkta matirke s skalarjem $tA$, skalar $t$ izpostavimo iz vsake vrstice posebej,
-zato je $det(tA) = t^{n}det(A)$, kjer je $n$ stevilo vrstic (ali stolpcev) determinante.
-
-\textbf{6.4} Matrika, ki ima dve enaki vrstici, ima determinanto enako 0.
-
-\textbf{6.5} Ce v matriki od poljubne vrstice odstejemo mnogokratnik neke druge vrstice,
-se njena determinanta ne spremeni.
-
-\textbf{6.6} Naj bo $A$ poljubna kvadratna matirka $n \times n$ in $U$ njena vrsticno-stopnicasta
-oblika, ki jo dobimo z \textit{Gaussovo eliminacijo}. Potem je 
-\begin{center}
-    $det(A) = \pm det(U)$.
-\end{center}
-
-\textbf{6.7} Determinanta, ki ima vrstico samih nicel, je enaka 0.
-
-\textbf{6.8} Determinanta trikotne matrike $A$ je produkt diagonalnih elementov:
-\begin{center}
-    $det(A) = a_{11}a_{22} \hdots a_{nn}$.
-\end{center}
-
-\textbf{6.9} Determinanta singularne matrike je enaka 0, determinanta obrnljive matrike je razlicna od 0.
-
-\textbf{6.10} Determinanta produkta dveh matrik je enaka produktu determinant obeh matrik:
-\begin{center}
-    $det(AB) = det(A)det(B)$.
-\end{center}
-
-\textbf{6.11} Determinanta inverzne matrike je enaka
-\begin{center}
-    $det(A^{-1}) = 1/det(A)$
-\end{center}
-in determinanta potence $A^{n}$ matrike A je
-\begin{center}
-    $det(A^{n}) = (det(A))^{n}$
-\end{center}
-ter determinanta transponirane matrike je enaka determinanti originalne matrike,
-saj ko naredimo razvoj po vrsticah, pridemo do enakih elementov po diagonali.
-\begin{center}
-    $det(A) = det(A^{T})$.
-\end{center}
-
-\textbf{6.12} Transponirana matrika $A^{T}$ ima isto determinanto kot A.
-
-\textbf{6.13 Recap dovoljenih operacij nad determinanto}
-\begin{enumerate}
-    \item Ce zamenjamo dve vrstici, se \textbf{spremeni} predznak determinante
-    \item Vrednost determinante se ne spremeni, ce neki vrstici pristejemo poljuben veckratnik katerekoli druge vrstice.
-    \item Ce vse elemente neke vrstice pomnozimo z istim stevilom $\alpha$, se vrednost determinante pomnozi z $\alpha$.
-\end{enumerate}
-
-\textbf{6.14} Vsaka lastnost, ki velja za vrstice determinante, velja tudi
-za njene \textbf{stolpce}. Med drugim:
-\begin{itemize}
-    \item Determinanta spremeni predznak, ce med seboj zamenjamo dva stolpca
-    \item Determinanta je enaka 0, ce sta dva stolpca enaka
-    \item Determinanta je enaka 0, ce so v vsaj enem stolpcu same nicle.
-\end{itemize}
-
-\textbf{6.15 (kofaktorska formula)} Ce je A kvadratna matrika reda n,
-njeno determinanto lahko izracunamo z razvojem po $i-ti$ vrstici
-\begin{center}
-    $det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in}$.
-\end{center}
-Kofaktorje $C_{ij}$ izracunamo kot $C_{ij} = (-1)^{i+j}D_{ij}$, kjer je $D_{ij}$ determinanta,
-ki jo dobimo, ce v A izbrisemo i-to vrstico in j-ti stolpec.
-
-\textbf{6.16} Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
-deljena z determinanto $|A|$:
-\begin{center}
-    $A^{-1} = \frac{C^{T}}{det(A)}$,
-\end{center}
-kjer je C matrika kofaktorjev matrike A.
-
-\textbf{6.17} Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
-enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpcema $\vec{a}$ in $\vec{b}$.
-
-\textbf{6.18} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki 
-ima te tri vektorje kot stolpce.
-
-\textbf{6.19} Naj bo A matrika $R^{n\times n}$
-\begin{center}
-    \begin{math}
-        A\; je\; obrnljiva\; \iff detA \neq 0
-    \end{math}
-\end{center}
-\begin{center}
-    \begin{math}
-        A^{-1}\; ne\; obstaja\; \iff detA = 0
-    \end{math}
-\end{center}
-
-\section{\underline{L. vrednosti in vektorji}}
-
-\textbf{7.1} Vektor $\vec{x} \neq \vec{0}$, za katerega je $A\vec{x} = \lambda \vec{x}$ lastni vektor. Stevilo
-$\lambda$ je lastna vrednost.
-\textbf{Pozor!} Nicelni vektor $\vec{0}$ ne more biti lastni vektor. Lahko pa je lastna vrednost enaka 0.
-
-\textbf{7.2} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima matrika
-$A^{2}$ lastno vrednost $\lambda^{2}$ in isti lastni vektor $\vec{x}$.
-
-\textbf{7.3} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
-matrika $A^{k}$ lastno vrednost $\lambda^{k}$ in isti lastni vektor $\vec{x}$.
-
-\textbf{7.4} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
-inverzna matrika lastno vrednost $1 / \lambda$ in isti lastni vektor $\vec{x}$.
-
-\textbf{7.5} Sled kvadratne matrike A reda $n$ je vsota njenih diagonalnih elementov.
-\begin{center}
-    \begin{math}
-        sled(A) =
-        \sum_{i=1}^{n} a_{ii} =
-        a_{11} + \dots + a_{nn}
-    \end{math}.
-\end{center}
-
-\textbf{7.6} Sled matrike je enaka vsoti vseh lastnih vrednosti, stetih z njihovo veckratnostjo.
-Ce so $\lambda_{1}, \dots, \lambda_{n}$ lastne vrednosti matrike reda n, potem je sled enaka \textit{vsoti}
-\begin{center}
-    \begin{math}
-        sled(A) =
-        \sum_{i=1}^{n} \lambda_{i} =
-        \lambda_{1} + \dots + \lambda_{n}
-    \end{math},
-\end{center}
-determinanta matrike pa \textit{produktu} lastnih vrednosti
-\begin{center}
-    \begin{math}
-        det(A) =
-        \prod_{i=1}^{n} \lambda_{i} =
-        \lambda_{1} \dots  \lambda_{n}
-    \end{math}.
-\end{center}
-
-\textbf{Lastnosti sledi} Za matrike \( A, B, P \in \mathbb{R}^{n \times n} \) velja
-\begin{enumerate}
-    \item \( \text{tr}(\alpha A) = \alpha \text{tr}(A) \),
-    \item \( \text{tr}(A + B) = \text{tr}(A) + \text{tr}(B) \),
-    \item \( \text{tr}(A^T) = \text{tr}(A) \),
-    \item \( \text{tr}(AB) = \text{tr}(BA) \),
-    \item \( \text{tr}(PAP^{-1}) = \text{tr}(A) \) za vsako obrnljivo matriko \( P \).
-    \item \( \text{tr}(ABP) = \text{tr}(APB\), ce so A,B,P simetricne matirke. 
-    \item \( \text{tr}(ABP) = \text{tr}(A^TB^TP^T)\).
-\end{enumerate}
-
-Za poljubna vektorja \( x,y \in \mathbb{R}^n \) velja:
-\[
-    \text{tr} (xy^T) = \text{tr}(x^Ty)
-\]
-
-
-\textbf{7.7} Ce ima matrika A lastno vrednost $\lambda$, ki ji pripada lastni vektor $\vec{x}$,
-potem ima matrika $A + cI$ lastno vrednost $\lambda + c$ z istim lastnim vektorjem $\vec{x}$ (velja samo z
-enotskimi matrikami I).
-
-\textbf{7.8} Lastne vrednosti trikotne matrike so enake diagonalnim elementom.
-
-\textbf{7.9} Denimo, da ima matrika $A \in R^{n \times n}\; n$ linearno neodvisnih lastnih vektorjev
-$\vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}$. Ce jih zlozimo kot stolpce v matriko S
-\begin{center}
-    \begin{math}
-        S =
-        \begin{bmatrix}
-            \vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}
-        \end{bmatrix}
-    \end{math},
-\end{center}
-potem je T =: $S^{-1}AS$ diagonalna matrika z lastnimi vrednostmi $\lambda_{i}, i = 1, \dots, n$ na diagonali
-\begin{center}
-    \begin{math}
-        S^{-1}AS = T =
-        \begin{bmatrix}
-            \lambda_{1} & &\\
-            &   \ddots  &  \\
-            & &     \lambda_{n} 
-        \end{bmatrix}
-    \end{math}.
-\end{center}
-
-\textbf{Pozor!} Lastni vektorji v matriki S morajo biti v istem vrstnem redu kot lastne vrednosti v matriki $T$.
-
-\textbf{7.10} Ce je $A = STS^{-1}$, potem je $A^{k} = ST^{k}S^{-1}$ za vsak $k \in N$.
-
-\textbf{7.12} Vse lastne vrednosti realne simetricne matrike so realne.
-
-\textbf{7.13} Lastni vektorji realne simetricne matrike, ki pripadajo razlicnim lastnim
-vrednostim, so med seboj pravokotni.
-
-\textbf{7.14 Schurov izrek} Za vsako kvadratno matriko reda n, ki ima le realne lastne vrednosti,
-obstaja taka ortogonalna matrika $Q$, da je 
-\begin{center}
-    \begin{math}
-        Q^{T}AQ = T
-    \end{math}
-\end{center} 
-zgornjetrikotna matrika, ki ima lastne vrednosti(lahko so kompleksne) matrike A na diagonali.
-
-\textbf{7.15 Spektralni izrek} Vsako simetricno matriko A lahko razcepimo v produkt
-$A = QTQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, T pa diagonalna z lastnimi
-vrednostmi matrike A na diagonali.
-
-\textbf{7.16} Vsako realno simetricno matriko lahko zapisemo kot linearno kombinacijo matrik ranga 1
-\begin{center}
-    \begin{math}
-        A = \lambda_{1}\vec{q}_{1}\vec{q}_{1}^{T} + \lambda_{2}\vec{q}_{2}\vec{q}_{2}^{T} +
-        \dots + \lambda_{n}\vec{q}_{n}\vec{q}_{n}^{T} 
-    \end{math},
-\end{center}
-kjer so $\vec{q}_{i}$ stolpci matrike Q (torej lastni vektorji matrike A).
-
-\textbf{7.17} Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
-stevilu pozitivnih lastnih vrednosti.
-
-\textbf{7.18} Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
-
-\textbf{7.19} Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta 
-pozitivni sled in determinanta matrike.
-
-\textbf{7.20} Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
-vektor $\vec{x} \neq \vec{0} \in R^{n}$
-\begin{center}
-    $\vec{x}^{T}A\vec{x} > 0$
-\end{center}
-
-\textbf{7.21} Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi 
-njuna vsota $A + B$.
-
-\textbf{7.22} Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
-
-\textbf{7.23} Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
-
-\textbf{7.24} Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
-je $A = R^{T}R$.
-
-\textbf{7.25} Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
-\begin{enumerate}
-    \item Vseh $n$ pivotov je pozitivnih;
-    \item Vseh $n$ vodilnih glavnih determinant je pozitivnih;
-    \item Vseh $n$ lastnih vrednosti je pozitivnih;
-    \item Za vsak $\vec{x} \neq \vec{0}$ je $\vec{x}^{T}A\vec{x} > 0$;
-    \item $A= R^{T}R$ za neko matriko R z linearno neodvisnimi stolpci.
-\end{enumerate}
-
-\textbf{7.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
-$A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
-V ortogonalna $n \times n$.
-
-\textbf{7.27} Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
-vrednosti matrike A.
-\begin{center}
-    $rang(A)$ = stevilo $\lambda A$
-\end{center}
-
-\textbf{7.28 Diagonalizacija} oz \textit{podobnost} matrik. Matriki A in B sta \textit{podobni}, ce imata
-obe iste lastne vrednosi. Diagonalno matriko sestavimo tako, da v njeno diagonalo vpisemo lastne vrednosti. Matriko 
-P pa sestavimo iz njenih lastnih vektorjev; po stolpcih.
-\begin{center}
-    \begin{math}
-        A = PDP^{-1}
-    \end{math} oz.\\
-    \begin{math}
-        D = P^{-1}AP
-    \end{math}
-\end{center}
-
-\textbf{7.29 Spektralni razcep}
-Naj bodo vekotrji $\vec{q}_{1}, \dots, \vec{q}_{n}$ ONB iz l. vektorjev marike A za l. vrednost $\lambda_{1}, \dots, \lambda{n}$,
-potem lahko matriko A zapisemo kot:
-\begin{center}
-    \begin{math}
-        A = \lambda_{1} \vec{q_{1}} \vec{q_{1}}^{T} + \dots + \lambda_{n} \vec{q_{n}} \vec{q_{n}}^{T}
-    \end{math}
-\end{center}
-
-\textbf{7.30 Nekaj lastnosti simetricnih matrik}
-\begin{itemize}
-    \item Vse lastne vrednosti simetricne matrike so realne. Lastni vektorji realne simetricne matrike, ki 
-    pripadajo razlicnim lastnim vrednostim, so med seboj pravokotni.
-    \item Vsako realno simetricno matriko A lahko zapisemo kot $A = QDQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, D pa diagonalna matrika,
-    ki ima na diagonali pripadajoce lastne vrednosti matrike A.
-\end{itemize}
-
-\section{\underline{Napredna linearna algebra}}
-
-\subsection{Schurov izrek}
-
-\textbf{(Schur)}: Naj bo \( A \in \mathbb{R}^{n \times n} \) matrika z lastnimi vrednostmi \( \lambda_1, \ldots, \lambda_n \). Potem obstaja ortogonalna matrika \( Q \in \mathbb{R}^{n \times n} \) in zgornje trikotna matrika \( Z \), ki ima na diagonali \( \lambda_1, \ldots, \lambda_n \), da velja
-\[ A = QZQ^{-1} = QZQ^T. \]
-
-\textbf{Postopek za izračun Schurovega razcepa:}
-
-Firstly, pick an eigenvalue and corresponding eigenvector:
-\[
-Aq_1 = \lambda_1 q_1 \quad \text{with} \quad q_1^Tq_1=1
-\]
-Then, find all orthogonal vectors such that you compose a matrix \( Q = [q_1 \dots q_n] \).
-
-Then:
-\[
-T = Q^TAQ
-\]
-Compute:
-\[
-T = \begin{bmatrix}
-\lambda_1 & b^T \\
-0 & A_2
-\end{bmatrix}
-\]
-(not upper triangular)
-
-Continue with \( A_2 \). Final schur:
-\[
-Q = \begin{bmatrix}
-q_1 & 0 \\
-0 & Q_2
-\end{bmatrix}
-\]
-\[
-\vdots
-\]
-\[
-Q = \begin{bmatrix}
-q_1 & 0 & \dots & 0 \\
-0 & q_2 & \dots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \dots & q_{n-1}
-\end{bmatrix}
-\]
-
-We get:
-\[
-A = QZQ^T
-\]
-Where \( Z \) is the upper triangular matrix.
-
-
-\begin{itemize}
-    \item \textbf{Posledica:} Vsaka matrika \( A \in \mathbb{R}^{n \times n} \) je podobna zgornje trikotni matriki.
-    
-    \item \textbf{Posledica:} Vsaka simetrična matrika \( A \in \mathbb{R}^{n \times n} \) je ortogonalno podobna diagonalni matriki.
-    
-    \item \textbf{Posledica:} Če ima matrika \( A \in \mathbb{R}^{n \times n} \) lastne vrednosti enake \( \lambda_1, \lambda_2, \ldots, \lambda_n \), potem je
-    \[
-    \text{tr}(A) = \lambda_1 + \lambda_2 + \ldots + \lambda_n
-    \]
-    in
-    \[
-    \text{det}(A) = \lambda_1 \lambda_2 \ldots \lambda_n.
-    \]
-    
-    \item \textbf{Posledica (Cayley-Hamilton):} Če je \( \Delta_A(x) = \text{det}(A - xI_n) \) karakteristični polinom matrike \( A \), potem velja \( \Delta_A(A) = 0 \).
-\end{itemize}
-
-\subsection{Frobeinusova norma}
-
-Za matriki \( A \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{m \times n} \) definiramo
-\[
-\langle A, B \rangle = \text{tr}(A^T B).
-\]
-
-Za produkt \( \langle A, B \rangle: \mathbb{R}^{m \times n} \times \mathbb{R}^{m \times n} \rightarrow \mathbb{R} \) velja za vse matrike \( A, B, C \in \mathbb{R}^{m \times n} \) in za vse \( \alpha, \beta \in \mathbb{R} \),
-\begin{enumerate}
-    \item \( \langle A, B \rangle = \langle B, A \rangle \),
-    \item \( \langle \alpha A + \beta B, C \rangle = \alpha \langle A, C \rangle + \beta \langle B, C \rangle \),
-    \item \( \langle A, A \rangle \geq 0 \),
-    \item \( \langle A, A \rangle = 0 \) natanko tedaj, ko je \( A = 0 \).
-\end{enumerate}
-Zato \( \langle A, B \rangle \) imenujemo skalarni produkt matrik \( A \) in \( B \).
-
-Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{m \times k} \) in \( C \in \mathbb{R}^{k \times n} \) velja
-\[
-\langle A, BC \rangle = \langle B^T A, C \rangle = \langle A C^T, B \rangle.
-\]
-
-
-\textbf{Frobeniusova norma matrike} \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) je definirana kot
-\[
-\|A\|_F = \|A\| = \sqrt{\langle A, A \rangle} = \sqrt{\text{tr}(A^T A)}.
-\]
-
-Velja:
-\[
-\|A\|_F^2 = \sum_{i=1}^{n} \sum_{j=1}^{m} a_{ij}^2 = \sum_{i=1}^{\text{min}(m,n)} \sigma_i^2.
-\]
-
-Posledica:
-
-\[
-\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
-\]
-
-\textbf{(Eckart, Young).} Naj bo \( A = U\Sigma V^T \) razcep singularnih vrednosti matrike \( A \in \mathbb{R}^{m \times n}, m \geq n \), kjer \( U = [u^{(1)} \ldots u^{(m)}] \) in \( \mathbb{R}^{m \times m} \) in \( V = [v^{(1)} \ldots v^{(n)}] \) in \( \mathbb{R}^{n \times n} \). Potem je matrika \( A_k \) iz \( \mathbb{R}^{m \times n} \) ranga \( k \), \( k \leq n \), ki je med vsemi matrikami ranga \( k \) v Frobeniusovi normi najbližje matriki \( A \), enaka
-\[
-A_k = \sigma_1 u^{(1)}(v^{(1)})^T + \sigma_2 u^{(2)}(v^{(2)})^T + \ldots + \sigma_k u^{(k)}(v^{(k)})^T
-\]
-in velja
-\[
-\| A - A_k \|_F = \sqrt{\sigma_{k+1}^2 + \ldots + \sigma_n^2}.
-\]
-(Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
-
-\subsection{Kroneckerjev produkt}
-
-Kroneckerjev produkt (tudi tenzorski produkt) matrik \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{p \times q} \) je \( mp \times nq \) matrika
-
-\begin{math}
-A \otimes B = 
-\begin{bmatrix}
-a_{11}B & a_{12}B & \cdots & a_{1n}B \\
-a_{21}B & a_{22}B & \cdots & a_{2n}B \\
-\vdots  & \vdots  & \ddots & \vdots  \\
-a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
-\end{bmatrix}
-\in \mathbb{R}^{mp \times nq}.
-\end{math}
-
-Če so matrike $A, B, C$ in $D$ primerne velikosti, potem veljajo naslednje enakosti:
-\begin{enumerate}
-\item $0 \otimes A = A \otimes 0 = 0$
-\item $\alpha \otimes A = A \otimes \alpha = \alpha A$ za vsak $\alpha \in \mathbb{R}$
-\item $(\alpha A) \otimes B = A \otimes (\alpha B) = \alpha (A \otimes B)$
-\item $(A + B) \otimes C = A \otimes C + B \otimes C$ in $A \otimes (B + C) = A \otimes B + A \otimes C$
-\item $(A \otimes B)^T = A^T \otimes B^T$
-\item $(A \otimes B) \otimes C = A \otimes (B \otimes C)$.
-\item $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$.
-\item $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ če $A$ in $B$ obrnljivi.
-\item $\text{tr}(A \otimes B) = \text{tr}(A) \text{tr}(B)$
-\item $\text{rang}(A \otimes B) = \text{rang}(A) \text{rang}(B)$
-\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka:
-$$ S_\lambda  = \{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\} $$
-$$\text{in } |S_\lambda| \leq mn$$
-Ravno tako velja potem za lastne vektorje $ v_i \otimes w_j$, da dobimo lastne vektorje matrike $A \otimes B$.
-\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n.$
-\end{enumerate}
-
-Posledica:
-
-\[
-||A \otimes B||_F = ||A||_F \cdot ||B||_F
-\]
-
-\subsection{Kroneckerjeva vsota}
-
-Kroneckerjeva vsota je definirana za kvadratni matriki \( A \) in \( B \):
-\[ A \oplus B = A \otimes I_m + I_n \otimes B \]
-kjer \( A \in \mathbb{R}^{n \times n} \), \( B \in \mathbb{R}^{m \times m} \).
-
-\(\text{Če so } \lambda_1, \ldots, \lambda_n \) lastne vrednosti \( A \) za lastne vektorje \( u_1, \ldots, u_n \) in \( \mu_1, \ldots, \mu_m \) lastne vrednosti \( B \) za lastne vektorje \( v_1, \ldots, v_n \), potem so
-\[ \lambda_i \cdot \mu_j, \quad i = 1, \ldots, n; j = 1, \ldots, m \]
-lastne vrednosti za \( A \oplus B \), lastni vektorji pa so
-\[ u_i \otimes v_j \]
-za \( i \) in \( j \). Lastni vektorji \( A \oplus B \) so enaki \( u_i \otimes v_j \).
-
-
-\subsection{Vektorizacija}
-
-Za matriko \( A \in \mathbb{R}^{m \times n} \) označimo vektorizacijo matrike \( A \) kot
-\[
-\text{vec}(A) = \begin{bmatrix}
-A^{(1)} \\
-A^{(2)} \\
-\vdots \\
-A^{(n)}
-\end{bmatrix} \in \mathbb{R}^{mn}.
-\]
-vec je preslikava iz \( \mathbb{R}^{m \times n} \) v \( \mathbb{R}^{mn} \).
-
-Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{n \times p} \) in \( C \in \mathbb{R}^{p \times r} \) velja:
-\[
-\text{vec}(ABC) = (C^T \otimes A)\text{vec}(B).
-\]
-
-\subsection{Definitnost matrik}
-
-Spomnimo se, da ima simetrična matrika \( A \in \mathbb{R}^{n \times n} \) vse lastne vrednosti realne.
-
-Simetrični matriki \( A \in \mathbb{R}^{n \times n} \) pravimo
-\begin{itemize}
-  \item \textbf{pozitivno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \geq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
-  \item \textbf{pozitivno definitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
-  \item \textbf{negativno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \leq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
-  \item \textbf{negativno definitna}, če je \( \mathbf{x}^T A \mathbf{x} < 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
-  \item \textbf{nedefinitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za nekatere \( \mathbf{x} \in \mathbb{R}^n \) in \( \mathbf{y}^T A \mathbf{y} < 0 \) za nekatere \( \mathbf{y} \in \mathbb{R}^n \).
-\end{itemize}
-
-Posledica: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična z lastnimi vrednostmi \( \lambda_i, \ldots, \lambda_n \).
-\begin{itemize}
-  \item \( A \) je \textbf{PSD} (pozitivno semidefinitna) \( \Leftrightarrow \lambda_i \geq 0 \) za \( i=1,\ldots,n \).
-  \item \( A \) je \textbf{PD} (pozitivno definitna) \( \Leftrightarrow \lambda_i > 0 \) za \( i=1,\ldots,n \).
-  \item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
-  \item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
-  \item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako pozitivne kot negativne lastne vrednosti.
-\end{itemize}
-\( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
-
-\textbf{(Sylvester)}. Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
-
-\[
-\text{det} \left[
-\begin{array}{cccc}
-+ & + & + & + \\
-+ & + & + & + \\
-+ & + & + & + \\
-+ & + & + & + \\
-\end{array}
-\right] > 0 \quad \sim \text{PD} \\
-\]
-
-Simetrična matrika \( A \) je negativno definitna natanko tedaj, ko je determinanta vsake \( k \times k \) vodilne glavne podmatrike \( A \) pozitivna, če je \( k \) sodo število, ter negativna, če je \( k \) liho število.
-
-\[
-\text{det} \left[
-\begin{array}{cccc}
-- & + & - & + \\
-+ & - & + & - \\
-- & + & - & + \\
-+ & - & + & - \\
-\end{array}
-\right] \quad \sim \text{ND}
-\]
-
-Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
-\begin{itemize}
-    \item \( A \) je PSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
-    \item \( A \) je PD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
-    \item \( A \) je NSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
-    \item \( A \) je ND \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
-    \item \( A \) je nedefinirana \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
-\end{itemize}
-\( A \) je PD \( \Leftrightarrow A \) je PSD in \( A \) obrnljiva.
-
-\textbf{(Razcep Choleskega)}. Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
-\[ A = LL^T, \]
-kjer je \( L \in \mathbb{R}^{n \times n} \) spodnje trikotna matrika, natanko tedaj, ko je \( A \) simetrična in pozitivno definitna.
-
-Z uporabo spodnjega (rekurzivnega) algoritma:
-Simetrično matriko \( A \in \mathbb{R}^{n \times n} \) zapišemo v bločni obliki
-
-\[
-A_1 := A = \begin{bmatrix}
-a_{11} & b^T \\
-b & B
-\end{bmatrix}
-\]
-
-in definiramo
-
-\[
-L_1 := \begin{bmatrix}
-\sqrt{a_{11}} & 0^T \\
-\frac{1}{\sqrt{a_{11}}} b & I_{n-1}
-\end{bmatrix}.
-\]
-
-Tedaj je
-
-\[
-A_1 = \begin{bmatrix}
-a_{11} & b^T \\
-b & B
-\end{bmatrix} = L_1 \begin{bmatrix}
-1 & 0^T \\
-0 & B - \frac{1}{a_{11}} bb^T
-\end{bmatrix} L_1^T.
-\]
-
-Ponovimo na simetrični matriki \( A_2 := B - \frac{1}{a_{11}} bb^T \in \mathbb{R}^{(n-1) \times (n-1)} \).
-
-Naj bodo \( L_2, L_3, \ldots, L_n \) matrike, ki jih dobimo v ponovljenih korakih. Matrika \( L \) je potem
-
-\[
-L = L_1 \cdot \left[ \begin{array}{cc}
-1 & 0^T \\
-0 & L_2
-\end{array} \right] \cdot \left[ \begin{array}{cc}
-I_2 & 0 \\
-0 & L_3
-\end{array} \right] \cdot \ldots \cdot \left[ \begin{array}{cc}
-I_{n-1} & 0 \\
-0 & L_n
-\end{array} \right]
-\]
-
-\subsection{Vektorski prostori}
-
-\textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
-\begin{itemize}
-    \item seštevanje vektorjev \( (u, v \in V \Rightarrow u+v \in V) \),
-    \item množenje vektorjev z realnimi števili \( (v \in V, \alpha \in \mathbb{R} \Rightarrow \alpha v = \alpha \cdot v \in V) \),
-\end{itemize}
-z lastnostmi
-\begin{enumerate}
-    \item \( u + v = v + u \) in \( (u + v) + w = u + (v + w) \),
-    \item obstaja ničelni vektor \( 0 \) in velja \( v + 0 = 0 + v = v \),
-    \item za vsak \( v \in V \) obstaja nasprotni vektor \( -v \), za katerega velja \( v + (-v) = (-v) + v = 0 \),
-    \item \( 1 \cdot v = v \) za vsak \( v \in V \),
-    \item \( (\alpha\beta) \cdot v = \alpha \cdot (\beta \cdot v) \),
-    \item \( (\alpha + \beta) \cdot v = \alpha \cdot v + \beta \cdot v \),
-    \item \( \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v \),
-\end{enumerate}
-za poljubne \( u, v, w \in V \) in \( \alpha, \beta \in \mathbb{R} \).
-
-
-\textbf{Izrek:} Naj bo \( V \) vektorski prostor. Potem velja
-\begin{enumerate}
-    \item \( V \) vsebuje ničelni vektor \( 0 \),
-    \item v vsakem vektorskem prostoru \( V \) je ničelni vektor \( 0 \) en sam,
-    \item \( \alpha \cdot 0 = 0 \) za vsak \( \alpha \in \mathbb{R} \),
-    \item \( 0 \cdot v = 0 \) za vsak \( v \in V \).
-\end{enumerate}
-Za vektorje \( v_1, v_2, \ldots, v_n \in V \) in skalare \( \alpha_1, \alpha_2, \ldots, \alpha_n \in \mathbb{R} \) imenujemo vektor
-\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n \]
-\textbf{linearna kombinacija vektorjev} \( v_1, v_2, \ldots, v_n \).
-Denimo, ničelni vektor \( 0 \) je
-\[ 0 \cdot v_1 + 0 \cdot v_2 + \ldots + 0 \cdot v_n \]
-je linearna kombinacija poljubnih vektorjev \( v_1, v_2, \ldots, v_n \in V \). Linearno kombinacijo z izključno ničelnimi koeficienti imenujemo \textbf{trivialna linearna kombinacija}.
-
-Če je podmnožica \( U \) vektorskega prostora \( V \)
-\begin{itemize}
-    \item[(1)] zaprta za seštevanje \( (u, v \in U \Rightarrow u + v \in U) \) in
-    \item[(2)] zaprta za množenje vektorjev z realnimi števili \( (v \in U, \alpha \in \mathbb{R} \Rightarrow \alpha v \in U) \),
-\end{itemize}
-potem jo imenujemo \textbf{vektorski podprostor} prostora \( V \).
-
-\textbf{Izrek:} Podmnožica \( U \) vektorskega prostora \( V \) je vektorski podprostor natanko tedaj, ko je poljubna linearna kombinacija \( \alpha u + \beta v \) vektorjev \( u, v \in U \) tudi vsebovana v \( U \).
-
-Vsak vektorski podprostor po (2) vsebuje tudi vektor \( 0 \cdot v = 0 \). Zatorej podmnožica vektorskega prostora, ki ne vsebuje ničelnega vektorja, ne more biti vektorski podprostor.
-
-Ker lastnosti (1)-(7) veljajo za poljubne elemente vektorskega prostora \( V \), veljajo tudi za vse elemente vektorskega podprostora \( U \) v \( V \). Poleg tega je vektorski podprostor po definiciji zaprt za seštevanje in množenje s števili. Zatorej je vsak vektorski podprostor hkrati tudi vektorski prostor.
-
-\subsubsection{Linearna ogrinjača} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) vektorjev \( v_1, v_2, \ldots, v_n \) je množica vseh linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \).
-
-Ker je linearna kombinacija linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \in V \) zopet linearna kombinacija vektorjev \( v_1, v_2, \ldots, v_n \), je po Izreku 2 linearna ogrinjača \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) linearni podprostor v \( V \). Pravimo, da vektorji \( v_1, v_2, \ldots, v_n \) \textbf{napenjajo prostor} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \).
-
-Ne le, da je linearna ogrinjača vektorski prostor. Velja celo več.
-
- Linearna ogrinjača vektorjev \( v_1, v_2, \ldots, v_n \), vektorskega prostora \( V \) je najmanjši vektorski podprostor v \( V \), ki vsebuje vektorje \( v_1, v_2, \ldots, v_n \).
-
-\subsubsection{Baza vektorskega prostora}
-
-Vektorji \( v_1, v_2, \ldots, v_n \) v \( V \) so \textbf{linearno odvisni}, če obstaja vektor \( v_k \), ki je linearna kombinacija ostalih \( v_1, v_2, \ldots, v_{k-1}, v_{k+1}, \ldots, v_n \):
-\[ v_k = \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_{k-1}v_{k-1} + \alpha_{k+1}v_{k+1} + \ldots + \alpha_nv_n, \]
-kjer \( \alpha_i \in \mathbb{R} \).
-
-Vektorji \( v_1, v_2, \ldots, v_n \) v \( V \) so \textbf{linearno neodvisni}, če niso linearno odvisni. Ekvivalentno, \( v_1, v_2, \ldots, v_n \) v \( V \) so linearno neodvisni, če je njihova trivialna linearna kombinacija edina njihova linearna kombinacija, ki je enaka ničelnemu vektorju \( 0 \). Z drugimi besedami, \( v_1, v_2, \ldots, v_n \) v \( V \) so linearno neodvisni, če iz
-\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = 0 \]
-sledi
-\[ \alpha_1 = \alpha_2 = \ldots = \alpha_n = 0. \]
-
-
-Množica vektorjev \( \{v_1, v_2, \ldots, v_n\} \) je \textbf{baza} vektorskega prostora \( V \), če 
-\begin{enumerate}
-    \item[(B1)] so \( v_1, v_2, \ldots, v_n \) linearno neodvisni in
-    \item[(B2)] \( v_1, v_2, \ldots, v_n \) napenjajo prostor \( V \).
-\end{enumerate}
-
-\textbf{Izrek:} Vsak vektorski prostor ima neštevno baz. Vse baze vektorskega prostora imajo enako število vektorjev.
-
-\emph{Dimenzija prostora} \( V \) je enaka moči (poljubne) baze prostora \( V \). Označimo jo z \(\dim V\).
-
-\textbf{Izrek:} Za vsako bazo vektorskega prostora \( V \) je zapis poljubnega vektorja \( v \in V \) kot linearna kombinacija baznih vektorjev vedno enoličen.
-
-
-\subsubsection{Linearne preslikave}
-Naj bosta \( V \) in \( U \) vektorska prostora. Preslikava \( \tau: V \to U \) je \textbf{linearna preslikava}, če velja
-\begin{itemize}
-    \item[(1)] \( \tau(v + u) = \tau(v) + \tau(u) \) za vsaka \( v, u \in V \) in
-    \item[(2)] \( \tau(\alpha v) = \alpha \tau(v) \) za vsak \( v \in V \) in vsak \( \alpha \in \mathbb{R} \).
-\end{itemize}
-
-Preslikava \( \tau: V \to U \) je linearna natanko tedaj, ko velja
-\[ \tau(\alpha v + \beta u) = \alpha \tau(v) + \beta \tau(u) \]
-za vse \( v, u \in V \) ter vse \( \alpha, \beta \in \mathbb{R} \).
-
-Za poljubno linearno preslikavo \( \tau: V \to U \) velja \( \tau(0_V) = 0_U \).
-
-Naj bodo \( \tau, \psi: V \to U \) ter \( \theta: U \to W \) linearne preslikave in naj bo \( \gamma \in \mathbb{R} \).
-\begin{enumerate}
-    \item[(1)] \textbf{Vsota} \( \tau + \psi: V \to U \) je preslikava, definirana s predpisom
-    \[ (\tau + \psi)(v) = \tau(v) + \psi(v). \]
-    \item[(2)] \textbf{Produkt s skalarjem} \( \gamma\tau: V \to U \) je preslikava, definirana s predpisom
-    \[ (\gamma\tau)(v) = \gamma \tau(v). \]
-    \item[(3)] \textbf{Kompozitum} \( \theta \circ \tau: V \to W \) je preslikava, definirana s predpisom
-    \[ (\theta \circ \tau)(v) = \theta(\tau(v)). \]
-\end{enumerate}
-
-\textbf{Izrek:} Vsota, produkt s skalarjem in kompozitum linearnih preslikav so linearne preslikave.
-
-\textbf{Posledica:} Množica vseh linearnih preslikav iz vektorskega prostora \( V \) v vektorski prostor \( U \) je vektorski prostor
-
-\textbf{Izrek:} Naj bodo \( \tau, \psi: V \to U \) ter \( \theta: U \to W \) linearne preslikave in naj bo \( \alpha \in \mathbb{R} \).
-\begin{enumerate}
-    \item Matrika, ki ustreza vsoti preslikav \( \tau + \psi \), je enaka vsoti matrik posameznih preslikav.
-    \[ A_{\tau+\psi,B}^C = A_{\tau,B}^C + A_{\psi,B}^C \]
-    \item Matrika, ki ustreza produktu s skalarjem \( \alpha\tau \), je enaka večkratniku matrike preslikave.
-    \[ A_{\alpha\tau,B}^C = \alpha A_{\tau,B}^C \]
-    \item Matrika, ki ustreza kompozitumu preslikav, je enaka produktu matrik posameznih preslikav.
-    \[ A_{\theta\circ\tau,B}^D = A_{\theta,C}^D \cdot A_{\tau,B}^C \]
-    \item Matrika, ki ustreza inverzu obrnljive preslikave, je enaka inverzu matrike te preslikave. Torej, če je \( \tau \) obrnljiva preslikava, je obrnljiva tudi matrika \( A_{\tau,B}^C \). Velja
-    \[ A_{\tau^{-1},C}^B = (A_{\tau,B}^C)^{-1} \].
-\end{enumerate}
-
-
-Neničelnemu vektorju \( v \) v \( V \) pravimo \textit{lastni vektor} linearne preslikave \( \tau: V \to V \), če velja
-\[ \tau(v) = \lambda v. \]
-Številu \( \lambda \) pravimo \textit{lastna vrednost} linearne preslikave \( \tau \).
-
-\textbf{Izrek:} Vsaka lastna vrednost linearne preslikave \( \tau \) je tudi lastna vrednost poljubne matrike \( A_{\tau} \), ki pripada preslikavi \( \tau \). Vse matrike, ki pripadajo dani linearni preslikavi \( \tau \) imajo enake lastne vrednosti.
-
-Pravimo, da je linearno preslikavo \( \tau: V \to V \) mogoče \textit{diagonalizirati}, če obstaja baza, v kateri pripada preslikavi diagonalna matrika.
-
-\textbf{Izrek:} Linearno preslikavo \( \tau: V \to V \) je mogoče diagonalizirati natanko tedaj, ko obstaja baza prostora \( V \) sestavljena iz lastnih vektorjev preslikave \( \tau \).
-
-Naj bo \( \tau: V \rightarrow U \) linearna preslikava vektorskega prostora \( V \) v vektorski prostor \( U \).
-
-\textbf{Def:} Jedro linearne preslikave \( \tau \) je množica \( \ker(\tau) \) vseh vektorjev \( v \in V \), za katere velja
-\[ \tau(v) = 0. \]
-
-\textbf{Def:} Slika linearne preslikave je množica \( \text{im}(\tau) = \{ \tau(v) : v \in V \} \subseteq U \).
-
-\textbf{Izrek:} Jedro \( \ker \tau \) linearne preslikave \( \tau: V \rightarrow U \) je vektorski podprostor v \( V \), slika \( \text{im} \tau \) pa vektorski podprostor v \( U \).
-
-\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava iz vektorskega prostora \( V \) v vektorski prostor \( U \).
-\begin{enumerate}
-    \item \( \tau \) je injektivna natanko tedaj, ko je \( \ker \tau = \{0\} \).
-    \item \( \tau \) je surjektivna natanko tedaj, ko je \( \text{im} \tau = U \).
-\end{enumerate}
-
-\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava in naj bo \( A = A_{\tau,B,C} \) matrika, ki pripada preslikavi \( \tau \). Potem je
-\begin{enumerate}
-    \item \( \text{dim}(\text{im}(\tau)) = \text{rank}(A) \),
-    \item \( \text{dim}(\text{ker}(\tau)) + \text{dim}(\text{im}(\tau)) = \text{dim}(V) \).
-\end{enumerate}
-
-\textbf{Posledica:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\text{dim} V = \text{dim} U = n\) in naj bo \( A \) neka matrika, ki pripada \( \tau \). Naslednje trditve so ekvivalentne:
-\begin{enumerate}
-    \item \( \tau \) je bijektivna.
-    \item \( \tau \) je injektivna.
-    \item \( \tau \) je surjektivna.
-    \item \( A \) je obrnljiva.
-    \item \( \text{ker} \tau = \{0\} \).
-    \item \( N(A) = \{0\} \).
-    \item \( \text{im} \tau = U \).
-    \item \( C(A) = \mathbb{R}^n \).
-    \item Rang matrike \( A \) je \( n \).
-    \item Vrstice matrike \( A \) so linearno neodvisne.
-    \item Vrstice matrike \( A \) razpenjajo \( \mathbb{R}^n \).
-    \item Vrstice matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
-    \item Stolpci matrike \( A \) so linearno neodvisni.
-    \item Stolpci matrike \( A \) razpenjajo \( \mathbb{R}^n \).
-    \item Stolpci matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
-    \item \( \det A \neq 0 \).
-    \item Homogeni sistem enačb \( Ax = 0 \) ima le trivialno rešitev.
-    \item Sistem enačb \( Ax = b \) ima rešitev za vsak \( b \in \mathbb{R}^n \).
-\end{enumerate}
-
-\section{\underline{Analiza}}
-
-\subsection{Funkcije več spremenljivk}
-Funkcija več spremenljivk
-
-\[
-    f : D_f \subseteq \mathbb{R}^n \to \mathbb{R},
-\]
-
-kjer
-
-\[
-    \mathbf{x} = (x_1, x_2, \ldots, x_n) \mapsto f(x_1, x_2, \ldots, x_n)
-\]
-
-je funkcija, ki predpiše realno vrednost $f(\mathbf{x}) = f(x_1, x_2, \ldots, x_n) \in \mathbb{R}$ vsaki točki $\mathbf{x} = (x_1, x_2, \ldots, x_n) \in D_f \subseteq \mathbb{R}^n$. Množici $D_f$ pravimo \textbf{definicijsko območje} funkcije $f$.
-
-V primeru, ko je $n = 2$, je graf funkcije $f = f(x, y): D_f \subseteq \mathbb{R}^2 \to \mathbb{R}$ ploskev v $\mathbb{R}^3$.
-
-\[
-    \Gamma_f = \{ (x, y, f(x, y)) : (x, y) \in D_f \}
-\]
-
-\textbf{Nivojska krivulja} (ali nivojnica) funkcije $f = f(x, y)$ je množica vseh točk $(x, y) \in D_f$, za katere velja $f(x, y) = c$ za dano realno število $c \in \mathbb{R}$. Tako vsaka točka $(x, y) \in D_f$ leži na natanko eni nivojski krivulji in zato se definicijsko območje $D_f$ razsloji na nivojske krivulje.
-
-\subsubsection{Parcialni odvod}
-Parcialni odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki a = \( (a_1, a_2, \ldots, a_n) \) po spremenljivki \( x_i \) definiramo kot
-\[
-f_{x_i}(a) = \frac{\partial f}{\partial x_i}(a) = \lim_{h \to 0} \frac{f(a_1, \ldots, a_{i-1}, a_i + h, a_{i+1}, \ldots, a_n) - f(a)}{h}.
-\]
-Tako nam torej parcialni odvod funkcije \( f \) po \( x_i \), v točki a = \( (a_1, a_2, \ldots, a_n) \) pove relativno spremembo funkcisjke vrednosti pri zelo majhni spremembi spremenljivke \( x_i \), kjer so ostale spremenljivke fiksne.
-
-
-\subsubsection{Gradient funkcije}
-
-\textbf{Vektor}
-\[
-(\nabla f)(a) = (f_{x_1}(a), f_{x_2}(a), \ldots, f_{x_n}(a))
-\]
-imenjujemo \textbf{gradient} funkcije \( f \) v točki \( a \).
-
-\textbf{Smerni odvod funkcije} \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki \( a = (a_1, a_2, \ldots, a_n) \) \textbf{v smeri vektorja} \( \vec{e} \) je enak
-\[
-f_{\vec{e}}(a) = (\nabla f)(a) \cdot \frac{\vec{e}}{\| \vec{e} \|} = \sum_{i=1}^n \frac{f_{x_i}(a) e_i}{\| \vec{e} \|}
-\]
-
-Za funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) velja:
-\begin{enumerate}
-\item Gradient funkcije \( f \) v točki \( a \) kaže v smeri najhitrejšega naraščanja funkcije \( f \) v točki \( a \).
-\item V primeru \( n = 2 \) je gradient funkcije \( f = f(x, y) \) v točki \( a \) pravokoten na nivojsko krivuljo v tej točki.
-\item Smerni odvod \( f_{\vec{e}}(a) \) je relativna sprememba funkcisjke vrednosti \( f(a) \) ob majhnem premiku iz točke \( a \) v smeri vektorja \( \vec{e} \). Zato velja:
-\begin{itemize}
-\item Če je \( f_{\vec{e}}(a) > 0 \), potem \( f \) ob majhnem pomiku iz točke \( a \) v smeri vektorja \( \vec{e} \) narašča.
-\item Če je \( f_{\vec{e}}(a) < 0 \), potem \( f \) ob majhnem pomiku iz točke \( a \) v smeri vektorja \( \vec{e} \) pada.
-\end{itemize}
-\end{enumerate}
-
-\subsubsection{Linearna aproksimacija}
-Za dano funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) lahko v točki a + h blizu a njeno funkcijso vrednost ocenimo s formulo
-\[
-f(a + h) \approx f(a) + (\nabla f(a)) \cdot h.
-\]
-
-
-\subsubsection{Visji odvodi}
-Parcialne odvode drugega reda izračunamo s parcialnim odvajanjem parcialnih odvodov prvega reda. Definiramo jih kot
-\[
-f_{x_i x_j}(x) = \frac{\partial^2 f}{\partial x_j \partial x_i}(x) = \frac{\partial}{\partial x_j} \left( \frac{\partial f}{\partial x_i}(x) \right).
-\]
-\( n \times n \) matriko
-\[
-H_f(x) = \left[ \frac{\partial^2 f}{\partial x_i \partial x_j}(x) \right]_{i,j=1,...,n}
-\]
-imenujemo \textit{Hessejeva matrika} funkcije \( f \) v točki \( x \). Če sta pri tem \( f_{x_i x_j}, f_{x_j x_i} \) zvezni funkciji, potem sta omenjena druga parcialna odvoda enaka. Zato je v primeru, ko so vsi parcialni odvodi \( f_{x_i x_j} \) zvezni, Hessejeva matrika \( H_f(x, y) \) simetrična matrika.
-
-Pravila: 
-\begin{enumerate}
-\item \(\frac{\partial \mathbf{x}}{\partial \mathbf{x}} = I_n\)
-\item Če je \(A \in \mathbb{R}^{m \times n}\), potem \(\frac{\partial (A\mathbf{x})}{\partial \mathbf{x}} = A\).
-\item Če je \(\mathbf{a} \in \mathbb{R}^n\), potem \(\frac{\partial (\mathbf{a}^T \mathbf{x})}{\partial \mathbf{x}} = \mathbf{a}^T\).
-\item Če je \(A \in \mathbb{R}^{n \times n}\), potem \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = \mathbf{x}^T(A + A^T)\).
-\item Če je \(A \in \mathbb{R}^{n \times n}\) simetrična matrika, potem velja \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = 2A^T\mathbf{x}\).
-\item \(\frac{\partial^2 \mathbf{x}}{\partial \mathbf{x}^2} = 2I_n\).
-\item Če \(G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n\) in \(F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p\) in \( \mathbf{H} = F \circ G\), potem \(\frac{\partial \mathbf{H}}{\partial \mathbf{x}} = \frac{\partial F}{\partial \mathbf{G}}(\mathbf{G}(\mathbf{x})) \cdot \frac{\partial \mathbf{G}}{\partial \mathbf{x}}\).
-\end{enumerate}
-
-
-\subsubsection{Vektorska funkcija}
-Za vektorsko funkcijo 
-\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m, \]
-kjer je
-\[ \mathbf{x} \mapsto \mathbf{F}(\mathbf{x}) = [f_1(\mathbf{x}), f_2(\mathbf{x}), \ldots, f_m(\mathbf{x})]^T \]
-je \( m \)-terica funkcij več spremenljivk.
-
-\subsubsection{Jacobijeva matrika}
-Jacobijeva matrika vektorske funkcije 
-\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
-je \( m \times n \) matrika prvih odvodov funkcij \( f_1, \ldots, f_m \):
-\[ 
-J_F(\mathbf{x}) = \begin{bmatrix}
-\frac{\partial f_1}{\partial x_1}(\mathbf{x}) & \frac{\partial f_1}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_1}{\partial x_n}(\mathbf{x}) \\
-\frac{\partial f_2}{\partial x_1}(\mathbf{x}) & \frac{\partial f_2}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_2}{\partial x_n}(\mathbf{x}) \\
-\vdots & \vdots & \ddots & \vdots \\
-\frac{\partial f_m}{\partial x_1}(\mathbf{x}) & \frac{\partial f_m}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_m}{\partial x_n}(\mathbf{x})
-\end{bmatrix}
-\]
-Absolutna vrednost determinante Jacobijeve matrike vektorske funkcije 
-\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
-pove, za kakšen faktor funkcija lokalno raztegne prostor.
-
-\subsection{Večkratni integrali}
-
-\subsubsection{Izrek (Fubini, 1)} 
-Če je \( f: R \rightarrow \mathbb{R} \) zvezna funkcija na pravokotniku \( R = [a, b] \times [c, d] \subseteq \mathbb{R}^2 \), potem
-\[
-\iint_R f(x,y) \,dx\,dy = \int_c^d \left( \int_a^b f(x,y) \,dx \right) dy
-\]
-\[
-= \int_a^b \left( \int_c^d f(x,y) \,dy \right) dx.
-\]
-
-
-\subsubsection{Dvojni integrali}
-
-Če je \( D \subseteq \mathbb{R}^2 \) neko omejeno območje in če \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, izberimo tak pravokotnik \( R \), da velja \( D \subseteq R \). Sedaj definiramo dvojni integral funkcije \( f \) na območju \( D \) kot
-\[
-\iint_D f(x,y) \,dx\,dy = \iint_R F(x,y) \,dx\,dy,
-\]
-kjer
-\[
-F(x,y) = \begin{cases} 
-f(x,y), & (x,y) \in D \\
-0, & (x,y) \not\in D.
-\end{cases}
-\]
-
-\subsubsection{Izrek (Fubini, 2)} 
-\begin{enumerate}
-\item Če je \( D = \{(x,y); a \leq x \leq b \text{ in } \varphi_1(x) \leq y \leq \varphi_2(x)\} \) \( \subseteq \mathbb{R}^2 \) in \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, potem je
-\[
-\iint_D f(x,y) \,dx\,dy = \int_a^b \left( \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \,dy \right) dx.
-\]
-
-\item Če je \( D = \{(x,y); \varphi_1(y) \leq x \leq \varphi_2(y) \text{ in } c \leq y \leq d\} \) \( \subseteq \mathbb{R}^2 \) in \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, potem je
-\[
-\iint_D f(x,y) \,dx\,dy = \int_c^d \left( \int_{\varphi_1(y)}^{\varphi_2(y)} f(x,y) \,dx \right) dy.
-\]
-\end{enumerate}
-
-\subsubsection{Izrek o menjavi spremenljivk} 
-Naj bo \( f: D \rightarrow \mathbb{R} \) zvezna funkcija na \( D \subseteq \mathbb{R}^2 \). Če je \( x = \varphi(u, v) \), \( y = \psi(u, v) \), takašna menjava spremenljivk, da je \( \det J_{\varphi,\psi} \neq 0 \), potem
-\[
-\iint_D f(x, y) \,dx\,dy = \iint_{D'} f(\varphi(u, v), \psi(u, v)) \left| \det J_{\varphi,\psi} \right| \,du\,dv.
-\]
-
-Podobno, če je \( f: D \rightarrow \mathbb{R} \) zvezna funkcija na \( D \subseteq \mathbb{R}^3 \) ter \( x = \varphi(u, v, w) \), \( y = \psi(u, v, w) \), \( z = \chi(u, v, w) \), takašna menjava spremenljivk, da je \( \det J_{\varphi,\psi,\chi} \neq 0 \), potem velja
-\[
-\iiint_D f(x, y, z) \,dx\,dy\,dz = 
-\]
-\[
- = \iiint_{D'} f(\varphi(u, v, w), \psi(u, v, w), \chi(u, v, w)) \left| \det J_{\varphi,\psi,\chi} \right| \,du\,dv\,dw.
-\]
-
-\subsubsection{Primeri menjave spremenljivk}
-
-\begin{enumerate}
-\item \textbf{Polarne koordinate} v \( \mathbb{R}^2 \) so podane z
-\[ 
-x = r \cos \varphi, \quad y = r \sin \varphi, 
-\]
-\[ 
-r \geq 0, \quad \varphi \in [0, 2\pi], \quad \text{in velja} \quad |\det J_{\text{polar}}| = r.
-\]
-
-\item \textbf{Cilindrične koordinate} v \( \mathbb{R}^3 \) so podane z
-\[ 
-x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z, 
-\]
-\[ 
-r > 0, \quad \varphi \in [0, 2\pi], \quad z \in \mathbb{R}, \quad \text{in velja} \quad |\det J_{\text{cylindrical}}| = r.
-\]
-
-\item \textbf{Sferične koordinate} v \( \mathbb{R}^3 \) so podane z
-\[ 
-x = r \cos \varphi \cos \theta, \quad y = r \sin \varphi \cos \theta, \quad z = r \sin \theta,
-\]
-\[ 
-r > 0, \quad \varphi \in [0, 2\pi], \quad \theta \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right], 
-\]
-\[
-\quad \text{in velja} \quad |\det J_{\text{spherical}}| = r^2 \cos \theta.
-\]
-\end{enumerate}
-
-
-\subsection{Optimizacija}
-
-\subsection{Klasifikacija Lokalnih ekstremov}
-
-Naj bo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) ter a v definicijskem območju funkcije \( f \).
-Če za vse točke \( x \neq a \), ki so "dovolj blizu" točke a (tj. \( \| x - a \| < \varepsilon \) za nek dovolj majhen \( \varepsilon \)) velja \( f(x) < f(a) \), 
-potem pravimo, da ima funkcija \( f \) v točki a \textbf{lokalni maksimum}.
-
-Če za vse točke \( x \neq a \), ki so "dovolj blizu" točke a (tj. \( \| x - a \| < \varepsilon \) za nek dovolj majhen \( \varepsilon \)) velja \( f(x) > f(a) \), 
-potem pravimo, da ima funkcija \( f \) v točki a \textbf{lokalni minimum}.
-
-Če je funkcija \( f \) zvezno parcialno odvedljiva, potem je jasno, da ima lahko lokalne ekstreme le v stacionarnih točkah. Torej je potreben pogoj za lokalni ekstrem funkcije \( f \) v točki a:
-
-\[ (\nabla f)(a) = 0, \]
-
-kar pomeni, da moramo lokalne ekstreme iskati zgolj med stacionarnimi točkami.
-
-\subsubsection{Izrek}
-Naj bo \( a \) stacionarna točka dvakrat parcialno zvezno odvedljive funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \).
-
-\begin{enumerate}
-    \item Če so vse lastne vrednosti matrike \( H_f(a) \) pozitivne, ima \( f \) v \( a \) lokalni minimum.
-    \item Če so vse lastne vrednosti matrike \( H_f(a) \) negativne, ima \( f \) v \( a \) lokalni maksimum.
-    \item Če so vse lastne vrednosti matrike \( H_f(a) \) neničelne, vendar različno predznačene, lokalnega ekstrema v \( a \) ni.
-    \item Če je kakšna od lastnih vrednosti matrike \( H_f(a) \) enaka 0, o lokalnih ekstremih funkcije \( f \) v točki \( a \) iz matrike \( H_f(a) \) ne moremo sklepati.
-\end{enumerate}
-
-
-\subsubsection{Lokalni ekstremi z omejitvami}
-
-Pogosto naletimo na problem iskanja ekstremalnih vrednosti funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pri pogojih
-
-\[ g_1(x) = g_2(x) = \ldots = g_m(x) = 0. \]
-
-Izkaže se, da lahko lokalni ekstremi funkcije \( f \) pri pogoju \( g_i(x) = 0, i = 1, \ldots, m, \) nastopijo le v stacionarnih točkah funkcije
-
-\[ L = f - \lambda_1 g_1 - \ldots - \lambda_m g_m, \]
-
-ki je funkcija \( n + m \) spremenljivk \( x_1, x_2, \ldots, x_n, \lambda_1, \lambda_2, \ldots, \lambda_m \).\\
-Funkciji \( L \) pravimo \textbf{Lagrangeova funkcija}, novim spremenljivkam \( \lambda_1, \lambda_2, \ldots, \lambda_m \) pa \textbf{Lagrangevi multiplikatorji}.\\
-Omenjeni pogoj ni zadosten. Nekatere kritične točke funkcije \( L \) so ekstremalne točke funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pod pogoji \( g_1(x) = g_2(x) = \ldots = g_m(x) = 0 \), ostale pa ne.
-
-
-\subsubsection{Odvodi vektorskih funkcij}
-Naj bo \( F: \mathbb{R}^n \rightarrow \mathbb{R}^m, F(x) = 
-\begin{bmatrix}
-    f_1(x) \\
-    f_2(x) \\
-    \vdots \\
-    f_m(x)
-\end{bmatrix} \)
-vektorska funkcija na spremenljivk x = \( (x_1, ..., x_n) \).
-
-Spomnimo se, da je odvod vektorske funkcije \( F \) po vektorju spremenljivk \( \tilde{x} \) definiran kot
-
-\[ 
-\frac{\partial \tilde{F}}{\partial \tilde{x}} = J_F(\tilde{x}) = 
-\begin{bmatrix}
-    \frac{\partial f_1}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_1}{\partial x_n} (\tilde{x}) \\
-    \vdots & \ddots & \vdots \\
-    \frac{\partial f_m}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_m}{\partial x_n} (\tilde{x})
-\end{bmatrix}
-\]
-
-Drugi odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) (tu m = 1) pa kot
-
-\[ 
-\frac{\partial^2 f}{\partial \tilde{x}^2} = \frac{\partial}{\partial \tilde{x}} \left( \frac{\partial f}{\partial \tilde{x}} \right)^T 
-\].
-
-Funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
-
-\[ 
-f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y}) 
-\]
-
-za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
-
-\subsubsection{Pravila za odvajanje vektorskih funkcij}
-
-\begin{enumerate}
-    \item \(\frac{\partial \tilde{x}}{\partial \tilde{x}} = I_n\)
-    \item Če je \( A \in \mathbb{R}^{m \times n} \), potem \( \frac{\partial A\tilde{x}}{\partial \tilde{x}} = A \).
-    \item Če je \( \tilde{a} \in \mathbb{R}^n \), potem \( \frac{\partial \tilde{a}^T\tilde{x}}{\partial \tilde{x}} = \tilde{a}^T \).
-    \item Če je \( A \in \mathbb{R}^{n \times n} \), potem \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = \tilde{x}^T(A + A^T) \).
-    \item Če je \( A \in \mathbb{R}^{n \times n} \) simetrična matrika, potem velja \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = 2\tilde{x}^T A \).
-    \item \( \frac{\partial \|\tilde{x}\|^2}{\partial \tilde{x}} = 2\tilde{x}^T \).
-    \item Če \( \tilde{z} = \tilde{z}(\tilde{x}) \) in \( \tilde{y} = \tilde{y}(\tilde{x}) \), potem \( \frac{\partial (\tilde{y}^T \tilde{z})}{\partial \tilde{x}} = \tilde{y}^T \frac{\partial \tilde{z}}{\partial \tilde{x}} + \tilde{z}^T \frac{\partial \tilde{y}}{\partial \tilde{x}} \).
-    \item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
-\end{enumerate}
-
-
-\subsubsection{Izrek} 
-Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna natanko tedaj, 
-ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) pozitivno semidefinitna matrika na \( D \), in je konkavna natanko tedaj, 
-ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) negativno semidefinitna matrika na \( D \).
-
-\subsubsection{Prirejene funckije}
-
-Naj bodo \( f, g_i, h_j: \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev naslednjega problema
-\[
-\text{(P)}^* \quad \min f(\vec{x})
-\]
-pri pogojih
-\[
-g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m
-\]
-\[
-h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r.
-\]
-
-Definirajmo še množice \( D_g \), \( D_h \):
-\[
-D_g = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m \right\},
-\]
-
-\[
-D_h = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r \right\}
-\]
-
-\[
-D = D_f \cap \left( \bigcap_{i=1}^m D_g \right) \cap \left( \bigcap_{j=1}^r D_h \right).
-\]
-
-Sedaj lahko problem \( (P^*) \) zapišemo ekvivalentno kot
-\[
-    \text{(P)}^* \quad \min_{\vec{x} \in D} f(\vec{x}).
-\]
-
-Definirajmo Lagrangevo funkcijo
-\[
-L(\vec{x}, \vec{\lambda}, \vec{\mu}) = f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x}) 
-\]
-\[
-= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
-\]
-kjer je
-\[
-\mathbf{G}(\vec{x}) = 
-\begin{pmatrix}
-g_1(\vec{x}) \\
-\vdots \\
-g_m(\vec{x})
-\end{pmatrix},
-\mathbf{H}(\vec{x}) = 
-\begin{pmatrix}
-h_1(\vec{x}) \\
-\vdots \\
-h_r(\vec{x})
-\end{pmatrix},
-\]
-\[
-\vec{\lambda} = 
-\begin{pmatrix}
-\lambda_1 \\
-\vdots \\
-\lambda_m
-\end{pmatrix},
-\vec{\mu} = 
-\begin{pmatrix}
-\mu_1 \\
-\vdots \\
-\mu_r
-\end{pmatrix}.
-\]
-
-Funkcijo
-\[
-K(\vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} L(\vec{x}, \vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} \{ f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x}) \}
-\]
-imenujemo \textbf{prirejena funkcija} problema  $(P^*) $. Pri tem spremenljivke $ \vec{\lambda} $ in $ \vec{\mu} $ imenujemo \textbf{prirejene spremenljivke}. Opazimo:
-
-\begin{enumerate}
-\item \( K(\vec{\lambda}, \vec{\mu}) \) je konkavna funkcija (neodvisno od lastnosti funkcij \( f, g_i, h_j \) originalnega problema).
-\item Če je \( \lambda_i \leq 0 \) za \( i = 1,2,\ldots,m \), potem velja \( K(\vec{\lambda}, \vec{\mu}) \leq \min_{\vec{x} \in D} f(\vec{x}) \) za vse \( \vec{\lambda} \) ter vse \( \vec{\mu} \).
-\end{enumerate}
-
-
-\textbf{Problem}
-\[
-\text{(D}^*\text{)} \quad \max_{\vec{x},\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
-\]
-pri pogojih
-\[
-\lambda_i \leq 0 \quad za \ i = 1,2,\ldots,m
-\]
-imenujemo \textbf{prirejeni problem} problema \( (P^*) \).
-
-Označimo z \( \vec{x}^* \) vektor iz \( D \), ki reši problem \( (P^*) \) in \( \vec{\lambda}^* \), \( \vec{\mu}^* \) prirejene spremenljivke, ki rešita prirejeni problem \( (D^*) \). Naj bo torej \( p^* = f(\vec{x}^*) \) rešitev problema \( (P^*) \) in \( d^* = K(\vec{\lambda}^*, \vec{\mu}^*) \) rešitev problema \( (D^*) \). Potem iz (2) sledi
-\[
-d^* \leq p^*.
-\]
-
-Če
-\begin{itemize}
-\item je \( (P^*) \) linearni program (t.j., \( f \) je linearna in \( h_j \) so afine funkcije), ali če
-\item so \( f, g_i \) konveksne funkcije in \( h_j \) afine,
-\end{itemize}
-potem velja \( d^* = p^* \).
-
-V primeru, ko je \( d^* = p^* \), sledi, da morajo \( \vec{x}^*, \vec{\lambda}^* \) in \( \vec{\mu}^* \) zadostiti Karush-Kuhn-Tuckerjevim pogojem:
-\[
-\begin{aligned}
-&\frac{\partial L(\vec{x}^*, \vec{\lambda}^*, \vec{\mu}^*)}{\partial \vec{x}} = 0, \\
-&g_i(\vec{x}^*) \leq 0 \quad za \ i = 1,2,\ldots,m, \\
-&h_j(\vec{x}^*) = 0 \quad za \ j = 1,2,\ldots,r, \\
-&\lambda_i^* \leq 0 \quad za \ i = 1,2,\ldots,m, \\
-&\lambda_i^* g_i(\vec{x}^*) = 0 \quad za \ i = 1,2,\ldots,m.
-\end{aligned}
-\]
-(KKT)
-
-
-\subsection{Dodatek 1: Vrste}
-
-\input{vrste.tex}
-
-\subsection{Dodatek 2: Ponovitev analize}
-
-\input{../VIS/ponovitev-analize.tex}
+	\section{\underline{Vektorji in matrike}}
+
+	\textbf{1.1} Vektor je \textit{urejena n-terica stevil}, ki jo obicajno
+	zapisemo kot stolpec\smallskip
+	\begin{center}
+		$\vec{x}$ =
+		$\begin{bmatrix}
+				x_{1}  \\
+				\vdots \\
+				x_{n}  \\
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{1.2} Produkt \textit{vektorja} $\vec{x}$ s skalarjem $\alpha$ je vektor
+	\begin{center}
+		$\alpha \vec{x}$ =
+		$\alpha$
+		$\begin{bmatrix}
+				x_{1}  \\
+				\vdots \\
+				x_{n}  \\
+			\end{bmatrix}$ =
+		$\begin{bmatrix}
+				\alpha x_{1} \\
+				\vdots       \\
+				\alpha x_{n} \\
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{1.3} Vsota \textit{vektorjev} $\vec{x}$ in $\vec{y}$ je vektor
+	\begin{center}
+		$\vec{x} + \vec{y} =
+			\begin{bmatrix}
+				x_{1}  \\
+				\vdots \\
+				x_{n}  \\
+			\end{bmatrix} +
+			\begin{bmatrix}
+				y_{1}  \\
+				\vdots \\
+				y_{n}  \\
+			\end{bmatrix} =
+			\begin{bmatrix}
+				x_{1}  +  y_{1} \\
+				\vdots          \\
+				x_{n} + y_{n}   \\
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{1.4} Nicelni vektor $\vec{0}$ je tisti vektor, za katerega
+	je $\vec{a} + \vec{0} = \vec{0} + \vec{a} = \vec{a}$ za vsak vektor
+	$\vec{a}$. Vse komponente nicelnega vektorja so enake 0. Vsakemu vektorju
+	$\vec{a}$ priprada nasprotni vektor -$\vec{a}$, tako da je $\vec{a} + (-\vec{a}) = \vec{0}$
+	Razlika vektorjev $\vec{a}$ in $\vec{b}$ je vsota $\vec{a} + (-\vec{b})$ in jo
+	navadno zapisemo kot  $\vec{a} - \vec{b}$.
+
+	\textbf{Lastnosti vektorske vsote}
+	\begin{itemize}
+		\item $\vec{a} + \vec{b} = \vec{b} + \vec{a}$ (komutativnost)
+		\item $\vec{a} + (\vec{b} + \vec{c}) = (\vec{a} + \vec{b}) + \vec{c}$ (asociativnost)
+		\item $a(\vec{a} + \vec{b}) = a\vec{a} + a\vec{b}$ (distributivnost)
+	\end{itemize}
+
+	\textbf{1.5} Linearna kombinacija vektorjev $\vec{x}$ in $\vec{y}$ je vsota
+	\begin{center}
+		$a\vec{x} + b\vec{y}$
+	\end{center}
+
+	\textbf{1.6} Skalarni produkt vektorjev\\
+	\begin{center}
+		$\begin{bmatrix}
+				x_{1}  \\
+				\vdots \\
+				x_{n}  \\
+			\end{bmatrix}$ in
+		$\begin{bmatrix}
+				y_{1}  \\
+				\vdots \\
+				y_{n}  \\
+			\end{bmatrix}$ je stevilo
+	\end{center}
+	\begin{center}
+		$\vec{x} \cdot \vec{y} = x_{1}y_{1} + x_{2}y_{2} + \dots + x_{n}y_{n}$
+	\end{center} \textit{alternativno:}
+	\begin{center}
+		$\vec{x} \cdot \vec{y} = ||\vec{x}|| ||\vec{y}|| \cos \phi$
+	\end{center}
+
+	\textbf{Lastnosti skalarnega produkta}
+	\begin{itemize}
+		\item $\vec{x} \cdot \vec{y} = \vec{y} \cdot \vec{x}$ (komutativnost)
+		\item $\vec{x} \cdot (\vec{y} + \vec{z}) = \vec{x} \cdot \vec{y} + \vec{x} \cdot \vec{z}$ (aditivnost)
+		\item $\vec{x} \cdot (a \vec{y}) = a(\vec{x} \cdot \vec{y}) = (a \vec{x}) \cdot \vec{y}$ (homogenost)
+		\item $\forall \vec{x}$ \textit{velja} $\vec{x} \cdot \vec{x} \geq 0$
+	\end{itemize}
+
+	\textbf{1.7} Dolzina vektorja $\vec{x}$ je
+	\begin{center}
+		$||\vec{x}|| = \sqrt{\vec{x} \cdot \vec{x}}$
+	\end{center}
+
+	\textbf{1.8} Enotski vektor je vektor z dolzino 1.
+
+	\textbf{1.9} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
+	\begin{center}
+		$|\vec{u} \cdot \vec{v}| \leq ||\vec{u}||||\vec{v}||$,
+	\end{center}
+	enakost velja, v primeru, da sta vektorja vzporedna.
+
+
+	\textbf{1.10} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
+	\begin{center}
+		$||\vec{u} + \vec{v}|| \leq ||\vec{u}||+||\vec{v}||$.
+	\end{center}
+
+	\textbf{1.11} Vektorja $\vec{x}$ in $\vec{y}$ sta ortogonalna
+	(pravokotna) natakno takrat, kadar je
+	\begin{center}
+		$\vec{x} \cdot \vec{y} = $ 0
+	\end{center}
+
+	\textbf{1.12} Ce je $\phi$ kot med vektorjema $\vec{x}$ in $\vec{y}$, potem je
+	\begin{center}
+		$\dfrac{\vec{x} \cdot \vec{y}}{||\vec{x}|| ||\vec{y}||} =
+			\cos \phi$
+	\end{center}
+
+	\textbf{1.13} Vektorski produkt:
+	\begin{center}
+		$\vec{a} \times \vec{b} = (a_{2}b_{3} - a_{3}b_{2}) \textbf{i}$ +
+		$(a_{3}b_{1} - a_{1}b_{3}) \textbf{j} + (a_{1}b_{2} - a_{2}b_{1}) \textbf{k}$
+	\end{center}
+
+	\textbf{Lastnosti vektorskega produkta}
+	\begin{itemize}
+		\item $\vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$ (aditivnost)
+		\item $\vec{b} \times \vec{a} = -\vec{a} \times \vec{b}$ (!komutativnost)
+		\item $ (a \vec{a}) \times \vec{b} = a(\vec{a} \times \vec{b}) =  \vec{a} \times (a \vec{b})$ (homogenost)
+		\item $\vec{a} \times \vec{a} = 0$
+		\item $\vec{a} \times \vec{b}$  \textit{je}  $\perp$ \textit{na vektorja} $\vec{a}$ \textit{in} $\vec{b}$
+		\item $||\vec{a} \times \vec{b}|| = ||\vec{a}|| ||\vec{b}|| \sin \phi$
+		\item Dolzina vektorskega produkta je ploscina paralelograma, katerega vektorja oklepata
+	\end{itemize}
+
+	\textbf{1.14} Mesani produkt($\vec{a}, \vec{b}, \vec{c}$) vektorjev
+	$\vec{a}, \vec{b}$ in $\vec{c}$ v $R^{3}$ je skalarni produkt vektorjev
+	$\vec{a} \times \vec{b}$ in $\vec{c}$:
+	\begin{center}
+		$(\vec{a}, \vec{b}, \vec{c}) = (\vec{a} \times \vec{b})\cdot \vec{c}$
+	\end{center}
+
+	\textbf{Lastnosti mesanega produkta}
+	\begin{itemize}
+		\item $(\vec{a}, \vec{b}, \vec{c}) = (\vec{b}, \vec{c}, \vec{a}) = (\vec{c}, \vec{a}, \vec{b})$
+		\item $(x\vec{a}, \vec{b}, \vec{c}) = x(\vec{a}, \vec{b}, \vec{c})$ (homogenost)
+		\item $(\vec{a}, \vec{u} + \vec{v}, \vec{c}) = (\vec{a}, \vec{u}, \vec{c}) + (\vec{a}, \vec{v}, \vec{c})$
+		\item Absolutna vrednost mesanega produkta ($\vec{a}, \vec{b}, \vec{c}$) je enaka prostornini paralepipeda
+	\end{itemize}
+
+	\textbf{Premice v $R^{3}$} \\
+	Premico določata smerni vektor $\vec{p} = [a, b, c]^{T}$ in točka $A(x_0, y_0, z_0)$.
+	\begin{itemize}
+		\item Parametrična oblika:
+		      $\vec{r} = \vec{r}_{A} + t\vec{p}$, $t \in R$
+		\item Kanonična oblika:
+		      $\dfrac{x - x_{0}}{a} = \dfrac{y - y_{0}}{b} = \dfrac{z - z_{0}}{c}$
+	\end{itemize}
+
+	\textbf{Ravnine v $R^{3}$} \\
+	Ravnina z normalo $\vec{n} = [a, b, c]^T$ skozi točko $A(x_0, y_0, z_0)$ ima enačbo
+	\begin{center}
+		$(\vec{r} - \vec{r}_A) \cdot \vec{n} = 0$
+	\end{center}
+	oziroma
+	\begin{center}
+		$ax + by + cz = d$
+	\end{center}
+
+	\textbf{Razdalje}\\
+	Razdalja od tocke $P$ do ravnine, v kateri lezi tocka $A$ :
+	\begin{center}
+		$\cos\phi = \dfrac{\vec{n} \cdot ( \vec{r_{P}} - \vec{r_{A}})} {||\vec{n}|| ||\vec{r_{P}} - \vec{r_{A}}||}$ oz.
+		$d = |\dfrac{\vec{n}}{||\vec{n}||} ( \vec{r_{P}} - \vec{r_{A}})|$
+	\end{center}
+	Razdalja od tocke $P$ do premice, katera gre skozi tocko $A$:
+	\begin{center}
+		$d = \dfrac{||\vec{e} \times ( \vec{r_{P}} - \vec{r_{A}})||}{||\vec{e}||}$
+	\end{center}
+
+	\textbf{Projekcije vektorjev}\\
+	Naj bo $proj_{\vec{a}}\vec{b} = \vec{x}$ projekcija vektorja $\vec{b}$ na vektor $\vec{a}$.
+	Izracunamo jo po sledeci formuli:
+	\begin{center}
+		\begin{math}
+			proj_{\vec{a}}\vec{b} = \frac{\vec{a}\vec{b}}{\vec{a}\vec{a}} \vec{a}
+		\end{math}
+	\end{center}
+
+	\textbf{1.15} Matrika dimenzije $m \times n$ je tabela $m \times n$ stevil, urejenih
+	v $m$ vrstic in $n$ stolpcev:
+	\begin{center}
+		$A^{m \times n} =$
+		$\begin{bmatrix}
+				x_{11} & x_{12} & x_{13} & \dots  & x_{1n} \\
+				x_{21} & x_{22} & x_{23} & \dots  & x_{2n} \\
+				\vdots & \vdots & \vdots & \ddots & \vdots \\
+				x_{m1} & x_{m2} & x_{m3} & \dots  & x_{mn}
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{1.16} Matrika, katere elementi so enaki nic povsod
+	zunaj glavne diagonale, se imenuje diagonalna matrika. Za
+	diagonalno matriko je $a_{ij} = 0$, kadarkoli velja $i \neq j$
+
+	\textbf{1.17} Matrika $A^{n \times n}$ je spodnjetrikotna, kadar
+	so vsi elementi nad glavno diagonalo enaki 0:
+	\begin{center}
+		$a_{ij} = 0$  \textit{kadar je} $i < j$
+	\end{center}
+
+	\textbf{1.18} Matrika $A^{n \times n}$ je zgornjetrikotna, kadar
+	so vsi elementi pod glavno diagonalo enaki 0:
+	\begin{center}
+		$a_{ij} = 0$  \textit{kadar je} $i > j$
+	\end{center}
+
+	\textbf{1.19} Matrika je trikotna, ce je zgornjetrikotna ali spodnjetrikotna.
+
+	\textbf{1.20} Dve matriki $A$ in $B$ sta enaki natanko takrat,
+	kadar imata enaki dimenziji in kadar so na istih mestih v obeh
+	matrikah enaki elementi:
+	\begin{center}
+		$A^{m \times n} = B^{p \times q} \implies m=p$ in $n=q$,\\
+		$a_{ij} = b_{ij}$ \textit{za vsak} $i= 1,...,m$ in $j=1,...,n$
+	\end{center}
+
+	\textbf{1.21} Produkt matrike s skalarjem dobimo tako, da
+	vsak element matrike pomnozimo s $skalarjem$
+	\begin{center}
+		$aA^{m \times n} =$
+		$\begin{bmatrix}
+				ax_{11} & ax_{12} & ax_{13} & \dots  & ax_{1n} \\
+				ax_{21} & ax_{22} & ax_{23} & \dots  & ax_{2n} \\
+				\vdots  & \vdots  & \vdots  & \ddots & \vdots  \\
+				ax_{m1} & ax_{m2} & ax_{m3} & \dots  & ax_{mn}
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{1.22} Vsoto dveh matrik enake dimenzije dobimo tako,
+	da sestejemo istolezne elemente obeh matrik:
+	\begin{center}
+		$A + B =$
+		$\begin{bmatrix}
+				a_{11} + b_{11} & ax_{12} + b_{12} & \dots  & ax_{1n} + b_{1n} \\
+				a_{21} + b_{21} & ax_{22} + b_{22} & \dots  & ax_{2n} + b_{2n} \\
+				\vdots          & \vdots           & \ddots & \vdots           \\
+				a_{m1} + b_{m1} & ax_{m2} + b_{m3} & \dots  & ax_{mn} + b_{mn}
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{Osnovne matricne operacije}
+	\begin{itemize}
+		\item $A + B = B + A$ (komutativnost)
+		\item $(A + B) + C = A + (B + C)$ (asociativnost)
+		\item $a(A + B) = aA + aB$ (mnozenje s skalarjem)
+		\item $A + (-A) = 0$
+		\item $x(yA) = (xy)A$ \textit{in} $1 \cdot A = A$
+	\end{itemize}
+
+	\textbf{1.23} Transponirana matrika k matriki A reda $m \times n$
+	je matrika reda $n \times m$
+	\begin{center}
+		$A =$
+		$\begin{bmatrix}
+				x_{11} & x_{12} & \dots  & x_{1n} \\
+				x_{21} & x_{22} & \dots  & x_{2n} \\
+				\vdots & \vdots & \ddots & \vdots \\
+				x_{m1} & x_{m2} & \dots  & x_{mn}
+			\end{bmatrix}$\\
+		\smallskip
+		$A^{T} =$
+		$\begin{bmatrix}
+				x_{11} & x_{21} & \dots  & x_{m1} \\
+				x_{12} & x_{22} & \dots  & x_{m2} \\
+				\vdots & \vdots & \ddots & \vdots \\
+				x_{1n} & x_{2n} & \dots  & x_{mn}
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{Lastnosti transponiranja matrik}
+	\begin{itemize}
+		\item $(A + B)^{T} = A^{T} + B^{T}$
+		\item $(A \cdot B)^{T} = B^{T} \cdot A^{T}$
+		\item $(xA)^{T} = xA^{T}$
+		\item $(A^{T})^{T} = A$
+	\end{itemize}
+
+	\textbf{1.24} Produkt matrike A in vektorja $\vec{x}$ je
+	linearna kombinacija stolpcev matrike A, utezi linearne
+	kombinacije so komponente vektorja $\vec{x}$:
+	\begin{center}
+		$A \vec{x} =
+			\begin{bmatrix}
+				        &         &         \\
+				\vec{u} & \vec{v} & \vec{w} \\
+				        &         &         \\
+			\end{bmatrix}
+			\cdot
+			\begin{bmatrix}
+				a \\
+				b \\
+				c
+			\end{bmatrix} =$
+		$a\vec{u} + b\vec{v} + c\vec{w}$
+	\end{center}
+
+	\textbf{1.25} Produkt vrstice $\vec{x}$ z matriko A je
+	linearna kombinacija vrstic matrike A, koeficienti linearne
+	kombinacije so komponente vrstice $\vec{y}$:
+	\begin{center}
+		$\vec{y} \cdot A =
+			\begin{bmatrix}
+				y_{1}, y_{2}, y_{3}
+			\end{bmatrix} \cdot
+			\begin{bmatrix}
+				\vec{u} \\
+				\vec{v} \\
+				\vec{w}
+			\end{bmatrix} =
+			\begin{bmatrix}
+				y_{1}\vec{u} \\
+				y_{2}\vec{v} \\
+				y_{3}\vec{w}
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{1.26} Produkt matrik A in B je matrika, katere stolpci
+	so zaporedoma produkti matrike A s stolpci matrike B:
+	\begin{center}
+		$AB = A
+			\begin{bmatrix}
+				b_{1}, b_{2}, \dots ,b_{n}
+			\end{bmatrix} =
+			\begin{bmatrix}
+				Ab_{1}, Ab_{2}, \dots ,Ab_{n}
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{1.27} Element $c_{ij}$ v $i-ti$ vrstici in $j-tem$ stolpcu
+	produkta C = AB je skalarni produkt $i-te$ vrstice A in $j-tega$
+	stolpca matrike B
+	\begin{center}
+		$c_{ij} =
+			\sum_{k=1}^{n} a_{ik}b_{kj}
+		$
+	\end{center}
+
+	\textbf{1.28} Produkt matrik A in B je matrika, katere vrstice
+	so zaporedoma produkti vrstic matrike A z matriko B:
+	\begin{center}
+		$
+			\begin{bmatrix}
+				i-ta\; vrstica\; A
+			\end{bmatrix}B =
+			\begin{bmatrix}
+				i-ta\; vrstica\; AB
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{Lastnosti matricnega produkta}
+	\begin{itemize}
+		\item $AB \neq BA$ (!komutativnost)
+		\item $(xA)B = x(AB) = A(xB)$ (homogenost)
+		\item $C(A + B) = CA + CB$ (distributivnost)
+		\item $A(BC) = (AB)C$ (asociativnost)
+		\item $(AB)^{T} = B^{T}A^{T}$
+	\end{itemize}
+	V splosnem; komutativnost matricnega mnozenja velja
+	samo, ko sta matriki diagonalizabilni.
+
+	\textbf{1.29} Vrstice matrike A z $n$ stolpci naj bodo
+	$a^{1}, \dots, a^{n}$, stolpci matrike B z $n$ vrsticami pa
+	$b_{1}, \dots, b_{n}$. Potem je
+	\begin{center}
+		$AB = a^{1}b_{1} + \dots + a^{n}b_{n}$
+	\end{center}
+
+	\textbf{1.30} Ce delitev na bloke v matriki A ustreza delitvi v matirki B,
+	potem lahko matriki pomnozimo blocno:
+	\begin{center}
+		$\begin{bmatrix}
+				A_{11} & A_{12} \\
+				A_{21} & A_{22}
+			\end{bmatrix}
+			\begin{bmatrix}
+				B_{11} & B_{12} \\
+				B_{21} & B_{22}
+			\end{bmatrix} =
+			\begin{bmatrix}
+				A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22} \\
+				A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22}
+			\end{bmatrix}$
+	\end{center}
+
+	\textbf{1.31} Kvadratna matrika $I_{k}$ reda $k \times k$, ki ima vse diagonalne
+	elemente enake 1, vse ostale elemente pa 0 ima lastnost, da za vsako matriko A
+	reda $m \times n$ velja $AI_{n} = A$ in $I_{m}A = A$. Matrika $I_{k}$ se imenuje
+	enotska ali identicna matirka.
+	\begin{center}
+		$I_{k}=
+			\begin{bmatrix}
+				1      & 0      & \hdots & 0      \\
+				0      & 1      & \hdots & 0      \\
+				\vdots & \vdots & \ddots & \vdots \\
+				0      & 0      & \hdots & 1
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\section{\underline{Sistemi linearnih enacb}}
+
+	\textbf{2.1} Kvadratna matrika A je obrnljiva, ce obstaja taka matrika
+	$A^{-1}$, da je
+	\begin{center}
+		$AA^{-1} = I\;
+			in\;
+			A^{-1}A = I
+		$
+	\end{center}
+	Matrika $A^{-1}$ (ce obstaja) se imenuje matriki A inverzna matrika.
+	Matrika, ki ni obrnljiva, je singularna. Matrika \textbf{NI} obrnljiva, kadar je
+	$rang(A) < n$ !
+
+	\textbf{2.2} Kvadratna matirka reda $n$ je obrnljiva natanko tedaj, ko pri
+	gaussovi eliminaciji dobimo $n$ pivotov.
+
+	\textbf{2.3} Vsaka obrnljiva matrika ima eno samo inverzno matriko.
+
+	\textbf{2.4} Inverzna matrika inverzne matrike $A^{-1}$ je matrika A
+	\begin{center}
+		$(A^{-1})^{-1} = A$
+	\end{center}
+
+	\textbf{2.5} Ce je matrika A obrnljiva, potem ima sistem enacb
+	$A\vec{x} = \vec{b}$ edino resitev $\vec{x} = A^{-1} \vec{b}$
+
+	\textbf{2.6} Ce obstaja nenicelna resitev $\vec{x}$ enacbe $A\vec{x} = \vec{0}$,
+	matrika A ni obrnljiva(je singularna).
+
+	\textbf{2.7} Ce sta matirki A in B istega reda obrnljivi, je obrnljiv tudi
+	produkt $A \cdot B$ in
+	\begin{center}
+		$(A \cdot B)^{-1} =
+			B^{-1} \cdot A^{-1}
+		$
+	\end{center}
+
+	\textbf{Pozor!} Pravilo
+	\begin{center}
+		$(AB)^{p} = A^{p}B^{p}$
+	\end{center}
+	velja le v primeru, ko matriki A in B komutirata, torej $AB = BA$.
+
+	\textbf{2.8} Inverz transponirane matrike je transponirana matrika inverza
+	\begin{center}
+		$(A^{T})^{-1} = (A^{-1})^{T}$
+	\end{center}
+
+	\textbf{2.9} Inverz diagonalne matrike z diagonalnimi elementi $a_{ii}$ je
+	diagonalna matrika, ki ima na diagonali elemente $a_{ii}^{-1}$
+	\begin{center}
+		$\begin{bmatrix}
+				a_{11} &        & 0      \\
+				       & \ddots &        \\
+				0      &        & a_{nn}
+			\end{bmatrix}=
+			\begin{bmatrix}
+				a_{11}^{-1} &        & 0           \\
+				            & \ddots &             \\
+				0           &        & a_{nn}^{-1}
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{2.10} Za izracun inverza matrike A, uporabimo gausovo eliminacijo nad
+	matriko $\begin{bmatrix}A|I\end{bmatrix}$
+	\begin{center}
+		$\begin{bmatrix}A|I\end{bmatrix} =
+			\begin{bmatrix}I|A^{-1}\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{2.11} Matrika A je simetricna $\Leftrightarrow A^{T} = A$. Za elemente
+	$a_{ij}$ simetricne matirke velja $a_{ij} = a_{ji}$. Za simetricno matriko vedno velja,
+	da je kvadratna $A \in R^{n \times n}$.
+
+	\textbf{2.12} Ce je matrika A simetricna in obrnljiva, je tudi $A^{-1}$ simetricna.
+
+	\textbf{2.13} Ce je R poljubna (lahko tudi pravokotna) matrika, sta $R^{T}R$ in
+	$RR^{T}$ simetricni matriki.
+
+	\section{\underline{Vektorski prostori}}
+
+	\textbf{3.1} Realni vektorski prostor V je mnozica "vektorjev" skupaj z pravili za
+	\begin{itemize}
+		\item sestevanje vektorjev,
+		\item mnozenje vektorja z realnim stevilom (skalarjem)
+	\end{itemize}
+	Ce sta $\vec{x}$ in $\vec{y}$ poljubna vektorja v V, morajo biti v V tudi
+	\begin{itemize}
+		\item vsota $\vec{x} + \vec{y}$ in
+		\item produkti $\alpha\vec{x}$ za vse $\alpha \in R$
+	\end{itemize}
+	V vektorskem prostoru V morajo biti tudi VSE linearne kombinacije
+	$\alpha\vec{x} + \beta\vec{y}$
+
+	\textbf{Pravila za operacije v vektorskih prostorih}\\
+	Operaciji sestevanja vektorjev in mnozenja vektorja s skalarjem v vektorskem prostoru
+	morajo zadoscati naslednjim pravilom:
+	\begin{itemize}
+		\item $\vec{x} + \vec{y} = \vec{y} + \vec{x}$ (komutativnost)
+		\item $\vec{x} + (\vec{y} + \vec{z}) = (\vec{x} + \vec{y}) + \vec{z}$ (asociativnost)
+		\item obstaja en sam nenicelni vektor $\vec{0}$, da velja $\vec{x} + \vec{0} = \vec{x}$
+		\item za vsak $\vec{x}$ obstaja natanko en $-\vec{x}$, da je $\vec{x} + (-\vec{x}) = \vec{0}$
+		\item $1 \cdot \vec{x} = \vec{x}$
+		\item $(\alpha\beta)\vec{x} = \alpha(\beta\vec{x})$
+		\item $\alpha(\vec{x} + \vec{y}) = \alpha\vec{x} + \alpha\vec{y}$ (distributivnost)
+		\item $(\alpha + \beta)\vec{x} = \alpha\vec{x} + \beta\vec{x}$
+	\end{itemize}
+
+	\textbf{3.2} Podmnozica U vektorskega prostora V je \textit{vektorski podprostor}, ce je za
+	vsak par vektorjev $\vec{x}$ in $\vec{y}$ iz U in vsako realno stevilo $\alpha$ tudi
+	\begin{itemize}
+		\item $\vec{x} + \vec{y} \in U$ in
+		\item $\alpha\vec{x} \in U$.
+	\end{itemize}
+
+	\textbf{3.3} Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
+	kombinacija vektorjev iz U tudi v U.
+
+	\textbf{Lastnosti vektorskih podprostorov}
+	\begin{itemize}
+		\item Vsak vektorski podprostor nujno vsebuje nicelni vektor $\vec{0}$
+		\item Presek dveh podprostorov vektorskega podprostora je tudi podprostor
+	\end{itemize}
+
+	\textbf{3.4} Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
+	vektorskega prostora $R^{m}$, ki vsebuje natanko vse linearne kombinacije stolpcev matrike A.\\
+	Izracunamo ga tako, da matriko A transponiramo in izvedemo operacijo gaussove eliminacije nad $A^{T}$. Vrstice katere ostanejo po gaussivi eliminaciji
+	so linearno neodvisni vektorji, kateri tvorijo stoplicni prostor matrike A, $C(A)$.
+	\textit{neformalno: linearna ogrinjaca stolpcev matrike (npr. ce imas 5 stolpcev pa lahko 2 zapises kot linearno kombinacijo ostalih 3 bo imel column space 3 elemente)}
+
+	\textbf{3.5} Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
+	$\vec{b} \in C(A)$
+
+	\textbf{3.6} Naj bo matrika $A \in R^{m \times n}$. Mnozica resitev homogenega sistema linearnih
+	enacb je podprostor v vektorskem prostoru $R^{n}$.
+
+	\textbf{3.7} Mnozica vseh resitev sistema linearnih enacb $A\vec{x} = \vec{0}$ se imenuje nicelni
+	prostor matirke A. Oznacujemo ga z N(A).\\
+	\textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor. Matriko A samo eliminiras po gaussu in nato dobljene resitve enacis z 0.}
+
+	\textbf{3.8} Ce je matrika A kvadratna in obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
+
+	\textbf{3.9} Matrika ima \textit{stopnicasto} obliko, kadar se vsaka od njenih vrstic zacne z vsaj eno
+	niclo vec kot prejsnja vrstica.
+
+	\textbf{3.10} Prvi element, razlicen od nic v vsaki vrstici, je \textit{pivot}. Stevilo pivotov v matriki
+	se imenuje rang matrike. Rang matrike A zapisemo kot $rang(A)$.
+
+	\textbf{3.11} Rang matrike ni vecji od stevila vrstic in ni vecji od stevila stolpcev matrike.
+
+	\textbf{3.12}
+	\begin{center}
+		\textit{Stevilo prostih neznank matrike = st. stolpcev - rang matrike}
+	\end{center}
+
+	\textbf{3.13}
+	\begin{enumerate}
+		\item Visoka in ozka matrika $(m > n)$ ima poln stolpicni rang, kadar je $rang(A) = n$
+		\item Nizka in siroka matrika $(m < n)$ ima poln vrsticni rang, kadar je $rang(A) = m$
+		\item Kvadratna matrika $(n = m)$ ima poln rang, kadar je $rang(A) = m = n$
+	\end{enumerate}
+
+	\textbf{3.14} Za vsako matriko A s polnim stolpicnim rangom $r = n \leq m$, velja:
+	\begin{enumerate}
+		\item Vsi stolpci A so pivotni stolpci
+		\item Sistem enacb $A\vec{x} = \vec{0}$ nima prostih neznank, zato tudi nima posebnih resitev
+		\item Nicelni prostor $N(A)$ vsebuje le nicelni vektor $N(A) = \{\vec{0}\}$
+		\item Kadar ima sistem enacb $A\vec{x} = \vec{b}$ resitev(kar ni vedno res!), je resitev ena sama
+		\item Reducirana vrsticna oblika matrike (A) se da zapisati kot
+	\end{enumerate}
+	\begin{center}
+		$R =
+			\begin{bmatrix}
+				I \\
+				0
+			\end{bmatrix}
+			\begin{bmatrix}
+				n \times n\; enotska\; matrika \\
+				m - n\; vrstic\; samih\; nicel\;
+			\end{bmatrix}
+		$
+	\end{center}
+
+	\textbf{3.15} Za vsako matriko A s polnim vrsticnim rangom $r = m \leq n$ velja:
+	\begin{enumerate}
+		\item Vse vrstice so pivotne, ni prostih vrstic in U (stopnicasta oblika) in R(reducirana stopnicasta oblika) nimata nicelnih vrstic
+		\item Sistem enacb $A\vec{x} = \vec{b}$ je resljiv za vsak vektor $\vec{b}$
+		\item Sistem $A\vec{x} = \vec{b}$ ima $n-r = n-m$ prostih neznank, zato tudi prav toliko posebnih resitev
+		\item Stolpicni prostor $C(A)$ je ves prostor $R^{m}$
+	\end{enumerate}
+
+	\textbf{3.16} Za vsako kvadratno matriko A polnega ranga (rang(A) = m = n) velja:
+	\begin{enumerate}
+		\item Reducirana vrsticna oblika matrike A je enotska matrika
+		\item Sistem enacb $A\vec{x} = \vec{b}$ ima natancno eno resitev za vsak vektor desnih strani $\vec{b}$
+		\item Matrika A je obrnljiva
+		\item Nicelni prostor matrike A je samo nicelni vektor $N(A) = \{\vec{0}\}$
+		\item Stolpicni prostor matrike A je cel prostor $C(A) = R^{m}$
+	\end{enumerate}
+
+	\textbf{3.17} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so linearno neodvisni, ce je
+	\begin{center}
+		$ 0\vec{x_{1}} + 0\vec{x_{2}} + \dots + 0\vec{x_{n}}$
+	\end{center}
+	edina njihova linearna kombinacija, ki je enaka vektorju $\vec{0}$. Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so
+	linearno odvisni, \textit{ce niso linearno neodvisni}.
+
+	\textbf{3.18} Ce so vektorji \textit{odvisni}, lahko vsaj enega izrazimo z ostalimi.
+
+	\textbf{3.19} Ce je med vektorji  $\vec{u_{1}}, \dots,\vec{u_{n}}$ tudi nicelni vektor, so
+	vektorji \textit{linearno odvisni}.
+
+	\textbf{3.20} Vsaka mnozica n vektorjev iz $R^{n}$ je odvisna, kadar je $n > m $.
+
+	\textbf{3.21} Stolpci matrike A so linearno neodvisni natanko tedaj, ko ima homogena enacba
+	$A\vec{x} = \vec{0}$ edino resitev $\vec{x} = \vec{0}$.
+
+	\textbf{3.22} Kadar je $rang(A) = n$, so stolpci matrike $A \in R^{m \times n}$ linearno
+	neodvisni. Kadar je pa $rang(A) < n$, so stolpci matrike $A \in R^{m \times n}$ linearno odvisni.
+
+	\textbf{3.23} Kadar je $rang(A) = m$, so vrstice matrike $A \in R^{m \times n}$ linearno neodvisne.
+	Kadar je pa $rang(A) < m$, so vrstice matrike $A \in R^{m \times n}$ linearno odvisne.
+
+	\textbf{3.24} Vrsticni prostor matrike A je podprostor v $R^{n}$, ki ga razpenjajo vrstice matrike A.
+
+	\textbf{3.25} Vrsticni prostor matrike A je $C(A^{T})$, stolpicni prostor matrike $A^{T}$.
+
+	\textbf{3.26} \textit{Baza vektorskega prostora} je mnozica vektorjev, ki
+	\begin{enumerate}
+		\item je linearno neodvisna in
+		\item napenja cel prostor.
+	\end{enumerate}
+
+	\textbf{3.27} Vsak vektor iz vektorskega prostora lahko na en sam nacin izrazimo
+	kot linearno kombinacijo baznih vektorjev.
+
+	\textbf{3.28} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so baza prostora $R^{n}$ natanko tedaj, kadar
+	je matrika, sestavljena iz stolpcev $\vec{x_{1}}, \dots,\vec{x_{n}}$, obrnljiva.
+
+	\textbf{3.29} Prostor $R^{n}$ ima za $n > 0$ neskoncno mnogo razlicnih baz.
+
+	\textbf{3.30} Ce sta mnozici vekotrjev {$\vec{v_{1}}, \dots,\vec{v_{m}}$} in $\vec{u_{1}}, \dots,\vec{u_{n}}$
+	obe bazi istega vektorskega prostora, potem je $m = n \implies$ vse baze istega vektorskega prostora imajo
+	isto stevilo vektorjev.
+
+	\textbf{3.31} \textit{Dimenzija} vektroskega prostora je stevilo baznih vektorjev.
+
+	\textbf{3.32} Dimenziji stolpicnega prostora $C(A)$ in vrsticnega prostora $C(A^{T})$ sta enaki rangu matrike $A$
+	\begin{center}
+		$dim(C(A)) = dim(C(A^{T})) = rang(A)$.
+	\end{center}
+
+	\textbf{3.33} Dimenzija nicelnega prostora $N(A)$ matrike A z $n$ stolpci in ranga $r$
+	je enaka $dim(N(A)) = n - r$.
+
+	\textbf{3.34} Stolpicni prostor $C(A)$ in vrsticni prostor $C(A^{T})$ imata oba dimenzijo r. Dimenzija
+	nicelnega prostora $N(A)$ je $n -r$, Dimenzija levega nicelnega prostora $N(A^{T})$ pa je $m - r$.
+
+	\textbf{3.35} Vsako matriko ranga 1 lahko zapisemo kot produkt(stolpcnega) vektorja z vrsticnim
+	vektorjem $A = \vec{u}\vec{v}^{T}$.
+
+	\section{\underline{Linearne preslikave}}
+
+	\textbf{4.1} Preslikava $A: U \rightarrow V$ je linearna, ce velja
+	\begin{enumerate}
+		\item aditivnost: $A(\vec{u}_{1} + \vec{u}_{2}) = A\vec{u}_{1} + A\vec{u}_{2}$ za vse $\vec{u}_{1}, \vec{u}_{2} \in U$,
+		\item homogenost: $A(\alpha \vec{u}) = \alpha(A\vec{u})$ za vse $\alpha \in R$ in $\vec{u} \in U$.
+	\end{enumerate}
+	Oziroma v enem koraku:
+	\begin{center}
+		\begin{math}
+			A(\alpha\vec{u}_{1} + \beta\vec{u}_{2}) = \alpha A(\vec{u}_{1}) + \beta A(\vec{u}_{2}).
+		\end{math}
+	\end{center}
+	\textbf{Pozor!} Preslikava ni linearna, ce $A(\vec{0}) \neq  \vec{0}$.
+
+	\textbf{4.2} Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
+	\begin{center}
+		$A(\alpha_{1}\vec{u}_{1} + \alpha_{2}\vec{u}_{2}) = \alpha_{1}A\vec{u}_{1} + \alpha_{2}A\vec{u}_{2}$
+	\end{center}
+	za vse $\alpha_{1}, \alpha_{2} \in R$ in vse $\vec{u}_{1}, \vec{u}_{2} \in U$.
+
+	\textbf{4.3} Ce je A \textit{linearna preslikava}, je $A\vec{0} = \vec{0}$.
+
+	\textbf{4.4} Naj bo $A: U \rightarrow V$ linearna preslikava in $\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$
+	linearna kombinacija vektorjev. Potem je A($\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$) = $\sum_{i=1}^{k} \alpha_{i}A\vec{u}_{i}$.
+
+	\textbf{4.5} Naj bo $\beta =$ $\{ \vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za vektorski prostor U. Potem je linearna
+	preslikava $A: U \rightarrow V$ natanko dolocena, ce poznamo slike baznih vektorjev.
+
+	\textbf{4.6} Naj bo $\beta =$ $\{\vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za U in $\{\vec{v_{1}}, \dots,\vec{v_{n}}\}$.
+	Potem obstaja natanko ena linearna preslikava $A: U \rightarrow V$, za katero je $A\vec{u}_{i} = \vec{v}_{i}$ za $i = 1, 2, \dots, n$.
+
+	\textbf{4.7} Naj bo $A: U \rightarrow V$ linearna preslikava. Potem mnozico
+	\begin{center}
+		$ker A = \{ \vec{u} \in U; A\vec{u} = \vec{0}\}$
+	\end{center}
+	imenujemo \textit{jedro} linearne preslikave. Ker je $A\vec{0} = \vec{0}$, je $\vec{0} \in$ ker A za vse A.
+	Zato je jedro vedno neprazna mnozica.
+	\textit{Ce je matrika A$\phi$ \textbf{enotska} preslikava za } $\phi$, \textit{potem velja}
+	\begin{center}
+		\begin{math}
+			ker \phi = N(A).
+		\end{math}
+	\end{center}
+
+	\textbf{4.8} Jedro linearne preslikave $A: U \rightarrow V$ je vektorski podprostor v U.
+
+	\textbf{4.9} Mnozico
+	\begin{center}
+		$im\; A = \{ \vec{v} \in V; obstaja\; tak\; \vec{u} \in U,\; da\; je\; \vec{v} = A\vec{u} \}$
+	\end{center}
+	imenujemo \textit{slika} linearne preslikave $A: U \rightarrow V$.
+	\textit{Ce je matrika A$\phi$ \textbf{enotska} preslikava za } $\phi$, \textit{potem velja}
+	\begin{center}
+		\begin{math}
+			im \phi = C(A).
+		\end{math}
+	\end{center}
+
+	\textbf{4.10} Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
+	vektorski podprostor v V.
+
+	\textbf{4.11} Ce je $A: U \rightarrow V$ linearna preslikava, in je rang matrike te preslikave v standardni bazi poln,
+	potem lahko sklepamo, da ima  ta preslikava \textbf{trivialno jedro}.
+
+
+	\section{\underline{Ortogonalnost}}
+
+	\textbf{5.1} Podprostora $U$ in $V$ vektorskega prostora sta med seboj ortogonalna,
+	ce je vsak vektor $\vec{u} \in U$ ortogonalen na vsak vektor $\vec{v} \in V$.
+
+	\textbf{5.2} Za vsako matriko $A \in R^{m \times n}$ velja:
+	\begin{enumerate}
+		\item Nicelni prostor $N(A)$ in vrsticni prostor $C(A^{T})$ sta ortogonalna podprostora $R^{n}$
+		\item Levi nicelni prostor $N(A^{T})$ in stolpicni prostor $C(A)$ sta ortogonalna podprostora prostora $R^{m}$.
+	\end{enumerate}
+
+	\textbf{5.3} Ortogonalni komplement $V^{\perp}$ podprostora V vsebuje VSE vektorje, ki so ortogonalni na V.
+
+	\textbf{5.4} Naj bo A matrika dimenzije $m \times n$.
+	\begin{itemize}
+		\item Nicelni prostor $N(A)$ je ortogonalni\\ komplement vrsticnega prostora $C(A^{T})$ v prostoru $R^{n}$
+		\item Levi nicelni prostor $N(A^{T})$ je ortogonalni komplement stolpicnega prostora $C(A)$ v prostoru $R^{m}$.
+	\end{itemize}
+	\textbf{krajse:}
+	\begin{center}
+		$N(A)$ = $C(A^{T})^{\perp}$\\
+		$N(A^{T})$ = $C(A)^{\perp}$ \\
+		tukaj lahko vedno pomnozimo s komplementom, da dobimo npr.\\
+		$N(A)^{\perp}$ = $C(A^{T})$
+	\end{center}
+	\textit{dodatek:}
+	\begin{center}
+		$dim N(A) = st. stolpcev - rang(A)$\\
+		$dim N(A^{T}) = st. vrstic - rang(A)$\\
+		$dim C(A) = dim C(A^{T}) = rang(A)$
+	\end{center}
+
+	\textbf{5.5} Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
+	vektor $\vec{x}$, da je $A\vec{x} = \vec{y}$.
+
+	\textbf{5.6} Ce so stolpci matrike A linearno neodvisni, je matrika $A^{T}A$ obrnljiva.
+
+	\textbf{5.7} Matrika P je projekcijska, kadar
+	\begin{itemize}
+		\item je simetricna: $P^{T} = P$ in
+		\item velja $P^{2} = P$.
+	\end{itemize}
+
+	\textbf{5.8} Ce je P projekcijska matrika, ki projecira na podprostor U, potem je $I -P$ projekcijska
+	matrika, ki projecira na $U^{\perp}$, ortogonalni komplement podprostora U.
+
+	\textbf{5.9} Vektorji $\vec{q_{1}}, \vec{q_{2}}, \dots, \vec{q_{n}}$ so ortonormiranim kadar so ortogonalni in imanjo vsi
+	dolzino 1, torej
+	\begin{center}
+		$\vec{q_{i}}^{T}\vec{q_{i}} = $ \Bigg\{
+		$\begin{matrix}
+				0\;  ko\; je\; i \neq j\; pravokotni\; vektorji \\
+				1\;  ko\; je\; i = j\; enotski\; vektorji
+			\end{matrix}$
+	\end{center}
+	za matriko $Q =$ [$\vec{q_{1}}, \vec{q_{2}} \dots \vec{q_{n}}$]  velja $Q^{T}Q = I$.
+
+	\textbf{5.10} Vektorji $\vec{q_{1}}, \dots, \vec{q_{n}}$ naj bodo ortonormirani v prostoru $R^{m}$. Potem
+	za matriko
+	\begin{center}
+		$Q = \begin{bmatrix}
+				\vec{q_{1}} \vec{q_{2}} \dots \vec{q_{n}}
+			\end{bmatrix}$
+	\end{center}
+	velja, da je $Q^{T}Q = I_{n}$ enotska matrika reda n.
+
+	\textbf{5.11} Matrika Q je ortogonalna, kadar je
+	\begin{enumerate}
+		\item kvadratna in
+		\item ima ortonormirane stolpce.
+	\end{enumerate}
+
+	\textbf{5.12} Ce je Q ortogonalna matirka, potem je obrnljiva in
+	\begin{center}
+		$Q^{-1} = Q^{T}$\\
+		$dimU^{\perp} = n - dimU$\\
+		$(U^{\perp})^{\perp} = U$
+	\end{center}
+
+	\textbf{5.13} Mnozenje z ortogonalno matriko ohranja dolzino vektorjev in kote med njimi. Ce je Q
+	ortogonalna matrika, potem je
+	\begin{center}
+		$|| Q \vec{x} || = || \vec{x} ||$ za vsak vektor $\vec{x}$ in\\
+		$(Q\vec{x})^{T}Q\vec{y} = \vec{x^{T}} \vec{y}$ za vsak vektor $\vec{x}$ in $\vec{y}$
+	\end{center}
+
+	\textbf{5.14} Ce sta $Q_{1}$ in $Q_{2}$ ortogonalni matriki, je tudi produkt $Q = Q_{1}Q_{2}$ ortogonalna
+	matrika.
+
+	\textbf{5.15 Gram-Schmidtova} ortogonalizacija. Za vhod uporabimo Linearno ogrinjaco linearno neodvisnih vekotrjev. Po
+	gram-schmidtovi ortogonalizaciji pa dobimo paroma ortogonalne vektorje.
+	Postopek:
+	\begin{center}
+		\begin{math}
+			\vec{u}_{1} = \vec{v}_{1}
+		\end{math}\\
+		\begin{math}
+			\vec{u}_{2} = \vec{v}_{2} - proj_{\vec{u}_{1}}\vec{v}_{2}
+		\end{math}\\
+		\begin{math}
+			\vec{u}_{3} = \vec{v}_{3} - proj_{\vec{u}_{1}}\vec{v}_{3} - proj_{\vec{u}_{2}}\vec{v}_{3}
+		\end{math}\\
+		\begin{math}
+			\vdots
+		\end{math}
+	\end{center}
+	Po tem postopku dobimo paroma ortogonalne vektorje po Gram-Schmidtovi ortogonalizaciji.
+
+
+	\textbf{5.16 QR Razcep:} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
+	dobimo ortonormirane vektorje $q_{1}, \dots, q_{n}$. Matriki A in Q s temi stolpci zadoscajo enacbi $A = QR$, kjer
+	je R zgornjetrikotna matrika.
+	\begin{itemize}
+		\item Najprej z Gram-Schmidtovo ortogonalizacijo poiscemo linearno neodvisne vektorje matrike A
+		\item Vektorje normiramo in jih zapisemo v matriko Q.
+		\item Matriko R dobimo tako, da matriko $Q^{T}$ pomnozimo z matriko $A$
+		      \begin{center}
+			      \begin{math}
+				      R = Q^{T}A
+			      \end{math}
+		      \end{center}
+		      Tako smo prisli do vseh elementov v QR razcepu matrike A.
+	\end{itemize}
+	Sedaj ko imamo izracunane vse elemente lahko zapisemo se projekcijsko matriko. To je matrika pravokotne projekcije na $C(Q) = C(A)$.
+	Njen izracun je preprost:
+	\begin{center}
+		\begin{math}
+			QQ^{T} = pravokotna\; projekcija\; na\; C(Q)\; = C(A)
+		\end{math}
+	\end{center}
+	Sedaj lahko to projekcijsko matriko pomnozimo z desne s poljubnim vektorjem in ugotovimo kam se preslika v prostoru $C(A)$.
+	V nasprotnem primeru, ce bi pa zeleli imeti projekcijsko matriko, s katero bi radi videli kam se vektor preslika v prostoru $N(A^{T})$, bi pa od identicne matrike
+	odsteli projekcijsko matriko za $C(Q)$.
+	\begin{center}
+		\begin{math}
+			I - QQ^{T} = pravokotna\; projekcija\; na\; C(A)^{\perp}\; = N(A^{T})
+		\end{math}
+	\end{center}
+
+	\textbf{5.17} Vektorski prostor $\iota$ je mnozica vseh neskoncnih zaporedij $\vec{u}$ s koncno
+	dolzino
+	\begin{center}
+		$||\vec{u}||^{2} = \vec{u} \cdot \vec{u} = \vec{u_{1}}^{2} + \vec{u_{2}}^{2} + \dots < \infty$
+	\end{center}
+
+	\textbf{5.18 Predoloceni sistemi}
+	\begin{center}
+		\begin{math}
+			A^{T}A
+			\begin{bmatrix}
+				a \\
+				b
+			\end{bmatrix}
+			= A^{T}\vec{f}
+		\end{math}
+	\end{center}
+	Kjer je A matrika sistemov linearnih enacb in $\vec{f}$ vektor pricakovanih resitev
+	po gaussovi eliminaciji zgornje enacbe, dobimo spremenljivke, ki predstavljao najboljso aproksimacijo vseh kombinaicij rezultatov in vhodnih spremenljivk.
+
+	\section{\underline{Determinante}}
+
+	\textbf{6.1} Determinanta enotske matirke je\\ $det(I) = 1$.
+	\begin{center}
+		\begin{math}
+			\begin{vmatrix}
+				1 & 0 \\
+				0 & 1
+			\end{vmatrix}
+			= 1\; in\;
+			\begin{vmatrix}
+				1 &        & 0 \\
+				  & \ddots &   \\
+				0 &        & 1 \\
+			\end{vmatrix}
+			= 1.
+		\end{math}
+	\end{center}
+
+	\textbf{6.2} Determinanta spremeni predznak, ce med seboj zamenjamo dve vrstici.
+
+	Dodatna lastnost:
+
+	\[
+		\left| \begin{array}{cc}
+			A & C \\
+			0 & B \\
+		\end{array} \right| = \det(A) \det(B)
+	\]
+
+	\textbf{6.3} Determinanta je linearna funkcija vsake vrstice posebej. To pomeni, da se
+	\begin{enumerate}
+		\item determinanta pomnozi s faktorjem t, ce eno vrstico determinante(vsak element v tej vrstici)
+		      pomnozimo s faktorjem t.
+		      \begin{center}
+			      \begin{math}
+				      \begin{vmatrix}
+					      ta & tb \\
+					      c  & d  \\
+				      \end{vmatrix}
+				      = t
+				      \begin{vmatrix}
+					      a & b \\
+					      c & d \\
+				      \end{vmatrix}
+			      \end{math}
+		      \end{center}
+		\item determinanta je vsota dveh determinant, ki se razlikujeta le v eni vrstici,
+		      ce je v provitni determinanti ta vrstica vsota obeh vrstic, ostale vrstice pa so enake
+		      v vseh treh determinantah.
+		      \begin{center}
+			      \begin{math}
+				      \begin{vmatrix}
+					      a + a' & b + b' \\
+					      c      & d      \\
+				      \end{vmatrix} =
+				      \begin{vmatrix}
+					      a & b \\
+					      c & d \\
+				      \end{vmatrix} +
+				      \begin{vmatrix}
+					      a' & b' \\
+					      c  & d  \\
+				      \end{vmatrix}
+			      \end{math}
+		      \end{center}
+	\end{enumerate}
+
+	\textbf{Pozor!} Kadar mnozimo matriko A s skalarjem t, se vsak element matrike pomnozi s skalarjem.
+	Ko racunamo determinanto produkta matirke s skalarjem $tA$, skalar $t$ izpostavimo iz vsake vrstice posebej,
+	zato je $det(tA) = t^{n}det(A)$, kjer je $n$ stevilo vrstic (ali stolpcev) determinante.
+
+	\textbf{6.4} Matrika, ki ima dve enaki vrstici, ima determinanto enako 0.
+
+	\textbf{6.5} Ce v matriki od poljubne vrstice odstejemo mnogokratnik neke druge vrstice,
+	se njena determinanta ne spremeni.
+
+	\textbf{6.6} Naj bo $A$ poljubna kvadratna matirka $n \times n$ in $U$ njena vrsticno-stopnicasta
+	oblika, ki jo dobimo z \textit{Gaussovo eliminacijo}. Potem je
+	\begin{center}
+		$det(A) = \pm det(U)$.
+	\end{center}
+
+	\textbf{6.7} Determinanta, ki ima vrstico samih nicel, je enaka 0.
+
+	\textbf{6.8} Determinanta trikotne matrike $A$ je produkt diagonalnih elementov:
+	\begin{center}
+		$det(A) = a_{11}a_{22} \hdots a_{nn}$.
+	\end{center}
+
+	\textbf{6.9} Determinanta singularne matrike je enaka 0, determinanta obrnljive matrike je razlicna od 0.
+
+	\textbf{6.10} Determinanta produkta dveh matrik je enaka produktu determinant obeh matrik:
+	\begin{center}
+		$det(AB) = det(A)det(B)$.
+	\end{center}
+
+	\textbf{6.11} Determinanta inverzne matrike je enaka
+	\begin{center}
+		$det(A^{-1}) = 1/det(A)$
+	\end{center}
+	in determinanta potence $A^{n}$ matrike A je
+	\begin{center}
+		$det(A^{n}) = (det(A))^{n}$
+	\end{center}
+	ter determinanta transponirane matrike je enaka determinanti originalne matrike,
+	saj ko naredimo razvoj po vrsticah, pridemo do enakih elementov po diagonali.
+	\begin{center}
+		$det(A) = det(A^{T})$.
+	\end{center}
+
+	\textbf{6.12} Transponirana matrika $A^{T}$ ima isto determinanto kot A.
+
+	\textbf{6.13 Recap dovoljenih operacij nad determinanto}
+	\begin{enumerate}
+		\item Ce zamenjamo dve vrstici, se \textbf{spremeni} predznak determinante
+		\item Vrednost determinante se ne spremeni, ce neki vrstici pristejemo poljuben veckratnik katerekoli druge vrstice.
+		\item Ce vse elemente neke vrstice pomnozimo z istim stevilom $\alpha$, se vrednost determinante pomnozi z $\alpha$.
+	\end{enumerate}
+
+	\textbf{6.14} Vsaka lastnost, ki velja za vrstice determinante, velja tudi
+	za njene \textbf{stolpce}. Med drugim:
+	\begin{itemize}
+		\item Determinanta spremeni predznak, ce med seboj zamenjamo dva stolpca
+		\item Determinanta je enaka 0, ce sta dva stolpca enaka
+		\item Determinanta je enaka 0, ce so v vsaj enem stolpcu same nicle.
+	\end{itemize}
+
+	\textbf{6.15 (kofaktorska formula)} Ce je A kvadratna matrika reda n,
+	njeno determinanto lahko izracunamo z razvojem po $i-ti$ vrstici
+	\begin{center}
+		$det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in}$.
+	\end{center}
+	Kofaktorje $C_{ij}$ izracunamo kot $C_{ij} = (-1)^{i+j}D_{ij}$, kjer je $D_{ij}$ determinanta,
+	ki jo dobimo, ce v A izbrisemo i-to vrstico in j-ti stolpec.
+
+	\textbf{6.16} Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
+	deljena z determinanto $|A|$:
+	\begin{center}
+		$A^{-1} = \frac{C^{T}}{det(A)}$,
+	\end{center}
+	kjer je C matrika kofaktorjev matrike A.
+
+	\textbf{6.17} Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
+	enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpcema $\vec{a}$ in $\vec{b}$.
+
+	\textbf{6.18} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki
+	ima te tri vektorje kot stolpce.
+
+	\textbf{6.19} Naj bo A matrika $R^{n\times n}$
+	\begin{center}
+		\begin{math}
+			A\; je\; obrnljiva\; \iff detA \neq 0
+		\end{math}
+	\end{center}
+	\begin{center}
+		\begin{math}
+			A^{-1}\; ne\; obstaja\; \iff detA = 0
+		\end{math}
+	\end{center}
+
+	\section{\underline{L. vrednosti in vektorji}}
+
+	\textbf{7.1} Vektor $\vec{x} \neq \vec{0}$, za katerega je $A\vec{x} = \lambda \vec{x}$ lastni vektor. Stevilo
+	$\lambda$ je lastna vrednost.
+	\textbf{Pozor!} Nicelni vektor $\vec{0}$ ne more biti lastni vektor. Lahko pa je lastna vrednost enaka 0.
+
+	\textbf{7.2} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima matrika
+	$A^{2}$ lastno vrednost $\lambda^{2}$ in isti lastni vektor $\vec{x}$.
+
+	\textbf{7.3} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
+	matrika $A^{k}$ lastno vrednost $\lambda^{k}$ in isti lastni vektor $\vec{x}$.
+
+	\textbf{7.4} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
+	inverzna matrika lastno vrednost $1 / \lambda$ in isti lastni vektor $\vec{x}$.
+
+	\textbf{7.5} Sled kvadratne matrike A reda $n$ je vsota njenih diagonalnih elementov.
+	\begin{center}
+		\begin{math}
+			sled(A) =
+			\sum_{i=1}^{n} a_{ii} =
+			a_{11} + \dots + a_{nn}
+		\end{math}.
+	\end{center}
+
+	\textbf{7.6} Sled matrike je enaka vsoti vseh lastnih vrednosti, stetih z njihovo veckratnostjo.
+	Ce so $\lambda_{1}, \dots, \lambda_{n}$ lastne vrednosti matrike reda n, potem je sled enaka \textit{vsoti}
+	\begin{center}
+		\begin{math}
+			sled(A) =
+			\sum_{i=1}^{n} \lambda_{i} =
+			\lambda_{1} + \dots + \lambda_{n}
+		\end{math},
+	\end{center}
+	determinanta matrike pa \textit{produktu} lastnih vrednosti
+	\begin{center}
+		\begin{math}
+			det(A) =
+			\prod_{i=1}^{n} \lambda_{i} =
+			\lambda_{1} \dots  \lambda_{n}
+		\end{math}.
+	\end{center}
+
+	\textbf{Lastnosti sledi} Za matrike \( A, B, P \in \mathbb{R}^{n \times n} \) velja
+	\begin{enumerate}
+		\item \( \text{tr}(\alpha A) = \alpha \text{tr}(A) \),
+		\item \( \text{tr}(A + B) = \text{tr}(A) + \text{tr}(B) \),
+		\item \( \text{tr}(A^T) = \text{tr}(A) \),
+		\item \( \text{tr}(AB) = \text{tr}(BA) \),
+		\item \( \text{tr}(PAP^{-1}) = \text{tr}(A) \) za vsako obrnljivo matriko \( P \).
+		\item \( \text{tr}(ABP) = \text{tr}(APB\), ce so A,B,P simetricne matirke.
+		\item \( \text{tr}(ABP) = \text{tr}(A^TB^TP^T)\).
+	\end{enumerate}
+
+	Za poljubna vektorja \( x,y \in \mathbb{R}^n \) velja:
+	\[
+		\text{tr} (xy^T) = \text{tr}(x^Ty)
+	\]
+
+
+	\textbf{7.7} Ce ima matrika A lastno vrednost $\lambda$, ki ji pripada lastni vektor $\vec{x}$,
+	potem ima matrika $A + cI$ lastno vrednost $\lambda + c$ z istim lastnim vektorjem $\vec{x}$ (velja samo z
+	enotskimi matrikami I).
+
+	\textbf{7.8} Lastne vrednosti trikotne matrike so enake diagonalnim elementom.
+
+	\textbf{7.9} Denimo, da ima matrika $A \in R^{n \times n}\; n$ linearno neodvisnih lastnih vektorjev
+	$\vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}$. Ce jih zlozimo kot stolpce v matriko S
+	\begin{center}
+		\begin{math}
+			S =
+			\begin{bmatrix}
+				\vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}
+			\end{bmatrix}
+		\end{math},
+	\end{center}
+	potem je T =: $S^{-1}AS$ diagonalna matrika z lastnimi vrednostmi $\lambda_{i}, i = 1, \dots, n$ na diagonali
+	\begin{center}
+		\begin{math}
+			S^{-1}AS = T =
+			\begin{bmatrix}
+				\lambda_{1} &        &             \\
+				            & \ddots &             \\
+				            &        & \lambda_{n}
+			\end{bmatrix}
+		\end{math}.
+	\end{center}
+
+	\textbf{Pozor!} Lastni vektorji v matriki S morajo biti v istem vrstnem redu kot lastne vrednosti v matriki $T$.
+
+	\textbf{7.10} Ce je $A = STS^{-1}$, potem je $A^{k} = ST^{k}S^{-1}$ za vsak $k \in N$.
+
+	\textbf{7.12} Vse lastne vrednosti realne simetricne matrike so realne.
+
+	\textbf{7.13} Lastni vektorji realne simetricne matrike, ki pripadajo razlicnim lastnim
+	vrednostim, so med seboj pravokotni.
+
+	\textbf{7.14 Schurov izrek} Za vsako kvadratno matriko reda n, ki ima le realne lastne vrednosti,
+	obstaja taka ortogonalna matrika $Q$, da je
+	\begin{center}
+		\begin{math}
+			Q^{T}AQ = T
+		\end{math}
+	\end{center}
+	zgornjetrikotna matrika, ki ima lastne vrednosti(lahko so kompleksne) matrike A na diagonali.
+
+	\textbf{7.15 Spektralni izrek} Vsako simetricno matriko A lahko razcepimo v produkt
+	$A = QTQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, T pa diagonalna z lastnimi
+	vrednostmi matrike A na diagonali.
+
+	\textbf{7.16} Vsako realno simetricno matriko lahko zapisemo kot linearno kombinacijo matrik ranga 1
+	\begin{center}
+		\begin{math}
+			A = \lambda_{1}\vec{q}_{1}\vec{q}_{1}^{T} + \lambda_{2}\vec{q}_{2}\vec{q}_{2}^{T} +
+			\dots + \lambda_{n}\vec{q}_{n}\vec{q}_{n}^{T}
+		\end{math},
+	\end{center}
+	kjer so $\vec{q}_{i}$ stolpci matrike Q (torej lastni vektorji matrike A).
+
+	\textbf{7.17} Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
+	stevilu pozitivnih lastnih vrednosti.
+
+	\textbf{7.18} Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
+
+	\textbf{7.19} Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta
+	pozitivni sled in determinanta matrike.
+
+	\textbf{7.20} Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
+	vektor $\vec{x} \neq \vec{0} \in R^{n}$
+	\begin{center}
+		$\vec{x}^{T}A\vec{x} > 0$
+	\end{center}
+
+	\textbf{7.21} Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi
+	njuna vsota $A + B$.
+
+	\textbf{7.22} Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
+
+	\textbf{7.23} Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
+
+	\textbf{7.24} Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
+	je $A = R^{T}R$.
+
+	\textbf{7.25} Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
+	\begin{enumerate}
+		\item Vseh $n$ pivotov je pozitivnih;
+		\item Vseh $n$ vodilnih glavnih determinant je pozitivnih;
+		\item Vseh $n$ lastnih vrednosti je pozitivnih;
+		\item Za vsak $\vec{x} \neq \vec{0}$ je $\vec{x}^{T}A\vec{x} > 0$;
+		\item $A= R^{T}R$ za neko matriko R z linearno neodvisnimi stolpci.
+	\end{enumerate}
+
+	\textbf{7.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
+	$A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
+	V ortogonalna $n \times n$.
+
+	\textbf{7.27} Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
+	vrednosti matrike A.
+	\begin{center}
+		$rang(A)$ = stevilo $\lambda A$
+	\end{center}
+
+	\textbf{7.28 Diagonalizacija} oz \textit{podobnost} matrik. Matriki A in B sta \textit{podobni}, ce imata
+	obe iste lastne vrednosi. Diagonalno matriko sestavimo tako, da v njeno diagonalo vpisemo lastne vrednosti. Matriko
+	P pa sestavimo iz njenih lastnih vektorjev; po stolpcih.
+	\begin{center}
+		\begin{math}
+			A = PDP^{-1}
+		\end{math} oz.\\
+		\begin{math}
+			D = P^{-1}AP
+		\end{math}
+	\end{center}
+
+	\textbf{7.29 Spektralni razcep}
+	Naj bodo vekotrji $\vec{q}_{1}, \dots, \vec{q}_{n}$ ONB iz l. vektorjev marike A za l. vrednost $\lambda_{1}, \dots, \lambda{n}$,
+	potem lahko matriko A zapisemo kot:
+	\begin{center}
+		\begin{math}
+			A = \lambda_{1} \vec{q_{1}} \vec{q_{1}}^{T} + \dots + \lambda_{n} \vec{q_{n}} \vec{q_{n}}^{T}
+		\end{math}
+	\end{center}
+
+	\textbf{7.30 Nekaj lastnosti simetricnih matrik}
+	\begin{itemize}
+		\item Vse lastne vrednosti simetricne matrike so realne. Lastni vektorji realne simetricne matrike, ki
+		      pripadajo razlicnim lastnim vrednostim, so med seboj pravokotni.
+		\item Vsako realno simetricno matriko A lahko zapisemo kot $A = QDQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, D pa diagonalna matrika,
+		      ki ima na diagonali pripadajoce lastne vrednosti matrike A.
+	\end{itemize}
+
+	\section{\underline{Napredna linearna algebra}}
+
+	\subsection{Schurov izrek}
+
+	\textbf{(Schur)}: Naj bo \( A \in \mathbb{R}^{n \times n} \) matrika z lastnimi vrednostmi \( \lambda_1, \ldots, \lambda_n \). Potem obstaja ortogonalna matrika \( Q \in \mathbb{R}^{n \times n} \) in zgornje trikotna matrika \( Z \), ki ima na diagonali \( \lambda_1, \ldots, \lambda_n \), da velja
+	\[ A = QZQ^{-1} = QZQ^T. \]
+
+	\textbf{Postopek za izračun Schurovega razcepa:}
+
+	Firstly, pick an eigenvalue and corresponding eigenvector:
+	\[
+		Aq_1 = \lambda_1 q_1 \quad \text{with} \quad q_1^Tq_1=1
+	\]
+	Then, find all orthogonal vectors such that you compose a matrix \( Q = [q_1 \dots q_n] \).
+
+	Then:
+	\[
+		T = Q^TAQ
+	\]
+	Compute:
+	\[
+		T = \begin{bmatrix}
+			\lambda_1 & b^T \\
+			0         & A_2
+		\end{bmatrix}
+	\]
+	(not upper triangular)
+
+	Continue with \( A_2 \). Final schur:
+	\[
+		Q = \begin{bmatrix}
+			q_1 & 0   \\
+			0   & Q_2
+		\end{bmatrix}
+	\]
+	\[
+		\vdots
+	\]
+	\[
+		Q = \begin{bmatrix}
+			q_1    & 0      & \dots  & 0       \\
+			0      & q_2    & \dots  & 0       \\
+			\vdots & \vdots & \ddots & \vdots  \\
+			0      & 0      & \dots  & q_{n-1}
+		\end{bmatrix}
+	\]
+
+	We get:
+	\[
+		A = QZQ^T
+	\]
+	Where \( Z \) is the upper triangular matrix.
+
+
+	\begin{itemize}
+		\item \textbf{Posledica:} Vsaka matrika \( A \in \mathbb{R}^{n \times n} \) je podobna zgornje trikotni matriki.
+
+		\item \textbf{Posledica:} Vsaka simetrična matrika \( A \in \mathbb{R}^{n \times n} \) je ortogonalno podobna diagonalni matriki.
+
+		\item \textbf{Posledica:} Če ima matrika \( A \in \mathbb{R}^{n \times n} \) lastne vrednosti enake \( \lambda_1, \lambda_2, \ldots, \lambda_n \), potem je
+		      \[
+			      \text{tr}(A) = \lambda_1 + \lambda_2 + \ldots + \lambda_n
+		      \]
+		      in
+		      \[
+			      \text{det}(A) = \lambda_1 \lambda_2 \ldots \lambda_n.
+		      \]
+
+		\item \textbf{Posledica (Cayley-Hamilton):} Če je \( \Delta_A(x) = \text{det}(A - xI_n) \) karakteristični polinom matrike \( A \), potem velja \( \Delta_A(A) = 0 \).
+	\end{itemize}
+
+	\subsection{Frobeinusova norma}
+
+	Za matriki \( A \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{m \times n} \) definiramo
+	\[
+		\langle A, B \rangle = \text{tr}(A^T B).
+	\]
+
+	Za produkt \( \langle A, B \rangle: \mathbb{R}^{m \times n} \times \mathbb{R}^{m \times n} \rightarrow \mathbb{R} \) velja za vse matrike \( A, B, C \in \mathbb{R}^{m \times n} \) in za vse \( \alpha, \beta \in \mathbb{R} \),
+	\begin{enumerate}
+		\item \( \langle A, B \rangle = \langle B, A \rangle \),
+		\item \( \langle \alpha A + \beta B, C \rangle = \alpha \langle A, C \rangle + \beta \langle B, C \rangle \),
+		\item \( \langle A, A \rangle \geq 0 \),
+		\item \( \langle A, A \rangle = 0 \) natanko tedaj, ko je \( A = 0 \).
+	\end{enumerate}
+	Zato \( \langle A, B \rangle \) imenujemo skalarni produkt matrik \( A \) in \( B \).
+
+	Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{m \times k} \) in \( C \in \mathbb{R}^{k \times n} \) velja
+	\[
+		\langle A, BC \rangle = \langle B^T A, C \rangle = \langle A C^T, B \rangle.
+	\]
+
+
+	\textbf{Frobeniusova norma matrike} \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) je definirana kot
+	\[
+		\|A\|_F = \|A\| = \sqrt{\langle A, A \rangle} = \sqrt{\text{tr}(A^T A)}.
+	\]
+
+	Velja:
+	\[
+		\|A\|_F^2 = \sum_{i=1}^{n} \sum_{j=1}^{m} a_{ij}^2 = \sum_{i=1}^{\text{min}(m,n)} \sigma_i^2.
+	\]
+
+	Posledica:
+
+	\[
+		\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
+	\]
+
+	\textbf{(Eckart, Young).} Naj bo \( A = U\Sigma V^T \) razcep singularnih vrednosti matrike \( A \in \mathbb{R}^{m \times n}, m \geq n \), kjer \( U = [u^{(1)} \ldots u^{(m)}] \) in \( \mathbb{R}^{m \times m} \) in \( V = [v^{(1)} \ldots v^{(n)}] \) in \( \mathbb{R}^{n \times n} \). Potem je matrika \( A_k \) iz \( \mathbb{R}^{m \times n} \) ranga \( k \), \( k \leq n \), ki je med vsemi matrikami ranga \( k \) v Frobeniusovi normi najbližje matriki \( A \), enaka
+	\[
+		A_k = \sigma_1 u^{(1)}(v^{(1)})^T + \sigma_2 u^{(2)}(v^{(2)})^T + \ldots + \sigma_k u^{(k)}(v^{(k)})^T
+	\]
+	in velja
+	\[
+		\| A - A_k \|_F = \sqrt{\sigma_{k+1}^2 + \ldots + \sigma_n^2}.
+	\]
+	(Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
+
+	\subsection{Kroneckerjev produkt}
+
+	Kroneckerjev produkt (tudi tenzorski produkt) matrik \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{p \times q} \) je \( mp \times nq \) matrika
+
+	\begin{math}
+		A \otimes B =
+		\begin{bmatrix}
+			a_{11}B & a_{12}B & \cdots & a_{1n}B \\
+			a_{21}B & a_{22}B & \cdots & a_{2n}B \\
+			\vdots  & \vdots  & \ddots & \vdots  \\
+			a_{m1}B & a_{m2}B & \cdots & a_{mn}B \\
+		\end{bmatrix}
+		\in \mathbb{R}^{mp \times nq}.
+	\end{math}
+
+	Če so matrike $A, B, C$ in $D$ primerne velikosti, potem veljajo naslednje enakosti:
+	\begin{enumerate}
+		\item $0 \otimes A = A \otimes 0 = 0$
+		\item $\alpha \otimes A = A \otimes \alpha = \alpha A$ za vsak $\alpha \in \mathbb{R}$
+		\item $(\alpha A) \otimes B = A \otimes (\alpha B) = \alpha (A \otimes B)$
+		\item $(A + B) \otimes C = A \otimes C + B \otimes C$ in $A \otimes (B + C) = A \otimes B + A \otimes C$
+		\item $(A \otimes B)^T = A^T \otimes B^T$
+		\item $(A \otimes B) \otimes C = A \otimes (B \otimes C)$.
+		\item $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$.
+		\item $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ če $A$ in $B$ obrnljivi.
+		\item $\text{tr}(A \otimes B) = \text{tr}(A) \text{tr}(B)$
+		\item $\text{rang}(A \otimes B) = \text{rang}(A) \text{rang}(B)$
+		\item Če ima matrika $A \in \mathbb{R}^{n \times n}$ lastne vrednosti $\lambda_1, \ldots, \lambda_m$ in ima matrika $B$ lastne vrednosti $\mu_1, \ldots, \mu_n$, potem je množica lastnih vrednosti matrike $A \otimes B$ enaka:
+		      $$ S_\lambda  = \{ \lambda_i \mu_j; \lambda_i \text{ lastna vrednost } A, \mu_j \text{ lastna vrednost } B\} $$
+		      $$\text{in } |S_\lambda| \leq mn$$
+		      Ravno tako velja potem za lastne vektorje $ v_i \otimes w_j$, da dobimo lastne vektorje matrike $A \otimes B$.
+		\item Če $A \in \mathbb{R}^{n \times n}$ in $B \in \mathbb{R}^{m \times m}$, potem je $\text{det}(A \otimes B) = (\text{det} A)^m(\text{det} B)^n.$
+	\end{enumerate}
+
+	Posledica:
+
+	\[
+		||A \otimes B||_F = ||A||_F \cdot ||B||_F
+	\]
+
+	\subsection{Kroneckerjeva vsota}
+
+	Kroneckerjeva vsota je definirana za kvadratni matriki \( A \) in \( B \):
+	\[ A \oplus B = A \otimes I_m + I_n \otimes B \]
+	kjer \( A \in \mathbb{R}^{n \times n} \), \( B \in \mathbb{R}^{m \times m} \).
+
+	\(\text{Če so } \lambda_1, \ldots, \lambda_n \) lastne vrednosti \( A \) za lastne vektorje \( u_1, \ldots, u_n \) in \( \mu_1, \ldots, \mu_m \) lastne vrednosti \( B \) za lastne vektorje \( v_1, \ldots, v_n \), potem so
+	\[ \lambda_i \cdot \mu_j, \quad i = 1, \ldots, n; j = 1, \ldots, m \]
+	lastne vrednosti za \( A \oplus B \), lastni vektorji pa so
+	\[ u_i \otimes v_j \]
+	za \( i \) in \( j \). Lastni vektorji \( A \oplus B \) so enaki \( u_i \otimes v_j \).
+
+
+	\subsection{Vektorizacija}
+
+	Za matriko \( A \in \mathbb{R}^{m \times n} \) označimo vektorizacijo matrike \( A \) kot
+	\[
+		\text{vec}(A) = \begin{bmatrix}
+			A^{(1)} \\
+			A^{(2)} \\
+			\vdots  \\
+			A^{(n)}
+		\end{bmatrix} \in \mathbb{R}^{mn}.
+	\]
+	vec je preslikava iz \( \mathbb{R}^{m \times n} \) v \( \mathbb{R}^{mn} \).
+
+	Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{n \times p} \) in \( C \in \mathbb{R}^{p \times r} \) velja:
+	\[
+		\text{vec}(ABC) = (C^T \otimes A)\text{vec}(B).
+	\]
+
+	\subsection{Definitnost matrik}
+
+	Spomnimo se, da ima simetrična matrika \( A \in \mathbb{R}^{n \times n} \) vse lastne vrednosti realne.
+
+	Simetrični matriki \( A \in \mathbb{R}^{n \times n} \) pravimo
+	\begin{itemize}
+		\item \textbf{pozitivno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \geq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
+		\item \textbf{pozitivno definitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
+		\item \textbf{negativno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \leq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
+		\item \textbf{negativno definitna}, če je \( \mathbf{x}^T A \mathbf{x} < 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
+		\item \textbf{nedefinitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za nekatere \( \mathbf{x} \in \mathbb{R}^n \) in \( \mathbf{y}^T A \mathbf{y} < 0 \) za nekatere \( \mathbf{y} \in \mathbb{R}^n \).
+	\end{itemize}
+
+	Posledica: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična z lastnimi vrednostmi \( \lambda_i, \ldots, \lambda_n \).
+	\begin{itemize}
+		\item \( A \) je \textbf{PSD} (pozitivno semidefinitna) \( \Leftrightarrow \lambda_i \geq 0 \) za \( i=1,\ldots,n \).
+		\item \( A \) je \textbf{PD} (pozitivno definitna) \( \Leftrightarrow \lambda_i > 0 \) za \( i=1,\ldots,n \).
+		\item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
+		\item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
+		\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako pozitivne kot negativne lastne vrednosti.
+	\end{itemize}
+	\( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
+
+	\textbf{(Sylvester)}. Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
+
+	\[
+		\text{det} \left[
+			\begin{array}{cccc}
+				+ & + & + & + \\
+				+ & + & + & + \\
+				+ & + & + & + \\
+				+ & + & + & + \\
+			\end{array}
+			\right] > 0 \quad \sim \text{PD} \\
+	\]
+
+	Simetrična matrika \( A \) je negativno definitna natanko tedaj, ko je determinanta vsake \( k \times k \) vodilne glavne podmatrike \( A \) pozitivna, če je \( k \) sodo število, ter negativna, če je \( k \) liho število.
+
+	\[
+		\text{det} \left[
+			\begin{array}{cccc}
+				- & + & - & + \\
+				+ & - & + & - \\
+				- & + & - & + \\
+				+ & - & + & - \\
+			\end{array}
+			\right] \quad \sim \text{ND}
+	\]
+
+	Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
+	\begin{itemize}
+		\item \( A \) je PSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
+		\item \( A \) je PD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
+		\item \( A \) je NSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
+		\item \( A \) je ND \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
+		\item \( A \) je nedefinirana \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
+	\end{itemize}
+	\( A \) je PD \( \Leftrightarrow A \) je PSD in \( A \) obrnljiva.
+
+	\textbf{(Razcep Choleskega)}. Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
+	\[ A = LL^T, \]
+	kjer je \( L \in \mathbb{R}^{n \times n} \) spodnje trikotna matrika, natanko tedaj, ko je \( A \) simetrična in pozitivno definitna.
+
+	Z uporabo spodnjega (rekurzivnega) algoritma:
+	Simetrično matriko \( A \in \mathbb{R}^{n \times n} \) zapišemo v bločni obliki
+
+	\[
+		A_1 := A = \begin{bmatrix}
+			a_{11} & b^T \\
+			b      & B
+		\end{bmatrix}
+	\]
+
+	in definiramo
+
+	\[
+		L_1 := \begin{bmatrix}
+			\sqrt{a_{11}}             & 0^T     \\
+			\frac{1}{\sqrt{a_{11}}} b & I_{n-1}
+		\end{bmatrix}.
+	\]
+
+	Tedaj je
+
+	\[
+		A_1 = \begin{bmatrix}
+			a_{11} & b^T \\
+			b      & B
+		\end{bmatrix} = L_1 \begin{bmatrix}
+			1 & 0^T                       \\
+			0 & B - \frac{1}{a_{11}} bb^T
+		\end{bmatrix} L_1^T.
+	\]
+
+	Ponovimo na simetrični matriki \( A_2 := B - \frac{1}{a_{11}} bb^T \in \mathbb{R}^{(n-1) \times (n-1)} \).
+
+	Naj bodo \( L_2, L_3, \ldots, L_n \) matrike, ki jih dobimo v ponovljenih korakih. Matrika \( L \) je potem
+
+	\[
+		L = L_1 \cdot \left[ \begin{array}{cc}
+				1 & 0^T \\
+				0 & L_2
+			\end{array} \right] \cdot \left[ \begin{array}{cc}
+				I_2 & 0   \\
+				0   & L_3
+			\end{array} \right] \cdot \ldots \cdot \left[ \begin{array}{cc}
+				I_{n-1} & 0   \\
+				0       & L_n
+			\end{array} \right]
+	\]
+
+	\subsection{Vektorski prostori}
+
+	\textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
+	\begin{itemize}
+		\item seštevanje vektorjev \( (u, v \in V \Rightarrow u+v \in V) \),
+		\item množenje vektorjev z realnimi števili \( (v \in V, \alpha \in \mathbb{R} \Rightarrow \alpha v = \alpha \cdot v \in V) \),
+	\end{itemize}
+	z lastnostmi
+	\begin{enumerate}
+		\item \( u + v = v + u \) in \( (u + v) + w = u + (v + w) \),
+		\item obstaja ničelni vektor \( 0 \) in velja \( v + 0 = 0 + v = v \),
+		\item za vsak \( v \in V \) obstaja nasprotni vektor \( -v \), za katerega velja \( v + (-v) = (-v) + v = 0 \),
+		\item \( 1 \cdot v = v \) za vsak \( v \in V \),
+		\item \( (\alpha\beta) \cdot v = \alpha \cdot (\beta \cdot v) \),
+		\item \( (\alpha + \beta) \cdot v = \alpha \cdot v + \beta \cdot v \),
+		\item \( \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v \),
+	\end{enumerate}
+	za poljubne \( u, v, w \in V \) in \( \alpha, \beta \in \mathbb{R} \).
+
+
+	\textbf{Izrek:} Naj bo \( V \) vektorski prostor. Potem velja
+	\begin{enumerate}
+		\item \( V \) vsebuje ničelni vektor \( 0 \),
+		\item v vsakem vektorskem prostoru \( V \) je ničelni vektor \( 0 \) en sam,
+		\item \( \alpha \cdot 0 = 0 \) za vsak \( \alpha \in \mathbb{R} \),
+		\item \( 0 \cdot v = 0 \) za vsak \( v \in V \).
+	\end{enumerate}
+	Za vektorje \( v_1, v_2, \ldots, v_n \in V \) in skalare \( \alpha_1, \alpha_2, \ldots, \alpha_n \in \mathbb{R} \) imenujemo vektor
+	\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n \]
+	\textbf{linearna kombinacija vektorjev} \( v_1, v_2, \ldots, v_n \).
+	Denimo, ničelni vektor \( 0 \) je
+	\[ 0 \cdot v_1 + 0 \cdot v_2 + \ldots + 0 \cdot v_n \]
+	je linearna kombinacija poljubnih vektorjev \( v_1, v_2, \ldots, v_n \in V \). Linearno kombinacijo z izključno ničelnimi koeficienti imenujemo \textbf{trivialna linearna kombinacija}.
+
+	Če je podmnožica \( U \) vektorskega prostora \( V \)
+	\begin{itemize}
+		\item[(1)] zaprta za seštevanje \( (u, v \in U \Rightarrow u + v \in U) \) in
+		\item[(2)] zaprta za množenje vektorjev z realnimi števili \( (v \in U, \alpha \in \mathbb{R} \Rightarrow \alpha v \in U) \),
+	\end{itemize}
+	potem jo imenujemo \textbf{vektorski podprostor} prostora \( V \).
+
+	\textbf{Izrek:} Podmnožica \( U \) vektorskega prostora \( V \) je vektorski podprostor natanko tedaj, ko je poljubna linearna kombinacija \( \alpha u + \beta v \) vektorjev \( u, v \in U \) tudi vsebovana v \( U \).
+
+	Vsak vektorski podprostor po (2) vsebuje tudi vektor \( 0 \cdot v = 0 \). Zatorej podmnožica vektorskega prostora, ki ne vsebuje ničelnega vektorja, ne more biti vektorski podprostor.
+
+	Ker lastnosti (1)-(7) veljajo za poljubne elemente vektorskega prostora \( V \), veljajo tudi za vse elemente vektorskega podprostora \( U \) v \( V \). Poleg tega je vektorski podprostor po definiciji zaprt za seštevanje in množenje s števili. Zatorej je vsak vektorski podprostor hkrati tudi vektorski prostor.
+
+	\subsubsection{Linearna ogrinjača} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) vektorjev \( v_1, v_2, \ldots, v_n \) je množica vseh linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \).
+
+	Ker je linearna kombinacija linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \in V \) zopet linearna kombinacija vektorjev \( v_1, v_2, \ldots, v_n \), je po Izreku 2 linearna ogrinjača \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) linearni podprostor v \( V \). Pravimo, da vektorji \( v_1, v_2, \ldots, v_n \) \textbf{napenjajo prostor} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \).
+
+	Ne le, da je linearna ogrinjača vektorski prostor. Velja celo več.
+
+	Linearna ogrinjača vektorjev \( v_1, v_2, \ldots, v_n \), vektorskega prostora \( V \) je najmanjši vektorski podprostor v \( V \), ki vsebuje vektorje \( v_1, v_2, \ldots, v_n \).
+
+	\subsubsection{Baza vektorskega prostora}
+
+	Vektorji \( v_1, v_2, \ldots, v_n \) v \( V \) so \textbf{linearno odvisni}, če obstaja vektor \( v_k \), ki je linearna kombinacija ostalih \( v_1, v_2, \ldots, v_{k-1}, v_{k+1}, \ldots, v_n \):
+	\[ v_k = \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_{k-1}v_{k-1} + \alpha_{k+1}v_{k+1} + \ldots + \alpha_nv_n, \]
+	kjer \( \alpha_i \in \mathbb{R} \).
+
+	Vektorji \( v_1, v_2, \ldots, v_n \) v \( V \) so \textbf{linearno neodvisni}, če niso linearno odvisni. Ekvivalentno, \( v_1, v_2, \ldots, v_n \) v \( V \) so linearno neodvisni, če je njihova trivialna linearna kombinacija edina njihova linearna kombinacija, ki je enaka ničelnemu vektorju \( 0 \). Z drugimi besedami, \( v_1, v_2, \ldots, v_n \) v \( V \) so linearno neodvisni, če iz
+	\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = 0 \]
+	sledi
+	\[ \alpha_1 = \alpha_2 = \ldots = \alpha_n = 0. \]
+
+
+	Množica vektorjev \( \{v_1, v_2, \ldots, v_n\} \) je \textbf{baza} vektorskega prostora \( V \), če
+	\begin{enumerate}
+		\item[(B1)] so \( v_1, v_2, \ldots, v_n \) linearno neodvisni in
+		\item[(B2)] \( v_1, v_2, \ldots, v_n \) napenjajo prostor \( V \).
+	\end{enumerate}
+
+	\textbf{Izrek:} Vsak vektorski prostor ima neštevno baz. Vse baze vektorskega prostora imajo enako število vektorjev.
+
+	\emph{Dimenzija prostora} \( V \) je enaka moči (poljubne) baze prostora \( V \). Označimo jo z \(\dim V\).
+
+	\textbf{Izrek:} Za vsako bazo vektorskega prostora \( V \) je zapis poljubnega vektorja \( v \in V \) kot linearna kombinacija baznih vektorjev vedno enoličen.
+
+
+	\subsubsection{Linearne preslikave}
+	Naj bosta \( V \) in \( U \) vektorska prostora. Preslikava \( \tau: V \to U \) je \textbf{linearna preslikava}, če velja
+	\begin{itemize}
+		\item[(1)] \( \tau(v + u) = \tau(v) + \tau(u) \) za vsaka \( v, u \in V \) in
+		\item[(2)] \( \tau(\alpha v) = \alpha \tau(v) \) za vsak \( v \in V \) in vsak \( \alpha \in \mathbb{R} \).
+	\end{itemize}
+
+	Preslikava \( \tau: V \to U \) je linearna natanko tedaj, ko velja
+	\[ \tau(\alpha v + \beta u) = \alpha \tau(v) + \beta \tau(u) \]
+	za vse \( v, u \in V \) ter vse \( \alpha, \beta \in \mathbb{R} \).
+
+	Za poljubno linearno preslikavo \( \tau: V \to U \) velja \( \tau(0_V) = 0_U \).
+
+	Naj bodo \( \tau, \psi: V \to U \) ter \( \theta: U \to W \) linearne preslikave in naj bo \( \gamma \in \mathbb{R} \).
+	\begin{enumerate}
+		\item[(1)] \textbf{Vsota} \( \tau + \psi: V \to U \) je preslikava, definirana s predpisom
+			\[ (\tau + \psi)(v) = \tau(v) + \psi(v). \]
+		\item[(2)] \textbf{Produkt s skalarjem} \( \gamma\tau: V \to U \) je preslikava, definirana s predpisom
+			\[ (\gamma\tau)(v) = \gamma \tau(v). \]
+		\item[(3)] \textbf{Kompozitum} \( \theta \circ \tau: V \to W \) je preslikava, definirana s predpisom
+			\[ (\theta \circ \tau)(v) = \theta(\tau(v)). \]
+	\end{enumerate}
+
+	\textbf{Izrek:} Vsota, produkt s skalarjem in kompozitum linearnih preslikav so linearne preslikave.
+
+	\textbf{Posledica:} Množica vseh linearnih preslikav iz vektorskega prostora \( V \) v vektorski prostor \( U \) je vektorski prostor
+
+	\textbf{Izrek:} Naj bodo \( \tau, \psi: V \to U \) ter \( \theta: U \to W \) linearne preslikave in naj bo \( \alpha \in \mathbb{R} \).
+	\begin{enumerate}
+		\item Matrika, ki ustreza vsoti preslikav \( \tau + \psi \), je enaka vsoti matrik posameznih preslikav.
+		      \[ A_{\tau+\psi,B}^C = A_{\tau,B}^C + A_{\psi,B}^C \]
+		\item Matrika, ki ustreza produktu s skalarjem \( \alpha\tau \), je enaka večkratniku matrike preslikave.
+		      \[ A_{\alpha\tau,B}^C = \alpha A_{\tau,B}^C \]
+		\item Matrika, ki ustreza kompozitumu preslikav, je enaka produktu matrik posameznih preslikav.
+		      \[ A_{\theta\circ\tau,B}^D = A_{\theta,C}^D \cdot A_{\tau,B}^C \]
+		\item Matrika, ki ustreza inverzu obrnljive preslikave, je enaka inverzu matrike te preslikave. Torej, če je \( \tau \) obrnljiva preslikava, je obrnljiva tudi matrika \( A_{\tau,B}^C \). Velja
+		      \[ A_{\tau^{-1},C}^B = (A_{\tau,B}^C)^{-1} \].
+	\end{enumerate}
+
+
+	Neničelnemu vektorju \( v \) v \( V \) pravimo \textit{lastni vektor} linearne preslikave \( \tau: V \to V \), če velja
+	\[ \tau(v) = \lambda v. \]
+	Številu \( \lambda \) pravimo \textit{lastna vrednost} linearne preslikave \( \tau \).
+
+	\textbf{Izrek:} Vsaka lastna vrednost linearne preslikave \( \tau \) je tudi lastna vrednost poljubne matrike \( A_{\tau} \), ki pripada preslikavi \( \tau \). Vse matrike, ki pripadajo dani linearni preslikavi \( \tau \) imajo enake lastne vrednosti.
+
+	Pravimo, da je linearno preslikavo \( \tau: V \to V \) mogoče \textit{diagonalizirati}, če obstaja baza, v kateri pripada preslikavi diagonalna matrika.
+
+	\textbf{Izrek:} Linearno preslikavo \( \tau: V \to V \) je mogoče diagonalizirati natanko tedaj, ko obstaja baza prostora \( V \) sestavljena iz lastnih vektorjev preslikave \( \tau \).
+
+	Naj bo \( \tau: V \rightarrow U \) linearna preslikava vektorskega prostora \( V \) v vektorski prostor \( U \).
+
+	\textbf{Def:} Jedro linearne preslikave \( \tau \) je množica \( \ker(\tau) \) vseh vektorjev \( v \in V \), za katere velja
+	\[ \tau(v) = 0. \]
+
+	\textbf{Def:} Slika linearne preslikave je množica \( \text{im}(\tau) = \{ \tau(v) : v \in V \} \subseteq U \).
+
+	\textbf{Izrek:} Jedro \( \ker \tau \) linearne preslikave \( \tau: V \rightarrow U \) je vektorski podprostor v \( V \), slika \( \text{im} \tau \) pa vektorski podprostor v \( U \).
+
+	\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava iz vektorskega prostora \( V \) v vektorski prostor \( U \).
+	\begin{enumerate}
+		\item \( \tau \) je injektivna natanko tedaj, ko je \( \ker \tau = \{0\} \).
+		\item \( \tau \) je surjektivna natanko tedaj, ko je \( \text{im} \tau = U \).
+	\end{enumerate}
+
+	\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava in naj bo \( A = A_{\tau,B,C} \) matrika, ki pripada preslikavi \( \tau \). Potem je
+	\begin{enumerate}
+		\item \( \text{dim}(\text{im}(\tau)) = \text{rank}(A) \),
+		\item \( \text{dim}(\text{ker}(\tau)) + \text{dim}(\text{im}(\tau)) = \text{dim}(V) \).
+	\end{enumerate}
+
+	\textbf{Posledica:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\text{dim} V = \text{dim} U = n\) in naj bo \( A \) neka matrika, ki pripada \( \tau \). Naslednje trditve so ekvivalentne:
+	\begin{enumerate}
+		\item \( \tau \) je bijektivna.
+		\item \( \tau \) je injektivna.
+		\item \( \tau \) je surjektivna.
+		\item \( A \) je obrnljiva.
+		\item \( \text{ker} \tau = \{0\} \).
+		\item \( N(A) = \{0\} \).
+		\item \( \text{im} \tau = U \).
+		\item \( C(A) = \mathbb{R}^n \).
+		\item Rang matrike \( A \) je \( n \).
+		\item Vrstice matrike \( A \) so linearno neodvisne.
+		\item Vrstice matrike \( A \) razpenjajo \( \mathbb{R}^n \).
+		\item Vrstice matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
+		\item Stolpci matrike \( A \) so linearno neodvisni.
+		\item Stolpci matrike \( A \) razpenjajo \( \mathbb{R}^n \).
+		\item Stolpci matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
+		\item \( \det A \neq 0 \).
+		\item Homogeni sistem enačb \( Ax = 0 \) ima le trivialno rešitev.
+		\item Sistem enačb \( Ax = b \) ima rešitev za vsak \( b \in \mathbb{R}^n \).
+	\end{enumerate}
+
+	\section{\underline{Analiza}}
+
+	\subsection{Funkcije več spremenljivk}
+	Funkcija več spremenljivk
+
+	\[
+		f : D_f \subseteq \mathbb{R}^n \to \mathbb{R},
+	\]
+
+	kjer
+
+	\[
+		\mathbf{x} = (x_1, x_2, \ldots, x_n) \mapsto f(x_1, x_2, \ldots, x_n)
+	\]
+
+	je funkcija, ki predpiše realno vrednost $f(\mathbf{x}) = f(x_1, x_2, \ldots, x_n) \in \mathbb{R}$ vsaki točki $\mathbf{x} = (x_1, x_2, \ldots, x_n) \in D_f \subseteq \mathbb{R}^n$. Množici $D_f$ pravimo \textbf{definicijsko območje} funkcije $f$.
+
+	V primeru, ko je $n = 2$, je graf funkcije $f = f(x, y): D_f \subseteq \mathbb{R}^2 \to \mathbb{R}$ ploskev v $\mathbb{R}^3$.
+
+	\[
+		\Gamma_f = \{ (x, y, f(x, y)) : (x, y) \in D_f \}
+	\]
+
+	\textbf{Nivojska krivulja} (ali nivojnica) funkcije $f = f(x, y)$ je množica vseh točk $(x, y) \in D_f$, za katere velja $f(x, y) = c$ za dano realno število $c \in \mathbb{R}$. Tako vsaka točka $(x, y) \in D_f$ leži na natanko eni nivojski krivulji in zato se definicijsko območje $D_f$ razsloji na nivojske krivulje.
+
+	\subsubsection{Parcialni odvod}
+	Parcialni odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki a = \( (a_1, a_2, \ldots, a_n) \) po spremenljivki \( x_i \) definiramo kot
+	\[
+		f_{x_i}(a) = \frac{\partial f}{\partial x_i}(a) = \lim_{h \to 0} \frac{f(a_1, \ldots, a_{i-1}, a_i + h, a_{i+1}, \ldots, a_n) - f(a)}{h}.
+	\]
+	Tako nam torej parcialni odvod funkcije \( f \) po \( x_i \), v točki a = \( (a_1, a_2, \ldots, a_n) \) pove relativno spremembo funkcisjke vrednosti pri zelo majhni spremembi spremenljivke \( x_i \), kjer so ostale spremenljivke fiksne.
+
+
+	\subsubsection{Gradient funkcije}
+
+	\textbf{Vektor}
+	\[
+		(\nabla f)(a) = (f_{x_1}(a), f_{x_2}(a), \ldots, f_{x_n}(a))
+	\]
+	imenjujemo \textbf{gradient} funkcije \( f \) v točki \( a \).
+
+	\textbf{Smerni odvod funkcije} \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki \( a = (a_1, a_2, \ldots, a_n) \) \textbf{v smeri vektorja} \( \vec{e} \) je enak
+	\[
+		f_{\vec{e}}(a) = (\nabla f)(a) \cdot \frac{\vec{e}}{\| \vec{e} \|} = \sum_{i=1}^n \frac{f_{x_i}(a) e_i}{\| \vec{e} \|}
+	\]
+
+	Za funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) velja:
+	\begin{enumerate}
+		\item Gradient funkcije \( f \) v točki \( a \) kaže v smeri najhitrejšega naraščanja funkcije \( f \) v točki \( a \).
+		\item V primeru \( n = 2 \) je gradient funkcije \( f = f(x, y) \) v točki \( a \) pravokoten na nivojsko krivuljo v tej točki.
+		\item Smerni odvod \( f_{\vec{e}}(a) \) je relativna sprememba funkcisjke vrednosti \( f(a) \) ob majhnem premiku iz točke \( a \) v smeri vektorja \( \vec{e} \). Zato velja:
+		      \begin{itemize}
+			      \item Če je \( f_{\vec{e}}(a) > 0 \), potem \( f \) ob majhnem pomiku iz točke \( a \) v smeri vektorja \( \vec{e} \) narašča.
+			      \item Če je \( f_{\vec{e}}(a) < 0 \), potem \( f \) ob majhnem pomiku iz točke \( a \) v smeri vektorja \( \vec{e} \) pada.
+		      \end{itemize}
+	\end{enumerate}
+
+	\subsubsection{Linearna aproksimacija}
+	Za dano funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) lahko v točki a + h blizu a njeno funkcijso vrednost ocenimo s formulo
+	\[
+		f(a + h) \approx f(a) + (\nabla f(a)) \cdot h.
+	\]
+
+
+	\subsubsection{Visji odvodi}
+	Parcialne odvode drugega reda izračunamo s parcialnim odvajanjem parcialnih odvodov prvega reda. Definiramo jih kot
+	\[
+		f_{x_i x_j}(x) = \frac{\partial^2 f}{\partial x_j \partial x_i}(x) = \frac{\partial}{\partial x_j} \left( \frac{\partial f}{\partial x_i}(x) \right).
+	\]
+	\( n \times n \) matriko
+	\[
+		H_f(x) = \left[ \frac{\partial^2 f}{\partial x_i \partial x_j}(x) \right]_{i,j=1,...,n}
+	\]
+	imenujemo \textit{Hessejeva matrika} funkcije \( f \) v točki \( x \). Če sta pri tem \( f_{x_i x_j}, f_{x_j x_i} \) zvezni funkciji, potem sta omenjena druga parcialna odvoda enaka. Zato je v primeru, ko so vsi parcialni odvodi \( f_{x_i x_j} \) zvezni, Hessejeva matrika \( H_f(x, y) \) simetrična matrika.
+
+	Pravila:
+	\begin{enumerate}
+		\item \(\frac{\partial \mathbf{x}}{\partial \mathbf{x}} = I_n\)
+		\item Če je \(A \in \mathbb{R}^{m \times n}\), potem \(\frac{\partial (A\mathbf{x})}{\partial \mathbf{x}} = A\).
+		\item Če je \(\mathbf{a} \in \mathbb{R}^n\), potem \(\frac{\partial (\mathbf{a}^T \mathbf{x})}{\partial \mathbf{x}} = \mathbf{a}^T\).
+		\item Če je \(A \in \mathbb{R}^{n \times n}\), potem \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = \mathbf{x}^T(A + A^T)\).
+		\item Če je \(A \in \mathbb{R}^{n \times n}\) simetrična matrika, potem velja \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = 2A^T\mathbf{x}\).
+		\item \(\frac{\partial^2 \mathbf{x}}{\partial \mathbf{x}^2} = 2I_n\).
+		\item Če \(G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n\) in \(F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p\) in \( \mathbf{H} = F \circ G\), potem \(\frac{\partial \mathbf{H}}{\partial \mathbf{x}} = \frac{\partial F}{\partial \mathbf{G}}(\mathbf{G}(\mathbf{x})) \cdot \frac{\partial \mathbf{G}}{\partial \mathbf{x}}\).
+	\end{enumerate}
+
+
+	\subsubsection{Vektorska funkcija}
+	Za vektorsko funkcijo
+	\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m, \]
+	kjer je
+	\[ \mathbf{x} \mapsto \mathbf{F}(\mathbf{x}) = [f_1(\mathbf{x}), f_2(\mathbf{x}), \ldots, f_m(\mathbf{x})]^T \]
+	je \( m \)-terica funkcij več spremenljivk.
+
+	\subsubsection{Jacobijeva matrika}
+	Jacobijeva matrika vektorske funkcije
+	\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
+	je \( m \times n \) matrika prvih odvodov funkcij \( f_1, \ldots, f_m \):
+	\[
+		J_F(\mathbf{x}) = \begin{bmatrix}
+			\frac{\partial f_1}{\partial x_1}(\mathbf{x}) & \frac{\partial f_1}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_1}{\partial x_n}(\mathbf{x}) \\
+			\frac{\partial f_2}{\partial x_1}(\mathbf{x}) & \frac{\partial f_2}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_2}{\partial x_n}(\mathbf{x}) \\
+			\vdots                                        & \vdots                                        & \ddots & \vdots                                        \\
+			\frac{\partial f_m}{\partial x_1}(\mathbf{x}) & \frac{\partial f_m}{\partial x_2}(\mathbf{x}) & \ldots & \frac{\partial f_m}{\partial x_n}(\mathbf{x})
+		\end{bmatrix}
+	\]
+	Absolutna vrednost determinante Jacobijeve matrike vektorske funkcije
+	\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
+	pove, za kakšen faktor funkcija lokalno raztegne prostor.
+
+	\subsection{Večkratni integrali}
+
+	\subsubsection{Izrek (Fubini, 1)}
+	Če je \( f: R \rightarrow \mathbb{R} \) zvezna funkcija na pravokotniku \( R = [a, b] \times [c, d] \subseteq \mathbb{R}^2 \), potem
+	\[
+		\iint_R f(x,y) \,dx\,dy = \int_c^d \left( \int_a^b f(x,y) \,dx \right) dy
+	\]
+	\[
+		= \int_a^b \left( \int_c^d f(x,y) \,dy \right) dx.
+	\]
+
+
+	\subsubsection{Dvojni integrali}
+
+	Če je \( D \subseteq \mathbb{R}^2 \) neko omejeno območje in če \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, izberimo tak pravokotnik \( R \), da velja \( D \subseteq R \). Sedaj definiramo dvojni integral funkcije \( f \) na območju \( D \) kot
+	\[
+		\iint_D f(x,y) \,dx\,dy = \iint_R F(x,y) \,dx\,dy,
+	\]
+	kjer
+	\[
+		F(x,y) = \begin{cases}
+			f(x,y), & (x,y) \in D      \\
+			0,      & (x,y) \not\in D.
+		\end{cases}
+	\]
+
+	\subsubsection{Izrek (Fubini, 2)}
+	\begin{enumerate}
+		\item Če je \( D = \{(x,y); a \leq x \leq b \text{ in } \varphi_1(x) \leq y \leq \varphi_2(x)\} \) \( \subseteq \mathbb{R}^2 \) in \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, potem je
+		      \[
+			      \iint_D f(x,y) \,dx\,dy = \int_a^b \left( \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y) \,dy \right) dx.
+		      \]
+
+		\item Če je \( D = \{(x,y); \varphi_1(y) \leq x \leq \varphi_2(y) \text{ in } c \leq y \leq d\} \) \( \subseteq \mathbb{R}^2 \) in \( f: D \rightarrow \mathbb{R} \) zvezna funkcija, potem je
+		      \[
+			      \iint_D f(x,y) \,dx\,dy = \int_c^d \left( \int_{\varphi_1(y)}^{\varphi_2(y)} f(x,y) \,dx \right) dy.
+		      \]
+	\end{enumerate}
+
+	\subsubsection{Izrek o menjavi spremenljivk}
+	Naj bo \( f: D \rightarrow \mathbb{R} \) zvezna funkcija na \( D \subseteq \mathbb{R}^2 \). Če je \( x = \varphi(u, v) \), \( y = \psi(u, v) \), takašna menjava spremenljivk, da je \( \det J_{\varphi,\psi} \neq 0 \), potem
+	\[
+		\iint_D f(x, y) \,dx\,dy = \iint_{D'} f(\varphi(u, v), \psi(u, v)) \left| \det J_{\varphi,\psi} \right| \,du\,dv.
+	\]
+
+	Podobno, če je \( f: D \rightarrow \mathbb{R} \) zvezna funkcija na \( D \subseteq \mathbb{R}^3 \) ter \( x = \varphi(u, v, w) \), \( y = \psi(u, v, w) \), \( z = \chi(u, v, w) \), takašna menjava spremenljivk, da je \( \det J_{\varphi,\psi,\chi} \neq 0 \), potem velja
+	\[
+		\iiint_D f(x, y, z) \,dx\,dy\,dz =
+	\]
+	\[
+		= \iiint_{D'} f(\varphi(u, v, w), \psi(u, v, w), \chi(u, v, w)) \left| \det J_{\varphi,\psi,\chi} \right| \,du\,dv\,dw.
+	\]
+
+	\subsubsection{Primeri menjave spremenljivk}
+
+	\begin{enumerate}
+		\item \textbf{Polarne koordinate} v \( \mathbb{R}^2 \) so podane z
+		      \[
+			      x = r \cos \varphi, \quad y = r \sin \varphi,
+		      \]
+		      \[
+			      r \geq 0, \quad \varphi \in [0, 2\pi], \quad \text{in velja} \quad |\det J_{\text{polar}}| = r.
+		      \]
+
+		\item \textbf{Cilindrične koordinate} v \( \mathbb{R}^3 \) so podane z
+		      \[
+			      x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z,
+		      \]
+		      \[
+			      r > 0, \quad \varphi \in [0, 2\pi], \quad z \in \mathbb{R}, \quad \text{in velja} \quad |\det J_{\text{cylindrical}}| = r.
+		      \]
+
+		\item \textbf{Sferične koordinate} v \( \mathbb{R}^3 \) so podane z
+		      \[
+			      x = r \cos \varphi \cos \theta, \quad y = r \sin \varphi \cos \theta, \quad z = r \sin \theta,
+		      \]
+		      \[
+			      r > 0, \quad \varphi \in [0, 2\pi], \quad \theta \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right],
+		      \]
+		      \[
+			      \quad \text{in velja} \quad |\det J_{\text{spherical}}| = r^2 \cos \theta.
+		      \]
+	\end{enumerate}
+
+
+	\subsection{Optimizacija}
+
+	\subsection{Klasifikacija Lokalnih ekstremov}
+
+	Naj bo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) ter a v definicijskem območju funkcije \( f \).
+	Če za vse točke \( x \neq a \), ki so "dovolj blizu" točke a (tj. \( \| x - a \| < \varepsilon \) za nek dovolj majhen \( \varepsilon \)) velja \( f(x) < f(a) \),
+	potem pravimo, da ima funkcija \( f \) v točki a \textbf{lokalni maksimum}.
+
+	Če za vse točke \( x \neq a \), ki so "dovolj blizu" točke a (tj. \( \| x - a \| < \varepsilon \) za nek dovolj majhen \( \varepsilon \)) velja \( f(x) > f(a) \),
+	potem pravimo, da ima funkcija \( f \) v točki a \textbf{lokalni minimum}.
+
+	Če je funkcija \( f \) zvezno parcialno odvedljiva, potem je jasno, da ima lahko lokalne ekstreme le v stacionarnih točkah. Torej je potreben pogoj za lokalni ekstrem funkcije \( f \) v točki a:
+
+	\[ (\nabla f)(a) = 0, \]
+
+	kar pomeni, da moramo lokalne ekstreme iskati zgolj med stacionarnimi točkami.
+
+	\subsubsection{Izrek}
+	Naj bo \( a \) stacionarna točka dvakrat parcialno zvezno odvedljive funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \).
+
+	\begin{enumerate}
+		\item Če so vse lastne vrednosti matrike \( H_f(a) \) pozitivne, ima \( f \) v \( a \) lokalni minimum.
+		\item Če so vse lastne vrednosti matrike \( H_f(a) \) negativne, ima \( f \) v \( a \) lokalni maksimum.
+		\item Če so vse lastne vrednosti matrike \( H_f(a) \) neničelne, vendar različno predznačene, lokalnega ekstrema v \( a \) ni.
+		\item Če je kakšna od lastnih vrednosti matrike \( H_f(a) \) enaka 0, o lokalnih ekstremih funkcije \( f \) v točki \( a \) iz matrike \( H_f(a) \) ne moremo sklepati.
+	\end{enumerate}
+
+
+	\subsubsection{Lokalni ekstremi z omejitvami}
+
+	Pogosto naletimo na problem iskanja ekstremalnih vrednosti funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pri pogojih
+
+	\[ g_1(x) = g_2(x) = \ldots = g_m(x) = 0. \]
+
+	Izkaže se, da lahko lokalni ekstremi funkcije \( f \) pri pogoju \( g_i(x) = 0, i = 1, \ldots, m, \) nastopijo le v stacionarnih točkah funkcije
+
+	\[ L = f - \lambda_1 g_1 - \ldots - \lambda_m g_m, \]
+
+	ki je funkcija \( n + m \) spremenljivk \( x_1, x_2, \ldots, x_n, \lambda_1, \lambda_2, \ldots, \lambda_m \).\\
+	Funkciji \( L \) pravimo \textbf{Lagrangeova funkcija}, novim spremenljivkam \( \lambda_1, \lambda_2, \ldots, \lambda_m \) pa \textbf{Lagrangevi multiplikatorji}.\\
+	Omenjeni pogoj ni zadosten. Nekatere kritične točke funkcije \( L \) so ekstremalne točke funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pod pogoji \( g_1(x) = g_2(x) = \ldots = g_m(x) = 0 \), ostale pa ne.
+
+
+	\subsubsection{Odvodi vektorskih funkcij}
+	Naj bo \( F: \mathbb{R}^n \rightarrow \mathbb{R}^m, F(x) =
+	\begin{bmatrix}
+		f_1(x) \\
+		f_2(x) \\
+		\vdots \\
+		f_m(x)
+	\end{bmatrix} \)
+	vektorska funkcija na spremenljivk x = \( (x_1, ..., x_n) \).
+
+	Spomnimo se, da je odvod vektorske funkcije \( F \) po vektorju spremenljivk \( \tilde{x} \) definiran kot
+
+	\[
+		\frac{\partial \tilde{F}}{\partial \tilde{x}} = J_F(\tilde{x}) =
+		\begin{bmatrix}
+			\frac{\partial f_1}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_1}{\partial x_n} (\tilde{x}) \\
+			\vdots                                        & \ddots & \vdots                                        \\
+			\frac{\partial f_m}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_m}{\partial x_n} (\tilde{x})
+		\end{bmatrix}
+	\]
+
+	Drugi odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) (tu m = 1) pa kot
+
+	\[
+		\frac{\partial^2 f}{\partial \tilde{x}^2} = \frac{\partial}{\partial \tilde{x}} \left( \frac{\partial f}{\partial \tilde{x}} \right)^T
+	\].
+
+	Funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
+
+	\[
+		f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y})
+	\]
+
+	za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
+
+	\subsubsection{Pravila za odvajanje vektorskih funkcij}
+
+	\begin{enumerate}
+		\item \(\frac{\partial \tilde{x}}{\partial \tilde{x}} = I_n\)
+		\item Če je \( A \in \mathbb{R}^{m \times n} \), potem \( \frac{\partial A\tilde{x}}{\partial \tilde{x}} = A \).
+		\item Če je \( \tilde{a} \in \mathbb{R}^n \), potem \( \frac{\partial \tilde{a}^T\tilde{x}}{\partial \tilde{x}} = \tilde{a}^T \).
+		\item Če je \( A \in \mathbb{R}^{n \times n} \), potem \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = \tilde{x}^T(A + A^T) \).
+		\item Če je \( A \in \mathbb{R}^{n \times n} \) simetrična matrika, potem velja \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = 2\tilde{x}^T A \).
+		\item \( \frac{\partial \|\tilde{x}\|^2}{\partial \tilde{x}} = 2\tilde{x}^T \).
+		\item Če \( \tilde{z} = \tilde{z}(\tilde{x}) \) in \( \tilde{y} = \tilde{y}(\tilde{x}) \), potem \( \frac{\partial (\tilde{y}^T \tilde{z})}{\partial \tilde{x}} = \tilde{y}^T \frac{\partial \tilde{z}}{\partial \tilde{x}} + \tilde{z}^T \frac{\partial \tilde{y}}{\partial \tilde{x}} \).
+		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
+	\end{enumerate}
+
+
+	\subsubsection{Izrek}
+	Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna natanko tedaj,
+	ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) pozitivno semidefinitna matrika na \( D \), in je konkavna natanko tedaj,
+	ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) negativno semidefinitna matrika na \( D \).
+
+	\subsubsection{Prirejene funckije}
+
+	Naj bodo \( f, g_i, h_j: \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev naslednjega problema
+	\[
+		\text{(P)}^* \quad \min f(\vec{x})
+	\]
+	pri pogojih
+	\[
+		g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m
+	\]
+	\[
+		h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r.
+	\]
+
+	Definirajmo še množice \( D_g \), \( D_h \):
+	\[
+		D_g = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m \right\},
+	\]
+
+	\[
+		D_h = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r \right\}
+	\]
+
+	\[
+		D = D_f \cap \left( \bigcap_{i=1}^m D_g \right) \cap \left( \bigcap_{j=1}^r D_h \right).
+	\]
+
+	Sedaj lahko problem \( (P^*) \) zapišemo ekvivalentno kot
+	\[
+		\text{(P)}^* \quad \min_{\vec{x} \in D} f(\vec{x}).
+	\]
+
+	Definirajmo Lagrangevo funkcijo
+	\[
+		L(\vec{x}, \vec{\lambda}, \vec{\mu}) = f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x})
+	\]
+	\[
+		= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
+	\]
+	kjer je
+	\[
+		\mathbf{G}(\vec{x}) =
+		\begin{pmatrix}
+			g_1(\vec{x}) \\
+			\vdots       \\
+			g_m(\vec{x})
+		\end{pmatrix},
+		\mathbf{H}(\vec{x}) =
+		\begin{pmatrix}
+			h_1(\vec{x}) \\
+			\vdots       \\
+			h_r(\vec{x})
+		\end{pmatrix},
+	\]
+	\[
+		\vec{\lambda} =
+		\begin{pmatrix}
+			\lambda_1 \\
+			\vdots    \\
+			\lambda_m
+		\end{pmatrix},
+		\vec{\mu} =
+		\begin{pmatrix}
+			\mu_1  \\
+			\vdots \\
+			\mu_r
+		\end{pmatrix}.
+	\]
+
+	Funkcijo
+	\[
+		K(\vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} L(\vec{x}, \vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} \{ f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x}) \}
+	\]
+	imenujemo \textbf{prirejena funkcija} problema  $(P^*) $. Pri tem spremenljivke $ \vec{\lambda} $ in $ \vec{\mu} $ imenujemo \textbf{prirejene spremenljivke}. Opazimo:
+
+	\begin{enumerate}
+		\item \( K(\vec{\lambda}, \vec{\mu}) \) je konkavna funkcija (neodvisno od lastnosti funkcij \( f, g_i, h_j \) originalnega problema).
+		\item Če je \( \lambda_i \leq 0 \) za \( i = 1,2,\ldots,m \), potem velja \( K(\vec{\lambda}, \vec{\mu}) \leq \min_{\vec{x} \in D} f(\vec{x}) \) za vse \( \vec{\lambda} \) ter vse \( \vec{\mu} \).
+	\end{enumerate}
+
+
+	\textbf{Problem}
+	\[
+		\text{(D}^*\text{)} \quad \max_{\vec{x},\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
+	\]
+	pri pogojih
+	\[
+		\lambda_i \leq 0 \quad za \ i = 1,2,\ldots,m
+	\]
+	imenujemo \textbf{prirejeni problem} problema \( (P^*) \).
+
+	Označimo z \( \vec{x}^* \) vektor iz \( D \), ki reši problem \( (P^*) \) in \( \vec{\lambda}^* \), \( \vec{\mu}^* \) prirejene spremenljivke, ki rešita prirejeni problem \( (D^*) \). Naj bo torej \( p^* = f(\vec{x}^*) \) rešitev problema \( (P^*) \) in \( d^* = K(\vec{\lambda}^*, \vec{\mu}^*) \) rešitev problema \( (D^*) \). Potem iz (2) sledi
+	\[
+		d^* \leq p^*.
+	\]
+
+	Če
+	\begin{itemize}
+		\item je \( (P^*) \) linearni program (t.j., \( f \) je linearna in \( h_j \) so afine funkcije), ali če
+		\item so \( f, g_i \) konveksne funkcije in \( h_j \) afine,
+	\end{itemize}
+	potem velja \( d^* = p^* \).
+
+	V primeru, ko je \( d^* = p^* \), sledi, da morajo \( \vec{x}^*, \vec{\lambda}^* \) in \( \vec{\mu}^* \) zadostiti Karush-Kuhn-Tuckerjevim pogojem:
+	\[
+		\begin{aligned}
+			 & \frac{\partial L(\vec{x}^*, \vec{\lambda}^*, \vec{\mu}^*)}{\partial \vec{x}} = 0, \\
+			 & g_i(\vec{x}^*) \leq 0 \quad za \ i = 1,2,\ldots,m,                                \\
+			 & h_j(\vec{x}^*) = 0 \quad za \ j = 1,2,\ldots,r,                                   \\
+			 & \lambda_i^* \leq 0 \quad za \ i = 1,2,\ldots,m,                                   \\
+			 & \lambda_i^* g_i(\vec{x}^*) = 0 \quad za \ i = 1,2,\ldots,m.
+		\end{aligned}
+	\]
+	(KKT)
+
+
+	\subsection{Dodatek 1: Vrste}
+
+	\input{vrste.tex}
+
+	\subsection{Dodatek 2: Ponovitev analize}
+
+	\input{../VIS/ponovitev-analize.tex}
 
 \end{multicols}
 \end{document}

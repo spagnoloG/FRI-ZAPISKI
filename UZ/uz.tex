@@ -15,140 +15,140 @@
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \begin{document}
-	
+
 \begin{center}
 	{\small UZ/FRI \par}
 \end{center}
 
 
 \begin{multicols*}{2}
-\setlength{\parindent}{0pt}{
-	
-\section{Pinhole camera}
+	\setlength{\parindent}{0pt}{
 
-\begin{compactitem}
-	\item Barrier with a hole and a film
-	\item Focal length - $f$
-	\item Perspective projection equation
-	$\frac{f}{-y'}=\frac{-z}{y}$
-	\item Apature - size of pinhole
-	\item Lense - focusing element
-	\item Depth of field - distance and size of small blurring
-	\item Field of view - $\varphi=tan^{-1}(\frac{d}{2f})$
-	\item Chromatic aberration - different wavelength refraction
-	\item Spherical aberration - spherical lenses
-	\item Vignetting - edge of camera absorbtion
-	\item Radial distortion - lens imperfections
-	\item Digitalization - discretization, quantization
-\end{compactitem}
+	\section{Pinhole camera}
 
-\section{Color spaces}
+	\begin{compactitem}
+		\item Barrier with a hole and a film
+		\item Focal length - $f$
+		\item Perspective projection equation
+		$\frac{f}{-y'}=\frac{-z}{y}$
+		\item Apature - size of pinhole
+		\item Lense - focusing element
+		\item Depth of field - distance and size of small blurring
+		\item Field of view - $\varphi=tan^{-1}(\frac{d}{2f})$
+		\item Chromatic aberration - different wavelength refraction
+		\item Spherical aberration - spherical lenses
+		\item Vignetting - edge of camera absorbtion
+		\item Radial distortion - lens imperfections
+		\item Digitalization - discretization, quantization
+	\end{compactitem}
 
-\begin{compactitem}
-	\item Additive models \textit{(RGB)} - colors added to black
-	\item Subtractive models \textit{(CYMK)} - colors added to white
-	\item Linear color space - CIE XYZ
-	
-	Artificial primaries $X, Y, Z$
-	
-	$x=\frac{X}{X+Y+Z}$,
-	$y=\frac{Y}{X+Y+Z}$,
-	$z=\frac{Z}{X+Y+Z}$,
-	$x + y + z = 1$
-	
-	Chromacity is represented using only $[x,y]$
-	\item RGB
-	\item Nonlinear color space - HSV
-	\item Uniform color space - CIE u'v'
-\end{compactitem}
+	\section{Color spaces}
 
-\section{Basic image processing}
+	\begin{compactitem}
+		\item Additive models \textit{(RGB)} - colors added to black
+		\item Subtractive models \textit{(CYMK)} - colors added to white
+		\item Linear color space - CIE XYZ
 
-Basic process
+		Artificial primaries $X, Y, Z$
 
-\begin{compactitem}
-	\item Localize
-	\item Describe
-	\item Classify
-\end{compactitem}
+		$x=\frac{X}{X+Y+Z}$,
+		$y=\frac{Y}{X+Y+Z}$,
+		$z=\frac{Z}{X+Y+Z}$,
+		$x + y + z = 1$
 
-\subsection{Thresholding}
+		Chromacity is represented using only $[x,y]$
+		\item RGB
+		\item Nonlinear color space - HSV
+		\item Uniform color space - CIE u'v'
+	\end{compactitem}
 
-Transforms an image into a binary mask
+	\section{Basic image processing}
 
-\begin{compactitem}
-	\item Single(two) threshold approach
-	
-	$F_T[i,j] = \begin{cases}
-		1, \text{if } T_1 \leq F[i,j] (\leq T_2) \\
-		0, \text{otherwise}
-	\end{cases}$
-	
-	\item General approach
-	
-	$F_T[i,j] = \begin{cases}
-		1, \text{if } F[i,j] \in Z \\
-		0, \text{otherwise}
-	\end{cases}$
+	Basic process
 
-	\item Global binarization
-	
-	\textbf{Otsu's method}
-	
-	Minimizes within class variance
-	
-	$\sigma^2_{within}(T) = n_1(T)\sigma^2_1(T) + n_2(T)\sigma^2_2(T)$
-	$\equiv \text{maximization of}$
-	$\sigma^2_{between}(T) = \sigma^2-\sigma^2_{within}(T) = n_1(T)n_2(T)[\mu_1(T)-\mu_2(T)]$
-	
-	Find $T^* = \text{argmax}_T[\sigma^2_{between}(T)]$
-	
-	\item Local binarization
-	
-	Estimate local threshold in neighborhood $W$
-	$T_W = \mu_W + k\sigma_W \text{ for } k \in [-1,1]$
-	
-	\item Shade compensation using polynomials
-\end{compactitem}
+	\begin{compactitem}
+		\item Localize
+		\item Describe
+		\item Classify
+	\end{compactitem}
 
-\subsection{Morphology}
+	\subsection{Thresholding}
 
-Structuring element
-$\begin{cases}
-	\text{Fit: all 1's cover 1's in SE} \\
-	\text{Hit: at least 1 covers a 1 in SE}
-\end{cases}$
+	Transforms an image into a binary mask
 
-\begin{compactitem}
-	\item Erosion $g = f \ominus s$
-	
-	$g(x,y) = \begin{cases}
-		1, \text{if s fits f} \\
-		0, otherwise
-	\end{cases}$
+	\begin{compactitem}
+		\item Single(two) threshold approach
 
-	\item Dilation $g = f \oplus s$
-	
-	$g(x,y) = \begin{cases}
-		1, \text{if s hits f} \\
-		0, otherwise
-	\end{cases}$
+		$F_T[i,j] = \begin{cases}
+				1, \text{if } T_1 \leq F[i,j] (\leq T_2) \\
+				0, \text{otherwise}
+			\end{cases}$
 
-	\item Opening $A \circ B = (A \ominus B) \oplus B$
-	- opens gaps, holes
-	
-	\item Closing $A \bullet B = (A \oplus B) \ominus B$
-	- closes gaps, holes
-\end{compactitem}
+		\item General approach
 
-\subsection{Region descriptors}
+		$F_T[i,j] = \begin{cases}
+				1, \text{if } F[i,j] \in Z \\
+				0, \text{otherwise}
+			\end{cases}$
 
-\textbf{Labeling components}
+		\item Global binarization
 
-\begin{compactitem}
-	\item 4-8 way connectivity
-	\item Connected components
-	\begin{lstlisting}
+		\textbf{Otsu's method}
+
+		Minimizes within class variance
+
+		$\sigma^2_{within}(T) = n_1(T)\sigma^2_1(T) + n_2(T)\sigma^2_2(T)$
+		$\equiv \text{maximization of}$
+		$\sigma^2_{between}(T) = \sigma^2-\sigma^2_{within}(T) = n_1(T)n_2(T)[\mu_1(T)-\mu_2(T)]$
+
+		Find $T^* = \text{argmax}_T[\sigma^2_{between}(T)]$
+
+		\item Local binarization
+
+		Estimate local threshold in neighborhood $W$
+		$T_W = \mu_W + k\sigma_W \text{ for } k \in [-1,1]$
+
+		\item Shade compensation using polynomials
+	\end{compactitem}
+
+	\subsection{Morphology}
+
+	Structuring element
+	$\begin{cases}
+			\text{Fit: all 1's cover 1's in SE} \\
+			\text{Hit: at least 1 covers a 1 in SE}
+		\end{cases}$
+
+	\begin{compactitem}
+		\item Erosion $g = f \ominus s$
+
+		$g(x,y) = \begin{cases}
+				1, \text{if s fits f} \\
+				0, otherwise
+			\end{cases}$
+
+		\item Dilation $g = f \oplus s$
+
+		$g(x,y) = \begin{cases}
+				1, \text{if s hits f} \\
+				0, otherwise
+			\end{cases}$
+
+		\item Opening $A \circ B = (A \ominus B) \oplus B$
+		- opens gaps, holes
+
+		\item Closing $A \bullet B = (A \oplus B) \ominus B$
+		- closes gaps, holes
+	\end{compactitem}
+
+	\subsection{Region descriptors}
+
+	\textbf{Labeling components}
+
+	\begin{compactitem}
+		\item 4-8 way connectivity
+		\item Connected components
+		\begin{lstlisting}
 for px in image top to bottom left to right:
  if px == 1:
   if one neighbor top or left:
@@ -160,633 +160,633 @@ for px in image top to bottom left to right:
    label = new label
 	\end{lstlisting}
 
-	\item Describe region
+		\item Describe region
+		\begin{compactitem}
+			\item Area $A$
+			\item Perimeter $l$
+			\item Compactness $c = l^2(4 \pi A)$
+			\item Circularity $l/c$
+			\dots
+		\end{compactitem}
+	\end{compactitem}
+
+	Color similarity between objects
 	\begin{compactitem}
-		\item Area $A$
-		\item Perimeter $l$
-		\item Compactness $c = l^2(4 \pi A)$
-		\item Circularity $l/c$
+		\item Average color
+		\item Fit Gaussian distribution
+		\item Histograms - $H(c) = \text{number of px with color c}$
+
+		Robust to translation, scale, partial occlusion
+
+		\item Intensity normalization
+
+		$r=\frac{R}{R+G+B}$,
+		$g=\frac{G}{R+G+B}$,
+		$b=\frac{B}{R+G+B}$
+
+		Reduce to 2D ($[r,g]$) since
+		$r+g+b=1$
+	\end{compactitem}
+
+	\textbf{Distances}
+	\begin{compactitem}
+		\item $L_2$ norm (\textit{Euclidean})
+		$d(Q,V) = \sqrt{\sum_i(q_i-v_i)^2}$
+
+		\item $\chi^2(Q, V) = \sum_i{\frac{(q_i - v_i)^2}{q_i+v_i}}$
+
+		\item Hellinger $d_{Hell}(Q, V) = \sqrt{1 - \sum_i{\sqrt{q_i v_i}}}$
+	\end{compactitem}
+
+	\subsection{(Non)linear filters}
+
+	Types of noise
+	\begin{compactitem}
+		\item Salt and pepper
+		\item Impulse noise
+		\item Gaussian noise
+	\end{compactitem}
+
+	\textbf{Convolution}
+	\begin{compactitem}
+		\item Correlation $G = H \otimes F$
+
+		$G[i,j] = \sum_{u=-k}^{k}\sum_{v=-l}^{k}H[u,v]F[i+u,j+v]$
+
+		\item Convolution $G = H \star F$
+
+		$G[i,j] = \sum_{u=-k}^{k}\sum_{v=-l}^{k}H[u,v]F[i-u,j-v]$
+
+		If $H[-u,-v] = H[u,v]$, then $\otimes \equiv \star$
+
+		\item Properties
+
+		\begin{compactitem}
+			\item Linear - $h \star (\alpha_1f_1+\alpha_2f_2) = \alpha_1(h \star f_1) + \alpha_2(h \star f_2)$
+			\item Commutative - $f \star g = g \star f$
+			\item Associative - $(f \star g) \star h = f \star (g \star h)$
+
+			and so also $((f \star b_1) \star b_2) \star b_3 = f \star (b_1 \star b_2 \star b_3)$
+
+			\item Derivative -
+			$\frac{\partial}{\partial x}(f \star g) = (\frac{\partial}{\partial x}f) \star g = (\frac{\partial}{\partial x}g) \star f$
+		\end{compactitem}
+
+		\item Boundry conditions
+		\begin{compactitem}
+			\item Crop
+			\item Bend image around
+			\item replicate edges
+			\item Mirror image
+		\end{compactitem}
+
+		\item Image pyramids
+
+		Nyquist theorem - sample the signal by at least $2f$
+		- Remove high frequencies before sub-sampling
+
+		Gaussian pyramid
+
+		$G_i = (G_{i - 1} \star \text{Gaussian}) \downarrow 2$, $G_0 = \text{image}$
+
+	\end{compactitem}
+
+	\section{Edge detection and image gradients}
+
+	\subsection{Image derivatives}
+
+	Discrete case (images)
+
+	$\frac{\partial f(x,y)}{\partial x} = \frac{f(x+1, y)-f(x,y)}{1}$
+
+	Gradient magnitude
+
+	$\nabla f = [\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}]$
+
+	Direction - $\theta = tan^{-1}(\frac{\partial f}{\partial x} / \frac{\partial f}{\partial y})$
+
+	Magnitude - $\| \nabla f \| = \sqrt{(\frac{\partial f}{\partial x})^2 + (\frac{\partial f}{\partial y})^2}$
+
+	Smarter derivative - $\frac{\partial}{\partial x}(I \star G) = I \star (\frac{\partial}{\partial x} G)$
+
+	\subsection{Canny edge detector}
+
+	Good edge detector
+
+	\begin{compactitem}
+		\item Detection - minimizes FP and FN
+		\item Localization - close to true edge
+		\item Specificity - minimize local maxima
+	\end{compactitem}
+
+	\textbf{Process}
+	\begin{compactenum}
+		\item Calculate $I_\partial = I \star \frac{\partial}{\partial x} G$
+		\item Calculate $\theta$, $\| \nabla f \|$
+		\item Non-maxima suppression
+		\item Trace edges by hysteresis thresholding
+	\end{compactenum}
+
+	\subsection{Hough transform}
+
+	\textbf{Process}
+	\begin{compactenum}
+		\item For each edge point compute all possible parameters passing through that point
+		\item For each set of parameters cast a vote
+		\item Select parameter combinations that receive enough votes
+	\end{compactenum}
+
+	Lines - $x \cos \theta - y \sin \theta = d$
+
+	Circles - $(x - a)^2 + (y - b)^2 = r^2$
+
+	\textbf{Extensions}
+	\begin{compactitem}
+		\item Use gradient direction for $\theta$
+		\item Use magnitude for voting weight
+		\item Generalized Hough transform
+	\end{compactitem}
+
+	\section{Fitting models}
+
+	Transformation of points $x_i' = f(x_i; \mathbf{p})$
+
+	\subsection{Least-squares}
+	Minimizing a continuous error function $\tilde{p} = argmin_\mathbf{p}E(\mathbf{p})$
+
+	$\epsilon_i = f(x_i; \mathbf{p}) - y_i$
+
+	$E(\mathbf{p}) = \sum_{i=1}^{N}\epsilon_i^2$
+
+	Strategy
+
+	\begin{compactenum}
+		\item Rewrite the cost function $E(\mathbf{p})$ into vector-matrix form
+		\item $\frac{\partial E(\mathbf{p})}{\partial \mathbf{p}} = 0; \text{solve for p}$
+	\end{compactenum}
+
+	Derivative of linear and quadratic form
+
+	$\frac{\partial \mathbf{A^Tp}}{\partial \mathbf{p}} = \mathbf{A^T}$,
+	$\mathbf{\frac{\partial p^T A p}{\partial p} = 2 A p}$
+
+
+	\subsection{Normal equations}
+
+	Rewrite the error into $\mathbf{A p = b}$
+
+	Solve by $\mathbf{p = A^\dagger b = (A^TA)^{-1}A^Tb}$
+
+	Weighted least squares
+
+	$E(\mathbf{p}) = \sum_{i=1}^{N}w_i\epsilon_i^2$
+
+	Solve by $\mathbf{p = (A^TWA)^{-1}A^TWb}$
+
+	\subsection{Homogenus systems}
+
+	Constrained least squares $Ap = \lambda p$ $\to$ $\mathbf{Ap = 0}$ with $\|p\|^2=1$
+
+	Solve by $svd(A)$; $\mathbf{p}$ is eig. vector with smallest eig. value
+
+	\subsection{Nonlinear cost function}
+	\begin{compactitem}
+		\item Gradient descend
+		\item Newtons method
+		\item Levenberg-Marquardt
 		\dots
 	\end{compactitem}
-\end{compactitem}
 
-Color similarity between objects
-\begin{compactitem}
-	\item Average color
-	\item Fit Gaussian distribution
-	\item Histograms - $H(c) = \text{number of px with color c}$
-	
-	Robust to translation, scale, partial occlusion
-	
-	\item Intensity normalization
-	
-	$r=\frac{R}{R+G+B}$,
-	$g=\frac{G}{R+G+B}$,
-	$b=\frac{B}{R+G+B}$
-	
-	Reduce to 2D ($[r,g]$) since
-	$r+g+b=1$	
-\end{compactitem}
+	\subsection{RANSAC}
 
-\textbf{Distances}
-\begin{compactitem}
-	\item $L_2$ norm (\textit{Euclidean})
-	$d(Q,V) = \sqrt{\sum_i(q_i-v_i)^2}$
-	
-	\item $\chi^2(Q, V) = \sum_i{\frac{(q_i - v_i)^2}{q_i+v_i}}$
-	
-	\item Hellinger $d_{Hell}(Q, V) = \sqrt{1 - \sum_i{\sqrt{q_i v_i}}}$
-\end{compactitem}
+	Ransac loop
+	\begin{compactenum}
+		\item Randomly select $s$ correspondences
+		\item Fit model parameters
+		\item Count projected inliers
+		\item Remember the optimal parameters
 
-\subsection{(Non)linear filters}
+	\end{compactenum}
+	$e$ - probability of outlier
 
-Types of noise
-\begin{compactitem}
-	\item Salt and pepper
-	\item Impulse noise
-	\item Gaussian noise
-\end{compactitem}
+	$s$ - minimal number of correspondences to fit a model
 
-\textbf{Convolution}
-\begin{compactitem}
-	\item Correlation $G = H \otimes F$
-	
-	$G[i,j] = \sum_{u=-k}^{k}\sum_{v=-l}^{k}H[u,v]F[i+u,j+v]$
-	
-	\item Convolution $G = H \star F$
+	$p$ - probability of drawing all inliers at least once
 
-	$G[i,j] = \sum_{u=-k}^{k}\sum_{v=-l}^{k}H[u,v]F[i-u,j-v]$
-	
-	If $H[-u,-v] = H[u,v]$, then $\otimes \equiv \star$
-	
-	\item Properties
-	
+	Number of iterations $N = \frac{\log{(1-p)}}{\log{(1-(1-e)^s)}}$
+
+	\section{Keypoints and correspondences}
+
+	\subsection{Keypoint detection}
+
+	\textbf{Harris corner detector}
+
+	$ M = \left[\begin{array}{cc}
+				G(\sigma) \star I_x^2  & G(\sigma) \star I_xI_y \\
+				G(\sigma) \star I_xI_y & G(\sigma) \star I_y^2
+			\end{array}\right] = R \left[ \begin{array}{cc}
+				\lambda_{max} & 0             \\
+				0             & \lambda_{min}
+			\end{array} \right] R^T$
+
+	$det(M) - \alpha trace^2(M) > t$, $0.04 < \alpha < 0.06$
+
+	$det(M) = AB - C^2$, $trace(M) = A + B$
+
+	$CRF(I) = det(M) - \alpha trace(M)$
+
+	Process
+
+	\begin{compactenum}
+		\item Image derivatives
+		\item Squared derivatives
+		\item Gaussian filtered squared derivatives
+		\item Corner response function
+		\item Non-maxima suppression
+	\end{compactenum}
+
+	\textbf{Hessian corner detector}
+
+	$Hessian(I) = \left[\begin{array}{cc}
+				I_{xx} & I_{xy} \\
+				I_{xy} & I_{yy}
+			\end{array}\right]$
+
+	$CRF(I) = det(Hessian(I)) = I_{xx}I_{yy} - I^2_{xy}$
+
+	Process
+
+	\begin{compactenum}
+		\item Image derivatives
+		\item Second order derivatives
+		\item Corner response function
+		\item Non-maxima suppression
+	\end{compactenum}
+
+	\textbf{Laplacian of Gaussian}
+
+	Used as scale response function
+
+	$LoG = \nabla^2g = \frac{\partial^2g}{\partial x^2} + \frac{\partial^2g}{\partial y^2}$
+
+	Process
+
+	\begin{compactenum}
+		\item Laplacian pyramid
+		\item Scale space non-maxima suppression
+	\end{compactenum}
+	\textbf{Difference of Gaussian}
+
+	$DoG = G(x, y, k \sigma) - G(x, y, \sigma)$
+
+	Process
+
+	\begin{compactenum}
+		\item Gaussian pyramid (faster because of down-sampling)
+		\item DoG pyramid from Gaussian
+		\item Scale space non-maxima suppression
+		\item Remove low contrast points
+		\item Remove points detected at edges
+	\end{compactenum}
+
+	\subsection{Local descriptors}
+
 	\begin{compactitem}
-		\item Linear - $h \star (\alpha_1f_1+\alpha_2f_2) = \alpha_1(h \star f_1) + \alpha_2(h \star f_2)$
-		\item Commutative - $f \star g = g \star f$
-		\item Associative - $(f \star g) \star h = f \star (g \star h)$
-		
-		and so also $((f \star b_1) \star b_2) \star b_3 = f \star (b_1 \star b_2 \star b_3)$
-		
-		\item Derivative -
-		$\frac{\partial}{\partial x}(f \star g) = (\frac{\partial}{\partial x}f) \star g = (\frac{\partial}{\partial x}g) \star f$
+		\item Vector of region intensities
+		\item SIFT
 	\end{compactitem}
 
-	\item Boundry conditions
+	\subsection{SIFT}
+
+	\begin{compactenum}
+		\item Split region in 4x4 cells
+		\item Calculate gradient
+		\item 8 bin histogram of gradient weighted by magnitude and region center
+		\item Stack histograms and normalize
+	\end{compactenum}
+
+	Rotation invariance
+
+	36 bins by angle, rotate gradients using dominant rotation, create descriptor for every orientation with magnitude at least 80\% of maximum.
+
+	\textbf{Affine adaptation}
+
+	Start with circular window, estimate new window using the covariance matrix of current window. Iterate until convergence.
+
+	Rotate $R=U^{-1}$ and scale $S^{-1/2}$ from window ellipse $\Sigma = USU^T$, calculate descriptor using affine adapted region.
+
+	\subsection{Correspondences}
+
 	\begin{compactitem}
-		\item Crop
-		\item Bend image around
-		\item replicate edges
-		\item Mirror image
+		\item Find most similar descriptor
+		\item Keep only symmetric
+		\item Keep only distinctive (ratio to second most similar)
 	\end{compactitem}
 
-	\item Image pyramids
-	
-	Nyquist theorem - sample the signal by at least $2f$
-	- Remove high frequencies before sub-sampling
-	
-	Gaussian pyramid
-	
-	$G_i = (G_{i - 1} \star \text{Gaussian}) \downarrow 2$, $G_0 = \text{image}$
+	\section{Cameras and stereo systems}
 
-\end{compactitem}
+	Projection: extrinsic $world \to camera$, intrinsic $camera \to image$
 
-\section{Edge detection and image gradients}
 
-\subsection{Image derivatives}
+	\subsection{Pinhole camera model}
 
-Discrete case (images)
+	$\left[ \begin{array}{c}
+				X \\ Y \\ Z \\ 1
+			\end{array} \right]
+		\mapsto
+		\left[ \begin{array}{c}
+				fX/Z \\ fY/Z \\ 1
+			\end{array} \right]
+	$
+	$K = \left[ \begin{array}{ccc}
+				a_x & s   & x_0 \\
+				0   & a_y & y_0 \\
+				0   & 0   & 1
+			\end{array} \right]$
+	$P_0 = K[I|0]$
 
-$\frac{\partial f(x,y)}{\partial x} = \frac{f(x+1, y)-f(x,y)}{1}$
+	Principal point $[p_x, p_y]$, focal length $f$, pixels per meter $[m_x, m_y]$, skew $s$
 
-Gradient magnitude
+	$a_x = f m_x$, $a_y = f m_y$, $x_0 = p_x m_x$, $y_0 = p_y m_y$
 
-$\nabla f = [\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}]$
+	$\tilde{X}_{cam} = R(\tilde{X}-\tilde{C}) =
+		\left[ \begin{array}{cc}
+				R & -R\tilde{C} \\
+				0 & 1
+			\end{array} \right] X$, Camera origin in w.c.s $\tilde{C}$
 
-Direction - $\theta = tan^{-1}(\frac{\partial f}{\partial x} / \frac{\partial f}{\partial y})$
+	$P = K[R|t], t=-R\tilde{C}$
 
-Magnitude - $\| \nabla f \| = \sqrt{(\frac{\partial f}{\partial x})^2 + (\frac{\partial f}{\partial y})^2}$
+	Nonlinearity correction using polynomial
 
-Smarter derivative - $\frac{\partial}{\partial x}(I \star G) = I \star (\frac{\partial}{\partial x} G)$
+	$\tilde{x} = x_d + (x_d - c_x)(K_1\rho^2+K_2\rho^4+\dots)$, $\tilde{y} = \dots$
 
-\subsection{Canny edge detector}
+	Degrees of freedom
 
-Good edge detector
+	$[p_x, p_y]$: 2, $f$: 1, $[m_x \equiv_{rectangular} m_y]$: 1(2), $s$: 1, $R$: 3, $t$: 3
 
-\begin{compactitem}
-	\item Detection - minimizes FP and FN
-	\item Localization - close to true edge
-	\item Specificity - minimize local maxima
-\end{compactitem}
+	\subsection{Homography}
 
-\textbf{Process}
-\begin{compactenum}
-	\item Calculate $I_\partial = I \star \frac{\partial}{\partial x} G$
-	\item Calculate $\theta$, $\| \nabla f \|$
-	\item Non-maxima suppression
-	\item Trace edges by hysteresis thresholding
-\end{compactenum}
+	$w \mathbf{x' = H x}$
 
-\subsection{Hough transform}
+	\textbf{Direct linear transformation}
 
-\textbf{Process}
-\begin{compactenum}
-	\item For each edge point compute all possible parameters passing through that point
-	\item For each set of parameters cast a vote
-	\item Select parameter combinations that receive enough votes
-\end{compactenum}
+	$[a_\times]\equiv \left[ \begin{array}{ccc}
+				0    & -a_z & a_y  \\
+				a_z  & 0    & -a_x \\
+				-a_y & a_x  & 0
+			\end{array} \right]$;
+	$\mathbf{x_i' \times H x_i} = 0$; $\mathbf{Ah = 0}$
 
-Lines - $x \cos \theta - y \sin \theta = d$
+	\textbf{Preconditioning}
 
-Circles - $(x - a)^2 + (y - b)^2 = r^2$
+	$T_{pre} = \left[ \begin{array}{ccc}
+				a & 0 & c \\
+				0 & b & d \\
+				0 & 0 & 1
+			\end{array} \right]$;
+	$\tilde{x} = T_{pre}x$;
+	$\tilde{x}_i' \times \tilde{H} \tilde{x}_i = 0$;
+	$H = T_{pre}^{'-1} \tilde{H} T_{pre}$
 
-\textbf{Extensions}
-\begin{compactitem}
-	\item Use gradient direction for $\theta$
-	\item Use magnitude for voting weight
-	\item Generalized Hough transform
-\end{compactitem}
+	Set $a,b,c,d$ so that mean $\tilde{x}_i$ is 0 and variance is 1
 
-\section{Fitting models}
+	\subsection{Vanishing points}
 
-Transformation of points $x_i' = f(x_i; \mathbf{p})$
+	$v = \left[ \begin{array}{c}
+				f X_D / Z_D \\
+				f Y_D / Z_D
+			\end{array} \right]$
 
-\subsection{Least-squares}
-Minimizing a continuous error function $\tilde{p} = argmin_\mathbf{p}E(\mathbf{p})$
+	\subsection{Calibration}
 
-$\epsilon_i = f(x_i; \mathbf{p}) - y_i$
+	Estimate $\mathbf{P}$ from a known calibration object.
 
-$E(\mathbf{p}) = \sum_{i=1}^{N}\epsilon_i^2$
+	\begin{compactitem}
+		\item Using DLT and preconditioning
+		$\mathbf{x_i' \times P x_i} = 0$
+		and decompose to  $K[R|t]$
 
-Strategy
+		\item Using minimization of error
 
-\begin{compactenum}
-	\item Rewrite the cost function $E(\mathbf{p})$ into vector-matrix form
-	\item $\frac{\partial E(\mathbf{p})}{\partial \mathbf{p}} = 0; \text{solve for p}$
-\end{compactenum}
+		$\varepsilon_i = \left[ \begin{array}{c}
+					\varepsilon_{xi} \\ \varepsilon_{yi}
+				\end{array} \right] = (x_i - PX_i)\;$
+		$E(P)=\sum_{i=1}^{N}\varepsilon_i^T\varepsilon_i$
 
-Derivative of linear and quadratic form
+		\item Multiplane calibration
+	\end{compactitem}
 
-$\frac{\partial \mathbf{A^Tp}}{\partial \mathbf{p}} = \mathbf{A^T}$,
-$\mathbf{\frac{\partial p^T A p}{\partial p} = 2 A p}$
+	\subsection{Triangulation}
 
+	Using DLT with $[x_{1 \times}]P_1X=0$ and $[x_{2 \times}]P_2X=0$,
+	then minimize sum of re-projection errors using iterative algorithm
+	$E(X) = d^2(x_1,P_1X) + d^2(x_2,P_2X)$
 
-\subsection{Normal equations}
+	\subsection{Epipolar geometry}
 
-Rewrite the error into $\mathbf{A p = b}$
+	Epipolar constraint $X^T([T_\times]RX') = 0$; $x^T E x' = 0$
 
-Solve by $\mathbf{p = A^\dagger b = (A^TA)^{-1}A^Tb}$
+	Essential matrix $E=[T_\times] R$ constrains $x$ and $x'$ in meters
 
-Weighted least squares
+	Epipolar line vector
 
-$E(\mathbf{p}) = \sum_{i=1}^{N}w_i\epsilon_i^2$
+	$l' = E^Tx$;
+	$l = Ex'$
 
-Solve by $\mathbf{p = (A^TWA)^{-1}A^TWb}$
+	Fundamental matrix constrains $\hat{x}$ and $\hat{x}'$ in pixels
 
-\subsection{Homogenus systems}
+	$ F = K^{-T}EK^{'-1}$
 
-Constrained least squares $Ap = \lambda p$ $\to$ $\mathbf{Ap = 0}$ with $\|p\|^2=1$
+	Epipolar lines
+	$\hat{l}' = F^Tx$;
+	$\hat{l} = Fx'$
 
-Solve by $svd(A)$; $\mathbf{p}$ is eig. vector with smallest eig. value
 
-\subsection{Nonlinear cost function}
-\begin{compactitem}
-	\item Gradient descend
-	\item Newtons method
-	\item Levenberg-Marquardt
-	\dots
-\end{compactitem}
+	Epipole $Fe' = 0$, $F^Te = 0$
 
-\subsection{RANSAC}
+	\subsection{Simple stereo}
 
-Ransac loop
-\begin{compactenum}
-	\item Randomly select $s$ correspondences
-	\item Fit model parameters
-	\item Count projected inliers
-	\item Remember the optimal parameters
+	Baseline $b_x$, focal length $f$
 
-\end{compactenum}
-$e$ - probability of outlier
+	3D from disparity
 
-$s$ - minimal number of correspondences to fit a model
+	$X = x_L \frac{b_x}{d}$, $Y = y_L \frac{b_x}{d}$, $Z = f \frac{b_x}{d}$
 
-$p$ - probability of drawing all inliers at least once
+	\textbf{Global disparity optimization}
 
-Number of iterations $N = \frac{\log{(1-p)}}{\log{(1-(1-e)^s)}}$
+	Globally consistent solution
 
-\section{Keypoints and correspondences}
+	$E_{data}(d_i) = e^{-similarity(d_i)}$
 
-\subsection{Keypoint detection}
+	$E(d_i) = E_{data}(d_i) + \lambda E_S(d_i)$
 
-\textbf{Harris corner detector}
+	Semi global block matching - apply line based optimization across several directions
 
-$ M = \left[\begin{array}{cc}
-	G(\sigma) \star I_x^2 & G(\sigma) \star I_xI_y \\
-	G(\sigma) \star I_xI_y & G(\sigma) \star I_y^2
-\end{array}\right] = R \left[ \begin{array}{cc}
-	\lambda_{max} & 0 \\
-	0 & \lambda_{min}
-\end{array} \right] R^T$
+	\subsection{Structure from motion}
 
-$det(M) - \alpha trace^2(M) > t$, $0.04 < \alpha < 0.06$
+	\begin{compactenum}
+		\item Find keypoint correspondences
+		\item estimate $F$ (weak calibration)
+		\item get $E$ from $F$ and $K_1, K_2$
+		\item get $[R | t]$
+		\item triangluation
+	\end{compactenum}
 
-$det(M) = AB - C^2$, $trace(M) = A + B$
+	\textbf{Normalized 8-point algorithm}
 
-$CRF(I) = det(M) - \alpha trace(M)$
+	\begin{compactenum}
+		\item Precondition with $\mu = 0$ and $\sigma = \sqrt{2}$
+		\item Create homogeneous system using correspondences and epipolar constraint
+		\item Minimize $\sum_{i=1}^{N}(x_i^TFX_i')$ and solve
+		\item Set last $\lambda$ to 0 and reconstruct
+		\item Transform to original units $F = T^{'T}\tilde{F}T$
 
-Process
+	\end{compactenum}
 
-\begin{compactenum}
-	\item Image derivatives
-	\item Squared derivatives
-	\item Gaussian filtered squared derivatives
-	\item Corner response function
-	\item Non-maxima suppression
-\end{compactenum}
+	\textbf{Fundamental matrix estimation}
 
-\textbf{Hessian corner detector}
+	\begin{compactenum}
+		\item Find keypoint and correspondences using proximity constraint
+		\item filter correspondences by visual similarity
+		\item apply RANSAC with 8-point algorithm and epipolar constraint pruning
 
-$Hessian(I) = \left[\begin{array}{cc}
-	I_{xx} & I_{xy} \\
-	I_{xy} & I_{yy}
-\end{array}\right]$
+	\end{compactenum}
 
-$CRF(I) = det(Hessian(I)) = I_{xx}I_{yy} - I^2_{xy}$
 
-Process
+	\subsection{Active stereo}
 
-\begin{compactenum}
-	\item Image derivatives
-	\item Second order derivatives
-	\item Corner response function
-	\item Non-maxima suppression
-\end{compactenum}
+	Project light patterns over the object
 
-\textbf{Laplacian of Gaussian}
+	Multi band triangulation: Assume smooth surface, project color bands
 
-Used as scale response function
+	\section{Feature learning}
 
-$LoG = \nabla^2g = \frac{\partial^2g}{\partial x^2} + \frac{\partial^2g}{\partial y^2}$
+	\subsection{Natural linear coordinate systems}
 
-Process
+	\textbf{Principal component analysis}
 
-\begin{compactenum}
-	\item Laplacian pyramid
-	\item Scale space non-maxima suppression
-\end{compactenum}
-\textbf{Difference of Gaussian}
+	$\Sigma = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)(x_u - \mu)^T = \frac{1}{N}X_dX_d^T, X_d = X - \mu$
 
-$DoG = G(x, y, k \sigma) - G(x, y, \sigma)$
+	Maximize $u^T\Sigma u$ $\rightarrow$ $\Sigma u = \lambda u$, solutions are $U$ = eig. vectors of $\Sigma$.
 
-Process
+	Project data to PCA c.s. $y_i = U^T(x_i-\mu)$
 
-\begin{compactenum}
-	\item Gaussian pyramid (faster because of down-sampling)
-	\item DoG pyramid from Gaussian
-	\item Scale space non-maxima suppression
-	\item Remove low contrast points
-	\item Remove points detected at edges
-\end{compactenum}
+	Project data from PCA c.s. $x_i = U y_i + \mu$
 
-\subsection{Local descriptors}
+	\textbf{Dual PCA}
 
-\begin{compactitem}
-	\item Vector of region intensities
-	\item SIFT
-\end{compactitem}
+	If sample dimension $M >$  number of samples $N$
 
-\subsection{SIFT}
+	$\Sigma' = \frac{1}{N}X_d^TX_d$
 
-\begin{compactenum}
-	\item Split region in 4x4 cells
-	\item Calculate gradient
-	\item 8 bin histogram of gradient weighted by magnitude and region center
-	\item Stack histograms and normalize
-\end{compactenum}
+	$u_i = \frac{X_d u_i'}{\sqrt{N \lambda_i'}}$
 
-Rotation invariance
+	\textbf{Classification by subspace recognition}
 
-36 bins by angle, rotate gradients using dominant rotation, create descriptor for every orientation with magnitude at least 80\% of maximum.
+	If window contains a trained subspace the reconstruction will work well. $\|\tilde{x}_i-x_i\|^2 < \theta$
 
-\textbf{Affine adaptation}
+	\textbf{Linear discriminant analysis}
 
-Start with circular window, estimate new window using the covariance matrix of current window. Iterate until convergence.
+	$S_W = \sum_{i=1}^{c}\sum_{j}(x_j^{(i)} - \mu_i)(x_j^{(i)} - \mu_i)^T$
 
-Rotate $R=U^{-1}$ and scale $S^{-1/2}$ from window ellipse $\Sigma = USU^T$, calculate descriptor using affine adapted region.
+	$S_B = \sum_{i=1}^{c}N_i(\mu_i - \mu)(\mu_i - \mu)^T$
 
-\subsection{Correspondences}
+	Maximize $J(w) = \frac{w^TS_bw}{w^TS_ww}$ $\rightarrow$ $S_w^{-1}S_bw=\lambda w$, solutions are W = first $c - 1$ eig. vectors of $S_w^{-1}S_bw$.
 
-\begin{compactitem}
-	\item Find most similar descriptor
-	\item Keep only symmetric
-	\item Keep only distinctive (ratio to second most similar)
-\end{compactitem}
+	\subsection{Nonlinear hand-crafted transforms}
 
-\section{Cameras and stereo systems}
+	\textbf{Histogram of gradients}
 
-Projection: extrinsic $world \to camera$, intrinsic $camera \to image$
+	\begin{compactenum}
+		\item Calculate gradient
+		\item Calculate HOG in 8x8 blocks and normalize, weighted by magnitude
+		\item Train a classifier using support vector machine
+	\end{compactenum}
 
+	\subsection{Feature selection}
 
-\subsection{Pinhole camera model}
+	\textbf{Viola-Jones face detection}
 
-$\left[ \begin{array}{c}
-	X \\ Y \\ Z \\ 1
-\end{array} \right]
-\mapsto
-\left[ \begin{array}{c}
-	fX/Z \\ fY/Z \\ 1
-\end{array} \right]
-$
-$K = \left[ \begin{array}{ccc}
-	a_x & s & x_0 \\
-	0 & a_y & y_0 \\
-	0 & 0 & 1
-\end{array} \right]$
-$P_0 = K[I|0]$
+	Boosting (Adaboost)
+	\begin{compactitem}
+		\item Strong classifier from many weak classifiers
 
-Principal point $[p_x, p_y]$, focal length $f$, pixels per meter $[m_x, m_y]$, skew $s$
+		$h(x) = sign(\sum_{t=1}^{T} \alpha_t h_t(x) )$, classifier weight $\alpha_t$, weak classifier $h_t(x)$
 
-$a_x = f m_x$, $a_y = f m_y$, $x_0 = p_x m_x$, $y_0 = p_y m_y$
+		\item Weak classifiers using sum of region intensities with integral images $\Sigma (R) = \int_\ulcorner + \int_\lrcorner - \int_\llcorner - \int_\urcorner$
 
-$\tilde{X}_{cam} = R(\tilde{X}-\tilde{C}) = 
-\left[ \begin{array}{cc}
-	R & -R\tilde{C} \\
-	0 & 1
-\end{array} \right] X$, Camera origin in w.c.s $\tilde{C}$
+		\item Using cascade of classifiers to reject obvious windows
+	\end{compactitem}
 
-$P = K[R|t], t=-R\tilde{C}$
+	\textbf{Region proposals for selective search}
 
-Nonlinearity correction using polynomial
+	Can be used by slow classifiers, hierarchical segmentation
 
-$\tilde{x} = x_d + (x_d - c_x)(K_1\rho^2+K_2\rho^4+\dots)$, $\tilde{y} = \dots$
+	\subsection{End-to-end feature \& classifier learning}
 
-Degrees of freedom
+	\textbf{Convolutional neural networks}
 
-$[p_x, p_y]$: 2, $f$: 1, $[m_x \equiv_{rectangular} m_y]$: 1(2), $s$: 1, $R$: 3, $t$: 3
+	\begin{compactitem}
+		\item[] \textbf{Feature extraction}
+		\item Convolutional layers
+		\item Nonlinearity (RELU)
+		\item Pooling layers
+		\item[] \textbf{Classifier}
+		\item Multi-layer perceptron
+	\end{compactitem}
 
-\subsection{Homography}
+	\textbf{Region based CNN evolution}
+	\begin{compactitem}
+		\item Slow R-CNN - processes every region proposal through the whole CNN to classify
+		\item Fast R-CNN - process whole image to extract features and join with region proposals to classify
+		\item Faster R-CNN - generate region proposals using extracted features network, multi-scale feature extraction
+		\item Mask R-CNN - Use box regression and additional MLP to create the segmentation mask
+	\end{compactitem}
 
-$w \mathbf{x' = H x}$
 
-\textbf{Direct linear transformation}
+	\section{Keypoint based recognition}
 
-$[a_\times]\equiv \left[ \begin{array}{ccc}
-	0 & -a_z & a_y \\
-	a_z & 0 & -a_x \\
-	-a_y & a_x & 0
-\end{array} \right]$;
-$\mathbf{x_i' \times H x_i} = 0$; $\mathbf{Ah = 0}$
+	\subsection{Bag of words models}
 
-\textbf{Preconditioning}
+	\begin{compactenum}
+		\item Feature detection and representation
 
-$T_{pre} = \left[ \begin{array}{ccc}
-	a & 0 & c \\
-	0 & b & d \\
-	0 & 0 & 1
-\end{array} \right]$;
-$\tilde{x} = T_{pre}x$;
-$\tilde{x}_i' \times \tilde{H} \tilde{x}_i = 0$;
-$H = T_{pre}^{'-1} \tilde{H} T_{pre}$
+		Use SIFT and affine adaptation, collect all descriptors
 
-Set $a,b,c,d$ so that mean $\tilde{x}_i$ is 0 and variance is 1
+		\item Dictionary construction
 
-\subsection{Vanishing points}
+		Cluster descriptors into clusters (K-means) - cluster center is a word
 
-$v = \left[ \begin{array}{c}
-	f X_D / Z_D \\
-	f Y_D / Z_D
-\end{array} \right]$
+		\item Image representation
 
-\subsection{Calibration}
+		Detect words in training images and build word histograms (BOWs)
 
-Estimate $\mathbf{P}$ from a known calibration object.
+		\item Build a classifier
 
-\begin{compactitem}
-	\item Using DLT and preconditioning
-	$\mathbf{x_i' \times P x_i} = 0$
-	and decompose to  $K[R|t]$
-	
-	\item Using minimization of error
-	
-	$\varepsilon_i = \left[ \begin{array}{c}
-		\varepsilon_{xi} \\ \varepsilon_{yi}
-	\end{array} \right] = (x_i - PX_i)\;$
-	$E(P)=\sum_{i=1}^{N}\varepsilon_i^T\varepsilon_i$
-	
-	\item Multiplane calibration
-\end{compactitem}
+		Use histograms to make a classifier
 
-\subsection{Triangulation}
+		\item Recognition
 
-Using DLT with $[x_{1 \times}]P_1X=0$ and $[x_{2 \times}]P_2X=0$,
-then minimize sum of re-projection errors using iterative algorithm
-$E(X) = d^2(x_1,P_1X) + d^2(x_2,P_2X)$
+		Extract BOWs and apply them to the classifier
+	\end{compactenum}
 
-\subsection{Epipolar geometry}
+	\subsection{Detection by RANSAC and GHT}
 
-Epipolar constraint $X^T([T_\times]RX') = 0$; $x^T E x' = 0$
+	\textbf{Detection by RANSAC}
+	\begin{compactenum}
+		\item Represent model using affine deformation invariant parts
+		\item Detect parts in image
+		\item Use RANSAC with parts and try to fit a good model
+	\end{compactenum}
 
-Essential matrix $E=[T_\times] R$ constrains $x$ and $x'$ in meters
+	\textbf{Generalized Hough transform}
+	\begin{compactenum}
+		\item Index descriptors
+		\item Apply GHT to obtain detections, each feature casts a vote into the Hough space
+		\item Refine detection using affine transform
+	\end{compactenum}
 
-Epipolar line vector
-
-$l' = E^Tx$;
-$l = Ex'$
-
-Fundamental matrix constrains $\hat{x}$ and $\hat{x}'$ in pixels
-
-$ F = K^{-T}EK^{'-1}$
-
-Epipolar lines
-$\hat{l}' = F^Tx$;
-$\hat{l} = Fx'$
-
-
-Epipole $Fe' = 0$, $F^Te = 0$
-
-\subsection{Simple stereo}
-
-Baseline $b_x$, focal length $f$
-
-3D from disparity
-
-$X = x_L \frac{b_x}{d}$, $Y = y_L \frac{b_x}{d}$, $Z = f \frac{b_x}{d}$
-
-\textbf{Global disparity optimization}
-
-Globally consistent solution
-
-$E_{data}(d_i) = e^{-similarity(d_i)}$
-
-$E(d_i) = E_{data}(d_i) + \lambda E_S(d_i)$
-
-Semi global block matching - apply line based optimization across several directions
-
-\subsection{Structure from motion}
-
-\begin{compactenum}
-	\item Find keypoint correspondences
-	\item estimate $F$ (weak calibration)
-	\item get $E$ from $F$ and $K_1, K_2$
-	\item get $[R | t]$
-	\item triangluation
-\end{compactenum}
-
-\textbf{Normalized 8-point algorithm}
-
-\begin{compactenum}
-	\item Precondition with $\mu = 0$ and $\sigma = \sqrt{2}$
-	\item Create homogeneous system using correspondences and epipolar constraint
-	\item Minimize $\sum_{i=1}^{N}(x_i^TFX_i')$ and solve
-	\item Set last $\lambda$ to 0 and reconstruct
-	\item Transform to original units $F = T^{'T}\tilde{F}T$
-
-\end{compactenum}
-
-\textbf{Fundamental matrix estimation}
-
-\begin{compactenum}
-	\item Find keypoint and correspondences using proximity constraint
-	\item filter correspondences by visual similarity
-	\item apply RANSAC with 8-point algorithm and epipolar constraint pruning
-
-\end{compactenum}
-
-
-\subsection{Active stereo}
-
-Project light patterns over the object
-
-Multi band triangulation: Assume smooth surface, project color bands
-
-\section{Feature learning}
-
-\subsection{Natural linear coordinate systems}
-
-\textbf{Principal component analysis}
-
-$\Sigma = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)(x_u - \mu)^T = \frac{1}{N}X_dX_d^T, X_d = X - \mu$
-
-Maximize $u^T\Sigma u$ $\rightarrow$ $\Sigma u = \lambda u$, solutions are $U$ = eig. vectors of $\Sigma$.
-
-Project data to PCA c.s. $y_i = U^T(x_i-\mu)$
-
-Project data from PCA c.s. $x_i = U y_i + \mu$
-
-\textbf{Dual PCA}
-
-If sample dimension $M >$  number of samples $N$
-
-$\Sigma' = \frac{1}{N}X_d^TX_d$
-
-$u_i = \frac{X_d u_i'}{\sqrt{N \lambda_i'}}$
-
-\textbf{Classification by subspace recognition}
-
-If window contains a trained subspace the reconstruction will work well. $\|\tilde{x}_i-x_i\|^2 < \theta$
-
-\textbf{Linear discriminant analysis}
-
-$S_W = \sum_{i=1}^{c}\sum_{j}(x_j^{(i)} - \mu_i)(x_j^{(i)} - \mu_i)^T$
-
-$S_B = \sum_{i=1}^{c}N_i(\mu_i - \mu)(\mu_i - \mu)^T$
-
-Maximize $J(w) = \frac{w^TS_bw}{w^TS_ww}$ $\rightarrow$ $S_w^{-1}S_bw=\lambda w$, solutions are W = first $c - 1$ eig. vectors of $S_w^{-1}S_bw$.
-
-\subsection{Nonlinear hand-crafted transforms}
-
-\textbf{Histogram of gradients}
-
-\begin{compactenum}
-	\item Calculate gradient
-	\item Calculate HOG in 8x8 blocks and normalize, weighted by magnitude
-	\item Train a classifier using support vector machine
-\end{compactenum}
-
-\subsection{Feature selection}
-
-\textbf{Viola-Jones face detection}
-
-Boosting (Adaboost)
-\begin{compactitem}
-	\item Strong classifier from many weak classifiers
-	
-	$h(x) = sign(\sum_{t=1}^{T} \alpha_t h_t(x) )$, classifier weight $\alpha_t$, weak classifier $h_t(x)$
-	
-	\item Weak classifiers using sum of region intensities with integral images $\Sigma (R) = \int_\ulcorner + \int_\lrcorner - \int_\llcorner - \int_\urcorner$
-	
-	\item Using cascade of classifiers to reject obvious windows
-\end{compactitem}
-
-\textbf{Region proposals for selective search}
-
-Can be used by slow classifiers, hierarchical segmentation
-
-\subsection{End-to-end feature \& classifier learning}
-
-\textbf{Convolutional neural networks}
-
-\begin{compactitem}
-	\item[] \textbf{Feature extraction}
-	\item Convolutional layers
-	\item Nonlinearity (RELU)
-	\item Pooling layers
-	\item[] \textbf{Classifier}
-	\item Multi-layer perceptron
-\end{compactitem}
-
-\textbf{Region based CNN evolution}
-\begin{compactitem}
-	\item Slow R-CNN - processes every region proposal through the whole CNN to classify
-	\item Fast R-CNN - process whole image to extract features and join with region proposals to classify
-	\item Faster R-CNN - generate region proposals using extracted features network, multi-scale feature extraction	
-	\item Mask R-CNN - Use box regression and additional MLP to create the segmentation mask
-\end{compactitem}
-
-
-\section{Keypoint based recognition}
-
-\subsection{Bag of words models}
-
-\begin{compactenum}
-	\item Feature detection and representation
-	
-	Use SIFT and affine adaptation, collect all descriptors
-	
-	\item Dictionary construction
-	
-	Cluster descriptors into clusters (K-means) - cluster center is a word
-	
-	\item Image representation
-	
-	Detect words in training images and build word histograms (BOWs)
-	
-	\item Build a classifier
-	
-	Use histograms to make a classifier
-	
-	\item Recognition
-	
-	Extract BOWs and apply them to the classifier
-\end{compactenum}
-
-\subsection{Detection by RANSAC and GHT}
-
-\textbf{Detection by RANSAC}
-\begin{compactenum}
-	\item Represent model using affine deformation invariant parts
-	\item Detect parts in image
-	\item Use RANSAC with parts and try to fit a good model
-\end{compactenum}
-
-\textbf{Generalized Hough transform}
-\begin{compactenum}
-	\item Index descriptors
-	\item Apply GHT to obtain detections, each feature casts a vote into the Hough space
-	\item Refine detection using affine transform
-\end{compactenum}
-
-}
+	}
 \end{multicols*}
 \end{document}

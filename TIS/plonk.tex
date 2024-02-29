@@ -8,136 +8,136 @@
 
 \begin{multicols}{4}
 
-\section{Osnove}
-\input{ponovitev-analize.tex}
+	\section{Osnove}
+	\input{ponovitev-analize.tex}
 
-\subsection{Ponovitev logaritmov}
-\begin{small}
-    \begin{itemize} 
-        \item $log_a x = \dfrac{log_b x}{log_b a}$
-        \item $log_b(\dfrac{x}{y}) = log_b x - log_b y$
-        \item $x = b^y \implies log_b x = y$
-    \end{itemize}
-\end{small}
+	\subsection{Ponovitev logaritmov}
+	\begin{small}
+		\begin{itemize}
+			\item $log_a x = \dfrac{log_b x}{log_b a}$
+			\item $log_b(\dfrac{x}{y}) = log_b x - log_b y$
+			\item $x = b^y \implies log_b x = y$
+		\end{itemize}
+	\end{small}
 
-\subsection{Bayesova formula}
-\begin{center}
-    \begin{math}
-        P(H_{i} | A) = 
-    \end{math}
-    \begin{math}
-        \dfrac{P(H_{i}) P(A | H_{i})}{P(A)}
-    \end{math}=\\
-    \begin{math}
-        = \dfrac{P(H_{i}) P(A | H_{i})}{\sum_{k=1}^{n} P(H_{k}) P(A | H_{k})}
-    \end{math}        
-\end{center}
+	\subsection{Bayesova formula}
+	\begin{center}
+		\begin{math}
+			P(H_{i} | A) =
+		\end{math}
+		\begin{math}
+			\dfrac{P(H_{i}) P(A | H_{i})}{P(A)}
+		\end{math}=\\
+		\begin{math}
+			= \dfrac{P(H_{i}) P(A | H_{i})}{\sum_{k=1}^{n} P(H_{k}) P(A | H_{k})}
+		\end{math}
+	\end{center}
 
-\subsection{Binomska}
-\begin{center}
-    \begin{math}
-        P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.
-    \end{math}
-\end{center}
+	\subsection{Binomska}
+	\begin{center}
+		\begin{math}
+			P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.
+		\end{math}
+	\end{center}
 
-\subsection{Lastna informacija}
-Opisuje dogodek, ki se je zgodil:
-\begin{center}
-    \begin{math}
-        I_i = \log_2(\frac{1}{p_i}) = - \log_2(p_i)
-    \end{math}
-\end{center}
+	\subsection{Lastna informacija}
+	Opisuje dogodek, ki se je zgodil:
+	\begin{center}
+		\begin{math}
+			I_i = \log_2(\frac{1}{p_i}) = - \log_2(p_i)
+		\end{math}
+	\end{center}
 
-\subsection{Entropija}
-je povprecje vseh lastnih informacij:
-\begin{center}
-    \begin{math}
-        H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log_2 p_i
-    \end{math}
-\end{center}
-Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
+	\subsection{Entropija}
+	je povprecje vseh lastnih informacij:
+	\begin{center}
+		\begin{math}
+			H(X) = \sum_{i=1}^{n} p_i I_i = -\sum_{i=1}^{n} p_i log_2 p_i
+		\end{math}
+	\end{center}
+	Vec zaporednih dogodkov neodvisnega vira: $X^l = X \times \dots \times X \rightarrow H(X^l) = lH(X)$.
 
-\section{Kodi}
+	\section{Kodi}
 
-\subsection{Uvod}
-Povprecna dolzina k.z.
-\begin{center}
-    \begin{math}
-        L = \sum_{i=1}^n p_i l_i
-    \end{math}
-\end{center}
+	\subsection{Uvod}
+	Povprecna dolzina k.z.
+	\begin{center}
+		\begin{math}
+			L = \sum_{i=1}^n p_i l_i
+		\end{math}
+	\end{center}
 
-\subsection{Tipi kodov}
-\begin{itemize}
-    \item \textbf{optimalen} - ce ima najmanjso mozno dolzino kodnih zamenjav
-    \item \textbf{idealen} - ce je povprecna dolzina kodnih zamenjav enaka entropiji
-    \item \textbf{enakomeren} - ce je dolzina vseh kodnih zamenjav enaka
-    \item \textbf{enoznacen} - ce lahko poljuben niz znakov dekodiramo na en sam nacin
-    \item \textbf{trenuten} - ce lahko osnovni znak dekodiramo takoj, ko sprejmemo celotno kodno zamenjavo
-\end{itemize}
+	\subsection{Tipi kodov}
+	\begin{itemize}
+		\item \textbf{optimalen} - ce ima najmanjso mozno dolzino kodnih zamenjav
+		\item \textbf{idealen} - ce je povprecna dolzina kodnih zamenjav enaka entropiji
+		\item \textbf{enakomeren} - ce je dolzina vseh kodnih zamenjav enaka
+		\item \textbf{enoznacen} - ce lahko poljuben niz znakov dekodiramo na en sam nacin
+		\item \textbf{trenuten} - ce lahko osnovni znak dekodiramo takoj, ko sprejmemo celotno kodno zamenjavo
+	\end{itemize}
 
-\subsection{Kraftova neenakost}
-obstaja trenutni kod, iff
-\begin{center}
-    \begin{math}
-        \sum_{i=1}^n r^{-li} \leq 1
-    \end{math}
-\end{center}
+	\subsection{Kraftova neenakost}
+	obstaja trenutni kod, iff
+	\begin{center}
+		\begin{math}
+			\sum_{i=1}^n r^{-li} \leq 1
+		\end{math}
+	\end{center}
 
-\subsection{Povp. dolzina, ucinkovitost}
-Najkrajse kodne zamenjave: 
-\begin{center}
-    \begin{math}
-        H_r(X) = L \rightarrow l_i = \lceil - \log_r p_i \rceil
-    \end{math}
-\end{center}
-Ucinkovitost:
-\begin{center}
-    \begin{math}
-        \eta = \dfrac{H(X)}{L \log_2 r}, \eta \in [0, 1]
-    \end{math}
-\end{center}
-Kod je \textbf{gospodaren}, ce je $L$ znotraj:
-\begin{center}
-    \begin{math}
-        H_r(X) \leq L < H_r(X) + 1
-    \end{math}
-\end{center}
-kjer je $H_r(X)$:
-\begin{center}
-    \begin{math}
-        H_r(X) = -\sum^{n}_{i=1} \dfrac{\log_{p_i}}{\log_r} = \dfrac{H(X)}{\log_r}
-    \end{math}
-\end{center}
+	\subsection{Povp. dolzina, ucinkovitost}
+	Najkrajse kodne zamenjave:
+	\begin{center}
+		\begin{math}
+			H_r(X) = L \rightarrow l_i = \lceil - \log_r p_i \rceil
+		\end{math}
+	\end{center}
+	Ucinkovitost:
+	\begin{center}
+		\begin{math}
+			\eta = \dfrac{H(X)}{L \log_2 r}, \eta \in [0, 1]
+		\end{math}
+	\end{center}
+	Kod je \textbf{gospodaren}, ce je $L$ znotraj:
+	\begin{center}
+		\begin{math}
+			H_r(X) \leq L < H_r(X) + 1
+		\end{math}
+	\end{center}
+	kjer je $H_r(X)$:
+	\begin{center}
+		\begin{math}
+			H_r(X) = -\sum^{n}_{i=1} \dfrac{\log_{p_i}}{\log_r} = \dfrac{H(X)}{\log_r}
+		\end{math}
+	\end{center}
 
-\subsection{Shannonov prvi teorem}
-Za nize neodvisnih znakov dozline \textit{n} obstajajo kodi,
-za katere velja:
-\begin{center}
-    \begin{math}
-        \lim_{n \rightarrow \infty} \dfrac{L_n}{n} = H(X)
-    \end{math}
-\end{center}
-pri cemer je $H(X)$ entropija vira $X$.
+	\subsection{Shannonov prvi teorem}
+	Za nize neodvisnih znakov dozline \textit{n} obstajajo kodi,
+	za katere velja:
+	\begin{center}
+		\begin{math}
+			\lim_{n \rightarrow \infty} \dfrac{L_n}{n} = H(X)
+		\end{math}
+	\end{center}
+	pri cemer je $H(X)$ entropija vira $X$.
 
-\subsection{Huffmanov kod}
-Veljati mora:
-\begin{center}
-    \begin{math}
-        n = r + k(r-1), k \geq 0
-    \end{math}
-\end{center}
+	\subsection{Huffmanov kod}
+	Veljati mora:
+	\begin{center}
+		\begin{math}
+			n = r + k(r-1), k \geq 0
+		\end{math}
+	\end{center}
 
-\subsection{Kod Lempel-Ziv (LZ77)} 
-Gre za kodiranje na osnovi slovarja
-\textbf{Kodiranje:} uporablja drseca okna, znaki se premikajo iz desne na levo.
-Referenca je podana kot trojcek(odmik, dolzina, naslednji znak):
-npr. (0, 0, A) - ni ujemanja, (4, 3, B) - 4 znake nazaj se ponovi 3 znakovni podniz, ki se nato zakljuci s B.\\
-\textbf{dekodiranje:} sledimo kodnim zamenjavam
+	\subsection{Kod Lempel-Ziv (LZ77)}
+	Gre za kodiranje na osnovi slovarja
+	\textbf{Kodiranje:} uporablja drseca okna, znaki se premikajo iz desne na levo.
+	Referenca je podana kot trojcek(odmik, dolzina, naslednji znak):
+	npr. (0, 0, A) - ni ujemanja, (4, 3, B) - 4 znake nazaj se ponovi 3 znakovni podniz, ki se nato zakljuci s B.\\
+	\textbf{dekodiranje:} sledimo kodnim zamenjavam
 
-\subsection{Kod Lempel-Ziv (LZW)}
-Osnovni slovar je podan in ga sporti doponjujemo. Alogritem za \textbf{kodiranje}:
-\begin{verbatim}
+	\subsection{Kod Lempel-Ziv (LZW)}
+	Osnovni slovar je podan in ga sporti doponjujemo. Alogritem za \textbf{kodiranje}:
+	\begin{verbatim}
 N = ""
 ponavljaj:
     preberi naslednji znak z
@@ -149,8 +149,8 @@ ponavljaj:
         N = z
 izpisi indeks k niza N
 \end{verbatim}
-Algoritem za \textbf{dekodiranje}:
-\begin{verbatim}
+	Algoritem za \textbf{dekodiranje}:
+	\begin{verbatim}
 preberi indeks k
 poisci niz N, ki ustreza indeksu k
 izpisi N
@@ -165,461 +165,461 @@ ponavljaj:
     v slovar dodaj [L, N(1)]
     L = N
 \end{verbatim}
-LZW doseze optimalno stiskanje, pribliza se entropiji. % dodaj dokaz ce bo potrebno
+	LZW doseze optimalno stiskanje, pribliza se entropiji. % dodaj dokaz ce bo potrebno
 
-\subsection{Verizno kodiranje ali RLE (run lenght encoding)} 
-Namesto originalnih podatkov, sharnjujemo dolzino verige (fffeef $\rightarrow$ 3f2e1f).
+	\subsection{Verizno kodiranje ali RLE (run lenght encoding)}
+	Namesto originalnih podatkov, sharnjujemo dolzino verige (fffeef $\rightarrow$ 3f2e1f).
 
-\subsection{Kompresijsko razmerje}
-\begin{center}
-    \begin{math}
-        R = C(M) / M
-    \end{math}
-\end{center}
+	\subsection{Kompresijsko razmerje}
+	\begin{center}
+		\begin{math}
+			R = C(M) / M
+		\end{math}
+	\end{center}
 
-\section{Kanali}
+	\section{Kanali}
 
-\subsection{Diskretni kanal brez spomina}
-Kanal je definiran kot mnozica \textbf{pogojnih verjetnosti}
-\begin{center}
-    $p(y_j | x_i)$.
-\end{center}
-Pogojna verjetnost nam pove verjetnost za dogodek $y_j$ na izhodu iz kanala, ce je na vhodu v kanal dogodek $x_i$.
-\begin{center}
-    \begin{math}
-        \sum_j p(y_j | x_i) = 1.
-    \end{math} 
-\end{center}
-Kanal popolnoma podamo z $r \times s$ pogojnimi verjetnostmi.
-$H(X|Y) =$ dvoumnost, $H(Y|X) =$ sum
+	\subsection{Diskretni kanal brez spomina}
+	Kanal je definiran kot mnozica \textbf{pogojnih verjetnosti}
+	\begin{center}
+		$p(y_j | x_i)$.
+	\end{center}
+	Pogojna verjetnost nam pove verjetnost za dogodek $y_j$ na izhodu iz kanala, ce je na vhodu v kanal dogodek $x_i$.
+	\begin{center}
+		\begin{math}
+			\sum_j p(y_j | x_i) = 1.
+		\end{math}
+	\end{center}
+	Kanal popolnoma podamo z $r \times s$ pogojnimi verjetnostmi.
+	$H(X|Y) =$ dvoumnost, $H(Y|X) =$ sum
 
-\subsection{Pogojna entropija}
-Pogojna entropija spremenljivke $Y$ pri znanem $X$ se zapise kot $H(Y|X)$.
-Vzemimo, da se je zgodil dogodek $x_i \in X$. Entropija dogodka $Y$ je potem
-\begin{center}
-    \begin{math}
-        H(Y|x_i) = - \sum_{j=1}^s p(y_j|x_i) \log(p(y_j| x_i)).
-    \end{math}
-\end{center}
-Velja: $0 \leq H(Y| x_i)$.\\
-Ce pa o dogodku X vemo le da se je zgodil, se lahko spomnemo na vis in uporabimo
-\textbf{vezano verjetnost} dogodkov $X$ in $Y$, ki pravi:
-\begin{center}
-    \begin{math}
-        p(x_i, y_j) = p(y_j|x_i)p(x_i)
-    \end{math}
-\end{center}
-Za entropijo:
-\begin{center}
-    \begin{math}
-        H(Y|X) = \sum_{i} p(x_i)H(Y|x_i)
-    \end{math}
-    \begin{math}
-        = -\sum_{i=1}^r \sum_{j=1}^s p(x_i, y_i) \log p(y_j | x_i)
-    \end{math}
-\end{center}
-Splosno velja: $0 \leq H(Y|X) \leq H(Y)$, ce poznamo spremenljivko $X$, se nedolocenost $Y$ ne more povecati (lahko se pomanjsa).
+	\subsection{Pogojna entropija}
+	Pogojna entropija spremenljivke $Y$ pri znanem $X$ se zapise kot $H(Y|X)$.
+	Vzemimo, da se je zgodil dogodek $x_i \in X$. Entropija dogodka $Y$ je potem
+	\begin{center}
+		\begin{math}
+			H(Y|x_i) = - \sum_{j=1}^s p(y_j|x_i) \log(p(y_j| x_i)).
+		\end{math}
+	\end{center}
+	Velja: $0 \leq H(Y| x_i)$.\\
+	Ce pa o dogodku X vemo le da se je zgodil, se lahko spomnemo na vis in uporabimo
+	\textbf{vezano verjetnost} dogodkov $X$ in $Y$, ki pravi:
+	\begin{center}
+		\begin{math}
+			p(x_i, y_j) = p(y_j|x_i)p(x_i)
+		\end{math}
+	\end{center}
+	Za entropijo:
+	\begin{center}
+		\begin{math}
+			H(Y|X) = \sum_{i} p(x_i)H(Y|x_i)
+		\end{math}
+		\begin{math}
+			= -\sum_{i=1}^r \sum_{j=1}^s p(x_i, y_i) \log p(y_j | x_i)
+		\end{math}
+	\end{center}
+	Splosno velja: $0 \leq H(Y|X) \leq H(Y)$, ce poznamo spremenljivko $X$, se nedolocenost $Y$ ne more povecati (lahko se pomanjsa).
 
-\subsubsection{Pogojna verjetnost}
-Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
-\begin{center}
-    \begin{math}
-        P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
-    \end{math}
-\end{center}
-Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
-$P(A B) = P(A)P(B)$.
-Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
-pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
+	\subsubsection{Pogojna verjetnost}
+	Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
+	\begin{center}
+		\begin{math}
+			P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
+		\end{math}
+	\end{center}
+	Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
+	$P(A B) = P(A)P(B)$.
+	Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
+	pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
 
-\subsubsection{Popolna verjetnost}
-Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
-\begin{center}
-    \begin{math}
-        P(A) =
-    \end{math}
-    \smallskip
-    \begin{math}
-        \sum_{i=1}^{\infty} P(A \cap H_{i}) =
-        \sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
-    \end{math}
-\end{center}
+	\subsubsection{Popolna verjetnost}
+	Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
+	\begin{center}
+		\begin{math}
+			P(A) =
+		\end{math}
+		\smallskip
+		\begin{math}
+			\sum_{i=1}^{\infty} P(A \cap H_{i}) =
+			\sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
+		\end{math}
+	\end{center}
 
-\subsection{Vezana entropija spremeljivk}
-Vezana entropija nakljucnih spremenljivk $X$ in $Y$ je entropija para $(X, Y)$.
-Pomembne zveze:
-\begin{itemize}
-    \item $p(x_i, y_j) = p(y_j| x_i)p(x_i)$,
-    \item $\sum_j p(x_i, y_j) = p(x_i)$,
-    \item $\sum_i p(x_i, y_j) = p(y_j)$,
-    \item $\sum_{i,j} p(x_i, y_j) = 1$ (pazi pri racunskih!)
-\end{itemize}
-Velja: $H(X, Y) = H(Y|X) + H(X)$.
-\subsubsection{Obrat kanala}
-Ker velja tudi $H(X, Y) = H(X|Y) + H(Y)$, kanal lahko \textbf{obrnemo}
-\textbf{Pogoj:}  poznati moramo vhodne verjetnosti. Iz njih lahko dolocimo izhodne verjetnosti, ki jih lahko
-uporabimo kot vhodne verjetnosti v obrnjeni kanal.
-Lastnosti:
-\begin{itemize}
-    \item izracun izhodnih verjetnosti $p(y_j) = \sum_i p(y_j, x_i)p(x_i)$
-    \item obratne pogojne vrjetnosti $p(x_i, y_j)= p(y_j|x_i)p(x_i) = p(x_i|y_j)p(y_j)$
-\end{itemize}
+	\subsection{Vezana entropija spremeljivk}
+	Vezana entropija nakljucnih spremenljivk $X$ in $Y$ je entropija para $(X, Y)$.
+	Pomembne zveze:
+	\begin{itemize}
+		\item $p(x_i, y_j) = p(y_j| x_i)p(x_i)$,
+		\item $\sum_j p(x_i, y_j) = p(x_i)$,
+		\item $\sum_i p(x_i, y_j) = p(y_j)$,
+		\item $\sum_{i,j} p(x_i, y_j) = 1$ (pazi pri racunskih!)
+	\end{itemize}
+	Velja: $H(X, Y) = H(Y|X) + H(X)$.
+	\subsubsection{Obrat kanala}
+	Ker velja tudi $H(X, Y) = H(X|Y) + H(Y)$, kanal lahko \textbf{obrnemo}
+	\textbf{Pogoj:}  poznati moramo vhodne verjetnosti. Iz njih lahko dolocimo izhodne verjetnosti, ki jih lahko
+	uporabimo kot vhodne verjetnosti v obrnjeni kanal.
+	Lastnosti:
+	\begin{itemize}
+		\item izracun izhodnih verjetnosti $p(y_j) = \sum_i p(y_j, x_i)p(x_i)$
+		\item obratne pogojne vrjetnosti $p(x_i, y_j)= p(y_j|x_i)p(x_i) = p(x_i|y_j)p(y_j)$
+	\end{itemize}
 
-\subsection{Medesebojna informacija}
-Pove nam, koliko o eni spremenljivki izvemo iz druge spremenljivke,
-\begin{itemize}
-    \item $I(X;Y) = H(X, Y) - H(X|Y) - H(Y|X)$
-    \item $I(X;Y) = H(X) - H(X|Y)$
-    \item $I(X;Y) = H(Y) - H(Y|X)$
-    \item $I(X;Y) = H(X) + H(Y) - H(X, Y)$
-    \item $I(X;Y) = \text{simetricna glede na } X \text{ in } Y$
-    \item $I(X;Y) \geq 0$
-    \item $I(X;X) = H(X)$
-\end{itemize}
+	\subsection{Medesebojna informacija}
+	Pove nam, koliko o eni spremenljivki izvemo iz druge spremenljivke,
+	\begin{itemize}
+		\item $I(X;Y) = H(X, Y) - H(X|Y) - H(Y|X)$
+		\item $I(X;Y) = H(X) - H(X|Y)$
+		\item $I(X;Y) = H(Y) - H(Y|X)$
+		\item $I(X;Y) = H(X) + H(Y) - H(X, Y)$
+		\item $I(X;Y) = \text{simetricna glede na } X \text{ in } Y$
+		\item $I(X;Y) \geq 0$
+		\item $I(X;X) = H(X)$
+	\end{itemize}
 
-\subsection{Kapaciteta kanala}
-\begin{center}
-    $C =\underset{P(X)}{\max} I(X;Y)$
-\end{center}
-\subsubsection{Kapaciteta kanala BSK}
-\begin{center}
-    \begin{math}
-        P_k = 
-                \begin{pmatrix}
-                    1-p & p\\
-                    p & 1-p 
-                \end{pmatrix}
-    \end{math}
-\end{center}
-Lastnosti:
-\begin{itemize}
-    \item $C =\underset{P(X)}{\max} (H(Y) - H(Y|X))$
-    \item $p(x_0) = \alpha, p(x_1) = 1 - \alpha$
-    \item $I(X;Y) = H(Y) - H(Y|X) = \dots = H(Y) - H(p, 1-p)$
-    \item $\frac{dI(X;Y)}{d \alpha} = 0$
-    \item $H(Y) = 1 \Rightarrow C$ je max
-    \item $C=I(X;Y) |_{\alpha = 1/2} = 1 - H(p, 1-p)$
-\end{itemize}
-\subsubsection{Kapacitata kanala BSK z brisanjem}
-\begin{center}
-    \begin{math}
-        P_k = 
-                \begin{pmatrix}
-                    1-p & p & 0\\
-                    0   & p & 1-p
-                \end{pmatrix}
-    \end{math}
-\end{center}
-Lastnosti:
-\begin{itemize}
-    \item $C = 1 - p$
-    \item $p(x_0) = \alpha, p(x_1) = 1 - \alpha$
-    \item $p(y_0) = (1-p)\alpha, p(y_1) = p, p(y_2) = (1-p)(1-\alpha)$
-    \item $I(X;Y) = (1-p)H(\alpha, 1 - \alpha)$
-    \item $\frac{dI(X;Y)}{d \alpha} = 0 \Rightarrow \alpha = 1/2$
-\end{itemize}
+	\subsection{Kapaciteta kanala}
+	\begin{center}
+		$C =\underset{P(X)}{\max} I(X;Y)$
+	\end{center}
+	\subsubsection{Kapaciteta kanala BSK}
+	\begin{center}
+		\begin{math}
+			P_k =
+			\begin{pmatrix}
+				1-p & p   \\
+				p   & 1-p
+			\end{pmatrix}
+		\end{math}
+	\end{center}
+	Lastnosti:
+	\begin{itemize}
+		\item $C =\underset{P(X)}{\max} (H(Y) - H(Y|X))$
+		\item $p(x_0) = \alpha, p(x_1) = 1 - \alpha$
+		\item $I(X;Y) = H(Y) - H(Y|X) = \dots = H(Y) - H(p, 1-p)$
+		\item $\frac{dI(X;Y)}{d \alpha} = 0$
+		\item $H(Y) = 1 \Rightarrow C$ je max
+		\item $C=I(X;Y) |_{\alpha = 1/2} = 1 - H(p, 1-p)$
+	\end{itemize}
+	\subsubsection{Kapacitata kanala BSK z brisanjem}
+	\begin{center}
+		\begin{math}
+			P_k =
+			\begin{pmatrix}
+				1-p & p & 0   \\
+				0   & p & 1-p
+			\end{pmatrix}
+		\end{math}
+	\end{center}
+	Lastnosti:
+	\begin{itemize}
+		\item $C = 1 - p$
+		\item $p(x_0) = \alpha, p(x_1) = 1 - \alpha$
+		\item $p(y_0) = (1-p)\alpha, p(y_1) = p, p(y_2) = (1-p)(1-\alpha)$
+		\item $I(X;Y) = (1-p)H(\alpha, 1 - \alpha)$
+		\item $\frac{dI(X;Y)}{d \alpha} = 0 \Rightarrow \alpha = 1/2$
+	\end{itemize}
 
-\subsubsection{Klasicna izpitna naloga}
-Mas podane prehodne verjetnosti. $p(x_0) = \alpha$, $p(x_1) = 1 - \alpha$. Nato izracunas
-vse $p(y_i) = \sum p(x_j) * p(y_i | x_j)$. Max kapaciteto izracunas tko da odvajas
-$C = \max I (X;Y) = \max (H(Y) - H(Y|X)) = \max (H(Y) - (\alpha H(Y | x = 0) + (1 - \alpha) H(Y | x = 1)))$. Kjer za $H(Y | x_i)$ velja, da samo
-zracunas entropijo pri danih prehodnih verejtnostih.
+	\subsubsection{Klasicna izpitna naloga}
+	Mas podane prehodne verjetnosti. $p(x_0) = \alpha$, $p(x_1) = 1 - \alpha$. Nato izracunas
+	vse $p(y_i) = \sum p(x_j) * p(y_i | x_j)$. Max kapaciteto izracunas tko da odvajas
+	$C = \max I (X;Y) = \max (H(Y) - H(Y|X)) = \max (H(Y) - (\alpha H(Y | x = 0) + (1 - \alpha) H(Y | x = 1)))$. Kjer za $H(Y | x_i)$ velja, da samo
+	zracunas entropijo pri danih prehodnih verejtnostih.
 
-\subsection{Shannonov drugi teorem}
-Shannon je ugotovil, da nam zdruzevanje znakov v nize daje vec moznosti za doseganje zaneslijvega prenosa.\\
-Naj bo $M$ stevilo razlicnih kodnih zamenjav, ki jih lahko oblikujemo z nizi dolzine $n$. Potem je \textbf{hitrost koda}
-(prenosa)  definirana kot:
-\begin{center}
-    \begin{math}
-        R = \frac{max H(X^n)}{n} = \frac{log M}{n} = \frac{k}{n}
-    \end{math}
-\end{center}
-Hitrost je najvecja takrat, ko so dovoljene kodne zamenjave na vhodu enako verjetne.
-\textbf{Teorem:}\\
-\begin{center}
-    Za \textbf{R $\leq$ C} obstaja kod, ki zagotavlja tako preverjanje informacije, da je verjetnost napake pri
-    dekodiran  poljubno majhna. Za \textbf{R $>$ C} kod, ki bi omogocal preverjanje informacije s poljubno majhno
-    verjetnostjo napake, \textbf{ne} obstaja.
-\end{center}
-Ce so znaki neodvisni, velja:
-\begin{center}
-    \begin{math}
-        \log(H(X^n)) = n \log H(X) \Rightarrow R = H
-    \end{math}
-\end{center}
-Za $R \leq \frac{\log 2^{nC}}{n} = C$ je mozno najti kodne zamenjave, ki omogocajo zanesljivo komunikacijo.
+	\subsection{Shannonov drugi teorem}
+	Shannon je ugotovil, da nam zdruzevanje znakov v nize daje vec moznosti za doseganje zaneslijvega prenosa.\\
+	Naj bo $M$ stevilo razlicnih kodnih zamenjav, ki jih lahko oblikujemo z nizi dolzine $n$. Potem je \textbf{hitrost koda}
+	(prenosa)  definirana kot:
+	\begin{center}
+		\begin{math}
+			R = \frac{max H(X^n)}{n} = \frac{log M}{n} = \frac{k}{n}
+		\end{math}
+	\end{center}
+	Hitrost je najvecja takrat, ko so dovoljene kodne zamenjave na vhodu enako verjetne.
+	\textbf{Teorem:}\\
+	\begin{center}
+		Za \textbf{R $\leq$ C} obstaja kod, ki zagotavlja tako preverjanje informacije, da je verjetnost napake pri
+		dekodiran  poljubno majhna. Za \textbf{R $>$ C} kod, ki bi omogocal preverjanje informacije s poljubno majhno
+		verjetnostjo napake, \textbf{ne} obstaja.
+	\end{center}
+	Ce so znaki neodvisni, velja:
+	\begin{center}
+		\begin{math}
+			\log(H(X^n)) = n \log H(X) \Rightarrow R = H
+		\end{math}
+	\end{center}
+	Za $R \leq \frac{\log 2^{nC}}{n} = C$ je mozno najti kodne zamenjave, ki omogocajo zanesljivo komunikacijo.
 
-\section{Varno kodiranje}
+	\section{Varno kodiranje}
 
-\subsection{Hammingova razdalja}
-Razdalja med razlicnimi kodi mora biti vsaj 1, drugace je kod \textbf{singularen}.
-Razdalja je podana kot \textbf{minimalna} Hammingova razdalja med dvema kodnima zamenjavama.
-Stevilo napak, ki jih kod zazna:
-\begin{center}
-    $d \geq e + 1 \rightarrow e_{max} = d-1$
-\end{center}
-\begin{center}
-    $d \geq 2f + 1 \rightarrow f_{max} = \lfloor \frac{d-1}{2} \rfloor$
-\end{center}
+	\subsection{Hammingova razdalja}
+	Razdalja med razlicnimi kodi mora biti vsaj 1, drugace je kod \textbf{singularen}.
+	Razdalja je podana kot \textbf{minimalna} Hammingova razdalja med dvema kodnima zamenjavama.
+	Stevilo napak, ki jih kod zazna:
+	\begin{center}
+		$d \geq e + 1 \rightarrow e_{max} = d-1$
+	\end{center}
+	\begin{center}
+		$d \geq 2f + 1 \rightarrow f_{max} = \lfloor \frac{d-1}{2} \rfloor$
+	\end{center}
 
-\subsubsection{Hammingov pogoj}
-Ce zelimo zagotoviti odpornost na napake,
-mora biti razdalja $d > 1$. Uporabni kodi imajo st. kodnih zamenjav $M = 2^k < 2^n$.
-Da bi lahko dekodirali vse kodne zamenjave, pri katerih je prislo do $e$ ali manj napak
-mora veljati:
-\begin{center}
-    \begin{math}
-        M \leq \dfrac{2^n}{\sum_{i=0}^e{n \choose i}}
-    \end{math}
-\end{center}
+	\subsubsection{Hammingov pogoj}
+	Ce zelimo zagotoviti odpornost na napake,
+	mora biti razdalja $d > 1$. Uporabni kodi imajo st. kodnih zamenjav $M = 2^k < 2^n$.
+	Da bi lahko dekodirali vse kodne zamenjave, pri katerih je prislo do $e$ ali manj napak
+	mora veljati:
+	\begin{center}
+		\begin{math}
+			M \leq \dfrac{2^n}{\sum_{i=0}^e{n \choose i}}
+		\end{math}
+	\end{center}
 
-\subsection{Linearni blocni kodi}
-Kode oznacimo kot dvojcek $L(n, k)$. 
-O linearnih blocnih kodih govorimo, kadar:
-\begin{itemize}
-    \item je vsota vsakega para kodnih zamenjav spet kodna zamenjava.
-    \item da produkt kodne zamenjave z 1 in 0 spet kodno zamenjavo.
-    \item vedno obstaja kodna zamenjava s samimi niclami
-\end{itemize}
-\textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
-z najmanj enicami.
+	\subsection{Linearni blocni kodi}
+	Kode oznacimo kot dvojcek $L(n, k)$.
+	O linearnih blocnih kodih govorimo, kadar:
+	\begin{itemize}
+		\item je vsota vsakega para kodnih zamenjav spet kodna zamenjava.
+		\item da produkt kodne zamenjave z 1 in 0 spet kodno zamenjavo.
+		\item vedno obstaja kodna zamenjava s samimi niclami
+	\end{itemize}
+	\textbf{Hammingova razdalja} linearnega koda je enaka stevilu enic v kodni zamenjavi
+	z najmanj enicami.
 
-\subsubsection{Generatorska matrika}
-Generiranje kodne zamenjave lahko opisemo z generatorsko matriko.
+	\subsubsection{Generatorska matrika}
+	Generiranje kodne zamenjave lahko opisemo z generatorsko matriko.
 
-\begin{center}
-    \begin{math}
-        \vec{x} = \vec{z}G
-    \end{math}
-\end{center}
+	\begin{center}
+		\begin{math}
+			\vec{x} = \vec{z}G
+		\end{math}
+	\end{center}
 
-V splosnem podatkovni vektor $1 \times k$ mnozimo z generatorsko matriko $k \times n$, da dobimo kodno zamenjavo
-$1 \times n$. Kod, cigar generatorska matrika ima to obliko, je
-\textbf{sistematicni kod} - prvih $k$ znakov koda je enakih sporocilu (podatkovnim bitom), ostalih $n-k$ znakov pa so
-paritetni biti.
+	V splosnem podatkovni vektor $1 \times k$ mnozimo z generatorsko matriko $k \times n$, da dobimo kodno zamenjavo
+	$1 \times n$. Kod, cigar generatorska matrika ima to obliko, je
+	\textbf{sistematicni kod} - prvih $k$ znakov koda je enakih sporocilu (podatkovnim bitom), ostalih $n-k$ znakov pa so
+	paritetni biti.
 
-Za diskretne kanale brez spomina jo vedno lahko zapisemo v obliki $G = (I_k | A)$.
+	Za diskretne kanale brez spomina jo vedno lahko zapisemo v obliki $G = (I_k | A)$.
 
-\subsubsection{Matrika za preverjanje sodosti}
-Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti
-Lastnosti:
-\begin{itemize}
-    \item $\vec{x}H^T = 0$
-    \item $GH^T = 0$
-    \item $G = (I_k | A) \Rightarrow H = (A^T | I_{n-k})$
-    \item vsota dveh kodnih zamenjav je nova kodna zamenjava.
-\end{itemize}
+	\subsubsection{Matrika za preverjanje sodosti}
+	Linearne enacbe lahko zapisemo z matriko za preverjanje sodosti
+	Lastnosti:
+	\begin{itemize}
+		\item $\vec{x}H^T = 0$
+		\item $GH^T = 0$
+		\item $G = (I_k | A) \Rightarrow H = (A^T | I_{n-k})$
+		\item vsota dveh kodnih zamenjav je nova kodna zamenjava.
+	\end{itemize}
 
-\subsection{Sindrom v kanalu}
-Predpostavimo da se med posiljanjem v kanalu zgodi napaka:
-\begin{center}
-    \begin{math}
-        z \rightarrow x = zG \rightarrow err\rightarrow y = x + e \rightarrow s = yH^T
-    \end{math}
-\end{center}
-Napako pri prenosu preprosto ugotavljamo tako, da pogledamo, ce je $s = 0$. Vendar to nam ne garantira da pri prenosu ni prislo do napake.
-Sindrom izracunamo na naslednji nacin(vektor velikosti $1 \times n - k$):
-\begin{center}
-    \begin{math}
-        yH^T = (x + e)H^T = eH^T = s
-    \end{math}
-\end{center}
-Ker je verjetnost za napako obicajno $p << 1$, je niz s $t$ napakami veliko
-verjetnejsi od niza s t + 1 napakami.
+	\subsection{Sindrom v kanalu}
+	Predpostavimo da se med posiljanjem v kanalu zgodi napaka:
+	\begin{center}
+		\begin{math}
+			z \rightarrow x = zG \rightarrow err\rightarrow y = x + e \rightarrow s = yH^T
+		\end{math}
+	\end{center}
+	Napako pri prenosu preprosto ugotavljamo tako, da pogledamo, ce je $s = 0$. Vendar to nam ne garantira da pri prenosu ni prislo do napake.
+	Sindrom izracunamo na naslednji nacin(vektor velikosti $1 \times n - k$):
+	\begin{center}
+		\begin{math}
+			yH^T = (x + e)H^T = eH^T = s
+		\end{math}
+	\end{center}
+	Ker je verjetnost za napako obicajno $p << 1$, je niz s $t$ napakami veliko
+	verjetnejsi od niza s t + 1 napakami.
 
-\subsubsection{Standardna tabela}
-Imejmo ponavljalni kod $(0|00)$ in $(1|11)$. Sestavimo matrki G in H.
+	\subsubsection{Standardna tabela}
+	Imejmo ponavljalni kod $(0|00)$ in $(1|11)$. Sestavimo matrki G in H.
 
-\begin{math}
-    G = [1|11] \text{ in } H = 
-        \begin{bmatrix}
-            1 |& 1 & 0\\
-            1 |& 0 & 1
-        \end{bmatrix}
-\end{math}
-
-
-Imamo 4 mozne sindrome: (00), (01), (10), (11). Na izhodu lahko dobimo $2^n = 8$
-razlicnih nizov.
-
-Mozne nize na izhodu in njihove sindrome obicajno razvrstimo v std. tabelo:
-\begin{center}
-    \begin{tabular}{ c|cc }
-        \text{sindrom}   & popravljalnik & \\ 
-        \hline
-        00   & 000 & 111\\ 
-        01   & 001 & 110\\ 
-        10   & 010 & 101\\ 
-        11   & 100 & 011
-    \end{tabular}
-\end{center}
-
-V isti vrstici so nizi, ki dajo enak sindrom. V prvi vrstici so vedno kodne zamenjave, ki
-imajo sindrom 0. Skrajno levo je vedno niz, ki ima najmanj enic, saj je najbolj verjeten.
-Imenujemo ga popravljalnik. Ostale nize dobimo tako, da popravljalnik pristevamo k kodnim
-zamenjavam v prvi vrsti. 
-
-\subsection{Hammingov kod}
-Hammingovi kodi so druzina linearnih blocnih kodov, ki lahko popravijo eno napako.
-Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolpci
-nenicelni vektorji. 
-$H(2^m - 1 = n, 2^m - 1 - m = k)$.Stolpci v Hammingovem kodu so lahko
-poljubno razmetani. Pomembno je le to, da nastopajo \textbf{vsa} stevila od 1 do $2^m - 1$.
-
-Hammingov kod je lahko:
-\begin{itemize}
-    \item \textbf{leksikografski} - oznake stolpcev si sledijo po vrsti
-    \item \textbf{sistematicni} - oznake stolpcev so pomesane
-\end{itemize}
-
- V Hammingovem kodu se za varnostne bite obicajno vzamejo tisti stolpci, ki imajo samo \textbf{eno} enico.
-
-\subsubsection{Dekodiranje}
-Dekodiranje leksikografskega Hammingovega koda je preprosto:
-\begin{enumerate}
-    \item izracunamo sindrom $s = yH^T$
-    \item ce je $s = 0$, je $x' = y$
-    \item ce $s \neq 0$, decimalno stevilo $S$ predstavlja mesto napake.
-\end{enumerate}
-Za kod, ki pa ni leksikografski pogledamo, na kateri indeks se slika izracunani sindrom.
-
-\subsection{Ciklicni kodi C(n, k)}
-$d_H$ v matriki H dobimo tako, da pristejemo stolpce, dokler ne dobimo nicelnega vektorja.
-
-\subsubsection{Zapis s polinomi}
-Imejmo osnovni vektor: 
-\begin{center}
-    $x = (x_{n-1}, x_{n-2}, \dots, x_0) \Leftrightarrow$
-    $x(p) = x_{n-1}p^{n-1} + x_{n-2}p^{n-2} + \dots + x_0$ 
-\end{center}
-Izvedemo premik za eno mesto:
-\begin{center}
-    $x' = (x_{n-2}, \dots, x_0, x_{n-1}) \Leftrightarrow$
-    $x'(p) = x_{n-2}p^{n-2} + \dots + x_0p + x_{n-1}$ 
-\end{center}
-Velja zveza: $x'(p) = px(p) - x_{n-1}(p^n -1)$.
-
-V mod $2$ aritmetiki:
-\begin{center}
-    $\Rightarrow$ $x'(p) = px(p) + x_{n-1}(p^n -1)$.
-\end{center}
-
-V $\text{mod}(p^n + 1)$ aritmetiki:
-\begin{center}
-    $\Rightarrow$ $x'(p) = px(p) \text{ mod}(p^n + 1)$.
-\end{center}
-
-Izvajanje kroznega prekmika za $i$ mest:
-\begin{center}
-    \begin{math}
-        x^i(p) = p^i x(p) \text{ mod} (p^n + 1)
-    \end{math}
-\end{center}
-
-\subsubsection{Generatorski polinomi}
-Vrstice generatorske matrike lahko razumemo kot kodne zamenjave.
-Za ciklicne kode v splosnem velja: \textbf{Generatorski polinom} je stopnje $m$, kjer je $m$ stevilo
-varnostnih bitov, in ga oznacimo kot:
-\begin{center}
-    \begin{math}
-        g(p) = p^m + g_{m-1}p^{m-1} + \dots + g_1p + 1
-    \end{math}
-\end{center}
-Za sistematicni kod velja: $G = [I_k | A_{k, n-k}]$.
-Sistematicni lahko dobimo z linearnimi operacijami nad vrsticami.
-Velja:
-\begin{center}
-    \begin{math}
-        p^n + 1 = g(p)h(p)
-    \end{math}
-\end{center}
-Sepravi vsak polinom, ki polinom $p^n + 1$ deli brez ostanka, je generatorski polinom.
-Kako narediti kod leksikografski in hkrati sistematicni? $H_L \rightarrow H_s \rightarrow G_s$.
-
-\subsubsection{Polinom za preverjanje sodosti}
-\begin{center}
-    \begin{math}
-        x(p)h(p) \mod(p^n + 1) = 0   
-    \end{math}
-    \begin{math}
-        \Rightarrow h(p) = (p^n + 1) : g(p)
-    \end{math}
-\end{center}
-Pazi ko gradis matriko $H$, vrstice so indeksirane po narascujoci stopnji polinoma $h(p)$, medtem,
-ko pa pri gradnji matrike $G$, so vrstice indeksirane po padajoci stonji polinoma $g(p)$!
+	\begin{math}
+		G = [1|11] \text{ in } H =
+		\begin{bmatrix}
+			1 | & 1 & 0 \\
+			1 | & 0 & 1
+		\end{bmatrix}
+	\end{math}
 
 
-\subsubsection{Kodiranje z mnozenjem}
-Kodne zamenjave so veckratniki generatorskega polinoma.
-Velja:
-\begin{center}
-    \begin{math}
-        x(p) = z(p) g(p) mod (p^n + 1)
-    \end{math}
-\end{center}, kjer je z(p) polinom, ki ustreza podatkovnemu vektorju $\vec{z}$
-Kod, ki smo ga dobili z mnozenjem, ustreza generatorski matriki, ki ima v vrsticah
-koeficiente $p^{k-1}g(p), \dots, pg(p), g(p)$, zato ni sistematicen.
+	Imamo 4 mozne sindrome: (00), (01), (10), (11). Na izhodu lahko dobimo $2^n = 8$
+	razlicnih nizov.
 
-\subsubsection{kodiranje z deljenjem}
-Kodiranje na osnovi deljenja ustvari sistematicen ciklicen kod. Kodna zamenjava je zato sestavljena iz podatkovnega in varnostnega bloka znakov, $x = (z | r)$.
-Polinom podatkovnega bloka je:
-\begin{center}
-    \begin{math}
-        z(p) = z_{k-1}p^{n-1} + \dots + z_1p^{1} + z_0p^0
-    \end{math}
-\end{center}
-Ce pa polinom pomnozimo s $p^m$, dobimo na desni $m$ nicel.
-\begin{center}
-    \begin{math}
-        p^m z(p)
-    \end{math}
-\end{center}
-To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 0, \dots, 0$).
+	Mozne nize na izhodu in njihove sindrome obicajno razvrstimo v std. tabelo:
+	\begin{center}
+		\begin{tabular}{ c|cc }
+			\text{sindrom} & popravljalnik &     \\
+			\hline
+			00             & 000           & 111 \\
+			01             & 001           & 110 \\
+			10             & 010           & 101 \\
+			11             & 100           & 011
+		\end{tabular}
+	\end{center}
 
-V splosnem nastavek seveda ne bo deljiv, velja pa $p^mz(p) = g(p)t(p) + r(p)$, kjer je $t(p)$ kolicnik,
-$r(p)$ pa ostanek, s stopnjo manj od $m$. Sepravi delimo $(p^m z(p)) / g(p)$ in ostanek bodo nasi varnostni biti.
-$(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
+	V isti vrstici so nizi, ki dajo enak sindrom. V prvi vrstici so vedno kodne zamenjave, ki
+	imajo sindrom 0. Skrajno levo je vedno niz, ki ima najmanj enic, saj je najbolj verjeten.
+	Imenujemo ga popravljalnik. Ostale nize dobimo tako, da popravljalnik pristevamo k kodnim
+	zamenjavam v prvi vrsti.
 
-\subsubsection{Dekodiranje}
-Dekodiranje ciklicnih kodov sloni na linearnih blocnih kodih. Vzemimo, da je pri prenosu prislo do napake $y = x + e$, ali pa zapisano v polinomski
-obliki $y(p) = x(p) + e(p) = z(p)g(p) + e(p)$.
-\begin{itemize}
-    \item Najprej izracunamo sindrom. Ekvivalent enacbe $s = yH^T$ v polinomskem zapisu je $y(p) = q(p)*g(p) + s(p)$, oz. $s(p) = y(p) \text{ mod } g(p)$.
-    \item Ce je ostanek deljenja $y(p)$ z $g(p)$ razlicen od nic, je prislo do napake.
-\end{itemize}
-Iz $s(p) = y(p) \text{ mod } g(p)$ sledi, da je v primeru, ko je napaka na zadnjih $m$ mestih, stopnja $e(p)$ manj kot $m$ in velja kar $e(p) = s(p)$.
-Za ostale napake pa lahko izkoristimo ciklicnost kodov:
-\begin{itemize}
-    \item Naredimo trik, osnovno enacbo premaknemo za $i$ mest:
-        \begin{center}
-            $p^iy(p) = p^ix(p) + p^i e(p)$
-        \end{center}
-    \item Ce najdemo pravi $i$, bo veljalo $p^i e(p) = s(p)$
-    \item Pravi $i$ je tisti, pri katerem bo $e(p)$ imel najmanj enic
-\end{itemize}
+	\subsection{Hammingov kod}
+	Hammingovi kodi so druzina linearnih blocnih kodov, ki lahko popravijo eno napako.
+	Najlazje jih predstavimo z matriko za preverjanje sodosti, v kateri so vsi stolpci
+	nenicelni vektorji.
+	$H(2^m - 1 = n, 2^m - 1 - m = k)$.Stolpci v Hammingovem kodu so lahko
+	poljubno razmetani. Pomembno je le to, da nastopajo \textbf{vsa} stevila od 1 do $2^m - 1$.
 
-\subsubsection{Zmoznosti ciklicnih kodov}
-Odkrivanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
-\begin{itemize}
-    \item Kod odkrije vsako posamicno napako: $e(p) = p^i$
-    \item Za dolocene generatorske polinome odkrije tudi dve posamicni napaki do dolzine bloka $n = 2^m -1$
-    \item Odkrije poljubno stevilo lihih napak, ce $p + 1$ deli $g(p)$
-    \item Odkrije vsak izbruh napak do dolzine $m$
-    \item Odkrije vse razen $2^{-(m-1)}$ izbruhov dozline $m + 1$
-    \item Odkrije tudi vse razen delez $2^{-m}$ izbruhov daljsih od $m + 1$
-\end{itemize}
-Popravljanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
-\begin{itemize}
-    \item Izracun sindroma
-    \item Ciklicno prilaganje sindroma prenesenemu blok $y$.
-    \item Popravijo lahko do $e = \lfloor \frac{d-1}{2} \rfloor$ posamicnih napak, kjer je
-        $d$ Hammingova razdalja koda.
-    \item Popravijo lahko tudi izbruhe napak do dolzine $e = \lfloor \frac{m}{2} \rfloor$
-\end{itemize}
+	Hammingov kod je lahko:
+	\begin{itemize}
+		\item \textbf{leksikografski} - oznake stolpcev si sledijo po vrsti
+		\item \textbf{sistematicni} - oznake stolpcev so pomesane
+	\end{itemize}
 
-\subsubsection{CRC}
-tabela: $p^0$ -> $p^{m-1}$, vhod, res
-\begin{verbatim}
+	V Hammingovem kodu se za varnostne bite obicajno vzamejo tisti stolpci, ki imajo samo \textbf{eno} enico.
+
+	\subsubsection{Dekodiranje}
+	Dekodiranje leksikografskega Hammingovega koda je preprosto:
+	\begin{enumerate}
+		\item izracunamo sindrom $s = yH^T$
+		\item ce je $s = 0$, je $x' = y$
+		\item ce $s \neq 0$, decimalno stevilo $S$ predstavlja mesto napake.
+	\end{enumerate}
+	Za kod, ki pa ni leksikografski pogledamo, na kateri indeks se slika izracunani sindrom.
+
+	\subsection{Ciklicni kodi C(n, k)}
+	$d_H$ v matriki H dobimo tako, da pristejemo stolpce, dokler ne dobimo nicelnega vektorja.
+
+	\subsubsection{Zapis s polinomi}
+	Imejmo osnovni vektor:
+	\begin{center}
+		$x = (x_{n-1}, x_{n-2}, \dots, x_0) \Leftrightarrow$
+		$x(p) = x_{n-1}p^{n-1} + x_{n-2}p^{n-2} + \dots + x_0$
+	\end{center}
+	Izvedemo premik za eno mesto:
+	\begin{center}
+		$x' = (x_{n-2}, \dots, x_0, x_{n-1}) \Leftrightarrow$
+		$x'(p) = x_{n-2}p^{n-2} + \dots + x_0p + x_{n-1}$
+	\end{center}
+	Velja zveza: $x'(p) = px(p) - x_{n-1}(p^n -1)$.
+
+	V mod $2$ aritmetiki:
+	\begin{center}
+		$\Rightarrow$ $x'(p) = px(p) + x_{n-1}(p^n -1)$.
+	\end{center}
+
+	V $\text{mod}(p^n + 1)$ aritmetiki:
+	\begin{center}
+		$\Rightarrow$ $x'(p) = px(p) \text{ mod}(p^n + 1)$.
+	\end{center}
+
+	Izvajanje kroznega prekmika za $i$ mest:
+	\begin{center}
+		\begin{math}
+			x^i(p) = p^i x(p) \text{ mod} (p^n + 1)
+		\end{math}
+	\end{center}
+
+	\subsubsection{Generatorski polinomi}
+	Vrstice generatorske matrike lahko razumemo kot kodne zamenjave.
+	Za ciklicne kode v splosnem velja: \textbf{Generatorski polinom} je stopnje $m$, kjer je $m$ stevilo
+	varnostnih bitov, in ga oznacimo kot:
+	\begin{center}
+		\begin{math}
+			g(p) = p^m + g_{m-1}p^{m-1} + \dots + g_1p + 1
+		\end{math}
+	\end{center}
+	Za sistematicni kod velja: $G = [I_k | A_{k, n-k}]$.
+	Sistematicni lahko dobimo z linearnimi operacijami nad vrsticami.
+	Velja:
+	\begin{center}
+		\begin{math}
+			p^n + 1 = g(p)h(p)
+		\end{math}
+	\end{center}
+	Sepravi vsak polinom, ki polinom $p^n + 1$ deli brez ostanka, je generatorski polinom.
+	Kako narediti kod leksikografski in hkrati sistematicni? $H_L \rightarrow H_s \rightarrow G_s$.
+
+	\subsubsection{Polinom za preverjanje sodosti}
+	\begin{center}
+		\begin{math}
+			x(p)h(p) \mod(p^n + 1) = 0
+		\end{math}
+		\begin{math}
+			\Rightarrow h(p) = (p^n + 1) : g(p)
+		\end{math}
+	\end{center}
+	Pazi ko gradis matriko $H$, vrstice so indeksirane po narascujoci stopnji polinoma $h(p)$, medtem,
+	ko pa pri gradnji matrike $G$, so vrstice indeksirane po padajoci stonji polinoma $g(p)$!
+
+
+	\subsubsection{Kodiranje z mnozenjem}
+	Kodne zamenjave so veckratniki generatorskega polinoma.
+	Velja:
+	\begin{center}
+		\begin{math}
+			x(p) = z(p) g(p) mod (p^n + 1)
+		\end{math}
+	\end{center}, kjer je z(p) polinom, ki ustreza podatkovnemu vektorju $\vec{z}$
+	Kod, ki smo ga dobili z mnozenjem, ustreza generatorski matriki, ki ima v vrsticah
+	koeficiente $p^{k-1}g(p), \dots, pg(p), g(p)$, zato ni sistematicen.
+
+	\subsubsection{kodiranje z deljenjem}
+	Kodiranje na osnovi deljenja ustvari sistematicen ciklicen kod. Kodna zamenjava je zato sestavljena iz podatkovnega in varnostnega bloka znakov, $x = (z | r)$.
+	Polinom podatkovnega bloka je:
+	\begin{center}
+		\begin{math}
+			z(p) = z_{k-1}p^{n-1} + \dots + z_1p^{1} + z_0p^0
+		\end{math}
+	\end{center}
+	Ce pa polinom pomnozimo s $p^m$, dobimo na desni $m$ nicel.
+	\begin{center}
+		\begin{math}
+			p^m z(p)
+		\end{math}
+	\end{center}
+	To ustreza bloku $z$, premaknjenem za $m$ znakov v levo, ($z_{k-1}, \dots, z_0, 0, \dots, 0$).
+
+	V splosnem nastavek seveda ne bo deljiv, velja pa $p^mz(p) = g(p)t(p) + r(p)$, kjer je $t(p)$ kolicnik,
+	$r(p)$ pa ostanek, s stopnjo manj od $m$. Sepravi delimo $(p^m z(p)) / g(p)$ in ostanek bodo nasi varnostni biti.
+	$(z_{k-1}, \dots, z_0 | r_{m-1}, \dots r_0)$.
+
+	\subsubsection{Dekodiranje}
+	Dekodiranje ciklicnih kodov sloni na linearnih blocnih kodih. Vzemimo, da je pri prenosu prislo do napake $y = x + e$, ali pa zapisano v polinomski
+	obliki $y(p) = x(p) + e(p) = z(p)g(p) + e(p)$.
+	\begin{itemize}
+		\item Najprej izracunamo sindrom. Ekvivalent enacbe $s = yH^T$ v polinomskem zapisu je $y(p) = q(p)*g(p) + s(p)$, oz. $s(p) = y(p) \text{ mod } g(p)$.
+		\item Ce je ostanek deljenja $y(p)$ z $g(p)$ razlicen od nic, je prislo do napake.
+	\end{itemize}
+	Iz $s(p) = y(p) \text{ mod } g(p)$ sledi, da je v primeru, ko je napaka na zadnjih $m$ mestih, stopnja $e(p)$ manj kot $m$ in velja kar $e(p) = s(p)$.
+	Za ostale napake pa lahko izkoristimo ciklicnost kodov:
+	\begin{itemize}
+		\item Naredimo trik, osnovno enacbo premaknemo za $i$ mest:
+		      \begin{center}
+			      $p^iy(p) = p^ix(p) + p^i e(p)$
+		      \end{center}
+		\item Ce najdemo pravi $i$, bo veljalo $p^i e(p) = s(p)$
+		\item Pravi $i$ je tisti, pri katerem bo $e(p)$ imel najmanj enic
+	\end{itemize}
+
+	\subsubsection{Zmoznosti ciklicnih kodov}
+	Odkrivanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
+	\begin{itemize}
+		\item Kod odkrije vsako posamicno napako: $e(p) = p^i$
+		\item Za dolocene generatorske polinome odkrije tudi dve posamicni napaki do dolzine bloka $n = 2^m -1$
+		\item Odkrije poljubno stevilo lihih napak, ce $p + 1$ deli $g(p)$
+		\item Odkrije vsak izbruh napak do dolzine $m$
+		\item Odkrije vse razen $2^{-(m-1)}$ izbruhov dozline $m + 1$
+		\item Odkrije tudi vse razen delez $2^{-m}$ izbruhov daljsih od $m + 1$
+	\end{itemize}
+	Popravljanje napak s ciklicnimi kodi, kjer velja $1 < \text{ st }(g(p)) < n$:
+	\begin{itemize}
+		\item Izracun sindroma
+		\item Ciklicno prilaganje sindroma prenesenemu blok $y$.
+		\item Popravijo lahko do $e = \lfloor \frac{d-1}{2} \rfloor$ posamicnih napak, kjer je
+		      $d$ Hammingova razdalja koda.
+		\item Popravijo lahko tudi izbruhe napak do dolzine $e = \lfloor \frac{m}{2} \rfloor$
+	\end{itemize}
+
+	\subsubsection{CRC}
+	tabela: $p^0$ -> $p^{m-1}$, vhod, res
+	\begin{verbatim}
 ce XOR (p^n-1, vhod) == 0:
     shift register v desno, na zacetku dodaj 0
 drugace:
@@ -629,254 +629,254 @@ XOR g(p) z r
 [1, 0, 1, 1] -> 1101
 \end{verbatim}
 
-\section{Analiza signalov}
+	\section{Analiza signalov}
 
-\subsection{Invariantnost sinusoid}
+	\subsection{Invariantnost sinusoid}
 
-Pomembno pri signalih pa je, da se vhodni signal v obliki sinusoide
-\begin{center}
-    \begin{math}
-        x(t) = A \sin (2 \pi \nu t + \theta)
-    \end{math}
-\end{center}
-popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$.
+	Pomembno pri signalih pa je, da se vhodni signal v obliki sinusoide
+	\begin{center}
+		\begin{math}
+			x(t) = A \sin (2 \pi \nu t + \theta)
+		\end{math}
+	\end{center}
+	popaci v izhodni signal z drugacno amplitudo in fazo $\theta$, vendar ohrani frekvenco $\nu$.
 
-\subsection{Fourierova transformacija}
-Vsako periodicno funkcijo ( ce je dovolj lepa ), lahko zapisemo kot kombinacijo sinusoid.
-V kombinaciji z invariantnostjo sinusoid to pomeni, da lahko:
-\begin{itemize}
-    \item vsako funkcijo razstavimo na sinusoide
-    \item obravnavamo obnasanje vsake sinusoide v sistemu posebej
-    \item na koncu zdruzimo locene rezultate
-\end{itemize}
+	\subsection{Fourierova transformacija}
+	Vsako periodicno funkcijo ( ce je dovolj lepa ), lahko zapisemo kot kombinacijo sinusoid.
+	V kombinaciji z invariantnostjo sinusoid to pomeni, da lahko:
+	\begin{itemize}
+		\item vsako funkcijo razstavimo na sinusoide
+		\item obravnavamo obnasanje vsake sinusoide v sistemu posebej
+		\item na koncu zdruzimo locene rezultate
+	\end{itemize}
 
-\subsubsection{Fourierova vrsta}
-Funkcija je periodicna s periodo $T$, ce velja:
-\begin{center}
-    \begin{math}
-        x(t + T) = x(t), \forall t: -\infty < t < \infty
-    \end{math}
-\end{center}
-kjer je $T$ najmanjsa pozitivna vrednost s to lastnostjo.
+	\subsubsection{Fourierova vrsta}
+	Funkcija je periodicna s periodo $T$, ce velja:
+	\begin{center}
+		\begin{math}
+			x(t + T) = x(t), \forall t: -\infty < t < \infty
+		\end{math}
+	\end{center}
+	kjer je $T$ najmanjsa pozitivna vrednost s to lastnostjo.
 
-Funkciji $\sin(t)$ in $\cos(t)$ sta periodicni s periodo $2\pi$  $\Rightarrow$
-Funkciji $\sin(\frac{2 \pi t}{T})$ in $cos(\frac{2 \pi t}{T})$ sta potem periodicni funkciji 
-s periodo $T$ in frekvenco $\nu_0 = \frac{1}{T}$.
+	Funkciji $\sin(t)$ in $\cos(t)$ sta periodicni s periodo $2\pi$  $\Rightarrow$
+	Funkciji $\sin(\frac{2 \pi t}{T})$ in $cos(\frac{2 \pi t}{T})$ sta potem periodicni funkciji
+	s periodo $T$ in frekvenco $\nu_0 = \frac{1}{T}$.
 
-Cas merimo v sekundah, frekvenco pa v stevilu ciklov na sekundo. Pri analizi
-signalov zapis veckrat poenostavimo tako, da namesto frekvence uporabimo kotno hitrost
-\begin{center}
-    \begin{math}
-        \omega_0 = 2 \pi \nu_0 = \frac{2\pi}{T}
-    \end{math}
-\end{center}
+	Cas merimo v sekundah, frekvenco pa v stevilu ciklov na sekundo. Pri analizi
+	signalov zapis veckrat poenostavimo tako, da namesto frekvence uporabimo kotno hitrost
+	\begin{center}
+		\begin{math}
+			\omega_0 = 2 \pi \nu_0 = \frac{2\pi}{T}
+		\end{math}
+	\end{center}
 
-Visji harmoniki sinusoid s frekvenco $\nu_0$ so $\sin$ in $\cos$ funkcije s frekvencami,
-ki so veckratniki osnovne frekvence, $n \nu_0$.
+	Visji harmoniki sinusoid s frekvenco $\nu_0$ so $\sin$ in $\cos$ funkcije s frekvencami,
+	ki so veckratniki osnovne frekvence, $n \nu_0$.
 
-Fourier je pokazal, da lahko \textbf{vsako} periodicno funkcijo $x(t)$ s periodo $T$ zapisemo kot:
-\begin{center}
-    \begin{math}
-        x(t) = \frac{a_0}{2} + \sum_{n = 1}^{\infty} a_n \cos(n \omega_0 t) +
-        \sum_{n = 1}^{\infty} b_n \sin(n \omega_0 t)
-    \end{math}
-\end{center}
-za $n \geq 1$.
+	Fourier je pokazal, da lahko \textbf{vsako} periodicno funkcijo $x(t)$ s periodo $T$ zapisemo kot:
+	\begin{center}
+		\begin{math}
+			x(t) = \frac{a_0}{2} + \sum_{n = 1}^{\infty} a_n \cos(n \omega_0 t) +
+			\sum_{n = 1}^{\infty} b_n \sin(n \omega_0 t)
+		\end{math}
+	\end{center}
+	za $n \geq 1$.
 
-\begin{center}
-    \begin{math}
-        b_n = \frac{2}{T} \int_T^0 x(t) \sin( n \omega_0 t ) dt
-    \end{math}\\
-    \begin{math}
-        a_n = \frac{2}{T} \int_0^T x(t) \cos( n \omega_0 t ) dt
-    \end{math}
-\end{center}
+	\begin{center}
+		\begin{math}
+			b_n = \frac{2}{T} \int_T^0 x(t) \sin( n \omega_0 t ) dt
+		\end{math}\\
+		\begin{math}
+			a_n = \frac{2}{T} \int_0^T x(t) \cos( n \omega_0 t ) dt
+		\end{math}
+	\end{center}
 
-\begin{center}
-    \begin{math}
-    \sum_{n = -\infty} ^n C_n e^{i n \omega_0 t}
-    \end{math}
-\end{center}
+	\begin{center}
+		\begin{math}
+			\sum_{n = -\infty} ^n C_n e^{i n \omega_0 t}
+		\end{math}
+	\end{center}
 
-To velja za vsako funkcijo, ki zadosca Dirichletovim pogojem:
-\begin{itemize}
-    \item je enoznacna (za vsak $t$ ena sama vrednost)
-    \item je koncna povsod, oz. njen integral je koncen
-    \item je absolutno integrabilna (ima koncno energijo)
-        \begin{center}
-            $\int_0^T |x(t)| dt < \infty$
-        \end{center}
-    \item mora imeti koncno stevilo ekstremov v vsakem obmocju
-    \item imeti mora kncno stevilo koncnih nezveznosti v vsakem obmocju
-\end{itemize}
+	To velja za vsako funkcijo, ki zadosca Dirichletovim pogojem:
+	\begin{itemize}
+		\item je enoznacna (za vsak $t$ ena sama vrednost)
+		\item je koncna povsod, oz. njen integral je koncen
+		\item je absolutno integrabilna (ima koncno energijo)
+		      \begin{center}
+			      $\int_0^T |x(t)| dt < \infty$
+		      \end{center}
+		\item mora imeti koncno stevilo ekstremov v vsakem obmocju
+		\item imeti mora kncno stevilo koncnih nezveznosti v vsakem obmocju
+	\end{itemize}
 
-Bolj kompaktna predstavitev je z uporabo \textbf{Eulerjeve formule} $e^{i \phi} = \cos(\phi) + i \sin(\phi)$, $i = \sqrt{-1}$:
-\begin{center}
-    \begin{math}
-        x(t) = \sum_{n = - \infty}^{\infty} c_n e^{i n \omega_0 t}
-    \end{math}
-\end{center}
-Koeficienti so kompleksni:
-\begin{center}
-    \begin{math}
-        c_n = \frac{1}{T} \int_0^T x(t)e^{-in \omega_0} dt = \int_{\frac{-T/2}{T/2}} x(t) e^{-in \omega_0} dt
-    \end{math}
-\end{center}
-Zveza med obema zapisoma:
-\begin{itemize}
-    \item $n = 0: c_0 = \frac{a_0}{2}$
-    \item $n > 0: c_n = \frac{a_n - i b_n}{2}$
-    \item $n < 0: c_n = \frac{a_{-n} - i b_{-n}}{2}$
-\end{itemize}
+	Bolj kompaktna predstavitev je z uporabo \textbf{Eulerjeve formule} $e^{i \phi} = \cos(\phi) + i \sin(\phi)$, $i = \sqrt{-1}$:
+	\begin{center}
+		\begin{math}
+			x(t) = \sum_{n = - \infty}^{\infty} c_n e^{i n \omega_0 t}
+		\end{math}
+	\end{center}
+	Koeficienti so kompleksni:
+	\begin{center}
+		\begin{math}
+			c_n = \frac{1}{T} \int_0^T x(t)e^{-in \omega_0} dt = \int_{\frac{-T/2}{T/2}} x(t) e^{-in \omega_0} dt
+		\end{math}
+	\end{center}
+	Zveza med obema zapisoma:
+	\begin{itemize}
+		\item $n = 0: c_0 = \frac{a_0}{2}$
+		\item $n > 0: c_n = \frac{a_n - i b_n}{2}$
+		\item $n < 0: c_n = \frac{a_{-n} - i b_{-n}}{2}$
+	\end{itemize}
 
-Negativne frekvence so matematicni konstrukt, ki nam pride prav pri opisovanju singalov.
-Vsako sinusoido opisemo z dvema parametroma, prej $a_n$, $b_n$, sedaj pa elegantno
-s $c_n$ in $c_{-n}$.
+	Negativne frekvence so matematicni konstrukt, ki nam pride prav pri opisovanju singalov.
+	Vsako sinusoido opisemo z dvema parametroma, prej $a_n$, $b_n$, sedaj pa elegantno
+	s $c_n$ in $c_{-n}$.
 
-\subsubsection{Fourierova transformacija}
-Fourierovo vrsto lahko posplosimo tako, da spustimo $T \rightarrow \infty$ in dobimo Fourierovo transformacijo.
-Predstavlja jedro vseh frekvencnih analiz.
-Enacba:
-\begin{center}
-    \begin{math}
-        x(t) = \int_{-\infty}^{\infty} X(\nu)e^{-i2 \pi \nu t} dt = \int_{-\infty}^{\infty} x(t) e^{-i \omega t} dt
-    \end{math}
-\end{center}
-Manjsi kot je $T$ v casovnem prostoru, sirsi je signal v frekvencnem prostoru.
+	\subsubsection{Fourierova transformacija}
+	Fourierovo vrsto lahko posplosimo tako, da spustimo $T \rightarrow \infty$ in dobimo Fourierovo transformacijo.
+	Predstavlja jedro vseh frekvencnih analiz.
+	Enacba:
+	\begin{center}
+		\begin{math}
+			x(t) = \int_{-\infty}^{\infty} X(\nu)e^{-i2 \pi \nu t} dt = \int_{-\infty}^{\infty} x(t) e^{-i \omega t} dt
+		\end{math}
+	\end{center}
+	Manjsi kot je $T$ v casovnem prostoru, sirsi je signal v frekvencnem prostoru.
 
-Lastnosti Fourierove transformacije:
-\begin{itemize}
-    \item linearnost: $f(t) = ax(t) + by(t) \rightarrow F(\nu) = a X(\nu) + bY(\nu)$
-    \item skaliranje: $f(t) = x(at) \rightarrow F(\nu) = \frac{1}{|a|} X(\frac{1}{a} \nu)$
-    \item premik: $f(t) = x(t - t_0) \rightarrow F(\nu) = e^{-i2\pi \nu t_0} X(\nu)$
-    \item modulacija: $f(t) = e^{i 2 \pi t \nu_0} x(t) \rightarrow F(\nu) = X(\nu - \nu_0)$
-    \item konvolucija: $f(t) = \int_{- \infty}^{\infty} x(t - \tau)y(\tau) d\tau \rightarrow F(\nu) = X(\nu) Y(\nu)$
-\end{itemize}
+	Lastnosti Fourierove transformacije:
+	\begin{itemize}
+		\item linearnost: $f(t) = ax(t) + by(t) \rightarrow F(\nu) = a X(\nu) + bY(\nu)$
+		\item skaliranje: $f(t) = x(at) \rightarrow F(\nu) = \frac{1}{|a|} X(\frac{1}{a} \nu)$
+		\item premik: $f(t) = x(t - t_0) \rightarrow F(\nu) = e^{-i2\pi \nu t_0} X(\nu)$
+		\item modulacija: $f(t) = e^{i 2 \pi t \nu_0} x(t) \rightarrow F(\nu) = X(\nu - \nu_0)$
+		\item konvolucija: $f(t) = \int_{- \infty}^{\infty} x(t - \tau)y(\tau) d\tau \rightarrow F(\nu) = X(\nu) Y(\nu)$
+	\end{itemize}
 
-\subsubsection{Diskretna Fourierova transformacija - DFT}
-Frekvenca vzorcenja $\nu_s $ (sampling) je obratno sorazmerna periodi vzorcenja $\nu_s = \frac{1}{\Delta}$.
-Postopek:
-\begin{itemize}
-    \item Ocenimo Fourierovo transformacijo iz $N$ zaporednih vzorcev.
-        \begin{center}
-            \begin{math}
-                x_k = x(k \Delta), k = 0,1, \dots, N - 1
-            \end{math}
-        \end{center}
-    \item Iz $N$ vzorcev na vhodu v DFT bomo lahko izracunali natanko $N$ neodvisnih tock na izhodu.
-    \item Namesto, da bi dolocili DFT za vse tocke od $- \nu_C$ do $+ \nu_C$, se lahko omejimo samo 
-        na dolocene vrednosti
-        \begin{center}
-            \begin{math}
-                \nu_n = \frac{n}{N \Delta}, n = - \frac{N}{2}, \dots, \frac{N}{2}
-            \end{math}
-        \end{center}
-        spodnja in zgornja meja ustrezata ravno Nyquistovi frekvenci.
-    \item Trenuten zapis vkljucuje $N + 1$ vrednost. Izkazalo se bo, da sta obe robni vrednosti enaki. Imamo
-        jih zaradi lepsega zapisa.
-    \item Naprej so stvari trivialne
-        \begin{center}
-            \begin{math}
-                X(\nu_n) = \int_{-\infty}^{\infty} x(t) e^{-i2 \pi \nu_n t} dt = \sum^{N-1}_{k=0} x_k e^{-i2 \pi \nu_n k \Delta} \Delta
-            \end{math}
-        \end{center}
-    \item Ce v zgornji enacbi izpustimo $\Delta$, dobimo enacbo za DFT:
-        \begin{center}
-            \begin{math}
-                X_n = \sum_{k=0}^{N-1} x_k e^{\frac{-i2 \pi n k}{N}}
-            \end{math}
-        \end{center}
-\end{itemize}
+	\subsubsection{Diskretna Fourierova transformacija - DFT}
+	Frekvenca vzorcenja $\nu_s $ (sampling) je obratno sorazmerna periodi vzorcenja $\nu_s = \frac{1}{\Delta}$.
+	Postopek:
+	\begin{itemize}
+		\item Ocenimo Fourierovo transformacijo iz $N$ zaporednih vzorcev.
+		      \begin{center}
+			      \begin{math}
+				      x_k = x(k \Delta), k = 0,1, \dots, N - 1
+			      \end{math}
+		      \end{center}
+		\item Iz $N$ vzorcev na vhodu v DFT bomo lahko izracunali natanko $N$ neodvisnih tock na izhodu.
+		\item Namesto, da bi dolocili DFT za vse tocke od $- \nu_C$ do $+ \nu_C$, se lahko omejimo samo
+		      na dolocene vrednosti
+		      \begin{center}
+			      \begin{math}
+				      \nu_n = \frac{n}{N \Delta}, n = - \frac{N}{2}, \dots, \frac{N}{2}
+			      \end{math}
+		      \end{center}
+		      spodnja in zgornja meja ustrezata ravno Nyquistovi frekvenci.
+		\item Trenuten zapis vkljucuje $N + 1$ vrednost. Izkazalo se bo, da sta obe robni vrednosti enaki. Imamo
+		      jih zaradi lepsega zapisa.
+		\item Naprej so stvari trivialne
+		      \begin{center}
+			      \begin{math}
+				      X(\nu_n) = \int_{-\infty}^{\infty} x(t) e^{-i2 \pi \nu_n t} dt = \sum^{N-1}_{k=0} x_k e^{-i2 \pi \nu_n k \Delta} \Delta
+			      \end{math}
+		      \end{center}
+		\item Ce v zgornji enacbi izpustimo $\Delta$, dobimo enacbo za DFT:
+		      \begin{center}
+			      \begin{math}
+				      X_n = \sum_{k=0}^{N-1} x_k e^{\frac{-i2 \pi n k}{N}}
+			      \end{math}
+		      \end{center}
+	\end{itemize}
 
-Stevilo vzorcenj: $N = \frac{\nu_s}{\min(\Delta \nu_s)}$
+	Stevilo vzorcenj: $N = \frac{\nu_s}{\min(\Delta \nu_s)}$
 
-Povezava s Fourierovo transformacijo je $X(\nu_n) \approx \Delta X_n$
-Iz enacbe za DFT sledi, da je DFT periodicna s periodo $N$. To pomeni, da je $X_{-n} = X_{N-n}$
-Koeficiente $X_n$ lahko zato namesto na intervalu $[-\frac{N}{2}, \frac{N}{2}]$ racunamo na
-intervalu $[0, N - 1]$.
+	Povezava s Fourierovo transformacijo je $X(\nu_n) \approx \Delta X_n$
+	Iz enacbe za DFT sledi, da je DFT periodicna s periodo $N$. To pomeni, da je $X_{-n} = X_{N-n}$
+	Koeficiente $X_n$ lahko zato namesto na intervalu $[-\frac{N}{2}, \frac{N}{2}]$ racunamo na
+	intervalu $[0, N - 1]$.
 
-Zveza med koeficienti $X_0, \dots, X_{N-1}$ in frekvencami $- \nu_C, \dots, \nu_C$:
-\begin{center}
-    \begin{tabular}{ cc } 
-        indeks & frekvenca \\
-        \hline
-            $n = 0$                             &  $\nu = 0$ \\
-            $1 \leq n \leq \frac{N}{2-1}$       &  $0 < \nu < \nu_C$ \\
-            $\frac{N}{2}$                       &  $-\nu_C, + \nu_C$ \\
-            $\frac{N}{2} + 1 \leq n \leq N - 1$ &  $\nu_C < \nu < 0$ \\
-        \hline
-    \end{tabular}
-\end{center}
+	Zveza med koeficienti $X_0, \dots, X_{N-1}$ in frekvencami $- \nu_C, \dots, \nu_C$:
+	\begin{center}
+		\begin{tabular}{ cc }
+			indeks                              & frekvenca         \\
+			\hline
+			$n = 0$                             & $\nu = 0$         \\
+			$1 \leq n \leq \frac{N}{2-1}$       & $0 < \nu < \nu_C$ \\
+			$\frac{N}{2}$                       & $-\nu_C, + \nu_C$ \\
+			$\frac{N}{2} + 1 \leq n \leq N - 1$ & $\nu_C < \nu < 0$ \\
+			\hline
+		\end{tabular}
+	\end{center}
 
-\subsubsection{Inverzna DFT}
-\begin{center}
-    \begin{math}
-        x_k = \frac{1}{N} \sum_{n=0}^{N-1} X_{n}e^{\frac{i2 \pi n k}{N}}
-    \end{math}
-\end{center}
+	\subsubsection{Inverzna DFT}
+	\begin{center}
+		\begin{math}
+			x_k = \frac{1}{N} \sum_{n=0}^{N-1} X_{n}e^{\frac{i2 \pi n k}{N}}
+		\end{math}
+	\end{center}
 
-\subsection{Resonanca}
-Do resonance pride, ko je frekvenca vsiljenega nihanja enaka frekvenci lastnega nihanja. Takrat pride do ojacitve amplitud.
+	\subsection{Resonanca}
+	Do resonance pride, ko je frekvenca vsiljenega nihanja enaka frekvenci lastnega nihanja. Takrat pride do ojacitve amplitud.
 
-\subsection{Modulacija in frekvencni premik}
+	\subsection{Modulacija in frekvencni premik}
 
-Iz osnovne trigonometrije vemo:
-\begin{center}
-    \begin{math}
-        \sin(2 \pi \nu_1 t) \sin(2 \pi \nu_2 t) = \frac{1}{2} [\cos(2 \pi(\nu_1 - \nu_2)t) - \cos(2 \pi (\nu_1 + \nu_2)t)]
-    \end{math}\\
-    \begin{math}
-        \cos(2 \pi \nu t) = \sin(2 \pi \nu t + \pi / 2)
-    \end{math}
-\end{center}
-Produkt sinusoid s frekvencama $\nu_1$ in $\nu_2$ lahko torej zapisemo kot vsoto sinusoide s frekvenco $\nu_1 + \nu_2$ in 
-sinusoide s frekvenco $\nu_1 - \nu_2$.
+	Iz osnovne trigonometrije vemo:
+	\begin{center}
+		\begin{math}
+			\sin(2 \pi \nu_1 t) \sin(2 \pi \nu_2 t) = \frac{1}{2} [\cos(2 \pi(\nu_1 - \nu_2)t) - \cos(2 \pi (\nu_1 + \nu_2)t)]
+		\end{math}\\
+		\begin{math}
+			\cos(2 \pi \nu t) = \sin(2 \pi \nu t + \pi / 2)
+		\end{math}
+	\end{center}
+	Produkt sinusoid s frekvencama $\nu_1$ in $\nu_2$ lahko torej zapisemo kot vsoto sinusoide s frekvenco $\nu_1 + \nu_2$ in
+	sinusoide s frekvenco $\nu_1 - \nu_2$.
 
-To lastnost izkorisca amplitudna modulacija (radijske postaje AM) in frekvencni premik, s katerim lahko zagotovimo
-hkraten prenos vec signalov po istem mediju.
+	To lastnost izkorisca amplitudna modulacija (radijske postaje AM) in frekvencni premik, s katerim lahko zagotovimo
+	hkraten prenos vec signalov po istem mediju.
 
-\subsection{Teorem vzorcenja}
-Signal moramo vzorciti vsaj s frekvenco $2 \nu_c$, ce je najvisja opazena frekvenca v signalu $\nu_c$. Na tem zakljucku
-sloni vsa danasnja tehnologija.
+	\subsection{Teorem vzorcenja}
+	Signal moramo vzorciti vsaj s frekvenco $2 \nu_c$, ce je najvisja opazena frekvenca v signalu $\nu_c$. Na tem zakljucku
+	sloni vsa danasnja tehnologija.
 
-\subsubsection{Zajem signalov}
-Zvezni signal $x(t)$ je funkcija zvezne spremenljivke $t$. Diskreten signal je definiran samo za dolocene case, ki
-si najpogosteje sledijo v enakih casovnih intervalih $x_k = x(k \Delta)$, $\Delta$ je perioda vzorcenja.
+	\subsubsection{Zajem signalov}
+	Zvezni signal $x(t)$ je funkcija zvezne spremenljivke $t$. Diskreten signal je definiran samo za dolocene case, ki
+	si najpogosteje sledijo v enakih casovnih intervalih $x_k = x(k \Delta)$, $\Delta$ je perioda vzorcenja.
 
-Signale danes obicajno zajemamo z racuanlniki. Za to se uporabljajo vezja $A/D$ pretvorniki. Imajo koncno natancnost,
-na primer 12bit. Signal torej opisemo s koncno mnogo razlicnimi amplitudami $2^{12}$.
+	Signale danes obicajno zajemamo z racuanlniki. Za to se uporabljajo vezja $A/D$ pretvorniki. Imajo koncno natancnost,
+	na primer 12bit. Signal torej opisemo s koncno mnogo razlicnimi amplitudami $2^{12}$.
 
-\subsection{Energija signala}
-Definicija:
-\begin{center}
-    \begin{math}
-        E = \int_{-\infty}^{\infty} x(t)^2 dt
-    \end{math}
-\end{center}
+	\subsection{Energija signala}
+	Definicija:
+	\begin{center}
+		\begin{math}
+			E = \int_{-\infty}^{\infty} x(t)^2 dt
+		\end{math}
+	\end{center}
 
-\textbf{Parsevalov teorem}
-\begin{center}
-    \begin{math}
-        \int_{-\infty}^{\infty} x(t)^2 dt = \int_{-\infty}{\infty} |X(\nu)|^2 d\nu
-    \end{math}
-\end{center}
+	\textbf{Parsevalov teorem}
+	\begin{center}
+		\begin{math}
+			\int_{-\infty}^{\infty} x(t)^2 dt = \int_{-\infty}{\infty} |X(\nu)|^2 d\nu
+		\end{math}
+	\end{center}
 
-Porazdelitev energije po frekvencah podaja funckija $|X(\nu)|^2$, ki jo imenujemo \textbf{energijska spektralna gostota}.
+	Porazdelitev energije po frekvencah podaja funckija $|X(\nu)|^2$, ki jo imenujemo \textbf{energijska spektralna gostota}.
 
-\subsubsection{Mocnostni spekter diskretnega kanala}
-Diskretna razlicica Parsevalovega teorema:
-\begin{center}
-    \begin{math}
-        \sum_{k=1}^{N-1} |x_k|^2 = \frac{1}{N} \sum_{n=0}^{N-1} |X_n|^2
-    \end{math}
-\end{center}
-Pri diskretni razlicici je PSD vedno v intervalu $[- \nu_C, \nu_C]$.
-Mocnostni spekter je potem:
-\begin{itemize}
-    \item $P(0) = \frac{1}{N^2} |X_0|^2$
-    \item $P(\nu_n) = \frac{1}{N^2} [|X_n|^2 + |X_{N-n}|^2]$, $n = 1, 2, \dots, \frac{n}{2-1}$
-    \item $P(\nu_C) = \frac{1}{N^2}|X_{\frac{N}{2}}|^2$
-\end{itemize}
+	\subsubsection{Mocnostni spekter diskretnega kanala}
+	Diskretna razlicica Parsevalovega teorema:
+	\begin{center}
+		\begin{math}
+			\sum_{k=1}^{N-1} |x_k|^2 = \frac{1}{N} \sum_{n=0}^{N-1} |X_n|^2
+		\end{math}
+	\end{center}
+	Pri diskretni razlicici je PSD vedno v intervalu $[- \nu_C, \nu_C]$.
+	Mocnostni spekter je potem:
+	\begin{itemize}
+		\item $P(0) = \frac{1}{N^2} |X_0|^2$
+		\item $P(\nu_n) = \frac{1}{N^2} [|X_n|^2 + |X_{N-n}|^2]$, $n = 1, 2, \dots, \frac{n}{2-1}$
+		\item $P(\nu_C) = \frac{1}{N^2}|X_{\frac{N}{2}}|^2$
+	\end{itemize}
 
 \end{multicols}
 \end{document}

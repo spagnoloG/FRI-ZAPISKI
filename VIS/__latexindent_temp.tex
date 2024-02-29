@@ -9,465 +9,465 @@
 \begin{document}
 
 \begin{center}
-    {\small VIS/FRI \par}
+	{\small VIS/FRI \par}
 \end{center}
 
 \begin{multicols}{3}
 
-\textit{Ponovitev osnov}
+	\textit{Ponovitev osnov}
 
-\section{\underline{Kombinatorika}}
-
-
-\textbf{1.1 Permutacije}
-\begin{enumerate}
-    \item brez ponavljanja: $P_{n} = n!$
-    \item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
-\end{enumerate}
-
-\textbf{1.2 Variacije}
-\begin{enumerate}
-    \item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
-    \item s ponavljanjem: $V_{n}^{r} = n^{r}$
-\end{enumerate}
-
-\textbf{1.3 Kombinacije}
-\begin{enumerate}
-    \item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
-    \item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
-\end{enumerate}
-\begin{center}
-    Lastnosti binomskega simbola:
-    \begin{math}
-        {n \choose n} = 1 \quad
-        {n \choose 0} = 1 \quad
-        {n \choose 1} = n \quad
-        {n \choose r} = {n \choose n - r} 
-    \end{math}
-    Binomski izrek:\\
-    \begin{math}
-        (a + b)^{n} =
-        {n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
-        {n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
-    \end{math}
-
-\end{center}
-Za kombinacije velja, da vrstni red \textbf{ni} pomemben. Medtem pa
-ko v splosnem za variacije in permutacije velja, da vrstni red \textbf{je}
-pomemben.
-
-\section{\underline{Verjetnost}}
+	\section{\underline{Kombinatorika}}
 
 
-\textbf{2.1 Elementarna verjetnost}
-\smallskip
+	\textbf{1.1 Permutacije}
+	\begin{enumerate}
+		\item brez ponavljanja: $P_{n} = n!$
+		\item s ponavljanjem: $P_{n}^{k_{1},..,k_{n}} = \dfrac{n!}{k_{1}!,..,k_{n}!}$
+	\end{enumerate}
 
-Izid iz dane mnozice izidov je izbran na slepo, ce so vsi izidi
-iz te mnozice enako verjetni. Takrat se dogodek $A$ zgodi z verjetnostjo:
-\begin{center}
-    \begin{math}
-        P(A) = \dfrac{st.\: izidov,\: ki\: so\: v\: A\:}{st.\: vseh\: izidov}
-    \end{math}    
-\end{center}
-Nasprotni dogodek pa z verjetnostjo:
-\begin{center}
-    \begin{math}
-        P(\overline{A}) = 1 - P(A)
-    \end{math}    
-\end{center}
-Nacelo vkljucitev in izkljucitev dogodkov:
-\begin{center}
-    \begin{math}
-        P(A_{1} \cup \dots \cup A_{n}) =
-    \end{math}
-    \begin{math}
-        P(A_{1}) + \dots + P(A_{n})
-    \end{math}
-    \begin{math}
-        - P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
-    \end{math}
-    \begin{math}
-        + P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
-    \end{math}
-    \begin{math}
-        - \dots
-    \end{math}
-    \begin{math}
-        + (-1)^{n + 1} P(A_{1} \dots A_{n})
-    \end{math}
-\end{center}
-Dogodki $A_{1}, A_{2}, \dots , A_{k}$ in $B$ so \textbf{neodvisni}, ce velja
-\begin{center}
-    \begin{math}
-        P(A_{1} \dots A_{k}) = P(A_{1}) \dots P(A_{k})
-    \end{math}
-\end{center}
-\textit{ali z drugimi besedami...} Verjetnost produkta paroma neodvisnih
-dogodkov je enaka produktu vrjetnosti teh dogodkov.
+	\textbf{1.2 Variacije}
+	\begin{enumerate}
+		\item brez ponavljanja: $V_{n}^{r} = \dfrac{n!}{(n - r)!}$
+		\item s ponavljanjem: $V_{n}^{r} = n^{r}$
+	\end{enumerate}
 
-\textbf{2.2 Pogojna verjetnost}
-Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
-\begin{center}
-    \begin{math}
-        P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
-    \end{math}
-\end{center}
-Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
-$P(A B) = P(A)P(B)$ .
-Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
-pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
+	\textbf{1.3 Kombinacije}
+	\begin{enumerate}
+		\item brez ponavljanja: ${n\choose k} = \dfrac{n!}{(n - k)! k!}$
+		\item s ponavljanjem: $({n\choose k}) = {n + k - 1\choose k}$
+	\end{enumerate}
+	\begin{center}
+		Lastnosti binomskega simbola:
+		\begin{math}
+			{n \choose n} = 1 \quad
+			{n \choose 0} = 1 \quad
+			{n \choose 1} = n \quad
+			{n \choose r} = {n \choose n - r}
+		\end{math}
+		Binomski izrek:\\
+		\begin{math}
+			(a + b)^{n} =
+				{n \choose 0} a^{n} b^{0} + {n \choose 1} a^{n - 1} b^{1} +
+			{n \choose 2} a^{n - 2} b^{2} + \dots + {n \choose n} a^{0} b^{n}
+		\end{math}
 
-\textbf{2.3 Popolna verjetnost}
+	\end{center}
+	Za kombinacije velja, da vrstni red \textbf{ni} pomemben. Medtem pa
+	ko v splosnem za variacije in permutacije velja, da vrstni red \textbf{je}
+	pomemben.
 
-Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
-ce se nobena dva dogodka ne moreta zgoditi hrkati in se vedno
-zgodi vsaj en od njih. Ce dogodki izpolnjujejo ta pogoj, potem po
-nacelu vkljucitev/izkljucitev velja:
-\begin{center}
-    \begin{math}
-        P(A) =
-    \end{math}
-    \smallskip
-    \begin{math}
-        \sum_{i=1}^{\infty} P(A \cap H_{i}) =
-        \sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
-    \end{math}
-\end{center}
-% Za \textbf{popolni sistem dogodkov} velja unija hipotez:
-% \begin{center}
-%     \begin{math}
-%         P(A|H_{1} \cup \dots \cup H_{n}) = 
-%     \end{math}
-%     \begin{math}
-%         \dfrac{
-%             P(A | H_{1}) P(H_{1}) + \dots
-%             P(A | H_{n - 1}) P(H_{n - 1}) +
-%             P(A | H_{n}) P(H_{n})
-%         }
-%         {
-%             P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
-%         }
-%     \end{math}    
-% \end{center}
-Zanje velja tudi \textbf{Bayesova formula}:
-\begin{center}
-    \begin{math}
-        P(H_{i} | A) = 
-    \end{math}
-    \begin{math}
-        \dfrac{
-            P(H_{i}) P(A | H_{i})
-        }
-        {
-            P(A)
-        }
-    \end{math}
-    \begin{math}
-        = \dfrac{
-            P(H_{i}) P(A | H_{i})
-        }
-        {
-            \sum_{k=1}^{n} P(H_{k}) P(A | H_{k})
-        }
-    \end{math}        
-\end{center}
-
-\textbf{2.4 Geometrijska verjetnost}
+	\section{\underline{Verjetnost}}
 
 
-Tocka je izbrana \textit{na slepo} iz intervala, lika, telesa.. ce za
-vsak dogodek $A$ velja:
-\begin{center}
-    \begin{math}
-        P(A) =
-    \end{math}
-    \smallskip
-    \begin{math}
-       \dfrac{
-        mera\: izidov,\: ki\: so\: v\: A\:
-        }
-       {mera\: vseh\: izidov\:}
-    \end{math}
-\end{center}
-Pri tem je mera lahko dolzina, ploscina, volumen,..
-Basically upas da narises graf pravilno.
+	\textbf{2.1 Elementarna verjetnost}
+	\smallskip
 
-Splosno za vse nastete verjetnosti velja:
-\begin{center}
-    \begin{math}
-    P(A \cup B) = P(A) + P(B) - P(A \cap B)
-    \end{math} in 
-    \begin{math}
-        P(A \cap B) = P(A | B) P(B) = P(B | A) P(A)
-    \end{math}
-\end{center}
+	Izid iz dane mnozice izidov je izbran na slepo, ce so vsi izidi
+	iz te mnozice enako verjetni. Takrat se dogodek $A$ zgodi z verjetnostjo:
+	\begin{center}
+		\begin{math}
+			P(A) = \dfrac{st.\: izidov,\: ki\: so\: v\: A\:}{st.\: vseh\: izidov}
+		\end{math}
+	\end{center}
+	Nasprotni dogodek pa z verjetnostjo:
+	\begin{center}
+		\begin{math}
+			P(\overline{A}) = 1 - P(A)
+		\end{math}
+	\end{center}
+	Nacelo vkljucitev in izkljucitev dogodkov:
+	\begin{center}
+		\begin{math}
+			P(A_{1} \cup \dots \cup A_{n}) =
+		\end{math}
+		\begin{math}
+			P(A_{1}) + \dots + P(A_{n})
+		\end{math}
+		\begin{math}
+			- P(A_{1} A_{2}) - P(A_{1} A_{3}) - \dots - P(A_{n - 1} A_{n})
+		\end{math}
+		\begin{math}
+			+ P(A_{1} A_{2} A_{3}) +P (A_{1} A_{2} A_{4}) + \dots + P(A_{n - 2} A_{n - 1} A_{n})
+		\end{math}
+		\begin{math}
+			- \dots
+		\end{math}
+		\begin{math}
+			+ (-1)^{n + 1} P(A_{1} \dots A_{n})
+		\end{math}
+	\end{center}
+	Dogodki $A_{1}, A_{2}, \dots , A_{k}$ in $B$ so \textbf{neodvisni}, ce velja
+	\begin{center}
+		\begin{math}
+			P(A_{1} \dots A_{k}) = P(A_{1}) \dots P(A_{k})
+		\end{math}
+	\end{center}
+	\textit{ali z drugimi besedami...} Verjetnost produkta paroma neodvisnih
+	dogodkov je enaka produktu vrjetnosti teh dogodkov.
 
-\section{\underline{Dss in porazdelitve}}
+	\textbf{2.2 Pogojna verjetnost}
+	Verjetnost da se zgodi dogodek A, ce vemo, da se zgodi dogodek B, je
+	\begin{center}
+		\begin{math}
+			P(A | B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A)P(B|A)}{P(B)}
+		\end{math}
+	\end{center}
+	Dogodka $A$ in b sta \textbf{neodvisna}, ce velja $P(A | B) = P(A)$ ali
+	$P(A B) = P(A)P(B)$ .
+	Pazi! Za par \textbf{nezdruzljivih} dogodkov $A$ in $B$
+	pa velja $P(AB) = 0$,  $P(A + B) = P(A) + P(B)$, $P(A|B) = 0$ in $P(B|A) = 0$.
 
-\textbf{3.1 Diskretna slucjana spremenljivka}
-Naj bo $X$ diskretna slucajna spremenljivka $\implies$ $X$ je funkcija
-s koncno ali stevno zalogo  vrednosti ${ a_{1}, a_{2}, \dots}$ Verjetnost, 
-da $X$ zavzame vrednost $a_{i} \in R$, oznacimo z $P(X = a_{i}) = p_{i}$. Porazdelitev
-$X$ lahko podamo na dva enakovredna nacina, in sicer s:
-\begin{enumerate}
-    \item s \textbf{porazdelitveno shemo}
-        \begin{center}
-            \begin{math}
-                X \sim
-                \begin{pmatrix}
-                    a_{1} & a_{2} & a_{3} & \dots \\
-                    p_{1} & p_{2} & p_{3} & \dots
-                \end{pmatrix}
-            \end{math}
-        \end{center}
-        velja $0 \leq p_{i} \leq 1$ in $p_{1} + p_{2} + \dots = 1$
-    \item s \textbf{porazdelitveno funkcijo}
-        \begin{center}
-            \begin{math}
-                F_{x}(x) := P(X \leq x)
-            \end{math}
-        \end{center}
-\end{enumerate}
+	\textbf{2.3 Popolna verjetnost}
 
-\textbf{3.2 Bernoullijeva} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim B(p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item V vsakem poskusu ima dogodek $A$ verjetnost $p$, $X$ pa ima vrednost 1, ce se je zgodil dogodek A, in 0 sicer.
-    \item $P(X = 1) = p, P(X = 0) = 1 - p$
-\end{itemize}
+	Dogodki $H_{1}, H_{2}, \dots H_{n}$ tvorijo \textbf{popoln sistem dogodkov},
+	ce se nobena dva dogodka ne moreta zgoditi hrkati in se vedno
+	zgodi vsaj en od njih. Ce dogodki izpolnjujejo ta pogoj, potem po
+	nacelu vkljucitev/izkljucitev velja:
+	\begin{center}
+		\begin{math}
+			P(A) =
+		\end{math}
+		\smallskip
+		\begin{math}
+			\sum_{i=1}^{\infty} P(A \cap H_{i}) =
+			\sum_{i=1}^{\infty} P(H_{1}) P(A | H_{i})
+		\end{math}
+	\end{center}
+	% Za \textbf{popolni sistem dogodkov} velja unija hipotez:
+	% \begin{center}
+	%     \begin{math}
+	%         P(A|H_{1} \cup \dots \cup H_{n}) = 
+	%     \end{math}
+	%     \begin{math}
+	%         \dfrac{
+	%             P(A | H_{1}) P(H_{1}) + \dots
+	%             P(A | H_{n - 1}) P(H_{n - 1}) +
+	%             P(A | H_{n}) P(H_{n})
+	%         }
+	%         {
+	%             P(H_{1}) + \dots + P(H_{n - 1}) + P(H_{n})
+	%         }
+	%     \end{math}    
+	% \end{center}
+	Zanje velja tudi \textbf{Bayesova formula}:
+	\begin{center}
+		\begin{math}
+			P(H_{i} | A) =
+		\end{math}
+		\begin{math}
+			\dfrac{
+				P(H_{i}) P(A | H_{i})
+			}
+			{
+				P(A)
+			}
+		\end{math}
+		\begin{math}
+			= \dfrac{
+				P(H_{i}) P(A | H_{i})
+			}
+			{
+				\sum_{k=1}^{n} P(H_{k}) P(A | H_{k})
+			}
+		\end{math}
+	\end{center}
+
+	\textbf{2.4 Geometrijska verjetnost}
 
 
-\textbf{3.3 Binomska} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim B(n, p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo pojavitev izida $A$ v $n$ ponovitvah poskusa
-    \item $P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.$
-\end{itemize}
-Izvajamo $n$ neodvisnih slucajnih poskusov. V vsakem poskusu se lahko zgodi dogodek $A$ s 
-konstantno verjetnostjo $p$, $p =  P(A)$. 
-$X$ nam pove kolikokrat se je zgodil dogodek $A$ v $n$ poskusih.
-npr. kovanec vrzemo 10x, koliksne so vrjetnosti, da pade cifra 0x, 2x, vsaj 3x,..
-ali 5x vrzemo posteno kocko, izracunaj stevilo sestic, ki pade $\implies B(5, \dfrac{1}{6})$
+	Tocka je izbrana \textit{na slepo} iz intervala, lika, telesa.. ce za
+	vsak dogodek $A$ velja:
+	\begin{center}
+		\begin{math}
+			P(A) =
+		\end{math}
+		\smallskip
+		\begin{math}
+			\dfrac{
+				mera\: izidov,\: ki\: so\: v\: A\:
+			}
+			{mera\: vseh\: izidov\:}
+		\end{math}
+	\end{center}
+	Pri tem je mera lahko dolzina, ploscina, volumen,..
+	Basically upas da narises graf pravilno.
 
-\textbf{3.4 Geometrijska} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim G(p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo ponovitev poskusa do (vkljucno) prve ponovitve izida $A$.
-    \item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$ 
-    \item $P(X \leq k) = 1 - (1 - p)^{k}$ za $k = 1,2, \dots$
-\end{itemize}
-Izvajamo  neodvisne slucajne poskuse, dokler se ne zgodi dogodek $A$. V vsakem poskusu
-se lahko zgodi dogodek $A$  s \textbf{konstantno} verjetnostjo $p$, $p =  P(A)$.
-npr. koliko metov kocke je potrebnih, do prve sestice $\implies G(1/6)$.
+	Splosno za vse nastete verjetnosti velja:
+	\begin{center}
+		\begin{math}
+			P(A \cup B) = P(A) + P(B) - P(A \cap B)
+		\end{math} in
+		\begin{math}
+			P(A \cap B) = P(A | B) P(B) = P(B | A) P(A)
+		\end{math}
+	\end{center}
 
-\textbf{3.5 Pascalova} oz. \textbf{negativna binomska} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim P(n, p)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo ponovitev poskusa do (vkljucno) $n$-te ponovitve izida $A$.
-    \item \begin{math}
-        P(X = k) = {k - 1 \choose n - 1 }(1 - p)^{k - n} p^{n} $ za $ k = n, n + 1, n + 2, \dots
-    \end{math}
-\end{itemize}
-npr. koliko metov kocke je potrebnih, dokler sestica ne pade 5x $\implies P(5, \dfrac{1}{6})$. Stevilo metov kovanca,
-dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
+	\section{\underline{Dss in porazdelitve}}
 
-\textbf{3.6 Hipergeometrijska} slucjana spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim H(K, N - K, n)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo elementov z doloceno lastnostjo med izbranimi.
-    \item \begin{math}
-        P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, R \}
-    \end{math}
-\end{itemize}
-V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
-npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
-imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna verjetnost je da sta 
-2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$. 
+	\textbf{3.1 Diskretna slucjana spremenljivka}
+	Naj bo $X$ diskretna slucajna spremenljivka $\implies$ $X$ je funkcija
+	s koncno ali stevno zalogo  vrednosti ${ a_{1}, a_{2}, \dots}$ Verjetnost,
+	da $X$ zavzame vrednost $a_{i} \in R$, oznacimo z $P(X = a_{i}) = p_{i}$. Porazdelitev
+	$X$ lahko podamo na dva enakovredna nacina, in sicer s:
+	\begin{enumerate}
+		\item s \textbf{porazdelitveno shemo}
+		      \begin{center}
+			      \begin{math}
+				      X \sim
+				      \begin{pmatrix}
+					      a_{1} & a_{2} & a_{3} & \dots \\
+					      p_{1} & p_{2} & p_{3} & \dots
+				      \end{pmatrix}
+			      \end{math}
+		      \end{center}
+		      velja $0 \leq p_{i} \leq 1$ in $p_{1} + p_{2} + \dots = 1$
+		\item s \textbf{porazdelitveno funkcijo}
+		      \begin{center}
+			      \begin{math}
+				      F_{x}(x) := P(X \leq x)
+			      \end{math}
+		      \end{center}
+	\end{enumerate}
 
-\textbf{3.7 Poissonova} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim P(\lambda)
-    \end{math}
-\end{center}
-\begin{itemize}
-    \item $X$ je stevilo ponovitev dogodka A na danem intervalu, pri cemer:
-        \begin{itemize}
-            \item se dogodki pojavljajo neodvisno
-            \item povprecno stevilo dogodgov $\lambda$, ki se pojavjio na dolocenem intervalu, je konstantno.
-        \end{itemize}
-    \item \begin{math}
-        P(X = k) =  \dfrac{ \lambda^{k} }{k!} e^{- \lambda}$ za k = $ 0,1,2,\dots
-    \end{math}
-\end{itemize}
-npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
-kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki preckajo cesto v 1min.
+	\textbf{3.2 Bernoullijeva} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim B(p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item V vsakem poskusu ima dogodek $A$ verjetnost $p$, $X$ pa ima vrednost 1, ce se je zgodil dogodek A, in 0 sicer.
+		\item $P(X = 1) = p, P(X = 0) = 1 - p$
+	\end{itemize}
 
-\section{\underline{Zss in porazdelitve}}
 
-\textbf{3.1 Zvezna slucjana spremenljivka}
-Naj bo $X$ zvezna slucajna spremenljivka $\implies$ $X$ je realna funkcija,
-za katero obstaja integrabilna funkcija $p_{X}: R \rightarrow [0, \infty)$,
-tako da za vsak $x \in R$ velja:
+	\textbf{3.3 Binomska} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim B(n, p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo pojavitev izida $A$ v $n$ ponovitvah poskusa
+		\item $P(X = k) = {n \choose k} p^{k} (1 - p)^{(n - k)}$ za $k = 0,1, \dots, n.$
+	\end{itemize}
+	Izvajamo $n$ neodvisnih slucajnih poskusov. V vsakem poskusu se lahko zgodi dogodek $A$ s
+	konstantno verjetnostjo $p$, $p =  P(A)$.
+	$X$ nam pove kolikokrat se je zgodil dogodek $A$ v $n$ poskusih.
+	npr. kovanec vrzemo 10x, koliksne so vrjetnosti, da pade cifra 0x, 2x, vsaj 3x,..
+	ali 5x vrzemo posteno kocko, izracunaj stevilo sestic, ki pade $\implies B(5, \dfrac{1}{6})$
 
-\begin{center}
-    \begin{math}
-        F_{X}(x) := P(X \leq x) = \int_{- \infty}^{x} p_{X}(t) \,dt
-    \end{math}
-\end{center}
+	\textbf{3.4 Geometrijska} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim G(p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo ponovitev poskusa do (vkljucno) prve ponovitve izida $A$.
+		\item $P(X = k) = (1 - p)^{k - 1} p$ za $k = 1,2, \dots$
+		\item $P(X \leq k) = 1 - (1 - p)^{k}$ za $k = 1,2, \dots$
+	\end{itemize}
+	Izvajamo  neodvisne slucajne poskuse, dokler se ne zgodi dogodek $A$. V vsakem poskusu
+	se lahko zgodi dogodek $A$  s \textbf{konstantno} verjetnostjo $p$, $p =  P(A)$.
+	npr. koliko metov kocke je potrebnih, do prve sestice $\implies G(1/6)$.
 
-Funkciji $p_{X}$ pravimo \textbf{gostota verjetnosti}, funkciji $F_{X}$ pa
-\textbf{porazdelitvena} funkcija. Mnozici vrednosti, ki jih zavzame spremenljivka
-$X$, pravimo \textbf{zaloga vrednosti} in jo oznacimo z $Z_{X}$.
-Lastnosti:
-\begin{itemize}
-    \item \begin{math}
-        \int_{- \infty}^{+ \infty} p_{X}(x) \,dx = 1
-    \end{math}
-    \item \begin{math}
-        P(a < X < b) = \int_{a}^{b} p_{X}(x) \,dx = F_{X}(b) - F_{X}(a),\: a,b \in R,\: a < b
-    \end{math}
-    \item \begin{math}
-        P(X = a) = 0, a \in R
-    \end{math} nqot
-\end{itemize}
-\textbf{ce} je funkcija zvezna v $x$, potem za njo velja tudi $F'(x) = p(x)$.
+	\textbf{3.5 Pascalova} oz. \textbf{negativna binomska} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim P(n, p)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo ponovitev poskusa do (vkljucno) $n$-te ponovitve izida $A$.
+		\item \begin{math}
+			      P(X = k) = {k - 1 \choose n - 1 }(1 - p)^{k - n} p^{n} $ za $ k = n, n + 1, n + 2, \dots
+		      \end{math}
+	\end{itemize}
+	npr. koliko metov kocke je potrebnih, dokler sestica ne pade 5x $\implies P(5, \dfrac{1}{6})$. Stevilo metov kovanca,
+	dokler grb ne pade 2x $\implies P(2, \dfrac{1}{2})$.
 
-\textbf{3.2 Enakomerna zvezna} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim U[a, b]
-    \end{math}
-\end{center}
+	\textbf{3.6 Hipergeometrijska} slucjana spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim H(K, N - K, n)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo elementov z doloceno lastnostjo med izbranimi.
+		\item \begin{math}
+			      P(X = k) =  \dfrac{ {K \choose k} {N - K \choose n - k} }{{N \choose n}} $ za k = $ 0,1,2,\dots min\{ n, R \}
+		      \end{math}
+	\end{itemize}
+	V populaciji $N$  imamo $K$ elementov  z doloceno lastnostjo. Izbiramo brez vracanja $n$ elementov.
+	npr. koliko pikov med 7 kartami, ki smo jih na slepo izbrali izmed 16 kart, kjer so bli stirje piki.
+	imamo 400 ljudi, 100 brezposlenih, nakljucno jih izberemo 10. Zanima nas kaksna verjetnost je da sta
+	2 izmed teh brezposelna $\implies P(x=2) = H(100, 400-100, 10)$.
 
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $\dfrac{1}{b-a}$  & $x \in [a, b]$ & \\
-          $0$ & $sicer$ & \\
-        \end{tabular}
-    \end{math} 
-    
-     \item \begin{math}
-        F_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $0$ & $x < a$ & \\
-          $\dfrac{x - a}{b - a}$  & $x \in [a, b]$ & \\
-          $1$ & $x > b$  & \\
-        \end{tabular}
-    \end{math}
-\end{itemize}
+	\textbf{3.7 Poissonova} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim P(\lambda)
+		\end{math}
+	\end{center}
+	\begin{itemize}
+		\item $X$ je stevilo ponovitev dogodka A na danem intervalu, pri cemer:
+		      \begin{itemize}
+			      \item se dogodki pojavljajo neodvisno
+			      \item povprecno stevilo dogodgov $\lambda$, ki se pojavjio na dolocenem intervalu, je konstantno.
+		      \end{itemize}
+		\item \begin{math}
+			      P(X = k) =  \dfrac{ \lambda^{k} }{k!} e^{- \lambda}$ za k = $ 0,1,2,\dots
+		      \end{math}
+	\end{itemize}
+	npr. ce se dogodek pojavi v povprecju 3x na minuto, lahko uporabimo poissa za izracun
+	kolikokrat se bo dogodek zgodil v  1/4h $\implies P(45)$. St avtomobilov, ki preckajo cesto v 1min.
 
-Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
+	\section{\underline{Zss in porazdelitve}}
 
-\textbf{3.3 Eksponentna} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim \epsilon(\lambda)
-    \end{math}
-\end{center}
+	\textbf{3.1 Zvezna slucjana spremenljivka}
+	Naj bo $X$ zvezna slucajna spremenljivka $\implies$ $X$ je realna funkcija,
+	za katero obstaja integrabilna funkcija $p_{X}: R \rightarrow [0, \infty)$,
+	tako da za vsak $x \in R$ velja:
 
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $0$  & $x < 0$ & \\
-          $\lambda e^{- \lambda x}$ & $x \geq 0$ & \\
-        \end{tabular}
-    \end{math} 
-    
-     \item \begin{math}
-        F_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $0$ & $x < 0$ & \\
-          $1 - e^{- \lambda x}$ & $x > b$  & \\
-        \end{tabular}
-    \end{math}
-\end{itemize}
+	\begin{center}
+		\begin{math}
+			F_{X}(x) := P(X \leq x) = \int_{- \infty}^{x} p_{X}(t) \,dt
+		\end{math}
+	\end{center}
 
-Slucajna spremenljivka $X$ - cas med zaporednima dogodkoma,
-pri cemer so dogodki neodvisni in se pojavijo s konstantno
-stopnjo $\lambda$. $\lambda$ predstavlja povprecno stevilo dogodkov
-na izbrano casovno enoto.
+	Funkciji $p_{X}$ pravimo \textbf{gostota verjetnosti}, funkciji $F_{X}$ pa
+	\textbf{porazdelitvena} funkcija. Mnozici vrednosti, ki jih zavzame spremenljivka
+	$X$, pravimo \textbf{zaloga vrednosti} in jo oznacimo z $Z_{X}$.
+	Lastnosti:
+	\begin{itemize}
+		\item \begin{math}
+			      \int_{- \infty}^{+ \infty} p_{X}(x) \,dx = 1
+		      \end{math}
+		\item \begin{math}
+			      P(a < X < b) = \int_{a}^{b} p_{X}(x) \,dx = F_{X}(b) - F_{X}(a),\: a,b \in R,\: a < b
+		      \end{math}
+		\item \begin{math}
+			      P(X = a) = 0, a \in R
+		      \end{math} nqot
+	\end{itemize}
+	\textbf{ce} je funkcija zvezna v $x$, potem za njo velja tudi $F'(x) = p(x)$.
 
-\textbf{3.4 Normalna} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim N(\mu, \sigma )
-    \end{math}
-\end{center}
+	\textbf{3.2 Enakomerna zvezna} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim U[a, b]
+		\end{math}
+	\end{center}
 
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) = \dfrac{1}{\sigma \sqrt{2 \pi}} e^{- \dfrac{(x - \mu)^{2}}{2 \sigma^{2}}}
-    \end{math} za $x \in R$ 
-    
-     \item Za $F_{X}(x)$ ne obstaja eksplicitna formula. Vrednost preberemo iz porazdelitvenih tabel.
-\end{itemize}
-Po centralnem limitnem izreku sta vsota in povprecje veliko neodvisnih, enako porazdeljenih
-spremenljivk, \textit{normalno porazdeljeni}.
-Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev.
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \{\begin{tabular}{ccc}
+				      $\dfrac{1}{b-a}$ & $x \in [a, b]$ & \\
+				      $0$              & $sicer$        & \\
+			      \end{tabular}
+		      \end{math}
 
-\textbf{3.5 Gamma} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim \Gamma(n, \ambda)
-    \end{math}
-\end{center}
+		\item \begin{math}
+			      F_{X}(x) =
+			      \{\begin{tabular}{ccc}
+				      $0$                    & $x < a$        & \\
+				      $\dfrac{x - a}{b - a}$ & $x \in [a, b]$ & \\
+				      $1$                    & $x > b$        & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
 
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $0$  & $x \leq 0$ & \\
-          $\dfrac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$ & \\
-        \end{tabular}
-    \end{math} 
-\end{itemize}
+	Vsi izidi na intervalu $[a,\: b]$ so enako verjetni.
 
-V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
-prvo in $(n + 1)$ ponovitvijo dogodka $A$.
+	\textbf{3.3 Eksponentna} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim \epsilon(\lambda)
+		\end{math}
+	\end{center}
 
-\textbf{3.5 Hi kvadrat} slucajna spremenljivka
-\begin{center}
-    \begin{math}
-        X \sim  \chi^{2}(n) = \Gamma(\dfrac{n}{2}, \dfrac{1}{2})
-    \end{math}
-\end{center}
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \{\begin{tabular}{ccc}
+				      $0$                       & $x < 0$    & \\
+				      $\lambda e^{- \lambda x}$ & $x \geq 0$ & \\
+			      \end{tabular}
+		      \end{math}
 
-\begin{itemize}
-    \item  \begin{math}
-        p_{X}(x) =
-        \{\begin{tabular}{ccc}
-          $0$  & $x \leq 0$ & \\
-          $\dfrac{x^{\dfrac{n}{2} - 1} e ^{- \dfrac{x}{2}}}{2^{\dfrac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$ & \\
-        \end{tabular}
-    \end{math} 
-\end{itemize}
+		\item \begin{math}
+			      F_{X}(x) =
+			      \{\begin{tabular}{ccc}
+				      $0$                   & $x < 0$ & \\
+				      $1 - e^{- \lambda x}$ & $x > b$ & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
 
-Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
+	Slucajna spremenljivka $X$ - cas med zaporednima dogodkoma,
+	pri cemer so dogodki neodvisni in se pojavijo s konstantno
+	stopnjo $\lambda$. $\lambda$ predstavlja povprecno stevilo dogodkov
+	na izbrano casovno enoto.
 
-\smallskip
+	\textbf{3.4 Normalna} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim N(\mu, \sigma )
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) = \dfrac{1}{\sigma \sqrt{2 \pi}} e^{- \dfrac{(x - \mu)^{2}}{2 \sigma^{2}}}
+		      \end{math} za $x \in R$
+
+		\item Za $F_{X}(x)$ ne obstaja eksplicitna formula. Vrednost preberemo iz porazdelitvenih tabel.
+	\end{itemize}
+	Po centralnem limitnem izreku sta vsota in povprecje veliko neodvisnih, enako porazdeljenih
+	spremenljivk, \textit{normalno porazdeljeni}.
+	Porzadelitev $N(0, 1)$ je standardna normalna porazdelitev.
+
+	\textbf{3.5 Gamma} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim \Gamma(n, \ambda)
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \{\begin{tabular}{ccc}
+				      $0$                                                        & $x \leq 0$ & \\
+				      $\dfrac{\lambda^{n} x^{n- 1} e^{ - \lambda x}}{\Gamma(n)}$ & $x > 0$    & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
+
+	V povprecju imamo na casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je cas med
+	prvo in $(n + 1)$ ponovitvijo dogodka $A$.
+
+	\textbf{3.5 Hi kvadrat} slucajna spremenljivka
+	\begin{center}
+		\begin{math}
+			X \sim  \chi^{2}(n) = \Gamma(\dfrac{n}{2}, \dfrac{1}{2})
+		\end{math}
+	\end{center}
+
+	\begin{itemize}
+		\item  \begin{math}
+			      p_{X}(x) =
+			      \{\begin{tabular}{ccc}
+				      $0$                                                                                       & $x \leq 0$ & \\
+				      $\dfrac{x^{\dfrac{n}{2} - 1} e ^{- \dfrac{x}{2}}}{2^{\dfrac{n}{2}} \Gamma(\dfrac{n}{2})}$ & $x > 0$    & \\
+			      \end{tabular}
+		      \end{math}
+	\end{itemize}
+
+	Je vsota kvadratov $n$ neodvisnih standardnih normalnih slucajnih spremenljivk.
+
+	\smallskip
 \end{multicols}
 \end{document}

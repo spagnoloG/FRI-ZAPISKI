@@ -7,248 +7,248 @@
 \begin{document}
 
 \begin{center}
-    {\small APS2/FRI \par}
+	{\small APS2/FRI \par}
 \end{center}
 
 
 \begin{multicols}{2}
 
-\section{Asimptoticna Notacija}
+	\section{Asimptoticna Notacija}
 
-Naj bo dana funkcija $g: N \rightarrow N$, potem funkcijo $f: N \rightarrow N$ pisemo:
-\begin{itemize}
-    \item $f(n) = \mathcal{O}(g(n))$, ce $\exists c > 0$, da je $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq c$.\\
-        oz. $f(n) = \mathcal{O}(g(n))$, ce $\exists c > 0, n_0 > 0  \forall n \geq n_0: f(n) \leq cg(n)$. $\Rightarrow$
-        sklepamo, da $f$ narasca \textbf{kvecjemu tako hitro} kot $g$.
-    \item $f(n) = \Omega(g(n))$, ce $\exists c > 0$, da je $c \leq \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)}$.\\
-        oz. $f(n) = \Omega(g(n))$, ce $\exists c > 0, n_0 > 0  \forall n \geq n_0: cg(n) \leq f(n)$. $\Rightarrow$
-        sklepamo, da $f$ narasca \textbf{vsaj tako hitro} kot $g$.
-    \item $f(n) = \Theta(g(n))$, ce $\exists c_1, c_2. c_2 > 0$, da je $c_1 \leq \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq c_2$.\\
-        oz. $f(n) = \Theta(g(n))$, ce $\exists c_1, c_2 > 0, n_0 > 0  \forall n \geq n_0: c_1 g(n) \leq f(n) \leq c_2 g(n)$. $\Rightarrow$
-        sklepamo, da $f$ narasca \textbf{podobno hitro} kot $g$.
-    \item $f(n) = o(g(n))$, ce je $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0$.\\
-        oz. $f(n) = o(g(n))$, ce $\forall c > 0, \exists n_0 > 0  \forall n \geq n_0: f(n) < cg(n)$. $\Rightarrow$
-        sklepamo, da $f$ narasca \textbf{pocasneje} kot $g$.
-    \item $f(n) = \omega(g(n))$, ce  je $ \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = + \infty$.\\
-        oz. $f(n) = \omega(g(n))$, ce $\forall c > 0, \exists n_0 > 0  \forall n \geq n_0: cg(n) < f(n)$. $\Rightarrow$
-        sklepamo, da $f$ narasca \textbf{hitreje} kot $g$.
-\end{itemize}
+	Naj bo dana funkcija $g: N \rightarrow N$, potem funkcijo $f: N \rightarrow N$ pisemo:
+	\begin{itemize}
+		\item $f(n) = \mathcal{O}(g(n))$, ce $\exists c > 0$, da je $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq c$.\\
+		      oz. $f(n) = \mathcal{O}(g(n))$, ce $\exists c > 0, n_0 > 0  \forall n \geq n_0: f(n) \leq cg(n)$. $\Rightarrow$
+		      sklepamo, da $f$ narasca \textbf{kvecjemu tako hitro} kot $g$.
+		\item $f(n) = \Omega(g(n))$, ce $\exists c > 0$, da je $c \leq \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)}$.\\
+		      oz. $f(n) = \Omega(g(n))$, ce $\exists c > 0, n_0 > 0  \forall n \geq n_0: cg(n) \leq f(n)$. $\Rightarrow$
+		      sklepamo, da $f$ narasca \textbf{vsaj tako hitro} kot $g$.
+		\item $f(n) = \Theta(g(n))$, ce $\exists c_1, c_2. c_2 > 0$, da je $c_1 \leq \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq c_2$.\\
+		      oz. $f(n) = \Theta(g(n))$, ce $\exists c_1, c_2 > 0, n_0 > 0  \forall n \geq n_0: c_1 g(n) \leq f(n) \leq c_2 g(n)$. $\Rightarrow$
+		      sklepamo, da $f$ narasca \textbf{podobno hitro} kot $g$.
+		\item $f(n) = o(g(n))$, ce je $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0$.\\
+		      oz. $f(n) = o(g(n))$, ce $\forall c > 0, \exists n_0 > 0  \forall n \geq n_0: f(n) < cg(n)$. $\Rightarrow$
+		      sklepamo, da $f$ narasca \textbf{pocasneje} kot $g$.
+		\item $f(n) = \omega(g(n))$, ce  je $ \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = + \infty$.\\
+		      oz. $f(n) = \omega(g(n))$, ce $\forall c > 0, \exists n_0 > 0  \forall n \geq n_0: cg(n) < f(n)$. $\Rightarrow$
+		      sklepamo, da $f$ narasca \textbf{hitreje} kot $g$.
+	\end{itemize}
 
-\section{Urejanje}
-\subsection{Urejanje s kopico}
-Gre za nestabilen sortirni algoritem.
-Operacije:
-\begin{itemize}
-    \item \textbf{Vstavljanje:} Visina drevesa je $h$. Element vstavimo na zadnji nivo, k prvemu prostemu listu. V najslabsem primeru moramo popravljati navzgor do korena. $\mathcal{O}(log_2 n)$.
-    \item \textbf{Odstranjevanje: } Odstranimo korenski element in ga zamenjamo s skrajno desnim otrokom, na zadnjem nivoju. Element, katerega smo ustavili v koren popravljamo v najslabsem primeru spet do najnizjega nivoja. $\mathcal{O}(log_2 n)$.
-    \item \textbf{Ustvarjanje kopice iz podane tabele:} Sestavis kopico iz podane tabele. Najnizjega nivoja ne tikas. Nato se sprehodis po vseh nivojih navzgor iz desne proti levi, pa popravljas kopico navzdol. $\mathcal{O}(n)$.
-\end{itemize}
-\subsection{Hitro urejanje}
-Gre za nestabilen sortirni algoritem. Za pivotni element obicajno izberemo najbol levi element v tabeli.
+	\section{Urejanje}
+	\subsection{Urejanje s kopico}
+	Gre za nestabilen sortirni algoritem.
+	Operacije:
+	\begin{itemize}
+		\item \textbf{Vstavljanje:} Visina drevesa je $h$. Element vstavimo na zadnji nivo, k prvemu prostemu listu. V najslabsem primeru moramo popravljati navzgor do korena. $\mathcal{O}(log_2 n)$.
+		\item \textbf{Odstranjevanje: } Odstranimo korenski element in ga zamenjamo s skrajno desnim otrokom, na zadnjem nivoju. Element, katerega smo ustavili v koren popravljamo v najslabsem primeru spet do najnizjega nivoja. $\mathcal{O}(log_2 n)$.
+		\item \textbf{Ustvarjanje kopice iz podane tabele:} Sestavis kopico iz podane tabele. Najnizjega nivoja ne tikas. Nato se sprehodis po vseh nivojih navzgor iz desne proti levi, pa popravljas kopico navzdol. $\mathcal{O}(n)$.
+	\end{itemize}
+	\subsection{Hitro urejanje}
+	Gre za nestabilen sortirni algoritem. Za pivotni element obicajno izberemo najbol levi element v tabeli.
 
-Psevdokoda:
-todo ko izvemo kateri algo je pravilen
+	Psevdokoda:
+	todo ko izvemo kateri algo je pravilen
 
-\subsubsection{Casovna zahtevnost}
-V najslabsem primeru izberemo prvi element za pivotni in zacnemo z ze urejeno tabelo. Tako se z indeksom i na vsakem nivoju sprehodimo do konca tabele (V rekurziji se nam pojavi vzorec izrojenega drevesa visine n). Iz tega sledi $\mathcal{O}(n^2)$. V splosnem pa za quicksort velja casovna zahtevnost $\Theta (nlog_2 n)$.
+	\subsubsection{Casovna zahtevnost}
+	V najslabsem primeru izberemo prvi element za pivotni in zacnemo z ze urejeno tabelo. Tako se z indeksom i na vsakem nivoju sprehodimo do konca tabele (V rekurziji se nam pojavi vzorec izrojenega drevesa visine n). Iz tega sledi $\mathcal{O}(n^2)$. V splosnem pa za quicksort velja casovna zahtevnost $\Theta (nlog_2 n)$.
 
-\subsection{Urejanje z zlivanjem}
-Gre za stabilni sortirni algoritem.
-Tabelo najprej razdeljujemo na $\lceil \text{polovico }\rceil$ dolzine tabele.
-Ko pridemo do konca se ustavimo in zacnemo urejati navzgor po drevesu.
+	\subsection{Urejanje z zlivanjem}
+	Gre za stabilni sortirni algoritem.
+	Tabelo najprej razdeljujemo na $\lceil \text{polovico }\rceil$ dolzine tabele.
+	Ko pridemo do konca se ustavimo in zacnemo urejati navzgor po drevesu.
 
-\subsubsection{Casovna zahtevnost}
-Vedno $\mathcal{O}(nlog_2n)$. Tabelo v vsaki iteraciji razpolovimo, tako se vzorec rekurzivnih klicov v obliki drevesa ne mora izroditi.
+	\subsubsection{Casovna zahtevnost}
+	Vedno $\mathcal{O}(nlog_2n)$. Tabelo v vsaki iteraciji razpolovimo, tako se vzorec rekurzivnih klicov v obliki drevesa ne mora izroditi.
 
-\subsection{Urejanje s stetjem}
-Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
+	\subsection{Urejanje s stetjem}
+	Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
 
-Imejmo tabelo $[2, 1, 0, 0, 1,  2, 1]$, prestejemo pojavitve stevil $0, 1, \text{ in } 2$. Ter jih zapisemo v dodatno tabelo.
+	Imejmo tabelo $[2, 1, 0, 0, 1,  2, 1]$, prestejemo pojavitve stevil $0, 1, \text{ in } 2$. Ter jih zapisemo v dodatno tabelo.
 
-$[2, 3, 2] \rightarrow \text{cumsum} \rightarrow [2, 5 , 7] \rightarrow  \text{popravek indeksov} \rightarrow [1, 4, 6]$.
-Potem ustvarimo novo tabelo velikosti originalne tabele.
+	$[2, 3, 2] \rightarrow \text{cumsum} \rightarrow [2, 5 , 7] \rightarrow  \text{popravek indeksov} \rightarrow [1, 4, 6]$.
+	Potem ustvarimo novo tabelo velikosti originalne tabele.
 
-\textbf{Urejanje} zacnemo tako, da se sprehodimo po originalni tabeli (od zadaj proti zacetku) preberemo element iz orig. tabele in ga uporabimo kot indeks tabele komulativne vsote. Tam se nahaja indeks kam v novo tabelo je potrebno napisati urejeni element. Element zapisemo v novo tabelo in indeks v tabeli komulativne vsote zmanjsamo. Postopek ponavljamo do zacetka orig. tabele.
+	\textbf{Urejanje} zacnemo tako, da se sprehodimo po originalni tabeli (od zadaj proti zacetku) preberemo element iz orig. tabele in ga uporabimo kot indeks tabele komulativne vsote. Tam se nahaja indeks kam v novo tabelo je potrebno napisati urejeni element. Element zapisemo v novo tabelo in indeks v tabeli komulativne vsote zmanjsamo. Postopek ponavljamo do zacetka orig. tabele.
 
-\subsection{Korensko urejanje}
-Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
-Urejas samo po stevkah.
-Primer sledi izvajanja:
-\begin{itemize}
-    \item $a = [36, 12, 27, 17]$
-    \item $a_e = [12, 36, 27, 17]$ (sortiramo po enicah)
-    \item $a_d = [12, 17, 27, 36]$ (sortiramo po deseticah)
-\end{itemize}
+	\subsection{Korensko urejanje}
+	Gre za stabilni sortirni algoritem $\mathcal{O}(n)$.
+	Urejas samo po stevkah.
+	Primer sledi izvajanja:
+	\begin{itemize}
+		\item $a = [36, 12, 27, 17]$
+		\item $a_e = [12, 36, 27, 17]$ (sortiramo po enicah)
+		\item $a_d = [12, 17, 27, 36]$ (sortiramo po deseticah)
+	\end{itemize}
 
-\section{Deli in vladaj}
-Problem razdelimo na vec \textbf{enakih} podproblemov. 
+	\section{Deli in vladaj}
+	Problem razdelimo na vec \textbf{enakih} podproblemov.
 
-\subsection{Masters Theorem}
+	\subsection{Masters Theorem}
 
-\begin{center}
-    \begin{math}
-        T(n) =
-        \Bigg \{\begin{tabular}{ccc}
-          $1$  & $n = 1$ & \\
-          $a T(\frac{n}{c}) + \mathcal{O}(bn^d)$ & $n > 1$ & \\
-        \end{tabular}
-    \end{math} 
-\end{center}
+	\begin{center}
+		\begin{math}
+			T(n) =
+			\Bigg \{\begin{tabular}{ccc}
+				$1$                                    & $n = 1$ & \\
+				$a T(\frac{n}{c}) + \mathcal{O}(bn^d)$ & $n > 1$ & \\
+			\end{tabular}
+		\end{math}
+	\end{center}
 
-\begin{itemize}
-    \item $a$ - stevilo delitev problema
-    \item $c$ - faktor deljenja problema
-    \item $d$ - Zahtevnost zdruzevanja problemov 
-    \item $n$ - velikost naloge
-\end{itemize}
+	\begin{itemize}
+		\item $a$ - stevilo delitev problema
+		\item $c$ - faktor deljenja problema
+		\item $d$ - Zahtevnost zdruzevanja problemov
+		\item $n$ - velikost naloge
+	\end{itemize}
 
-\subsubsection{Ocena casovne zahtevnosti algoritma:}
-\begin{enumerate}
-    \item $a < c^d \Rightarrow T(n) = \mathcal{O}(n^d)$
-    \item $a = c^d \Rightarrow T(n) = \mathcal{O}(n^d \log_2 n)$
-    \item $a > c^d \Rightarrow T(n) = \mathcal{O}(n^{log_c a})$
-\end{enumerate}
+	\subsubsection{Ocena casovne zahtevnosti algoritma:}
+	\begin{enumerate}
+		\item $a < c^d \Rightarrow T(n) = \mathcal{O}(n^d)$
+		\item $a = c^d \Rightarrow T(n) = \mathcal{O}(n^d \log_2 n)$
+		\item $a > c^d \Rightarrow T(n) = \mathcal{O}(n^{log_c a})$
+	\end{enumerate}
 
-\subsection{Naivni algoritem za mnozenje stevil}
-Stevili $a$ in $b$ delimo na polovico, dokler ne pridemo do same stevke.
-$a = [a_1, a_0]$, $b =[b_1, b_0]$. $n$ je stevilo stevk v posamezni iteraciji.
+	\subsection{Naivni algoritem za mnozenje stevil}
+	Stevili $a$ in $b$ delimo na polovico, dokler ne pridemo do same stevke.
+	$a = [a_1, a_0]$, $b =[b_1, b_0]$. $n$ je stevilo stevk v posamezni iteraciji.
 
-\begin{center}
-    \begin{math}
-        ab = 10^n a_1 b_1 + 10^{\frac{n}{2}}(a_0 b_1 + a_1 b_0) + a_0 b_0
-    \end{math}
-\end{center}
+	\begin{center}
+		\begin{math}
+			ab = 10^n a_1 b_1 + 10^{\frac{n}{2}}(a_0 b_1 + a_1 b_0) + a_0 b_0
+		\end{math}
+	\end{center}
 
-\subsection{Karacubov algoritem}
-Gre za izboljsavo naivnega mnozenja, saj potrebujemo mnoziti samo 3x.
-\begin{itemize}
-    \item $c_0 = a_0 b_0$
-    \item $c_1 = (a_1 + a_0) (b_1 + b_0) - c_0 - c_2$
-    \item $c_2 = a_1 b_1$
-\end{itemize}
-
-
-\begin{center}
-    \begin{math}
-        ab = 10^n c_0 + 10^{\frac{n}{2}} c_1 + a_1 b_1
-    \end{math}
-\end{center}
-\section{DFT in FFT}
-Algoritem DFT je zelo uporaben, z njim lahko poenostavimo mnozenje polinomov na linearno casovno zahtevnost. $\mathcal{O}(n \log n)$.
-Predstavitev polinomov:
-
-\begin{itemize}
-    \item \textbf{Koeficientna predstavitev:}\\ $a(x) = a_0 +  a_1 x + \dots + a_{n-1} x^{n-1} = (a_0, \dots, a_{n-1})$
-    \item \textbf{Vrednostna predstavitev:}\\ $y(x) = y_0 +  y_1 + \dots + y_{n-1} x^{n-1}$
-\end{itemize}
-Kompleksna stevila:
-$\omega = e^{\frac{i 2 \pi}{n}}$,\\
-Eulerjeva formula:
-$\cos(\frac{2\pi}{n} + i \sin(\frac{2\pi}{n})$
+	\subsection{Karacubov algoritem}
+	Gre za izboljsavo naivnega mnozenja, saj potrebujemo mnoziti samo 3x.
+	\begin{itemize}
+		\item $c_0 = a_0 b_0$
+		\item $c_1 = (a_1 + a_0) (b_1 + b_0) - c_0 - c_2$
+		\item $c_2 = a_1 b_1$
+	\end{itemize}
 
 
-\subsection{Diskretna Fourierjeva transformacija}
-Za $\mathcal{Z}_n$ definiramo matriko $F^{(n-1) \times (n-1)}$:
+	\begin{center}
+		\begin{math}
+			ab = 10^n c_0 + 10^{\frac{n}{2}} c_1 + a_1 b_1
+		\end{math}
+	\end{center}
+	\section{DFT in FFT}
+	Algoritem DFT je zelo uporaben, z njim lahko poenostavimo mnozenje polinomov na linearno casovno zahtevnost. $\mathcal{O}(n \log n)$.
+	Predstavitev polinomov:
 
-$\mathcal{Z}_5$
-\begin{center}
-    $F =$
-    \begin{tabular}{ |c|c|c|c|c| } 
-        \hline
-        $v_1$ &     1 & 1 & 1 & 1 \\ 
-        \hline
-        $v_2$ &     1 & 2 & 4 & 3 \\  
-        \hline
-        $v_3$ &     1 & 4 & 1 & 4 \\
-        \hline
-        $v_4$ &     1 & 3 & 4 & 2 \\
-        \hline
-    \end{tabular}
-\end{center}
-V $v_2$ zlozimo enega izmed parov primitivnih korenov. In ga v vsakem stolpcu potenciramo na indeks stolpca.
-$v_3 = v_2 * v_2$, $v_n = v_2 * v_{n-1}$
+	\begin{itemize}
+		\item \textbf{Koeficientna predstavitev:}\\ $a(x) = a_0 +  a_1 x + \dots + a_{n-1} x^{n-1} = (a_0, \dots, a_{n-1})$
+		\item \textbf{Vrednostna predstavitev:}\\ $y(x) = y_0 +  y_1 + \dots + y_{n-1} x^{n-1}$
+	\end{itemize}
+	Kompleksna stevila:
+	$\omega = e^{\frac{i 2 \pi}{n}}$,\\
+	Eulerjeva formula:
+	$\cos(\frac{2\pi}{n} + i \sin(\frac{2\pi}{n})$
 
-\subsubsection{Inverz}
-\begin{center}
-    $F = X$
-    \begin{tabular}{ |c|c|c|c|c| } 
-        \hline
-        $v_1$ &     1 & 1 & 1 & 1 \\ 
-        \hline
-        $v_2$ &     1 & 3 & 4 & 2\\  
-        \hline
-        $v_3$ &     1 & 4 & 1 & 4 \\
-        \hline
-        $v_4$ &     1 & 2 & 4 & 3 \\
-        \hline
-    \end{tabular}
-\end{center}
-Samo obrnes vrstni red (kot da bi se sprehodil v nasprotno smer po enotski kroznici).
-$(n * X) \mod 5 = 1$
-\subsubsection{Primitivni koren enote za N}
-Kako poiscemo vse primitivne cela stevila?
 
-Vzemimo  $\mathcal{Z}_5$ :
-\begin{center}
-    \begin{tabular}{ |c|c|c|c|c| } 
-        \hline
-        $p / n$ & 1 & 2 & 3 & 4 \\
-        \hline
-        1       & $1^1$ & $2^1$ & $3^1$ & $4^1$\\
-        \hline
-        2       & $1^2$ & 4 & 4 & 1 \\
-        \hline
-        3       & $1^3$ & 3 & 2 & 4 \\
-        \hline
-        4       & $1^4$ & 1 & 1 & 1 \\
-        \hline
-    \end{tabular}
+	\subsection{Diskretna Fourierjeva transformacija}
+	Za $\mathcal{Z}_n$ definiramo matriko $F^{(n-1) \times (n-1)}$:
 
-Celotna tabela mod 5. 
-\end{center}
+	$\mathcal{Z}_5$
+	\begin{center}
+		$F =$
+		\begin{tabular}{ |c|c|c|c|c| }
+			\hline
+			$v_1$ & 1 & 1 & 1 & 1 \\
+			\hline
+			$v_2$ & 1 & 2 & 4 & 3 \\
+			\hline
+			$v_3$ & 1 & 4 & 1 & 4 \\
+			\hline
+			$v_4$ & 1 & 3 & 4 & 2 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	V $v_2$ zlozimo enega izmed parov primitivnih korenov. In ga v vsakem stolpcu potenciramo na indeks stolpca.
+	$v_3 = v_2 * v_2$, $v_n = v_2 * v_{n-1}$
 
-\begin{itemize}
-    \item \textbf{PK-2:} 4
-    \item \textbf{PK-4:} par 2 in 3  (pomembna vloga pri ifft)
-\end{itemize}
+	\subsubsection{Inverz}
+	\begin{center}
+		$F = X$
+		\begin{tabular}{ |c|c|c|c|c| }
+			\hline
+			$v_1$ & 1 & 1 & 1 & 1 \\
+			\hline
+			$v_2$ & 1 & 3 & 4 & 2 \\
+			\hline
+			$v_3$ & 1 & 4 & 1 & 4 \\
+			\hline
+			$v_4$ & 1 & 2 & 4 & 3 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	Samo obrnes vrstni red (kot da bi se sprehodil v nasprotno smer po enotski kroznici).
+	$(n * X) \mod 5 = 1$
+	\subsubsection{Primitivni koren enote za N}
+	Kako poiscemo vse primitivne cela stevila?
 
-\subsubsection{Primitivni koren enote za C}
-Uporabimo eulerjevo formulo.
+	Vzemimo  $\mathcal{Z}_5$ :
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c|c| }
+			\hline
+			$p / n$ & 1     & 2     & 3     & 4     \\
+			\hline
+			1       & $1^1$ & $2^1$ & $3^1$ & $4^1$ \\
+			\hline
+			2       & $1^2$ & 4     & 4     & 1     \\
+			\hline
+			3       & $1^3$ & 3     & 2     & 4     \\
+			\hline
+			4       & $1^4$ & 1     & 1     & 1     \\
+			\hline
+		\end{tabular}
 
-\begin{itemize}
-    \item $w^0 = \cos0 + i\sin0 = 1$
-    \item $w^1 = e^{\frac{i 2 \pi} {4}} = \cos \frac{2\pi}{4} + i\sin\frac{2\pi}{4}$
-    \item $w^2 = e^{\frac{i 2 \pi} {4}} = \cos \frac{2\pi}{4} + i\sin\frac{2\pi}{4}$
-    \item $w^1 = e^{\frac{i 2 \pi} {4}} = \cos \frac{2\pi}{4} + i\sin\frac{2\pi}{4}$
-\end{itemize}
+		Celotna tabela mod 5.
+	\end{center}
 
-\begin{center}
-    $F =$
-    \begin{tabular}{ |c|c|c|c|c| } 
-        \hline
-        $v_1$ &     1 & 1 & 1 & 1 \\ 
-        \hline
-        $v_2$ &     1 & i & -1 & -i \\  
-        \hline
-        $v_3$ &     1 & -1 & 1 & -1 \\
-        \hline
-        $v_4$ &     1 & -i & 1 & i \\
-        \hline
-    \end{tabular}
-\end{center}
+	\begin{itemize}
+		\item \textbf{PK-2:} 4
+		\item \textbf{PK-4:} par 2 in 3  (pomembna vloga pri ifft)
+	\end{itemize}
 
-\subsection{Hitra Fourierjeva transformacija}
+	\subsubsection{Primitivni koren enote za C}
+	Uporabimo eulerjevo formulo.
 
-\subsubsection{Cancelation Lemma}
+	\begin{itemize}
+		\item $w^0 = \cos0 + i\sin0 = 1$
+		\item $w^1 = e^{\frac{i 2 \pi} {4}} = \cos \frac{2\pi}{4} + i\sin\frac{2\pi}{4}$
+		\item $w^2 = e^{\frac{i 2 \pi} {4}} = \cos \frac{2\pi}{4} + i\sin\frac{2\pi}{4}$
+		\item $w^1 = e^{\frac{i 2 \pi} {4}} = \cos \frac{2\pi}{4} + i\sin\frac{2\pi}{4}$
+	\end{itemize}
 
-\begin{center}
-    \begin{math}
-        \omega^{dk}_{dn} = \omega^{k}_{n}
-    \end{math} \\
-    \begin{math}
-        \omega^{k + \frac{n}{2}} = -\omega^{k}
-    \end{math}
-\end{center}
+	\begin{center}
+		$F =$
+		\begin{tabular}{ |c|c|c|c|c| }
+			\hline
+			$v_1$ & 1 & 1  & 1  & 1  \\
+			\hline
+			$v_2$ & 1 & i  & -1 & -i \\
+			\hline
+			$v_3$ & 1 & -1 & 1  & -1 \\
+			\hline
+			$v_4$ & 1 & -i & 1  & i  \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\subsection{Hitra Fourierjeva transformacija}
+
+	\subsubsection{Cancelation Lemma}
+
+	\begin{center}
+		\begin{math}
+			\omega^{dk}_{dn} = \omega^{k}_{n}
+		\end{math} \\
+		\begin{math}
+			\omega^{k + \frac{n}{2}} = -\omega^{k}
+		\end{math}
+	\end{center}
 
 \end{multicols}
 \end{document}
