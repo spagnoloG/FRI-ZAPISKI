@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{amssymb}
+\usepackage{xcolor}
 
 \begin{document}
 
@@ -177,6 +178,82 @@
 	\]
 
 
+	\section{Optical Flow}
+
+	\subsection{Lucas-Kanade Method}
+
+	\[
+		\delta_x = \frac{-\left( \sum I_y^2 \right) \left( \sum I_x I_t \right) + \left( \sum I_x I_y \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
+	\]
+
+	\[
+		\delta_y = \frac{\left( \sum I_x I_y \right) \left( \sum I_x I_t \right) - \left( \sum I_x^2 \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
+	\]
+
+
+	where:
+	\[
+		I_x = \frac{\partial I}{\partial x},
+		I_y = \frac{\partial I}{\partial y},
+		I_t = \frac{\partial I}{\partial t},
+	\]
+
+	and
+
+	\[
+		\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2
+	\]
+
+	is the determinant of covariance matrix.
+
+	To further clarify the system, it can be written in matrix form as:
+
+	\[
+		\left[ \begin{array}{cc}
+				\sum I_x^2   & \sum I_x I_y \\
+				\sum I_x I_y & \sum I_y^2
+			\end{array} \right]
+		\left[ \begin{array}{c}
+				\delta_x \\
+				\delta_y
+			\end{array} \right]
+		=
+		-\left[ \begin{array}{c}
+				\sum I_x I_t \\
+				\sum I_y I_t
+			\end{array} \right]
+	\]
+
+	\[
+		\mathbf{A}^T \mathbf{A} \mathbf{d} = \mathbf{A}^T \mathbf{b}
+	\]
+
+	where \(\mathbf{A}\) and \(\mathbf{b}\) are matrices containing the sums of gradients, and \(\mathbf{d}\) is the displacement vector.
+
+	And \(\mathbf{A}^T \mathbf{A} \) is a covariance matrix of local gradients.
+
+	\textbf{When is this system solvable?}
+	\begin{itemize}
+		\item \( \mathbf{A}^T\mathbf{A} \) must not be \textcolor{red}{singular} (cannot invert it otherwise)
+		      \begin{itemize}
+			      \item Eigenvalues \( \lambda_1 \) and \( \lambda_2 \) of \( \mathbf{A}^T\mathbf{A} \) must not be too small
+		      \end{itemize}
+		\item \( \mathbf{A}^T\mathbf{A} \) has to be \textcolor{blue}{well conditioned}
+		      \begin{itemize}
+			      \item Ratio \( \frac{\lambda_1}{\lambda_2} \) must not be too large
+			      \item (\( \lambda_1 \) is the larger eigenvalue)
+		      \end{itemize}
+	\end{itemize}
+
+	\textbf{Consequences:}
+	\begin{itemize}
+		\item large \( \lambda_1 \), small \( \lambda_2 \) \(\rightarrow\) large gradient in one direction.
+		\item small \( \lambda_1 \) \& \( \lambda_2 \)  \(\rightarrow\) small gradient in both directions.
+		\item large \( \lambda_1 \) \& \( \lambda_2 \) \(\rightarrow\) large gradient in both directions.
+	\end{itemize}
+
+
+	\subsection{Horn-Schunck Method}
 
 \end{multicols}
 
