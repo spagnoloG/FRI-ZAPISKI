@@ -4,6 +4,7 @@
 \usepackage{multicol}
 \usepackage{amssymb}
 \usepackage{xcolor}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -180,16 +181,64 @@
 
 	\section{Optical Flow}
 
+	Must watch: \href{https://www.youtube.com/watch?v=lnXFcmLB7sM&list=PL2zRqk16wsdoYzrWStffqBAoUY8XdvatV}{All about optical flow}.
+
+	\subsection{Optical Flow Constraint Equation}
+
+	\[
+		I(x + \delta x, y + \delta y, t + \delta t) = I(x, y, t) \tag{1}
+	\]
+
+	\[
+		I(x + \delta x, y + \delta y, t + \delta t) = I(x, y, t) + I_{x} \delta x + I_{y} \delta y + I_{t} \delta t \tag{2}
+	\]
+
+	Subtracting equation (1) from (2):
+
+	\[
+		I_{x} \delta x + I_{y} \delta y + I_{t} \delta t = 0
+	\]
+
+	Divide by $\delta t$  and take the limit as $\delta t$ $\to$ 0:
+
+	\[
+		I_{x} \frac{\partial x}{\partial t} + I_{y} \frac{\partial y}{\partial t} + I_{t} = 0 \tag{3}
+	\]
+
+	(3) works because of limit - derivative property:
+
+	\[
+		\frac{dy}{dx} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+	\]
+
+	\[
+		m = \lim_{x \to a} \frac{f(x) - f(a)}{x \to a}
+	\]
+
+
+
+	The constraint equation for optical flow is then:
+
+	\[
+		I_{x} u + I_{y} v + I_{t} = 0 \quad \text{(u, v): Optical Flow}
+	\]
+
+	The problem is that in this equation we have 2 unknowns and only 1 equation. We need to solve for u and v.
+
+	We solve this by using the \textbf{Lucas-Kanade} and \textbf{Horn-Schunck} methods. Where we use the local neighbourhood to solve the system of equations.
+
+
 	\subsection{Lucas-Kanade Method}
 
 	\[
-		\delta_x = \frac{-\left( \sum I_y^2 \right) \left( \sum I_x I_t \right) + \left( \sum I_x I_y \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
+		u = \delta_x = \frac{-\left( \sum I_y^2 \right) \left( \sum I_x I_t \right) + \left( \sum I_x I_y \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
 	\]
 
 	\[
-		\delta_y = \frac{\left( \sum I_x I_y \right) \left( \sum I_x I_t \right) - \left( \sum I_x^2 \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
+		v = \delta_y = \frac{\left( \sum I_x I_y \right) \left( \sum I_x I_t \right) - \left( \sum I_x^2 \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
 	\]
 
+	All the sums go from 1 to n, where n is the number of pixels in the local neighbourhood.
 
 	where:
 	\[
@@ -247,10 +296,18 @@
 
 	\textbf{Consequences:}
 	\begin{itemize}
-		\item large \( \lambda_1 \), small \( \lambda_2 \) \(\rightarrow\) large gradient in one direction.
-		\item small \( \lambda_1 \) \& \( \lambda_2 \)  \(\rightarrow\) small gradient in both directions.
-		\item large \( \lambda_1 \) \& \( \lambda_2 \) \(\rightarrow\) large gradient in both directions.
+		\item large \( \lambda_1 \), small \( \lambda_2 \) \(\rightarrow\) unreliable, we don't know the direction (e.g. edge).
+		\item small \( \lambda_1 \) \& \( \lambda_2 \)  \(\rightarrow\) unreliable optical flow (e.g. constant background).
+		\item large \( \lambda_1 \) \& \( \lambda_2 \) \(\rightarrow\) reliable optical flow (e.g. rich texture, lots of different brightness values).
 	\end{itemize}
+
+
+
+	\paragraph{Conclusions}
+
+	The Lucas-Kanade method is designed for optical flow estimation, leveraging assumptions of brightness constancy, small motion, and spatial coherence to track motion in visual scenes.
+	It excels in controlled environments with minimal background changes, making it efficient and robust for applications with fixed or slow-moving cameras.
+	However, its limitations include difficulty handling large motions, varying lighting conditions, appearance changes, occlusions, and complex scenes.
 
 
 	\subsection{Horn-Schunck Method}
