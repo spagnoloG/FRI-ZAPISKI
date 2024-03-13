@@ -235,7 +235,7 @@
 	\]
 
 	\[
-		v = \delta_y = \frac{\left( \sum I_x I_y \right) \left( \sum I_x I_t \right) - \left( \sum I_x^2 \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
+		v = \delta_y = \frac{-\left( \sum I_x I_y \right) \left( \sum I_x I_t \right) - \left( \sum I_x^2 \right)\left( \sum I_y I_t \right)}{\left( \sum I_x^2 \right) \left( \sum I_y^2 \right) - \left( \sum I_x I_y \right)^2}
 	\]
 
 	All the sums go from 1 to n, where n is the number of pixels in the local neighbourhood.
@@ -311,6 +311,101 @@
 
 
 	\subsection{Horn-Schunck Method}
+
+	\noindent Flow smoothness error:
+	\[ Es = \iint_D (u_{x}^2 + u_{y}^2 + v_{x}^2 + v_{y}^2) \, dx \, dy \]
+
+	\noindent Color constancy + small motion error:
+	\[ Ec = \iint_D (I_{x}u + I_{y}v + I_{t})^2 \, dx \, dy \]
+
+	\[ E = Ec + \alpha Es \]
+
+	\[ E = \iint_D L(u, v, u_x, u_y, v_x, v_y, x, y) \, dx \, dy \]
+
+	\[ L = I_x (I_{x}u + I_{y}v + I_{t}) - \alpha (u_{xx} + u_{yy}) \leq 0 \]
+
+    Euler-Lagrange equations:
+
+	\[ \frac{\partial L}{\partial v} - \frac{d}{dx} \left( \frac{\partial L}{\partial u_{x}} \right) - \frac{d}{dy} \left( \frac{\partial L}{\partial u_{y}} \right) = 0 \]
+
+	\[ \frac{\partial L}{\partial v} - \frac{d}{dx} \left( \frac{\partial L}{\partial v_{x}} \right) - \frac{d}{dy} \left( \frac{\partial L}{\partial v_{y}} \right) = 0 \]
+
+
+	\[ \Delta =
+		\begin{bmatrix}
+			\frac{\partial^2}{\partial x^2} \\
+			\frac{\partial^2}{\partial y^2} \\
+		\end{bmatrix} \]
+
+	\[ \begin{bmatrix}
+			I_x (I_{x}u + I_{y}v + I_{t}) - \alpha \Delta u = 0 \\
+			I_y (I_{x}u + I_{y}v + I_{t}) - \alpha \Delta v = 0
+		\end{bmatrix} \]
+
+	By discretization \(\Delta u = \bar{u} - u\), \(\Delta v = \bar{v} - v\):
+
+	\[
+		I_x (I_x u + I_y v + I_t) - \alpha \Delta u = 0 \quad \Rightarrow \quad (I_x^2 + \alpha)u + I_x I_y v = \alpha \bar{u} - I_x I_t
+	\]
+
+	\[
+		I_y (I_x u + I_y v + I_t) - \alpha \Delta v = 0 \quad \Rightarrow \quad I_x I_y u + (I_y^2 + \alpha)v = \alpha \bar{v} - I_y I_t
+	\]
+
+	And in matrix form:
+
+	\[
+		\begin{bmatrix}
+			(I_x^2 + \alpha) & I_x I_y          \\
+			I_x I_y          & (I_y^2 + \alpha)
+		\end{bmatrix}
+		\begin{bmatrix}
+			u \\
+			v
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\alpha \bar{u} - I_x I_t \\
+			\alpha \bar{v} - I_y I_t
+		\end{bmatrix}
+	\]
+
+	Solve for \([u, v]\):
+
+	\[
+		\begin{bmatrix}
+			(I_x^2 + \alpha) & I_x I_y          \\
+			I_x I_y          & (I_y^2 + \alpha)
+		\end{bmatrix}
+		\begin{bmatrix}
+			u \\
+			v
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			u - I_x P \\
+			v - I_y P
+		\end{bmatrix}
+		\quad , \quad P = \frac{(I_t + I_x \bar{u} + I_y \bar{v})}{(I_x^2 + I_y^2 + \alpha)}
+	\]
+
+	Solve iteratively by Gauss-Seidel-like approach independently for each pixel:
+
+	\[
+		\begin{bmatrix}
+			u^{(k)} \\
+			v^{(k)}
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\bar{u}^{(k-1)} - I_x P \\
+			\bar{v}^{(k-1)} - I_y P
+		\end{bmatrix}
+		\quad , \quad P = \frac{(I_t + I_x u^{(k-1)} + I_y v^{(k-1)})}{(I_x^2 + I_y^2 + \alpha)}
+	\]
+
+
+
 
 \end{multicols}
 
