@@ -405,6 +405,56 @@
 	\]
 
 
+	\section{Tracking}
+
+	\subsection{Gradient ascent on a KDE}
+
+	The KDE calculated from weighted data:
+
+	\[
+		p(\mathbf{x}) = \sum_{i=1}^{N} w_i K(\mathbf{x} - \mathbf{x}_i), \quad \sum_{i=1}^{N} w_i = 1, \quad
+	\]
+	\[
+		K(\mathbf{x} - \mathbf{x}_i) = \exp\left(-\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right)
+	\]
+
+	The density model:
+	\[
+		p(\mathbf{x}) = C \sum_{i=1}^{N} w_i K\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right)
+	\]
+
+	The partial derivative (the gradient):
+	\begin{enumerate}
+		\item $\nabla p(\mathbf{x}) = \frac{\partial}{\partial \mathbf{x}} p(\mathbf{x}) = C \sum_{i=1}^{N} w_i \frac{\partial}{\partial \mathbf{x}} K\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right)$
+		\item $\frac{\partial}{\partial \mathbf{x}} K\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right) = -\frac{2}{h^2}(\mathbf{x} - \mathbf{x}_i)g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right)$,
+		      where $g(\mathbf{r}) = -K(\mathbf{r})$
+		\item $\nabla p(\mathbf{x}) = \frac{2C}{h^2} \left[ \sum_{i=1}^{N} w_i \mathbf{x}_i g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right) - \mathbf{x} \sum_{i=1}^{N} w_i g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right) \right]$
+	\end{enumerate}
+
+	Setting the partial derivative to zero $\frac{\partial}{\partial \mathbf{x}} p(\mathbf{x}) = 0$ gives:
+	\[
+		0 = \frac{2C}{h^2} \left[ \sum_{i=1}^{N} w_i \mathbf{x}_i g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right) - \mathbf{x} \sum_{i=1}^{N} w_i g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right) \right]
+	\]
+
+	Expressing the $\mathbf{x}$:
+	\[
+		\mathbf{x} = \frac{\sum_{i=1}^{N} w_i \mathbf{x}_i g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right)}{\sum_{i=1}^{N} w_i g\left(\frac{\|\mathbf{x} - \mathbf{x}_i\|^2}{h}\right)}
+	\]
+	Problem: $\mathbf{x}$ is on the left-hand as well as the right-hand side.
+	Solution: apply iterations.
+
+	\subsubsection{Iterative solution}
+
+	\begin{itemize}
+		\item Plug $\mathbf{x}^{(k)}$ to the right-hand side
+		\item Get a new estimate $\mathbf{x}^{(k+1)}$
+		      \[
+			      \mathbf{x}^{(k+1)} = \frac{\sum_{i=1}^{N} w_i \mathbf{x}_i g\left(\frac{\|\mathbf{x}^{(k)} - \mathbf{x}_i\|^2}{h}\right)}{\sum_{i=1}^{N} w_i g\left(\frac{\|\mathbf{x}^{(k)} - \mathbf{x}_i\|^2}{h}\right)}
+		      \]
+		\item $\mathbf{m}^{(k)} = \mathbf{x}^{(k+1)} - \mathbf{x}^{(k)}$ ... The mean shift vector
+	\end{itemize}
+	The mean shift vector is proportional to the gradient on the pdf!
+
 
 
 \end{multicols}
