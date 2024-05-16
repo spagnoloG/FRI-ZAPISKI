@@ -8,3 +8,4 @@
 - [Lectures 7](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/NLP/lectures7.md)
 - [Lectures 8](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/NLP/lectures8.md)
 - [Lectures 9](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/NLP/lectures9.md)
+- [Lectures 10](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/NLP/lectures10.md)
