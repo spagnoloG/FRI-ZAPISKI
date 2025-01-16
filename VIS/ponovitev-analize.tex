@@ -78,10 +78,10 @@
 				      \int a^x\,dx = \frac{a^x}{\ln{a}} + C
 			      \end{math}
 			\item \begin{math}
-				      \int \cos({ax}) \, dx = { \frac{sin (ax)}{a} } + C
+				      \int \cos({ax}) \, dx = { \frac{\sin (ax)}{a} } + C
 			      \end{math}
 			\item \begin{math}
-				      \int \sin({ax}) \, dx = { \frac{-cos(ax)}{a} } + C
+				      \int \sin({ax}) \, dx = { \frac{-\cos(ax)}{a} } + C
 			      \end{math}
 			\item \begin{math}
 				      \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
@@ -96,39 +96,26 @@
 				      \int {\frac{1}{\sqrt{1-x^2}}} \, dx = \arcsin {x} + C
 			      \end{math}
 			\item \begin{math}
-				      \int \frac{dx}{ax + b} = \frac{1}{a} ln |ax + b| + C
+				      \int \frac{dx}{ax + b} = \frac{1}{a} \ln |ax + b| + C
 			      \end{math}
 			\item \begin{math}
-				      \int \frac{1}{x^2 + 1} \, dx = arctan x + C
+				      \int \frac{1}{x^2 + 1} \, dx = \arctan x + C
 			      \end{math}
 			\item \begin{math}
-				      \int \frac{dx}{x^2 + a^2} = \frac{1}{a} arctan \frac{x}{a} + C
+				      \int \frac{dx}{x^2 + a^2} = \frac{1}{a} \arctan \frac{x}{a} + C
 			      \end{math}
 			\item \begin{math}
-				      \int \frac{f'(x)}{f(x)} \, dx = ln|f(x)| + C
+				      \int \frac{f'(x)}{f(x)} \, dx = \ln|f(x)| + C
+			      \end{math}
+			\item \textbf{Zamenjava spremenljivke:} Če $u = g(x)$ in $du = g'(x)dx$, potem velja:
+			      \begin{math}
+				      \int f(g(x))g'(x)\,dx = \int f(u)\,du
+			      \end{math}
+			\item \textbf{Metoda per partes:} Če $u = u(x)$ in $v' = v'(x)$, potem velja:
+			      \begin{math}
+				      \int u\,v'\,dx = uv - \int u'\,v\,dx
 			      \end{math}
 		\end{enumerate}
 	\end{small}
 \end{center}
-\textbf{Integriranje absolutnih vrednosti} (primer):
-\begin{small}
-	Imamo funkcijo $f(x) = |x|$ , ki je zvezna na intervalu $[-1, 1]$
-	Ce hocemo to funkcijo integrirati in zelimo izracunati njeno
-	\textit{porazdelitveno} funkcijo integrirati locimo 2 primera:
-\end{small}
-\begin{enumerate}
-	\item \begin{math}
-		      -1 \leq x < 0\\
-		      F(x) = \int_{-1}^x |t|\,dt = \int_{-1}^x -t\,dt = - \frac{t^2}{2} \rvert_{-1}^{x} = - \frac{1}{2} (x^2 -1)
-	      \end{math}
-	\item \begin{math}
-		      0 \leq x < 1 \\
-		      F(x) = \int_{-1}^x |t|\,dt = \int_{-1}^0 -t\,dt + \int_{0}^x t\,dt = - \frac{t^2}{2} \rvert_{0}^{-1} + - \frac{t^2}{2} \rvert_{0}^{x}= \frac{1}{2} (1 + x^2)
-	      \end{math}
-\end{enumerate}
-% other useful formulas
-\begin{small}
-	\begin{math}
-		\sqrt[n] x^m = (x)^{\frac{m}{n}}, x^2 + y^2 \leq 1 \sim krog\; s\; ploscino\; \pi
-	\end{math}
-\end{small}
+

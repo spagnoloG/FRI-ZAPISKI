@@ -1842,17 +1842,6 @@
 	\]
 	imenujemo \textit{Hessejeva matrika} funkcije \( f \) v točki \( x \). Če sta pri tem \( f_{x_i x_j}, f_{x_j x_i} \) zvezni funkciji, potem sta omenjena druga parcialna odvoda enaka. Zato je v primeru, ko so vsi parcialni odvodi \( f_{x_i x_j} \) zvezni, Hessejeva matrika \( H_f(x, y) \) simetrična matrika.
 
-	Pravila:
-	\begin{enumerate}
-		\item \(\frac{\partial \mathbf{x}}{\partial \mathbf{x}} = I_n\)
-		\item Če je \(A \in \mathbb{R}^{m \times n}\), potem \(\frac{\partial (A\mathbf{x})}{\partial \mathbf{x}} = A\).
-		\item Če je \(\mathbf{a} \in \mathbb{R}^n\), potem \(\frac{\partial (\mathbf{a}^T \mathbf{x})}{\partial \mathbf{x}} = \mathbf{a}^T\).
-		\item Če je \(A \in \mathbb{R}^{n \times n}\), potem \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = \mathbf{x}^T(A + A^T)\).
-		\item Če je \(A \in \mathbb{R}^{n \times n}\) simetrična matrika, potem velja \(\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = 2A^T\mathbf{x}\).
-		\item \(\frac{\partial^2 \mathbf{x}}{\partial \mathbf{x}^2} = 2I_n\).
-		\item Če \(G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n\) in \(F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p\) in \( \mathbf{H} = F \circ G\), potem \(\frac{\partial \mathbf{H}}{\partial \mathbf{x}} = \frac{\partial F}{\partial \mathbf{G}}(\mathbf{G}(\mathbf{x})) \cdot \frac{\partial \mathbf{G}}{\partial \mathbf{x}}\).
-	\end{enumerate}
-
 
 	\subsubsection{Vektorska funkcija}
 	Za vektorsko funkcijo
@@ -2175,9 +2164,6 @@
 	(KKT)
 
 
-	\subsection{Dodatek 1: Vrste}
-
-	\input{vrste.tex}
 
 	\subsection{Dodatek 2: Ponovitev analize}
 
