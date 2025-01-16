@@ -34,7 +34,7 @@
 ## Popravki
 
 Vsi popravki so toplo zazeljeni, ni nujno potrebno da znas _Latex_, saj lahko tudi samo odpres [issue](https://github.com/spagnoloG/FRI-ZAPISKI/issues)
-z opisom napake in razlago zakaj bi tam popravil(a^{-1}).
+z opisom napake in razlago zakaj bi tam popravil $\frac{1}{a}$.
 
 ## Repozitorij
 
