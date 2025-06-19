@@ -1,0 +1,1228 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{multicol}
+\geometry{a4paper, margin=0.1cm}
+
+\begin{document}
+
+\begin{center}
+	{\small MLDS1/FRI \par}
+\end{center}
+
+
+\begin{multicols}{2}
+\section{ML tasks}
+
+\subsection{a) Supervised learning}
+The dataset is a collection of labeled data points: 
+$$ D = \{(\vec{x}_i, y_i)\}_{i=1,...,n} $$
+
+The components are often referred to by different names: 
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+features & labels \\
+independent variables & dependent variable \\
+attributes & target \\
+predictors & response / outcome \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Goal:} Learn the conditional probability distribution $p(y|\vec{x})$. 
+$Y$ can be univariate or multivariate. 
+
+\subsubsection{Classification}
+The output variable $y$ is nominal (categorical). 
+
+\subsubsection{Regression}
+The output variable $y$ is numeric. 
+
+\subsection{b) Unsupervised learning}
+Here we have no labels, just data points $\vec{x}_i$. The goal is to learn the underlying structure of the data. 
+
+\paragraph{Goal:} Learn $p(\vec{y})$.
+
+\subsubsection{Dimensionality reduction}
+Examples of algorithms include PCA, MDS, t-SNE, UMAP, etc. 
+
+\subsection{c) Semi-supervised learning}
+This approach uses a combination of labeled and unlabeled data.  Using the unlabeled data can help identify better decision boundaries than using the labeled data alone. 
+
+\subsection{d) Reinforcement learning}
+Key concepts include: 
+\begin{itemize}
+    \item Delayed reward 
+    \item Exploration vs. exploitation trade-off 
+\end{itemize}
+
+\section{MODELS}
+
+\subsection{a) Language/model class $\mathcal{H}$}
+A model is a set of hypotheses $h \in \mathcal{H}$. This represents our assumptions about the Data Generating Process (DGP). 
+
+\subsection{b) Learning (fitting/training)}
+This is the process of expressing a preference for a hypothesis $h$ from the model class $\mathcal{H}$. The result can be: 
+\begin{itemize}
+    \item A single element $h$ 
+    \item A set of elements 
+    \item A distribution over all elements (Bayesian approach) 
+\end{itemize}
+
+\subsection{Bad examples of models}
+\begin{itemize}
+    \item \textbf{The set of all possible models:} Leads to overfitting. 
+    \item \textbf{Memorization:} Return $y$ if there is an exact match for $x$, otherwise fail. This is useless for new data. 
+    \item \textbf{Assuming a linear relationship:} This might not be true for the underlying data. 
+\end{itemize}
+
+\subsection{Parametric vs. Non-parametric learning}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Feature} & \textbf{Parametric (e.g., Lin. Reg.)} & \textbf{Non-parametric (e.g., k-NN)} \\
+\hline
+\textbf{Model} & Model-learning & Memory-based  \\
+\textbf{Assumptions} & Stronger & Weaker  \\
+\textbf{Parameters} & Fixed number & Grows with data  \\
+\textbf{Learning Time} & Slow & Faster  \\
+\textbf{Prediction Time} & Faster & Slower  \\
+\textbf{Complexity} & Fixed & Proportional to data size  \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{K-NEAREST NEIGHBORS (k-NN)}
+The core assumption is that similar points have similar labels.  For a new data point, k-NN finds the 'k' closest points in the training data.
+
+\begin{itemize}
+    \item \textbf{Classification:} The prediction is the majority class among the k neighbors. 
+    \item \textbf{Regression:} The prediction is the average of the values of the k neighbors. 
+\end{itemize}
+
+Weights can be added based on distance, so that closer neighbors have more influence on the prediction. 
+
+\subsection{Distance Metrics}
+\begin{itemize}
+    \item \textbf{Euclidean:} Standard distance between two points. 
+    \item \textbf{Cosine:} Measures the angle between two vectors. 
+    \item \textbf{Jaccard:} Used for comparing sets. 
+\end{itemize}
+
+\section{CURSE OF DIMENSIONALITY}
+In high-dimensional spaces, Euclidean distance can become meaningless.  As the number of dimensions ($d$) increases, the volume of the space grows exponentially.  This causes data points to become sparse and far apart from each other. 
+
+Consider a hypercube. To capture a fixed fraction of the data, say $a=0.5$, the required side length of the hypercube, $r = \sqrt[d]{a}$, approaches 1 as the dimension $d$ increases. 
+\begin{itemize}
+    \item In 1 dimension, to capture 50\% of the data, you need to cover 50\% of the length ($r=0.5$). 
+    \item In 2 dimensions, you need a square with side length $r = \sqrt{0.5} \approx 0.71$. 
+    \item In high dimensions, the hypercube must cover almost the entire range in each dimension to capture the same fraction of data. 
+\end{itemize}
+The result is that in high dimensions, nearly all data points are near the "edges" of the space, making the concept of "closeness" less useful.  This negatively affects distance-based algorithms like k-NN. 
+
+\section{Bayes Optimal Classifier}
+If we know the true data generating process $p(y|x)$, the optimal classifier $h^*(x)$ is the one that picks the most likely class for a given input $x$. 
+$$ h^*(x) = \underset{y}{\text{argmax}} \ p(y|x) $$
+The error of this classifier is the Bayes error rate:
+$$ \epsilon_{OPT} = P(y \neq h^*(x)) = 1 - p(y=h^*(x)|x) $$
+
+\subsection{1-NN vs Bayes Optimal}
+For $n \rightarrow \infty$, the error of the 1-NN classifier is bounded by twice the Bayes optimal error rate. 
+For a two-class problem, with $y^*$ being the optimal class label:
+$$ \epsilon_{1NN} \le 2\epsilon_{OPT} $$
+The derivation from the lecture notes shows:
+$$ \epsilon_{1NN} = (1-p(y^*|x))p(y^*|x) + p(y^*|x)(1-p(y^*|x)) \le 2(1-p(y^*|x)) = 2\epsilon_{OPT} $$ 
+
+
+\section{Linear Regression}
+
+The goal of linear regression is to model the relationship between a dependent variable $y$ and one or more independent variables $x$.
+The model takes the form of a linear equation:
+$$ \hat{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots $$
+where $\hat{y}$ is the predicted value.
+
+The core assumption is that the observed value $y$ is the predicted value $\hat{y}$ plus some normally distributed error term $\epsilon$. This can be expressed as a conditional probability:
+$$ p(y|x; \beta, \sigma^2) = \mathcal{N}(\hat{y}(x, \beta), \sigma^2) $$
+
+\subsection{Maximum Likelihood Estimation (MLE)}
+Given a dataset, we want to find the parameters $\beta$ that are most likely to have produced the observed data. We do this using Maximum Likelihood Estimation. The error (or residual) for each data point is $e = y - \hat{y}$. Assuming the errors are independent and identically distributed according to a normal distribution, the probability density of an error is:
+$$ p(e) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{e^2}{2\sigma^2}\right) $$
+Maximizing the likelihood of the data is equivalent to minimizing the sum of the squared errors.
+
+\subsection{Assumptions}
+\begin{itemize}
+    \item The relationship between $y$ and $x$ is linear, with additive noise.
+    \item The independent variables $x_i$ are constants, measured without error.
+    \item The error term $e$ is normally distributed.
+    \item The error term $e$ is independent of $x$ (homoscedasticity, or constant variance).
+\end{itemize}
+
+\subsection{Finding the optimal $\beta$}
+To find the optimal parameters $\beta$, we want to maximize the log-likelihood of our data. The likelihood is the product of the probabilities of each individual data point:
+$$ L(\beta) = p(\mathbf{y}|X, \beta) = \prod_{i=1}^{n} p(y_i | \vec{x}_i, \beta) $$
+It is easier to work with the log-likelihood, $l(\beta) = \log L(\beta)$. Taking the log converts the product into a sum:
+$$ l(\beta) = \sum_{i=1}^{n} \log\left(\frac{1}{\sigma\sqrt{2\pi}}\right) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 $$
+To maximize $l(\beta)$, we need to minimize the sum of squared errors (SSE), also known as the cost function $J(\beta)$:
+$$ J(\beta) = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} (y_i - \beta^T \vec{x}_i)^2 $$
+
+There are two main approaches to find the $\beta$ that minimizes this function.
+
+\subsubsection{a) Gradient Descent}
+Gradient descent is an iterative optimization algorithm that finds the minimum of a function. We start with an initial guess for $\beta$ and repeatedly move in the opposite direction of the gradient of the cost function. The update rule for each parameter $\beta_j$ is:
+$$ \beta_j \leftarrow \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta) $$
+where $\alpha$ is the learning rate. The partial derivative is:
+$$ \frac{\partial}{\partial \beta_j} J(\beta) = 2(\hat{y}(\beta) - y) \cdot x_j $$
+\begin{itemize}
+    \item \textbf{Stochastic Gradient Descent (SGD):} The parameters are updated using only one data instance at a time.
+    $$ \beta_j \leftarrow \beta_j - \alpha (\hat{y}(\beta) - y) x_j $$
+    \item \textbf{Batch Gradient Descent:} The parameters are updated using the entire dataset. The update rule averages the gradients over all $N$ instances.
+    $$ \beta_j \leftarrow \beta_j - \alpha \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i - y_i) x_{ij} $$
+\end{itemize}
+
+\subsubsection{b) Closed-Form Solution (Normal Equation)}
+For linear regression, a direct closed-form solution exists. The cost function in matrix form is:
+$$ J(\beta) = (\mathbf{y} - X\beta)^T (\mathbf{y} - X\beta) $$
+We can find the minimum by taking the derivative with respect to $\beta$ and setting it to zero:
+$$ \frac{\partial J(\beta)}{\partial \beta} = -2X^T(\mathbf{y} - X\beta) = 0 $$
+Solving for $\beta$ gives the normal equation:
+$$ \hat{\beta} = (X^T X)^{-1} X^T \mathbf{y} $$
+This solution gives the global minimum directly. However, this method requires computing the inverse of the matrix $X^T X$, which is not always possible. This matrix is non-invertible if there is multicollinearity (i.e., features are linearly dependent) or if the number of features is greater than the number of data instances.
+
+\section{Trees and Forests}
+\subsection{Decision Trees (CART)}
+Classification and Regression Trees (CART) work by recursively partitioning the input space into rectangular regions using axis-parallel splits. The goal is to create regions that are as "pure" as possible.
+
+\subsubsection{Splitting Criteria}
+To find the best split at each node, we want to maximize the information gain, which is the reduction in impurity after the split.
+\begin{itemize}
+    \item \textbf{Regression:} The impurity is typically the variance of the target variable within the node. The goal is to minimize the weighted average variance of the child nodes.
+    $$ \text{Gain} = \text{var}(D) - \left( \frac{|D_L|}{|D|}\text{var}(D_L) + \frac{|D_R|}{|D|}\text{var}(D_R) \right) $$
+    \item \textbf{Classification:} Impurity measures how mixed the classes are in a node. Common measures are:
+    \begin{itemize}
+        \item \textbf{Gini Impurity:} $G(p) = \sum_{c} p_c (1-p_c) = 1 - \sum_{c} p_c^2$.
+        \item \textbf{Entropy:} $H(p) = -\sum_{c} p_c \log_2(p_c)$.
+    \end{itemize}
+\end{itemize}
+Once the tree is grown, predictions are made by taking the mean (for regression) or the majority class (for classification) of the training instances in the leaf node where the new data point falls.
+
+\subsubsection{Challenges with Decision Trees}
+\begin{itemize}
+    \item \textbf{Instability:} Small changes in the training data can result in a completely different tree structure.
+    \item \textbf{Stopping criteria:} Deciding when to stop splitting (e.g., maximum depth, minimum samples per leaf) is crucial to avoid overfitting.
+    \item \textbf{Interpretability:} While small trees are interpretable, large trees are not.
+    \item \textbf{Assumptions:} They can model non-linear relationships but struggle with simple additive structures.
+\end{itemize}
+
+\section{Bagging (Bootstrap Aggregating)}
+Bagging is an ensemble technique designed to improve the stability and accuracy of machine learning algorithms like decision trees.
+The process is as follows:
+\begin{enumerate}
+    \item Create multiple bootstrap samples from the original dataset by sampling with replacement.
+    \item Train a separate model on each bootstrap sample.
+    \item The final prediction is the average (for regression) or a majority vote (for classification) of all the individual models' predictions.
+\end{enumerate}
+Bagging helps to reduce the variance of a model and lowers the influence of outliers. A useful feature is the Out-of-Bag (OOB) error, where the data points not selected in a bootstrap sample are used to evaluate the model, removing the need for a separate validation set. However, bagging is most effective for unstable models; it provides little benefit for stable models.
+
+\section{Random Forest}
+A Random Forest is an enhancement of bagging that specifically uses decision trees as the base models. It adds an extra layer of randomness to further de-correlate the trees.
+In addition to the bootstrap sampling of data points, a Random Forest also samples a random subset of features at each split in the tree-building process.
+\begin{itemize}
+    \item \textbf{Includes:} Bootstrap sampling (like bagging) and random feature selection for each split.
+    \item \textbf{Benefits:} The added randomness makes the trees less correlated with each other, which generally leads to a more robust and accurate model.
+    \item \textbf{Properties:} Random forests are generally fast to train (as each split considers fewer features) and are considered a very strong baseline model for many prediction tasks.
+\end{itemize}
+
+
+\section{Variance of Averaged Random Variables}
+The variance of an average of random variables depends on their correlation.
+
+\begin{itemize}
+    \item \textbf{Independent and Identically Distributed (IID):} For $n$ IID random variables $x_i$ each with variance $\sigma^2$, the variance of their average $\bar{x}$ is:
+    $$ \text{Var}(\bar{x}) = \text{Var}\left(\frac{1}{n}\sum_{i=1}^{n} x_i\right) = \frac{1}{n^2}\sum_{i=1}^{n}\text{Var}(x_i) = \frac{1}{n^2} n\sigma^2 = \frac{\sigma^2}{n} $$
+    As the number of variables $n$ increases, the variance of the average approaches zero. This is the principle behind bagging.
+
+    \item \textbf{Correlated Variables:} If the variables are not independent but have an average pairwise correlation $\rho$, the variance of the average is:
+    $$ \text{Var}(\bar{x}) = \rho\sigma^2 + \frac{1-\rho}{n}\sigma^2 $$
+    If $\rho > 0$, the variance does not go to zero as $n \to \infty$. It is lower-bounded by $\rho\sigma^2$. This highlights a limitation of bagging where models (trees) can be correlated.
+\end{itemize}
+
+\section{Model Evaluation}
+Model evaluation is a critical part of the machine learning workflow. It is unavoidable and can be costly, but it serves as a crucial protection against issues like overfitting by providing feedback on how a model will perform on unseen data. Common mistakes in model evaluation include:
+\begin{itemize}
+    \item Answering the wrong question.
+    \item Optimizing for the wrong metric.
+    \item Using an inappropriate model for the data.
+    \item Employing a flawed evaluation procedure, such as not accounting for temporal dependencies in data.
+    \item Re-inventing the wheel with custom inference when standard procedures exist.
+\end{itemize}
+
+It's good practice to build a reusable evaluation "harness" that can be applied to multiple models. This ensures that models are compared fairly under the same conditions and allows for tracking improvements from incremental changes.
+A critical rule is to ensure that any pre-processing or post-processing steps are part of the model itself, not the evaluation harness. Otherwise, a saved model will be incomplete and perform poorly in production.
+
+\subsection{Bias-Variance Decomposition}
+The expected squared error of a model can be decomposed into bias and variance.
+$$ \mathbb{E}_{D}[(\hat{y} - y)^2] = \underbrace{(\mathbb{E}[\hat{y}] - y)^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}[(\mathbb{E}[\hat{y}] - \hat{y})^2]}_{\text{Variance}} $$
+\begin{itemize}
+    \item \textbf{Bias:} A measure of systematic error; how far the average prediction is from the true value. High bias (underfitting) occurs when a model is too simple. To combat this, one can increase the number of features or use more complex models.
+    \item \textbf{Variance:} A measure of how much a model's prediction changes for different training sets. High variance (overfitting) occurs when a model is too complex and captures noise in the training data. To reduce variance, one can use regularization, add more training data, or use techniques like bagging.
+\end{itemize}
+There is a fundamental trade-off between bias and variance: decreasing one often increases the other.
+
+\section{Measures of Predictive Performance}
+The choice of performance measure depends on the machine learning task.
+\begin{itemize}
+    \item \textbf{Classification:} Accuracy, precision, recall, F1-score, AUC.
+    \item \textbf{Regression:} Mean Squared Error (MSE), Root Mean Squared Error (RMSE), absolute error, $R^2$.
+    \item \textbf{Predictive Probability Distributions:} Log-likelihood (cross-entropy), quadratic score (Brier score).
+\end{itemize}
+
+\section{Learning Paradigms}
+\subsection{Empirical Risk Minimization (ERM)}
+ERM is a foundational principle in machine learning. It involves defining a loss function $l(\text{true}, \text{predicted})$ and finding a model $h$ from a hypothesis class $\mathcal{H}$ that minimizes the average loss over the training data.
+
+The \textbf{true risk} (or generalization error) is the expected loss over the true data distribution, which is unknown:
+$$ R(h) = \mathbb{E}_{xy}[l(y, h(x))] $$
+The \textbf{empirical risk} is the average loss on the training set:
+$$ R_n(h) = \frac{1}{n} \sum_{i=1}^{n} l(y_i, h(x_i)) $$
+The ERM principle states that we should choose the hypothesis $\hat{h}$ that minimizes the empirical risk:
+$$ \hat{h} = \underset{h \in \mathcal{H}}{\text{argmin}} R_n(h) $$
+The optimal predictor depends on the chosen loss function:
+\begin{itemize}
+    \item \textbf{Quadratic Loss} ($l(y, \hat{y}) = (y - \hat{y})^2$): The predictor that minimizes this loss is the \textbf{mean}.
+    \item \textbf{Absolute Loss} ($l(y, \hat{y}) = |y - \hat{y}|$): The optimal predictor is the \textbf{median}.
+    \item \textbf{0-1 Loss} ($l(y, \hat{y}) = \mathbb{I}(y \neq \hat{y})$): The optimal predictor is the \textbf{mode} (majority class).
+    \item \textbf{Log Loss} ($l(y, \hat{p}) = -\log \hat{p}(y)$): The optimal predictor is the \textbf{relative frequencies} of the classes.
+\end{itemize}
+
+\subsubsection{ERM with Log Loss is equivalent to MLE}
+For a parametric model $p(y|\theta)$, using ERM with log loss means we want to find:
+$$ \hat{\theta}_{ERM} = \underset{\theta}{\text{argmin}} \left[ -\frac{1}{n} \sum_{i=1}^{n} \log p(y_i|\theta) \right] $$
+This is equivalent to maximizing the term inside the brackets:
+$$ \hat{\theta}_{ERM} = \underset{\theta}{\text{argmax}} \left[ \frac{1}{n} \sum_{i=1}^{n} \log p(y_i|\theta) \right] $$
+Since $\frac{1}{n}$ and $\log$ are monotonic, this is the same as maximizing the likelihood:
+$$ \hat{\theta}_{ERM} = \underset{\theta}{\text{argmax}} \left[ \log \prod_{i=1}^{n} p(y_i|\theta) \right] = \underset{\theta}{\text{argmax}} \left[ \prod_{i=1}^{n} p(y_i|\theta) \right] = \hat{\theta}_{MLE} $$
+Thus, minimizing the empirical risk under log-loss is the same as finding the maximum likelihood estimate.
+
+\subsection{Approximation-Estimation Decomposition}
+The excess generalization error of a learned model $\hat{h}_n$ can be decomposed:
+$$ R(\hat{h}_n) - R(h^*) = \underbrace{(R(h_{opt}) - R(h^*))}_{\text{Approximation Error}} + \underbrace{(R(\hat{h}_n) - R(h_{opt}))}_{\text{Estimation Error}} $$
+\begin{itemize}
+    \item \textbf{Approximation Error:} How close the best possible model in our hypothesis class ($h_{opt}$) is to the true best model ($h^*$). This is related to bias. A simple model like linear regression might have high approximation error if the true relationship is non-linear.
+    \item \textbf{Estimation Error:} How close our learned model ($\hat{h}_n$) is to the best model in its class ($h_{opt}$). This error arises from having a finite amount of data. It is related to variance. A complex model like a deep neural network might have low approximation error but high estimation error, meaning it might not generalize well.
+\end{itemize}
+
+\subsection{Consistency of ERM}
+Consistency is a desirable property of an estimator. For ERM, we consider two types of convergence as the sample size $n \to \infty$:
+\begin{itemize}
+    \item The empirical risk of a fixed hypothesis $h$ converges to its true risk: $R_n(h) \to R(h)$.
+    \item The true risk of the hypothesis $\hat{h}_n$ selected by ERM converges to the true risk of the best hypothesis in the class: $R(\hat{h}_n) \to R(h_{opt})$.
+\end{itemize}
+This means that with enough data, ERM will select a model that is nearly as good as the best possible model within the chosen class. Generalization error bounds provide a more formal statement, often relating the true risk to the empirical risk via a complexity term.
+
+\subsection{Structural Risk Minimization (SRM)}
+SRM extends ERM by adding a penalty term for model complexity. This is a form of regularization.
+$$ \hat{h} = \underset{h \in \mathcal{H}}{\text{argmin}} \left( R_n(h) + \lambda C(h) \right) $$
+Here, $C(h)$ is a measure of the complexity of the model $h$ (e.g., related to its VC-dimension), and $\lambda$ is a regularization parameter that controls the trade-off between fitting the data and keeping the model simple. This approach aims to minimize an upper bound on the true risk, not just the empirical risk.
+
+\subsection{Vapnik-Chervonenkis (VC) Dimension}
+The VC-dimension of a hypothesis class $\mathcal{H}$, denoted $VC(\mathcal{H})$, is a measure of its capacity or complexity. It is defined as the size of the largest set of points that can be "shattered" by $\mathcal{H}$, meaning it can perfectly classify the points for every possible labeling. For example, the VC-dimension of linear classifiers in 2D is 3.
+
+\section{Choosing a Loss Function}
+The choice of loss function is a critical modeling decision.
+\begin{itemize}
+    \item If possible, do not train a model with one loss function and evaluate it with another.
+    \item Understand the consequences of your chosen loss function.
+    \item When in doubt, using Log Loss (equivalent to MLE) is often a principled and robust choice.
+\end{itemize}
+
+\section{Scoring Rules}
+When evaluating probabilistic forecasts, we need a way to measure how good a predicted probability distribution is, given an observed outcome. This is the role of a scoring rule. A scoring rule $S(p, y)$ assigns a score to a predicted distribution $p$ when the outcome $y$ is observed.
+
+We want to maximize this score. Here are some examples:
+\begin{itemize}
+    \item \textbf{Logarithmic Score (Log Loss):} $S_{\text{log}}(p, y) = \log p(y)$
+    \item \textbf{Quadratic (Brier) Score:} $S_{\text{quad}}(p, y) = 2p(y) - \sum_{i} p(y_i)^2$. This is an alternative formulation to the more common loss version, which is $L_{\text{quad}}(p, y) = \sum_{i} (p(y_i) - \delta_{iy})^2$ where $\delta_{iy}$ is 1 if $y_i$ is the true class and 0 otherwise.
+    \item \textbf{0-1 Score:} $S_{0-1}(p, y) = 1$ if $y = \text{mode}(p)$, and 0 otherwise. This rule only cares if the most likely predicted outcome was correct.
+\end{itemize}
+
+\subsection{Proper Scoring Rules}
+A key concept for scoring rules is whether they are \textit{proper}. A scoring rule is considered \textbf{proper} if a forecaster maximizes their expected score by reporting their true belief about the distribution. A rule is \textbf{strictly proper} if the true distribution is the \textit{unique} distribution that maximizes the expected score.
+
+\subsubsection{Why This Matters}
+Using a non-proper scoring rule can lead to paradoxical situations. A model might achieve a better score by reporting a distribution different from what it has actually learned. For instance, if the true distribution for three classes is $p = [0.6, 0.2, 0.2]$, a model predicting this distribution should be rewarded most highly. However, with a non-proper rule, it might be possible to get a better score by predicting a biased distribution, like $[1, 0, 0]$. This means the scoring rule is not incentivizing honesty.
+
+\subsubsection{Examples of Scoring Rules}
+\begin{itemize}
+    \item \textbf{Log Score:} This is a strictly proper scoring rule. It heavily penalizes a model for assigning a very low probability to an event that then occurs (since $\log(p) \to -\infty$ as $p \to 0$). Because it is strictly proper, it is a very reliable metric for comparing probabilistic models.
+    \item \textbf{Quadratic (Brier) Score:} This is also a strictly proper scoring rule. It is less sensitive to extreme errors than the log score.
+    \item \textbf{0-1 Score (Accuracy):} This rule is \textbf{not} proper. Multiple different probability distributions can yield the same mode, and thus the same score. It doesn't differentiate between a model that predicts $[0.51, 0.49]$ and one that predicts $[0.99, 0.01]$ if the first class is correct.
+    \item \textbf{Absolute Error and MSE (for the mean):} These are also \textbf{not} proper for evaluating full distributions, as they only depend on the mean of the distribution, not its full shape.
+\end{itemize}
+
+\section{Estimating Generalization Error (Risk)}
+The ultimate goal of a model is to perform well on new, unseen data from the Data Generating Process (DGP). The model's performance on this future data is its \textbf{generalization error} or \textbf{risk}. Since the DGP is unknown, we cannot calculate this error directly. Instead, we must estimate it using the finite data we have.
+
+This is analogous to estimating a population parameter, like the mean $\theta = E[x]$, using a sample statistic, like the sample mean $\hat{\theta} = \bar{x}$. We want our estimate of the risk to be unbiased and have low variance.
+
+We have a learning algorithm $A$ which takes a dataset $D_n$ of size $n$ and produces a hypothesis (a trained model) $h_n$. We want to estimate the true risk of this model:
+$$ R(h_n) = \mathbb{E}_{xy \sim \text{DGP}}[l(y, h_n(x))] $$
+
+\subsection{Methods for Estimating Risk}
+
+\subsubsection{1. Independent Test Set (Hold-out Estimation)}
+The conceptually simplest method is to acquire a new, large, independent test set $D'_{m'}$ from the same DGP. We can then calculate the empirical risk on this test set:
+$$ \hat{R}(h_n) = \frac{1}{m'} \sum_{(x_i, y_i) \in D'_{m'}} l(y_i, h_n(x_i)) $$
+This estimate is an unbiased estimator of the true risk $R(h_n)$.
+
+In practice, we rarely have the luxury of acquiring a separate test set. Instead, we split our available data $D_n$ into a training set $D_{train}$ and a test set $D_{test}$. We train the model on $D_{train}$ to get $h_{train}$ and then estimate its risk on $D_{test}$:
+$$ \hat{R}(h_{train}) = \frac{1}{|D_{test}|} \sum_{(x_i, y_i) \in D_{test}} l(y_i, h_{train}(x_i)) $$
+This estimate is an unbiased estimate of the risk of $h_{train}$, but it is a \textbf{pessimistic} estimate of the risk of the final model $h_n$ (which would be trained on all of $D_n$). This is because $h_{train}$ was trained on less data than $h_n$ and is therefore expected to perform worse.
+
+Another common mistake is to evaluate the model on the same data it was trained on. This gives the \textbf{training error}, which is an optimistically biased (i.e., too low) estimate of the true risk.
+
+\subsubsection{Estimating the Uncertainty of the Risk Estimate}
+A single risk estimate, like 83\% accuracy, is just a point estimate. We also need to know the uncertainty of this estimate. The risk estimate $\hat{R}$ is an average of the losses $l_i$ over the test set. By the Central Limit Theorem (CLT), we can approximate its variance:
+$$ \sigma^2_{\hat{R}} \approx \frac{\sigma^2_l}{m_{\text{test}}} $$
+Since we don't know the true variance of the losses $\sigma^2_l$, we estimate it from the test sample itself:
+$$ \hat{\sigma}^2_l = \frac{1}{m_{\text{test}}-1} \sum_{i=1}^{m_{\text{test}}} (l_i - \bar{l})^2 $$
+The standard error of our risk estimate is then $\text{SE}(\hat{R}) = \sqrt{\hat{\sigma}^2_l / m_{\text{test}}}$. The problem is that to get a low-variance (i.e., reliable) estimate, we need a large test set ($m_{\text{test}}$), which leaves less data for training a good model.
+
+\subsubsection{2. Cross-Validation (CV)}
+When data is limited, holding out a large portion for testing is wasteful. Cross-validation is a resampling method that uses the data more efficiently to get a more reliable estimate of generalization error.
+
+\begin{itemize}
+    \item \textbf{k-Fold Cross-Validation:} The data is partitioned into $k$ equal-sized folds. For each fold, the model is trained on the other $k-1$ folds and tested on the held-out fold. The CV estimate of the risk is the average of the risks from the $k$ test folds.
+    \item \textbf{Leave-One-Out CV (LOOCV):} This is the extreme case of k-fold CV where $k=n$, the number of data points. It provides a nearly unbiased estimate of the risk but can be computationally very expensive and the resulting estimator can have high variance.
+    \item \textbf{Monte Carlo CV (Repeated Random Sub-sampling):} This involves creating many random splits of the data into training and testing sets and averaging the results. Unlike k-fold CV, the test sets can overlap.
+\end{itemize}
+
+\subsubsection{Practical Considerations for CV}
+\begin{itemize}
+    \item \textbf{Stratified CV:} When dealing with classification problems, especially with imbalanced classes, it is important to ensure that each fold has the same class distribution as the original dataset. This is called stratification and helps to reduce variance in the risk estimate.
+    \item \textbf{Nested CV:} This is a more advanced technique used when model selection (e.g., hyperparameter tuning) must be performed as part of the evaluation. It involves an inner CV loop for hyperparameter tuning within each fold of an outer CV loop used for risk estimation. This provides an unbiased estimate of the performance of the model selection procedure itself.
+\end{itemize}
+
+
+\section{Feature Selection and Model Regularization}
+Working with datasets that have many features presents several challenges:
+\begin{itemize}
+    \item A higher risk of overfitting the model to the training data.
+    \item Increased computational cost for training.
+    \item The presence of redundant, correlated, or irrelevant features can degrade model performance and make the model difficult to interpret.
+\end{itemize}
+
+To address these issues, we use techniques to reduce the complexity of the model. These techniques often improve model quality by eliminating noise and can significantly increase interpretability. The main approaches are:
+\begin{enumerate}
+    \item \textbf{Feature Selection:} Choosing a subset of the original features. This approach directly improves interpretability.
+    \item \textbf{Feature Transformation (Dimensionality Reduction):} Creating a new, smaller set of features by combining the original ones. Examples include PCA, MDS, and t-SNE.
+    \item \textbf{Regularization:} A technique that simplifies the model by penalizing complexity, which can implicitly perform feature selection. Examples include L1/L2 regularization or limiting the depth of a decision tree.
+\end{enumerate}
+
+\section{Feature Selection Approaches}
+The goal of feature selection is to find a small subset of features that are most useful for the modeling task. Since checking every possible combination of features is computationally infeasible , we use heuristic approaches, which can be categorized as follows:
+\begin{itemize}
+    \item \textbf{Filter Methods:} These methods rank features based on their statistical properties, independent of the model being trained. They are computationally fast.
+    \item \textbf{Wrapper Methods:} These methods use a specific machine learning model to evaluate the quality of different feature subsets. They are more computationally expensive but can lead to better performance for the chosen model.
+    \item \textbf{Embedded Methods:} In these methods, feature selection is an integral part of the model training process. Regularization techniques are a prime example.
+\end{itemize}
+
+\subsection{Filter Methods}
+Filter methods evaluate features individually or against the target variable.
+
+\subsubsection{Univariate Measures}
+These measures assess each feature independently.
+\begin{itemize}
+    \item \textbf{Correlation (e.g., Pearson's r):} Measures the linear dependence between a continuous feature and a continuous target.
+    \item \textbf{Mutual Information (Information Gain):} Measures the dependency between two variables, capable of capturing non-linear relationships. It can be used for discrete or continuous variables (though binning might be required for continuous ones).
+    \item \textbf{Statistical Tests (e.g., ANOVA):} Used to check the statistical significance between a mixed set of feature and target types.
+\end{itemize}
+
+\paragraph{Mutual Information (MI)}
+MI measures how much information about one variable is provided by another. It's defined in terms of entropy ($H$):
+$$ I(X, Y) = H(Y) - H(Y|X) = H(X) - H(X|Y) $$
+If variables X and Y are independent, $I(X,Y) = 0$. If Y is a deterministic function of X, then $I(X,Y) = H(Y)$. However, a major drawback of univariate methods like MI is that they evaluate each feature in isolation and can miss feature interactions. For instance, two features might be useless on their own but highly predictive when combined.
+
+\subsubsection{Relief Algorithm}
+The Relief algorithm is a more advanced filter method that can detect feature interactions. It estimates the quality of features by how well they distinguish between instances that are near to each other. For each randomly selected instance $X_i$, Relief finds its nearest neighbor from the same class (nearest hit, $H_i$) and its nearest neighbor from a different class (nearest miss, $M_i$). It then updates the weight $W$ for each feature $A$ based on how much its value differs for the hit versus the miss:
+$$ W(A) \leftarrow W(A) - \text{diff}(A, X_i, H_i)^2 + \text{diff}(A, X_i, M_i)^2 $$
+The `diff` function calculates the distance between the values of feature A for two instances. The idea is that a good feature should have similar values for instances of the same class (small difference with hit) and different values for instances of different classes (large difference with miss).
+
+\paragraph{Concrete Example for Relief}
+Let's assume we have a simple dataset with two features (F1, F2) and a binary class (0 or 1).
+\begin{itemize}
+    \item Instance $X = (F1=3, F2=5, Class=1)$
+    \item Nearest Hit $H = (F1=4, F2=6, Class=1)$
+    \item Nearest Miss $M = (F1=8, F2=2, Class=0)$
+\end{itemize}
+Let's initialize the weights for F1 and F2 to zero: $W(F1)=0, W(F2)=0$. We assume the `diff` function is the simple absolute difference normalized by the range of the feature. Let's say range is 10 for both.
+\begin{enumerate}
+    \item \textbf{Update for F1:}
+    \begin{itemize}
+        \item $\text{diff}(F1, X, H) = |3 - 4| / 10 = 0.1$
+        \item $\text{diff}(F1, X, M) = |3 - 8| / 10 = 0.5$
+        \item $W(F1) \leftarrow 0 - (0.1)^2 + (0.5)^2 = -0.01 + 0.25 = 0.24$
+    \end{itemize}
+    \item \textbf{Update for F2:}
+     \begin{itemize}
+        \item $\text{diff}(F2, X, H) = |5 - 6| / 10 = 0.1$
+        \item $\text{diff}(F2, X, M) = |5 - 2| / 10 = 0.3$
+        \item $W(F2) \leftarrow 0 - (0.1)^2 + (0.3)^2 = -0.01 + 0.09 = 0.08$
+    \end{itemize}
+\end{enumerate}
+After this one instance, F1 has a higher weight (0.24) than F2 (0.08), indicating it's more relevant. This process is repeated for many random instances to get a stable estimate of the feature weights.
+
+\subsection{Wrapper Methods}
+Wrapper methods wrap the feature selection process around a specific model, treating it as a black box that provides a quality score. The goal is to search the space of all possible feature subsets to find the one that results in the best model performance. Since this space is huge, heuristic search strategies are used, such as:
+\begin{itemize}
+    \item \textbf{Forward Selection:} Start with an empty set and greedily add the feature that improves performance the most at each step.
+    \item \textbf{Backward Elimination:} Start with all features and greedily remove the feature that results in the smallest performance drop.
+\end{itemize}
+
+\section{Regularization}
+Regularization is a technique used to prevent overfitting by adding a penalty term to the model's objective function. This penalty discourages overly complex models by constraining the magnitude of the model's parameters.
+
+\subsection{L2 Regularization (Ridge Regression)}
+For linear regression, L2 regularization adds a penalty proportional to the sum of the squared coefficient values ($\beta_i$). The objective function becomes:
+$$ \min_{\beta} \sum_{i=1}^{n} (y_i - \beta^T x_i)^2 + \lambda \sum_{j=1}^{p} \beta_j^2 $$
+The hyperparameter $\lambda \ge 0$ controls the strength of the regularization. As $\lambda \to \infty$, all coefficients are pushed towards zero. L2 regularization has a closed-form solution:
+$$ \hat{\beta}_{L2} = (X^T X + \lambda I)^{-1} X^T y $$
+This penalty term ensures that the matrix is always invertible, solving a potential issue with ordinary least squares. It's crucial to normalize the features before applying regularization to ensure they are penalized fairly.
+
+\subsection{L1 Regularization (Lasso Regression)}
+L1 regularization adds a penalty proportional to the sum of the absolute values of the coefficients:
+$$ \min_{\beta} \sum_{i=1}^{n} (y_i - \beta^T x_i)^2 + \lambda \sum_{j=1}^{p} |\beta_j| $$
+L1 regularization has a powerful property: it can force some feature coefficients to be exactly zero, effectively performing feature selection. This leads to sparse models. Unlike Ridge, Lasso has no closed-form solution and must be solved with numerical optimization methods.
+
+\subsection{Geometric Interpretation}
+The difference between L1 and L2 can be visualized. Regularization is equivalent to constraining the coefficient vector $\beta$ to lie within a certain region.
+\begin{itemize}
+    \item \textbf{L2 (Ridge):} The constraint region is a circle (in 2D) or a hypersphere. The solution is the point where the elliptical contours of the sum-of-squares error term touch this circle. This is unlikely to happen at an axis, so coefficients are shrunk but rarely to zero.
+    \item \textbf{L1 (Lasso):} The constraint region is a diamond (in 2D) or a polyhedron. The elliptical contours are much more likely to hit one of the sharp corners of the diamond, which lie on the axes. When the solution lies on an axis, one of the feature coefficients is zero.
+\end{itemize}
+
+\subsection{Bayesian Interpretation of Regularization}
+Regularization can be interpreted from a Bayesian perspective as placing a prior distribution on the model parameters. The regularized solution corresponds to the Maximum A Posteriori (MAP) estimate.
+$$ \underbrace{p(\beta|D)}_{\text{Posterior}} \propto \underbrace{p(D|\beta)}_{\text{Likelihood}} \cdot \underbrace{p(\beta)}_{\text{Prior}} $$
+Maximizing the log-posterior is equivalent to minimizing the negative log-posterior:
+$$ \min_{\beta} [-\log(p(D|\beta)) - \log(p(\beta))] $$
+\begin{itemize}
+    \item The negative log-likelihood corresponds to the error term (e.g., sum of squared errors).
+    \item The negative log-prior corresponds to the regularization penalty term.
+    \item \textbf{L2 (Ridge):} This is equivalent to placing a Gaussian (Normal) prior on the coefficients: $\beta_j \sim \mathcal{N}(0, \tau^2)$.
+    \item \textbf{L1 (Lasso):} This is equivalent to placing a Laplace prior on the coefficients: $p(\beta_j) \propto \exp(-|\beta_j|/b)$. The sharper peak of the Laplace distribution at zero places more mass on coefficients being exactly zero, leading to sparsity.
+\end{itemize}
+
+\section{Generalizing Linear Regression}
+Standard linear regression assumes the response variable $y$ is continuous and the errors $\epsilon_i$ are normally distributed: $y_i = \beta^T x_i + \epsilon_i$, where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$.
+
+However, this model is not suitable for classification problems where the outcome is binary (0 or 1). A naive approach of fitting a line and setting a threshold has several problems:
+\begin{itemize}
+    \item The linear predictor $\beta^T x$ can produce values outside the [0, 1] range required for probabilities.
+    \item It is not obvious how to convert the output to a valid probability.
+    \item The model can be heavily skewed by outliers and perform poorly on imbalanced data.
+\end{itemize}
+
+\subsection{Logistic Regression}
+To address these issues, we use a function that maps the output of a linear model to the (0, 1) interval. The standard choice for this is the \textbf{logistic function} (or standard sigmoid):
+$$ \sigma(z) = \frac{1}{1 + e^{-z}} $$
+This function takes any real number $z$ and maps it to a value between 0 and 1. A useful property of the logistic function is its simple derivative:
+$$ \frac{d}{dz}\sigma(z) = \sigma(z)(1 - \sigma(z)) $$
+In logistic regression, we model the probability of a positive class as:
+$$ p(y=1|x; \beta) = h_\beta(x) = \sigma(\beta^T x) = \frac{1}{1 + e^{-\beta^T x}} $$
+Since there are only two outcomes, the probability of the negative class is $p(y=0|x; \beta) = 1 - h_\beta(x)$. We can write this compactly for a single observation $(x_i, y_i)$ where $y_i \in \{0, 1\}$:
+$$ p(y_i|x_i; \beta) = h_\beta(x_i)^{y_i} (1 - h_\beta(x_i))^{1-y_i} $$
+This is the probability mass function of a Bernoulli distribution.
+
+\subsubsection{Parameter Estimation via Maximum Likelihood (MLE)}
+To find the optimal parameters $\beta$, we maximize the likelihood of observing our entire dataset. Assuming the observations are independent, the likelihood is the product of the individual probabilities:
+$$ L(\beta) = p(\mathbf{y}|X; \beta) = \prod_{i=1}^{n} p(y_i|x_i; \beta) = \prod_{i=1}^{n} h_\beta(x_i)^{y_i} (1 - h_\beta(x_i))^{1-y_i} $$
+It is easier to work with the log-likelihood, $l(\beta) = \log L(\beta)$:
+$$ l(\beta) = \sum_{i=1}^{n} \left[ y_i \log h_\beta(x_i) + (1-y_i) \log(1 - h_\beta(x_i)) \right] $$
+This is also known as the negative of the binary cross-entropy loss. Substituting $h_\beta(x_i) = \sigma(\beta^T x_i) = \frac{e^{\beta^T x_i}}{1 + e^{\beta^T x_i}}$ and $1-h_\beta(x_i) = \frac{1}{1 + e^{\beta^T x_i}}$ leads to:
+\begin{align*}
+l(\beta) &= \sum_{i=1}^{n} \left[ y_i \log\left(\frac{e^{\beta^T x_i}}{1 + e^{\beta^T x_i}}\right) + (1-y_i) \log\left(\frac{1}{1 + e^{\beta^T x_i}}\right) \right] \\
+&= \sum_{i=1}^{n} \left[ y_i (\beta^T x_i - \log(1 + e^{\beta^T x_i})) - (1-y_i)\log(1 + e^{\beta^T x_i}) \right] \\
+&= \sum_{i=1}^{n} \left[ y_i \beta^T x_i - \log(1 + e^{\beta^T x_i}) \right]
+\end{align*}
+Unlike linear regression, there is no closed-form solution for $\beta$. We must use an iterative optimization algorithm like gradient descent. A key property is that the log-likelihood function for logistic regression is \textbf{concave}, which guarantees that gradient descent will find the global maximum.
+
+\subsubsection{Interpretation of Coefficients}
+The logistic regression model can be rearranged to understand the meaning of the coefficients:
+$$ \frac{p(x)}{1-p(x)} = e^{\beta^T x} \implies \log\left(\frac{p(x)}{1-p(x)}\right) = \beta^T x = \beta_0 + \beta_1 x_1 + \dots $$
+The term $\log(p / (1-p))$ is the \textbf{log-odds} or \textbf{logit}. This shows that a one-unit increase in a feature $x_j$, holding all other features constant, changes the log-odds of the outcome by $\beta_j$. Equivalently, the odds are multiplied by a factor of $e^{\beta_j}$.
+
+\section{Generalized Linear Models (GLMs)}
+GLMs extend linear regression to handle response variables with different distributions. A GLM has three components:
+\begin{enumerate}
+    \item \textbf{Random Component:} Specifies the probability distribution of the response variable $y$, which must be a member of the exponential family (e.g., Normal, Poisson, Bernoulli, Gamma).
+    \item \textbf{Systematic Component:} A linear predictor, which is a linear combination of the features: $\eta = \beta^T x$.
+    \item \textbf{Link Function ($g$):} A function that links the expected value of the response, $\mu = E[y]$, to the linear predictor: $g(\mu) = \eta$.
+\end{enumerate}
+The general form of a distribution in the exponential family is:
+$$ p(y|\theta, \phi) = \exp\left(\frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) $$
+For these distributions, it can be shown that $E[y] = \mu = b'(\theta)$.
+
+The link function's role is to map the range of $\mu$ (e.g., $(0, \infty)$ for Poisson, $(0, 1)$ for Bernoulli) to the entire real line $\mathbb{R}$. The \textbf{canonical link} is a special choice where $g(\mu) = \theta$.
+
+\subsection{Examples of GLMs}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Model Name} & \textbf{Distribution} & \textbf{Link Function $g(\mu)$} & \textbf{Inverse Link $\mu = g^{-1}(\eta)$} \\
+\hline
+Linear Regression & Normal & Identity: $\mu$ & $\eta$ \\
+Logistic Regression & Bernoulli & Logit: $\log(\frac{\mu}{1-\mu})$ & Logistic: $\frac{1}{1+e^{-\eta}}$ \\
+Poisson Regression & Poisson & Log: $\log(\mu)$ & Exponential: $e^{\eta}$ \\
+Gamma Regression & Gamma & Inverse: $1/\mu$ & $1/\eta$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Models for Categorical Dependent Variables}
+
+\subsection{Direct Extension (Softmax Regression)}
+This approach is a direct generalization of binary logistic regression to handle multiple classes.
+
+For a given feature vector $x \in \mathbb{R}^k$, the model first computes a linear score $z_j$ for each class $j$ from $1, \dots, m$:
+$$ z_j = w_j^T x + b_j $$
+Here, $w_j \in \mathbb{R}^k$ is the weight vector and $b_j$ is the bias term for class $j$.
+
+To ensure that the model is identifiable (i.e., has a unique solution), one class is typically designated as a reference class. For this reference class, the parameters are fixed, usually to zero (e.g., $w_m = \vec{0}$ and $b_m = 0$).
+
+The scores are then converted into probabilities using the \textbf{softmax function}, which normalizes the scores so that they sum to one:
+$$ P(y=j | x) = \frac{\exp(z_j)}{\sum_{k=1}^{m} \exp(z_k)} $$
+
+The total number of parameters to be learned for this model is $(m-1)(k+1)$, accounting for the $k$ weights and 1 bias for each of the $m-1$ non-reference classes.
+
+\subsection{One-vs-Rest (OvR) Decomposition}
+The One-vs-Rest (also known as One-vs-All) strategy decomposes the single multi-class problem into multiple binary classification problems.
+
+For a problem with $m$ classes, this method involves training $m$ independent binary classifiers. For each class $j$, a binary logistic regression model is trained to distinguish class $j$ (treated as the positive class) from all other $m-1$ classes combined (treated as the negative class).
+
+After training, to make a prediction for a new input, all $m$ classifiers produce an output probability. Since these probabilities are not guaranteed to sum to one, the outputs are scaled to obtain normalized class probabilities:
+$$ P(y=j|x) = \frac{p_j(y=j|x)}{\sum_{l=1}^{m} p_l(y=l|x)} $$
+where $p_j(y=j|x)$ is the probability output from the binary classifier trained for class $j$.
+
+The total number of parameters to be learned for this model is $(m)(k+1)$, as each of the $m$ classes has $k$ weights and 1 bias term.
+
+
+\subsection{Ordinal Regression}
+This model is used when the categorical outcome has a natural ordering (e.g., 'small', 'medium', 'large'). Instead of modeling the probability of each class, ordinal models typically model the cumulative probability, $p(y \le j)$. The most common is the \textbf{proportional odds model} or \textbf{cumulative logit model}.
+
+It assumes a single linear score $u_i = \beta^T x_i$ and a series of ordered thresholds or cut-points $\{b_1, b_2, \dots, b_{m-1}\}$. The cumulative probability is then:
+$$ p(y_i \le j) = F(b_j - u_i) $$
+where $F$ is a cumulative distribution function (CDF), typically the logistic function. The probability of being in a specific category $j$ is the difference between two cumulative probabilities:
+$$ p(y_i = j) = p(y_i \le j) - p(y_i \le j-1) = F(b_j - u_i) - F(b_{j-1} - u_i) $$
+This model is more parsimonious than multinomial regression, as it only estimates one set of feature coefficients $\beta$ and $m-1$ cut-points, making it useful for smaller datasets. The cut-points must satisfy the constraint $b_1 < b_2 < \dots < b_{m-1}$.
+
+The total number of parameters to be learned for this model is $k + (m-2)$, where $k$ is the number of features.
+
+\section{Boosting}
+Boosting is a powerful ensemble method that, similar to bagging, combines multiple models to produce a single, superior predictive model. However, its approach is fundamentally different.
+
+\begin{itemize}
+    \item \textbf{Bagging} builds multiple independent models in parallel on different bootstrap samples of the data and averages their predictions.
+    \item \textbf{Boosting} builds models sequentially, where each new model is trained to correct the errors made by the previous ones.
+\end{itemize}
+Boosting is designed to work with \textbf{weak learners}—models that are only slightly better than random guessing (e.g., a decision tree with a single split, called a "stump"). The goal is to combine many of these weak learners, which typically have high bias, into a single strong learner with low bias. Using strong learners with boosting often doesn't work well and can lead to overfitting.
+
+\section{The AdaBoost Algorithm}
+AdaBoost (Adaptive Boosting) is the archetypal boosting algorithm, designed for binary classification with labels $y \in \{-1, 1\}$.
+The core idea is to iteratively re-weight the data samples. In each iteration, the algorithm places more weight on instances that were misclassified by the previous learner, forcing the new learner to focus on these "hard" examples.
+
+The algorithm proceeds as follows:
+\begin{enumerate}
+    \item \textbf{Initialization:} Assign an equal weight to each of the $n$ training samples: $w_i = 1/n$ for $i=1, \dots, n$.
+    \item \textbf{Iterate} for $m = 1, \dots, M$:
+    \begin{enumerate}
+        \item Fit a weak classifier $G_m(x)$ to the training data using the weights $w_i$.
+        \item Compute the weighted error of the classifier: 
+        $$ \text{err}_m = \frac{\sum_{i=1}^{n} w_i I(y_i \neq G_m(x_i))}{\sum_{i=1}^{n} w_i} $$
+        where $I(\cdot)$ is the indicator function.
+        \item Compute the classifier's weight (or importance factor):
+        $$ \alpha_m = \frac{1}{2}\log\left(\frac{1 - \text{err}_m}{\text{err}_m}\right) $$
+        This value is large and positive for accurate classifiers and can be negative for classifiers that perform worse than random.
+        \item Update the sample weights:
+        $$ w_i \leftarrow w_i \cdot \exp[\alpha_m \cdot I(y_i \neq G_m(x_i))] $$
+        After this step, re-normalize the weights so they sum to 1. This update increases the weight of misclassified samples.
+    \end{enumerate}
+    \item \textbf{Final Prediction:} The final prediction is a weighted majority vote of all the weak classifiers:
+    $$ G(x) = \text{sign}\left(\sum_{m=1}^{M} \alpha_m G_m(x)\right) $$
+\end{enumerate}
+
+\section{A General View: Forward Stagewise Additive Modeling (FSAM)}
+AdaBoost can be understood as a special case of a more general framework called Forward Stagewise Additive Modeling. The goal of FSAM is to build an additive model of the form:
+$$ f(x) = \sum_{m=1}^{M} \beta_m b(x; \gamma_m) $$
+where $b(x; \gamma_m)$ are basis functions (our weak learners). The objective is to minimize a loss function $L(y, f(x))$ over the training data.
+
+The "stagewise" approach builds the model iteratively. At each step $m$, we add a new weak learner to the ensemble without changing the parameters of the learners already added.
+\begin{enumerate}
+    \item Initialize $f_0(x) = 0$.
+    \item For $m = 1, \dots, M$:
+    \begin{enumerate}
+        \item Find the next weak learner $G_m$ and its coefficient $\beta_m$ by solving:
+        $$ (\beta_m, G_m) = \underset{\beta, G}{\text{argmin}} \sum_{i=1}^{n} L(y_i, f_{m-1}(x_i) + \beta G(x_i)) $$
+        \item Update the model: $f_m(x) = f_{m-1}(x) + \beta_m G_m(x)$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Deriving AdaBoost from FSAM}
+AdaBoost is equivalent to FSAM when using the \textbf{exponential loss function}: $L(y, f(x)) = e^{-y f(x)}$.
+
+At step $m$, we need to solve:
+$$ (\beta_m, G_m) = \underset{\beta, G}{\text{argmin}} \sum_{i=1}^{n} e^{-y_i [f_{m-1}(x_i) + \beta G(x_i)]} $$
+We can rewrite the sum as:
+$$ \sum_{i=1}^{n} e^{-y_i f_{m-1}(x_i)} e^{-y_i \beta G(x_i)} $$
+The term $e^{-y_i f_{m-1}(x_i)}$ is independent of $\beta$ and $G$. We can treat it as a weight $w_i^{(m)}$ for each sample. The problem becomes:
+$$ (\beta_m, G_m) = \underset{\beta, G}{\text{argmin}} \sum_{i=1}^{n} w_i^{(m)} e^{-y_i \beta G(x_i)} $$
+Since $y_i, G(x_i) \in \{-1, 1\}$, the term $y_i G(x_i)$ is 1 if the classification is correct and -1 if it's incorrect. We can split the sum:
+$$ \sum_{y_i = G(x_i)} w_i^{(m)} e^{-\beta} + \sum_{y_i \neq G(x_i)} w_i^{(m)} e^{\beta} $$
+This can be rewritten using the total weight of misclassified points, $\text{err}_m = \sum w_i^{(m)} I(y_i \neq G(x_i))$:
+$$ = (1 - \text{err}_m) e^{-\beta} + \text{err}_m e^{\beta} $$
+
+Now we solve for $G_m$ and $\beta_m$ separately.
+\begin{enumerate}
+    \item \textbf{Find $G_m$:} For any fixed $\beta > 0$, the term $e^{\beta}$ is larger than $e^{-\beta}$. To minimize the expression, we must choose the function $G$ that minimizes its coefficient, which is the weighted error $\text{err}_m$. Thus, the optimal weak learner is:
+    $$ G_m = \underset{G}{\text{argmin}} \sum_{i=1}^{n} w_i^{(m)} I(y_i \neq G(x_i)) $$
+    \item \textbf{Find $\beta_m$:} With $G_m$ (and thus $\text{err}_m$) fixed, we find the optimal $\beta_m$ by taking the derivative of the expression with respect to $\beta$ and setting it to zero:
+    $$ \frac{\partial}{\partial \beta} [ (1 - \text{err}_m) e^{-\beta} + \text{err}_m e^{\beta} ] = -(1 - \text{err}_m) e^{-\beta} + \text{err}_m e^{\beta} = 0 $$
+    $$ e^{2\beta} = \frac{1 - \text{err}_m}{\text{err}_m} \implies \beta_m = \frac{1}{2} \log\left(\frac{1 - \text{err}_m}{\text{err}_m}\right) $$
+    This is exactly the formula for $\alpha_m$ in AdaBoost. The weight update rule in FSAM is $w_i^{(m+1)} = w_i^{(m)} e^{-y_i \beta_m G_m(x_i)}$. This is also equivalent to the AdaBoost update, since $-y_i G_m(x_i)$ is $-1$ for correct predictions and $+1$ for incorrect ones, making the exponent $\pm \beta_m$, which matches AdaBoost's $\alpha_m \cdot I(y_i \neq G_m(x_i))$ if we adjust for the sign convention.
+\end{enumerate}
+
+\section{Gradient Boosting}
+Gradient Boosting is a further generalization of boosting that can be used with any differentiable loss function, not just the exponential loss. It is particularly useful for regression problems.
+
+The core idea is to reframe boosting as a gradient descent procedure in function space. At each step, instead of fitting a new learner to re-weighted data, we fit a learner to the \textbf{negative gradient} of the loss function with respect to the current model's prediction. These negative gradients are called \textbf{pseudo-residuals}.
+
+The algorithm is as follows:
+\begin{enumerate}
+    \item Initialize the model with a constant value, typically the mean of the target variable: $f_0(x) = \underset{\gamma}{\text{argmin}} \sum_{i=1}^n L(y_i, \gamma)$.
+    \item For $m = 1, \dots, M$:
+    \begin{enumerate}
+        \item \textbf{Compute pseudo-residuals:} For each sample $i$, calculate the negative gradient of the loss function:
+        $$ r_{im} = -\left[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)}\right]_{f=f_{m-1}} $$
+        \item \textbf{Fit a weak learner:} Train a weak learner $h_m(x)$ to predict the pseudo-residuals $\{ (x_i, r_{im}) \}_{i=1}^n$.
+        \item \textbf{Find optimal step size:} Find the best coefficient $\gamma_m$ for the new learner by performing a line search to minimize the overall loss:
+        $$ \gamma_m = \underset{\gamma}{\text{argmin}} \sum_{i=1}^{n} L(y_i, f_{m-1}(x_i) + \gamma h_m(x_i)) $$
+        \item \textbf{Update the model:} Add the new weak learner to the ensemble:
+        $$ f_m(x) = f_{m-1}(x) + \gamma_m h_m(x) $$
+    \end{enumerate}
+\end{enumerate}
+For example, in regression with squared error loss $L(y, f(x)) = \frac{1}{2}(y-f(x))^2$, the negative gradient is simply the ordinary residual, $r_i = y_i - f(x_i)$. In this case, gradient boosting iteratively fits new models to the residuals of the previous ensemble.
+
+\section{Artificial Neural Networks (ANNs)}
+The core idea behind Artificial Neural Networks is to learn features or representations from the data in an automated way. This is done by applying a series of linear combinations followed by non-linear transformations, repeated over multiple layers. The heavy reliance on matrix multiplications is why GPUs, which excel at parallelized matrix operations, are so crucial for training modern neural networks.
+
+\subsection{Motivation}
+Traditional "shallow" machine learning methods like kernel methods implicitly transform data into a higher-dimensional space where it might become linearly separable:
+$$ y(x) = w^T \phi(x) + b $$
+The drawback is that computing the kernel matrix can be computationally expensive, often scaling quadratically with the number of data points.
+
+Neural networks, in contrast, learn the transformation $\phi(x)$ directly as part of the model:
+$$ \phi(x) = \sigma(Ux + c) $$
+This approach scales linearly with the number of data points, making it more suitable for large datasets. The network learns to warp the feature space to make the problem easier, for example, by making non-linearly separable data linearly separable in a transformed space.
+
+\subsection{Mathematical Model of a Neuron}
+A single artificial neuron is a simple computational unit. It receives multiple inputs $x_1, x_2, \dots, x_k$, computes a weighted sum, adds a bias $b$, and then applies a non-linear activation function $\sigma$.
+$$ z = \sum_{i=1}^{k} w_i x_i + b \quad \text{or in vector form,} \quad z = w^T x + b $$
+$$ y = \sigma(z) $$
+The output $y$ is then passed as an input to other neurons in the next layer.
+
+\section{Network Architecture}
+A neural network is formed by organizing these neurons into layers. A typical feed-forward network consists of:
+\begin{itemize}
+    \item An \textbf{input layer} that receives the raw data.
+    \item One or more \textbf{hidden layers} where intermediate computations and feature learning occur.
+    \item An \textbf{output layer} that produces the final prediction.
+\end{itemize}
+
+\subsection{Activation Functions}
+The activation function $\sigma$ introduces non-linearity into the model, which is crucial for learning complex patterns. Without it, a multi-layer network would be equivalent to a single linear model. Common activation functions include:
+\begin{itemize}
+    \item \textbf{Sigmoid:} $\sigma(z) = \frac{1}{1 + e^{-z}}$. Maps values to the (0, 1) range.
+    \item \textbf{Hyperbolic Tangent (Tanh):} $\sigma(z) = \tanh(z)$. Maps values to the (-1, 1) range.
+    \item \textbf{Rectified Linear Unit (ReLU):} $\sigma(z) = \max(0, z)$. A very popular choice due to its simplicity and effectiveness in combating the vanishing gradient problem.
+\end{itemize}
+
+\subsection{Output Layer}
+The structure of the output layer depends on the task:
+\begin{itemize}
+    \item \textbf{Regression:} The output layer typically has a single neuron with a linear activation function to produce a continuous value.
+    \item \textbf{Classification:} For multi-class classification, a \textbf{softmax} layer is often used. The softmax function takes the raw outputs (logits) for each class and converts them into a probability distribution that sums to 1:
+    $$ P(y=j|x) = \frac{e^{z_j}}{\sum_{k} e^{z_k}} $$
+\end{itemize}
+
+\subsection{The Power of ANNs: Universal Approximation}
+A key theoretical result is the Universal Approximation Theorem. It states that a neural network with a single hidden layer containing a finite number of neurons (using a non-linear activation function like ReLU) can approximate any continuous function to an arbitrary degree of accuracy. A ReLU network, for instance, creates a piecewise linear approximation of the target function.
+$$ h(x) = \sum_{d} w_d \max(0, u_d x + c_d) $$
+While one layer is theoretically sufficient, it might need to be impractically large. In practice, deeper networks (with multiple layers) can often learn the same function more efficiently (with fewer total neurons) and are easier to train.
+
+\section{Training Neural Networks: Backpropagation}
+The weights of a neural network are learned by minimizing a cost function $J$ (e.g., mean squared error) using an optimization algorithm like gradient descent. The core of this process is calculating the gradient of the cost function with respect to every weight and bias in the network. This is done efficiently using the \textbf{backpropagation} algorithm, which is essentially a systematic application of the chain rule of calculus.
+
+Let's denote the activation of a layer as $a^{(l)} = \sigma(z^{(l)})$ and the pre-activation as $z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}$. For the final layer $L$, the partial derivative of the cost $J$ with respect to a weight $w_{jk}^{(L)}$ in that layer is:
+$$ \frac{\partial J}{\partial w_{jk}^{(L)}} = \frac{\partial J}{\partial a^{(L)}} \frac{\partial a^{(L)}}{\partial z^{(L)}} \frac{\partial z^{(L)}}{\partial w_{jk}^{(L)}} $$
+The "error" from the output layer is then propagated backward to the preceding layers. For a weight $w_{ij}^{(l-1)}$ in a hidden layer, its gradient depends on the gradients of all the neurons it connects to in the next layer:
+$$ \frac{\partial J}{\partial a_k^{(l-1)}} = \sum_j \frac{\partial J}{\partial z_j^{(l)}} \frac{\partial z_j^{(l)}}{\partial a_k^{(l-1)}} $$
+This process is applied recursively from the last layer to the first. Modern deep learning libraries like TensorFlow and PyTorch automate this entire gradient calculation process, allowing developers to define complex network architectures without manually deriving the gradients.
+
+\subsection{Optimization}
+The gradients calculated via backpropagation are used to update the model's weights.
+\begin{itemize}
+    \item \textbf{Stochastic Gradient Descent (SGD):} Instead of calculating the gradient over the entire dataset (which is computationally expensive), SGD approximates the gradient using a single data point or a small "mini-batch" of points at each step.
+    \item \textbf{Learning Rate:} The learning rate is a hyperparameter that controls the step size during optimization. It is often adjusted (decayed) over the course of training.
+    \item \textbf{Initialization:} Weights are typically initialized to small random values from a normal distribution to break symmetry and allow different neurons to learn different features.
+\end{itemize}
+While SGD can be noisy, it is computationally efficient and can help the model escape shallow local minima in the loss landscape.
+
+
+\section{Training Neural Networks: Practical Considerations}
+
+\subsection{Initialization}
+How we initialize the weights of a neural network is crucial for effective training. A bad initialization can lead to slow convergence or getting stuck in poor local minima.
+\begin{itemize}
+    \item \textbf{Zero Initialization:} Initializing all weights to zero is a mistake. Since all neurons in a layer would have the same inputs and weights, they would compute the same gradients and undergo the same updates. The network would fail to learn, as no symmetry is broken.
+    \item \textbf{Random Initialization:} We must initialize weights randomly. However, the scale of these random values matters. If weights are too large, the pre-activation values ($z = w^T x + b$) can be very large, pushing activation functions like sigmoid or tanh into their flat, saturated regions. In these regions, the gradients are close to zero, effectively stalling the learning process. This is known as the \textbf{vanishing gradient problem} and leads to "dead neurons" that do not update.
+\end{itemize}
+
+To combat this, specialized initialization schemes are used to ensure that the variance of the outputs of a layer remains similar to the variance of its inputs.
+\begin{itemize}
+    \item \textbf{Xavier/Glorot Initialization:} Used for activation functions like sigmoid and tanh. It draws weights from a distribution with zero mean and a variance of $1/n_{in}$ (or $2/(n_{in} + n_{out})$).
+    \begin{itemize}
+        \item Normal: $W \sim \mathcal{N}(0, \sqrt{2/(n_{in} + n_{out})})$
+        \item Uniform: $W \sim U(-\sqrt{6/(n_{in} + n_{out})}, +\sqrt{6/(n_{in} + n_{out})})$
+    \end{itemize}
+    \item \textbf{He Initialization:} Designed for the ReLU activation function. It uses a variance of $2/n_{in}$.
+\end{itemize}
+
+\subsection{Optimization}
+The process of finding the optimal weights is guided by an optimizer.
+\begin{itemize}
+    \item \textbf{Mini-batch Gradient Descent:} Instead of using the entire dataset (batch GD) or a single sample (SGD), we compute the gradient on a small "mini-batch" of data. This provides a good balance between the stability of batch GD and the efficiency of SGD. Performance is typically evaluated on a separate validation set periodically (e.g., every X batches).
+    \item \textbf{Learning Rate Schedules:} The learning rate is arguably the most important hyperparameter. A fixed learning rate is often suboptimal. It's common practice to use a schedule:
+    \begin{itemize}
+        \item \textbf{Step Decay:} Start with a high learning rate and decrease it by a factor at specific epochs.
+        \item \textbf{Continuous Decay:} Gradually decrease the learning rate over time.
+    \end{itemize}
+    \item \textbf{Advanced Optimizers:} Modern optimizers adapt the learning rate for each parameter individually.
+    \begin{itemize}
+        \item \textbf{Momentum:} Accumulates a "velocity" of past gradients to accelerate descent in consistent directions and dampen oscillations.
+        \item \textbf{AdaGrad:} Adapts the learning rate for each parameter, decreasing it for parameters with frequently occurring features.
+        \item \textbf{RMSProp:} A modification of AdaGrad that introduces a "forgetting" factor to prevent the learning rate from decaying to zero too quickly.
+        \item \textbf{Adam (Adaptive Moment Estimation):} The most common optimizer in practice. It combines the ideas of Momentum and RMSProp.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Efficiency}
+Training large models requires significant computational resources. Efficiency can be improved by using lower-precision numerical formats for weights and activations.
+\begin{itemize}
+    \item \textbf{FP32 (Single Precision):} The standard 32-bit floating-point format.
+    \item \textbf{FP16 (Half Precision):} Uses 16 bits. This reduces memory usage, allowing for larger models or batch sizes, and can speed up computation on modern GPUs with specialized hardware (Tensor Cores).
+    \item \textbf{Mixed Precision Training:} A technique that uses FP16 for most operations to gain speed and memory benefits, while strategically using FP32 for certain operations to maintain numerical stability.
+\end{itemize}
+
+\subsection{Regularization}
+These are techniques used to prevent overfitting.
+\begin{itemize}
+    \item \textbf{Penalty-based:} L1 and L2 regularization (also known as weight decay) add a penalty to the loss function based on the magnitude of the weights.
+    \item \textbf{Ensembling:} Training multiple models with different initializations and averaging their predictions.
+    \item \textbf{Dropout:} During training, randomly sets a fraction of neuron activations to zero at each update step. This prevents neurons from co-adapting too much and forces the network to learn more robust features.
+    \item \textbf{Batch Normalization:} Normalizes the activations within a mini-batch to have a mean of 0 and a variance of 1. It helps stabilize and accelerate training by reducing "internal covariate shift." A typical layer sequence becomes: Weight Layer $\rightarrow$ Batch Norm Layer $\rightarrow$ Activation Layer.
+\end{itemize}
+
+\section{Neural Network Architectures}
+\subsection{Convolutional Neural Networks (CNNs)}
+CNNs are the standard architecture for computer vision tasks. They are designed to be invariant to translation and scale by using shared weights and local connectivity.
+\begin{itemize}
+    \item \textbf{Convolutional Layer:} Instead of a fully connected layer, a convolutional layer uses a set of small filters (kernels) that slide across the input image (or feature map). Each filter is specialized to detect a specific pattern (e.g., an edge, a corner). The output is a set of new feature maps.
+    \item \textbf{Pooling Layer:} This layer downsamples the feature maps, reducing their spatial dimensions. This helps to make the representation more robust to small shifts and distortions. Common pooling operations are Max Pooling and Average Pooling.
+    \item \textbf{Typical Structure:} A typical CNN consists of several blocks of [Conv $\rightarrow$ ReLU $\rightarrow$ Pooling], followed by one or more fully connected layers at the end for classification.
+\end{itemize}
+
+\subsection{Transformer Architectures (e.g., GPT)}
+Transformers have become the dominant architecture for NLP and are increasingly used in other domains. They were designed to handle sequential data without the sequential processing limitations of Recurrent Neural Networks (RNNs).
+\begin{itemize}
+    \item \textbf{Language Modeling:} The fundamental task is often language modeling: predicting the next token (word or sub-word) in a sequence given all previous tokens. The loss function is typically cross-entropy (minimized by maximizing the log-likelihood of the data).
+    \item \textbf{Pre-training and Fine-tuning:} Large models like GPT (Generative Pre-trained Transformer) are first pre-trained on a massive amount of text data in a self-supervised way. They are then fine-tuned on a smaller, task-specific dataset (e.g., for question answering).
+    \item \textbf{Self-Attention:} The core innovation of the Transformer is the self-attention mechanism. This allows the model to weigh the importance of all other tokens in the input sequence when processing a specific token. It addresses the issue that the meaning of a word can depend on distant words in the sequence, not just its immediate neighbors.
+\end{itemize}
+
+\subsubsection{The Self-Attention Mechanism}
+For each token in the input sequence, we create three vectors: a \textbf{Query} (Q), a \textbf{Key} (K), and a \textbf{Value} (V).
+\begin{enumerate}
+    \item A "relevance" score is computed between the Query vector of the current token and the Key vector of every other token, typically using a dot product.
+    \item These scores are scaled (by $\sqrt{d_k}$) and passed through a softmax function to get attention weights. These weights represent how much attention the current token should pay to every other token.
+    \item The final output for the token is a weighted average of all the Value vectors, using the attention weights.
+\end{enumerate}
+$$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $$
+This mechanism allows for rich communication between all parts of the sequence. \textbf{Multi-Head Attention} applies this process multiple times in parallel with different learned transformations of Q, K, and V, allowing the model to focus on different types of relationships simultaneously.
+
+A standard Transformer block consists of a multi-head attention layer followed by a feed-forward network, with residual connections and layer normalization applied after each sub-layer.
+
+\section{Motivation: From Linear Models to Kernels}
+Linear models, like logistic regression, are defined by a linear decision boundary:
+$$ z(x) = w^T x + b $$
+While simple, these models can be made much more powerful. If the data is not linearly separable in its original feature space, we can often make it separable by creating new, non-linear features from the original ones. For example, we can add polynomial terms:
+$$ z(x) = w_0 + w_1 x_1 + w_2 x_2 + w_3 x_1 x_2 + w_4 x_1^2 + w_5 x_2^2 $$
+This is equivalent to first mapping the data into a higher-dimensional feature space using a function $\Phi$, and then applying a linear model in that new space.
+$$ z(x) = w^T \Phi(x) $$
+The problem with this explicit feature expansion is that the number of new features can grow exponentially, making it computationally expensive or even infeasible.
+
+\section{The Kernel Trick}
+The kernel trick provides an elegant solution to this problem. Many machine learning algorithms can be formulated such that they only depend on the inner products (dot products) of the feature vectors, e.g., $\langle \Phi(x_i), \Phi(x_j) \rangle$.
+
+A \textbf{kernel} is a function $K(x_i, x_j)$ that computes this inner product in the high-dimensional space directly from the original vectors, without ever explicitly performing the feature mapping $\Phi$.
+$$ K(x_i, x_j) = \langle \Phi(x_i), \Phi(x_j) \rangle $$
+This allows us to work with very high or even infinite-dimensional feature spaces efficiently. The \textbf{Representer Theorem} states that for a wide range of models that minimize a regularized loss function, the optimal solution $f(x)$ can be written as a weighted combination of kernel evaluations against the training data points:
+$$ f(x) = \sum_{i=1}^{n} \alpha_i K(x, x_i) $$
+This means that instead of learning the weights $w$ in the high-dimensional space, we only need to learn the coefficients $\alpha_i$. Many algorithms, including Ridge Regression, Logistic Regression, and PCA, can be "kernelized" in this way.
+
+\section{Support Vector Machines (SVMs)}
+SVMs are a classic example of a model that benefits greatly from kernels.
+
+\subsection{Hard-Margin SVM (Linearly Separable Case)}
+The goal of an SVM is to find the hyperplane that separates the two classes with the maximum possible margin. The margin is the distance from the decision boundary to the closest data point from either class.
+
+For a data point $x_i$ with label $y_i \in \{-1, 1\}$, the decision boundary is $w^T x + b = 0$. We require all data points to be on or outside the margin, which we can set to have a width of 1 on each side:
+$$ y_i(w^T x_i + b) \ge 1 \quad \forall i $$
+The total width of the margin is $2/||w||$. To maximize the margin, we must minimize $||w||$, which is equivalent to minimizing $\frac{1}{2}||w||^2$. The optimization problem is:
+$$ \min_{w, b} \frac{1}{2}||w||^2 \quad \text{subject to} \quad y_i(w^T x_i + b) \ge 1 \quad \forall i $$
+
+\subsubsection{The Dual Formulation}
+This constrained optimization problem can be solved by reformulating it using Lagrange multipliers.
+
+1.  We begin with the Lagrangian, which incorporates the constraint using multipliers $\alpha_i \ge 0$:
+    $$\mathcal{L}(w, b, \alpha) = \frac{1}{2}||w||^{2} - \sum_{i=1}^{n}\alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1]$$
+
+2.  To find the minimum with respect to $w$ and $b$, we take the partial derivatives and set them to zero:
+    * $\frac{\partial \mathcal{L}}{\partial w} = w - \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i} = 0 \implies w = \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i}$ 
+    * $\frac{\partial \mathcal{L}}{\partial b} = -\sum_{i=1}^{n}\alpha_{i}y_{i} = 0$ 
+
+3.  We substitute these results back into the Lagrangian to eliminate $w$ and $b$. We start by substituting $w$ into the term $-\sum \alpha_i y_i w^T x_i$ and use the fact that $\sum \alpha_i y_i = 0$:
+    $$-\sum_{i}\alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1] = -\sum_{i}\alpha_{i}y_{i}w^{T}x_{i} - b\sum_{i}\alpha_{i}y_{i} + \sum_{i}\alpha_{i} = -\sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{j}^T x_i + \sum_{i}\alpha_{i}$$
+   
+
+4.  We then combine this with the first term of the Lagrangian, $\frac{1}{2}||w||^2 = \frac{1}{2} \sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^T x_{j}$.
+    $$L(\alpha) = \frac{1}{2} \sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^T x_{j} - \sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^T x_{j} + \sum_{i=1}^{n} \alpha_i$$
+   
+
+5.  Simplifying this gives the final dual problem. We want to maximize this function with respect to $\alpha$. Replacing the dot product $x_i^T x_j$ with the kernel function $K(x_i, x_j)$ yields the final kernelized form:
+    $$\max_{\alpha} L(\alpha) = \sum_{i=1}^{n} \alpha_i - \frac{1}{2} \sum_{i,j} \alpha_i \alpha_j y_i y_j K(x_i, x_j)$$
+    subject to the constraints: $\alpha_i \ge 0$ and $\sum \alpha_i y_i = 0$.
+
+The non-zero $\alpha_i$ coefficients correspond to the data points that lie exactly on the margin. These points are called the \textbf{support vectors}.
+
+\subsection{Soft-Margin SVM}
+For data that is not perfectly linearly separable, the soft-margin SVM introduces slack variables $\xi_i \ge 0$. These variables allow some data points to be within the margin or misclassified. The constraint is relaxed to:
+$$ y_i(w^T x_i + b) \ge 1 - \xi_i $$
+The objective function is modified to penalize these violations:
+$$ \min_{w, b, \xi} \frac{1}{2}||w||^2 + C \sum_{i=1}^{n} \xi_i $$
+The hyperparameter $C > 0$ controls the trade-off between maximizing the margin and minimizing the classification error. The dual formulation is very similar, with the only change being an upper bound on the $\alpha_i$ coefficients: $0 \le \alpha_i \le C$.
+
+\subsection{Common Kernel Functions}
+\begin{itemize}
+    \item \textbf{Linear Kernel:} $K(x, z) = x^T z$.
+    \item \textbf{Polynomial Kernel:} $K(x, z) = (x^T z + c)^d$.
+    \item \textbf{Radial Basis Function (RBF) Kernel:} $K(x, z) = \exp(-\gamma ||x - z||^2)$.
+\end{itemize}
+
+\subsection{Kernelized Ridge Regression}
+The kernel trick can also be applied to Ridge Regression.
+
+1.  The primal objective function is:
+    $$\min_{w} \sum_{i=1}^{n} (y_i - w^T \Phi(x_i))^2 + \lambda ||w||^2$$
+   
+2.  The Representer Theorem states that the optimal weight vector $w$ can be expressed as a linear combination of the mapped training instances:
+    $$w = \sum_{j=1}^{n} \alpha_j \Phi(x_j)$$
+
+3.  We substitute this expression for $w$ back into the objective function.
+    * The regularization term becomes $\lambda ||w||^2 = \lambda \alpha^T K \alpha$.
+    * The loss term $\sum(y_i - w^T\Phi(x_i))^2$ becomes $(y - K\alpha)^T (y - K\alpha)$.
+
+4.  The full objective function, now in terms of $\alpha$, is:
+    $$J(\alpha) = (y - K\alpha)^T (y - K\alpha) + \lambda \alpha^T K \alpha$$
+   
+5.  By taking the gradient with respect to $\alpha$ and setting it to zero, we can find the closed-form solution for $\alpha$:
+    $$\alpha = (K+\lambda I)^{-1}y$$
+   
+6.  The final prediction for a new input $x_{new}$ is then given by:
+    $$f(x_{new}) = \sum_{i=1}^n \alpha_i K(x_i, x_{new})$$
+    Unlike SVMs, all $\alpha_i$ are generally non-zero, meaning all training points are required for prediction.
+
+\section{Feature Importance}
+Understanding which features are most influential in a model's predictions is a fundamental part of explainable AI (XAI).
+
+\subsection{Feature Importance in Linear Models}
+For a simple linear regression model, one might initially assume that the feature with the largest coefficient is the most important. For example, given the model:
+$$ f(x) = -0.23x_{1} + 2.37x_{2} + 1.3 $$
+It appears that $x_2$ is the most important feature. However, this can be misleading because the importance of a coefficient depends on the scale of its corresponding feature. To make a fair comparison, the features must be on the same scale (e.g., by standardizing them before training). After scaling, the model's coefficients might reveal a different story, for instance, showing that $x_1$ has a larger impact.
+
+\subsection{Detailed Feature Importance: Partial Dependence Plots (PDPs)}
+While a single number for global feature importance is useful, it doesn't show \textit{how} the prediction changes as the feature's value changes. Partial Dependence Plots visualize this relationship. The core idea is to see how a model's prediction changes based on one feature, while keeping all other feature values fixed at a constant. This shows the marginal effect of a feature on the prediction.
+
+\subsection{Local Feature Importance}
+Local explanations focus on understanding a single prediction for a specific data instance. For a linear model, this is straightforward. The contribution of each feature is simply its coefficient multiplied by its value for that instance. For the instance $(x_1=0.1, x_2=0.0001)$, the prediction $f(x)=1.28$ is broken down as follows:
+$$ f(x) = \underbrace{-0.23 \cdot 0.1}_{\text{contrib of } x_1} + \underbrace{2.37 \cdot 0.0001}_{\text{contrib of } x_2} + \underbrace{1.3}_{\text{intercept/bias}} = -0.023 + 0.00237 + 1.3 \approx 1.28 $$
+This is a model-specific method as it relies directly on the model's coefficients.
+
+
+\subsection{Additional Example of Local Feature Importance (LFI)}
+
+This example demonstrates how to determine the contribution of each feature to a specific prediction for a binary classification task.
+
+\subsubsection{Scenario: Loan Application Approval}
+
+Imagine a logistic regression model trained to predict the probability of a loan application being approved. The model calculates the log-odds of approval based on two features: applicant's income and their credit score.
+
+\begin{itemize}
+    \item \textbf{Model:} $\text{log-odds}(\text{Approval}) = -2.5 (\text{Bias}) + 0.05 \cdot \text{Income} + 0.4 \cdot \text{Credit\_Score}$
+    \item \textbf{Specific Applicant:} We want to explain the prediction for an applicant with:
+    \begin{itemize}
+        \item \texttt{Income} = 60 (in thousands of €)
+        \item \texttt{Credit\_Score} = 7 (on a scale of 1-10)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Breaking Down the Prediction}
+
+We can attribute the final prediction to the baseline (bias) and the contribution of each feature value for this specific applicant.
+
+\paragraph{1. Baseline Log-Odds (Bias)} The model starts with a bias of \textbf{-2.5}. This is the log-odds of approval for a hypothetical applicant with zero income and a zero credit score. This negative value indicates that, without any positive information, the default prediction leans towards denial.
+
+\paragraph{2. Contribution of Income} For this applicant, the income is 60. Its contribution is:
+$$ \text{Income Contribution} = 0.05 \times 60 = +3.0 $$
+The applicant's income significantly increases the log-odds of approval.
+
+\paragraph{3. Contribution of Credit Score} The applicant's credit score is 7. Its contribution is:
+$$ \text{Credit Score Contribution} = 0.4 \times 7 = +2.8 $$
+The strong credit score also provides a large positive push towards approval.
+
+\subsubsection{Final Prediction and Interpretation}
+
+The final log-odds for this applicant is the sum of the baseline and the individual feature contributions:
+$$ \text{Final Log-Odds} = \underbrace{-2.5}_{\text{Bias}} + \underbrace{3.0}_{\text{Income}} + \underbrace{2.8}_{\text{Credit Score}} = +3.3 $$
+
+This final log-odds value can be converted back to a probability using the logistic function:
+$$ P(\text{Approval}) = \frac{1}{1 + e^{-3.3}} \approx 0.964 \text{ or } 96.4\% $$
+
+\paragraph{Conclusion} The local feature importance analysis shows that although the model has a strong initial bias against approval (-2.5), the applicant's high income (+3.0) and good credit score (+2.8) both provided strong positive evidence that overcame this bias, leading to a confident prediction of approval (96.4\%).
+
+
+\subsection{Interpretability Beyond Linear Models}
+The techniques above are simple for linear models because these models assume linearity, additivity, and no feature interactions. These ideas can be extended to Generalized Additive Models (GAMs) of the form $f(x) = \sum f_k(x_k) + \beta_0$ , but how do we achieve interpretability for complex, non-additive "black-box" models like AdaBoost or deep neural networks? 
+
+To do this, we need a model-agnostic way to simulate the absence of a feature to see its impact.
+\begin{itemize}
+    \item \textbf{Retraining:} One could retrain the model without a feature, but this is computationally very expensive and creates an entirely new model.
+    \item \textbf{Marginalizing:} Instead of fixing other features to a constant (like in PDPs), a more robust method is to average the model's predictions over the distribution of the other features. This avoids creating unrealistic data points. The global importance of a feature can then be measured by the variance or standard deviation of these marginal predictions.
+\end{itemize}
+
+\section{Shapley Values in XAI}
+Shapley values offer a principled, model-agnostic approach to local feature importance, rooted in cooperative game theory. They provide a way to fairly distribute the "payout" (the model's prediction) among the "players" (the features).
+
+\subsection{Core Concepts}
+The contribution of a set of features $S$ is the difference between the prediction made using those features, $f(S)$, and the baseline prediction made with no features, $f(\emptyset)$.
+$$ \Delta(S) = f(S) - f(\emptyset) $$
+The total "payout" to be distributed is $\Delta(N)$, where $N$ is the set of all features. The Shapley value $\phi_i$ for a feature $i$ is its average marginal contribution across all possible subsets (or "coalitions") of features.
+
+\subsection{The Shapley Value Formula}
+The Shapley value for feature $i$ is calculated as:
+$$ \phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(p - |S| - 1)!}{p!} \left( \Delta(S \cup \{i\}) - \Delta(S) \right) $$
+where $p$ is the total number of features, and the sum is over all subsets $S$ that do not contain feature $i$. The term $(\Delta(S \cup \{i\}) - \Delta(S))$ is the marginal contribution of feature $i$ when it is added to the subset $S$.
+
+\subsection{Example: Computing Shapley Values for a House Price Prediction}
+Let's use a simple, model-agnostic example to see how Shapley values are calculated. Imagine we have a trained machine learning model that predicts house prices. For a specific house, we want to explain its prediction by attributing the price to different features.
+
+\subsubsection{1. Define the Problem}
+\begin{itemize}
+    \item \textbf{Features (Players):} For simplicity, we'll use just two binary features:
+    \begin{itemize}
+        \item $x_{1}$: "Has a garden" (1 = Yes, 0 = No)
+        \item $x_{2}$: "Good location" (1 = Yes, 0 = No)
+    \end{itemize}
+    \item \textbf{Model Prediction (Payout):} Our model `f(S)` predicts the house price based on a subset of features `S`.
+    \begin{itemize}
+        \item \textbf{Baseline Prediction:} The average house price in the dataset is 150,000 €. This is our baseline when we know nothing about the house, $f(\emptyset) = 150$.
+        \item \textbf{Knowing only about the garden:} $f(\{x_{1}\}) = 170$.
+        \item \textbf{Knowing only about the location:} $f(\{x_{2}\}) = 200$.
+        \item \textbf{Knowing both features:} $f(\{x_{1}, x_{2}\}) = 230$.
+    \end{itemize}
+    \item \textbf{Total Payout to Distribute:} The total effect to be explained is the difference between the final prediction and the baseline: $f(\{x_{1}, x_{2}\}) - f(\emptyset) = 230 - 150 = 80$. We need to fairly distribute this 80k "payout" between the two features.
+\end{itemize}
+
+\subsubsection{2. Calculate Contributions for Feature 1 (Garden)}
+To get the Shapley value for the "garden" feature, we calculate its marginal contribution when added to every possible subset of other features.
+\begin{itemize}
+    \item \textbf{Contribution when added to the empty set ($\emptyset$):}
+    This measures the impact of knowing only that the house has a garden.
+    $$\Delta(\{\text{garden}\}) - \Delta(\emptyset) = f(\{\text{garden}\}) - f(\emptyset) = 170 - 150 = 20$$
+
+    \item \textbf{Contribution when added to the set ` {location} `:}
+    This measures the additional impact of having a garden, given that we already know the house is in a good location.
+    $$\Delta(\{\text{garden, location}\}) - \Delta(\{\text{location}\}) = f(\{\text{garden, location}\}) - f(\{\text{location}\}) = 230 - 200 = 30$$
+\end{itemize}
+The Shapley value is the weighted average of these marginal contributions. For a 2-feature case, both contributions are weighted equally (by 1/2).
+$$\phi_{\text{garden}} = \frac{1}{2}(20) + \frac{1}{2}(30) = 10 + 15 = 25$$
+
+\subsubsection{3. Calculate Contributions for Feature 2 (Location)}
+We do the same for the "location" feature.
+\begin{itemize}
+    \item \textbf{Contribution when added to the empty set ($\emptyset$):}
+    $$\Delta(\{\text{location}\}) - \Delta(\emptyset) = f(\{\text{location}\}) - f(\emptyset) = 200 - 150 = 50$$
+
+    \item \textbf{Contribution when added to the set ` {garden} `:}
+    $$\Delta(\{\text{garden, location}\}) - \Delta(\{\text{garden}\}) = f(\{\text{garden, location}\}) - f(\{\text{garden}\}) = 230 - 170 = 60$$
+\end{itemize}
+Now we average these contributions:
+$$\phi_{\text{location}} = \frac{1}{2}(50) + \frac{1}{2}(60) = 25 + 30 = 55$$
+
+\subsubsection{4. Final Interpretation}
+The Shapley values for the prediction are: $\phi_{\text{garden}} = 25$ and $\phi_{\text{location}} = 55$.
+
+We can verify this using the **Additivity Axiom**, which states that the sum of the Shapley values must equal the total payout.
+$$\phi_{\text{garden}} + \phi_{\text{location}} = 25 + 55 = 80$$
+This matches our total payout of 80. For this specific prediction of 230,000 €, the Shapley values tell us that the **"Good location" feature contributed +55,000 €** to the price increase from the average, while the **"Has a garden" feature contributed +25,000 €**.
+
+\subsection{Axioms and Computation}
+Shapley values are the only attribution method that simultaneously satisfies four desirable properties: Efficiency (Additivity), Symmetry, Dummy, and Linearity.
+\begin{itemize}
+    \item \textbf{Efficiency/Additivity:} The sum of the Shapley values for all features equals the total difference between the model's prediction and the baseline prediction.
+    \item \textbf{Symmetry:} If two features have the same contribution to all possible coalitions, they have the same Shapley value.
+    \item \textbf{Dummy:} If a feature has no effect on the prediction, its Shapley value is zero.
+\end{itemize}
+The exact computation of Shapley values is very expensive ($O(2^p)$), as it requires evaluating the model for all possible subsets of features. Therefore, in practice, they are approximated using methods like SHAP (SHapley Additive exPlanations), which uses clever sampling and kernel-based approaches to estimate the values efficiently.
+
+
+
+\subsection{Additional Example of Local Feature Importance (LFI)}
+
+This example demonstrates how to determine the contribution of each feature to a specific prediction for a binary classification task.
+
+\subsubsection{Scenario: Loan Application Approval}
+
+Imagine a logistic regression model trained to predict the probability of a loan application being approved. The model calculates the log-odds of approval based on two features: applicant's income and their credit score.
+
+\begin{itemize}
+    \item \textbf{Model:} $\text{log-odds}(\text{Approval}) = -2.5 (\text{Bias}) + 0.05 \cdot \text{Income} + 0.4 \cdot \text{Credit\_Score}$
+    \item \textbf{Specific Applicant:} We want to explain the prediction for an applicant with:
+    \begin{itemize}
+        \item \texttt{Income} = 60 (in thousands of €)
+        \item \texttt{Credit\_Score} = 7 (on a scale of 1-10)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Breaking Down the Prediction}
+
+We can attribute the final prediction to the baseline (bias) and the contribution of each feature value for this specific applicant.
+
+\paragraph{1. Baseline Log-Odds (Bias)} The model starts with a bias of \textbf{-2.5}. This is the log-odds of approval for a hypothetical applicant with zero income and a zero credit score. This negative value indicates that, without any positive information, the default prediction leans towards denial.
+
+\paragraph{2. Contribution of Income} For this applicant, the income is 60. Its contribution is:
+$$ \text{Income Contribution} = 0.05 \times 60 = +3.0 $$
+The applicant's income significantly increases the log-odds of approval.
+
+\paragraph{3. Contribution of Credit Score} The applicant's credit score is 7. Its contribution is:
+$$ \text{Credit Score Contribution} = 0.4 \times 7 = +2.8 $$
+The strong credit score also provides a large positive push towards approval.
+
+\subsubsection{Final Prediction and Interpretation}
+
+The final log-odds for this applicant is the sum of the baseline and the individual feature contributions:
+$$ \text{Final Log-Odds} = \underbrace{-2.5}_{\text{Bias}} + \underbrace{3.0}_{\text{Income}} + \underbrace{2.8}_{\text{Credit Score}} = +3.3 $$
+
+This final log-odds value can be converted back to a probability using the logistic function:
+$$ P(\text{Approval}) = \frac{1}{1 + e^{-3.3}} \approx 0.964 \text{ or } 96.4\% $$
+
+\paragraph{Conclusion} The local feature importance analysis shows that although the model has a strong initial bias against approval (-2.5), the applicant's high income (+3.0) and good credit score (+2.8) both provided strong positive evidence that overcame this bias, leading to a confident prediction of approval (96.4\%).
+
+
+\section{A Review of Empirical Risk Minimization (ERM)}
+Before diving into Bayesian inference, it's useful to recall the frequentist approach, which is often framed as Empirical Risk Minimization (ERM). This is the underlying principle for many machine learning algorithms, including those solved with Maximum Likelihood Estimation (MLE).
+
+\subsection{The ERM Framework}
+The goal in ERM is to learn a function $h: X \rightarrow Y$ from a predefined set of functions (the hypothesis space, $\mathcal{H}$) that minimizes a chosen loss function $L$ over the training data $D = \{(x_i, y_i)\}_{i=1}^n$.
+The chosen hypothesis $\hat{h}$ is the one that minimizes the total loss on the training set:
+$$ \hat{h}_{\text{ERM}} = \underset{h \in \mathcal{H}}{\text{argmin}} \sum_{i=1}^{n} L(h(x_i), y_i) $$
+The core idea is to select a single best model from the hypothesis space based on its performance on the training data. If the true data-generating function $h_{\text{TRUE}}$ is within our hypothesis space $\mathcal{H}$, then as we get more data, $\hat{h}_{\text{ERM}}$ will converge towards $h_{\text{TRUE}}$.
+
+\subsection{Issues with the ERM/MLE Approach}
+While powerful, this approach has several limitations:
+\begin{enumerate}
+    \item \textbf{No built-in quantification of uncertainty:} ERM provides a single point estimate for the model parameters (e.g., $\beta_{\text{ERM}}$). It doesn't naturally tell us how certain we are about this estimate. While we can use techniques like bootstrapping or calculating standard errors and confidence intervals to estimate uncertainty, their interpretation can be somewhat awkward.
+    \item \textbf{Overfitting:} ERM can easily overfit the training data. The common solution is to introduce regularization, such as the L2 penalty in Ridge Regression, which adds a term to the loss function.
+    $$ \beta_{\text{ERM, L2}} = \underset{\beta}{\text{argmin}} \sum_{i=1}^{n} (\beta^T x_i - y_i)^2 + \lambda \sum_{j=1}^{p} \beta_j^2 $$
+    \item \textbf{Messy Decision Theory:} The choice of loss function is tied directly to the optimization problem. If we want to evaluate our model using a different metric, we can't easily do so without reformulating and re-solving the entire problem. The learning and decision-making processes are coupled.
+\end{enumerate}
+
+\section{Bayesian Inference}
+\subsection{The Core Idea}
+Bayesian inference offers a different perspective. Instead of selecting a single best model, the core idea is to determine a \textbf{probability distribution over all possible models} (or parameters) in the hypothesis space. We use data to update our beliefs about which models are more or less probable.
+
+This is achieved using Bayes' Theorem to find the \textbf{posterior distribution} $p(h|D)$:
+$$ \underbrace{p(h|D)}_{\text{Posterior}} = \frac{\overbrace{p(D|h)}^{\text{Likelihood}} \cdot \overbrace{p(h)}^{\text{Prior}}}{\underbrace{p(D)}_{\text{Evidence}}} \propto p(D|h) \cdot p(h) $$
+\begin{itemize}
+    \item \textbf{Prior $p(h)$:} Our belief about the probability of a hypothesis $h$ \textit{before} seeing the data.
+    \item \textbf{Likelihood $p(D|h)$:} The probability of observing the data $D$ if hypothesis $h$ were true. This is the same likelihood function used in MLE.
+    \item \textbf{Posterior $p(h|D)$:} Our updated belief about the probability of hypothesis $h$ \textit{after} seeing the data.
+\end{itemize}
+
+\subsection{Example: Bayesian Linear Regression}
+Let's assume the standard linear model setup, where the error variance $\sigma^2$ is known.
+\begin{itemize}
+    \item \textbf{Likelihood:} The likelihood of the data is given by the normal distribution:
+    $$ p(Y|X, \beta, \sigma^2) = \prod_{i=1}^{n} p(y_i|x_i, \beta, \sigma^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(\beta^T x_i - y_i)^2}{2\sigma^2}\right) $$
+    \item \textbf{Prior:} We must specify a prior belief about the parameters $\beta$. A common choice is a zero-mean Gaussian prior, which expresses a belief that smaller coefficient values are more likely. This acts as a form of regularization.
+    $$ p(\beta) = \prod_{j=1}^{p} \frac{1}{\sqrt{2\pi\tau^2}} \exp\left(-\frac{\beta_j^2}{2\tau^2}\right) $$
+    where $\tau^2$ is the prior variance.
+\end{itemize}
+
+\subsubsection{Deriving the Posterior}
+The posterior is proportional to the likelihood times the prior. It's easiest to work with the log-posterior:
+\begin{align*}
+\log p(\beta|X, Y) &= \log p(Y|X, \beta) + \log p(\beta) + \text{const.} \\
+&= -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (\beta^T x_i - y_i)^2 - \frac{1}{2\tau^2} \sum_{j=1}^{p} \beta_j^2 + \text{const.}
+\end{align*}
+Notice that maximizing this log-posterior (known as Maximum A Posteriori or MAP estimation) is equivalent to minimizing the L2-regularized (Ridge) regression loss function. Using a Laplace prior instead of a Gaussian one would be equivalent to L1 (Lasso) regularization.
+
+Because the prior and likelihood are both Gaussian, the posterior will also be a Gaussian distribution. By performing a procedure called "completing the square", the log-posterior can be rewritten into the quadratic form of a multivariate Gaussian:
+$$ \log p(\beta|X,Y) = -\frac{1}{2}(\beta - \mu_{\text{post}})^T \Sigma_{\text{post}}^{-1}(\beta - \mu_{\text{post}}) + \text{const.}' $$
+This tells us that the posterior distribution is $\beta|Y, X \sim \mathcal{N}(\mu_{\text{post}}, \Sigma_{\text{post}})$, with posterior covariance $\Sigma_{\text{post}}^{-1} = \frac{1}{\sigma^2}X^T X + \frac{1}{\tau^2}I$ and posterior mean $\mu_{\text{post}} = \Sigma_{\text{post}}\left(\frac{1}{\sigma^2}X^T Y\right)$.
+
+\subsection{Pros and Cons of Bayesian Inference}
+\begin{itemize}
+    \item \textbf{Pros:}
+    \begin{itemize}
+        \item Provides a full posterior distribution, offering a natural and conceptually simple way to quantify uncertainty.
+        \item Robust to overfitting due to model averaging.
+        \item Decouples inference (finding the posterior) from decision-making (using the posterior to make a prediction). We can use the same posterior to make decisions based on different loss functions (e.g., use the posterior mean for MSE, posterior median for MAE).
+    \end{itemize}
+    \item \textbf{Cons:}
+    \begin{itemize}
+        \item Requires specifying a prior, which can be subjective.
+        \item The computational complexity is often much higher. MLE is an optimization problem, whereas Bayesian inference is an integration problem (to find the evidence term $p(D)$), which is typically harder.
+    \end{itemize}
+\end{itemize}
+
+\section{Computation in Bayesian Inference} For most non-trivial models, the posterior distribution cannot be calculated analytically. Instead, we use computational methods to approximate it.
+\begin{enumerate}
+    \item \textbf{Markov Chain Monte Carlo (MCMC):} A class of algorithms that perform integration via sampling. They draw a sequence of samples from a Markov chain whose stationary distribution is the desired posterior distribution $p(\theta|D)$. This provides an unbiased estimate of the posterior but can be very computationally expensive.
+    \item \textbf{Approximate Inference:} These methods approximate the true (and often intractable) posterior $p(\theta|D)$ with a simpler, tractable distribution $q(\theta)$.
+    \begin{itemize}
+        \item \textbf{Laplace Approximation:} Approximates the posterior with a Gaussian distribution. It finds the mode (peak) of the posterior distribution and then uses the curvature (the Hessian matrix of the log-posterior) at that mode to define the covariance of the approximating Gaussian.
+        \item \textbf{Variational Inference:} Another powerful approximation method that turns the integration problem into an optimization problem.
+    \end{itemize}
+\end{enumerate}
+
+\end{multicols}
+
+\end{document}
+
