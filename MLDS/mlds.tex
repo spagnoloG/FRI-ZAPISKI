@@ -62,7 +62,7 @@ Key concepts include:
     \item Exploration vs. exploitation trade-off 
 \end{itemize}
 
-\section{MODELS}
+\section{Models}
 
 \subsection{a) Language/model class $\mathcal{H}$}
 A model is a set of hypotheses $h \in \mathcal{H}$. This represents our assumptions about the Data Generating Process (DGP). 
@@ -99,7 +99,7 @@ This is the process of expressing a preference for a hypothesis $h$ from the mod
 \end{tabular}
 \end{table}
 
-\section{K-NEAREST NEIGHBORS (k-NN)}
+\section{K-Nearest Neighbours (k-NN)}
 The core assumption is that similar points have similar labels.  For a new data point, k-NN finds the 'k' closest points in the training data.
 
 \begin{itemize}
@@ -116,7 +116,7 @@ Weights can be added based on distance, so that closer neighbors have more influ
     \item \textbf{Jaccard:} Used for comparing sets. 
 \end{itemize}
 
-\section{CURSE OF DIMENSIONALITY}
+\section{Curse of dimensionality}
 In high-dimensional spaces, Euclidean distance can become meaningless.  As the number of dimensions ($d$) increases, the volume of the space grows exponentially.  This causes data points to become sparse and far apart from each other. 
 
 Consider a hypercube. To capture a fixed fraction of the data, say $a=0.5$, the required side length of the hypercube, $r = \sqrt[d]{a}$, approaches 1 as the dimension $d$ increases. 
@@ -179,7 +179,7 @@ There are two main approaches to find the $\beta$ that minimizes this function.
 Gradient descent is an iterative optimization algorithm that finds the minimum of a function. We start with an initial guess for $\beta$ and repeatedly move in the opposite direction of the gradient of the cost function. The update rule for each parameter $\beta_j$ is:
 $$ \beta_j \leftarrow \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta) $$
 where $\alpha$ is the learning rate. The partial derivative is:
-$$ \frac{\partial}{\partial \beta_j} J(\beta) &= \frac{\partial}{\partial \beta_j} (\hat{y}(\beta) - y)^2 =  2(\hat{y}(\beta) - y) \cdot x_j $$
+$$ \frac{\partial}{\partial \beta_j} J(\beta) = \frac{\partial}{\partial \beta_j} (\hat{y}(\beta) - y)^2 =  2(\hat{y}(\beta) - y) \cdot x_j $$
 \begin{itemize}
     \item \textbf{Stochastic Gradient Descent (SGD):} The parameters are updated using only one data instance at a time.
     $$ \beta_j \leftarrow \beta_j - \alpha (\hat{y}(\beta) - y) x_j $$
@@ -879,13 +879,48 @@ $$ z(x) = w^T \Phi(x) $$
 The problem with this explicit feature expansion is that the number of new features can grow exponentially, making it computationally expensive or even infeasible.
 
 \section{The Kernel Trick}
-The kernel trick provides an elegant solution to this problem. Many machine learning algorithms can be formulated such that they only depend on the inner products (dot products) of the feature vectors, e.g., $\langle \Phi(x_i), \Phi(x_j) \rangle$.
+The kernel trick provides an elegant solution for non-linear problems. Many machine learning algorithms can be formulated to depend only on the inner products (dot products) of feature vectors, e.g., $\langle \Phi(\mathbf{x}_i), \Phi(\mathbf{x}_j) \rangle$.
 
-A \textbf{kernel} is a function $K(x_i, x_j)$ that computes this inner product in the high-dimensional space directly from the original vectors, without ever explicitly performing the feature mapping $\Phi$.
-$$ K(x_i, x_j) = \langle \Phi(x_i), \Phi(x_j) \rangle $$
-This allows us to work with very high or even infinite-dimensional feature spaces efficiently. The \textbf{Representer Theorem} states that for a wide range of models that minimize a regularized loss function, the optimal solution $f(x)$ can be written as a weighted combination of kernel evaluations against the training data points:
-$$ f(x) = \sum_{i=1}^{n} \alpha_i K(x, x_i) $$
-This means that instead of learning the weights $w$ in the high-dimensional space, we only need to learn the coefficients $\alpha_i$. Many algorithms, including Ridge Regression, Logistic Regression, and PCA, can be "kernelized" in this way.
+A \textbf{kernel} is a function $K(\mathbf{x}_i, \mathbf{x}_j)$ that computes this inner product in a high-dimensional feature space directly from the original vectors, without ever explicitly performing the feature mapping $\Phi$.
+$$
+K(\mathbf{x}_i, \mathbf{x}_j) = \langle \Phi(\mathbf{x}_i), \Phi(\mathbf{x}_j) \rangle
+$$
+This allows us to work with very high or even infinite-dimensional feature spaces efficiently. The \textbf{Representer Theorem} states that for a wide range of models, the optimal solution $f(\mathbf{x})$ can be written as a weighted combination of kernel evaluations against the training data points:
+$$
+f(\mathbf{x}) = \sum_{i=1}^{n} \alpha_i K(\mathbf{x}, \mathbf{x}_i)
+$$
+
+\subsection{A Concrete Example: The Polynomial Kernel}
+To demonstrate how a kernel function works as a computational shortcut, consider original vectors in $\mathbb{R}^2$, such as $\mathbf{x}_i = (x_{i1}, x_{i2})$ and $\mathbf{x}_j = (x_{j1}, x_{j2})$.
+
+Let's define a feature map $\Phi$ that takes our 2D data into a 6D space:
+$$\Phi(\mathbf{x}) = (x_1^2, x_2^2, \sqrt{2}x_1x_2, \sqrt{2}x_1, \sqrt{2}x_2, 1)$$
+
+\subsubsection{Method 1: The Hard Way (Explicit High-Dimensional Calculation)}
+First, we apply the map $\Phi$ to our vectors and then compute their dot product in $\mathbb{R}^6$.
+\begin{align*}
+    \langle \Phi(\mathbf{x}_i), \Phi(\mathbf{x}_j) \rangle 
+    &= (x_{i1}^2)(x_{j1}^2) + (x_{i2}^2)(x_{j2}^2) + (\sqrt{2}x_{i1}x_{i2})(\sqrt{2}x_{j1}x_{j2}) \\
+    &\qquad + (\sqrt{2}x_{i1})(\sqrt{2}x_{j1}) + (\sqrt{2}x_{i2})(\sqrt{2}x_{j2}) + (1)(1) \\
+    &= x_{i1}^2x_{j1}^2 + x_{i2}^2x_{j2}^2 + 2x_{i1}x_{i2}x_{j1}x_{j2} \\
+    &\qquad + 2x_{i1}x_{j1} + 2x_{i2}x_{j2} + 1
+\end{align*}
+This calculation is cumbersome and computationally expensive as it requires explicit transformation into $\mathbb{R}^6$.
+
+\subsubsection{Method 2: The Kernel Trick}
+For the specific feature map $\Phi$ above, there is an equivalent kernel function, the polynomial kernel of degree 2:
+$$K(\mathbf{x}_i, \mathbf{x}_j) = (\mathbf{x}_i^T \mathbf{x}_j + 1)^2$$
+Let's evaluate this using only the original 2D vectors. The dot product in the original space is $\mathbf{x}_i^T \mathbf{x}_j = x_{i1}x_{j1} + x_{i2}x_{j2}$.
+\begin{align*}
+    K(\mathbf{x}_i, \mathbf{x}_j) 
+    &= ((x_{i1}x_{j1} + x_{i2}x_{j2}) + 1)^2 \\
+    &= (x_{i1}x_{j1})^2 + (x_{i2}^2x_{j2}^2) + 1^2 + 2(x_{i1}x_{j1})(x_{i2}x_{j2}) \\
+    &\qquad + 2(x_{i1}x_{j1})(1) + 2(x_{i2}x_{j2})(1) \\
+    &= x_{i1}^2x_{j1}^2 + x_{i2}^2x_{j2}^2 + 2x_{i1}x_{j1}x_{i2}x_{j2} \\
+    &\qquad + 2x_{i1}x_{j1} + 2x_{i2}x_{j2} + 1
+\end{align*}
+
+Both methods yield the exact same result. The kernel function $K(\mathbf{x}_i, \mathbf{x}_j)$ provides the result of the 6-dimensional dot product by performing a much simpler calculation in the original 2D space. This allows us to leverage the power of high-dimensional feature spaces without ever paying the computational cost of explicit transformation.
 
 \section{Support Vector Machines (SVMs)}
 SVMs are a classic example of a model that benefits greatly from kernels.
