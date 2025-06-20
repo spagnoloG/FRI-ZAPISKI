@@ -111,8 +111,13 @@
 
 	\subsection{Distance Metrics}
 	\begin{itemize}
-		\item \textbf{Euclidean:} Standard distance between two points.
-		\item \textbf{Cosine:} Measures the angle between two vectors.
+		\item \textbf{Euclidean:} Standard distance between two points. The formula is given by:
+		      $$ \|x-y\|_2 = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2} $$
+
+		\item \textbf{Cosine:} Measures the cosine of the angle between two non-zero vectors. Cosine similarity is calculated as:
+		      $$ \cos(\theta) = \frac{A \cdot B}{\|A\| \|B\|} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \sqrt{\sum_{i=1}^{n} B_i^2}} $$
+		      Cosine distance is then typically defined as $1 - \cos(\theta)$.
+
 		\item \textbf{Jaccard:} Used for comparing sets.
 	\end{itemize}
 
@@ -1029,44 +1034,6 @@
 	This is a model-specific method as it relies directly on the model's coefficients.
 
 
-	\subsection{Additional Example of Local Feature Importance (LFI)}
-
-	This example demonstrates how to determine the contribution of each feature to a specific prediction for a binary classification task.
-
-	\subsubsection{Scenario: Loan Application Approval}
-
-	Imagine a logistic regression model trained to predict the probability of a loan application being approved. The model calculates the log-odds of approval based on two features: applicant's income and their credit score.
-
-	\begin{itemize}
-		\item \textbf{Model:} $\text{log-odds}(\text{Approval}) = -2.5 (\text{Bias}) + 0.05 \cdot \text{Income} + 0.4 \cdot \text{Credit\_Score}$
-		\item \textbf{Specific Applicant:} We want to explain the prediction for an applicant with:
-		      \begin{itemize}
-			      \item \texttt{Income} = 60 (in thousands of €)
-			      \item \texttt{Credit\_Score} = 7 (on a scale of 1-10)
-		      \end{itemize}
-	\end{itemize}
-
-	\paragraph{1. Baseline Log-Odds (Bias)} The model starts with a bias of \textbf{-2.5}. This is the log-odds of approval for a hypothetical applicant with zero income and a zero credit score. This negative value indicates that, without any positive information, the default prediction leans towards denial.
-
-	\paragraph{2. Contribution of Income} For this applicant, the income is 60. Its contribution is:
-	$$ \text{Income Contribution} = 0.05 \times 60 = +3.0 $$
-	The applicant's income significantly increases the log-odds of approval.
-
-	\paragraph{3. Contribution of Credit Score} The applicant's credit score is 7. Its contribution is:
-	$$ \text{Credit Score Contribution} = 0.4 \times 7 = +2.8 $$
-	The strong credit score also provides a large positive push towards approval.
-
-	\subsubsection{Final Prediction and Interpretation}
-
-	The final log-odds for this applicant is the sum of the baseline and the individual feature contributions:
-	$$ \text{Final Log-Odds} = \underbrace{-2.5}_{\text{Bias}} + \underbrace{3.0}_{\text{Income}} + \underbrace{2.8}_{\text{Credit Score}} = +3.3 $$
-
-	This final log-odds value can be converted back to a probability using the logistic function:
-	$$ P(\text{Approval}) = \frac{1}{1 + e^{-3.3}} \approx 0.964 \text{ or } 96.4\% $$
-
-	\paragraph{Conclusion} The local feature importance analysis shows that although the model has a strong initial bias against approval (-2.5), the applicant's high income (+3.0) and good credit score (+2.8) both provided strong positive evidence that overcame this bias, leading to a confident prediction of approval (96.4\%).
-
-
 	\subsection{Interpretability Beyond Linear Models}
 	The techniques above are simple for linear models because these models assume linearity, additivity, and no feature interactions. These ideas can be extended to Generalized Additive Models (GAMs) of the form $f(x) = \sum f_k(x_k) + \beta_0$ , but how do we achieve interpretability for complex, non-additive "black-box" models like AdaBoost or deep neural networks?
 
@@ -1221,7 +1188,8 @@
 	Let's assume the standard linear model setup, where the error variance $\sigma^2$ is known.
 	\begin{itemize}
 		\item \textbf{Likelihood:} The likelihood of the data is given by the normal distribution:
-		      $$ p(Y|X, \beta, \sigma^2) = \prod_{i=1}^{n} p(y_i|x_i, \beta, \sigma^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(\beta^T x_i - y_i)^2}{2\sigma^2}\right) $$
+		      $$ p(Y|X, \beta, \sigma^2) = \prod_{i=1}^{n} p(y_i|x_i, \beta, \sigma^2) = $$
+		      $$ \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(\beta^T x_i - y_i)^2}{2\sigma^2}\right) $$
 		\item \textbf{Prior:} We must specify a prior belief about the parameters $\beta$. A common choice is a zero-mean Gaussian prior, which expresses a belief that smaller coefficient values are more likely. This acts as a form of regularization.
 		      $$ p(\beta) = \prod_{j=1}^{p} \frac{1}{\sqrt{2\pi\tau^2}} \exp\left(-\frac{\beta_j^2}{2\tau^2}\right) $$
 		      where $\tau^2$ is the prior variance.
@@ -1254,15 +1222,117 @@
 		      \end{itemize}
 	\end{itemize}
 
-	\section{Computation in Bayesian Inference} For most non-trivial models, the posterior distribution cannot be calculated analytically. Instead, we use computational methods to approximate it.
+	\section{Computation in Bayesian Inference}
+	For many models, especially simpler ones with conjugate priors, the posterior distribution can be calculated analytically. However, for most non-trivial models, this is not possible, and we must use computational methods to approximate it.
+
 	\begin{enumerate}
-		\item \textbf{Markov Chain Monte Carlo (MCMC):} A class of algorithms that perform integration via sampling. They draw a sequence of samples from a Markov chain whose stationary distribution is the desired posterior distribution $p(\theta|D)$. This provides an unbiased estimate of the posterior but can be very computationally expensive.
-		\item \textbf{Approximate Inference:} These methods approximate the true (and often intractable) posterior $p(\theta|D)$ with a simpler, tractable distribution $q(\theta)$.
+		\item \textbf{Analytical (Closed Form):} This method provides an exact, unbiased solution for the posterior distribution. It is very fast to compute. However, a closed-form solution does not exist for many complex models.
+
+		\item \textbf{Markov Chain Monte Carlo (MCMC):} A class of algorithms that perform integration by sampling. They draw a sequence of samples from a Markov chain whose stationary distribution is the desired posterior distribution $p(\theta|D)$. This provides an unbiased but not exact estimate of the posterior. A key drawback is that it can be very slow and computationally intensive.
+
+		\item \textbf{Approximate Inference:} These methods approximate the true (and often intractable) posterior $p(\theta|D)$ with a simpler, tractable distribution $q(\theta)$. These methods are typically biased.
 		      \begin{itemize}
-			      \item \textbf{Laplace Approximation:} Approximates the posterior with a Gaussian distribution. It finds the mode (peak) of the posterior distribution and then uses the curvature (the Hessian matrix of the log-posterior) at that mode to define the covariance of the approximating Gaussian.
-			      \item \textbf{Variational Inference:} Another powerful approximation method that turns the integration problem into an optimization problem.
+			      \item \textbf{Laplace Approximation:} A fast and simple method that approximates the posterior with a Gaussian distribution. It finds the mode (peak) of the posterior distribution and then uses the curvature (the Hessian matrix of the log-posterior) at that mode to define the covariance of the approximating Gaussian. The result is a biased approximation of the true posterior.
+
+			      \item \textbf{Variational Inference (VI):} Another powerful approximation method that turns the integration problem into an optimization problem. VI finds the best approximation from a family of distributions by minimizing the Kullback-Leibler (KL) divergence to the true posterior. Like the Laplace approximation, it is fast but produces a biased estimate.
 		      \end{itemize}
 	\end{enumerate}
+
+
+	\section{Laplace Approximation}
+
+	The Laplace approximation provides a way to approximate a posterior probability distribution with a Gaussian distribution. This is particularly useful when the posterior is unimodal but not a standard distribution that is easy to work with. The core idea is to find the mode of the distribution (its peak) and then fit a Gaussian centered at that mode, where the variance of the Gaussian is determined by the curvature of the log-posterior at the mode.
+
+	The steps to compute the Laplace approximation are as follows:
+
+	\begin{enumerate}
+		\item \textbf{Define the log-probability:}
+		      Write down the logarithm of the target probability distribution, which we denote as $l(x) = \log p(x)$. Working with the log-probability is often easier than working with the probability directly.
+
+		\item \textbf{Find the mode:}
+		      Solve for the point $\hat{x}$ where the first derivative of the log-probability is zero. This point, $\hat{x}$, is the mode (the peak) of the distribution.
+		      $$ l'(\hat{x}) = 0 $$
+
+		\item \textbf{Compute the curvature at the mode:}
+		      Calculate the second derivative of the log-probability, $l''(x)$, and evaluate it at the mode, $\hat{x}$. This value tells us about the sharpness of the peak.
+		      \begin{itemize}
+			      \item If $l''(\hat{x})$ is strongly negative, the peak is sharp $\Rightarrow$ this corresponds to a small variance.
+			      \item If $l''(\hat{x})$ is near zero, the peak is flat $\Rightarrow$ this corresponds to a large variance.
+		      \end{itemize}
+
+		\item \textbf{Calculate the approximate variance:}
+		      Form the approximate variance, $\sigma^2$, by taking the negative inverse of the second derivative at the mode.
+		      $$ \sigma^2 = (-l''(\hat{x}))^{-1} $$
+
+		\item \textbf{Form the Gaussian approximation:}
+		      Write down the final Gaussian distribution, $q(x)$, which approximates $p(x)$. This distribution is centered at the mode $\hat{x}$ with the variance $\sigma^2$ you just calculated.
+		      $$ q(x) = \mathcal{N}(x \,|\, \hat{x}, \sigma^2) $$
+
+		\item \textbf{Use the approximation:}
+		      Approximate any integral or expectation that was originally under $p(x)$ by using the corresponding, and much simpler, integral or expectation under the new Gaussian distribution $q(x)$.
+
+	\end{enumerate}
+
+	\section{Unsupervised Machine Learning}
+	Unsupervised learning deals with unlabeled data, aiming to find hidden patterns or intrinsic structures within the data itself. The general process involves defining a model structure (parameterized by $\Theta$) and optimizing a loss or criterion function $L(\Theta)$ to find the best parameters that describe the data's structure.
+
+	\subsection{Clustering}
+	Clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups.
+
+	\subsubsection{Types of Clustering Algorithms}
+	There are several families of clustering algorithms, each with different strengths.
+	\begin{itemize}
+		\item \textbf{Partitional Clustering:} These algorithms divide the dataset into a pre-specified number of non-overlapping clusters.
+		      \begin{itemize}
+			      \item \textbf{k-Means:} Assigns points to the cluster with the nearest centroid (mean). This can be problematic for data types where a mean is not well-defined (e.g., text, images).
+			      \item \textbf{k-Medoids:} Similar to k-means, but uses an actual data point (a medoid) as the center of the cluster, making it more robust and suitable for arbitrary data types.
+		      \end{itemize}
+		\item \textbf{Hierarchical Clustering:} Builds a hierarchy of clusters, either agglomerative (bottom-up, merging clusters) or divisive (top-down, splitting clusters). It doesn't require the number of clusters to be specified beforehand.
+		\item \textbf{Density-Based Clustering:} Finds clusters based on areas of high density separated by areas of low density. A popular example is \textbf{DBSCAN}.
+		\item \textbf{Model-Based Clustering:} Assumes the data is a mixture of a finite number of probability distributions (e.g., Gaussians). It uses an algorithm like Expectation-Maximization (EM) to fit a \textbf{Gaussian Mixture Model (GMM)} to the data.
+	\end{itemize}
+
+	\subsection{Data Maps (Dimensionality Reduction)}
+	This family of unsupervised methods aims to represent high-dimensional data in a lower-dimensional space (an embedding or "data map"), often for visualization or as a pre-processing step for other ML models.
+
+	\subsubsection{Principal Component Analysis (PCA)}
+	PCA is a linear technique that finds a new set of orthogonal axes (principal components) that capture the maximum amount of variance in the data.
+
+	\paragraph{Derivation:}
+	Assume the data matrix $X$ is centered (mean of zero). The projection of the data onto a direction vector $u_1$ is $z = Xu_1$. The variance of this projected data is:
+	$$ \text{Var}(z) = \frac{1}{n}||Xu_1||^2 = \frac{1}{n} (Xu_1)^T (Xu_1) = \frac{1}{n} u_1^T X^T X u_1 = u_1^T S u_1 $$
+	where $S = \frac{1}{n}X^T X$ is the covariance matrix of the data. Our goal is to find the direction $u_1$ that maximizes this variance, subject to the constraint that $u_1$ is a unit vector ($u_1^T u_1 = 1$). We can solve this using a Lagrange multiplier $\lambda$:
+	$$ \mathcal{L}(u_1, \lambda) = u_1^T S u_1 - \lambda(u_1^T u_1 - 1) $$
+	Taking the derivative with respect to $u_1$ and setting it to zero gives:
+	$$ \frac{\partial \mathcal{L}}{\partial u_1} = 2Su_1 - 2\lambda u_1 = 0 \implies Su_1 = \lambda u_1 $$
+	This is the fundamental eigenvector equation. It shows that the optimal direction $u_1$ is the eigenvector of the covariance matrix $S$. The variance captured by this component is equal to its corresponding eigenvalue:
+	$$ \text{Var}(z) = u_1^T S u_1 = u_1^T (\lambda u_1) = \lambda (u_1^T u_1) = \lambda $$
+	To capture the most variance, we choose the eigenvector corresponding to the largest eigenvalue. Subsequent components are the eigenvectors corresponding to the next largest eigenvalues.
+
+	\paragraph{Interpretation:} The elements of an eigenvector $u_k$ are called the \textbf{loadings}, and they indicate how much each original feature contributes to that principal component. A \textbf{scree plot} can be used to visualize the percentage of variance explained by each component, helping to decide how many components to retain. A key limitation of PCA is that it is a linear method and will fail to capture non-linear structures in the data.
+
+	\subsubsection{Multidimensional Scaling (MDS)}
+	MDS is a technique that aims to create a low-dimensional embedding that preserves the pairwise distances between points from the original high-dimensional space. It minimizes a loss function like:
+	$$ L = \sum_{i,j} (d_{ij} - D_{ij})^2 $$
+	where $d_{ij}$ is the original distance and $D_{ij}$ is the distance in the new embedding. A weakness of this approach is that it gives equal weight to preserving both small and large distances. In many cases, we care more about preserving the local structure of nearby points.
+
+	\subsubsection{t-Distributed Stochastic Neighbor Embedding (t-SNE)}
+	t-SNE is a powerful non-linear technique for visualization, created by Geoffrey Hinton. It improves upon a predecessor called SNE.
+	\begin{itemize}
+		\item \textbf{SNE} first converts high-dimensional Euclidean distances into conditional probabilities representing similarities. The similarity of point $x_j$ to $x_i$ is the probability that $x_i$ would pick $x_j$ as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at $x_i$.
+		\item A problem with using a Gaussian in the low-dimensional space is that it can lead to a "crowding problem," where clusters become too dense and overlap.
+		\item \textbf{t-SNE} solves this by using a heavy-tailed Student's t-distribution in the low-dimensional space. This allows dissimilar points to be placed further apart in the map, helping to separate clusters more clearly.
+	\end{itemize}
+
+	\subsubsection{Autoencoders}
+	An autoencoder is a type of neural network used for unsupervised learning, typically for dimensionality reduction. It consists of two parts:
+	\begin{itemize}
+		\item An \textbf{encoder} network that compresses the high-dimensional input data $X$ into a low-dimensional latent representation, often called a "bottleneck".
+		\item A \textbf{decoder} network that attempts to reconstruct the original input $X$ from the low-dimensional representation.
+	\end{itemize}
+	The network is trained to minimize the reconstruction error (e.g., Mean Squared Error) between the output $Y$ and the original input $X$. After training, the encoder part of the network can be used on its own to generate the low-dimensional embeddings for the data.
+
+
 
 \end{multicols}
 
