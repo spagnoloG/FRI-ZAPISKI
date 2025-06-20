@@ -138,7 +138,8 @@ For $n \rightarrow \infty$, the error of the 1-NN classifier is bounded by twice
 For a two-class problem, with $y^*$ being the optimal class label:
 $$ \epsilon_{1NN} \le 2\epsilon_{OPT} $$
 The derivation from the lecture notes shows:
-$$ \epsilon_{1NN} = (1-p(y^*|x))p(y^*|x) + p(y^*|x)(1-p(y^*|x)) \le 2(1-p(y^*|x)) = 2\epsilon_{OPT} $$ 
+$$ \epsilon_{1NN} = (1-p(y^*|x))p(y^*|x) + p(y^*|x)(1-p(y^*|x)) $$
+$$\le 2(1-p(y^*|x)) = 2\epsilon_{OPT} $$ 
 
 
 \section{Linear Regression}
@@ -178,7 +179,7 @@ There are two main approaches to find the $\beta$ that minimizes this function.
 Gradient descent is an iterative optimization algorithm that finds the minimum of a function. We start with an initial guess for $\beta$ and repeatedly move in the opposite direction of the gradient of the cost function. The update rule for each parameter $\beta_j$ is:
 $$ \beta_j \leftarrow \beta_j - \alpha \frac{\partial}{\partial \beta_j} J(\beta) $$
 where $\alpha$ is the learning rate. The partial derivative is:
-$$ \frac{\partial}{\partial \beta_j} J(\beta) = 2(\hat{y}(\beta) - y) \cdot x_j $$
+$$ \frac{\partial}{\partial \beta_j} J(\beta) &= \frac{\partial}{\partial \beta_j} (\hat{y}(\beta) - y)^2 =  2(\hat{y}(\beta) - y) \cdot x_j $$
 \begin{itemize}
     \item \textbf{Stochastic Gradient Descent (SGD):} The parameters are updated using only one data instance at a time.
     $$ \beta_j \leftarrow \beta_j - \alpha (\hat{y}(\beta) - y) x_j $$
@@ -904,11 +905,14 @@ This constrained optimization problem can be solved by reformulating it using La
     $$\mathcal{L}(w, b, \alpha) = \frac{1}{2}||w||^{2} - \sum_{i=1}^{n}\alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1]$$
 
 2.  To find the minimum with respect to $w$ and $b$, we take the partial derivatives and set them to zero:
-    * $\frac{\partial \mathcal{L}}{\partial w} = w - \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i} = 0 \implies w = \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i}$ 
-    * $\frac{\partial \mathcal{L}}{\partial b} = -\sum_{i=1}^{n}\alpha_{i}y_{i} = 0$ 
+    \begin{itemize}
+        \item $\frac{\partial \mathcal{L}}{\partial w} = w - \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i} = 0 \implies w = \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i}$ 
+        \item $\frac{\partial \mathcal{L}}{\partial b} = -\sum_{i=1}^{n}\alpha_{i}y_{i} = 0$ 
+    \end{itemize}
 
 3.  We substitute these results back into the Lagrangian to eliminate $w$ and $b$. We start by substituting $w$ into the term $-\sum \alpha_i y_i w^T x_i$ and use the fact that $\sum \alpha_i y_i = 0$:
-    $$-\sum_{i}\alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1] = -\sum_{i}\alpha_{i}y_{i}w^{T}x_{i} - b\sum_{i}\alpha_{i}y_{i} + \sum_{i}\alpha_{i} = -\sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{j}^T x_i + \sum_{i}\alpha_{i}$$
+    $$-\sum_{i}\alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1] = -\sum_{i}\alpha_{i}y_{i}w^{T}x_{i} - b\sum_{i}\alpha_{i}y_{i} + \sum_{i}\alpha_{i} =$$
+    $$-\sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{j}^T x_i + \sum_{i}\alpha_{i}$$
    
 
 4.  We then combine this with the first term of the Lagrangian, $\frac{1}{2}||w||^2 = \frac{1}{2} \sum_{i,j} \alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^T x_{j}$.
@@ -938,25 +942,39 @@ The hyperparameter $C > 0$ controls the trade-off between maximizing the margin 
 \subsection{Kernelized Ridge Regression}
 The kernel trick can also be applied to Ridge Regression.
 
-1.  The primal objective function is:
-    $$\min_{w} \sum_{i=1}^{n} (y_i - w^T \Phi(x_i))^2 + \lambda ||w||^2$$
-   
-2.  The Representer Theorem states that the optimal weight vector $w$ can be expressed as a linear combination of the mapped training instances:
-    $$w = \sum_{j=1}^{n} \alpha_j \Phi(x_j)$$
+\begin{enumerate}
+    \item The primal objective function is:
+    \[
+    \min_{w} \sum_{i=1}^{n} (y_i - w^T \Phi(x_i))^2 + \lambda \|w\|^2
+    \]
+    
+    \item The Representer Theorem states that the optimal weight vector $w$ can be expressed as a linear combination of the mapped training instances:
+    \[
+    w = \sum_{j=1}^{n} \alpha_j \Phi(x_j)
+    \]
 
-3.  We substitute this expression for $w$ back into the objective function.
-    * The regularization term becomes $\lambda ||w||^2 = \lambda \alpha^T K \alpha$.
-    * The loss term $\sum(y_i - w^T\Phi(x_i))^2$ becomes $(y - K\alpha)^T (y - K\alpha)$.
+    \item We substitute this expression for $w$ back into the objective function.
+    \begin{itemize}
+        \item The regularization term becomes $\lambda \|w\|^2 = \lambda \alpha^T K \alpha$.
+        \item The loss term $\sum_{i=1}^{n}(y_i - w^T\Phi(x_i))^2$ becomes $(y - K\alpha)^T (y - K\alpha)$.
+    \end{itemize}
 
-4.  The full objective function, now in terms of $\alpha$, is:
-    $$J(\alpha) = (y - K\alpha)^T (y - K\alpha) + \lambda \alpha^T K \alpha$$
-   
-5.  By taking the gradient with respect to $\alpha$ and setting it to zero, we can find the closed-form solution for $\alpha$:
-    $$\alpha = (K+\lambda I)^{-1}y$$
-   
-6.  The final prediction for a new input $x_{new}$ is then given by:
-    $$f(x_{new}) = \sum_{i=1}^n \alpha_i K(x_i, x_{new})$$
+    \item The full objective function, now in terms of $\alpha$, is:
+    \[
+    J(\alpha) = (y - K\alpha)^T (y - K\alpha) + \lambda \alpha^T K \alpha
+    \]
+    
+    \item By taking the gradient with respect to $\alpha$ and setting it to zero, we can find the closed-form solution for $\alpha$:
+    \[
+    \alpha = (K+\lambda I)^{-1}y
+    \]
+    
+    \item The final prediction for a new input $x_{\text{new}}$ is then given by:
+    \[
+    f(x_{\text{new}}) = \sum_{i=1}^n \alpha_i K(x_i, x_{\text{new}})
+    \]
     Unlike SVMs, all $\alpha_i$ are generally non-zero, meaning all training points are required for prediction.
+\end{enumerate}
 
 \section{Feature Importance}
 Understanding which features are most influential in a model's predictions is a fundamental part of explainable AI (XAI).
@@ -971,7 +989,8 @@ While a single number for global feature importance is useful, it doesn't show \
 
 \subsection{Local Feature Importance}
 Local explanations focus on understanding a single prediction for a specific data instance. For a linear model, this is straightforward. The contribution of each feature is simply its coefficient multiplied by its value for that instance. For the instance $(x_1=0.1, x_2=0.0001)$, the prediction $f(x)=1.28$ is broken down as follows:
-$$ f(x) = \underbrace{-0.23 \cdot 0.1}_{\text{contrib of } x_1} + \underbrace{2.37 \cdot 0.0001}_{\text{contrib of } x_2} + \underbrace{1.3}_{\text{intercept/bias}} = -0.023 + 0.00237 + 1.3 \approx 1.28 $$
+$$ f(x) = \underbrace{-0.23 \cdot 0.1}_{\text{contrib of } x_1} + \underbrace{2.37 \cdot 0.0001}_{\text{contrib of } x_2} + \underbrace{1.3}_{\text{intercept/bias}} =$$ 
+$$= -0.023 + 0.00237 + 1.3 \approx 1.28 $$
 This is a model-specific method as it relies directly on the model's coefficients.
 
 
@@ -991,10 +1010,6 @@ Imagine a logistic regression model trained to predict the probability of a loan
         \item \texttt{Credit\_Score} = 7 (on a scale of 1-10)
     \end{itemize}
 \end{itemize}
-
-\subsubsection{Breaking Down the Prediction}
-
-We can attribute the final prediction to the baseline (bias) and the contribution of each feature value for this specific applicant.
 
 \paragraph{1. Baseline Log-Odds (Bias)} The model starts with a bias of \textbf{-2.5}. This is the log-odds of approval for a hypothetical applicant with zero income and a zero credit score. This negative value indicates that, without any positive information, the default prediction leans towards denial.
 
@@ -1039,58 +1054,93 @@ The Shapley value for feature $i$ is calculated as:
 $$ \phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(p - |S| - 1)!}{p!} \left( \Delta(S \cup \{i\}) - \Delta(S) \right) $$
 where $p$ is the total number of features, and the sum is over all subsets $S$ that do not contain feature $i$. The term $(\Delta(S \cup \{i\}) - \Delta(S))$ is the marginal contribution of feature $i$ when it is added to the subset $S$.
 
-\subsection{Example: Computing Shapley Values for a House Price Prediction}
-Let's use a simple, model-agnostic example to see how Shapley values are calculated. Imagine we have a trained machine learning model that predicts house prices. For a specific house, we want to explain its prediction by attributing the price to different features.
 
-\subsubsection{1. Define the Problem}
-\begin{itemize}
-    \item \textbf{Features (Players):} For simplicity, we'll use just two binary features:
-    \begin{itemize}
-        \item $x_{1}$: "Has a garden" (1 = Yes, 0 = No)
-        \item $x_{2}$: "Good location" (1 = Yes, 0 = No)
-    \end{itemize}
-    \item \textbf{Model Prediction (Payout):} Our model `f(S)` predicts the house price based on a subset of features `S`.
-    \begin{itemize}
-        \item \textbf{Baseline Prediction:} The average house price in the dataset is 150,000 €. This is our baseline when we know nothing about the house, $f(\emptyset) = 150$.
-        \item \textbf{Knowing only about the garden:} $f(\{x_{1}\}) = 170$.
-        \item \textbf{Knowing only about the location:} $f(\{x_{2}\}) = 200$.
-        \item \textbf{Knowing both features:} $f(\{x_{1}, x_{2}\}) = 230$.
-    \end{itemize}
-    \item \textbf{Total Payout to Distribute:} The total effect to be explained is the difference between the final prediction and the baseline: $f(\{x_{1}, x_{2}\}) - f(\emptyset) = 230 - 150 = 80$. We need to fairly distribute this 80k "payout" between the two features.
-\end{itemize}
+\subsection{Simple SHAP Value Example (Two Features)}
 
-\subsubsection{2. Calculate Contributions for Feature 1 (Garden)}
-To get the Shapley value for the "garden" feature, we calculate its marginal contribution when added to every possible subset of other features.
-\begin{itemize}
-    \item \textbf{Contribution when added to the empty set ($\emptyset$):}
-    This measures the impact of knowing only that the house has a garden.
-    $$\Delta(\{\text{garden}\}) - \Delta(\emptyset) = f(\{\text{garden}\}) - f(\emptyset) = 170 - 150 = 20$$
+Let the model \( f(x_1, x_2) \) be defined as:
+\[
+\begin{aligned}
+f(0,0) &= 0, \\
+f(1,0) &= 10, \\
+f(0,1) &= 20, \\
+f(1,1) &= 30.
+\end{aligned}
+\]
 
-    \item \textbf{Contribution when added to the set ` {location} `:}
-    This measures the additional impact of having a garden, given that we already know the house is in a good location.
-    $$\Delta(\{\text{garden, location}\}) - \Delta(\{\text{location}\}) = f(\{\text{garden, location}\}) - f(\{\text{location}\}) = 230 - 200 = 30$$
-\end{itemize}
-The Shapley value is the weighted average of these marginal contributions. For a 2-feature case, both contributions are weighted equally (by 1/2).
-$$\phi_{\text{garden}} = \frac{1}{2}(20) + \frac{1}{2}(30) = 10 + 15 = 25$$
+We explain the prediction for input \( x = (1, 1) \).
 
-\subsubsection{3. Calculate Contributions for Feature 2 (Location)}
-We do the same for the "location" feature.
-\begin{itemize}
-    \item \textbf{Contribution when added to the empty set ($\emptyset$):}
-    $$\Delta(\{\text{location}\}) - \Delta(\emptyset) = f(\{\text{location}\}) - f(\emptyset) = 200 - 150 = 50$$
+\subsubsection{Step 1: Baseline Value}
 
-    \item \textbf{Contribution when added to the set ` {garden} `:}
-    $$\Delta(\{\text{garden, location}\}) - \Delta(\{\text{garden}\}) = f(\{\text{garden, location}\}) - f(\{\text{garden}\}) = 230 - 170 = 60$$
-\end{itemize}
-Now we average these contributions:
-$$\phi_{\text{location}} = \frac{1}{2}(50) + \frac{1}{2}(60) = 25 + 30 = 55$$
+The baseline is the average prediction over all possible inputs:
+\[
+\text{baseline} = \frac{0 + 10 + 20 + 30}{4} = 15
+\]
 
-\subsubsection{4. Final Interpretation}
-The Shapley values for the prediction are: $\phi_{\text{garden}} = 25$ and $\phi_{\text{location}} = 55$.
+\subsubsection{Step 2: SHAP Value for \( x_1 \)}
 
-We can verify this using the **Additivity Axiom**, which states that the sum of the Shapley values must equal the total payout.
-$$\phi_{\text{garden}} + \phi_{\text{location}} = 25 + 55 = 80$$
-This matches our total payout of 80. For this specific prediction of 230,000 €, the Shapley values tell us that the **"Good location" feature contributed +55,000 €** to the price increase from the average, while the **"Has a garden" feature contributed +25,000 €**.
+\textbf{Subset \(\emptyset\):}
+
+No features known:  
+\[
+\mathbb{E}[f(\cdot)] = 15
+\]
+Add \( x_1 = 1 \): average over \( x_2 \in \{0,1\} \)
+\[
+\mathbb{E}[f(1, \cdot)] = \frac{f(1,0) + f(1,1)}{2} = \frac{10 + 30}{2} = 20
+\]
+Contribution: \( 20 - 15 = 5 \)
+
+\medskip
+\textbf{Subset \(\{x_2\}\):}
+
+Given \( x_2 = 1 \), \( x_1 \) unknown:
+\[
+\mathbb{E}[f(\cdot, 1)] = \frac{f(0,1) + f(1,1)}{2} = \frac{20 + 30}{2} = 25
+\]
+Add \( x_1 = 1 \): \( f(1,1) = 30 \)  
+Contribution: \( 30 - 25 = 5 \)
+
+\medskip
+\textbf{SHAP for \( x_1 \):}
+\[
+\phi_1 = \frac{1}{2}(5 + 5) = 5
+\]
+
+\subsubsection{Step 3: SHAP Value for \( x_2 \)}
+
+\textbf{Subset \(\emptyset\):}
+
+\[
+\mathbb{E}[f(\cdot)] = 15, \quad
+\mathbb{E}[f(\cdot, x_2=1)] = \frac{20 + 30}{2} = 25
+\]
+Contribution: \( 25 - 15 = 10 \)
+
+\medskip
+\textbf{Subset \(\{x_1\}\):}
+
+\[
+\mathbb{E}[f(1, \cdot)] = \frac{10 + 30}{2} = 20, \quad f(1,1) = 30
+\]
+Contribution: \( 30 - 20 = 10 \)
+
+\medskip
+\textbf{SHAP for \( x_2 \):}
+\[
+\phi_2 = \frac{1}{2}(10 + 10) = 10
+\]
+
+\subsubsection{Final Result}
+
+\[
+\phi_1 = 5, \quad \phi_2 = 10
+\]
+\[
+\text{Prediction: } f(1,1) = 30, \quad \text{Baseline: } 15
+\]
+\[
+\phi_1 + \phi_2 = 15 = f(1,1) - \text{baseline}
+\]
 
 \subsection{Axioms and Computation}
 Shapley values are the only attribution method that simultaneously satisfies four desirable properties: Efficiency (Additivity), Symmetry, Dummy, and Linearity.
@@ -1100,49 +1150,6 @@ Shapley values are the only attribution method that simultaneously satisfies fou
     \item \textbf{Dummy:} If a feature has no effect on the prediction, its Shapley value is zero.
 \end{itemize}
 The exact computation of Shapley values is very expensive ($O(2^p)$), as it requires evaluating the model for all possible subsets of features. Therefore, in practice, they are approximated using methods like SHAP (SHapley Additive exPlanations), which uses clever sampling and kernel-based approaches to estimate the values efficiently.
-
-
-
-\subsection{Additional Example of Local Feature Importance (LFI)}
-
-This example demonstrates how to determine the contribution of each feature to a specific prediction for a binary classification task.
-
-\subsubsection{Scenario: Loan Application Approval}
-
-Imagine a logistic regression model trained to predict the probability of a loan application being approved. The model calculates the log-odds of approval based on two features: applicant's income and their credit score.
-
-\begin{itemize}
-    \item \textbf{Model:} $\text{log-odds}(\text{Approval}) = -2.5 (\text{Bias}) + 0.05 \cdot \text{Income} + 0.4 \cdot \text{Credit\_Score}$
-    \item \textbf{Specific Applicant:} We want to explain the prediction for an applicant with:
-    \begin{itemize}
-        \item \texttt{Income} = 60 (in thousands of €)
-        \item \texttt{Credit\_Score} = 7 (on a scale of 1-10)
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{Breaking Down the Prediction}
-
-We can attribute the final prediction to the baseline (bias) and the contribution of each feature value for this specific applicant.
-
-\paragraph{1. Baseline Log-Odds (Bias)} The model starts with a bias of \textbf{-2.5}. This is the log-odds of approval for a hypothetical applicant with zero income and a zero credit score. This negative value indicates that, without any positive information, the default prediction leans towards denial.
-
-\paragraph{2. Contribution of Income} For this applicant, the income is 60. Its contribution is:
-$$ \text{Income Contribution} = 0.05 \times 60 = +3.0 $$
-The applicant's income significantly increases the log-odds of approval.
-
-\paragraph{3. Contribution of Credit Score} The applicant's credit score is 7. Its contribution is:
-$$ \text{Credit Score Contribution} = 0.4 \times 7 = +2.8 $$
-The strong credit score also provides a large positive push towards approval.
-
-\subsubsection{Final Prediction and Interpretation}
-
-The final log-odds for this applicant is the sum of the baseline and the individual feature contributions:
-$$ \text{Final Log-Odds} = \underbrace{-2.5}_{\text{Bias}} + \underbrace{3.0}_{\text{Income}} + \underbrace{2.8}_{\text{Credit Score}} = +3.3 $$
-
-This final log-odds value can be converted back to a probability using the logistic function:
-$$ P(\text{Approval}) = \frac{1}{1 + e^{-3.3}} \approx 0.964 \text{ or } 96.4\% $$
-
-\paragraph{Conclusion} The local feature importance analysis shows that although the model has a strong initial bias against approval (-2.5), the applicant's high income (+3.0) and good credit score (+2.8) both provided strong positive evidence that overcame this bias, leading to a confident prediction of approval (96.4\%).
 
 
 \section{A Review of Empirical Risk Minimization (ERM)}
