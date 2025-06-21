@@ -1016,6 +1016,40 @@
 		      Unlike SVMs, all $\alpha_i$ are generally non-zero, meaning all training points are required for prediction.
 	\end{enumerate}
 
+	\section{What Makes a Function a Valid Kernel?}
+	For a function $K(\mathbf{x}, \mathbf{x}')$ to be a valid kernel, it must represent a dot product in some feature space. This ensures the mathematical properties required by kernel methods, such as convexity of the optimization problem. Two key properties are essential:
+
+	\subsection{Symmetry}
+	The kernel must be symmetric, meaning:
+	$$
+		K(\mathbf{x}, \mathbf{x}') = K(\mathbf{x}', \mathbf{x})
+	$$
+	for all inputs $\mathbf{x}$ and $\mathbf{x}'$. This reflects the symmetric nature of a dot product.
+
+	\subsection{Positive Semi-Definiteness (PSD)}
+	For any finite set of data points $\{\mathbf{x}_1, \dots, \mathbf{x}_n\}$, the corresponding Gram matrix $\mathbf{K}$ (where $K_{ij} = K(\mathbf{x}_i, \mathbf{x}_j)$) must satisfy:
+	$$
+		\mathbf{c}^{\top}\mathbf{K}\mathbf{c} \ge 0
+	$$
+	for all vectors $\mathbf{c} \in \mathbb{R}^n$. PSD ensures the optimization problem remains convex and well-behaved.
+
+	These conditions guarantee that the kernel corresponds to an inner product in some feature space. Valid kernels include linear, polynomial, and RBF kernels. New valid kernels can be constructed from existing ones using rules such as:
+	\begin{itemize}
+		\item $aK_1 + bK_2$ for $a, b \ge 0$
+		\item $K_1 \cdot K_2$ (element-wise product)
+		\item Compositions like $f(K_1(\mathbf{x}, \mathbf{x}'))$ where $f$ preserves PSD.
+	\end{itemize}
+
+	\section{Kernel Approximation Techniques}
+	While kernel methods offer powerful ways to handle non-linear relationships, computing and storing the full $n \times n$ kernel matrix $\mathbf{K}_{nn}$ can be computationally prohibitive for large datasets. Kernel approximation techniques address this by reducing the complexity while retaining much of the kernel's expressive power.
+
+	\subsection{The Nyström Method}
+	The Nyström method approximates the full kernel matrix by sampling a small subset of $m \ll n$ data points. It computes the kernel matrix between the sampled points $\mathbf{K}_{mm}$ and the kernel matrix between all data points and the sampled points $\mathbf{K}_{nm}$. The approximation of the full kernel matrix $\mathbf{K}_{nn}$ is then given by:
+	$$
+		\mathbf{K}_{nn} \approx \mathbf{K}_{nm}\mathbf{K}_{mm}^{-1} \mathbf{K}_{nm}^{\top}
+	$$
+	This significantly reduces storage and computational requirements.
+
 	\section{Feature Importance}
 	Understanding which features are most influential in a model's predictions is a fundamental part of explainable AI (XAI).
 
@@ -1221,6 +1255,14 @@
 			      \item The computational complexity is often much higher. MLE is an optimization problem, whereas Bayesian inference is an integration problem (to find the evidence term $p(D)$), which is typically harder.
 		      \end{itemize}
 	\end{itemize}
+
+	\subsection{Bayesian Risk}
+	The goal is to find the estimator $\hat{\theta}$ that minimizes the expected loss (risk) over the posterior distribution:
+
+	$$ R(\hat{\theta}) = \mathbb{E}_{p(\theta|D)}[L(\hat{\theta}, \theta)] = \int L(\hat{\theta}, \theta) p(\theta|D) d\theta $$
+
+	To find the optimal estimator, we differentiate the risk with respect to $\hat{\theta}$ and set it to zero:
+	$$ \frac{d}{d\hat{\theta}} R(\hat{\theta}) = \int \frac{\partial L(\hat{\theta}, \theta)}{\partial \hat{\theta}} p(\theta|D) d\theta = 0 $$
 
 	\section{Computation in Bayesian Inference}
 	For many models, especially simpler ones with conjugate priors, the posterior distribution can be calculated analytically. However, for most non-trivial models, this is not possible, and we must use computational methods to approximate it.
