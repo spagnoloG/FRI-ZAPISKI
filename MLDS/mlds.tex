@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{multicol}
+\usepackage{enumitem}
 \geometry{a4paper, margin=0.1cm}
 
 \begin{document}
@@ -1328,6 +1329,25 @@
 		      \begin{itemize}
 			      \item \textbf{k-Means:} Assigns points to the cluster with the nearest centroid (mean). This can be problematic for data types where a mean is not well-defined (e.g., text, images).
 			      \item \textbf{k-Medoids:} Similar to k-means, but uses an actual data point (a medoid) as the center of the cluster, making it more robust and suitable for arbitrary data types.
+
+			      \item \textbf{k-means++}
+			            Standard k-means can be sensitive to the initial placement of cluster centroids, often leading to suboptimal solutions. K-means++ is an initialization algorithm designed to provide a more robust and effective starting point for the k-means algorithm. It aims to select initial centroids that are well-separated. The procedure is as follows:
+
+			            \begin{enumerate}
+				            \item Select the first centre $\mu_1$ uniformly at random from the dataset.
+				            \item For $i = 2, \dots, k$:
+				                  \begin{enumerate}[label=(\alph*)]
+					                  \item For each data point $\mathbf{x}$, compute the Euclidean distance from $\mathbf{x}$ to the nearest already-chosen centre:
+					                        $$
+						                        D(\mathbf{x}) = \min_{1 \le j < i} \|\mathbf{x} - \mu_j\|
+					                        $$
+					                  \item Choose the next centre $\mu_i$ from the data points with probability:
+					                        $$
+						                        \text{Pr}(\mathbf{x} \text{ is chosen as } \mu_i) = \frac{D(\mathbf{x})^2}{\sum_{\mathbf{x}'} D(\mathbf{x}')^2}
+					                        $$
+				                  \end{enumerate}
+			            \end{enumerate}
+			            This probabilistic selection ensures that new centroids are chosen with a higher probability from points that are farther away from existing centroids, leading to a more spread-out initial configuration.
 		      \end{itemize}
 		\item \textbf{Hierarchical Clustering:} Builds a hierarchy of clusters, either agglomerative (bottom-up, merging clusters) or divisive (top-down, splitting clusters). It doesn't require the number of clusters to be specified beforehand.
 		\item \textbf{Density-Based Clustering:} Finds clusters based on areas of high density separated by areas of low density. A popular example is \textbf{DBSCAN}.
@@ -1374,6 +1394,73 @@
 	\end{itemize}
 	The network is trained to minimize the reconstruction error (e.g., Mean Squared Error) between the output $Y$ and the original input $X$. After training, the encoder part of the network can be used on its own to generate the low-dimensional embeddings for the data.
 
+
+	\subsection{DBSCAN (Density-Based Spatial Clustering of Applications with Noise)}
+	DBSCAN is a density-based clustering algorithm that can discover clusters of arbitrary shape and identify outliers. It defines clusters based on the density of data points in the feature space.
+
+	\subsubsection{Key Definitions:}
+	\begin{itemize}
+		\item \textbf{Neighborhood of $\mathbf{x}$, $N_\varepsilon(\mathbf{x})$:} The set of points within a distance $\varepsilon$ from $\mathbf{x}$.
+		      $$
+			      N_\varepsilon(\mathbf{x}) = \{ \mathbf{x}_i : \|\mathbf{x}_i - \mathbf{x}\| \le \varepsilon \}
+		      $$
+		\item \textbf{Core Point:} A point $\mathbf{x}$ is a core point if its neighborhood contains at least `minPts` points: $|\text{N}_\varepsilon(\mathbf{x})| \ge \text{minPts}$.
+		\item \textbf{Border Point:} A point $\mathbf{x}$ is not a core point, but it is within the $\varepsilon$-neighborhood of a core point $\mathbf{c}$.
+		\item \textbf{Noise Point:} Any point that is neither a core point nor a border point. These are considered outliers.
+	\end{itemize}
+
+	\subsubsection{Algorithm:}
+	\begin{enumerate}
+		\item Mark all points as unvisited.
+		\item For each unvisited point $\mathbf{x}$:
+		      \begin{enumerate}[label=(\alph*)]
+			      \item Mark $\mathbf{x}$ visited and compute $N_\varepsilon(\mathbf{x})$.
+			      \item If $\mathbf{x}$ is a core point, start a new cluster:
+			            \begin{itemize}
+				            \item Add all points in $N_\varepsilon(\mathbf{x})$ to the cluster.
+				            \item Recursively, for each new core point $\mathbf{x}'$ found in the cluster, add its entire $N_\varepsilon(\mathbf{x}')$ to the cluster.
+			            \end{itemize}
+			      \item Else (if $\mathbf{x}$ is not a core point), mark $\mathbf{x}$ as noise (it may later be identified as a border point if found in a core point's neighborhood).
+		      \end{enumerate}
+		\item Continue until all points are visited.
+	\end{enumerate}
+
+	\subsubsection{Parameter Heuristics:}
+	\begin{itemize}
+		\item \textbf{minPts:} Typically chosen as $\ge d+1$ (where $d$ is the dimensionality of the data), common values are 4 to 10.
+		\item \textbf{$\varepsilon$:} Can be determined using a "k-distance plot" (where $k = \text{minPts}$). The "elbow" in this plot often indicates a suitable $\varepsilon$ value.
+	\end{itemize}
+
+	\subsection{Model-Based Clustering: Gaussian Mixture Models (GMMs)}
+	Gaussian Mixture Models (GMMs) are probabilistic models that assume data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. GMMs model the data density as a weighted sum of Gaussians:
+	$$
+		p(\mathbf{x}) = \sum_{i=1}^{k} \pi_i \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}_i, \boldsymbol{\Sigma}_i)
+	$$
+	where $k$ is the number of components, $\pi_i$ are the mixing coefficients (prior probabilities, $\sum_{i=1}^{k} \pi_i = 1$), and $\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}_i, \boldsymbol{\Sigma}_i)$ is a multivariate Gaussian distribution with mean $\boldsymbol{\mu}_i$ and covariance matrix $\boldsymbol{\Sigma}_i$.
+
+	\subsubsection{Expectation-Maximization (EM) Algorithm for GMMs:}
+	The parameters of the GMM ($\boldsymbol{\mu}_i, \boldsymbol{\Sigma}_i, \pi_i$) are typically learned using the Expectation-Maximization (EM) algorithm, an iterative optimization method:
+
+	\begin{enumerate}
+		\item \textbf{Expectation Step (E-step):} For each data point $\mathbf{x}_j$, compute the posterior probability (responsibility) $\gamma_{ji}$ that $\mathbf{x}_j$ belongs to cluster $i$, based on the current parameter estimates:
+		      $$
+			      \gamma_{ji} = \frac{\pi_i \mathcal{N}(\mathbf{x}_j | \boldsymbol{\mu}_i, \boldsymbol{\Sigma}_i)}{\sum_{l=1}^{k} \pi_l \mathcal{N}(\mathbf{x}_j | \boldsymbol{\mu}_l, \boldsymbol{\Sigma}_l)}
+		      $$
+		\item \textbf{Maximization Step (M-step):} Update the parameters ($\boldsymbol{\mu}_i, \boldsymbol{\Sigma}_i, \pi_i$) to maximize the likelihood of the observed data, using the responsibilities computed in the E-step:
+		      $$
+			      N_i = \sum_{j=1}^n \gamma_{ji}
+		      $$
+		      $$
+			      \boldsymbol{\mu}_i^{\text{new}} = \frac{1}{N_i} \sum_{j=1}^n \gamma_{ji} \mathbf{x}_j
+		      $$
+		      $$
+			      \boldsymbol{\Sigma}_i^{\text{new}} = \frac{1}{N_i} \sum_{j=1}^n \gamma_{ji} (\mathbf{x}_j - \boldsymbol{\mu}_i^{\text{new}})(\mathbf{x}_j - \boldsymbol{\mu}_i^{\text{new}})^{\top}
+		      $$
+		      $$
+			      \pi_i^{\text{new}} = \frac{N_i}{n}
+		      $$
+		\item Repeat E-step and M-step until the parameters converge (e.g., the change in log-likelihood falls below a threshold).
+	\end{enumerate}
 
 
 \end{multicols}
