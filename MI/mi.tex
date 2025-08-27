@@ -1412,6 +1412,38 @@
 	\]
 	(Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
 
+    \textbf{(Poseben primer: simetrične matrike).}
+    Če je matrika \( A \in \mathbb{R}^{n \times n} \) simetrična (\( A = A^T \)), jo lahko zapišemo s pomočjo
+    \emph{spekralnega razcepa}
+    \[
+    	A = V \Lambda V^T,
+    \]
+    kjer je \( V \) ortogonalna matrika lastnih vektorjev in \( \Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_n) \) diagonalna matrika lastnih vrednosti.
+    
+    \begin{itemize}
+    	\item Pri simetrični matriki se SVD poenostavi, saj so singularne vrednosti natanko
+    	\[
+    		\sigma_i = |\lambda_i|,
+    	\]
+    	in levi ter desni singularni vektorji sovpadajo z lastnimi vektorji matrike.
+    	\item Zato lahko \( A \) zapišemo kot
+    	\[
+    		A = \sum_{i=1}^n \lambda_i v^{(i)} (v^{(i)})^T,
+    	\]
+    	kjer so \( v^{(i)} \) ortonormirani lastni vektorji.
+    	\item Najboljša aproksimacija ranga \( k \) v Frobeniusovi normi je dobljena tako,
+    	da ohranimo tiste lastne vrednosti z največjo absolutno vrednostjo in njihove lastne vektorje:
+    	\[
+    		A_k = \sum_{i=1}^k \lambda_{(i)} v^{(i)} (v^{(i)})^T,
+    	\]
+    	kjer so \( \lambda_{(i)} \) urejene po absolutni vrednosti.
+    \end{itemize}
+    
+    Tako velja:
+    \[
+    	\| A - A_k \|_F = \sqrt{\sum_{i=k+1}^n \lambda_{(i)}^2}.
+    \]
+
 	\subsection{Kroneckerjev produkt}
 
 	Kroneckerjev produkt (tudi tenzorski produkt) matrik \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{p \times q} \) je \( mp \times nq \) matrika
