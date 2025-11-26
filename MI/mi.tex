@@ -1301,50 +1301,32 @@
 	\[ A = QZQ^{-1} = QZQ^T. \]
 
 	\textbf{Postopek za izračun Schurovega razcepa:}
-
-	Firstly, pick an eigenvalue and corresponding eigenvector:
-	\[
-		Aq_1 = \lambda_1 q_1 \quad \text{with} \quad q_1^Tq_1=1
-	\]
-	Then, find all orthogonal vectors such that you compose a matrix \( Q = [q_1 \dots q_n] \).
-
-	Then:
-	\[
-		T = Q^TAQ
-	\]
-	Compute:
-	\[
-		T = \begin{bmatrix}
-			\lambda_1 & b^T \\
-			0         & A_2
-		\end{bmatrix}
-	\]
-	(not upper triangular)
-
-	Continue with \( A_2 \). Final schur:
-	\[
-		Q = \begin{bmatrix}
-			q_1 & 0   \\
-			0   & Q_2
-		\end{bmatrix}
-	\]
-	\[
-		\vdots
-	\]
-	\[
-		Q = \begin{bmatrix}
-			q_1    & 0      & \dots  & 0       \\
-			0      & q_2    & \dots  & 0       \\
-			\vdots & \vdots & \ddots & \vdots  \\
-			0      & 0      & \dots  & q_{n-1}
-		\end{bmatrix}
-	\]
-
-	We get:
-	\[
-		A = QZQ^T
-	\]
-	Where \( Z \) is the upper triangular matrix.
+    Naj bo \(A \in \mathbb{R}^{n \times n}\) matrika z lastnimi
+    vrednostmi \(\lambda_1, \ldots, \lambda_n\). Potem obstajata ortogonalna matrika
+    \(Q\) in zgornje trikotna matrika \(Z\) z diagonalnimi elementi
+    \(\lambda_1, \ldots, \lambda_n\), da velja
+    \[
+      A = Q Z Q^{T}.
+    \]
+    
+    \textbf{Ponavljaj:}
+    \begin{enumerate}
+      \item Najdemo normirani lastni vektor \(q_1\):
+            \(Aq_1 = \lambda_1 q_1\), \(q_1^{T}q_1 = 1\), ter ortonormirano
+            bazo \(\{q_2,\ldots,q_n\}\) pravokotnega komplementa.
+            Sestavimo \(Q_1 = [q_1 \ q_2 \ \dots \ q_n]\).
+      \item Izračunamo
+            \[
+              T_1 = Q_1^{T} A Q_1 =
+              \begin{bmatrix}
+                \lambda_1 & b^{T} \\
+                0         & A_2
+              \end{bmatrix}.
+            \]
+      \item Postopek ponavljamo na bloku \(A_2\) (in naslednjih blokih), dokler
+            ne dobimo zgornje trikotne matrike \(Z\) in ortogonalne matrike \(Q\),
+            za kateri velja \(A = Q Z Q^{T}\).
+    \end{enumerate}
 
 
 	\begin{itemize}
@@ -1491,7 +1473,7 @@
 	kjer \( A \in \mathbb{R}^{n \times n} \), \( B \in \mathbb{R}^{m \times m} \).
 
 	\(\text{Če so } \lambda_1, \ldots, \lambda_n \) lastne vrednosti \( A \) za lastne vektorje \( u_1, \ldots, u_n \) in \( \mu_1, \ldots, \mu_m \) lastne vrednosti \( B \) za lastne vektorje \( v_1, \ldots, v_n \), potem so
-	\[ \lambda_i \cdot \mu_j, \quad i = 1, \ldots, n; j = 1, \ldots, m \]
+	\[ \lambda_i + \mu_j, \quad i = 1, \ldots, n; j = 1, \ldots, m \]
 	lastne vrednosti za \( A \oplus B \), lastni vektorji pa so
 	\[ u_i \otimes v_j \]
 	za \( i \) in \( j \). Lastni vektorji \( A \oplus B \) so enaki \( u_i \otimes v_j \).
