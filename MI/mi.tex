@@ -4,6 +4,7 @@
 \usepackage{multicol}
 \usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage[inline]{enumitem}
 
 
 \begin{document}
@@ -1384,7 +1385,7 @@
 		\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
 	\]
 
-	\textbf{(Eckart, Young).} Naj bo \( A = U\Sigma V^T \) razcep singularnih vrednosti matrike \( A \in \mathbb{R}^{m \times n}, m \geq n \), kjer \( U = [u^{(1)} \ldots u^{(m)}] \) in \( \mathbb{R}^{m \times m} \) in \( V = [v^{(1)} \ldots v^{(n)}] \) in \( \mathbb{R}^{n \times n} \). Potem je matrika \( A_k \) iz \( \mathbb{R}^{m \times n} \) ranga \( k \), \( k \leq n \), ki je med vsemi matrikami ranga \( k \) v Frobeniusovi normi najbližje matriki \( A \), enaka
+	\textbf{Eckart, Young:} Naj bo \( A = U\Sigma V^T \) razcep singularnih vrednosti matrike \( A \in \mathbb{R}^{m \times n}, m \geq n \), kjer \( U = [u^{(1)} \ldots u^{(m)}] \) in \( \mathbb{R}^{m \times m} \) in \( V = [v^{(1)} \ldots v^{(n)}] \) in \( \mathbb{R}^{n \times n} \). Potem je matrika \( A_k \) iz \( \mathbb{R}^{m \times n} \) ranga \( k \), \( k \leq n \), ki je med vsemi matrikami ranga \( k \) v Frobeniusovi normi najbližje matriki \( A \), enaka
 	\[
 		A_k = \sigma_1 u^{(1)}(v^{(1)})^T + \sigma_2 u^{(2)}(v^{(2)})^T + \ldots + \sigma_k u^{(k)}(v^{(k)})^T
 	\]
@@ -1394,7 +1395,7 @@
 	\]
 	(Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
 
-    \textbf{(Poseben primer: simetrične matrike).}
+    \textbf{Poseben primer; simetrične matrike: }
     Če je matrika \( A \in \mathbb{R}^{n \times n} \) simetrična (\( A = A^T \)), jo lahko zapišemo s pomočjo
     \emph{spekralnega razcepa}
     \[
@@ -1517,8 +1518,8 @@
 		\item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
 		\item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
 		\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako pozitivne kot negativne lastne vrednosti.
+        \item \( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
 	\end{itemize}
-	\( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
 
 	\textbf{(Sylvester)}. Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
 
@@ -1554,7 +1555,6 @@
 		\item \( A \) je ND \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
 		\item \( A \) je nedefinirana \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
 	\end{itemize}
-	\( A \) je PD \( \Leftrightarrow A \) je PSD in \( A \) obrnljiva.
 
 	\textbf{(Razcep Choleskega)}. Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
 	\[ A = LL^T, \]
@@ -1759,28 +1759,30 @@
 		\item \( \text{dim}(\text{ker}(\tau)) + \text{dim}(\text{im}(\tau)) = \text{dim}(V) \).
 	\end{enumerate}
 
-	\textbf{Posledica:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\text{dim} V = \text{dim} U = n\) in naj bo \( A \) neka matrika, ki pripada \( \tau \). Naslednje trditve so ekvivalentne:
-	\begin{enumerate}
-		\item \( \tau \) je bijektivna.
-		\item \( \tau \) je injektivna.
-		\item \( \tau \) je surjektivna.
-		\item \( A \) je obrnljiva.
-		\item \( \text{ker} \tau = \{0\} \).
-		\item \( N(A) = \{0\} \).
-		\item \( \text{im} \tau = U \).
-		\item \( C(A) = \mathbb{R}^n \).
-		\item Rang matrike \( A \) je \( n \).
-		\item Vrstice matrike \( A \) so linearno neodvisne.
-		\item Vrstice matrike \( A \) razpenjajo \( \mathbb{R}^n \).
-		\item Vrstice matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
-		\item Stolpci matrike \( A \) so linearno neodvisni.
-		\item Stolpci matrike \( A \) razpenjajo \( \mathbb{R}^n \).
-		\item Stolpci matrike \( A \) tvorijo bazo \( \mathbb{R}^n \).
-		\item \( \det A \neq 0 \).
-		\item Homogeni sistem enačb \( Ax = 0 \) ima le trivialno rešitev.
-		\item Sistem enačb \( Ax = b \) ima rešitev za vsak \( b \in \mathbb{R}^n \).
-	\end{enumerate}
+    \textbf{Posledica:}
 
+    Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\dim V = \dim U = n\) in
+    naj bo \(A\) neka matrika, ki pripada \(\tau\). Naslednje trditve so ekvivalentne:
+    \begin{enumerate*}[label=(\arabic*)~, itemjoin={;\ }, itemjoin*={;\ }]
+      \item \( \tau \) je bijektivna
+      \item \( \tau \) je injektivna
+      \item \( \tau \) je surjektivna
+      \item \( A \) je obrnljiva
+      \item \( \ker \tau = \{0\} \)
+      \item \( N(A) = \{0\} \)
+      \item \( \operatorname{im} \tau = U \)
+      \item \( C(A) = \mathbb{R}^n \)
+      \item rang matrike \(A\) je \(n\)
+      \item vrstice matrike \(A\) so linearno neodvisne
+      \item vrstice matrike \(A\) razpenjajo \(\mathbb{R}^n\)
+      \item vrstice matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
+      \item stolpci matrike \(A\) so linearno neodvisni
+      \item stolpci matrike \(A\) razpenjajo \(\mathbb{R}^n\)
+      \item stolpci matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
+      \item \( \det A \neq 0 \)
+      \item homogeni sistem \(Ax = 0\) ima le trivialno rešitev
+      \item sistem \(Ax = b\) ima rešitev za vsak \(b \in \mathbb{R}^n\)
+    \end{enumerate*}.
 	\section{\underline{Analiza}}
 
 	\subsection{Funkcije več spremenljivk}
@@ -2175,8 +2177,6 @@
 			 & \lambda_i^* g_i(\vec{x}^*) = 0 \quad za \ i = 1,2,\ldots,m.
 		\end{aligned}
 	\]
-	(KKT)
-
 
 
 	\subsection{Dodatek 2: Ponovitev analize}
