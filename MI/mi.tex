@@ -1302,32 +1302,32 @@
 	\[ A = QZQ^{-1} = QZQ^T. \]
 
 	\textbf{Postopek za izračun Schurovega razcepa:}
-    Naj bo \(A \in \mathbb{R}^{n \times n}\) matrika z lastnimi
-    vrednostmi \(\lambda_1, \ldots, \lambda_n\). Potem obstajata ortogonalna matrika
-    \(Q\) in zgornje trikotna matrika \(Z\) z diagonalnimi elementi
-    \(\lambda_1, \ldots, \lambda_n\), da velja
-    \[
-      A = Q Z Q^{T}.
-    \]
-    
-    \textbf{Ponavljaj:}
-    \begin{enumerate}
-      \item Najdemo normirani lastni vektor \(q_1\):
-            \(Aq_1 = \lambda_1 q_1\), \(q_1^{T}q_1 = 1\), ter ortonormirano
-            bazo \(\{q_2,\ldots,q_n\}\) pravokotnega komplementa.
-            Sestavimo \(Q_1 = [q_1 \ q_2 \ \dots \ q_n]\).
-      \item Izračunamo
-            \[
-              T_1 = Q_1^{T} A Q_1 =
-              \begin{bmatrix}
-                \lambda_1 & b^{T} \\
-                0         & A_2
-              \end{bmatrix}.
-            \]
-      \item Postopek ponavljamo na bloku \(A_2\) (in naslednjih blokih), dokler
-            ne dobimo zgornje trikotne matrike \(Z\) in ortogonalne matrike \(Q\),
-            za kateri velja \(A = Q Z Q^{T}\).
-    \end{enumerate}
+	Naj bo \(A \in \mathbb{R}^{n \times n}\) matrika z lastnimi
+	vrednostmi \(\lambda_1, \ldots, \lambda_n\). Potem obstajata ortogonalna matrika
+	\(Q\) in zgornje trikotna matrika \(Z\) z diagonalnimi elementi
+	\(\lambda_1, \ldots, \lambda_n\), da velja
+	\[
+		A = Q Z Q^{T}.
+	\]
+
+	\textbf{Ponavljaj:}
+	\begin{enumerate}
+		\item Najdemo normirani lastni vektor \(q_1\):
+		      \(Aq_1 = \lambda_1 q_1\), \(q_1^{T}q_1 = 1\), ter ortonormirano
+		      bazo \(\{q_2,\ldots,q_n\}\) pravokotnega komplementa.
+		      Sestavimo \(Q_1 = [q_1 \ q_2 \ \dots \ q_n]\).
+		\item Izračunamo
+		      \[
+			      T_1 = Q_1^{T} A Q_1 =
+			      \begin{bmatrix}
+				      \lambda_1 & b^{T} \\
+				      0         & A_2
+			      \end{bmatrix}.
+		      \]
+		\item Postopek ponavljamo na bloku \(A_2\) (in naslednjih blokih), dokler
+		      ne dobimo zgornje trikotne matrike \(Z\) in ortogonalne matrike \(Q\),
+		      za kateri velja \(A = Q Z Q^{T}\).
+	\end{enumerate}
 
 
 	\begin{itemize}
@@ -1347,7 +1347,7 @@
 		\item \textbf{Posledica (Cayley-Hamilton):} Če je \( \Delta_A(x) = \text{det}(A - xI_n) \) karakteristični polinom matrike \( A \), potem velja \( \Delta_A(A) = 0 \).
 	\end{itemize}
 
-	\subsection{Frobeinusova norma}
+	\subsection{Vektorski produkt}
 
 	Za matriki \( A \in \mathbb{R}^{m \times n} \) in \( B \in \mathbb{R}^{m \times n} \) definiramo
 	\[
@@ -1379,11 +1379,6 @@
 		\|A\|_F^2 = \sum_{i=1}^{n} \sum_{j=1}^{m} a_{ij}^2 = \sum_{i=1}^{\text{min}(m,n)} \sigma_i^2.
 	\]
 
-	Posledica:
-
-	\[
-		\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
-	\]
 
 	\textbf{Eckart, Young:} Naj bo \( A = U\Sigma V^T \) razcep singularnih vrednosti matrike \( A \in \mathbb{R}^{m \times n}, m \geq n \), kjer \( U = [u^{(1)} \ldots u^{(m)}] \) in \( \mathbb{R}^{m \times m} \) in \( V = [v^{(1)} \ldots v^{(n)}] \) in \( \mathbb{R}^{n \times n} \). Potem je matrika \( A_k \) iz \( \mathbb{R}^{m \times n} \) ranga \( k \), \( k \leq n \), ki je med vsemi matrikami ranga \( k \) v Frobeniusovi normi najbližje matriki \( A \), enaka
 	\[
@@ -1395,37 +1390,41 @@
 	\]
 	(Velja torej \( \|A - A_k\|_F \leq \|A - X\|_F \) za \( \|A - X\|_F \) za vse matrike \( X \in \mathbb{R}^{m \times n} \), za katere velja \( \text{rank}(X) = k \).)
 
-    \textbf{Poseben primer; simetrične matrike: }
-    Če je matrika \( A \in \mathbb{R}^{n \times n} \) simetrična (\( A = A^T \)), jo lahko zapišemo s pomočjo
-    \emph{spekralnega razcepa}
-    \[
-    	A = V \Lambda V^T,
-    \]
-    kjer je \( V \) ortogonalna matrika lastnih vektorjev in \( \Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_n) \) diagonalna matrika lastnih vrednosti.
-    
-    \begin{itemize}
-    	\item Pri simetrični matriki se SVD poenostavi, saj so singularne vrednosti natanko
-    	\[
-    		\sigma_i = |\lambda_i|,
-    	\]
-    	in levi ter desni singularni vektorji sovpadajo z lastnimi vektorji matrike.
-    	\item Zato lahko \( A \) zapišemo kot
-    	\[
-    		A = \sum_{i=1}^n \lambda_i v^{(i)} (v^{(i)})^T,
-    	\]
-    	kjer so \( v^{(i)} \) ortonormirani lastni vektorji.
-    	\item Najboljša aproksimacija ranga \( k \) v Frobeniusovi normi je dobljena tako,
-    	da ohranimo tiste lastne vrednosti z največjo absolutno vrednostjo in njihove lastne vektorje:
-    	\[
-    		A_k = \sum_{i=1}^k \lambda_{(i)} v^{(i)} (v^{(i)})^T,
-    	\]
-    	kjer so \( \lambda_{(i)} \) urejene po absolutni vrednosti.
-    \end{itemize}
-    
-    Tako velja:
-    \[
-    	\| A - A_k \|_F = \sqrt{\sum_{i=k+1}^n \lambda_{(i)}^2}.
-    \]
+	\textbf{Poseben primer; simetrične matrike: }
+	Če je matrika \( A \in \mathbb{R}^{n \times n} \) simetrična (\( A = A^T \)), jo lahko zapišemo s pomočjo
+	\emph{spekralnega razcepa}
+	\[
+		A = V \Lambda V^T,
+	\]
+	kjer je \( V \) ortogonalna matrika lastnih vektorjev in \( \Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_n) \) diagonalna matrika lastnih vrednosti.
+
+	\begin{itemize}
+		\item Pri simetrični matriki se SVD poenostavi, saj so singularne vrednosti natanko
+		      \[
+			      \sigma_i = |\lambda_i|,
+		      \]
+		      in levi ter desni singularni vektorji sovpadajo z lastnimi vektorji matrike.
+	            Posledica:
+
+	            \[
+	            	\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
+	            \]
+		\item Zato lahko \( A \) zapišemo kot
+		      \[
+			      A = \sum_{i=1}^n \lambda_i v^{(i)} (v^{(i)})^T,
+		      \]
+		      kjer so \( v^{(i)} \) ortonormirani lastni vektorji.
+		\item Najboljša aproksimacija ranga \( k \) v Frobeniusovi normi je dobljena tako,
+		      da ohranimo tiste lastne vrednosti z največjo absolutno vrednostjo in njihove lastne vektorje:
+		      \[
+			      A_k = \sum_{i=1}^k \lambda_{(i)} v^{(i)} (v^{(i)})^T,
+		      \]
+	\end{itemize}
+
+	Tako velja:
+	\[
+		\| A - A_k \|_F = \sqrt{\sum_{i=k+1}^n \lambda_{(i)}^2}.
+	\]
 
 	\subsection{Kroneckerjev produkt}
 
@@ -1493,6 +1492,12 @@
 	\]
 	vec je preslikava iz \( \mathbb{R}^{m \times n} \) v \( \mathbb{R}^{mn} \).
 
+    Za vektorja $\vec{a} \in \mathbb{R}^{n}, \vec{b} \in \mathbb{R}^{n} $ velja:
+
+    \[
+        \text{vec}(\vec{a} \vec{b}^{T}) =  \vec{b} \otimes \vec{a}
+    \]
+
 	Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{n \times p} \) in \( C \in \mathbb{R}^{p \times r} \) velja:
 	\[
 		\text{vec}(ABC) = (C^T \otimes A)\text{vec}(B).
@@ -1518,7 +1523,7 @@
 		\item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
 		\item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
 		\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako pozitivne kot negativne lastne vrednosti.
-        \item \( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
+		\item \( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
 	\end{itemize}
 
 	\textbf{(Sylvester)}. Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
@@ -1759,30 +1764,30 @@
 		\item \( \text{dim}(\text{ker}(\tau)) + \text{dim}(\text{im}(\tau)) = \text{dim}(V) \).
 	\end{enumerate}
 
-    \textbf{Posledica:}
+	\textbf{Posledica:}
 
-    Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\dim V = \dim U = n\) in
-    naj bo \(A\) neka matrika, ki pripada \(\tau\). Naslednje trditve so ekvivalentne:
-    \begin{enumerate*}[label=(\arabic*)~, itemjoin={;\ }, itemjoin*={;\ }]
-      \item \( \tau \) je bijektivna
-      \item \( \tau \) je injektivna
-      \item \( \tau \) je surjektivna
-      \item \( A \) je obrnljiva
-      \item \( \ker \tau = \{0\} \)
-      \item \( N(A) = \{0\} \)
-      \item \( \operatorname{im} \tau = U \)
-      \item \( C(A) = \mathbb{R}^n \)
-      \item rang matrike \(A\) je \(n\)
-      \item vrstice matrike \(A\) so linearno neodvisne
-      \item vrstice matrike \(A\) razpenjajo \(\mathbb{R}^n\)
-      \item vrstice matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
-      \item stolpci matrike \(A\) so linearno neodvisni
-      \item stolpci matrike \(A\) razpenjajo \(\mathbb{R}^n\)
-      \item stolpci matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
-      \item \( \det A \neq 0 \)
-      \item homogeni sistem \(Ax = 0\) ima le trivialno rešitev
-      \item sistem \(Ax = b\) ima rešitev za vsak \(b \in \mathbb{R}^n\)
-    \end{enumerate*}.
+	Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\dim V = \dim U = n\) in
+	naj bo \(A\) neka matrika, ki pripada \(\tau\). Naslednje trditve so ekvivalentne:
+	\begin{enumerate*}[label=(\arabic*)~, itemjoin={;\ }, itemjoin*={;\ }]
+		\item \( \tau \) je bijektivna
+		\item \( \tau \) je injektivna
+		\item \( \tau \) je surjektivna
+		\item \( A \) je obrnljiva
+		\item \( \ker \tau = \{0\} \)
+		\item \( N(A) = \{0\} \)
+		\item \( \operatorname{im} \tau = U \)
+		\item \( C(A) = \mathbb{R}^n \)
+		\item rang matrike \(A\) je \(n\)
+		\item vrstice matrike \(A\) so linearno neodvisne
+		\item vrstice matrike \(A\) razpenjajo \(\mathbb{R}^n\)
+		\item vrstice matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
+		\item stolpci matrike \(A\) so linearno neodvisni
+		\item stolpci matrike \(A\) razpenjajo \(\mathbb{R}^n\)
+		\item stolpci matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
+		\item \( \det A \neq 0 \)
+		\item homogeni sistem \(Ax = 0\) ima le trivialno rešitev
+		\item sistem \(Ax = b\) ima rešitev za vsak \(b \in \mathbb{R}^n\)
+	\end{enumerate*}.
 	\section{\underline{Analiza}}
 
 	\subsection{Funkcije več spremenljivk}
