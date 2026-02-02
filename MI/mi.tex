@@ -108,7 +108,7 @@
 	\begin{itemize}
 		\item $\vec{x} \cdot \vec{y} = \vec{y} \cdot \vec{x}$ (komutativnost)
 		\item $\vec{x} \cdot (\vec{y} + \vec{z}) = \vec{x} \cdot \vec{y} + \vec{x} \cdot \vec{z}$ (aditivnost)
-		\item $\vec{x} \cdot (a \vec{y}) = a(\vec{x} \cdot \vec{y}) = (a \vec{x}) \cdot \vec{y}$ (homogenost)
+		\item $\vec{x} \cdot (\alpha \vec{y}) = \alpha(\vec{x} \cdot \vec{y}) = (\alpha \vec{x}) \cdot \vec{y}$ (homogenost)
 		\item $\forall \vec{x}$ \textit{velja} $\vec{x} \cdot \vec{x} \geq 0$
 	\end{itemize}
 
@@ -280,7 +280,7 @@
 	\begin{itemize}
 		\item $A + B = B + A$ (komutativnost)
 		\item $(A + B) + C = A + (B + C)$ (asociativnost)
-		\item $a(A + B) = aA + aB$ (mnozenje s skalarjem)
+		\item $\alpha(A + B) = \alpha A + \alpha B$ (mnozenje s skalarjem)
 		\item $A + (-A) = 0$
 		\item $x(yA) = (xy)A$ \textit{in} $1 \cdot A = A$
 	\end{itemize}
@@ -309,7 +309,7 @@
 	\begin{itemize}
 		\item $(A + B)^{T} = A^{T} + B^{T}$
 		\item $(A \cdot B)^{T} = B^{T} \cdot A^{T}$
-		\item $(xA)^{T} = xA^{T}$
+		\item $(\alpha A)^{T} = \alpha A^{T}$
 		\item $(A^{T})^{T} = A$
 	\end{itemize}
 
@@ -391,7 +391,7 @@
 	\textbf{Lastnosti matricnega produkta}
 	\begin{itemize}
 		\item $AB \neq BA$ (!komutativnost)
-		\item $(xA)B = x(AB) = A(xB)$ (homogenost)
+		\item $(\alpha A)B = \alpha (AB) = A( \alpha B)$ (homogenost)
 		\item $C(A + B) = CA + CB$ (distributivnost)
 		\item $A(BC) = (AB)C$ (asociativnost)
 		\item $(AB)^{T} = B^{T}A^{T}$
@@ -1612,7 +1612,7 @@
 				0       & L_n
 			\end{array} \right]
 	\]
-
+    
 	\subsection{Vektorski prostori}
 
 	\textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
@@ -2063,11 +2063,12 @@
 		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
 	\end{enumerate}
 
-
-	\subsubsection{Izrek}
-	Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna natanko tedaj,
-	ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) pozitivno semidefinitna matrika na \( D \), in je konkavna natanko tedaj,
-	ko je \( \frac{\partial^2 f}{\partial \tilde{x}^2} \) negativno semidefinitna matrika na \( D \).
+    \subsubsection{Izrek}
+    Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je:
+    \begin{itemize}
+        \item \textbf{konveksna} ($\cup$) natanko tedaj, ko je \( \nabla^2 f(x) \) pozitivno semidefinitna matrika na \( D \),
+        \item \textbf{konkavna} ($\cap$) natanko tedaj, ko je \( \nabla^2 f(x) \) negativno semidefinitna matrika na \( D \).
+    \end{itemize}
 
 	\subsubsection{Prirejene funckije}
 
