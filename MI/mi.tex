@@ -2064,10 +2064,12 @@
 	\end{enumerate}
 
 	\subsubsection{Izrek}
-	Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je:
+	Naj bo $D \subseteq \mathbb{R}^n$ \emph{konveksna} množica in naj bo $f: D \to \mathbb{R}$ dvakrat zvezno odvedljiva. Potem velja:
 	\begin{itemize}
-		\item \textbf{konveksna} ($\cup$) natanko tedaj, ko je \( \nabla^2 f(x) \) pozitivno semidefinitna matrika na \( D \),
-		\item \textbf{konkavna} ($\cap$) natanko tedaj, ko je \( \nabla^2 f(x) \) negativno semidefinitna matrika na \( D \).
+		\item $f$ je \textbf{konveksna} ($\cup$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{pozitivno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \succeq 0$ za vsak $x \in D$,
+		      ter je \textbf{strogo konveksna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{pozitivno definitna} na $D$, tj.\ $\nabla^2 f(x) \succ 0$ za vsak $x \in D$;
+		\item $f$ je \textbf{konkavna} ($\cap$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \preceq 0$ za vsak $x \in D$,
+		      ter je \textbf{strogo konkavna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno definitna} na $D$, tj.\ $\nabla^2 f(x) \prec 0$ za vsak $x \in D$.
 	\end{itemize}
 
 	\subsection{Prirejene funkcije}
@@ -2086,7 +2088,9 @@
 	Naj bo \(D_f \subseteq \mathbb{R}^n\) domena funkcije \(f\). Definirajmo še množice
 	\[
 		D_{g_i} = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) = 0 \right\} \quad (i=1,\ldots,m),
-		\qquad
+	\]
+
+	\[
 		D_{h_j} = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) \le 0 \right\} \quad (j=1,\ldots,r),
 	\]
 	in
@@ -2168,18 +2172,20 @@
 		d^\star \le p^\star.
 	\]
 
-	V primeru, ko velja \(d^\star = p^\star\), morajo \(\vec{x}^\star\), \(\vec{\lambda}^\star\) in \(\vec{\mu}^\star\) zadostiti Karush--Kuhn--Tuckerjevim pogojem:
+	V primeru, ko velja \(d^\star = p^\star\), morajo \(\vec{x}^\star\), \(\vec{\lambda}^\star\) in \(\vec{\mu}^\star\) zadostiti Karush--Kuhn--Tuckerjevim (KKT) pogojem:
 	\[
 		\begin{aligned}
-			\nabla_{\vec{x}} L(\vec{x}^\star, \vec{\lambda}^\star, \vec{\mu}^\star) & = 0,                                     \\
+			\text{(\small{stacionarnost})}\quad
+			\nabla_{\vec{x}} L(\vec{x}^\star, \vec{\lambda}^\star, \vec{\mu}^\star) & = 0,                                     \\[2pt]
+			\text{(\small{primarna dopustnost})}\quad
 			g_i(\vec{x}^\star)                                                      & = 0 \quad \text{za } i = 1,2,\ldots,m,   \\
-			h_j(\vec{x}^\star)                                                      & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
-			\mu_j^\star                                                             & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
+			h_j(\vec{x}^\star)                                                      & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\[2pt]
+			\text{(\small{dualna dopustnost})}\quad
+			\mu_j^\star                                                             & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\[2pt]
+			\text{(\small{komplementarna utesnjenost})}\quad
 			\mu_j^\star\, h_j(\vec{x}^\star)                                        & = 0 \quad \text{za } j = 1,2,\ldots,r.
 		\end{aligned}
-		\tag{KKT}
 	\]
-
 	\textbf{Trditev 2.}
 	Naj bodo \(f, h_j : \mathbb{R}^n \to \mathbb{R}\) konveksne in dvakrat zvezno odvedljive funkcije ter
 	\[
