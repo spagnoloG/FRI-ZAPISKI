@@ -1015,6 +1015,27 @@
 	Ko racunamo determinanto produkta matirke s skalarjem $tA$, skalar $t$ izpostavimo iz vsake vrstice posebej,
 	zato je $det(tA) = t^{n}det(A)$, kjer je $n$ stevilo vrstic (ali stolpcev) determinante.
 
+	\textbf{(Razvoj po vrstici/stolpcu, predznaki kofaktorjev)}
+	Pri Laplaceovem razvoju velja
+	\[
+		\det(A)=\sum_{j=1}^n a_{ij}(-1)^{i+j}\det(A_{ij})
+		\quad\text{(razvoj po $i$-ti vrstici)}
+	\]
+	oziroma
+	\[
+		\det(A)=\sum_{i=1}^n a_{ij}(-1)^{i+j}\det(A_{ij})
+		\quad\text{(razvoj po $j$-tem stolpcu)},
+	\]
+	kjer $A_{ij}$ dobimo tako, da izbri\v{s}emo $i$-to vrstico in $j$-ti stolpec.
+	Predznaki se izmenjujejo kot \v{s}ahovnica:
+	\[
+		\begin{pmatrix}
+			+ & - & + \\
+			- & + & - \\
+			+ & - & +
+		\end{pmatrix}.
+	\]
+
 	\textbf{6.4} Matrika, ki ima dve enaki vrstici, ima determinanto enako 0.
 
 	\textbf{6.5} Ce v matriki od poljubne vrstice odstejemo mnogokratnik neke druge vrstice,
