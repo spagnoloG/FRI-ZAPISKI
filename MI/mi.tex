@@ -1404,11 +1404,11 @@
 			      \sigma_i = |\lambda_i|,
 		      \]
 		      in levi ter desni singularni vektorji sovpadajo z lastnimi vektorji matrike.
-	            Posledica:
+		      Posledica:
 
-	            \[
-	            	\|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
-	            \]
+		      \[
+			      \|A\|_F = \sqrt{\sum_{i=1}^{n} \lambda_i^2}
+		      \]
 		\item Zato lahko \( A \) zapišemo kot
 		      \[
 			      A = \sum_{i=1}^n \lambda_i v^{(i)} (v^{(i)})^T,
@@ -1492,11 +1492,11 @@
 	\]
 	vec je preslikava iz \( \mathbb{R}^{m \times n} \) v \( \mathbb{R}^{mn} \).
 
-    Za vektorja $\vec{a} \in \mathbb{R}^{n}, \vec{b} \in \mathbb{R}^{n} $ velja:
+	Za vektorja $\vec{a} \in \mathbb{R}^{n}, \vec{b} \in \mathbb{R}^{n} $ velja:
 
-    \[
-        \text{vec}(\vec{a} \vec{b}^{T}) =  \vec{b} \otimes \vec{a}
-    \]
+	\[
+		\text{vec}(\vec{a} \vec{b}^{T}) =  \vec{b} \otimes \vec{a}
+	\]
 
 	Za matrike \( A \in \mathbb{R}^{m \times n} \), \( B \in \mathbb{R}^{n \times p} \) in \( C \in \mathbb{R}^{p \times r} \) velja:
 	\[
@@ -1612,7 +1612,7 @@
 				0       & L_n
 			\end{array} \right]
 	\]
-    
+
 	\subsection{Vektorski prostori}
 
 	\textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
@@ -2063,50 +2063,45 @@
 		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
 	\end{enumerate}
 
-    \subsubsection{Izrek}
-    Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je:
-    \begin{itemize}
-        \item \textbf{konveksna} ($\cup$) natanko tedaj, ko je \( \nabla^2 f(x) \) pozitivno semidefinitna matrika na \( D \),
-        \item \textbf{konkavna} ($\cap$) natanko tedaj, ko je \( \nabla^2 f(x) \) negativno semidefinitna matrika na \( D \).
-    \end{itemize}
+	\subsubsection{Izrek}
+	Dvakrat zvezno odvedljiva funkcija \( f: D \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \) je:
+	\begin{itemize}
+		\item \textbf{konveksna} ($\cup$) natanko tedaj, ko je \( \nabla^2 f(x) \) pozitivno semidefinitna matrika na \( D \),
+		\item \textbf{konkavna} ($\cap$) natanko tedaj, ko je \( \nabla^2 f(x) \) negativno semidefinitna matrika na \( D \).
+	\end{itemize}
 
-	\subsubsection{Prirejene funckije}
+	\subsection{Prirejene funkcije}
 
-	Naj bodo \( f, g_i, h_j: \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev naslednjega problema
+	Naj bodo \( f, g_i, h_j : \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev problema
 	\[
-		\text{(P)}^* \quad \min f(\vec{x})
+		\text{(P$^\star$)} \quad \min_{\vec{x}} f(\vec{x})
 	\]
 	pri pogojih
 	\[
-		g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m
-	\]
-	\[
-		h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r.
-	\]
-
-	Definirajmo še množice \( D_g \), \( D_h \):
-	\[
-		D_g = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) \leq 0 \quad za \ i = 1,2,\ldots,m \right\},
+		g_i(\vec{x}) = 0 \quad \text{za } i = 1,2,\ldots,m,
+		\qquad
+		h_j(\vec{x}) \le 0 \quad \text{za } j = 1,2,\ldots,r.
 	\]
 
+	Naj bo \(D_f \subseteq \mathbb{R}^n\) domena funkcije \(f\). Definirajmo še množice
 	\[
-		D_h = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) = 0 \quad za \ j = 1,2,\ldots,r \right\}
+		D_{g_i} = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) = 0 \right\} \quad (i=1,\ldots,m),
+		\qquad
+		D_{h_j} = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) \le 0 \right\} \quad (j=1,\ldots,r),
 	\]
-
+	in
 	\[
-		D = D_f \cap \left( \bigcap_{i=1}^m D_g \right) \cap \left( \bigcap_{j=1}^r D_h \right).
+		D = D_f \cap \left( \bigcap_{i=1}^m D_{g_i} \right) \cap \left( \bigcap_{j=1}^r D_{h_j} \right).
 	\]
-
-	Sedaj lahko problem \( (P^*) \) zapišemo ekvivalentno kot
+	Sedaj lahko problem \(\text{(P$^\star$)}\) zapišemo ekvivalentno kot
 	\[
-		\text{(P)}^* \quad \min_{\vec{x} \in D} f(\vec{x}).
+		\text{(P$^\star$)} \quad \min_{\vec{x} \in D} f(\vec{x}).
 	\]
 
 	Definirajmo Lagrangevo funkcijo
 	\[
-		L(\vec{x}, \vec{\lambda}, \vec{\mu}) = f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x})
-	\]
-	\[
+		L(\vec{x}, \vec{\lambda}, \vec{\mu})
+		= f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x})
 		= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
 	\]
 	kjer je
@@ -2117,6 +2112,7 @@
 			\vdots       \\
 			g_m(\vec{x})
 		\end{pmatrix},
+		\qquad
 		\mathbf{H}(\vec{x}) =
 		\begin{pmatrix}
 			h_1(\vec{x}) \\
@@ -2131,6 +2127,7 @@
 			\vdots    \\
 			\lambda_m
 		\end{pmatrix},
+		\qquad
 		\vec{\mu} =
 		\begin{pmatrix}
 			\mu_1  \\
@@ -2141,49 +2138,56 @@
 
 	Funkcijo
 	\[
-		K(\vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} L(\vec{x}, \vec{\lambda}, \vec{\mu}) = \inf_{\vec{x} \in D} \{ f(\vec{x}) - \vec{\lambda}^T \mathbf{G}(\vec{x}) - \vec{\mu}^T \mathbf{H}(\vec{x}) \}
+		K(\vec{\lambda}, \vec{\mu})
+		= \inf_{\vec{x} \in D} L(\vec{x}, \vec{\lambda}, \vec{\mu})
+		= \inf_{\vec{x} \in D} \left\{ f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x}) \right\}
 	\]
-	imenujemo \textbf{prirejena funkcija} problema  $(P^*) $. Pri tem spremenljivke $ \vec{\lambda} $ in $ \vec{\mu} $ imenujemo \textbf{prirejene spremenljivke}. Opazimo:
-
+	imenujemo \textbf{prirejena funkcija} problema \(\text{(P$^\star$)}\). Pri tem spremenljivke \(\vec{\lambda}\) in \(\vec{\mu}\) imenujemo \textbf{prirejene spremenljivke}. Opazimo:
 	\begin{enumerate}
-		\item \( K(\vec{\lambda}, \vec{\mu}) \) je konkavna funkcija (neodvisno od lastnosti funkcij \( f, g_i, h_j \) originalnega problema).
-		\item Če je \( \lambda_i \leq 0 \) za \( i = 1,2,\ldots,m \), potem velja \( K(\vec{\lambda}, \vec{\mu}) \leq \min_{\vec{x} \in D} f(\vec{x}) \) za vse \( \vec{\lambda} \) ter vse \( \vec{\mu} \).
+		\item \(K(\vec{\lambda}, \vec{\mu})\) je konkavna funkcija.
+		\item Če je \(\mu_j \le 0\) za \(j = 1,2,\ldots,r\), potem velja
+		      \[
+			      K(\vec{\lambda}, \vec{\mu}) \le \min_{\vec{x} \in D} f(\vec{x})
+		      \]
+		      za vse \(\vec{\lambda}\) ter vse \(\vec{\mu} \le \vec{0}\).
 	\end{enumerate}
-
 
 	\textbf{Problem}
 	\[
-		\text{(D}^*\text{)} \quad \max_{\vec{x},\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
+		\text{(D$^\star$)} \quad \max_{\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
 	\]
-	pri pogojih
+	pri pogoju
 	\[
-		\lambda_i \leq 0 \quad za \ i = 1,2,\ldots,m
+		\mu_j \le 0 \quad \text{za } j = 1,2,\ldots,r
 	\]
-	imenujemo \textbf{prirejeni problem} problema \( (P^*) \).
+	imenujemo \textbf{prirejeni problem} problema \(\text{(P$^\star$)}\).
 
-	Označimo z \( \vec{x}^* \) vektor iz \( D \), ki reši problem \( (P^*) \) in \( \vec{\lambda}^* \), \( \vec{\mu}^* \) prirejene spremenljivke, ki rešita prirejeni problem \( (D^*) \). Naj bo torej \( p^* = f(\vec{x}^*) \) rešitev problema \( (P^*) \) in \( d^* = K(\vec{\lambda}^*, \vec{\mu}^*) \) rešitev problema \( (D^*) \). Potem iz (2) sledi
+	Označimo z \(\vec{x}^\star \in D\) rešitev problema \(\text{(P$^\star$)}\) ter z \((\vec{\lambda}^\star,\vec{\mu}^\star)\) rešitev problema \(\text{(D$^\star$)}\).
+	Naj bo \(p^\star = f(\vec{x}^\star)\) in \(d^\star = K(\vec{\lambda}^\star,\vec{\mu}^\star)\). Potem velja
 	\[
-		d^* \leq p^*.
+		d^\star \le p^\star.
 	\]
 
-	Če
-	\begin{itemize}
-		\item je \( (P^*) \) linearni program (t.j., \( f \) je linearna in \( h_j \) so afine funkcije), ali če
-		\item so \( f, g_i \) konveksne funkcije in \( h_j \) afine,
-	\end{itemize}
-	potem velja \( d^* = p^* \).
-
-	V primeru, ko je \( d^* = p^* \), sledi, da morajo \( \vec{x}^*, \vec{\lambda}^* \) in \( \vec{\mu}^* \) zadostiti Karush-Kuhn-Tuckerjevim pogojem:
+	V primeru, ko velja \(d^\star = p^\star\), morajo \(\vec{x}^\star\), \(\vec{\lambda}^\star\) in \(\vec{\mu}^\star\) zadostiti Karush--Kuhn--Tuckerjevim pogojem:
 	\[
 		\begin{aligned}
-			 & \frac{\partial L(\vec{x}^*, \vec{\lambda}^*, \vec{\mu}^*)}{\partial \vec{x}} = 0, \\
-			 & g_i(\vec{x}^*) \leq 0 \quad za \ i = 1,2,\ldots,m,                                \\
-			 & h_j(\vec{x}^*) = 0 \quad za \ j = 1,2,\ldots,r,                                   \\
-			 & \lambda_i^* \leq 0 \quad za \ i = 1,2,\ldots,m,                                   \\
-			 & \lambda_i^* g_i(\vec{x}^*) = 0 \quad za \ i = 1,2,\ldots,m.
+			\nabla_{\vec{x}} L(\vec{x}^\star, \vec{\lambda}^\star, \vec{\mu}^\star) & = 0,                                     \\
+			g_i(\vec{x}^\star)                                                      & = 0 \quad \text{za } i = 1,2,\ldots,m,   \\
+			h_j(\vec{x}^\star)                                                      & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
+			\mu_j^\star                                                             & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
+			\mu_j^\star\, h_j(\vec{x}^\star)                                        & = 0 \quad \text{za } j = 1,2,\ldots,r.
 		\end{aligned}
+		\tag{KKT}
 	\]
 
+	\textbf{Trditev 2.}
+	Naj bodo \(f, h_j : \mathbb{R}^n \to \mathbb{R}\) konveksne in dvakrat zvezno odvedljive funkcije ter
+	\[
+		\mathbf{G}(\vec{x}) = A\vec{x} - \vec{b}
+		\quad \text{za neko matriko } A \in \mathbb{R}^{m\times n} \text{ in vektor } \vec{b} \in \mathbb{R}^m.
+	\]
+	Če \((\vec{x}',\vec{\lambda}',\vec{\mu}')\) zadošča sistemu \(\text{(KKT)}\), potem je \(\vec{x}'\) rešitev problema \(\text{(P$^\star$)}\),
+	\((\vec{\lambda}',\vec{\mu}')\) rešitev problema \(\text{(D$^\star$)}\) in velja \(p^\star = d^\star\).
 
 	\subsection{Dodatek 2: Ponovitev analize}
 
