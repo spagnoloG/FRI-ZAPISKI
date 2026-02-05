@@ -1775,8 +1775,11 @@
 
 	\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava iz vektorskega prostora \( V \) v vektorski prostor \( U \).
 	\begin{enumerate}
-		\item \( \tau \) je injektivna natanko tedaj, ko je \( \ker \tau = \{0\} \).
-		\item \( \tau \) je surjektivna natanko tedaj, ko je \( \text{im} \tau = U \).
+		\item \( \tau \) je \textbf{injektivna} natanko tedaj, ko je \( \ker \tau = \{0\} \).
+		      Predpostavimo \( \tau(x_1)=\tau(x_2) \) in pokažemo \( x_1=x_2 \) (ekvivalentno: iz \( \tau(x)=0 \) sledi \( x=0 \), tj. \( \ker\tau=\{0\} \)).
+		\item \( \tau \) je \textbf{surjektivna} natanko tedaj, ko je \( \text{im} \tau = U \).
+		      Vzamemo poljuben \( y\in U \) in najdemo \( x\in V \), da velja \( \tau(x)=y \) (tj. \( U=\mathrm{im}\,\tau \)).
+		\item Če je \( \tau \) injektivna in surjektivna, potem je \textbf{bijektivna}.
 	\end{enumerate}
 
 	\textbf{Izrek:} Naj bo \( \tau: V \rightarrow U \) linearna preslikava in naj bo \( A = A_{\tau,B,C} \) matrika, ki pripada preslikavi \( \tau \). Potem je
@@ -2036,41 +2039,6 @@
 	Omenjeni pogoj ni zadosten. Nekatere kritične točke funkcije \( L \) so ekstremalne točke funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pod pogoji \( g_1(x) = g_2(x) = \ldots = g_m(x) = 0 \), ostale pa ne.
 
 
-	\subsubsection{Odvodi vektorskih funkcij}
-	Naj bo \( F: \mathbb{R}^n \rightarrow \mathbb{R}^m, F(x) =
-	\begin{bmatrix}
-		f_1(x) \\
-		f_2(x) \\
-		\vdots \\
-		f_m(x)
-	\end{bmatrix} \)
-	vektorska funkcija na spremenljivk x = \( (x_1, ..., x_n) \).
-
-	Spomnimo se, da je odvod vektorske funkcije \( F \) po vektorju spremenljivk \( \tilde{x} \) definiran kot
-
-	\[
-		\frac{\partial \tilde{F}}{\partial \tilde{x}} = J_F(\tilde{x}) =
-		\begin{bmatrix}
-			\frac{\partial f_1}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_1}{\partial x_n} (\tilde{x}) \\
-			\vdots                                        & \ddots & \vdots                                        \\
-			\frac{\partial f_m}{\partial x_1} (\tilde{x}) & \cdots & \frac{\partial f_m}{\partial x_n} (\tilde{x})
-		\end{bmatrix}
-	\]
-
-	Drugi odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) (tu m = 1) pa kot
-
-	\[
-		\frac{\partial^2 f}{\partial \tilde{x}^2} = \frac{\partial}{\partial \tilde{x}} \left( \frac{\partial f}{\partial \tilde{x}} \right)^T
-	\].
-
-	Funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
-
-	\[
-		f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y})
-	\]
-
-	za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
-
 	\subsubsection{Pravila za odvajanje vektorskih funkcij}
 
 	\begin{enumerate}
@@ -2092,6 +2060,13 @@
 		\item $f$ je \textbf{konkavna} ($\cap$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \preceq 0$ za vsak $x \in D$,
 		      ter je \textbf{strogo konkavna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno definitna} na $D$, tj.\ $\nabla^2 f(x) \prec 0$ za vsak $x \in D$.
 	\end{itemize}
+	\textbf{Alternavitvno}: funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
+
+	\[
+		f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y})
+	\]
+
+	za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
 
 	\subsection{Prirejene funkcije}
 
@@ -2197,13 +2172,13 @@
 	\[
 		\begin{aligned}
 			\text{(\small{stacionarnost})}\quad
-			\nabla_{\vec{x}} L(\vec{x}^\star, \vec{\lambda}^\star, \vec{\mu}^\star) & = 0,                                     \\[2pt]
-			\text{(\small{primarna dopustnost})}\quad
+			\nabla_{\vec{x}} L(\vec{x}^\star, \vec{\lambda}^\star, \vec{\mu}^\star) & = 0,                                     \\
+			\text{(\small{primalna dopustnost})}\quad
 			g_i(\vec{x}^\star)                                                      & = 0 \quad \text{za } i = 1,2,\ldots,m,   \\
-			h_j(\vec{x}^\star)                                                      & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\[2pt]
+			h_j(\vec{x}^\star)                                                      & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
 			\text{(\small{dualna dopustnost})}\quad
-			\mu_j^\star                                                             & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\[2pt]
-			\text{(\small{komplementarna utesnjenost})}\quad
+			\mu_j^\star                                                             & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
+			\text{(\small{komplementarna ohlapnost})}\quad
 			\mu_j^\star\, h_j(\vec{x}^\star)                                        & = 0 \quad \text{za } j = 1,2,\ldots,r.
 		\end{aligned}
 	\]
