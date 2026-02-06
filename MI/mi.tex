@@ -1313,6 +1313,12 @@
 		      pripadajo razlicnim lastnim vrednostim, so med seboj pravokotni.
 		\item Vsako realno simetricno matriko A lahko zapisemo kot $A = QDQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, D pa diagonalna matrika,
 		      ki ima na diagonali pripadajoce lastne vrednosti matrike A.
+		\item Za vsako matriko $A \in R^{n \times m}$ velja, da je $A^T A$ simetricna matrika:
+		      \begin{center}
+			      \begin{math}
+				      (A^T A)^T = A^T(A^T)^T = A^TA
+			      \end{math}
+		      \end{center}
 	\end{itemize}
 
 	\section{\underline{Napredna linearna algebra}}
@@ -1837,13 +1843,40 @@
 
 	\textbf{Nivojska krivulja} (ali nivojnica) funkcije $f = f(x, y)$ je množica vseh točk $(x, y) \in D_f$, za katere velja $f(x, y) = c$ za dano realno število $c \in \mathbb{R}$. Tako vsaka točka $(x, y) \in D_f$ leži na natanko eni nivojski krivulji in zato se definicijsko območje $D_f$ razsloji na nivojske krivulje.
 
+	\subsubsection{Tangenta premice in tangentna ravnina}
+
+	Iz definicije odvoda:
+	\[
+		f'(x_k)=\lim_{x\to x_k}\frac{f(x)-f(x_k)}{x-x_k}
+		\;\Rightarrow\;
+		f(x)\approx f(x_k)+f'(x_k)(x-x_k),
+	\]
+	zato je \textbf{enačba tangente} na graf \(y=f(x)\) v \(\bigl(x_k,f(x_k)\bigr)\)
+	\[
+		y = f(x_k) + f'(x_k)(x-x_k).
+	\]
+	Iz definicije parcialnih odvodov:
+	\[
+		f_{x_i}(a)=\lim_{t\to 0}\frac{f(a+t\vec e_i)-f(a)}{t},
+		\qquad i=1,\dots,n
+	\]
+	\[
+		\;\Rightarrow\;
+		f(x)\approx f(a)+\nabla f(a)^T(x-a),
+	\]
+	zato je \textbf{enačba tangentne hiper-ravnine} na graf \(z=f(x)\) v \(\bigl(a,f(a)\bigr)\)
+	\[
+		z = f(a) + \nabla f(a)^{T}(x-a)
+		= f(a) + \sum_{i=1}^{n} f_{x_i}(a)\,(x_i-a_i).
+	\]
+
+
 	\subsubsection{Parcialni odvod}
 	Parcialni odvod funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) v točki a = \( (a_1, a_2, \ldots, a_n) \) po spremenljivki \( x_i \) definiramo kot
 	\[
 		f_{x_i}(a) = \frac{\partial f}{\partial x_i}(a) = \lim_{h \to 0} \frac{f(a_1, \ldots, a_{i-1}, a_i + h, a_{i+1}, \ldots, a_n) - f(a)}{h}.
 	\]
 	Tako nam torej parcialni odvod funkcije \( f \) po \( x_i \), v točki a = \( (a_1, a_2, \ldots, a_n) \) pove relativno spremembo funkcisjke vrednosti pri zelo majhni spremembi spremenljivke \( x_i \), kjer so ostale spremenljivke fiksne.
-
 
 	\subsubsection{Gradient funkcije}
 
@@ -1910,6 +1943,35 @@
 	Absolutna vrednost determinante Jacobijeve matrike vektorske funkcije
 	\[ F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \]
 	pove, za kakšen faktor funkcija lokalno raztegne prostor.
+
+	\subsubsection{Pravila za odvajanje vektorskih funkcij}
+
+	\begin{enumerate}
+		\item \(\frac{\partial \tilde{x}}{\partial \tilde{x}} = I_n\)
+		\item Če je \( A \in \mathbb{R}^{m \times n} \), potem \( \frac{\partial A\tilde{x}}{\partial \tilde{x}} = A \).
+		\item Če je \( \tilde{a} \in \mathbb{R}^n \), potem \( \frac{\partial \tilde{a}^T\tilde{x}}{\partial \tilde{x}} = \tilde{a}^T \).
+		\item Če je \( A \in \mathbb{R}^{n \times n} \), potem \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = \tilde{x}^T(A + A^T) \).
+		\item Če je \( A \in \mathbb{R}^{n \times n} \) simetrična matrika, potem velja \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = 2\tilde{x}^T A \).
+		\item \( \frac{\partial \|\tilde{x}\|^2}{\partial \tilde{x}} = 2\tilde{x}^T \).
+		\item Če \( \tilde{z} = \tilde{z}(\tilde{x}) \) in \( \tilde{y} = \tilde{y}(\tilde{x}) \), potem \( \frac{\partial (\tilde{y}^T \tilde{z})}{\partial \tilde{x}} = \tilde{y}^T \frac{\partial \tilde{z}}{\partial \tilde{x}} + \tilde{z}^T \frac{\partial \tilde{y}}{\partial \tilde{x}} \).
+		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
+	\end{enumerate}
+
+	\subsubsection{Izrek}
+	Naj bo $D \subseteq \mathbb{R}^n$ \emph{konveksna} množica in naj bo $f: D \to \mathbb{R}$ dvakrat zvezno odvedljiva. Potem velja:
+	\begin{itemize}
+		\item $f$ je \textbf{konveksna} ($\cup$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{pozitivno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \succeq 0$ za vsak $x \in D$,
+		      ter je \textbf{strogo konveksna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{pozitivno definitna} na $D$, tj.\ $\nabla^2 f(x) \succ 0$ za vsak $x \in D$;
+		\item $f$ je \textbf{konkavna} ($\cap$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \preceq 0$ za vsak $x \in D$,
+		      ter je \textbf{strogo konkavna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno definitna} na $D$, tj.\ $\nabla^2 f(x) \prec 0$ za vsak $x \in D$.
+	\end{itemize}
+	\textbf{Alternavitvno}: funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
+
+	\[
+		f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y})
+	\]
+
+	za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
 
 	\subsection{Večkratni integrali}
 
@@ -1995,9 +2057,6 @@
 		      \]
 	\end{enumerate}
 
-
-	\subsection{Optimizacija}
-
 	\subsection{Klasifikacija Lokalnih ekstremov}
 
 	Naj bo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) ter a v definicijskem območju funkcije \( f \).
@@ -2039,35 +2098,6 @@
 	Omenjeni pogoj ni zadosten. Nekatere kritične točke funkcije \( L \) so ekstremalne točke funkcije \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) pod pogoji \( g_1(x) = g_2(x) = \ldots = g_m(x) = 0 \), ostale pa ne.
 
 
-	\subsubsection{Pravila za odvajanje vektorskih funkcij}
-
-	\begin{enumerate}
-		\item \(\frac{\partial \tilde{x}}{\partial \tilde{x}} = I_n\)
-		\item Če je \( A \in \mathbb{R}^{m \times n} \), potem \( \frac{\partial A\tilde{x}}{\partial \tilde{x}} = A \).
-		\item Če je \( \tilde{a} \in \mathbb{R}^n \), potem \( \frac{\partial \tilde{a}^T\tilde{x}}{\partial \tilde{x}} = \tilde{a}^T \).
-		\item Če je \( A \in \mathbb{R}^{n \times n} \), potem \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = \tilde{x}^T(A + A^T) \).
-		\item Če je \( A \in \mathbb{R}^{n \times n} \) simetrična matrika, potem velja \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = 2\tilde{x}^T A \).
-		\item \( \frac{\partial \|\tilde{x}\|^2}{\partial \tilde{x}} = 2\tilde{x}^T \).
-		\item Če \( \tilde{z} = \tilde{z}(\tilde{x}) \) in \( \tilde{y} = \tilde{y}(\tilde{x}) \), potem \( \frac{\partial (\tilde{y}^T \tilde{z})}{\partial \tilde{x}} = \tilde{y}^T \frac{\partial \tilde{z}}{\partial \tilde{x}} + \tilde{z}^T \frac{\partial \tilde{y}}{\partial \tilde{x}} \).
-		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
-	\end{enumerate}
-
-	\subsubsection{Izrek}
-	Naj bo $D \subseteq \mathbb{R}^n$ \emph{konveksna} množica in naj bo $f: D \to \mathbb{R}$ dvakrat zvezno odvedljiva. Potem velja:
-	\begin{itemize}
-		\item $f$ je \textbf{konveksna} ($\cup$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{pozitivno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \succeq 0$ za vsak $x \in D$,
-		      ter je \textbf{strogo konveksna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{pozitivno definitna} na $D$, tj.\ $\nabla^2 f(x) \succ 0$ za vsak $x \in D$;
-		\item $f$ je \textbf{konkavna} ($\cap$) natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno semidefinitna} na $D$, tj.\ $\nabla^2 f(x) \preceq 0$ za vsak $x \in D$,
-		      ter je \textbf{strogo konkavna} natanko tedaj, ko $\nabla^2 f(x)$ je \textbf{negativno definitna} na $D$, tj.\ $\nabla^2 f(x) \prec 0$ za vsak $x \in D$.
-	\end{itemize}
-	\textbf{Alternavitvno}: funkcija \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) je konveksna na \( D \), če velja
-
-	\[
-		f(t \tilde{x} + (1-t) \tilde{y}) \leq t f(\tilde{x}) + (1-t) f(\tilde{y})
-	\]
-
-	za vse \( \tilde{x}, \tilde{y} \in D \) in za vse \( t \in [0, 1] \). Funkcija \( f \) je konkavna na \( D \), če je funkcija \( -f \) konveksna na \( D \).
-
 	\subsection{Prirejene funkcije}
 
 	Naj bodo \( f, g_i, h_j : \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev problema
@@ -2102,6 +2132,8 @@
 	\[
 		L(\vec{x}, \vec{\lambda}, \vec{\mu})
 		= f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x})
+	\]
+	\[
 		= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
 	\]
 	kjer je
