@@ -17,7 +17,9 @@
 
 	\section{\underline{Vektorji in matrike}}
 
-	\textbf{1.1} Vektor je \textit{urejena n-terica stevil}, ki jo obicajno
+	\subsubsection{Vektor}
+
+	Vektor je \textit{urejena n-terica stevil}, ki jo obicajno
 	zapisemo kot stolpec\smallskip
 	\begin{center}
 		$\vec{x}$ =
@@ -28,7 +30,9 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{1.2} Produkt \textit{vektorja} $\vec{x}$ s skalarjem $\alpha$ je vektor
+	\subsubsection{Produkt vektorja s skalarjem}
+
+	Produkt \textit{vektorja} $\vec{x}$ s skalarjem $\alpha$ je vektor
 	\begin{center}
 		$\alpha \vec{x}$ =
 		$\alpha$
@@ -44,7 +48,9 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{1.3} Vsota \textit{vektorjev} $\vec{x}$ in $\vec{y}$ je vektor
+	\subsubsection{Vsota vektorjev}
+
+	Vsota \textit{vektorjev} $\vec{x}$ in $\vec{y}$ je vektor
 	\begin{center}
 		$\vec{x} + \vec{y} =
 			\begin{bmatrix}
@@ -65,26 +71,33 @@
 		$
 	\end{center}
 
-	\textbf{1.4} Nicelni vektor $\vec{0}$ je tisti vektor, za katerega
+	\subsubsection{Nicelni vektor}
+
+	Nicelni vektor $\vec{0}$ je tisti vektor, za katerega
 	je $\vec{a} + \vec{0} = \vec{0} + \vec{a} = \vec{a}$ za vsak vektor
 	$\vec{a}$. Vse komponente nicelnega vektorja so enake 0. Vsakemu vektorju
 	$\vec{a}$ priprada nasprotni vektor -$\vec{a}$, tako da je $\vec{a} + (-\vec{a}) = \vec{0}$
 	Razlika vektorjev $\vec{a}$ in $\vec{b}$ je vsota $\vec{a} + (-\vec{b})$ in jo
 	navadno zapisemo kot  $\vec{a} - \vec{b}$.
 
-	\textbf{Lastnosti vektorske vsote}
+	\subsubsection{Lastnosti vektorske vsote}
+
 	\begin{itemize}
 		\item $\vec{a} + \vec{b} = \vec{b} + \vec{a}$ (komutativnost)
 		\item $\vec{a} + (\vec{b} + \vec{c}) = (\vec{a} + \vec{b}) + \vec{c}$ (asociativnost)
 		\item $a(\vec{a} + \vec{b}) = a\vec{a} + a\vec{b}$ (distributivnost)
 	\end{itemize}
 
-	\textbf{1.5} Linearna kombinacija vektorjev $\vec{x}$ in $\vec{y}$ je vsota
+	\subsubsection{Linearna kombinacija}
+
+	Linearna kombinacija vektorjev $\vec{x}$ in $\vec{y}$ je vsota
 	\begin{center}
 		$a\vec{x} + b\vec{y}$
 	\end{center}
 
-	\textbf{1.6} Skalarni produkt vektorjev\\
+	\subsubsection{Skalarni produkt vektorjev}
+
+
 	\begin{center}
 		$\begin{bmatrix}
 				x_{1}  \\
@@ -104,7 +117,8 @@
 		$\vec{x} \cdot \vec{y} = ||\vec{x}|| ||\vec{y}|| \cos \phi$
 	\end{center}
 
-	\textbf{Lastnosti skalarnega produkta}
+	\subsubsection{Lastnosti skalarnega produkta}
+
 	\begin{itemize}
 		\item $\vec{x} \cdot \vec{y} = \vec{y} \cdot \vec{x}$ (komutativnost)
 		\item $\vec{x} \cdot (\vec{y} + \vec{z}) = \vec{x} \cdot \vec{y} + \vec{x} \cdot \vec{z}$ (aditivnost)
@@ -112,44 +126,59 @@
 		\item $\forall \vec{x}$ \textit{velja} $\vec{x} \cdot \vec{x} \geq 0$
 	\end{itemize}
 
-	\textbf{1.7} Dolzina vektorja $\vec{x}$ je
+	\subsubsection{Dolzina vektorja}
+
+	Dolzina vektorja $\vec{x}$ je
 	\begin{center}
 		$||\vec{x}|| = \sqrt{\vec{x} \cdot \vec{x}}$
 	\end{center}
 
-	\textbf{1.8} Enotski vektor je vektor z dolzino 1.
+	\subsubsection{Enotski vektor}
 
-	\textbf{1.9} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
+	Enotski vektor je vektor z dolzino 1.
+
+	\subsubsection{Cauchy-Schwarzova neenakost (osnovna oblika)}
+
+	Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
 	\begin{center}
 		$|\vec{u} \cdot \vec{v}| \leq ||\vec{u}||||\vec{v}||$,
 	\end{center}
 	enakost velja, v primeru, da sta vektorja vzporedna.
 
 
-	\textbf{1.10} Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
+	\subsubsection{Trikotniška neenakost (osnovna oblika)}
+
+	Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
 	\begin{center}
 		$||\vec{u} + \vec{v}|| \leq ||\vec{u}||+||\vec{v}||$.
 	\end{center}
 
-	\textbf{1.11} Vektorja $\vec{x}$ in $\vec{y}$ sta ortogonalna
+	\subsubsection{Ortogonalna vektorja}
+
+	Vektorja $\vec{x}$ in $\vec{y}$ sta ortogonalna
 	(pravokotna) natakno takrat, kadar je
 	\begin{center}
 		$\vec{x} \cdot \vec{y} = $ 0
 	\end{center}
 
-	\textbf{1.12} Ce je $\phi$ kot med vektorjema $\vec{x}$ in $\vec{y}$, potem je
+	\subsubsection{Kot med vektorjema}
+
+	Ce je $\phi$ kot med vektorjema $\vec{x}$ in $\vec{y}$, potem je
 	\begin{center}
 		$\dfrac{\vec{x} \cdot \vec{y}}{||\vec{x}|| ||\vec{y}||} =
 			\cos \phi$
 	\end{center}
 
-	\textbf{1.13} Vektorski produkt:
+	\subsubsection{Vektorski produkt}
+
+
 	\begin{center}
 		$\vec{a} \times \vec{b} = (a_{2}b_{3} - a_{3}b_{2}) \textbf{i}$ +
 		$(a_{3}b_{1} - a_{1}b_{3}) \textbf{j} + (a_{1}b_{2} - a_{2}b_{1}) \textbf{k}$
 	\end{center}
 
-	\textbf{Lastnosti vektorskega produkta}
+	\subsubsection{Lastnosti vektorskega produkta}
+
 	\begin{itemize}
 		\item $\vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$ (aditivnost)
 		\item $\vec{b} \times \vec{a} = -\vec{a} \times \vec{b}$ (!komutativnost)
@@ -160,14 +189,17 @@
 		\item Dolzina vektorskega produkta je ploscina paralelograma, katerega vektorja oklepata
 	\end{itemize}
 
-	\textbf{1.14} Mesani produkt($\vec{a}, \vec{b}, \vec{c}$) vektorjev
+	\subsubsection{Mesani produkt}
+
+	Mesani produkt($\vec{a}, \vec{b}, \vec{c}$) vektorjev
 	$\vec{a}, \vec{b}$ in $\vec{c}$ v $R^{3}$ je skalarni produkt vektorjev
 	$\vec{a} \times \vec{b}$ in $\vec{c}$:
 	\begin{center}
 		$(\vec{a}, \vec{b}, \vec{c}) = (\vec{a} \times \vec{b})\cdot \vec{c}$
 	\end{center}
 
-	\textbf{Lastnosti mesanega produkta}
+	\subsubsection{Lastnosti mesanega produkta}
+
 	\begin{itemize}
 		\item $(\vec{a}, \vec{b}, \vec{c}) = (\vec{b}, \vec{c}, \vec{a}) = (\vec{c}, \vec{a}, \vec{b})$
 		\item $(x\vec{a}, \vec{b}, \vec{c}) = x(\vec{a}, \vec{b}, \vec{c})$ (homogenost)
@@ -175,7 +207,8 @@
 		\item Absolutna vrednost mesanega produkta ($\vec{a}, \vec{b}, \vec{c}$) je enaka prostornini paralepipeda
 	\end{itemize}
 
-	\textbf{Premice v $R^{3}$} \\
+	\subsubsection{Premice v $R^{3}$}
+
 	Premico določata smerni vektor $\vec{p} = [a, b, c]^{T}$ in točka $A(x_0, y_0, z_0)$.
 	\begin{itemize}
 		\item Parametrična oblika:
@@ -184,7 +217,8 @@
 		      $\dfrac{x - x_{0}}{a} = \dfrac{y - y_{0}}{b} = \dfrac{z - z_{0}}{c}$
 	\end{itemize}
 
-	\textbf{Ravnine v $R^{3}$} \\
+	\subsubsection{Ravnine v $R^{3}$}
+
 	Ravnina z normalo $\vec{n} = [a, b, c]^T$ skozi točko $A(x_0, y_0, z_0)$ ima enačbo
 	\begin{center}
 		$(\vec{r} - \vec{r}_A) \cdot \vec{n} = 0$
@@ -194,7 +228,8 @@
 		$ax + by + cz = d$
 	\end{center}
 
-	\textbf{Razdalje}\\
+	\subsubsection{Razdalje}
+
 	Razdalja od tocke $P$ do ravnine, v kateri lezi tocka $A$ :
 	\begin{center}
 		$\cos\phi = \dfrac{\vec{n} \cdot ( \vec{r_{P}} - \vec{r_{A}})} {||\vec{n}|| ||\vec{r_{P}} - \vec{r_{A}}||}$ oz.
@@ -205,7 +240,8 @@
 		$d = \dfrac{||\vec{e} \times ( \vec{r_{P}} - \vec{r_{A}})||}{||\vec{e}||}$
 	\end{center}
 
-	\textbf{Projekcije vektorjev}\\
+	\subsubsection{Projekcije vektorjev}
+
 	Naj bo $proj_{\vec{a}}\vec{b} = \vec{x}$ projekcija vektorja $\vec{b}$ na vektor $\vec{a}$.
 	Izracunamo jo po sledeci formuli:
 	\begin{center}
@@ -214,7 +250,9 @@
 		\end{math}
 	\end{center}
 
-	\textbf{1.15} Matrika dimenzije $m \times n$ je tabela $m \times n$ stevil, urejenih
+	\subsubsection{Matrika}
+
+	Matrika dimenzije $m \times n$ je tabela $m \times n$ stevil, urejenih
 	v $m$ vrstic in $n$ stolpcev:
 	\begin{center}
 		$A^{m \times n} =$
@@ -226,25 +264,35 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{1.16} Matrika, katere elementi so enaki nic povsod
+	\subsubsection{Diagonalna matrika}
+
+	Matrika, katere elementi so enaki nic povsod
 	zunaj glavne diagonale, se imenuje diagonalna matrika. Za
 	diagonalno matriko je $a_{ij} = 0$, kadarkoli velja $i \neq j$
 
-	\textbf{1.17} Matrika $A^{n \times n}$ je spodnjetrikotna, kadar
+	\subsubsection{Spodnjetrikotna matrika}
+
+	Matrika $A^{n \times n}$ je spodnjetrikotna, kadar
 	so vsi elementi nad glavno diagonalo enaki 0:
 	\begin{center}
 		$a_{ij} = 0$  \textit{kadar je} $i < j$
 	\end{center}
 
-	\textbf{1.18} Matrika $A^{n \times n}$ je zgornjetrikotna, kadar
+	\subsubsection{Zgornjetrikotna matrika}
+
+	Matrika $A^{n \times n}$ je zgornjetrikotna, kadar
 	so vsi elementi pod glavno diagonalo enaki 0:
 	\begin{center}
 		$a_{ij} = 0$  \textit{kadar je} $i > j$
 	\end{center}
 
-	\textbf{1.19} Matrika je trikotna, ce je zgornjetrikotna ali spodnjetrikotna.
+	\subsubsection{Trikotna matrika}
 
-	\textbf{1.20} Dve matriki $A$ in $B$ sta enaki natanko takrat,
+	Matrika je trikotna, ce je zgornjetrikotna ali spodnjetrikotna.
+
+	\subsubsection{Enakost matrik}
+
+	Dve matriki $A$ in $B$ sta enaki natanko takrat,
 	kadar imata enaki dimenziji in kadar so na istih mestih v obeh
 	matrikah enaki elementi:
 	\begin{center}
@@ -252,7 +300,9 @@
 		$a_{ij} = b_{ij}$ \textit{za vsak} $i= 1,...,m$ in $j=1,...,n$
 	\end{center}
 
-	\textbf{1.21} Produkt matrike s skalarjem dobimo tako, da
+	\subsubsection{Produkt matrike s skalarjem}
+
+	Produkt matrike s skalarjem dobimo tako, da
 	vsak element matrike pomnozimo s $skalarjem$
 	\begin{center}
 		$aA^{m \times n} =$
@@ -264,7 +314,9 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{1.22} Vsoto dveh matrik enake dimenzije dobimo tako,
+	\subsubsection{Vsota matrik}
+
+	Vsoto dveh matrik enake dimenzije dobimo tako,
 	da sestejemo istolezne elemente obeh matrik:
 	\begin{center}
 		$A + B =$
@@ -276,7 +328,8 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{Osnovne matricne operacije}
+	\subsubsection{Osnovne matricne operacije}
+
 	\begin{itemize}
 		\item $A + B = B + A$ (komutativnost)
 		\item $(A + B) + C = A + (B + C)$ (asociativnost)
@@ -285,7 +338,9 @@
 		\item $x(yA) = (xy)A$ \textit{in} $1 \cdot A = A$
 	\end{itemize}
 
-	\textbf{1.23} Transponirana matrika k matriki A reda $m \times n$
+	\subsubsection{Transponirana matrika}
+
+	Transponirana matrika k matriki A reda $m \times n$
 	je matrika reda $n \times m$
 	\begin{center}
 		$A =$
@@ -305,7 +360,8 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{Lastnosti transponiranja matrik}
+	\subsubsection{Lastnosti transponiranja matrik}
+
 	\begin{itemize}
 		\item $(A + B)^{T} = A^{T} + B^{T}$
 		\item $(A \cdot B)^{T} = B^{T} \cdot A^{T}$
@@ -313,7 +369,9 @@
 		\item $(A^{T})^{T} = A$
 	\end{itemize}
 
-	\textbf{1.24} Produkt matrike A in vektorja $\vec{x}$ je
+	\subsubsection{Produkt matrike in vektorja}
+
+	Produkt matrike A in vektorja $\vec{x}$ je
 	linearna kombinacija stolpcev matrike A, utezi linearne
 	kombinacije so komponente vektorja $\vec{x}$:
 	\begin{center}
@@ -332,7 +390,9 @@
 		$a\vec{u} + b\vec{v} + c\vec{w}$
 	\end{center}
 
-	\textbf{1.25} Produkt vrstice $\vec{x}$ z matriko A je
+	\subsubsection{Produkt vrstice z matriko}
+
+	Produkt vrstice $\vec{x}$ z matriko A je
 	linearna kombinacija vrstic matrike A, koeficienti linearne
 	kombinacije so komponente vrstice $\vec{y}$:
 	\begin{center}
@@ -353,7 +413,9 @@
 		$
 	\end{center}
 
-	\textbf{1.26} Produkt matrik A in B je matrika, katere stolpci
+	\subsubsection{Produkt matrik (stolpčni pogled)}
+
+	Produkt matrik A in B je matrika, katere stolpci
 	so zaporedoma produkti matrike A s stolpci matrike B:
 	\begin{center}
 		$AB = A
@@ -366,7 +428,9 @@
 		$
 	\end{center}
 
-	\textbf{1.27} Element $c_{ij}$ v $i-ti$ vrstici in $j-tem$ stolpcu
+	\subsubsection{Produkt matrik (elementni pogled)}
+
+	Element $c_{ij}$ v $i-ti$ vrstici in $j-tem$ stolpcu
 	produkta C = AB je skalarni produkt $i-te$ vrstice A in $j-tega$
 	stolpca matrike B
 	\begin{center}
@@ -375,7 +439,9 @@
 		$
 	\end{center}
 
-	\textbf{1.28} Produkt matrik A in B je matrika, katere vrstice
+	\subsubsection{Produkt matrik (vrstični pogled)}
+
+	Produkt matrik A in B je matrika, katere vrstice
 	so zaporedoma produkti vrstic matrike A z matriko B:
 	\begin{center}
 		$
@@ -388,7 +454,8 @@
 		$
 	\end{center}
 
-	\textbf{Lastnosti matricnega produkta}
+	\subsubsection{Lastnosti matricnega produkta}
+
 	\begin{itemize}
 		\item $AB \neq BA$ (!komutativnost)
 		\item $(\alpha A)B = \alpha (AB) = A( \alpha B)$ (homogenost)
@@ -399,14 +466,18 @@
 	V splosnem; komutativnost matricnega mnozenja velja
 	samo, ko sta matriki diagonalizabilni.
 
-	\textbf{1.29} Vrstice matrike A z $n$ stolpci naj bodo
+	\subsubsection{Produkt matrik (vsota zunanjih produktov)}
+
+	Vrstice matrike A z $n$ stolpci naj bodo
 	$a^{1}, \dots, a^{n}$, stolpci matrike B z $n$ vrsticami pa
 	$b_{1}, \dots, b_{n}$. Potem je
 	\begin{center}
 		$AB = a^{1}b_{1} + \dots + a^{n}b_{n}$
 	\end{center}
 
-	\textbf{1.30} Ce delitev na bloke v matriki A ustreza delitvi v matirki B,
+	\subsubsection{Bločno množenje matrik}
+
+	Ce delitev na bloke v matriki A ustreza delitvi v matirki B,
 	potem lahko matriki pomnozimo blocno:
 	\begin{center}
 		$\begin{bmatrix}
@@ -423,7 +494,9 @@
 			\end{bmatrix}$
 	\end{center}
 
-	\textbf{1.31} Kvadratna matrika $I_{k}$ reda $k \times k$, ki ima vse diagonalne
+	\subsubsection{Enotska matrika}
+
+	Kvadratna matrika $I_{k}$ reda $k \times k$, ki ima vse diagonalne
 	elemente enake 1, vse ostale elemente pa 0 ima lastnost, da za vsako matriko A
 	reda $m \times n$ velja $AI_{n} = A$ in $I_{m}A = A$. Matrika $I_{k}$ se imenuje
 	enotska ali identicna matirka.
@@ -438,7 +511,8 @@
 		$
 	\end{center}
 
-	\textbf{1.32} \textbf{Cauchy-Schwarzova neenakost}:
+	\subsubsection{Cauchy-Schwarzova neenakost}
+
 	Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
 
 	\begin{center}
@@ -447,7 +521,8 @@
 
 	Enakost velja, v primeru, da vektorja $\vec{u}$ in $\vec{v}$ kažeta v isto ali nasprotno smer.
 
-	\textbf{1.33} \textbf{Trikotniška neenakost}:
+	\subsubsection{Trikotniška neenakost}
+
 	Za poljubna vektorja $\vec{u}, \vec{v} \in R^{n}$ velja:
 
 	\begin{center}
@@ -456,7 +531,9 @@
 
 	\section{\underline{Sistemi linearnih enacb}}
 
-	\textbf{2.1} Kvadratna matrika A je obrnljiva, ce obstaja taka matrika
+	\subsubsection{Obrnljiva matrika}
+
+	Kvadratna matrika A je obrnljiva, ce obstaja taka matrika
 	$A^{-1}$, da je
 	\begin{center}
 		$AA^{-1} = I\;
@@ -468,23 +545,35 @@
 	Matrika, ki ni obrnljiva, je singularna. Matrika \textbf{NI} obrnljiva, kadar je
 	$rang(A) < n$ !
 
-	\textbf{2.2} Kvadratna matirka reda $n$ je obrnljiva natanko tedaj, ko pri
+	\subsubsection{Pogoj obrnljivosti (pivoti)}
+
+	Kvadratna matirka reda $n$ je obrnljiva natanko tedaj, ko pri
 	gaussovi eliminaciji dobimo $n$ pivotov.
 
-	\textbf{2.3} Vsaka obrnljiva matrika ima eno samo inverzno matriko.
+	\subsubsection{Enoličnost inverzne matrike}
 
-	\textbf{2.4} Inverzna matrika inverzne matrike $A^{-1}$ je matrika A
+	Vsaka obrnljiva matrika ima eno samo inverzno matriko.
+
+	\subsubsection{Inverz inverza}
+
+	Inverzna matrika inverzne matrike $A^{-1}$ je matrika A
 	\begin{center}
 		$(A^{-1})^{-1} = A$
 	\end{center}
 
-	\textbf{2.5} Ce je matrika A obrnljiva, potem ima sistem enacb
+	\subsubsection{Rešitev sistema z obrnljivo matriko}
+
+	Ce je matrika A obrnljiva, potem ima sistem enacb
 	$A\vec{x} = \vec{b}$ edino resitev $\vec{x} = A^{-1} \vec{b}$
 
-	\textbf{2.6} Ce obstaja nenicelna resitev $\vec{x}$ enacbe $A\vec{x} = \vec{0}$,
+	\subsubsection{Nenicelna rešitev homogenega sistema}
+
+	Ce obstaja nenicelna resitev $\vec{x}$ enacbe $A\vec{x} = \vec{0}$,
 	matrika A ni obrnljiva(je singularna).
 
-	\textbf{2.7} Ce sta matirki A in B istega reda obrnljivi, je obrnljiv tudi
+	\subsubsection{Inverz produkta}
+
+	Ce sta matirki A in B istega reda obrnljivi, je obrnljiv tudi
 	produkt $A \cdot B$ in
 	\begin{center}
 		$(A \cdot B)^{-1} =
@@ -492,18 +581,24 @@
 		$
 	\end{center}
 
+	\subsubsection{Potenciranje produkta}
+
 	\textbf{Pozor!} Pravilo
 	\begin{center}
 		$(AB)^{p} = A^{p}B^{p}$
 	\end{center}
 	velja le v primeru, ko matriki A in B komutirata, torej $AB = BA$.
 
-	\textbf{2.8} Inverz transponirane matrike je transponirana matrika inverza
+	\subsubsection{Inverz transponirane matrike}
+
+	Inverz transponirane matrike je transponirana matrika inverza
 	\begin{center}
 		$(A^{T})^{-1} = (A^{-1})^{T}$
 	\end{center}
 
-	\textbf{2.9} Inverz diagonalne matrike z diagonalnimi elementi $a_{ii}$ je
+	\subsubsection{Inverz diagonalne matrike}
+
+	Inverz diagonalne matrike z diagonalnimi elementi $a_{ii}$ je
 	diagonalna matrika, ki ima na diagonali elemente $a_{ii}^{-1}$
 	\begin{center}
 		$\begin{bmatrix}
@@ -519,7 +614,9 @@
 		$
 	\end{center}
 
-	\textbf{2.10} Za izracun inverza matrike A, uporabimo gausovo eliminacijo nad
+	\subsubsection{Izračun inverzne matrike}
+
+	Za izracun inverza matrike A, uporabimo gausovo eliminacijo nad
 	matriko $\begin{bmatrix}A|I\end{bmatrix}$
 	\begin{center}
 		$\begin{bmatrix}A|I\end{bmatrix} =
@@ -527,18 +624,26 @@
 		$
 	\end{center}
 
-	\textbf{2.11} Matrika A je simetricna $\Leftrightarrow A^{T} = A$. Za elemente
+	\subsubsection{Simetrična matrika}
+
+	Matrika A je simetricna $\Leftrightarrow A^{T} = A$. Za elemente
 	$a_{ij}$ simetricne matirke velja $a_{ij} = a_{ji}$. Za simetricno matriko vedno velja,
 	da je kvadratna $A \in R^{n \times n}$.
 
-	\textbf{2.12} Ce je matrika A simetricna in obrnljiva, je tudi $A^{-1}$ simetricna.
+	\subsubsection{Inverz simetrične matrike}
 
-	\textbf{2.13} Ce je R poljubna (lahko tudi pravokotna) matrika, sta $R^{T}R$ in
+	Ce je matrika A simetricna in obrnljiva, je tudi $A^{-1}$ simetricna.
+
+	\subsubsection{Produkti $R^{T}R$ in $RR^{T}$}
+
+	Ce je R poljubna (lahko tudi pravokotna) matrika, sta $R^{T}R$ in
 	$RR^{T}$ simetricni matriki.
 
 	\section{\underline{Vektorski prostori}}
 
-	\textbf{3.1} Realni vektorski prostor V je mnozica "vektorjev" skupaj z pravili za
+	\subsubsection{Realni vektorski prostor}
+
+	Realni vektorski prostor V je mnozica "vektorjev" skupaj z pravili za
 	\begin{itemize}
 		\item sestevanje vektorjev,
 		\item mnozenje vektorja z realnim stevilom (skalarjem)
@@ -551,7 +656,8 @@
 	V vektorskem prostoru V morajo biti tudi VSE linearne kombinacije
 	$\alpha\vec{x} + \beta\vec{y}$
 
-	\textbf{Pravila za operacije v vektorskih prostorih}\\
+	\subsubsection{Pravila za operacije v vektorskih prostorih}
+
 	Operaciji sestevanja vektorjev in mnozenja vektorja s skalarjem v vektorskem prostoru
 	morajo zadoscati naslednjim pravilom:
 	\begin{itemize}
@@ -565,61 +671,86 @@
 		\item $(\alpha + \beta)\vec{x} = \alpha\vec{x} + \beta\vec{x}$
 	\end{itemize}
 
-	\textbf{3.2} Podmnozica U vektorskega prostora V je \textit{vektorski podprostor}, ce je za
+	\subsubsection{Vektorski podprostor}
+
+	Podmnozica U vektorskega prostora V je \textit{vektorski podprostor}, ce je za
 	vsak par vektorjev $\vec{x}$ in $\vec{y}$ iz U in vsako realno stevilo $\alpha$ tudi
 	\begin{itemize}
 		\item $\vec{x} + \vec{y} \in U$ in
 		\item $\alpha\vec{x} \in U$.
 	\end{itemize}
 
-	\textbf{3.3} Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
+	\subsubsection{Pogoj za podprostor}
+
+	Mnozica vektorjev U je vektorski podprostor natanko tedaj, ko je vsaka linearna
 	kombinacija vektorjev iz U tudi v U.
 
-	\textbf{Lastnosti vektorskih podprostorov}
+	\subsubsection{Lastnosti vektorskih podprostorov}
+
 	\begin{itemize}
 		\item Vsak vektorski podprostor nujno vsebuje nicelni vektor $\vec{0}$
 		\item Presek dveh podprostorov vektorskega podprostora je tudi podprostor
 	\end{itemize}
 
-	\textbf{3.4} Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
+	\subsubsection{Stolpicni prostor C(A)}
+
+	Stolpicni prostor C(A) matrike $A \in R^{m \times n}$ je tisti podprostor
 	vektorskega prostora $R^{m}$, ki vsebuje natanko vse linearne kombinacije stolpcev matrike A.\\
 	Izracunamo ga tako, da matriko A transponiramo in izvedemo operacijo gaussove eliminacije nad $A^{T}$. Vrstice katere ostanejo po gaussivi eliminaciji
 	so linearno neodvisni vektorji, kateri tvorijo stoplicni prostor matrike A, $C(A)$.
 	\textit{neformalno: linearna ogrinjaca stolpcev matrike (npr. ce imas 5 stolpcev pa lahko 2 zapises kot linearno kombinacijo ostalih 3 bo imel column space 3 elemente)}
 
-	\textbf{3.5} Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
+	\subsubsection{Pogoj rešljivosti}
+
+	Sistem linearnih enacb $A\vec{x} = \vec{b}$ je reslijv natanko tedaj, ko je vektor
 	$\vec{b} \in C(A)$
 
-	\textbf{3.6} Naj bo matrika $A \in R^{m \times n}$. Mnozica resitev homogenega sistema linearnih
+	\subsubsection{Rešitve homogenega sistema}
+
+	Naj bo matrika $A \in R^{m \times n}$. Mnozica resitev homogenega sistema linearnih
 	enacb je podprostor v vektorskem prostoru $R^{n}$.
 
-	\textbf{3.7} Mnozica vseh resitev sistema linearnih enacb $A\vec{x} = \vec{0}$ se imenuje nicelni
+	\subsubsection{Nicelni prostor N(A)}
+
+	Mnozica vseh resitev sistema linearnih enacb $A\vec{x} = \vec{0}$ se imenuje nicelni
 	prostor matirke A. Oznacujemo ga z N(A).\\
 	\textit{neformalno: mnozica vektorjev, ki se z neko matriko zmnozijo v nicelni vektor. Matriko A samo eliminiras po gaussu in nato dobljene resitve enacis z 0.}
 
-	\textbf{3.8} Ce je matrika A kvadratna in obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
+	\subsubsection{Nicelni prostor obrnljive matrike}
 
-	\textbf{3.9} Matrika ima \textit{stopnicasto} obliko, kadar se vsaka od njenih vrstic zacne z vsaj eno
+	Ce je matrika A kvadratna in obrnljiva, potem N(A) vsebuje samo vektor $\vec{0}$
+
+	\subsubsection{Stopnicasta oblika}
+
+	Matrika ima \textit{stopnicasto} obliko, kadar se vsaka od njenih vrstic zacne z vsaj eno
 	niclo vec kot prejsnja vrstica.
 
-	\textbf{3.10} Prvi element, razlicen od nic v vsaki vrstici, je \textit{pivot}. Stevilo pivotov v matriki
+	\subsubsection{Pivot in rang matrike}
+
+	Prvi element, razlicen od nic v vsaki vrstici, je \textit{pivot}. Stevilo pivotov v matriki
 	se imenuje rang matrike. Rang matrike A zapisemo kot $rang(A)$.
 
-	\textbf{3.11} Rang matrike ni vecji od stevila vrstic in ni vecji od stevila stolpcev matrike.
+	\subsubsection{Omejitev ranga}
 
-	\textbf{3.12}
+	Rang matrike ni vecji od stevila vrstic in ni vecji od stevila stolpcev matrike.
+
+	\subsubsection{Proste neznanke}
+
 	\begin{center}
 		\textit{Stevilo prostih neznank matrike = st. stolpcev - rang matrike}
 	\end{center}
 
-	\textbf{3.13}
+	\subsubsection{Polni rang}
+
 	\begin{enumerate}
 		\item Visoka in ozka matrika $(m > n)$ ima poln stolpicni rang, kadar je $rang(A) = n$
 		\item Nizka in siroka matrika $(m < n)$ ima poln vrsticni rang, kadar je $rang(A) = m$
 		\item Kvadratna matrika $(n = m)$ ima poln rang, kadar je $rang(A) = m = n$
 	\end{enumerate}
 
-	\textbf{3.14} Za vsako matriko A s polnim stolpicnim rangom $r = n \leq m$, velja:
+	\subsubsection{Lastnosti matrike s polnim stolpicnim rangom}
+
+	Za vsako matriko A s polnim stolpicnim rangom $r = n \leq m$, velja:
 	\begin{enumerate}
 		\item Vsi stolpci A so pivotni stolpci
 		\item Sistem enacb $A\vec{x} = \vec{0}$ nima prostih neznank, zato tudi nima posebnih resitev
@@ -640,7 +771,9 @@
 		$
 	\end{center}
 
-	\textbf{3.15} Za vsako matriko A s polnim vrsticnim rangom $r = m \leq n$ velja:
+	\subsubsection{Lastnosti matrike s polnim vrsticnim rangom}
+
+	Za vsako matriko A s polnim vrsticnim rangom $r = m \leq n$ velja:
 	\begin{enumerate}
 		\item Vse vrstice so pivotne, ni prostih vrstic in U (stopnicasta oblika) in R(reducirana stopnicasta oblika) nimata nicelnih vrstic
 		\item Sistem enacb $A\vec{x} = \vec{b}$ je resljiv za vsak vektor $\vec{b}$
@@ -648,7 +781,9 @@
 		\item Stolpicni prostor $C(A)$ je ves prostor $R^{m}$
 	\end{enumerate}
 
-	\textbf{3.16} Za vsako kvadratno matriko A polnega ranga (rang(A) = m = n) velja:
+	\subsubsection{Lastnosti kvadratne matrike polnega ranga}
+
+	Za vsako kvadratno matriko A polnega ranga (rang(A) = m = n) velja:
 	\begin{enumerate}
 		\item Reducirana vrsticna oblika matrike A je enotska matrika
 		\item Sistem enacb $A\vec{x} = \vec{b}$ ima natancno eno resitev za vsak vektor desnih strani $\vec{b}$
@@ -657,70 +792,110 @@
 		\item Stolpicni prostor matrike A je cel prostor $C(A) = R^{m}$
 	\end{enumerate}
 
-	\textbf{3.17} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so linearno neodvisni, ce je
+	\subsubsection{Linearna neodvisnost}
+
+	Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so linearno neodvisni, ce je
 	\begin{center}
 		$ 0\vec{x_{1}} + 0\vec{x_{2}} + \dots + 0\vec{x_{n}}$
 	\end{center}
 	edina njihova linearna kombinacija, ki je enaka vektorju $\vec{0}$. Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so
 	linearno odvisni, \textit{ce niso linearno neodvisni}.
 
-	\textbf{3.18} Ce so vektorji \textit{odvisni}, lahko vsaj enega izrazimo z ostalimi.
+	\subsubsection{Posledica odvisnosti}
 
-	\textbf{3.19} Ce je med vektorji  $\vec{u_{1}}, \dots,\vec{u_{n}}$ tudi nicelni vektor, so
+	Ce so vektorji \textit{odvisni}, lahko vsaj enega izrazimo z ostalimi.
+
+	\subsubsection{Nicelni vektor in odvisnost}
+
+	Ce je med vektorji  $\vec{u_{1}}, \dots,\vec{u_{n}}$ tudi nicelni vektor, so
 	vektorji \textit{linearno odvisni}.
 
-	\textbf{3.20} Vsaka mnozica n vektorjev iz $R^{n}$ je odvisna, kadar je $n > m $.
+	\subsubsection{Odvisnost pri presežnem številu vektorjev}
 
-	\textbf{3.21} Stolpci matrike A so linearno neodvisni natanko tedaj, ko ima homogena enacba
+	Vsaka mnozica n vektorjev iz $R^{n}$ je odvisna, kadar je $n > m $.
+
+	\subsubsection{Neodvisnost stolpcev}
+
+	Stolpci matrike A so linearno neodvisni natanko tedaj, ko ima homogena enacba
 	$A\vec{x} = \vec{0}$ edino resitev $\vec{x} = \vec{0}$.
 
-	\textbf{3.22} Kadar je $rang(A) = n$, so stolpci matrike $A \in R^{m \times n}$ linearno
+	\subsubsection{Rang in neodvisnost stolpcev}
+
+	Kadar je $rang(A) = n$, so stolpci matrike $A \in R^{m \times n}$ linearno
 	neodvisni. Kadar je pa $rang(A) < n$, so stolpci matrike $A \in R^{m \times n}$ linearno odvisni.
 
-	\textbf{3.23} Kadar je $rang(A) = m$, so vrstice matrike $A \in R^{m \times n}$ linearno neodvisne.
+	\subsubsection{Rang in neodvisnost vrstic}
+
+	Kadar je $rang(A) = m$, so vrstice matrike $A \in R^{m \times n}$ linearno neodvisne.
 	Kadar je pa $rang(A) < m$, so vrstice matrike $A \in R^{m \times n}$ linearno odvisne.
 
-	\textbf{3.24} Vrsticni prostor matrike A je podprostor v $R^{n}$, ki ga razpenjajo vrstice matrike A.
+	\subsubsection{Vrsticni prostor}
 
-	\textbf{3.25} Vrsticni prostor matrike A je $C(A^{T})$, stolpicni prostor matrike $A^{T}$.
+	Vrsticni prostor matrike A je podprostor v $R^{n}$, ki ga razpenjajo vrstice matrike A.
 
-	\textbf{3.26} \textit{Baza vektorskega prostora} je mnozica vektorjev, ki
+	\subsubsection{Vrsticni prostor kot $C(A^T)$}
+
+	Vrsticni prostor matrike A je $C(A^{T})$, stolpicni prostor matrike $A^{T}$.
+
+	\subsubsection{Baza vektorskega prostora}
+
+	\textit{Baza vektorskega prostora} je mnozica vektorjev, ki
 	\begin{enumerate}
 		\item je linearno neodvisna in
 		\item napenja cel prostor.
 	\end{enumerate}
 
-	\textbf{3.27} Vsak vektor iz vektorskega prostora lahko na en sam nacin izrazimo
+	\subsubsection{Enoličnost bazne kombinacije}
+
+	Vsak vektor iz vektorskega prostora lahko na en sam nacin izrazimo
 	kot linearno kombinacijo baznih vektorjev.
 
-	\textbf{3.28} Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so baza prostora $R^{n}$ natanko tedaj, kadar
+	\subsubsection{Pogoj za bazo v $R^n$}
+
+	Vektorji $\vec{x_{1}}, \dots,\vec{x_{n}}$ so baza prostora $R^{n}$ natanko tedaj, kadar
 	je matrika, sestavljena iz stolpcev $\vec{x_{1}}, \dots,\vec{x_{n}}$, obrnljiva.
 
-	\textbf{3.29} Prostor $R^{n}$ ima za $n > 0$ neskoncno mnogo razlicnih baz.
+	\subsubsection{Večbaznost $R^n$}
 
-	\textbf{3.30} Ce sta mnozici vekotrjev {$\vec{v_{1}}, \dots,\vec{v_{m}}$} in $\vec{u_{1}}, \dots,\vec{u_{n}}$
+	Prostor $R^{n}$ ima za $n > 0$ neskoncno mnogo razlicnih baz.
+
+	\subsubsection{Enakost števila baznih vektorjev}
+
+	Ce sta mnozici vekotrjev {$\vec{v_{1}}, \dots,\vec{v_{m}}$} in $\vec{u_{1}}, \dots,\vec{u_{n}}$
 	obe bazi istega vektorskega prostora, potem je $m = n \implies$ vse baze istega vektorskega prostora imajo
 	isto stevilo vektorjev.
 
-	\textbf{3.31} \textit{Dimenzija} vektroskega prostora je stevilo baznih vektorjev.
+	\subsubsection{Dimenzija vektorskega prostora}
 
-	\textbf{3.32} Dimenziji stolpicnega prostora $C(A)$ in vrsticnega prostora $C(A^{T})$ sta enaki rangu matrike $A$
+	\textit{Dimenzija} vektroskega prostora je stevilo baznih vektorjev.
+
+	\subsubsection{Dimenzija stolpicnega in vrsticnega prostora}
+
+	Dimenziji stolpicnega prostora $C(A)$ in vrsticnega prostora $C(A^{T})$ sta enaki rangu matrike $A$
 	\begin{center}
 		$dim(C(A)) = dim(C(A^{T})) = rang(A)$.
 	\end{center}
 
-	\textbf{3.33} Dimenzija nicelnega prostora $N(A)$ matrike A z $n$ stolpci in ranga $r$
+	\subsubsection{Dimenzija nicelnega prostora}
+
+	Dimenzija nicelnega prostora $N(A)$ matrike A z $n$ stolpci in ranga $r$
 	je enaka $dim(N(A)) = n - r$.
 
-	\textbf{3.34} Stolpicni prostor $C(A)$ in vrsticni prostor $C(A^{T})$ imata oba dimenzijo r. Dimenzija
+	\subsubsection{Dimenzije vseh štirih podprostorov}
+
+	Stolpicni prostor $C(A)$ in vrsticni prostor $C(A^{T})$ imata oba dimenzijo r. Dimenzija
 	nicelnega prostora $N(A)$ je $n -r$, Dimenzija levega nicelnega prostora $N(A^{T})$ pa je $m - r$.
 
-	\textbf{3.35} Vsako matriko ranga 1 lahko zapisemo kot produkt(stolpcnega) vektorja z vrsticnim
+	\subsubsection{Matrika ranga 1}
+
+	Vsako matriko ranga 1 lahko zapisemo kot produkt(stolpcnega) vektorja z vrsticnim
 	vektorjem $A = \vec{u}\vec{v}^{T}$.
 
 	\section{\underline{Linearne preslikave}}
 
-	\textbf{4.1} Preslikava $A: U \rightarrow V$ je linearna, ce velja
+	\subsubsection{Linearna preslikava}
+
+	Preslikava $A: U \rightarrow V$ je linearna, ce velja
 	\begin{enumerate}
 		\item aditivnost: $A(\vec{u}_{1} + \vec{u}_{2}) = A\vec{u}_{1} + A\vec{u}_{2}$ za vse $\vec{u}_{1}, \vec{u}_{2} \in U$,
 		\item homogenost: $A(\alpha \vec{u}) = \alpha(A\vec{u})$ za vse $\alpha \in R$ in $\vec{u} \in U$.
@@ -733,24 +908,36 @@
 	\end{center}
 	\textbf{Pozor!} Preslikava ni linearna, ce $A(\vec{0}) \neq  \vec{0}$.
 
-	\textbf{4.2} Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
+	\subsubsection{Ekvivalenten pogoj za linearnost}
+
+	Preslikava $A: U \rightarrow V$ je linearna natanko tedaj, ko velja
 	\begin{center}
 		$A(\alpha_{1}\vec{u}_{1} + \alpha_{2}\vec{u}_{2}) = \alpha_{1}A\vec{u}_{1} + \alpha_{2}A\vec{u}_{2}$
 	\end{center}
 	za vse $\alpha_{1}, \alpha_{2} \in R$ in vse $\vec{u}_{1}, \vec{u}_{2} \in U$.
 
-	\textbf{4.3} Ce je A \textit{linearna preslikava}, je $A\vec{0} = \vec{0}$.
+	\subsubsection{Preslikava nicelnega vektorja}
 
-	\textbf{4.4} Naj bo $A: U \rightarrow V$ linearna preslikava in $\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$
+	Ce je A \textit{linearna preslikava}, je $A\vec{0} = \vec{0}$.
+
+	\subsubsection{Linearna preslikava in linearne kombinacije}
+
+	Naj bo $A: U \rightarrow V$ linearna preslikava in $\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$
 	linearna kombinacija vektorjev. Potem je A($\sum_{i=1}^{k} \alpha_{i}\vec{u}_{i}$) = $\sum_{i=1}^{k} \alpha_{i}A\vec{u}_{i}$.
 
-	\textbf{4.5} Naj bo $\beta =$ $\{ \vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za vektorski prostor U. Potem je linearna
+	\subsubsection{Določenost preslikave z bazo}
+
+	Naj bo $\beta =$ $\{ \vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za vektorski prostor U. Potem je linearna
 	preslikava $A: U \rightarrow V$ natanko dolocena, ce poznamo slike baznih vektorjev.
 
-	\textbf{4.6} Naj bo $\beta =$ $\{\vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za U in $\{\vec{v_{1}}, \dots,\vec{v_{n}}\}$.
+	\subsubsection{Obstoj linearne preslikave}
+
+	Naj bo $\beta =$ $\{\vec{u_{1}}, \dots,\vec{u_{n}}\}$ baza za U in $\{\vec{v_{1}}, \dots,\vec{v_{n}}\}$.
 	Potem obstaja natanko ena linearna preslikava $A: U \rightarrow V$, za katero je $A\vec{u}_{i} = \vec{v}_{i}$ za $i = 1, 2, \dots, n$.
 
-	\textbf{4.7} Naj bo $A: U \rightarrow V$ linearna preslikava. Potem mnozico
+	\subsubsection{Jedro linearne preslikave}
+
+	Naj bo $A: U \rightarrow V$ linearna preslikava. Potem mnozico
 	\begin{center}
 		$ker A = \{ \vec{u} \in U; A\vec{u} = \vec{0}\}$
 	\end{center}
@@ -763,9 +950,13 @@
 		\end{math}
 	\end{center}
 
-	\textbf{4.8} Jedro linearne preslikave $A: U \rightarrow V$ je vektorski podprostor v U.
+	\subsubsection{Jedro kot podprostor}
 
-	\textbf{4.9} Mnozico
+	Jedro linearne preslikave $A: U \rightarrow V$ je vektorski podprostor v U.
+
+	\subsubsection{Slika linearne preslikave}
+
+	Mnozico
 	\begin{center}
 		$im\; A = \{ \vec{v} \in V; obstaja\; tak\; \vec{u} \in U,\; da\; je\; \vec{v} = A\vec{u} \}$
 	\end{center}
@@ -777,27 +968,39 @@
 		\end{math}
 	\end{center}
 
-	\textbf{4.10} Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
+	\subsubsection{Slika kot podprostor}
+
+	Ce je $A: U \rightarrow V$ linearna preslikava, potem je njena slika $im\; A$
 	vektorski podprostor v V.
 
-	\textbf{4.11} Ce je $A: U \rightarrow V$ linearna preslikava, in je rang matrike te preslikave v standardni bazi poln,
+	\subsubsection{Poln rang in trivialno jedro}
+
+	Ce je $A: U \rightarrow V$ linearna preslikava, in je rang matrike te preslikave v standardni bazi poln,
 	potem lahko sklepamo, da ima  ta preslikava \textbf{trivialno jedro}.
 
 
 	\section{\underline{Ortogonalnost}}
 
-	\textbf{5.1} Podprostora $U$ in $V$ vektorskega prostora sta med seboj ortogonalna,
+	\subsubsection{Ortogonalna podprostora}
+
+	Podprostora $U$ in $V$ vektorskega prostora sta med seboj ortogonalna,
 	ce je vsak vektor $\vec{u} \in U$ ortogonalen na vsak vektor $\vec{v} \in V$.
 
-	\textbf{5.2} Za vsako matriko $A \in R^{m \times n}$ velja:
+	\subsubsection{Ortogonalnost prostora in nicelnega prostora}
+
+	Za vsako matriko $A \in R^{m \times n}$ velja:
 	\begin{enumerate}
 		\item Nicelni prostor $N(A)$ in vrsticni prostor $C(A^{T})$ sta ortogonalna podprostora $R^{n}$
 		\item Levi nicelni prostor $N(A^{T})$ in stolpicni prostor $C(A)$ sta ortogonalna podprostora prostora $R^{m}$.
 	\end{enumerate}
 
-	\textbf{5.3} Ortogonalni komplement $V^{\perp}$ podprostora V vsebuje VSE vektorje, ki so ortogonalni na V.
+	\subsubsection{Ortogonalni komplement}
 
-	\textbf{5.4} Naj bo A matrika dimenzije $m \times n$.
+	Ortogonalni komplement $V^{\perp}$ podprostora V vsebuje VSE vektorje, ki so ortogonalni na V.
+
+	\subsubsection{Ortogonalni komplementi prostorov matrike}
+
+	Naj bo A matrika dimenzije $m \times n$.
 	\begin{itemize}
 		\item Nicelni prostor $N(A)$ je ortogonalni\\ komplement vrsticnega prostora $C(A^{T})$ v prostoru $R^{n}$
 		\item Levi nicelni prostor $N(A^{T})$ je ortogonalni komplement stolpicnega prostora $C(A)$ v prostoru $R^{m}$.
@@ -816,21 +1019,31 @@
 		$dim C(A) = dim C(A^{T}) = rang(A)$
 	\end{center}
 
-	\textbf{5.5} Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
+	\subsubsection{Enoličnost rešitve v vrsticnem prostoru}
+
+	Za vsak vektor $\vec{y}$ v stolpicnem prostoru $C(A)$ obstaja v vrsticnem prostoru $C(A^{T})$ en sam
 	vektor $\vec{x}$, da je $A\vec{x} = \vec{y}$.
 
-	\textbf{5.6} Ce so stolpci matrike A linearno neodvisni, je matrika $A^{T}A$ obrnljiva.
+	\subsubsection{Obrnljivost $A^T A$}
 
-	\textbf{5.7} Matrika P je projekcijska, kadar
+	Ce so stolpci matrike A linearno neodvisni, je matrika $A^{T}A$ obrnljiva.
+
+	\subsubsection{Projekcijska matrika}
+
+	Matrika P je projekcijska, kadar
 	\begin{itemize}
 		\item je simetricna: $P^{T} = P$ in
 		\item velja $P^{2} = P$.
 	\end{itemize}
 
-	\textbf{5.8} Ce je P projekcijska matrika, ki projecira na podprostor U, potem je $I -P$ projekcijska
+	\subsubsection{Projekcija na ortogonalni komplement}
+
+	Ce je P projekcijska matrika, ki projecira na podprostor U, potem je $I -P$ projekcijska
 	matrika, ki projecira na $U^{\perp}$, ortogonalni komplement podprostora U.
 
-	\textbf{5.9} Vektorji $\vec{q_{1}}, \vec{q_{2}}, \dots, \vec{q_{n}}$ so ortonormiranim kadar so ortogonalni in imanjo vsi
+	\subsubsection{Ortonormirani vektorji}
+
+	Vektorji $\vec{q_{1}}, \vec{q_{2}}, \dots, \vec{q_{n}}$ so ortonormiranim kadar so ortogonalni in imanjo vsi
 	dolzino 1, torej
 	\begin{center}
 		$\vec{q_{i}}^{T}\vec{q_{i}} = $ \Bigg\{
@@ -841,7 +1054,9 @@
 	\end{center}
 	za matriko $Q =$ [$\vec{q_{1}}, \vec{q_{2}} \dots \vec{q_{n}}$]  velja $Q^{T}Q = I$.
 
-	\textbf{5.10} Vektorji $\vec{q_{1}}, \dots, \vec{q_{n}}$ naj bodo ortonormirani v prostoru $R^{m}$. Potem
+	\subsubsection{Matrika ortonormiranih vektorjev}
+
+	Vektorji $\vec{q_{1}}, \dots, \vec{q_{n}}$ naj bodo ortonormirani v prostoru $R^{m}$. Potem
 	za matriko
 	\begin{center}
 		$Q = \begin{bmatrix}
@@ -850,30 +1065,40 @@
 	\end{center}
 	velja, da je $Q^{T}Q = I_{n}$ enotska matrika reda n.
 
-	\textbf{5.11} Matrika Q je ortogonalna, kadar je
+	\subsubsection{Ortogonalna matrika}
+
+	Matrika Q je ortogonalna, kadar je
 	\begin{enumerate}
 		\item kvadratna in
 		\item ima ortonormirane stolpce.
 	\end{enumerate}
 
-	\textbf{5.12} Ce je Q ortogonalna matirka, potem je obrnljiva in
+	\subsubsection{Lastnosti ortogonalne matrike}
+
+	Ce je Q ortogonalna matirka, potem je obrnljiva in
 	\begin{center}
 		$Q^{-1} = Q^{T}$\\
 		$dimU^{\perp} = n - dimU$\\
 		$(U^{\perp})^{\perp} = U$
 	\end{center}
 
-	\textbf{5.13} Mnozenje z ortogonalno matriko ohranja dolzino vektorjev in kote med njimi. Ce je Q
+	\subsubsection{Ohranjanje dolžin in kotov}
+
+	Mnozenje z ortogonalno matriko ohranja dolzino vektorjev in kote med njimi. Ce je Q
 	ortogonalna matrika, potem je
 	\begin{center}
 		$|| Q \vec{x} || = || \vec{x} ||$ za vsak vektor $\vec{x}$ in\\
 		$(Q\vec{x})^{T}Q\vec{y} = \vec{x^{T}} \vec{y}$ za vsak vektor $\vec{x}$ in $\vec{y}$
 	\end{center}
 
-	\textbf{5.14} Ce sta $Q_{1}$ in $Q_{2}$ ortogonalni matriki, je tudi produkt $Q = Q_{1}Q_{2}$ ortogonalna
+	\subsubsection{Produkt ortogonalnih matrik}
+
+	Ce sta $Q_{1}$ in $Q_{2}$ ortogonalni matriki, je tudi produkt $Q = Q_{1}Q_{2}$ ortogonalna
 	matrika.
 
-	\textbf{5.15 Gram-Schmidtova} ortogonalizacija. Za vhod uporabimo Linearno ogrinjaco linearno neodvisnih vekotrjev. Po
+	\subsubsection{Gram-Schmidtova ortogonalizacija}
+
+	Za vhod uporabimo Linearno ogrinjaco linearno neodvisnih vekotrjev. Po
 	gram-schmidtovi ortogonalizaciji pa dobimo paroma ortogonalne vektorje.
 	Postopek:
 	\begin{center}
@@ -893,7 +1118,9 @@
 	Po tem postopku dobimo paroma ortogonalne vektorje po Gram-Schmidtovi ortogonalizaciji.
 
 
-	\textbf{5.16 QR Razcep:} Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
+	\subsubsection{QR razcep}
+
+	Iz linearno neodvisnih vektorjev $a_{1}, \dots, a_{n}$ z \textit{Gram-Schmidtovo} ortogonalizacijo
 	dobimo ortonormirane vektorje $q_{1}, \dots, q_{n}$. Matriki A in Q s temi stolpci zadoscajo enacbi $A = QR$, kjer
 	je R zgornjetrikotna matrika.
 	\begin{itemize}
@@ -923,13 +1150,16 @@
 		\end{math}
 	\end{center}
 
-	\textbf{5.17} Vektorski prostor $\iota$ je mnozica vseh neskoncnih zaporedij $\vec{u}$ s koncno
+	\subsubsection{Vektorski prostor neskončnih zaporedij}
+
+	Vektorski prostor $\iota$ je mnozica vseh neskoncnih zaporedij $\vec{u}$ s koncno
 	dolzino
 	\begin{center}
 		$||\vec{u}||^{2} = \vec{u} \cdot \vec{u} = \vec{u_{1}}^{2} + \vec{u_{2}}^{2} + \dots < \infty$
 	\end{center}
 
-	\textbf{5.18 Predoloceni sistemi}
+	\subsubsection{Predoločeni sistemi}
+
 	\begin{center}
 		\begin{math}
 			A^{T}A
@@ -945,7 +1175,9 @@
 
 	\section{\underline{Determinante}}
 
-	\textbf{6.1} Determinanta enotske matirke je\\ $det(I) = 1$.
+	\subsubsection{Determinanta enotske matrike}
+
+	Determinanta enotske matirke je\\ $det(I) = 1$.
 	\begin{center}
 		\begin{math}
 			\begin{vmatrix}
@@ -962,7 +1194,9 @@
 		\end{math}
 	\end{center}
 
-	\textbf{6.2} Determinanta spremeni predznak, ce med seboj zamenjamo dve vrstici.
+	\subsubsection{Zamenjava vrstic}
+
+	Determinanta spremeni predznak, ce med seboj zamenjamo dve vrstici.
 
 	Dodatna lastnost:
 
@@ -973,7 +1207,9 @@
 		\end{array} \right| = \det(A) \det(B)
 	\]
 
-	\textbf{6.3} Determinanta je linearna funkcija vsake vrstice posebej. To pomeni, da se
+	\subsubsection{Linearnost po vrsticah}
+
+	Determinanta je linearna funkcija vsake vrstice posebej. To pomeni, da se
 	\begin{enumerate}
 		\item determinanta pomnozi s faktorjem t, ce eno vrstico determinante(vsak element v tej vrstici)
 		      pomnozimo s faktorjem t.
@@ -1015,7 +1251,8 @@
 	Ko racunamo determinanto produkta matirke s skalarjem $tA$, skalar $t$ izpostavimo iz vsake vrstice posebej,
 	zato je $det(tA) = t^{n}det(A)$, kjer je $n$ stevilo vrstic (ali stolpcev) determinante.
 
-	\textbf{(Razvoj po vrstici/stolpcu, predznaki kofaktorjev)}
+	\subsubsection{Razvoj po vrstici/stolpcu, predznaki kofaktorjev}
+
 	Pri Laplaceovem razvoju velja
 	\[
 		\det(A)=\sum_{j=1}^n a_{ij}(-1)^{i+j}\det(A_{ij})
@@ -1036,32 +1273,48 @@
 		\end{pmatrix}.
 	\]
 
-	\textbf{6.4} Matrika, ki ima dve enaki vrstici, ima determinanto enako 0.
+	\subsubsection{Enaki vrstici}
 
-	\textbf{6.5} Ce v matriki od poljubne vrstice odstejemo mnogokratnik neke druge vrstice,
+	Matrika, ki ima dve enaki vrstici, ima determinanto enako 0.
+
+	\subsubsection{Odštevanje vrstic}
+
+	Ce v matriki od poljubne vrstice odstejemo mnogokratnik neke druge vrstice,
 	se njena determinanta ne spremeni.
 
-	\textbf{6.6} Naj bo $A$ poljubna kvadratna matirka $n \times n$ in $U$ njena vrsticno-stopnicasta
+	\subsubsection{Determinanta in Gaussova eliminacija}
+
+	Naj bo $A$ poljubna kvadratna matirka $n \times n$ in $U$ njena vrsticno-stopnicasta
 	oblika, ki jo dobimo z \textit{Gaussovo eliminacijo}. Potem je
 	\begin{center}
 		$det(A) = \pm det(U)$.
 	\end{center}
 
-	\textbf{6.7} Determinanta, ki ima vrstico samih nicel, je enaka 0.
+	\subsubsection{Nicelna vrstica}
 
-	\textbf{6.8} Determinanta trikotne matrike $A$ je produkt diagonalnih elementov:
+	Determinanta, ki ima vrstico samih nicel, je enaka 0.
+
+	\subsubsection{Determinanta trikotne matrike}
+
+	Determinanta trikotne matrike $A$ je produkt diagonalnih elementov:
 	\begin{center}
 		$det(A) = a_{11}a_{22} \hdots a_{nn}$.
 	\end{center}
 
-	\textbf{6.9} Determinanta singularne matrike je enaka 0, determinanta obrnljive matrike je razlicna od 0.
+	\subsubsection{Singularna in obrnljiva matrika}
 
-	\textbf{6.10} Determinanta produkta dveh matrik je enaka produktu determinant obeh matrik:
+	Determinanta singularne matrike je enaka 0, determinanta obrnljive matrike je razlicna od 0.
+
+	\subsubsection{Determinanta produkta}
+
+	Determinanta produkta dveh matrik je enaka produktu determinant obeh matrik:
 	\begin{center}
 		$det(AB) = det(A)det(B)$.
 	\end{center}
 
-	\textbf{6.11} Determinanta inverzne matrike je enaka
+	\subsubsection{Determinante inverzne, potencirane in transponirane matrike}
+
+	Determinanta inverzne matrike je enaka
 	\begin{center}
 		$det(A^{-1}) = 1/det(A)$
 	\end{center}
@@ -1075,16 +1328,21 @@
 		$det(A) = det(A^{T})$.
 	\end{center}
 
-	\textbf{6.12} Transponirana matrika $A^{T}$ ima isto determinanto kot A.
+	\subsubsection{Determinanta transponirane matrike}
 
-	\textbf{6.13 Recap dovoljenih operacij nad determinanto}
+	Transponirana matrika $A^{T}$ ima isto determinanto kot A.
+
+	\subsubsection{Recap dovoljenih operacij nad determinanto}
+
 	\begin{enumerate}
 		\item Ce zamenjamo dve vrstici, se \textbf{spremeni} predznak determinante
 		\item Vrednost determinante se ne spremeni, ce neki vrstici pristejemo poljuben veckratnik katerekoli druge vrstice.
 		\item Ce vse elemente neke vrstice pomnozimo z istim stevilom $\alpha$, se vrednost determinante pomnozi z $\alpha$.
 	\end{enumerate}
 
-	\textbf{6.14} Vsaka lastnost, ki velja za vrstice determinante, velja tudi
+	\subsubsection{Lastnosti za stolpce}
+
+	Vsaka lastnost, ki velja za vrstice determinante, velja tudi
 	za njene \textbf{stolpce}. Med drugim:
 	\begin{itemize}
 		\item Determinanta spremeni predznak, ce med seboj zamenjamo dva stolpca
@@ -1092,7 +1350,9 @@
 		\item Determinanta je enaka 0, ce so v vsaj enem stolpcu same nicle.
 	\end{itemize}
 
-	\textbf{6.15 (kofaktorska formula)} Ce je A kvadratna matrika reda n,
+	\subsubsection{Kofaktorska formula}
+
+	Ce je A kvadratna matrika reda n,
 	njeno determinanto lahko izracunamo z razvojem po $i-ti$ vrstici
 	\begin{center}
 		$det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in}$.
@@ -1100,20 +1360,28 @@
 	Kofaktorje $C_{ij}$ izracunamo kot $C_{ij} = (-1)^{i+j}D_{ij}$, kjer je $D_{ij}$ determinanta,
 	ki jo dobimo, ce v A izbrisemo i-to vrstico in j-ti stolpec.
 
-	\textbf{6.16} Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
+	\subsubsection{Inverzna matrika s kofaktorji}
+
+	Inverzna matrika $A^{-1}$ matrike A je transponirana matrika kofaktorjev,
 	deljena z determinanto $|A|$:
 	\begin{center}
 		$A^{-1} = \frac{C^{T}}{det(A)}$,
 	\end{center}
 	kjer je C matrika kofaktorjev matrike A.
 
-	\textbf{6.17} Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
+	\subsubsection{Ploščina paralelograma}
+
+	Ploscina paralelograma, dolocenega z vektorjema $\vec{a}$ in $\vec{b} \in R^{2}$ je
 	enaka det([$\vec{a} \vec{b}$]), to je absolutni vrednosti determinante s stolpcema $\vec{a}$ in $\vec{b}$.
 
-	\textbf{6.18} Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki
+	\subsubsection{Mešani produkt}
+
+	Mesani produkt vektorjev $\vec{a}$ in $\vec{b}$ in $\vec{c}$ je enak determinanti matrike, ki
 	ima te tri vektorje kot stolpce.
 
-	\textbf{6.19} Naj bo A matrika $R^{n\times n}$
+	\subsubsection{Obrnljivost in determinanta}
+
+	Naj bo A matrika $R^{n\times n}$
 	\begin{center}
 		\begin{math}
 			A\; je\; obrnljiva\; \iff detA \neq 0
@@ -1127,20 +1395,30 @@
 
 	\section{\underline{L. vrednosti in vektorji}}
 
-	\textbf{7.1} Vektor $\vec{x} \neq \vec{0}$, za katerega je $A\vec{x} = \lambda \vec{x}$ lastni vektor. Stevilo
+	\subsubsection{Lastni vektor in lastna vrednost}
+
+	Vektor $\vec{x} \neq \vec{0}$, za katerega je $A\vec{x} = \lambda \vec{x}$ lastni vektor. Stevilo
 	$\lambda$ je lastna vrednost.
 	\textbf{Pozor!} Nicelni vektor $\vec{0}$ ne more biti lastni vektor. Lahko pa je lastna vrednost enaka 0.
 
-	\textbf{7.2} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima matrika
+	\subsubsection{Lastne vrednosti $A^2$}
+
+	Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima matrika
 	$A^{2}$ lastno vrednost $\lambda^{2}$ in isti lastni vektor $\vec{x}$.
 
-	\textbf{7.3} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
+	\subsubsection{Lastne vrednosti $A^k$}
+
+	Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
 	matrika $A^{k}$ lastno vrednost $\lambda^{k}$ in isti lastni vektor $\vec{x}$.
 
-	\textbf{7.4} Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
+	\subsubsection{Lastne vrednosti inverzne matrike}
+
+	Ce ima matrika A lastno vrednost $\lambda$ in lastni vektor $\vec{x}$, potem ima
 	inverzna matrika lastno vrednost $1 / \lambda$ in isti lastni vektor $\vec{x}$.
 
-	\textbf{7.5} Sled kvadratne matrike A reda $n$ je vsota njenih diagonalnih elementov.
+	\subsubsection{Sled matrike}
+
+	Sled kvadratne matrike A reda $n$ je vsota njenih diagonalnih elementov.
 	\begin{center}
 		\begin{math}
 			sled(A) =
@@ -1149,7 +1427,9 @@
 		\end{math}.
 	\end{center}
 
-	\textbf{7.6} Sled matrike je enaka vsoti vseh lastnih vrednosti, stetih z njihovo veckratnostjo.
+	\subsubsection{Sled in determinanta preko lastnih vrednosti}
+
+	Sled matrike je enaka vsoti vseh lastnih vrednosti, stetih z njihovo veckratnostjo.
 	Ce so $\lambda_{1}, \dots, \lambda_{n}$ lastne vrednosti matrike reda n, potem je sled enaka \textit{vsoti}
 	\begin{center}
 		\begin{math}
@@ -1167,7 +1447,9 @@
 		\end{math}.
 	\end{center}
 
-	\textbf{Lastnosti sledi} Za matrike \( A, B, P \in \mathbb{R}^{n \times n} \) velja
+	\subsubsection{Lastnosti sledi}
+
+	Za matrike \( A, B, P \in \mathbb{R}^{n \times n} \) velja
 	\begin{enumerate}
 		\item \( \text{tr}(\alpha A) = \alpha \text{tr}(A) \),
 		\item \( \text{tr}(A + B) = \text{tr}(A) + \text{tr}(B) \),
@@ -1184,13 +1466,19 @@
 	\]
 
 
-	\textbf{7.7} Ce ima matrika A lastno vrednost $\lambda$, ki ji pripada lastni vektor $\vec{x}$,
+	\subsubsection{Lastne vrednosti A + cI}
+
+	Ce ima matrika A lastno vrednost $\lambda$, ki ji pripada lastni vektor $\vec{x}$,
 	potem ima matrika $A + cI$ lastno vrednost $\lambda + c$ z istim lastnim vektorjem $\vec{x}$ (velja samo z
 	enotskimi matrikami I).
 
-	\textbf{7.8} Lastne vrednosti trikotne matrike so enake diagonalnim elementom.
+	\subsubsection{Lastne vrednosti trikotne matrike}
 
-	\textbf{7.9} Denimo, da ima matrika $A \in R^{n \times n}\; n$ linearno neodvisnih lastnih vektorjev
+	Lastne vrednosti trikotne matrike so enake diagonalnim elementom.
+
+	\subsubsection{Diagonalizacija matrike}
+
+	Denimo, da ima matrika $A \in R^{n \times n}\; n$ linearno neodvisnih lastnih vektorjev
 	$\vec{x}_{1}, \vec{x}_{2}, \dots, \vec{x}_{n}$. Ce jih zlozimo kot stolpce v matriko S
 	\begin{center}
 		\begin{math}
@@ -1214,14 +1502,22 @@
 
 	\textbf{Pozor!} Lastni vektorji v matriki S morajo biti v istem vrstnem redu kot lastne vrednosti v matriki $T$.
 
-	\textbf{7.10} Ce je $A = STS^{-1}$, potem je $A^{k} = ST^{k}S^{-1}$ za vsak $k \in N$.
+	\subsubsection{Potenca diagonalizirane matrike}
 
-	\textbf{7.12} Vse lastne vrednosti realne simetricne matrike so realne.
+	Ce je $A = STS^{-1}$, potem je $A^{k} = ST^{k}S^{-1}$ za vsak $k \in N$.
 
-	\textbf{7.13} Lastni vektorji realne simetricne matrike, ki pripadajo razlicnim lastnim
+	\subsubsection{Lastne vrednosti simetrične matrike}
+
+	Vse lastne vrednosti realne simetricne matrike so realne.
+
+	\subsubsection{Pravokotnost lastnih vektorjev}
+
+	Lastni vektorji realne simetricne matrike, ki pripadajo razlicnim lastnim
 	vrednostim, so med seboj pravokotni.
 
-	\textbf{7.14 Schurov izrek} Za vsako kvadratno matriko reda n, ki ima le realne lastne vrednosti,
+	\subsubsection{Schurov izrek}
+
+	Za vsako kvadratno matriko reda n, ki ima le realne lastne vrednosti,
 	obstaja taka ortogonalna matrika $Q$, da je
 	\begin{center}
 		\begin{math}
@@ -1230,11 +1526,15 @@
 	\end{center}
 	zgornjetrikotna matrika, ki ima lastne vrednosti(lahko so kompleksne) matrike A na diagonali.
 
-	\textbf{7.15 Spektralni izrek} Vsako simetricno matriko A lahko razcepimo v produkt
+	\subsubsection{Spektralni izrek}
+
+	Vsako simetricno matriko A lahko razcepimo v produkt
 	$A = QTQ^{T}$, kjer je Q ortogonalna matrika lastnih vektorjev, T pa diagonalna z lastnimi
 	vrednostmi matrike A na diagonali.
 
-	\textbf{7.16} Vsako realno simetricno matriko lahko zapisemo kot linearno kombinacijo matrik ranga 1
+	\subsubsection{Linearna kombinacija matrik ranga 1}
+
+	Vsako realno simetricno matriko lahko zapisemo kot linearno kombinacijo matrik ranga 1
 	\begin{center}
 		\begin{math}
 			A = \lambda_{1}\vec{q}_{1}\vec{q}_{1}^{T} + \lambda_{2}\vec{q}_{2}\vec{q}_{2}^{T} +
@@ -1243,31 +1543,49 @@
 	\end{center}
 	kjer so $\vec{q}_{i}$ stolpci matrike Q (torej lastni vektorji matrike A).
 
-	\textbf{7.17} Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
+	\subsubsection{Pivoti in lastne vrednosti}
+
+	Za simetricno nesingularno matriko A je stevilo pozitivnih pivotov enako
 	stevilu pozitivnih lastnih vrednosti.
 
-	\textbf{7.18} Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
+	\subsubsection{Pozitivno definirana matrika}
 
-	\textbf{7.19} Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta
+	Kvadratna matrika je pozitivno definirana, kadar so vse njene lastne vrednosti pozitivne.
+
+	\subsubsection{Pozitivno definirana matrika reda 2}
+
+	Kvadratna matrika reda 2 je pozitivno definirana natanko tedaj, kadar sta
 	pozitivni sled in determinanta matrike.
 
-	\textbf{7.20} Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
+	\subsubsection{Pogoj za pozitivno definitnost}
+
+	Simetricna matrika A reda $n$ je pozitivno definirana natanko tedaj, ko je za vsak
 	vektor $\vec{x} \neq \vec{0} \in R^{n}$
 	\begin{center}
 		$\vec{x}^{T}A\vec{x} > 0$
 	\end{center}
 
-	\textbf{7.21} Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi
+	\subsubsection{Vsota pozitivno definitnih matrik}
+
+	Ce sta matriki A in B pozitivno definitni, je pozitivno definitna tudi
 	njuna vsota $A + B$.
 
-	\textbf{7.22} Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
+	\subsubsection{Vodilne glavne poddeterminante}
 
-	\textbf{7.23} Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
+	Matrika A je pozitivno definitna, kadar so vse njene vodilne glavne poddeterminante pozitivne.
 
-	\textbf{7.24} Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
+	\subsubsection{$R^T$ R je pozitivno definitna}
+
+	Ce so stolpci matrike R linearno neodvisni, je matrika $A = R^{T}R$ pozitivno definitna.
+
+	\subsubsection{Cholesky razcep}
+
+	Za vsako simetricno pozitivno definitno matriko A obstaja zgornjetrikotna matrika R, da
 	je $A = R^{T}R$.
 
-	\textbf{7.25} Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
+	\subsubsection{Ekvivalentni pogoji za pozitivno definitnost}
+
+	Simetricna matrka reda $n$, ki ima eno od spodnjih lastnosti, ima tudi ostale stiri:
 	\begin{enumerate}
 		\item Vseh $n$ pivotov je pozitivnih;
 		\item Vseh $n$ vodilnih glavnih determinant je pozitivnih;
@@ -1276,17 +1594,23 @@
 		\item $A= R^{T}R$ za neko matriko R z linearno neodvisnimi stolpci.
 	\end{enumerate}
 
-	\textbf{7.26} Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
+	\subsubsection{Singularni razcep (SVD)}
+
+	Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
 	$A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
 	V ortogonalna $n \times n$.
 
-	\textbf{7.27} Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
+	\subsubsection{Rang in nenicelne lastne vrednosti}
+
+	Ce je  matrika A simetricna in so vsej njeni elementi realni, potem je njen rang enak stevilu nenicelnih lastnih
 	vrednosti matrike A.
 	\begin{center}
 		$rang(A)$ = stevilo $\lambda A$
 	\end{center}
 
-	\textbf{7.28 Diagonalizacija} oz \textit{podobnost} matrik. Matriki A in B sta \textit{podobni}, ce imata
+	\subsubsection{Diagonalizacija in podobnost matrik}
+
+	Matriki A in B sta \textit{podobni}, ce imata
 	obe iste lastne vrednosi. Diagonalno matriko sestavimo tako, da v njeno diagonalo vpisemo lastne vrednosti. Matriko
 	P pa sestavimo iz njenih lastnih vektorjev; po stolpcih.
 	\begin{center}
@@ -1298,7 +1622,8 @@
 		\end{math}
 	\end{center}
 
-	\textbf{7.29 Spektralni razcep}
+	\subsubsection{Spektralni razcep}
+
 	Naj bodo vekotrji $\vec{q}_{1}, \dots, \vec{q}_{n}$ ONB iz l. vektorjev marike A za l. vrednost $\lambda_{1}, \dots, \lambda{n}$,
 	potem lahko matriko A zapisemo kot:
 	\begin{center}
@@ -1307,7 +1632,8 @@
 		\end{math}
 	\end{center}
 
-	\textbf{7.30 Nekaj lastnosti simetricnih matrik}
+	\subsubsection{Nekaj lastnosti simetričnih matrik}
+
 	\begin{itemize}
 		\item Vse lastne vrednosti simetricne matrike so realne. Lastni vektorji realne simetricne matrike, ki
 		      pripadajo razlicnim lastnim vrednostim, so med seboj pravokotni.
