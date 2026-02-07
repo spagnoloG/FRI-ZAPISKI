@@ -1860,62 +1860,78 @@
 	\subsection{Definitnost matrik}
 
 	Spomnimo se, da ima simetrična matrika \( A \in \mathbb{R}^{n \times n} \) vse lastne vrednosti realne.
-
 	Simetrični matriki \( A \in \mathbb{R}^{n \times n} \) pravimo
-	\begin{itemize}
-		\item \textbf{pozitivno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \geq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
-		\item \textbf{pozitivno definitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
-		\item \textbf{negativno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \leq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
-		\item \textbf{negativno definitna}, če je \( \mathbf{x}^T A \mathbf{x} < 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
-		\item \textbf{nedefinitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za nekatere \( \mathbf{x} \in \mathbb{R}^n \) in \( \mathbf{y}^T A \mathbf{y} < 0 \) za nekatere \( \mathbf{y} \in \mathbb{R}^n \).
-	\end{itemize}
-
+	\begin{small}
+		\begin{itemize}
+			\item \textbf{pozitivno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \geq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
+			\item \textbf{pozitivno definitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
+			\item \textbf{negativno semidefinitna}, če je \( \mathbf{x}^T A \mathbf{x} \leq 0 \) za vse \( \mathbf{x} \in \mathbb{R}^n \).
+			\item \textbf{negativno definitna}, če je \( \mathbf{x}^T A \mathbf{x} < 0 \) za vse neničelne \( \mathbf{x} \in \mathbb{R}^n \).
+			\item \textbf{nedefinitna}, če je \( \mathbf{x}^T A \mathbf{x} > 0 \) za nekatere \( \mathbf{x} \in \mathbb{R}^n \) in \( \mathbf{y}^T A \mathbf{y} < 0 \) za nekatere \( \mathbf{y} \in \mathbb{R}^n \).
+		\end{itemize}
+	\end{small}
 	Posledica: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična z lastnimi vrednostmi \( \lambda_i, \ldots, \lambda_n \).
-	\begin{itemize}
-		\item \( A \) je \textbf{PSD} (pozitivno semidefinitna) \( \Leftrightarrow \lambda_i \geq 0 \) za \( i=1,\ldots,n \).
-		\item \( A \) je \textbf{PD} (pozitivno definitna) \( \Leftrightarrow \lambda_i > 0 \) za \( i=1,\ldots,n \).
-		\item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
-		\item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
-		\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako pozitivne kot negativne lastne vrednosti.
-		\item \( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
-	\end{itemize}
-
+	\begin{small}
+		\begin{itemize}
+			\item \( A \) je \textbf{PSD} (pozitivno semidefinitna) \( \Leftrightarrow \lambda_i \geq 0 \) za \( i=1,\ldots,n \).
+			\item \( A \) je \textbf{PD} (pozitivno definitna) \( \Leftrightarrow \lambda_i > 0 \) za \( i=1,\ldots,n \).
+			\item \( A \) je \textbf{NSD} (negativno semidefinitna) \( \Leftrightarrow \lambda_i \leq 0 \) za \( i=1,\ldots,n \).
+			\item \( A \) je \textbf{ND} (negativno definitna) \( \Leftrightarrow \lambda_i < 0 \) za \( i=1,\ldots,n \).
+			\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) ima tako poz. kot neg lastne vrednosti.
+			\item \( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
+		\end{itemize}
+	\end{small}
 	Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
-	\begin{itemize}
-		\item \( A \) je \textbf{PSD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
-		\item \( A \) je \textbf{PD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
-		\item \( A \) je \textbf{NSD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
-		\item \( A \) je \textbf{ND} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
-		\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
-	\end{itemize}
+	\begin{small}
+		\begin{itemize}
+			\item \( A \) je \textbf{PSD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
+			\item \( A \) je \textbf{PD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
+			\item \( A \) je \textbf{NSD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
+			\item \( A \) je \textbf{ND} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
+			\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) obstaja tako poz. kot neg. lastne vrednosti.
+		\end{itemize}
+	\end{small}
 
 	\subsubsection{Sylvestrov kriterij}
-	Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
-
+	Naj bo $A\in\mathbb{R}^{n\times n}$ simetrična. Za $k=1,\dots,n$ naj bo
 	\[
-		\text{det} \left[
-			\begin{array}{cccc}
-				+ & + & + & + \\
-				+ & + & + & + \\
-				+ & + & + & + \\
-				+ & + & + & + \\
-			\end{array}
-			\right] > 0 \quad \sim \text{PD} \\
+		A_k := A_{1:k,\,1:k}
+		=
+		\begin{pmatrix}
+			a_{11} & \cdots & a_{1k} \\
+			\vdots & \ddots & \vdots \\
+			a_{k1} & \cdots & a_{kk}
+		\end{pmatrix},
+		\qquad
+		\Delta_k := \det(A_k).
 	\]
 
-	Simetrična matrika \( A \) je negativno definitna natanko tedaj, ko je determinanta vsake \( k \times k \) vodilne glavne podmatrike \( A \) pozitivna, če je \( k \) sodo število, ter negativna, če je \( k \) liho število.
-
 	\[
-		\text{det} \left[
-			\begin{array}{cccc}
-				- & + & - & + \\
-				+ & - & + & - \\
-				- & + & - & + \\
-				+ & - & + & - \\
-			\end{array}
-			\right] \quad \sim \text{ND}
+		A \text{ je pozitivno definitna (PD)}
+		\iff
+		\Delta_1>0,\ \Delta_2>0,\ \dots,\ \Delta_n>0,
+	\]
+	tj.
+	\[
+		\det\!\begin{pmatrix} a_{11}\end{pmatrix}>0,\quad
+		\det\!\begin{pmatrix} a_{11}&a_{12}\\ a_{21}&a_{22}\end{pmatrix}>0,\quad
+		\det\!\begin{pmatrix} a_{11}&a_{12}&a_{13}\\ a_{21}&a_{22}&a_{23}\\ a_{31}&a_{32}&a_{33}\end{pmatrix}>0,\ \dots,\
+		\det(A)>0.
 	\]
 
+	\[
+		A \text{ je negativno definitna (ND)}
+		\iff
+		(-1)^k\Delta_k>0\ \text{za vsak }k
+		\iff
+		\Delta_1<0,\ \Delta_2>0,\ \Delta_3<0,\ \dots,
+	\]
+	tj.
+	\[
+		\det\!\begin{pmatrix} a_{11}\end{pmatrix}<0,\quad
+		\det\!\begin{pmatrix} a_{11}&a_{12}\\ a_{21}&a_{22}\end{pmatrix}>0,\quad
+		\det\!\begin{pmatrix} a_{11}&a_{12}&a_{13}\\ a_{21}&a_{22}&a_{23}\\ a_{31}&a_{32}&a_{33}\end{pmatrix}<0,\ \dots
+	\]
 
 	\subsubsection{Razcep Choleskega}
 	Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
@@ -2162,7 +2178,7 @@
 		\end{multicols}
 	\end{small}
 
-	\section{\underline{Analiza}}
+	\section{\underline{Realna Analiza}}
 
 	\subsection{Funkcije več spremenljivk}
 	Funkcija več spremenljivk
@@ -2234,6 +2250,9 @@
 	\[
 		f_{\vec{e}}(a) = (\nabla f)(a) \cdot \frac{\vec{e}}{\| \vec{e} \|} = \sum_{i=1}^n \frac{f_{x_i}(a) e_i}{\| \vec{e} \|}
 	\]
+
+	Glavna razlika je v tem, da je gradient $\nabla f(a)$ \emph{vektor}, ki v točki $a$ opiše lokalno naraščanje funkcije v vseh smereh,
+	medtem ko je smerni odvod $f'_{\vec e}(a)$ \emph{skalar}, ki pove spremembo funkcije samo v izbrani smeri $\vec e$.
 
 	Za funkcijo \( f: \mathbb{R}^n \rightarrow \mathbb{R} \) velja:
 	\begin{enumerate}
