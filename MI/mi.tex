@@ -2465,7 +2465,7 @@
 
 	Naj bodo \( f, g_i, h_j : \mathbb{R}^n \rightarrow \mathbb{R} \) dane funkcije več spremenljivk. Radi bi našli rešitev problema
 	\[
-		\text{(P$^\star$)} \quad \min_{\vec{x}} f(\vec{x})
+		\text{(P)} \quad \min_{\vec{x}} f(\vec{x})
 	\]
 	pri pogojih
 	\[
@@ -2474,29 +2474,22 @@
 		h_j(\vec{x}) \le 0 \quad \text{za } j = 1,2,\ldots,r.
 	\]
 
-	Naj bo \(D_f \subseteq \mathbb{R}^n\) domena funkcije \(f\). Definirajmo še množice
+	Naj bo \(D_f \subseteq \mathbb{R}^n\) domena funkcije \(f\). Definirajmo množico dopustnih točk
 	\[
-		D_{g_i} = \left\{ \vec{x} \in \mathbb{R}^n : g_i(\vec{x}) = 0 \right\} \quad (i=1,\ldots,m),
+		D \;=\; \left\{\vec{x}\in D_f \;:\; g_i(\vec{x})=0 \ (i=1,\ldots,m),\ \ h_j(\vec{x})\le 0 \ (j=1,\ldots,r)\right\}.
+	\]
+	Potem lahko problem \(\text{(P)}\) zapišemo ekvivalentno kot
+	\[
+		\text{(P)} \quad \min_{\vec{x} \in D} f(\vec{x}).
 	\]
 
-	\[
-		D_{h_j} = \left\{ \vec{x} \in \mathbb{R}^n : h_j(\vec{x}) \le 0 \right\} \quad (j=1,\ldots,r),
-	\]
-	in
-	\[
-		D = D_f \cap \left( \bigcap_{i=1}^m D_{g_i} \right) \cap \left( \bigcap_{j=1}^r D_{h_j} \right).
-	\]
-	Sedaj lahko problem \(\text{(P$^\star$)}\) zapišemo ekvivalentno kot
-	\[
-		\text{(P$^\star$)} \quad \min_{\vec{x} \in D} f(\vec{x}).
-	\]
-
-	Definirajmo Lagrangevo funkcijo
+	\paragraph{Lagrangeva funkcija.}
+	Definirajmo Lagrangevo funkcijo (pri nas z \emph{minus} predznakom pri multiplikatorjih)
 	\[
 		L(\vec{x}, \vec{\lambda}, \vec{\mu})
 		= f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x})
-	\]
-	\[
+    \]
+    \[
 		= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
 	\]
 	kjer je
@@ -2531,61 +2524,81 @@
 		\end{pmatrix}.
 	\]
 
-	Funkcijo
+	\paragraph{Prirejena (dualna) funkcija.}
+	Prirejeno funkcijo definiramo kot
 	\[
 		K(\vec{\lambda}, \vec{\mu})
-		= \inf_{\vec{x} \in D} L(\vec{x}, \vec{\lambda}, \vec{\mu})
-		= \inf_{\vec{x} \in D} \left\{ f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x}) \right\}
+		= \inf_{\vec{x} \in D_f} L(\vec{x}, \vec{\lambda}, \vec{\mu})
+		= \inf_{\vec{x} \in D_f} \left\{ f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x}) \right\}.
 	\]
-	imenujemo \textbf{prirejena funkcija} problema \(\text{(P$^\star$)}\). Pri tem spremenljivke \(\vec{\lambda}\) in \(\vec{\mu}\) imenujemo \textbf{prirejene spremenljivke}. Opazimo:
+	Opazimo:
 	\begin{enumerate}
-		\item \(K(\vec{\lambda}, \vec{\mu})\) je konkavna funkcija.
-		\item Če je \(\mu_j \le 0\) za \(j = 1,2,\ldots,r\), potem velja
+		\item \(K(\vec{\lambda}, \vec{\mu})\) je konkavna funkcija v spremenljivkah \((\vec{\lambda},\vec{\mu})\).
+		\item Če je \(\vec{x}\in D\) primalno dopustna in \(\vec{\mu}\le \vec{0}\), potem velja
 		      \[
-			      K(\vec{\lambda}, \vec{\mu}) \le \min_{\vec{x} \in D} f(\vec{x})
+			      L(\vec{x},\vec{\lambda},\vec{\mu}) \le f(\vec{x}),
 		      \]
-		      za vse \(\vec{\lambda}\) ter vse \(\vec{\mu} \le \vec{0}\).
+		      zato
+		      \[
+			      K(\vec{\lambda},\vec{\mu}) \le f(\vec{x}) \quad \text{za vse } \vec{x}\in D.
+		      \]
+		      Posledično velja \emph{šibka dualnost}
+		      \[
+			      K(\vec{\lambda},\vec{\mu}) \le p^\star
+		      \]
+		      za vse \(\vec{\lambda}\) in vse \(\vec{\mu}\le \vec{0}\), kjer je \(p^\star=\min_{\vec{x}\in D} f(\vec{x})\).
 	\end{enumerate}
 
-	\textbf{Problem}
+	\paragraph{Prirejeni problem.}
+	Prirejeni problem definiramo kot
 	\[
-		\text{(D$^\star$)} \quad \max_{\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
+		\text{(D)} \quad \max_{\vec{\lambda}, \vec{\mu}} K(\vec{\lambda}, \vec{\mu})
 	\]
 	pri pogoju
 	\[
-		\mu_j \le 0 \quad \text{za } j = 1,2,\ldots,r
+		\vec{\mu} \le \vec{0}.
 	\]
-	imenujemo \textbf{prirejeni problem} problema \(\text{(P$^\star$)}\).
-
-	Označimo z \(\vec{x}^\star \in D\) rešitev problema \(\text{(P$^\star$)}\) ter z \((\vec{\lambda}^\star,\vec{\mu}^\star)\) rešitev problema \(\text{(D$^\star$)}\).
-	Naj bo \(p^\star = f(\vec{x}^\star)\) in \(d^\star = K(\vec{\lambda}^\star,\vec{\mu}^\star)\). Potem velja
+	Naj bo \(d^\star = \max_{\vec{\lambda},\ \vec{\mu}\le 0} K(\vec{\lambda},\vec{\mu})\) (natančneje: \(\sup\), če maksimum ne obstaja). Tedaj po šibki dualnosti velja
 	\[
 		d^\star \le p^\star.
 	\]
 
-	V primeru, ko velja \(d^\star = p^\star\), morajo \(\vec{x}^\star\), \(\vec{\lambda}^\star\) in \(\vec{\mu}^\star\) zadostiti Karush--Kuhn--Tuckerjevim (KKT) pogojem:
+	\paragraph{KKT pogoji.}
+	Predpostavimo, da velja močna dualnost \(d^\star=p^\star\) in da obstaja optimalen par multiplikatorjev \((\vec{\lambda}^\star,\vec{\mu}^\star)\).
+	Potem morajo \(\vec{x}^\star\), \(\vec{\lambda}^\star\) in \(\vec{\mu}^\star\) zadoščati Karush--Kuhn--Tuckerjevim pogojem:
 	\[
 		\begin{aligned}
-			\text{(\small{stacionarnost})}\quad
+			\text{(\small stacionarnost)}\quad
 			\nabla_{\vec{x}} L(\vec{x}^\star, \vec{\lambda}^\star, \vec{\mu}^\star) & = 0,                                     \\
-			\text{(\small{primalna dopustnost})}\quad
+			\text{(\small primalna dopustnost)}\quad
 			g_i(\vec{x}^\star)                                                      & = 0 \quad \text{za } i = 1,2,\ldots,m,   \\
 			h_j(\vec{x}^\star)                                                      & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
-			\text{(\small{dualna dopustnost})}\quad
+			\text{(\small dualna dopustnost)}\quad
 			\mu_j^\star                                                             & \le 0 \quad \text{za } j = 1,2,\ldots,r, \\
-			\text{(\small{komplementarna ohlapnost})}\quad
+			\text{(\small komplementarna ohlapnost)}\quad
 			\mu_j^\star\, h_j(\vec{x}^\star)                                        & = 0 \quad \text{za } j = 1,2,\ldots,r.
 		\end{aligned}
 	\]
-	\textbf{Trditev 2.}
-	Naj bodo \(f, h_j : \mathbb{R}^n \to \mathbb{R}\) konveksne in dvakrat zvezno odvedljive funkcije ter
-	\[
-		\mathbf{G}(\vec{x}) = A\vec{x} - \vec{b}
-		\quad \text{za neko matriko } A \in \mathbb{R}^{m\times n} \text{ in vektor } \vec{b} \in \mathbb{R}^m.
-	\]
-	Če \((\vec{x}',\vec{\lambda}',\vec{\mu}')\) zadošča sistemu \(\text{(KKT)}\), potem je \(\vec{x}'\) rešitev problema \(\text{(P$^\star$)}\),
-	\((\vec{\lambda}',\vec{\mu}')\) rešitev problema \(\text{(D$^\star$)}\) in velja \(p^\star = d^\star\).
 
+	\textbf{Trditev.}
+	Naj bodo \(f\) in \(h_j\) konveksne in dvakrat zvezno odvedljive funkcije, \(g_i\) pa afine (npr.\ \(\mathbf{G}(\vec{x})=A\vec{x}-\vec{b}\)).
+	Če \((\vec{x}',\vec{\lambda}',\vec{\mu}')\) zadošča sistemu \(\text{(KKT)}\), potem je \(\vec{x}'\) rešitev problema \(\text{(P)}\),
+	\((\vec{\lambda}',\vec{\mu}')\) rešitev problema \(\text{(D)}\) in velja \(p^\star = d^\star\).
+
+	\paragraph{Slaterjev pogoj (pogoj regularnosti).}
+	Naj bo problem \(\text{(P)}\) konveksen (tj.\ \(f\) in \(h_j\) so konveksne, \(g_i\) so afine).
+	Pravimo, da velja \textbf{Slaterjev pogoj}, če obstaja \(\tilde{\vec{x}}\in D_f\) tako, da
+	\[
+		g_i(\tilde{\vec{x}})=0 \quad (i=1,\ldots,m),
+		\qquad
+		h_j(\tilde{\vec{x}})<0 \quad (j=1,\ldots,r).
+	\]
+
+	\textbf{Izrek (Slater \(\Rightarrow\) močna dualnost in KKT).}
+	Če je problem \(\text{(P)}\) konveksen in velja Slaterjev pogoj, potem velja močna dualnost \(p^\star=d^\star\) in obstajajo optimalni multiplikatorji
+	\((\vec{\lambda}^\star,\vec{\mu}^\star)\).
+	V tem primeru so KKT pogoji \emph{nujni in zadostni} za optimalnost: \(\vec{x}^\star\) je optimalna natanko tedaj, ko obstajata
+	\(\vec{\lambda}^\star\) in \(\vec{\mu}^\star\le \vec{0}\), da zadoščajo (KKT).
 	\subsection{Dodatek 2: Ponovitev analize}
 
 	\input{../VIS/ponovitev-analize.tex}
