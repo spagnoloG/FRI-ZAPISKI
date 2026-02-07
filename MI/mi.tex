@@ -4,6 +4,7 @@
 \usepackage{multicol}
 \usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage{tikz-cd}
 \usepackage[inline]{enumitem}
 
 
@@ -639,7 +640,7 @@
 	Ce je R poljubna (lahko tudi pravokotna) matrika, sta $R^{T}R$ in
 	$RR^{T}$ simetricni matriki.
 
-	\section{\underline{Vektorski prostori}}
+	\section{\underline{Vektorski prostori}}  \label{sec:vector_spaces}
 
 	\subsubsection{Realni vektorski prostor}
 
@@ -1456,7 +1457,7 @@
 		\item \( \text{tr}(A^T) = \text{tr}(A) \),
 		\item \( \text{tr}(AB) = \text{tr}(BA) \),
 		\item \( \text{tr}(PAP^{-1}) = \text{tr}(A) \) za vsako obrnljivo matriko \( P \).
-		\item \( \text{tr}(ABP) = \text{tr}(APB\), ce so A,B,P simetricne matirke.
+		\item \( \text{tr}(ABP) = \text{tr}(APB) \), ce so A,B,P simetricne matirke.
 		\item \( \text{tr}(ABP) = \text{tr}(A^TB^TP^T)\).
 	\end{enumerate}
 
@@ -1645,15 +1646,15 @@
 				      (A^T A)^T = A^T(A^T)^T = A^TA
 			      \end{math}
 		      \end{center}
+		      Za to matriko velja tudi da je \textbf{PSD}.
 	\end{itemize}
 
 	\section{\underline{Napredna linearna algebra}}
 
 	\subsection{Schurov izrek}
 
-	\textbf{(Schur)}: Naj bo \( A \in \mathbb{R}^{n \times n} \) matrika z lastnimi vrednostmi \( \lambda_1, \ldots, \lambda_n \). Potem obstaja ortogonalna matrika \( Q \in \mathbb{R}^{n \times n} \) in zgornje trikotna matrika \( Z \), ki ima na diagonali \( \lambda_1, \ldots, \lambda_n \), da velja
+	Naj bo \( A \in \mathbb{R}^{n \times n} \) matrika z lastnimi vrednostmi \( \lambda_1, \ldots, \lambda_n \). Potem obstaja ortogonalna matrika \( Q \in \mathbb{R}^{n \times n} \) in zgornje trikotna matrika \( Z \), ki ima na diagonali \( \lambda_1, \ldots, \lambda_n \), da velja
 	\[ A = QZQ^{-1} = QZQ^T. \]
-
 	\textbf{Postopek za izračun Schurovega razcepa:}
 	Naj bo \(A \in \mathbb{R}^{n \times n}\) matrika z lastnimi
 	vrednostmi \(\lambda_1, \ldots, \lambda_n\). Potem obstajata ortogonalna matrika
@@ -1722,7 +1723,7 @@
 	\]
 
 
-	\textbf{Frobeniusova norma matrike} \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) je definirana kot
+	\subsubsection{Frobeniusova norma matrike} \( A = [a_{ij}] \in \mathbb{R}^{m \times n} \) je definirana kot
 	\[
 		\|A\|_F = \|A\| = \sqrt{\langle A, A \rangle} = \sqrt{\text{tr}(A^T A)}.
 	\]
@@ -1819,7 +1820,7 @@
 		||A \otimes B||_F = ||A||_F \cdot ||B||_F
 	\]
 
-	\subsection{Kroneckerjeva vsota}
+	\subsubsection{Kroneckerjeva vsota}
 
 	Kroneckerjeva vsota je definirana za kvadratni matriki \( A \) in \( B \):
 	\[ A \oplus B = A \otimes I_m + I_n \otimes B \]
@@ -1879,7 +1880,17 @@
 		\item \( A \) je \textbf{PD} \( \Leftrightarrow A \) je \textbf{PSD} in \( A \) obrnljiva.
 	\end{itemize}
 
-	\textbf{(Sylvester)}. Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
+	Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
+	\begin{itemize}
+		\item \( A \) je \textbf{PSD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
+		\item \( A \) je \textbf{PD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
+		\item \( A \) je \textbf{NSD} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
+		\item \( A \) je \textbf{ND} \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
+		\item \( A \) je \textbf{nedefinirana} \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
+	\end{itemize}
+
+	\subsubsection{Sylvestrov kriterij}
+	Simetrična matrika \( A \) je pozitivno definitna natanko tedaj, ko so determinante vseh vodilnih glavnih podmatrik matrike \( A \) pozitivne.
 
 	\[
 		\text{det} \left[
@@ -1905,16 +1916,9 @@
 			\right] \quad \sim \text{ND}
 	\]
 
-	Izrek: Naj \( A \in \mathbb{R}^{n \times n} \) simetrična ranga \( r \). Velja
-	\begin{itemize}
-		\item \( A \) je PSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = BB^T \).
-		\item \( A \) je PD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = BB^T \).
-		\item \( A \) je NSD \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times r} \), da je \( A = -BB^T \).
-		\item \( A \) je ND \( \Leftrightarrow \) obstaja \( B \in \mathbb{R}^{n \times n} \), da je \( A = -BB^T \).
-		\item \( A \) je nedefinirana \( \Leftrightarrow \) obstaja tako pozitivne kot negativne lastne vrednosti.
-	\end{itemize}
 
-	\textbf{(Razcep Choleskega)}. Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
+	\subsubsection{Razcep Choleskega}
+	Obrnljiva matrika \( A \in \mathbb{R}^{n \times n} \) ima razcep Choleskega
 	\[ A = LL^T, \]
 	kjer je \( L \in \mathbb{R}^{n \times n} \) spodnje trikotna matrika, natanko tedaj, ko je \( A \) simetrična in pozitivno definitna.
 
@@ -1967,51 +1971,7 @@
 	\]
 
 	\subsection{Vektorski prostori}
-
-	\textbf{Realni vektorski prostor} \( V \) je množica \textbf{vektorjev} \( v \), za katere imamo definirani dve notranji operaciji
-	\begin{itemize}
-		\item seštevanje vektorjev \( (u, v \in V \Rightarrow u+v \in V) \),
-		\item množenje vektorjev z realnimi števili \( (v \in V, \alpha \in \mathbb{R} \Rightarrow \alpha v = \alpha \cdot v \in V) \),
-	\end{itemize}
-	z lastnostmi
-	\begin{enumerate}
-		\item \( u + v = v + u \) in \( (u + v) + w = u + (v + w) \),
-		\item obstaja ničelni vektor \( 0 \) in velja \( v + 0 = 0 + v = v \),
-		\item za vsak \( v \in V \) obstaja nasprotni vektor \( -v \), za katerega velja \( v + (-v) = (-v) + v = 0 \),
-		\item \( 1 \cdot v = v \) za vsak \( v \in V \),
-		\item \( (\alpha\beta) \cdot v = \alpha \cdot (\beta \cdot v) \),
-		\item \( (\alpha + \beta) \cdot v = \alpha \cdot v + \beta \cdot v \),
-		\item \( \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v \),
-	\end{enumerate}
-	za poljubne \( u, v, w \in V \) in \( \alpha, \beta \in \mathbb{R} \).
-
-
-	\textbf{Izrek:} Naj bo \( V \) vektorski prostor. Potem velja
-	\begin{enumerate}
-		\item \( V \) vsebuje ničelni vektor \( 0 \),
-		\item v vsakem vektorskem prostoru \( V \) je ničelni vektor \( 0 \) en sam,
-		\item \( \alpha \cdot 0 = 0 \) za vsak \( \alpha \in \mathbb{R} \),
-		\item \( 0 \cdot v = 0 \) za vsak \( v \in V \).
-	\end{enumerate}
-	Za vektorje \( v_1, v_2, \ldots, v_n \in V \) in skalare \( \alpha_1, \alpha_2, \ldots, \alpha_n \in \mathbb{R} \) imenujemo vektor
-	\[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n \]
-	\textbf{linearna kombinacija vektorjev} \( v_1, v_2, \ldots, v_n \).
-	Denimo, ničelni vektor \( 0 \) je
-	\[ 0 \cdot v_1 + 0 \cdot v_2 + \ldots + 0 \cdot v_n \]
-	je linearna kombinacija poljubnih vektorjev \( v_1, v_2, \ldots, v_n \in V \). Linearno kombinacijo z izključno ničelnimi koeficienti imenujemo \textbf{trivialna linearna kombinacija}.
-
-	Če je podmnožica \( U \) vektorskega prostora \( V \)
-	\begin{itemize}
-		\item[(1)] zaprta za seštevanje \( (u, v \in U \Rightarrow u + v \in U) \) in
-		\item[(2)] zaprta za množenje vektorjev z realnimi števili \( (v \in U, \alpha \in \mathbb{R} \Rightarrow \alpha v \in U) \),
-	\end{itemize}
-	potem jo imenujemo \textbf{vektorski podprostor} prostora \( V \).
-
-	\textbf{Izrek:} Podmnožica \( U \) vektorskega prostora \( V \) je vektorski podprostor natanko tedaj, ko je poljubna linearna kombinacija \( \alpha u + \beta v \) vektorjev \( u, v \in U \) tudi vsebovana v \( U \).
-
-	Vsak vektorski podprostor po (2) vsebuje tudi vektor \( 0 \cdot v = 0 \). Zatorej podmnožica vektorskega prostora, ki ne vsebuje ničelnega vektorja, ne more biti vektorski podprostor.
-
-	Ker lastnosti (1)-(7) veljajo za poljubne elemente vektorskega prostora \( V \), veljajo tudi za vse elemente vektorskega podprostora \( U \) v \( V \). Poleg tega je vektorski podprostor po definiciji zaprt za seštevanje in množenje s števili. Zatorej je vsak vektorski podprostor hkrati tudi vektorski prostor.
+	Glej section \ref{sec:vector_spaces}.
 
 	\subsubsection{Linearna ogrinjača} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) vektorjev \( v_1, v_2, \ldots, v_n \) je množica vseh linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \).
 
@@ -2046,7 +2006,7 @@
 	\textbf{Izrek:} Za vsako bazo vektorskega prostora \( V \) je zapis poljubnega vektorja \( v \in V \) kot linearna kombinacija baznih vektorjev vedno enoličen.
 
 
-	\subsubsection{Linearne preslikave}
+	\subsection{Linearne preslikave}
 	Naj bosta \( V \) in \( U \) vektorska prostora. Preslikava \( \tau: V \to U \) je \textbf{linearna preslikava}, če velja
 	\begin{itemize}
 		\item[(1)] \( \tau(v + u) = \tau(v) + \tau(u) \) za vsaka \( v, u \in V \) in
@@ -2082,19 +2042,71 @@
 		\item Matrika, ki ustreza kompozitumu preslikav, je enaka produktu matrik posameznih preslikav.
 		      \[ A_{\theta\circ\tau,B}^D = A_{\theta,C}^D \cdot A_{\tau,B}^C \]
 		\item Matrika, ki ustreza inverzu obrnljive preslikave, je enaka inverzu matrike te preslikave. Torej, če je \( \tau \) obrnljiva preslikava, je obrnljiva tudi matrika \( A_{\tau,B}^C \). Velja
-		      \[ A_{\tau^{-1},C}^B = (A_{\tau,B}^C)^{-1} \].
+		      \[ A_{\tau^{-1},C}^B = (A_{\tau,B}^C)^{-1} \]
 	\end{enumerate}
 
+	\subsubsection{Lastni vektorji in lastne vrednosti linearne preslikave}
 
-	Neničelnemu vektorju \( v \) v \( V \) pravimo \textit{lastni vektor} linearne preslikave \( \tau: V \to V \), če velja
-	\[ \tau(v) = \lambda v. \]
-	Številu \( \lambda \) pravimo \textit{lastna vrednost} linearne preslikave \( \tau \).
+	Naj bo \(\tau: V \to V\) linearna preslikava. Neničelnemu vektorju \(v \in V\) pravimo \textit{lastni vektor} preslikave \(\tau\), če obstaja skalar \(\lambda \in \mathbb{K}\), da velja
+	\[
+		\tau(v) = \lambda v, \qquad v \neq 0.
+	\]
+	Številu \(\lambda\) pravimo \textit{lastna vrednost} preslikave \(\tau\).
+
+	\medskip
+	Ker morata biti leva in desna stran enačbe \(\tau(v)=\lambda v\) v istem prostoru, so lastni vektorji in lastne vrednosti definirani za \textit{endomorfizme}, tj. za preslikave \(\tau: V \to V\) (domena in kodomena sta isti prostor). Če \(\tau\) zapišemo v izbrani bazi z matriko \(A\), potem je \(A \in \mathbb{K}^{n\times n}\) kvadratna matrika in pogoj postane
+	\[
+		Av = \lambda v, \qquad v \neq 0.
+	\]
+	Za nekvadratne matrike (\(m \times n\) z \(m\neq n\)) lastne vrednosti praviloma niso definirane; v takih primerih namesto tega obravnavamo singularne vrednosti (SVD).
+
+
+	\subsubsection{Prehod na novi bazi}
+
+	Matrika linearne preslikave je odvisna od izbire baz. Naj bo \(\tau:U\to V\) linearna preslikava.
+	Naj bosta \(B_1,B_2\) bazi prostora \(U\) ter \(C_1,C_2\) bazi prostora \(V\).
+	Označimo
+	\[
+		A_1 := A^{C_1}_{\tau,B_1},
+		\qquad
+		A_2 := A^{C_2}_{\tau,B_2}.
+	\]
+	Prehodni matriki med bazami zapišemo v notaciji identitete:
+	\[
+		P := I_{B_1B_2}
+		\quad\text{prehod iz koordinat v bazi \(B_1\) v koordinate v bazi \(B_2\)},\qquad
+	\]
+	\[
+		Q := I_{C_1C_2}
+		\quad\text{prehod iz koordinat v bazi \(C_1\) v koordinate v bazi \(C_2\)}
+	\]
+	Prehod na novi bazi ponazorimo z diagramom:
+	\[
+		\begin{tikzcd}[column sep=large, row sep=large]
+			(U,B_1) \arrow[r, "A^{C_1}_{\tau,B_1}=A_1"] \arrow[d, "P=I_{B_1B_2}"']
+			& (V,C_1) \arrow[d, "Q=I_{C_1C_2}"] \\
+			(U,B_2) \arrow[r, "A^{C_2}_{\tau,B_2}=A_2"']
+			& (V,C_2)
+		\end{tikzcd}
+	\]
+	\textbf{Izrek:}
+	Za matriki \(A_1,A_2\) ter prehodni matriki \(P,Q\) velja
+	\[
+		A_2 \;=\; Q\,A_1\,P^{-1}.
+	\]
+	\subsubsection{Lastnosti linearnih preslikav}
 
 	\textbf{Izrek:} Vsaka lastna vrednost linearne preslikave \( \tau \) je tudi lastna vrednost poljubne matrike \( A_{\tau} \), ki pripada preslikavi \( \tau \). Vse matrike, ki pripadajo dani linearni preslikavi \( \tau \) imajo enake lastne vrednosti.
 
 	Pravimo, da je linearno preslikavo \( \tau: V \to V \) mogoče \textit{diagonalizirati}, če obstaja baza, v kateri pripada preslikavi diagonalna matrika.
 
-	\textbf{Izrek:} Linearno preslikavo \( \tau: V \to V \) je mogoče diagonalizirati natanko tedaj, ko obstaja baza prostora \( V \) sestavljena iz lastnih vektorjev preslikave \( \tau \).
+	\textbf{Izrek}:
+	Matrika \(A_{\tau}\) je diagonalizabilna natanko tedaj, ko obstaja baza prostora \(\mathbb{K}^n\), sestavljena iz lastnih vektorjev matrike \(A_{\tau}\).
+	Ekvivalentno: obstajata obrnljiva matrika \(P\) in diagonalna matrika \(D\) tako, da velja
+	\[
+		P^{-1}A_{\tau}P = D,
+	\]
+	kjer stolpci matrike \(P\) tvorijo bazo iz lastnih vektorjev matrike \(A_{\tau}\), diagonalni elementi matrike \(D\) pa so pripadajoče lastne vrednosti.
 
 	Naj bo \( \tau: V \rightarrow U \) linearna preslikava vektorskega prostora \( V \) v vektorski prostor \( U \).
 
@@ -2120,30 +2132,36 @@
 		\item \( \text{dim}(\text{ker}(\tau)) + \text{dim}(\text{im}(\tau)) = \text{dim}(V) \).
 	\end{enumerate}
 
-	\textbf{Posledica:}
 
-	Naj bo \( \tau: V \rightarrow U \) linearna preslikava, \(\dim V = \dim U = n\) in
-	naj bo \(A\) neka matrika, ki pripada \(\tau\). Naslednje trditve so ekvivalentne:
-	\begin{enumerate*}[label=(\arabic*)~, itemjoin={;\ }, itemjoin*={;\ }]
-		\item \( \tau \) je bijektivna
-		\item \( \tau \) je injektivna
-		\item \( \tau \) je surjektivna
-		\item \( A \) je obrnljiva
-		\item \( \ker \tau = \{0\} \)
-		\item \( N(A) = \{0\} \)
-		\item \( \operatorname{im} \tau = U \)
-		\item \( C(A) = \mathbb{R}^n \)
-		\item rang matrike \(A\) je \(n\)
-		\item vrstice matrike \(A\) so linearno neodvisne
-		\item vrstice matrike \(A\) razpenjajo \(\mathbb{R}^n\)
-		\item vrstice matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
-		\item stolpci matrike \(A\) so linearno neodvisni
-		\item stolpci matrike \(A\) razpenjajo \(\mathbb{R}^n\)
-		\item stolpci matrike \(A\) tvorijo bazo \(\mathbb{R}^n\)
-		\item \( \det A \neq 0 \)
-		\item homogeni sistem \(Ax = 0\) ima le trivialno rešitev
-		\item sistem \(Ax = b\) ima rešitev za vsak \(b \in \mathbb{R}^n\)
-	\end{enumerate*}.
+	\textbf{Posledica.}
+	Naj bo \(\tau:V\to U\) linearna preslikava, \(\dim V=\dim U=n\), in naj bo \(A\) matrika preslikave \(\tau\).
+	Naslednje trditve so ekvivalentne:
+
+	\begin{small}
+		\begin{multicols}{2}
+			\begin{enumerate}[label=(\arabic*), leftmargin=*, itemsep=0.2ex, topsep=0.2ex, parsep=0pt]
+				\item \(\tau\) je bijektivna.
+				\item \(\tau\) je injektivna.
+				\item \(\tau\) je surjektivna.
+				\item \(A\) je obrnljiva.
+				\item \(\ker \tau=\{0\}\).
+				\item \(N(A)=\{0\}\).
+				\item \(\operatorname{im}\tau=U\).
+				\item \(C(A)=\mathbb{R}^n\).
+				\item \(\operatorname{rang}(A)=n\).
+				\item Vrstice matrike \(A\) so linearno neodvisne.
+				\item Vrstice matrike \(A\) razpenjajo \(\mathbb{R}^n\).
+				\item Vrstice matrike \(A\) tvorijo bazo \(\mathbb{R}^n\).
+				\item Stolpci matrike \(A\) so linearno neodvisni.
+				\item Stolpci matrike \(A\) razpenjajo \(\mathbb{R}^n\).
+				\item Stolpci matrike \(A\) tvorijo bazo \(\mathbb{R}^n\).
+				\item \(\det A\neq 0\).
+				\item Homogeni sistem \(Ax=0\) ima le trivialno rešitev.
+				\item Sistem \(Ax=b\) ima rešitev za vsak \(b\in\mathbb{R}^n\).
+			\end{enumerate}
+		\end{multicols}
+	\end{small}
+
 	\section{\underline{Analiza}}
 
 	\subsection{Funkcije več spremenljivk}
