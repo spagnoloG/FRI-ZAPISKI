@@ -1053,7 +1053,7 @@
 				1\;  ko\; je\; i = j\; enotski\; vektorji
 			\end{matrix}$
 	\end{center}
-	za matriko $Q =$ [$\vec{q_{1}}, \vec{q_{2}} \dots \vec{q_{n}}$]  velja $Q^{T}Q = I$.
+	za matriko $Q =$ [$\vec{q_{1}}, \vec{q_{2}} \dots \vec{q_{n}}$]  velja $Q^{T}Q = I = QQ^{T}$.
 
 	\subsubsection{Matrika ortonormiranih vektorjev}
 
@@ -1597,9 +1597,41 @@
 
 	\subsubsection{Singularni razcep (SVD)}
 
-	Vsako realno $m \times n$ matriko A lahko zapisemo kot produkt
-	$A = UEV^{T}$, kjer je matrika U ortogonalna $m \times m$, E diagonalna $m \times n$ in
-	V ortogonalna $n \times n$.
+	Naj bo \(A \in \mathbb{R}^{m\times n}\). Potem obstajata ortogonalni matriki
+	\(U \in \mathbb{R}^{m\times m}\) in \(V \in \mathbb{R}^{n\times n}\) ter
+	\emph{diagonalna} (pravokotna) matrika \(\Sigma \in \mathbb{R}^{m\times n}\), da velja
+	\[
+		A = U \Sigma V^T.
+	\]
+
+	\paragraph{Oblika \(\Sigma\) in singularne vrednosti.}
+	\[
+		\Sigma =
+		\begin{bmatrix}
+			\sigma_1 &          &        & 0        \\
+			         & \sigma_2 &        &          \\
+			         &          & \ddots &          \\
+			0        &          &        & \sigma_r \\
+			         &          &        & 0
+		\end{bmatrix},
+		\qquad
+		\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_r > 0,
+	\]
+	kjer je \(r=\operatorname{rank}(A)\) in je na diagonali \(\Sigma\) največ \(\min(m,n)\) elementov
+	(ostalo so ničle). Števila \(\sigma_i\) so \textbf{singularne vrednosti} matrike \(A\).
+
+	\paragraph{Povezava z lastnimi vrednostmi.}
+	\[
+		A^T A = V \Sigma^T \Sigma V^T,
+		\qquad
+		A A^T = U \Sigma \Sigma^T U^T.
+	\]
+	Lastne vrednosti matrike \(A^T A\) so \(\sigma_i^2\) (in ničle), zato velja
+	\[
+		\sigma_i = \sqrt{\lambda_i(A^T A)}.
+	\]
+	Stolpci \(v_i\) (iz \(V\)) so desni singularni vektorji, stolpci \(u_i\) (iz \(U\)) pa levi.
+
 
 	\subsubsection{Rang in nenicelne lastne vrednosti}
 
@@ -1991,7 +2023,7 @@
 
 	\subsubsection{Linearna ogrinjača} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) vektorjev \( v_1, v_2, \ldots, v_n \) je množica vseh linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \).
 
-	Ker je linearna kombinacija linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \in V \) zopet linearna kombinacija vektorjev \( v_1, v_2, \ldots, v_n \), je po Izreku 2 linearna ogrinjača \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) linearni podprostor v \( V \). Pravimo, da vektorji \( v_1, v_2, \ldots, v_n \) \textbf{napenjajo prostor} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \).
+	Ker je linearna kombinacija linearnih kombinacij vektorjev \( v_1, v_2, \ldots, v_n \in V \) zopet linearna kombinacija vektorjev \( v_1, v_2, \ldots, v_n \), je linearna ogrinjača \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \) linearni podprostor v \( V \). Pravimo, da vektorji \( v_1, v_2, \ldots, v_n \) \textbf{napenjajo prostor} \( \mathcal{L}\{v_1, v_2, \ldots, v_n\} \).
 
 	Ne le, da je linearna ogrinjača vektorski prostor. Velja celo več.
 
@@ -2488,8 +2520,8 @@
 	\[
 		L(\vec{x}, \vec{\lambda}, \vec{\mu})
 		= f(\vec{x}) - \vec{\lambda}^{\,T}\mathbf{G}(\vec{x}) - \vec{\mu}^{\,T}\mathbf{H}(\vec{x})
-    \]
-    \[
+	\]
+	\[
 		= f(\vec{x}) - \sum_{i=1}^{m} \lambda_i g_i(\vec{x}) - \sum_{j=1}^{r} \mu_j h_j(\vec{x}),
 	\]
 	kjer je
