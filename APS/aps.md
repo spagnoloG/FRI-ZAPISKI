@@ -1408,7 +1408,6 @@ Honestly se res splaca pogledat videe za te operacije..
 #### Brisanje elementa iz rdece-crnega drevesa
 
 - Element izbrisemo iz drevesa kot pri navadnem BST:
-
   - ce je element list drevesa, ga enostavno izbirsemo
   - ce ima element samo enega sina, ga izbrisemo, ter na njegovo mesto postavimo njegovega sina
   - ce ima element dva sina, zbrisemo najvecji element iz desnega poddrevesa, ki nadomesti dejansko izbrisano vozlisce
@@ -1546,7 +1545,6 @@ public class BtreeNode {
 
 - **Iskanje** je posplošitev iskanja v BST: v vozlišču bodisi
   najdemo element ali pa ustrezno poddrevo. Postopek:
-
   - Iskanje zacnemo v vozliscu, ki je koren drevesa
   - Iskani element **zaporedno** preverjamo z elementi v vozliscu, dokler:
     - ne naletimo na iskani element
@@ -1557,7 +1555,6 @@ public class BtreeNode {
 - **Dodajanje**: element dodamo v list; če ni dovolj prostora,
   se list razbije na dva lista z ustreznim ključem, ki ga
   rekurzivno dodamo očetu. Postopek:
-
   - ce opazovano vozlisce vsebuje manj kot `m-1` elementov, dodamo element na ustrezno mesto in koncamo
   - ce v opazovanem vozliscu ni prostora(ima ze m-1 elementov in z dodajanjem imamo `m` elementov), ga razbijemo na dve vozlisci:
     - dolocimo sredinski `floor(m/2)` - ti elementi med `m` elementi

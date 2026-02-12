@@ -38,7 +38,6 @@ Where:
 1. **Rank Predictions**: Order all predictions by the classifier’s estimated probabilities or scores in descending order.
 
 2. **Threshold Setting**: For each unique predicted score (acting as a threshold):
-
    - Label all instances with a predicted score above the threshold as positive and below as negative.
    - Calculate TPR and FPR at this threshold.
 
@@ -165,22 +164,18 @@ Hong's method, developed by Lin Hong, is a widely recognized algorithm for autom
 ### Process Details
 
 1. **Block Fourier Spectrum Calculation**
-
    - **Orientation (b) and Frequency (d) Analysis**: STFT is used to calculate the orientation and frequency of a signal within local sections or blocks.
    - **Method**: The Fourier spectrum of each block captures the signal's frequency content, revealing important features like orientation and frequency variations.
 
 2. **Energy Image Utilization (c)**
-
    - **Purpose**: The energy image derived from the STFT highlights areas with significant signal energy.
    - **Application**: This energy image is used for masking, focusing the analysis on parts of the signal with relevant information.
 
 3. **Angle Coherence Image Calculation (e)**
-
    - **Using Orientation (b)**: The angle coherence image is computed based on the orientation data obtained from the block Fourier spectrum.
    - **Function**: This image represents the coherence or consistency of angles across the signal, providing insight into the signal's structural characteristics.
 
 4. **Window Filtering in Fourier Domain**
-
    - **Information Utilization**: The previously obtained information (orientation, frequency, energy) guides the filtering process in the Fourier domain.
    - **Process**: Each window of the signal is filtered according to the characteristics identified, ensuring a tailored approach to signal processing.
 
@@ -610,13 +605,11 @@ This technique consolidates the ranks from individual biometric subsystems to de
 ### Recognition with FBG Model
 
 1. **Elastic Bunch Graph Matching**:
-
    - Use mean model Gabor jets at each bunch to find the approximate face position.
    - Refine the position by comparing a Gabor jet in the probe image with a bunch of jets in the FBG model.
    - Precisely locate fiducial points by optimizing the graph similarity, adjusting nodes locally and relative to each other.
 
 2. **Comparison with Model Graphs**:
-
    - Compute similarity between the image graph from the probe image and the model graph.
    - The similarity is the average similarity between the jets at the corresponding fiducial points.
    - Matching can be successful even with some missing nodes.

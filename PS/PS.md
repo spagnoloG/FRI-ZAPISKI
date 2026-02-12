@@ -320,7 +320,6 @@ void* barrier(void* arg)
   solution: use thread pool
 
 - **Equaly weighted threads**
-
   - Main thread spawns all the threads
   - All the threads are working concurrently and are weighted equaly
   - Each thread may be doing some different
@@ -376,12 +375,10 @@ Basically should not include any function calls.
 ##### `schedule` addon
 
 - `schedlue(static, [,N])`
-
   - every thread gets N iters in series
   - default
 
 - `schedule(dynamic[,N])`
-
   - every thread does N iters in series
   - sum of all N < problem
   - so when one thread computes N iters, if there are still things to proces, it processes it
@@ -434,32 +431,25 @@ for(i = 0; i < N; i++)
 ### Synchronization between threads
 
 - `critical(name)`
-
   - basically locked section like in pthreads
   - If critical section is not enough for you, you can also use `omp_lock_t` for more flexibilty. But watchout becouse the thread that locks the lock must be the one that also unlocks it!
 
 - `atomic`
-
   - A faster critical section (only for `x <op> = n`) -> `op = +, -, *, /, &, |, <<, >>`
 
 - `barrier`
-
   - threads wait for eachother
 
 - `ordered`
-
   - code is executed in sequentiall matter
 
 - `single`
-
   - code is executed by a single thread
 
 - `master`
-
   - code is executed by the main thread
 
 - `collapse(n)`
-
   - `n` is the number of nested for loops that are executed concurrently
 
 - `flush(vars)`
@@ -479,73 +469,59 @@ and to enable the efficient exchange of data between them.
 ### Functions
 
 - `int MPI_Init(int *argc, char **argv);`
-
   - initializes MPI and sets up connections between processes
   - CLI arguments are passed only to process 0!
 
 - `int MPI_Comm_size(MPI_Comm, int *size)`
-
   - returns number of nodes/processes in comunication
 
 - `int MPI_Comm_rank(MPI_Comm, int *rank)`
-
   - returns process id
 
 - `MPI_Finalize(void)`
-
   - closes connections
   - It is the last function call to MPI in our program.
   - cleans up
 
 - `MPI_Send(void *message, int count, MPI_Datatype datatype, int destination, int tag, MPI_Comm comm)`
-
   - send message to process, using its id(`destination`)
   - < 16kB `MPI_Bsend()`
   - > 16kB `MPI_Ssend()`
 
 - `MPI_Ssend()`
-
   - returns information about message transmission
   - waits for reciever confirmation of data
   - Blocking function
 
 - `MPI_Bsend()`
-
   - The message is buffered.
   - Function ends when message is written into a buffer
   - No clue if the message was recieved or not.
 
 - `MPI_Isend(&buf, count, datatype, dest, tag, comm, request)`
-
   - Nonblocking send fucntion
   - We can test its success by executing `MPI_Test(&request, &done, MPI_STATUS_IGNORE)`
   - Faster execution of code
 
 - `MPI_Recv(void *message, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status status)`
-
   - recv message, from predefined source or use `MPI_ANY_SOURCE` to listen for all messages
 
 - `MPI_Barrier(MPI_Comm comm)`
-
   - Classic barrier
 
 - `MPI_Bcast(void *buf, int count, MPI_Datatype, int root, MPI_Comm comm)`
-
   - `root` broadcasts its message to all other participants
   - `root` process sets the `\*buf, all other processes read from it
   - All the processes should call this function
 
 - `MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)`
-
   - All the sendbufs are joined on the root recvbuf using operation op
   - op can be max, min, sum, product, land, lor,...
 
 - `MPI_Scatter(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)`
-
   - Array / string / buffer gets equaly splitteed to all the processes from the root process, root process also gets its piece
 
 - `MPI_Gather(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)`
-
   - Array / string / buffer gets equaly gathered to the root process
 
 - `MPI_Gatherv` and `MPI_Scatterv`

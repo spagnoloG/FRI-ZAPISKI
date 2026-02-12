@@ -34,19 +34,15 @@ Otherwise, they are also discarded.
 ## List the procedures for predicting real-world performance (robustness) of an analyzer to detect transient ST segment episodes in the electrocardiogram. Write what aspect of the analyzer is estimated by each procedure.
 
 1. **Aggregate gross statistics**
-
    - _Estimates how well the analyzer detects a randomly chosen ST episode._
 
 2. **Aggregate average statistics**
-
    - _Estimates how well the analyzer performs on a randomly chosen record._
 
 3. **The "Bootstrap method" with random generating new databases**
-
    - _Determines whether the analyzer's performance is critically dependent on the choice of the test database._
 
 4. **The noise stress test with adding noise to records**
-
    - _Assesses the minimum critical signal-to-noise ratio at which the analyzer’s performance is still acceptable._
 
 5. **The sensitivity analysis by modifying analyzer’s architecture parameters**
@@ -82,12 +78,10 @@ This assumption is crucial because the bootstrap method relies on the idea that 
 ### Process of Edge Detection
 
 1. **Smoothing with Gaussian Filter**:
-
    - The process begins by smoothing the image using a Gaussian filter.
    - This step reduces noise and variations in the image that are unrelated to edge structures.
 
 2. **Applying the Laplacian Operator**:
-
    - After smoothing, the Laplacian operator, a second-order derivative operator, is applied.
    - This operator is used to identify areas where the intensity of the image changes sharply, typically indicating edges.
 
@@ -99,20 +93,16 @@ This assumption is crucial because the bootstrap method relies on the idea that 
 ### Characteristics of the Marr-Hildreth Edge Detector
 
 - **Captures Significant Edges**:
-
   - The Laplacian operator effectively captures significant edges, representing substantial changes in intensity.
 
 - **Robustness to Noise**:
-
   - The initial Gaussian smoothing makes the Marr-Hildreth edge detector more resistant to noise compared to methods without smoothing.
 
 - **Scale Selection**:
-
   - The size of the Gaussian filter is adjustable, providing control over the scale of detected edges.
   - This allows the detector to be tuned for fine details or more prominent edges.
 
 - **Isotropic Response**:
-
   - The detector responds equally to edges from all directions, making it isotropic and beneficial in situations where edge orientations are unknown.
 
 - **Produces Closed Contours**:

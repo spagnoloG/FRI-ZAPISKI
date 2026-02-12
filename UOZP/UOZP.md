@@ -9,13 +9,11 @@ pac se da malo pohitrit da prides na `O(m2*logm)`.
 obicanjo si izberemo se kaksno napako bomo merili (razdaljo basically) al evklidsko, al manhatnsko, al..
 
 - single linkage( razdalja med najblizjima primeroma),
-
   - prednost daje primerkom, ki so si blizje
     (. Single linkage je dober tudi, če so podatki zelo razpršeni in želiš izolirati skupine primerkov, ki so zelo blizu drug drugemu.)
     Uporabi to mero, če želiš detektirati grozde, ki so dolgi in ozki (npr. v obliki črke "U" ali "V").
 
 - complete linkage(razdalja med najbolj oddaljenima primeroma),
-
   - prednost daje primerkom, ki so si bolj oddaljeni.
     Complete linkage je boljši za odkrivanje kroglastih in kompaktnih grozdov, saj minimizira možnost,
     da se med seboj zelo različne skupine primerkov združijo v isti grozd.
@@ -34,7 +32,6 @@ cas zahtevnost O(I _ k _ m): - I je stevilo iteracij - k je stevilo prvih centro
 
 - pricni s K nakljcno izbranimi voditelji `C_1, C_2, C_k`.
 - ponavljaj:
-
   - doloci razvrstitev C tako, da vsak primer priredis najblizjemu voditelju
   - novi voditelji naj bodo centroidi naj bodo centroidi `R_Ci`. -> `RC_i` = $$ (1 / | C_i| )\* sum(x) $$
 

@@ -1948,12 +1948,15 @@
 		\det\!\begin{pmatrix} a_{11}\end{pmatrix}>0,\quad
 		\det\!\begin{pmatrix} a_{11}&a_{12}\\ a_{21}&a_{22}\end{pmatrix}>0,\quad
 		\det\!\begin{pmatrix} a_{11}&a_{12}&a_{13}\\ a_{21}&a_{22}&a_{23}\\ a_{31}&a_{32}&a_{33}\end{pmatrix}>0,\ \dots,\
+	\]
+	\[
 		\det(A)>0.
 	\]
-
 	\[
 		A \text{ je negativno definitna (ND)}
 		\iff
+	\]
+	\[
 		(-1)^k\Delta_k>0\ \text{za vsak }k
 		\iff
 		\Delta_1<0,\ \Delta_2>0,\ \Delta_3<0,\ \dots,
@@ -2349,7 +2352,7 @@
 		\item Če je \( A \in \mathbb{R}^{n \times n} \) simetrična matrika, potem velja \( \frac{\partial (\tilde{x}^T A\tilde{x})}{\partial \tilde{x}} = 2\tilde{x}^T A \).
 		\item \( \frac{\partial \|\tilde{x}\|^2}{\partial \tilde{x}} = 2\tilde{x}^T \).
 		\item Če \( \tilde{z} = \tilde{z}(\tilde{x}) \) in \( \tilde{y} = \tilde{y}(\tilde{x}) \), potem \( \frac{\partial (\tilde{y}^T \tilde{z})}{\partial \tilde{x}} = \tilde{y}^T \frac{\partial \tilde{z}}{\partial \tilde{x}} + \tilde{z}^T \frac{\partial \tilde{y}}{\partial \tilde{x}} \).
-		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \).
+		\item Če \( G: D_G \subseteq \mathbb{R}^m \rightarrow \mathbb{R}^n \) in \( F: D_F \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^p \) in \( H = F \circ G \), potem \( \frac{\partial H}{\partial \tilde{x}} = \frac{\partial F}{\partial G} (\tilde{G}(\tilde{x})) \frac{\partial G}{\partial \tilde{x}} \) (chain rule za Jacobijeve matrike).
 	\end{enumerate}
 
 	\subsubsection{Izrek}

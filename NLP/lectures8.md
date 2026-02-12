@@ -3,7 +3,6 @@
 ## Retrival methods
 
 - Non neural:
-
   - Text representations:
     - Bag of words
     - TF-IDF

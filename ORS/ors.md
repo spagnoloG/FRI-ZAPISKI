@@ -470,7 +470,6 @@ Pomnilnik indeksiramo z navideznimi naslovi (VA) in označujemo s fizičnimi nas
 - Dovolimo, da se več istih VA preslika v isti blok/set v PP, vendar če jih hočemo ločiti, moramo pridobiti fizični tag.
 
 - Posledično za indeks PP smemo uporabiti le tisti del navideznega naslova, ki se ne spreminja, to pa je spodnjih P bitov. To pomeni, da je PP lahko velik največ `2^p` besed. To je premalo, kako to popraviti?
-
   - Namesto direktnega PP uporabimo set-asociativnega.
     - Velikost SA `PP ≤ 2^p∗ 𝑠𝑡𝑜𝑝𝑛𝑗𝑎 𝑎𝑠𝑜𝑐𝑖𝑎𝑡𝑖𝑣𝑛𝑜𝑠𝑡𝑖`
     - Če je stopnja = 4, p = 12, potem L1 PP ≤ 32𝑘𝐵
