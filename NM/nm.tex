@@ -525,6 +525,23 @@ The coefficients are divided differences:
   c_i=f[x_0,\ldots,x_i],\qquad i=0,\ldots,n.
 \]
 \[
+\begin{array}{c|c|c|c}
+  x & f[\cdot] & f[\cdot,\cdot] & f[\cdot,\cdot,\cdot] \\ \hline
+  x_0 & f[x_0] & & \\
+      &        & f[x_0,x_1] & \\
+  x_1 & f[x_1] & & f[x_0,x_1,x_2] \\
+      &        & f[x_1,x_2] & \\
+  x_2 & f[x_2] & & f[x_1,x_2,x_3] \\
+      &        & f[x_2,x_3] & \\
+  x_3 & f[x_3] & &
+\end{array}
+\]
+Newton coefficients are the top diagonal:
+\[
+  c_0=f[x_0],\quad c_1=f[x_0,x_1],\quad
+  c_2=f[x_0,x_1,x_2],\ldots
+\]
+\[
   f[x_i]=f(x_i)=y_i,\qquad
   f[x_i,x_j]=\frac{f(x_j)-f(x_i)}{x_j-x_i}.
 \]
@@ -582,6 +599,19 @@ and compute the triangular table:
   R_{\ell,m}=
   \frac{4^mR_{\ell,m-1}-R_{\ell-1,m-1}}{4^m-1},
   \qquad 1\leq m\leq\ell.
+\]
+\[
+\begin{array}{c|c|c|c}
+  h & R_{\ell,0}=T(h_\ell) & R_{\ell,1} & R_{\ell,2} \\ \hline
+  h_0     & R_{0,0} & & \\
+  h_0/2   & R_{1,0} & R_{1,1} & \\
+  h_0/4   & R_{2,0} & R_{2,1} & R_{2,2} \\
+  h_0/8   & R_{3,0} & R_{3,1} & R_{3,2}
+\end{array}
+\]
+Best approximations are on the top diagonal:
+\[
+  R_{0,0},\quad R_{1,1},\quad R_{2,2},\ldots
 \]
 Each new column eliminates the next error term: $h^2,h^4,\ldots$
 
@@ -651,6 +681,30 @@ The order of a method determines the accuracy of the approximation (higher $p$ $
   y_{i+1}=y_i+h_i\cdot f(x_{i+1},y_{i+1})
 \]
 
+\subsection{Runge--Kutta 4 (RK4)}
+For the IVP $y'=f(x,y)$, $y(x_0)=y_0$ and step $h$:
+\[
+  k_1=f(x_n,y_n)
+\]
+\[
+  k_2=f\left(x_n+\frac{h}{2},y_n+\frac{h}{2}k_1\right)
+\]
+\[
+  k_3=f\left(x_n+\frac{h}{2},y_n+\frac{h}{2}k_2\right)
+\]
+\[
+  k_4=f(x_n+h,y_n+hk_3)
+\]
+\[
+  y_{n+1}=y_n+\frac{h}{6}(k_1+2k_2+2k_3+k_4)
+\]
+Idea: estimate the slope at start, two midpoints, and end;
+then use the weighted average $1:2:2:1$.
+\[
+  x_{n+1}=x_n+h
+\]
+\textbf{Order 4:} local error $O(h^5)$, global error $O(h^4)$.
+For systems, use the same formulas with vector $y_n$ and slopes $k_i$.
+
 \end{multicols*}
 \end{document}
-

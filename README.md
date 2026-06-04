@@ -31,7 +31,7 @@
 - [ACVM - Advanced Computer Vision Methods](https://spagnolog.github.io/FRI-ZAPISKI/ACVM/acvm.pdf)
 - [NLP - Natural Language Processing](https://github.com/spagnoloG/FRI-ZAPISKI/blob/main/NLP/main.md)
 - [MLDS1 - Machine Learning for Data Science 1](https://spagnolog.github.io/FRI-ZAPISKI/MLDS/mlds.pdf)
-- [MLDS1 - Numerical Mathematics](https://spagnolog.github.io/FRI-ZAPISKI/NM/nm.pdf)
+- [NM - Numerical Mathematics](https://spagnolog.github.io/FRI-ZAPISKI/NM/nm.pdf)
 
 ## Popravki
 
