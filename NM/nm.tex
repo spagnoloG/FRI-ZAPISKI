@@ -1,0 +1,656 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,margin=0.1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\pagestyle{empty}
+\setlength{\columnsep}{10pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{2.5pt plus 0.5pt minus 1pt}
+\setlength{\belowdisplayskip}{2.5pt plus 0.5pt minus 1pt}
+\setlength{\abovedisplayshortskip}{1pt plus 0.5pt}
+\setlength{\belowdisplayshortskip}{1pt plus 0.5pt minus 0.5pt}
+\setlist[itemize]{
+  leftmargin=9.2pt,
+  labelsep=3.5pt,
+  itemsep=0pt,
+  topsep=0pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+\setcounter{secnumdepth}{2}
+\newcommand{\sheetfontsize}{\fontsize{7.5pt}{8.4pt}\selectfont}
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {0.45ex plus 0.1ex minus 0.1ex}%
+  {0.12ex}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {0.20ex plus 0.05ex minus 0.05ex}%
+  {-0.55em}%
+  {\normalfont\sheetfontsize\bfseries}}
+\makeatother
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\fl}{\operatorname{fl}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\sgn}{\operatorname{sign}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\begin{document}
+\sheetfontsize
+\begin{multicols*}{4}
+\raggedcolumns
+\raggedright
+
+\section{Linear Systems}
+
+\subsection{Vector Norms}
+Vector norm $\|\cdot\|:\R^n \to \R$.
+Properties:
+\begin{itemize}
+  \item PD: $\|x\| \geq 0$, $\|x\| = 0 \Longleftrightarrow x=0$
+  \item Homogeneity: $\|\alpha x\| = |\alpha| \cdot \|x\|$
+  \item Triangle inequality: $\|x+y\| \leq \|x\|+\|y\|$
+\end{itemize}
+
+\begin{tiny}
+\[
+  \begin{gathered}
+    \|x\|_p = \left(\sum_{i=1}^n |x_i|^p\right)^{1/p}, \\
+    \|x\|_\infty = \max |x_i|
+  \end{gathered}
+\]
+\end{tiny}
+
+\subsection{Matrix Norms}
+Matrix norm $\|\cdot\|:\R^{n\times n}\to\R$.
+Properties:
+\begin{itemize}
+  \item PD: $\|A\|\geq 0$, $\|A\|=0 \Longleftrightarrow A=0$
+  \item Homogeneity: $\|\alpha A\|=|\alpha|\cdot\|A\|$
+  \item Triangle inequality: $\|A+B\|\leq\|A\|+\|B\|$
+  \item Submultiplicativity: $\|AB\|\leq\|A\|\|B\|$
+\end{itemize}
+
+\begin{tiny}
+\[
+  \begin{gathered}
+    \|A\|_1=\max_j\sum_{i=1}^n|a_{ij}|, \\
+    \|A\|_2=\sqrt{\lambda_{\max}(A^T A)}, \\
+    \|A\|_F=\sqrt{\sum_{i,j=1}^n|a_{ij}|^2}, \\
+    \|A\|_\infty=\max_i\sum_{j=1}^n|a_{ij}|
+  \end{gathered}
+\]
+\end{tiny}
+
+\subsection{Condition Number / Sensitivity:} 
+\[
+  \kappa(A)=\|A\|\|A^{-1}\|.
+\]
+
+\subsection{\texorpdfstring{Gaussian Elimination ($\sim\frac{2}{3}n^3$):}
+  {Gaussian Elimination (2/3 n3):}}
+\begin{tiny}
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\hspace{1.0em}\=\kill
+\texttt{for} $k=1,\ldots,n-1$ \texttt{// pivot el.} \\
+\> \texttt{for} $i=k+1,\ldots,n$ \texttt{// rows} \\
+\> \> $\texttt{xmult}=a_{ik}/a_{kk}$ \\
+\> \> $a_{ik}=0$ \\
+\> \> \texttt{for} $j=k+1,\ldots,n$ \texttt{// columns}\\
+\> \> \> $a_{ij}=a_{ij}-\texttt{xmult}\,a_{kj}$ \\
+\> \> \texttt{end} \\
+\> \> $b_i=b_i-\texttt{xmult}\,b_k$ \\
+\> \texttt{end} \\
+\texttt{end}
+\end{tabbing}
+\end{tiny}
+
+\textbf{Back Substitution} ($\sim n^2$):
+\begin{tiny}
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\hspace{1.0em}\=\kill
+$x_n=b_n/u_{nn}$ \\
+\texttt{for} $i=n-1,\ldots,1$ \\
+\> $s=b_i$ \\
+\> \texttt{for} $j=i+1,\ldots,n$ \\
+\> \> $s=s-u_{ij}x_j$ \\
+\> \texttt{end} \\
+\> $x_i=s/u_{ii}$ \\
+\texttt{end // solving Ux=b}
+\end{tabbing}
+\end{tiny}
+
+\subsection{LU Decomposition}
+Decomposition of $A \in \R^{n\times n}$ into a lower $\Delta$ and an upper $\Delta$ matrix:
+\[
+  A = LU
+\]
+start with $L=I$, $U=A$.
+\textbf{Algorithm:}
+\begin{tiny}
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\hspace{1.0em}\=\kill
+\texttt{for} $k=1,\ldots,n-1$ \\
+\> \texttt{for} $i=k+1,\ldots,n$ \\
+\> \> $l_{ik}=a_{ik}/a_{kk}$ \\
+\> \> \texttt{for} $j=k+1,\ldots,n$ \\
+\> \> \> $a_{ij}=a_{ij}-l_{ik}a_{kj}$ \\
+\> \> \texttt{end} \\
+\> \texttt{end} \\
+\texttt{end // same as G.E., but store multipliers in L}
+\end{tabbing}
+\end{tiny}
+
+
+\textbf{Solving the system $Ax=b$:}
+\begin{align*}
+  A &= LU                 &&(\sim \tfrac{2}{3}n^3) \\
+  Ly &= b                 &&(\sim n^2-n) \\
+  Ux &= y                 &&(\sim n^2)
+\end{align*}
+\subsection{Pivoting}
+\[
+  PA = LU
+\]
+\textbf{Partial pivoting:} replace the $j$-th row with the row having the largest
+$|a_{ij}|$, $i=j,\ldots,n$.
+
+\textbf{Permutation matrix:} $P^T=P^{-1}$.
+\[
+  P = I_{\text{column }i \leftrightarrow j},
+  \quad PA = A_{\text{row }i \leftrightarrow j}
+\]
+Swap the 2nd and 3rd rows of matrix $A$:
+\[
+  PA,\qquad
+  P = \begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 1 & 0
+      \end{bmatrix}
+\]
+\textbf{Solving the system $Ax=b$:}
+\begin{align*}
+  A &= P^T LU             &&(\sim \tfrac{2}{3}n^3) \\
+  Ly &= Pb                &&(\sim n^2) \\
+  Ux &= y                 &&(\sim n^2)
+\end{align*}
+\subsection{\texorpdfstring{Cholesky ($\sim\frac{1}{3}n^3$).}
+  {Cholesky (1/3 n3).}}
+LU decomposition for PD matrices:
+\[
+  A = LL^T
+\]
+\textbf{Algorithm:}
+\begin{tiny}
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\hspace{1.0em}\=\kill
+\texttt{for} $k=1,\ldots,n$ \texttt{// go along diagonal}\\
+\> $l_{kk}=\sqrt{a_{kk}-\sum_{i=1}^{k-1}l_{ki}^2}$ \\
+\> \texttt{for} $j=k+1,\ldots,n$ \texttt{// for each el. j below diag.} \\
+\> \> \texttt{for} $i=1,\ldots,k-1$ \\
+\> \> \> $a_{jk}=a_{jk}-l_{ji}l_{ki}$ \\
+\> \> \texttt{end} \\
+\> \> $l_{jk}=a_{jk}/l_{kk}$ \\
+\> \texttt{end} \\
+\texttt{end}
+\end{tabbing}
+\end{tiny}
+Exists when matrix $A$ is:
+\begin{itemize}
+  \item Symmetric: $A=A^T$
+  \item PD: $x^T Ax>0 \quad \forall x \neq 0$
+\end{itemize}
+
+\subsection{Spectral Radius.}
+\[
+  \rho(R)=\max_i|\lambda_i(R)|.
+\]
+$x^{(k+1)}=Rx^{(k)}+c$ converges for every $x^{(0)}$
+$\Longleftrightarrow \rho(R)<1$.
+
+\textbf{Strict row diagonal dominance:} $|a_{ii}|>\sum_{j\neq i}|a_{ij}|$ for every $i$.
+
+\subsection{\texorpdfstring{Jacobi Iteration ($O(mn)$).}
+  {Jacobi Iteration (O(mn)).}}
+\[
+  x_i^{(k)}=\frac{1}{a_{ii}}
+  \left(b_i-\sum_{\substack{j=1\\j\neq i}}^n a_{ij}x_j^{(k-1)}\right),
+  \quad i=1,\ldots,n.
+\]
+
+\begin{tiny}
+\[
+x_n^{(k)} = \frac{b_n - a_{n,1}x_1^{(k-1)} - \cdots - a_{n,n-1}x_{n-1}^{(k-1)}}{a_{nn}}
+\]
+\end{tiny}
+
+\subsection{Gauss-Seidel}
+
+Component form:
+\[
+  x_i^{+1} = \frac{1}{a_{ii}}
+    \left(b_i-\sum_{j<i}a_{ij}x_j^{+1}-\sum_{j>i}a_{ij}x_j^k\right)
+\]
+
+\subsection{SOR}
+Relaxed GS iteration with $\omega\in\R$:
+\begin{tiny}
+\[
+  x_i^{(k)}=(1-\omega)x_i^{(k-1)}+\omega x_i^{\mathrm{GS}}.
+\]
+\[
+  x_i^{(k)}=(1-\omega)x_i^{(k-1)}
+  +\frac{\omega}{a_{ii}}\left(b_i-\sum_{j<i}a_{ij}x_j^{(k)}
+  -\sum_{j>i}a_{ij}x_j^{(k-1)}\right).
+\]
+\end{tiny}
+If $A$ is PD and $0<\omega<2$, SOR converges.
+
+\subsection{Vectors are conjugate}, if $x^TAy = 0$ ($\langle x,y \rangle_A = x^TAy$).
+
+\subsection{Overdetermined Systems}
+more equations than unknowns:
+\[
+  A \in \R^{n\times m}, \quad b \in \R^n, \quad n\gg m
+\]
+
+\subsection{Least Squares Method}
+\[
+  \tilde x = \operatorname*{argmin}_x \|Ax-b\|
+\]
+
+The least-squares solution of $Ax=b$ is $x$, which solves the system $A^T A x = A^T b$.
+Using Cholesky:
+\begin{align*}
+  B &= A^T A,\quad c=A^T b &&(\sim nm^2) \\
+  B &= VV^T                &&(\sim \tfrac{1}{3}m^3) \\
+  Vy &= c                  &&(\sim m^2) \\
+  V^T\tilde x &= y         &&(\sim m^2)
+\end{align*}
+
+\subsection{QR Decomposition}
+For $A \in \R^{n\times m}$, $n\geq m$
+\[
+  A=QR
+\]
+\[
+ \quad Q^T=Q^{-1}, \quad R \text{ upper } \triangle
+\]
+Solve:
+\[
+  Rx=Q^T b
+\]
+\subsection{Gram--Schmidt}
+Orthogonalization of the set
+$\{a_1,\ldots,a_n\} \Rightarrow \{q_1,\ldots,q_n\}$, such that
+$L(q_i)=L(a_i)$
+\[
+  q_1=\frac{a_1}{\|a_1\|}, \quad
+  q_k=\frac{a_k-\sum_{j=1}^{k-1}\langle a_k,q_j\rangle q_j}{\|q_k\|}
+\]
+\subsection{Householder Reflection}
+\[
+  H_w=I-2\frac{ww^T}{w^T w}, \quad H_w^T=H_w, \quad H_w^2=I
+\]
+\[
+  w=x+\sgn(x_1)\|x\|_2\cdot e_1
+\]
+\[
+  R=H_k\ldots H_1 A, \quad Q=H_1\ldots H_k
+\]
+
+\subsection{Singular Value Decomposition (SVD).}
+For $A\in\R^{n\times m}$, there exist orthogonal
+$U\in\R^{n\times n}$, $V\in\R^{m\times m}$ and diagonal
+$\Sigma\in\R^{n\times m}$:
+\begin{tiny}
+\[
+  UU^T=I_n,\quad V^TV=I_m,\quad
+  \Sigma=\operatorname{diag}(\sigma_1,\ldots,\sigma_{\min(n,m)})
+\]
+\[
+  \sigma_1\geq\cdots\geq\sigma_{\min(n,m)}\geq0,\qquad
+  A=U\Sigma V^T.
+\]
+\end{tiny}
+Right $v_i\in\R^m$ are input directions, and left $u_i\in\R^n$ are output directions:
+$Av_i=\sigma_i u_i$.
+
+\section{Finding Eigenvalues}
+
+\subsection{Power Method}
+Finds the dominant eigenpair by repeated multiplication:
+\[
+    x^{(k+1)}=\frac{Ax^{(k)}}{\|Ax^{(k)}\|},
+    A x_0 = \lambda x_0
+\]
+
+The convergence rate is $\approx \left|\frac{\lambda_2}{\lambda_1}\right|^k$.
+
+\subsection{Inverse Iteration}
+For a shift $\sigma\approx\lambda$, use the power method on
+$(A-\sigma I)^{-1}$; obtain the eigenvalue closest to $\sigma$:
+\begin{tiny}
+\[
+  (A-\sigma I)y^{(k+1)}=x^{(k)},\qquad
+  x^{(k+1)}=\frac{y^{(k+1)}}{\|y^{(k+1)}\|}.
+\]
+\end{tiny}
+
+\subsection{Orthogonal Iteration}
+Generalization of the power method for the first $p$ eigenpairs. For orthonormal
+$Z_0\in\R^{n\times p}$, repeat:
+\begin{tiny}
+\[
+  Y_{k+1}=AZ_k,\qquad Y_{k+1}=Z_{k+1}R_{k+1}\quad(\text{QR}).
+\]
+\end{tiny}
+Columns of $Z_k$ converge to the dominant eigenspace.
+
+\subsection{QR Iteration}
+To compute all eigenvalues, repeat:
+\begin{tiny}
+\[
+  A_0=A,\qquad A_k=Q_kR_k,\qquad A_{k+1}=R_kQ_k.
+\]
+\end{tiny}
+The diagonal of $A_k$ converges to the eigenvalues.
+
+
+\section{Solving Nonlinear Equations}
+
+\subsection{Difference of Function Values}
+When $x_a,x_b\to x^*$, we have
+\[
+  \frac{f(x_b)-f(x_a)}{x_b-x_a}\to f'(x^*),\qquad
+  |f(x_b)-f(x_a)|\approx |f'(x^*)|\,|x_b-x_a|.
+\]
+
+\subsection{Bisection}
+Finding a zero of function $f(x)$ on interval $[a,b]$, where
+$f(a)\cdot f(b)<0$.
+
+\begin{tiny}
+\begin{tabbing}
+\hspace{1em}\=\hspace{1em}\=\kill
+\texttt{for} $k=1,2,\ldots$ \\
+\> $x_m=a+(b-a)/2$ \\
+\> \texttt{if} $\sgn(f(x_m))=\sgn(f(a))$ \\
+\> \> $a=x_m$ \\
+\> \texttt{else} \\
+\> \> $b=x_m$ \\
+\> \texttt{end} \\
+\> \texttt{if} $|b-a|<\mathrm{tol}$, \texttt{stop} \\
+\texttt{end}
+\end{tabbing}
+\end{tiny}
+
+\subsection{Tangent Method / Newton's Method}
+Use the tangent at point $x_k$ to find a zero of $f(x)$:
+\[
+  x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}
+\]
+Point $x_{k+1}$ is the intersection of the tangent at $x_k$ with the x-axis. The order of convergence is
+$r=2$, if $f'(x^*)\neq 0$.
+
+\subsection{Secant Method}
+Approximate the derivative using the two previous points, so
+we need two initial approximations: $x_0,x_1$:
+\[
+  f'(x_k)\approx\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}
+\]
+\[
+  x_{k+1}=x_k-f(x_k)\cdot
+  \frac{x_k-x_{k-1}}{f(x_k)-f(x_{k-1})}
+\]
+
+\subsection{Newton's Method}
+Generalization of the tangent method for nonlinear systems
+$F(x)=0$.
+
+\[
+  J(x_k)\Delta x=-F(x_k)
+\]
+Solve the linear system for $\Delta x$ by any method, then update:
+\[
+  x_{k+1}=x_k+\Delta x
+\]
+\[
+  J(x)=
+  \begin{bmatrix}
+    \frac{\partial f_1}{\partial x_1} & \cdots &
+      \frac{\partial f_1}{\partial x_n} \\
+    \vdots & \ddots & \vdots \\
+    \frac{\partial f_n}{\partial x_1} & \cdots &
+      \frac{\partial f_n}{\partial x_n}
+  \end{bmatrix}
+\]
+
+\subsection{Broyden's Method}
+Approximate the Jacobian matrix by $B_r$:
+\[
+  B_{r+1}=B_r+
+  \frac{F(x^{(r+1)})(\Delta x^{(r)})^T}{\|\Delta x^{(r)}\|_2^2}.
+\]
+
+\subsection{Variational Methods}
+Zeros of $f(x)$ are global minima of the function
+\[
+  g(x)=\|f(x)\|^2=\sum_{i=1}^n(f_i(x))^2.
+\]
+Find the minimum iteratively:
+\[
+  x^{(r+1)}=x^{(r)}+\lambda_r v_r,\qquad
+  g(x^{(r+1)})<g(x^{(r)}).
+\]
+
+\subsection{Choosing the Descent Direction}
+\begin{itemize}
+  \item general: $v_r\not\perp\nabla g(x)$,
+  \item steepest descent: $v_r=-\nabla g(x)$,
+  \item coordinate descent: $v_r=e_1,e_2,\ldots,e_n$ in sequence.
+\end{itemize}
+
+\subsection{Gauss--Newton Iteration}
+For an overdetermined nonlinear system, use the pseudoinverse of the Jacobian matrix:
+\[
+  x^{(r+1)}=x^{(r)}-J_f(x^{(r)})^+f(x^{(r)}).
+\]
+
+\section{Polynomial Interpolation}
+
+\subsection{Problem.}
+Find a polynomial $p(x)$ of degree at most $n-1$ that satisfies:
+\[
+  p(x_i)=y_i, \quad \text{for } i=1,2,\ldots,n
+\]
+This means that the polynomial interpolates the given points $(x_i,y_i)$. 
+
+\subsection{Vandermonde System}
+This problem can be written as a linear system:
+\[
+  \begin{bmatrix}
+    1 & x_1 & \cdots & x_1^{n-1} \\
+    1 & x_2 & \cdots & x_2^{n-1} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1 & x_n & \cdots & x_n^{n-1}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+    a_0 \\ a_1 \\ \vdots \\ a_{n-1}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    y_1 \\ y_2 \\ \vdots \\ y_n
+  \end{bmatrix}
+\]
+
+\subsection{Orthogonal Polynomials}
+The Vandermonde system can be ill-conditioned, so it is better to use an orthogonal
+basis $g_0,\ldots,g_n$:
+\[
+  \langle f,g\rangle=\sum_{i=1}^m f(x_i)g(x_i),\qquad
+  \langle g_j,g_k\rangle=0\ (j\neq k).
+\]
+\[
+  p(x)=\sum_{i=0}^n a_i g_i(x),\qquad
+  a_i=\frac{\langle f,g_i\rangle}{\langle g_i,g_i\rangle}.
+\]
+
+\subsection{Lagrange Form}
+\[
+  \ell_i(x)=\prod_{\substack{j=0\\j\neq i}}^n
+  \frac{x-x_j}{x_i-x_j},\qquad i=0,\ldots,n.
+\]
+\[
+  p(x)=\sum_{i=0}^n \ell_i(x)y_i.
+\]
+
+\subsection{Newton Form}
+\[
+  p_n(x)=c_0+c_1(x-x_0)+\cdots+
+  c_n\prod_{j=0}^{n-1}(x-x_j).
+\]
+The coefficients are divided differences:
+\[
+  c_i=f[x_0,\ldots,x_i],\qquad i=0,\ldots,n.
+\]
+\[
+  f[x_i]=f(x_i)=y_i,\qquad
+  f[x_i,x_j]=\frac{f(x_j)-f(x_i)}{x_j-x_i}.
+\]
+\[
+  f[x_0,\ldots,x_n]=
+  \frac{f[x_1,\ldots,x_n]-f[x_0,\ldots,x_{n-1}]}{x_n-x_0}.
+\]
+
+
+\section{Numerical Integration}
+
+\subsection{Newton--Cotes Rules}
+A special form of least squares, where nodes $x_i$ are chosen
+equidistantly on interval $[a,b]$:
+\[
+  x_i=a+ih, \quad h=\frac{b-a}{mn}, \quad i=0,\ldots,n
+\]
+\textbf{Trapezoidal Rule} ($n=1$, $\leq 1$):
+\[
+  =\frac{h}{2}(f(a)+f(b))-\frac{h^3 f''(\xi)}{12}
+\]
+\textbf{Simpson's Rule} ($n=2$, $\leq 3!$):
+\[
+  =\frac{h}{3}(f(x_0)+4f(x_1)+f(x_2))-\frac{h^5 f''(\xi)}{90}
+\]
+\textbf{Composite Trapezoidal} ($m>1$):
+\[
+  =\frac{h}{2}(f(x_0)+2f(x_1)+\cdots+2f(x_{n-1})+
+\]
+\[
+  f(x_n))-\frac{(b-a)h^2f''(\xi)}{12}
+\]
+\textbf{Composite Simpson} ($m>1$):
+\[
+  =\frac{h}{3}(f(x_0)+4f(x_1)+2f(x_2)+\cdots+
+\]
+\[
+  2f(x_{n-2})+4f(x_{n-1})+f(x_n))-
+  \frac{(b-a)h^4f''(\xi)}{280}
+\]
+
+\subsection{Romberg Method}
+$h=(b-a)/n$ is the subinterval width of the composite trapezoidal rule $T(h)$.
+The error has an expansion in even powers:
+\[
+  T(h)=I+c_1h^2+c_2h^4+\cdots
+\]
+In each new row, double the number of subintervals, so
+$h_\ell=h_0/2^\ell$. Start with
+\[
+  R_{\ell,0}=T(h_\ell)
+\]
+and compute the triangular table:
+\[
+  R_{\ell,m}=
+  \frac{4^mR_{\ell,m-1}-R_{\ell-1,m-1}}{4^m-1},
+  \qquad 1\leq m\leq\ell.
+\]
+Each new column eliminates the next error term: $h^2,h^4,\ldots$
+
+
+\section{Differential Equations (DE)}
+
+\subsection{Definition.}
+DE: equation of the form:
+\[
+  F(x,y,y',y'',\ldots,y^{(n)})=0, \quad y=y(x)
+\]
+The general solution is a family of functions with $n$ parameters. A particular solution is
+obtained when boundary conditions are given.
+
+Order of a DE: the highest derivative that appears.
+
+\subsection{Introducing a New Variable.}
+Convert a higher-order ODE to a first-order system by naming each derivative:
+\[
+  u_1=y,\quad u_2=y',\quad \ldots,\quad u_n=y^{(n-1)}.
+\]
+Then
+\[
+  u_1'=u_2,\quad u_2'=u_3,\quad \ldots,\quad
+  u_n'=F(x,u_1,\ldots,u_n).
+\]
+Example:
+\[
+  y''=F(x,y,y') \Rightarrow
+  \begin{cases}
+    u_1'=u_2,\\
+    u_2'=F(x,u_1,u_2).
+  \end{cases}
+\]
+For $y''=y'+2y$:
+\[
+  u_1=y,\quad u_2=y',\quad
+  u_1'=u_2,\quad u_2'=u_2+2u_1.
+\]
+\subsection{Local and Global Error.}
+\textbf{Local error:} the difference between approximation $y_i$, obtained from approximation $y_{i-1}$,
+and $z(x_i)$, the result if the same step were taken from exact
+$y(x_{i-1})$.
+\[
+  l_i=y_i-z(x_i)
+\]
+\textbf{Global error:} the difference between approximation $y_i$ and exact $y(x_i)$ at $x_i$:
+\[
+  g_i=y_i-y(x_i) \leq \sum |l_j|
+\]
+\subsection{Order of a Method}
+$p \in \mathbb{N}$, for which:
+\[
+  l_i=Ch^{p+1}+O(h^{p+2})
+\]
+The order of a method determines the accuracy of the approximation (higher $p$ $\to$ better method).
+
+\subsection{Euler's Method}
+\textbf{Order 1:} linear approx. using the tangent at $x_i$.
+
+\textbf{Explicit:}
+\[
+  y_{i+1}=y_i+h_i\cdot f(x_i,y_i)
+\]
+\textbf{Implicit:}
+\[
+  y_{i+1}=y_i+h_i\cdot f(x_{i+1},y_{i+1})
+\]
+
+\end{multicols*}
+\end{document}
+
