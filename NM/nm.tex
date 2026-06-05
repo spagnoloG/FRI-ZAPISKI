@@ -84,7 +84,9 @@ Properties:
   \begin{gathered}
     \|A\|_1=\max_j\sum_{i=1}^n|a_{ij}|, \\
     \|A\|_2=\sqrt{\lambda_{\max}(A^T A)}, \\
-    \|A\|_F=\sqrt{\sum_{i,j=1}^n|a_{ij}|^2}, \\
+    \|A\|_F=\sqrt{\sum_{i,j=1}^n|a_{ij}|^2}
+      =\sqrt{\sum_i\sigma_i^2}
+      =\sqrt{\operatorname{tr}(A^TA)}, \\
     \|A\|_\infty=\max_i\sum_{j=1}^n|a_{ij}|
   \end{gathered}
 \]
@@ -94,6 +96,10 @@ Properties:
 \[
   \kappa(A)=\|A\|\|A^{-1}\|.
 \]
+$\kappa(A)$ measures sensitivity: how much relative perturbations/noise in
+$A$ or $b$ can change the solution $x$. If $\kappa(A)\approx 1$, the problem is
+well-conditioned; if $\kappa(A)\gg 1$, errors are amplified and the matrix is
+nearly singular/ill-conditioned.
 
 \subsection{\texorpdfstring{Gaussian Elimination ($\sim\frac{2}{3}n^3$):}
   {Gaussian Elimination (2/3 n3):}}
@@ -162,16 +168,30 @@ start with $L=I$, $U=A$.
 \]
 \textbf{Partial pivoting:} replace the $j$-th row with the row having the largest
 $|a_{ij}|$, $i=j,\ldots,n$.
+Used to avoid zero/small pivots: if $a_{jj}$ is tiny, multipliers
+$l_{ij}=a_{ij}/a_{jj}$ become large and rounding errors are amplified.
+\textbf{Pivot growth:}
+\[
+  \rho(A)=\frac{\max_{i,j}|\hat u_{ij}|}{\max_{i,j}|a_{ij}|}.
+\]
+Measures how much entries grow during elimination; small $\rho(A)$ means more
+stable elimination. For partial pivoting, $\rho(A)\leq 2^{n-1}$.
 
 \textbf{Permutation matrix:} $P^T=P^{-1}$.
 \[
   P = I_{\text{column }i \leftrightarrow j},
   \quad PA = A_{\text{row }i \leftrightarrow j}
 \]
+Row-swap matrix for swapping rows $j$ and $k$:
+\[
+  P_{jk}=I_n-E_{jj}-E_{kk}+E_{jk}+E_{kj}.
+\]
+$P_{jk}A$ swaps
+rows $j$ and $k$ of $A$.
 Swap the 2nd and 3rd rows of matrix $A$:
 \[
-  PA,\qquad
-  P = \begin{bmatrix}
+  P_{23}A,\qquad
+  P_{23} = \begin{bmatrix}
         1 & 0 & 0 \\
         0 & 0 & 1 \\
         0 & 1 & 0
@@ -210,14 +230,43 @@ Exists when matrix $A$ is:
   \item PD: $x^T Ax>0 \quad \forall x \neq 0$
 \end{itemize}
 
+\textbf{Strict row diagonal dominance:} $|a_{ii}|>\sum_{j\neq i}|a_{ij}|$ for every $i$.
+
+\subsection{Iterative Methods}
+For $Ax=b$, direct methods compute the exact solution $x^*$ up to rounding.
+Iterative methods produce approximations $x^{(k)}$ and stop when the required
+tolerance is reached:
+\[
+  \|\hat x-x^*\|\leq \varepsilon
+  \quad\text{or usually}\quad
+  \|Ax^{(k)}-b\|\leq \varepsilon.
+\]
+General form:
+\[
+  x^{(k+1)}=Rx^{(k)}+c.
+\]
+Useful for large sparse matrices: cheaper memory/work per step, and we can stop
+as soon as the approximation is accurate enough.
+
 \subsection{Spectral Radius.}
 \[
   \rho(R)=\max_i|\lambda_i(R)|.
 \]
-$x^{(k+1)}=Rx^{(k)}+c$ converges for every $x^{(0)}$
-$\Longleftrightarrow \rho(R)<1$.
-
-\textbf{Strict row diagonal dominance:} $|a_{ii}|>\sum_{j\neq i}|a_{ij}|$ for every $i$.
+For $x^{(k+1)}=Rx^{(k)}+c$, convergence for every $x^{(0)}$
+$\Longleftrightarrow \rho(R)<1$. Smaller $\rho(R)$ means faster convergence:
+the error is roughly multiplied by $\rho(R)$ each step.
+\[
+  e^{(k)}\approx R^ke^{(0)},\qquad
+  \|e^{(k)}\|\sim \rho(R)^k\|e^{(0)}\|.
+\]
+Convergence rate:
+\[
+  r(R)=-\log_{10}\rho(R).
+\]
+For error about $10^{-p}$, approximate number of steps:
+\[
+  m\approx \frac{p}{r(R)}.
+\]
 
 \subsection{\texorpdfstring{Jacobi Iteration ($O(mn)$).}
   {Jacobi Iteration (O(mn)).}}
@@ -237,9 +286,12 @@ x_n^{(k)} = \frac{b_n - a_{n,1}x_1^{(k-1)} - \cdots - a_{n,n-1}x_{n-1}^{(k-1)}}{
 
 Component form:
 \[
-  x_i^{+1} = \frac{1}{a_{ii}}
-    \left(b_i-\sum_{j<i}a_{ij}x_j^{+1}-\sum_{j>i}a_{ij}x_j^k\right)
+  x_i^{(k+1)} = \frac{1}{a_{ii}}
+    \left(b_i-\sum_{j<i}a_{ij}x_j^{(k+1)}
+    -\sum_{j>i}a_{ij}x_j^{(k)}\right)
 \]
+More memory-efficient than Jacobi: updates $x_i$ in-place, so it does not need
+two separate vectors for old/new iterates.
 
 \subsection{SOR}
 Relaxed GS iteration with $\omega\in\R$:
@@ -289,6 +341,13 @@ Solve:
 \[
   Rx=Q^T b
 \]
+For least squares, QR is usually better than normal equations
+$A^TAx=A^Tb$ because forming $A^TA$ squares the condition number:
+\[
+  \kappa(A^TA)=\kappa(A)^2.
+\]
+So if $A$ is already poorly conditioned, $A^TA$ is much worse; QR works with
+$A$ directly.
 \subsection{Gram--Schmidt}
 Orthogonalization of the set
 $\{a_1,\ldots,a_n\} \Rightarrow \{q_1,\ldots,q_n\}$, such that
@@ -307,6 +366,15 @@ $L(q_i)=L(a_i)$
 \[
   R=H_k\ldots H_1 A, \quad Q=H_1\ldots H_k
 \]
+Geometric meaning: $H_w$ reflects a vector across the hyperplane orthogonal to
+$w$. The component parallel to $w$ changes sign, while the perpendicular part is
+unchanged:
+\[
+  x=\alpha w+u,\ u\perp w \quad\Rightarrow\quad H_wx=-\alpha w+u.
+\]
+Use Householder for QR when numerical stability matters: classical GS can lose
+orthogonality if columns are nearly linearly dependent. Householder is not
+necessarily fewer flops than GS, but is more stable and standard for dense QR.
 
 \subsection{Singular Value Decomposition (SVD).}
 For $A\in\R^{n\times m}$, there exist orthogonal
@@ -324,47 +392,233 @@ $\Sigma\in\R^{n\times m}$:
 \end{tiny}
 Right $v_i\in\R^m$ are input directions, and left $u_i\in\R^n$ are output directions:
 $Av_i=\sigma_i u_i$.
+Singular values are not eigenvalues of $A$ in general:
+\[
+  \sigma_i=\sqrt{\lambda_i(A^TA)}\geq0.
+\]
+Eigenvalues solve $Av=\lambda v$ (same input/output direction, square $A$);
+singular values measure stretching $Av_i=\sigma_i u_i$ and also exist for
+rectangular matrices.
+
+\subsection{Moore--Penrose Inverse}
+For $A\in\R^{n\times m}$, the pseudoinverse $A^+\in\R^{m\times n}$ satisfies:
+\begin{tiny}
+\[
+  \begin{gathered}
+    AA^+A=A,\quad A^+AA^+=A^+,\\
+    (AA^+)^T=AA^+,\quad (A^+A)^T=A^+A.
+  \end{gathered}
+\]
+\end{tiny}
+If $A=U\Sigma V^T$ is SVD, then
+\[
+  A^+=V\Sigma^+U^T,\qquad
+  \sigma_i^+=
+  \begin{cases}
+    1/\sigma_i, & \sigma_i\neq0,\\
+    0, & \sigma_i=0.
+  \end{cases}
+\]
+Least squares solution can be written $x=A^+b$.
 
 \section{Finding Eigenvalues}
 
-\subsection{Power Method}
-Finds the dominant eigenpair by repeated multiplication:
+\subsection{Jordan and Schur Forms}
+Not every matrix has $n$ independent eigenvectors. The theoretical canonical
+form is Jordan:
 \[
-    x^{(k+1)}=\frac{Ax^{(k)}}{\|Ax^{(k)}\|},
-    A x_0 = \lambda x_0
+  A=SJS^{-1},\qquad
+  J=\operatorname{diag}(J_1,\ldots,J_r),
 \]
+where each Jordan block has $\lambda$ on the diagonal and $1$ above it.
+Computing $J$ is numerically unstable, so it is mostly theoretical.
 
-The convergence rate is $\approx \left|\frac{\lambda_2}{\lambda_1}\right|^k$.
+Practical replacement is Schur form. For complex matrices:
+\[
+  Q^*AQ=T
+\]
+with $Q$ unitary and $T$ upper triangular. For real matrices:
+\[
+  U^TAU=T
+\]
+where $U$ is orthogonal and $T$ is block upper triangular with $1\times1$ and
+$2\times2$ diagonal blocks. Eigenvalues are read from the diagonal/blocks.
+
+\subsection{Power Method}
+Dominant eigenpair. Input: $A\in\R^{n\times n}$, $x_0\neq0$, tol.
+Output: $(x,\lambda)$, where $|\lambda|$ is largest.
+\begin{tiny}
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\kill
+$x_0=x_0/\|x_0\|_2,\quad \tilde\lambda_0=x_0^TAx_0,\quad i=0$ \\
+\texttt{while} $\|Ax_i-\tilde\lambda_i x_i\|>\texttt{tol}$ \\
+\> $y_{i+1}=Ax_i$ \\
+\> $x_{i+1}=y_{i+1}/\|y_{i+1}\|_2$ \\
+\> $\tilde\lambda_{i+1}=x_{i+1}^TAx_{i+1}$ \\
+\> $i=i+1$ \\
+\texttt{end}
+\end{tabbing}
+\end{tiny}
+Each multiplication by $A$ amplifies the dominant eigenvector direction.
+Convergence rate $\approx |\lambda_2/\lambda_1|^k$.
 
 \subsection{Inverse Iteration}
 For a shift $\sigma\approx\lambda$, use the power method on
-$(A-\sigma I)^{-1}$; obtain the eigenvalue closest to $\sigma$:
+$(A-\sigma I)^{-1}$; obtain the eigenvalue closest to $\sigma$.
+Input: $A$, $x_0\neq0$, shift $\sigma$, tol. Output: eigenpair near $\sigma$.
 \begin{tiny}
-\[
-  (A-\sigma I)y^{(k+1)}=x^{(k)},\qquad
-  x^{(k+1)}=\frac{y^{(k+1)}}{\|y^{(k+1)}\|}.
-\]
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\kill
+$x_0=x_0/\|x_0\|_2,\quad \tilde\lambda_0=x_0^TAx_0,\quad i=0$ \\
+\texttt{while} $\|Ax_i-\tilde\lambda_i x_i\|>\texttt{tol}$ \\
+\> solve $(A-\sigma I)y_{i+1}=x_i$ \\
+\> $x_{i+1}=y_{i+1}/\|y_{i+1}\|_2$ \\
+\> $\tilde\lambda_{i+1}=x_{i+1}^TAx_{i+1}$ \\
+\> $i=i+1$ \\
+\texttt{end}
+\end{tabbing}
 \end{tiny}
 
 \subsection{Orthogonal Iteration}
-Generalization of the power method for the first $p$ eigenpairs. For orthonormal
-$Z_0\in\R^{n\times p}$, repeat:
+Generalization of power method for the first $p$ eigenpairs.
+Input: $A$, orthonormal $Z_0\in\R^{n\times p}$, tol. Output: first $p$
+dominant eigenvalues/eigenspace.
 \begin{tiny}
-\[
-  Y_{k+1}=AZ_k,\qquad Y_{k+1}=Z_{k+1}R_{k+1}\quad(\text{QR}).
-\]
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\hspace{1.0em}\=\kill
+$i=0,\quad A_0=Z_0^TAZ_0,\quad L_0=$ lower triangular part of $A_0$ \\
+\texttt{while} $\|L_i\|_F/\|A_i\|_F>\texttt{tol}$ \\
+\> $Y_{i+1}=AZ_i$ \\
+\> $Y_{i+1}=Z_{i+1}R_{i+1}$ \quad (QR, $Z_{i+1}$ orthonormal) \\
+\> $A_{i+1}=Z_{i+1}^TAZ_{i+1}$ \\
+\> $L_{i+1}=$ lower triangular part of $A_{i+1}$ \\
+\> $i=i+1$ \\
+\texttt{end}
+\end{tabbing}
 \end{tiny}
-Columns of $Z_k$ converge to the dominant eigenspace.
+Columns of $Z_i$ converge to the dominant eigenspace; diagonal of $A_i$ gives
+the approximated eigenvalues.
 
 \subsection{QR Iteration}
-To compute all eigenvalues, repeat:
+Computes all eigenvalues. Input: $A\in\R^{n\times n}$, tol. Output:
+$\lambda_1,\ldots,\lambda_n$.
 \begin{tiny}
-\[
-  A_0=A,\qquad A_k=Q_kR_k,\qquad A_{k+1}=R_kQ_k.
-\]
+\begin{tabbing}
+\hspace{1.0em}\=\hspace{1.0em}\=\hspace{1.0em}\=\kill
+$i=0,\quad A_0=A,\quad L_0=$ lower triangular part of $A_0$ \\
+\texttt{while} $\|L_i\|_F/\|A_i\|_F>\texttt{tol}$ \\
+\> compute QR factorization $A_i=Q_iR_i$ \\
+\> $A_{i+1}=R_iQ_i$ \quad (same eigenvalues as $A_i$) \\
+\> $L_{i+1}=$ lower triangular part of $A_{i+1}$ \\
+\> $i=i+1$ \\
+\texttt{end}
+\end{tabbing}
 \end{tiny}
-The diagonal of $A_k$ converges to the eigenvalues.
+The diagonal of $A_i$ converges to the eigenvalues; with shifts it converges
+faster.
 
+
+\subsection{Upper Hessenberg Matrix}
+A matrix $H\in\R^{n\times n}$ is \textbf{upper Hessenberg} if
+\[
+  h_{ij}=0 \quad \text{for } i>j+1.
+\]
+So everything below the first subdiagonal is zero:
+\[
+H=
+\begin{bmatrix}
+* & * & * & \cdots & *\\
+* & * & * & \cdots & *\\
+0 & * & * & \cdots & *\\
+0 & 0 & * & \cdots & *\\
+\vdots & \vdots & \ddots & \ddots & *
+\end{bmatrix}.
+\]
+This form is useful because QR iteration preserves it.
+
+\subsection{Reduction to Hessenberg Form}
+Before QR iteration, transform
+\[
+  A \longrightarrow H = Q^T A Q.
+\]
+This is an orthogonal similarity transformation, so eigenvalues are preserved.
+
+Using Householder reflections, we zero entries below the first subdiagonal,
+column by column:
+\[
+  A_k = Q_k^T A_{k-1} Q_k, \qquad k=1,\ldots,n-2.
+\]
+Cost: $O(n^3)$, but only once.
+
+\subsection{Givens Rotations}
+A Givens rotation zeros one component of a 2D vector:
+\[
+v=
+\begin{bmatrix}
+x_1\\x_2
+\end{bmatrix},
+\qquad
+Gv=
+\begin{bmatrix}
+\sqrt{x_1^2+x_2^2}\\0
+\end{bmatrix}.
+\]
+With
+\[
+c=\frac{x_1}{\sqrt{x_1^2+x_2^2}},\qquad
+s=-\frac{x_2}{\sqrt{x_1^2+x_2^2}},
+\]
+\[
+G=
+\begin{bmatrix}
+c & -s\\
+s & c
+\end{bmatrix}.
+\]
+In large matrices, $G$ only mixes two rows/columns.
+
+\subsection{QR of an Upper Hessenberg Matrix}
+For Hessenberg $H$, QR is cheap because every column has only one subdiagonal
+entry to eliminate. Use Givens rotations:
+\[
+  R = G_{n-1}\cdots G_1 H,
+\]
+where each $G_k$ zeros $h_{k+1,k}$.
+
+Then
+\[
+  H = QR,
+  \qquad
+  Q^T = G_{n-1}\cdots G_1.
+\]
+
+\subsection{Shifted QR Iteration}
+With one shift $\mu_i$:
+\[
+  H_i-\mu_i I = Q_iR_i,
+\]
+\[
+  H_{i+1}=R_iQ_i+\mu_i I.
+\]
+This is still a similarity transformation:
+\[
+  H_{i+1}=Q_i^T H_i Q_i,
+\]
+so eigenvalues are preserved. Also, the Hessenberg form is preserved.
+
+\subsection{Cost}
+Dense QR iteration costs about $O(n^3)$ per step.
+
+For upper Hessenberg matrices:
+\[
+  \text{QR factorization cost} = O(n^2),
+\]
+because there are $O(n)$ Givens rotations and each costs $O(n)$.
+
+So the total QR process is reduced roughly from
+\[
+  O(n^4) \quad \text{to} \quad O(n^3).
+\]
 
 \section{Solving Nonlinear Equations}
 
