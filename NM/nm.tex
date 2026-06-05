@@ -248,7 +248,7 @@ General form:
 Useful for large sparse matrices: cheaper memory/work per step, and we can stop
 as soon as the approximation is accurate enough.
 
-\subsection{Spectral Radius.}
+\subsection{Spectral Radius}
 \[
   \rho(R)=\max_i|\lambda_i(R)|.
 \]
@@ -708,6 +708,15 @@ opposite signs. Stop when the interval is shorter than the prescribed tolerance.
 \end{tabbing}
 \end{tiny}
 
+After $n$ steps the interval length is
+\[
+  \delta_n=\frac{b-a}{2^n}.
+\]
+For accuracy $\varepsilon$, need $\delta_n\leq\varepsilon$:
+\[
+  n\geq \left\lceil \log_2\frac{b-a}{\varepsilon}\right\rceil.
+\]
+
 \subsection{Tangent Method / Newton's Method}
 Use the tangent at point $x_k$ to find a zero of $f(x)$:
 \[
@@ -1003,6 +1012,46 @@ For $y''=y'+2y$:
   u_1=y,\quad u_2=y',\quad
   u_1'=u_2,\quad u_2'=u_2+2u_1.
 \]
+
+\subsection{Separable First-Order DE}
+Recognize equations where all $x$ terms can go on one side and all $t$ terms
+on the other:
+\[
+  \dot x=f(t)g(x),\qquad \dot x=\frac{dx}{dt}.
+\]
+Procedure:
+\[
+  \frac{dx}{dt}=f(t)g(x)
+  \Rightarrow
+  \frac{dx}{g(x)}=f(t)\dd t
+\]
+\[
+  \Rightarrow\quad
+  \int\frac{1}{g(x)}\dd x=\int f(t)\dd t+C.
+\]
+Then solve the obtained equation for $x(t)$ if possible.
+
+\subsection{Linear First-Order DE}
+Standard form:
+\[
+  y'+f(x)y=g(x).
+\]
+Use the integrating factor
+\[
+  \mu(x)=e^{\int f(x)\dd x}.
+\]
+Then multiply the whole equation by $\mu$:
+\[
+  \mu y'+\mu f y=\mu g
+  \quad\Rightarrow\quad
+  (\mu y)'=\mu g.
+\]
+Integrate and divide by $\mu$:
+\[
+  \mu y=\int \mu(x)g(x)\dd x+C,
+  \qquad
+  y=\frac{1}{\mu}\left(\int \mu g\dd x+C\right).
+\]
 \subsection{Local and Global Error.}
 \textbf{Local error:} the difference between approximation $y_i$, obtained from approximation $y_{i-1}$,
 and $z(x_i)$, the result if the same step were taken from exact
@@ -1060,6 +1109,16 @@ For systems, use the same formulas with vector $y_n$ and slopes $k_i$.
 
 
 \section{Appendix}
+
+\subsection{Line Equation}
+Through two points $(x_0,y_0)$ and $(x_1,y_1)$:
+\[
+  y-y_0=\frac{y_1-y_0}{x_1-x_0}(x-x_0).
+\]
+Slope-intercept form:
+\[
+  y=kx+n,\qquad k=\frac{y_1-y_0}{x_1-x_0}.
+\]
 
 \subsection{Taylor Series}
 Replace a function by a polynomial near point $a$:
