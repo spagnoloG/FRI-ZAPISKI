@@ -424,29 +424,62 @@ Least squares solution can be written $x=A^+b$.
 \section{Finding Eigenvalues}
 
 \subsection{Jordan and Schur Forms}
-Not every matrix has $n$ independent eigenvectors. The theoretical canonical
-form is Jordan:
-\[
-  A=SJS^{-1},\qquad
-  J=\operatorname{diag}(J_1,\ldots,J_r),
-\]
-where each Jordan block has $\lambda$ on the diagonal and $1$ above it.
-Computing $J$ is numerically unstable, so it is mostly theoretical.
+Eigenvalue methods try to transform $A$ into a simpler similar matrix, because
+similar matrices have the same eigenvalues.
 
-Practical replacement is Schur form. For complex matrices:
+\textbf{Jordan form} is the theoretical canonical form:
 \[
-  Q^*AQ=T
+  A=SJS^{-1}, \qquad J=\operatorname{diag}(J_1,\ldots,J_r).
 \]
-with $Q$ unitary and $T$ upper triangular. For real matrices:
+Each Jordan block has $\lambda$ on the diagonal and $1$ above it:
+\begin{tiny}
 \[
-  U^TAU=T
+  J_k=
+  \begin{bmatrix}
+    \lambda & 1       &        & 0\\
+            & \lambda & \ddots & \\
+            &         & \ddots & 1\\
+    0       &         &        & \lambda
+  \end{bmatrix}.
 \]
-where $U$ is orthogonal and $T$ is block upper triangular with $1\times1$ and
-$2\times2$ diagonal blocks. Eigenvalues are read from the diagonal/blocks.
+\end{tiny}
+If $A$ has enough independent eigenvectors, then $J$ is diagonal. Otherwise,
+Jordan blocks appear. Computing Jordan form is numerically unstable, so it is
+mostly theoretical.
+
+\textbf{Schur form} is the practical replacement for Jordan form:
+\[
+  Q^*AQ=T,
+\]
+where $Q$ is unitary and $T$ is upper triangular. The eigenvalues are the
+diagonal entries of $T$.
+
+For real matrices:
+\[
+  U^TAU=T,
+\]
+where $U$ is orthogonal and $T$ is quasi-upper triangular: it has $1\times1$
+blocks for real eigenvalues and $2\times2$ blocks for complex conjugate pairs.
+
+QR iteration moves the matrix toward Schur form using similarity transformations:
+\[
+  A_i=Q_iR_i,\qquad A_{i+1}=R_iQ_i=Q_i^TA_iQ_i.
+\]
+So eigenvalues stay the same, while $A_i$ becomes more triangular after many
+iterations.
+
 
 \subsection{Power Method}
 Dominant eigenpair. Input: $A\in\R^{n\times n}$, $x_0\neq0$, tol.
 Output: $(x,\lambda)$, where $|\lambda|$ is largest.
+If $x_0$ is already an eigenvector and $\|x_0\|_2=1$, then
+\[
+  Ax_0=\lambda x_0
+  \quad\Rightarrow\quad
+  x_0^TAx_0=\lambda x_0^Tx_0=\lambda.
+\]
+So estimate eigenvalues by the Rayleigh quotient $\tilde\lambda=x^TAx$ for
+normalized $x$.
 \begin{tiny}
 \begin{tabbing}
 \hspace{1.0em}\=\hspace{1.0em}\=\kill
@@ -548,6 +581,25 @@ column by column:
 \[
   A_k = Q_k^T A_{k-1} Q_k, \qquad k=1,\ldots,n-2.
 \]
+At step $k$, take the part of column $k$ below the diagonal:
+\[
+  x=A_{k-1}(k+1:n,k).
+\]
+Build a Householder reflector $\widehat H_k$ so
+\[
+  \widehat H_k x=\pm\|x\|_2 e_1,
+\]
+therefore entries $k+2,\ldots,n$ in column $k$ become zero. Embed it into the
+full matrix:
+\[
+  Q_k=
+  \begin{bmatrix}
+    I_k & 0\\
+    0 & \widehat H_k
+  \end{bmatrix}.
+\]
+Multiplying by $Q_k^T$ from the left zeros the column; multiplying by $Q_k$ from
+the right keeps a similarity transformation, so eigenvalues are unchanged.
 Cost: $O(n^3)$, but only once.
 
 \subsection{Givens Rotations}
@@ -584,6 +636,24 @@ entry to eliminate. Use Givens rotations:
   R = G_{n-1}\cdots G_1 H,
 \]
 where each $G_k$ zeros $h_{k+1,k}$.
+At step $k$, build a $2\times2$ rotation from the vector
+\[
+  x=\begin{bmatrix}h_{k,k}\\ h_{k+1,k}\end{bmatrix},
+  \qquad
+  \widehat G_kx=
+  \begin{bmatrix}*\\0\end{bmatrix}.
+\]
+Embed it into the full matrix so it only mixes rows $k$ and $k+1$:
+\[
+  G_k=
+  \begin{bmatrix}
+    I_{k-1} & 0 & 0\\
+    0 & \widehat G_k & 0\\
+    0 & 0 & I_{n-k-1}
+  \end{bmatrix}.
+\]
+Apply $G_kH$ to zero the subdiagonal entry. Continue for
+$k=1,\ldots,n-1$ to get upper triangular $R$.
 
 Then
 \[
@@ -591,20 +661,6 @@ Then
   \qquad
   Q^T = G_{n-1}\cdots G_1.
 \]
-
-\subsection{Shifted QR Iteration}
-With one shift $\mu_i$:
-\[
-  H_i-\mu_i I = Q_iR_i,
-\]
-\[
-  H_{i+1}=R_iQ_i+\mu_i I.
-\]
-This is still a similarity transformation:
-\[
-  H_{i+1}=Q_i^T H_i Q_i,
-\]
-so eigenvalues are preserved. Also, the Hessenberg form is preserved.
 
 \subsection{Cost}
 Dense QR iteration costs about $O(n^3)$ per step.
