@@ -681,13 +681,17 @@ So the total QR process is reduced roughly from
 \subsection{Difference of Function Values}
 When $x_a,x_b\to x^*$, we have
 \[
-  \frac{f(x_b)-f(x_a)}{x_b-x_a}\to f'(x^*),\qquad
-  |f(x_b)-f(x_a)|\approx |f'(x^*)|\,|x_b-x_a|.
+  \frac{f(x_b)-f(x_a)}{x_b-x_a}\to f'(x^*)
+\]
+\[
+   |f(x_b)-f(x_a)|\approx |f'(x^*)|\,|x_b-x_a|
 \]
 
 \subsection{Bisection}
 Finding a zero of function $f(x)$ on interval $[a,b]$, where
 $f(a)\cdot f(b)<0$.
+At each step take the midpoint and keep the half-interval whose endpoints have
+opposite signs. Stop when the interval is shorter than the prescribed tolerance.
 
 \begin{tiny}
 \begin{tabbing}
@@ -722,6 +726,17 @@ we need two initial approximations: $x_0,x_1$:
   x_{k+1}=x_k-f(x_k)\cdot
   \frac{x_k-x_{k-1}}{f(x_k)-f(x_{k-1})}
 \]
+
+\subsection{Fixed Point Method}
+Rewrite $f(x)=0$ as an equivalent fixed-point equation
+\[
+  g(x)=x.
+\]
+A point $x^*$ with $g(x^*)=x^*$ is a fixed point. Iterate:
+\[
+  x_{k+1}=g(x_k)
+\]
+until the tolerance criterion is satisfied.
 
 \subsection{Newton's Method}
 Generalization of the tangent method for nonlinear systems
@@ -778,7 +793,8 @@ For an overdetermined nonlinear system, use the pseudoinverse of the Jacobian ma
 
 \section{Polynomial Interpolation}
 
-\subsection{Problem.}
+Goal: approximate a function $f(x)$ by an easier function $g(x)$.
+
 Find a polynomial $p(x)$ of degree at most $n-1$ that satisfies:
 \[
   p(x_i)=y_i, \quad \text{for } i=1,2,\ldots,n
@@ -859,6 +875,32 @@ Newton coefficients are the top diagonal:
   f[x_0,\ldots,x_n]=
   \frac{f[x_1,\ldots,x_n]-f[x_0,\ldots,x_{n-1}]}{x_n-x_0}.
 \]
+
+\subsection{Gaussian Quadrature Formula}
+Goal: approximate a weighted integral by values of $f$ at smartly chosen nodes:
+\[
+  \int_a^b f(x)w(x)\dd x \approx \sum_{i=1}^n \rho_i f(x_i).
+\]
+Here $x_i$ are nodes and $\rho_i$ are weights. Unlike Newton--Cotes, the nodes
+are not equidistant; they are chosen so the rule is exact for polynomials of as
+high degree as possible.
+
+Use orthogonal polynomials for the inner product
+\[
+  \langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\dd x,
+  \qquad w(x)>0.
+\]
+If $q_n$ is the $n$-th orthogonal polynomial, then the Gaussian nodes are its
+zeros:
+\[
+  q_n(x_i)=0,\qquad i=1,\ldots,n.
+\]
+Weights can be written using Lagrange basis polynomials $\ell_i$ on these nodes:
+\[
+  \rho_i=\int_a^b \ell_i(x)w(x)\dd x.
+\]
+With $n$ nodes and $n$ weights, Gaussian quadrature is exact for all polynomials
+up to degree $2n-1$.
 
 
 \section{Numerical Integration}
@@ -1015,6 +1057,138 @@ then use the weighted average $1:2:2:1$.
 \]
 \textbf{Order 4:} local error $O(h^5)$, global error $O(h^4)$.
 For systems, use the same formulas with vector $y_n$ and slopes $k_i$.
+
+
+\section{Appendix}
+
+\subsection{Taylor Series}
+Replace a function by a polynomial near point $a$:
+\[
+  \begin{aligned}
+    f(x)={}&f(a)+f'(a)(x-a)\\
+    &+\frac{f''(a)}{2!}(x-a)^2+
+    \frac{f'''(a)}{3!}(x-a)^3+\cdots
+  \end{aligned}
+\]
+General form:
+\[
+  f(x)=\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^k.
+\]
+
+\subsection{Derivatives}
+
+\begin{center}
+	\begin{small}
+		\begin{itemize}
+			\item \begin{math}
+				      \frac{1}{x} = -\frac{1}{x^2}
+			      \end{math}
+			\item \begin{math}
+				      x^n  = nx^{n-1}
+			      \end{math}
+			\item \begin{math}
+				      \sqrt{x} = \frac{1}{2 \sqrt{x}}
+			      \end{math}
+			\item \begin{math}
+				      \sqrt[n] x = \frac{1}{n \sqrt[n]{x^{n-1}}}
+			      \end{math}
+			\item \begin{math}
+				      \sin (a x) =  a  \cos a x
+			      \end{math}
+			\item  \begin{math}
+				      \cos (a x) = - a \sin (a x)
+			      \end{math}
+			\item \begin{math}
+				      \tan x = \frac{1}{\cos^2 x}
+			      \end{math}
+			\item \begin{math}
+				      e^ax = ae^{ax}
+			      \end{math}
+			\item \begin{math}
+				      a^x = a^x \ln a
+			      \end{math}
+			\item \begin{math}
+				      x^x = x^x (1+\ln x)
+			      \end{math}
+			\item \begin{math}
+				      ln x = \frac{1}{x}
+			      \end{math}
+			\item \begin{math}
+				      log_a x = \frac{1}{x \ln a}
+			      \end{math}
+			\item \begin{math}
+				      \arcsin x = \frac{1}{\sqrt {1 - x^2}}
+			      \end{math}
+			\item \begin{math}
+				      \arccos x = - \frac{1}{\sqrt{1 - x^2}}
+			      \end{math}
+			\item \begin{math}
+				      \arctan x = \frac{1}{1 + x^2}
+			      \end{math}
+			\item \begin{math}
+				      \operatorname{arccot}x = -\frac{1}{1 + x^2}
+			      \end{math}
+		\end{itemize}
+	\end{small}
+\end{center}
+
+\subsection{Integrals}
+\begin{center}
+	\begin{small}
+		\begin{itemize}
+			\item \begin{math}
+				      \int x^a\,dx =
+				      \Bigg\{\begin{tabular}{ccc}
+					      $\frac{x^{a+1}}{a+1} + C$  & $a \neq -1$ & \\
+					      $ \ln{\left|x\right|} + C$ & $a = -1$    & \\
+				      \end{tabular}
+			      \end{math}
+			\item \begin{math}
+				      \int \ln {x}\,dx = x \ln {x} - x + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac {1}{\sqrt{x}}\,dx=2\sqrt{x} + C
+			      \end{math}
+			\item \begin{math}
+				      \int e^x\,dx = e^x + C
+			      \end{math}
+			\item \begin{math}
+				      \int a^x\,dx = \frac{a^x}{\ln{a}} + C
+			      \end{math}
+			\item \begin{math}
+				      \int \cos({ax}) \, dx = { \frac{\sin (ax)}{a} } + C
+			      \end{math}
+			\item \begin{math}
+				      \int \sin({ax}) \, dx = { \frac{-\cos(ax)}{a} } + C
+			      \end{math}
+			\item \begin{math}
+				      \int \tan{x} \, dx = -\ln{\left| \cos {x} \right|} + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac{dx}{\cos^2 x}=\int \sec^2 x \, dx = \tan x + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac{dx}{\sin^2 x}=\int \csc^2 x \, dx = -\cot x + C
+			      \end{math}
+			\item \begin{math}
+				      \int {\frac{1}{\sqrt{1-x^2}}} \, dx = \arcsin {x} + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac{dx}{ax + b} = \frac{1}{a} \ln |ax + b| + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac{1}{x^2 + 1} \, dx = \arctan x + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac{dx}{x^2 + a^2} = \frac{1}{a} \arctan \frac{x}{a} + C
+			      \end{math}
+			\item \begin{math}
+				      \int \frac{f'(x)}{f(x)} \, dx = \ln|f(x)| + C
+			      \end{math}
+		\end{itemize}
+	\end{small}
+\end{center}
+
 
 \end{multicols*}
 \end{document}
