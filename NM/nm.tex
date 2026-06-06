@@ -851,6 +851,8 @@ basis $g_0,\ldots,g_n$:
 \]
 
 \subsection{Newton Form}
+With points $x_0,\ldots,x_n$ ($n+1$ points), interpolate by a polynomial of
+degree at most $n$.
 \[
   p_n(x)=c_0+c_1(x-x_0)+\cdots+
   c_n\prod_{j=0}^{n-1}(x-x_j).
@@ -885,34 +887,73 @@ Newton coefficients are the top diagonal:
   \frac{f[x_1,\ldots,x_n]-f[x_0,\ldots,x_{n-1}]}{x_n-x_0}.
 \]
 
-\subsection{Gaussian Quadrature Formula}
-Goal: approximate a weighted integral by values of $f$ at smartly chosen nodes:
-\[
-  \int_a^b f(x)w(x)\dd x \approx \sum_{i=1}^n \rho_i f(x_i).
-\]
-Here $x_i$ are nodes and $\rho_i$ are weights. Unlike Newton--Cotes, the nodes
-are not equidistant; they are chosen so the rule is exact for polynomials of as
-high degree as possible.
-
-Use orthogonal polynomials for the inner product
-\[
-  \langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\dd x,
-  \qquad w(x)>0.
-\]
-If $q_n$ is the $n$-th orthogonal polynomial, then the Gaussian nodes are its
-zeros:
-\[
-  q_n(x_i)=0,\qquad i=1,\ldots,n.
-\]
-Weights can be written using Lagrange basis polynomials $\ell_i$ on these nodes:
-\[
-  \rho_i=\int_a^b \ell_i(x)w(x)\dd x.
-\]
-With $n$ nodes and $n$ weights, Gaussian quadrature is exact for all polynomials
-up to degree $2n-1$.
-
-
 \section{Numerical Integration}
+
+\subsection{Gaussian Quadrature Formula}
+Goal: approximate an integral with as few function evaluations as possible:
+\[
+  \int_a^b f(x)w(x)\dd x \approx \sum_{i=1}^N \rho_i f(x_i).
+\]
+The nodes $x_i$ and weights $\rho_i$ are both chosen. Because there are $2N$
+free parameters, the rule can be exact for all polynomials up to degree $2N-1$.
+
+\textbf{General construction:}
+\begin{enumerate}
+  \item Choose the number of nodes $N$.
+  \item Find the degree $N$ orthogonal polynomial $q_N$ for
+  \[
+    \langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\dd x.
+  \]
+  Equivalently, $q_N$ satisfies
+  \[
+    \int_a^b x^k q_N(x)w(x)\dd x=0,\qquad k=0,\ldots,N-1.
+  \]
+  \item The nodes are the roots of this polynomial:
+  \[
+    q_N(x_i)=0,\qquad i=1,\ldots,N.
+  \]
+  \item Find weights from exactness on $1,x,\ldots,x^{N-1}$:
+  \[
+    \sum_{i=1}^N \rho_i x_i^k
+    =\int_a^b x^k w(x)\dd x,\qquad k=0,\ldots,N-1.
+  \]
+\end{enumerate}
+
+For $w=1$ on $[-1,1]$, $q_N$ are Legendre polynomials.
+
+\textbf{Move interval $[a,b]$ to $[-1,1]$:}
+Use the linear substitution
+\[
+  t=a_0+a_1x,\qquad t(a)=-1,\quad t(b)=1.
+\]
+Then
+\[
+  a_0=-\frac{b+a}{b-a},\qquad a_1=\frac{2}{b-a}.
+\]
+Equivalently, solve for $x$ in terms of $t$:
+\[
+  x=\frac{b-a}{2}t+\frac{b+a}{2},
+  \qquad
+  dx=\frac{b-a}{2}\dd t.
+\]
+Therefore
+\[
+  \int_a^b f(x)\dd x
+  =
+  \int_{-1}^1
+  f\left(\frac{(b-a)t+b+a}{2}\right)
+  \frac{b-a}{2}\dd t.
+\]
+
+\textbf{Absolute vs. relative error:}
+If $I$ is the exact integral and $\hat I$ is the numerical approximation, then
+\[
+  E_{\mathrm{abs}}=|I-\hat I|,
+  \qquad
+  E_{\mathrm{rel}}=\frac{|I-\hat I|}{|I|}.
+\]
+Absolute error tells the size of the mistake in the original units. Relative
+error tells how large the mistake is compared with the true value.
 
 \subsection{Newton--Cotes Rules}
 A special form of least squares, where nodes $x_i$ are chosen
@@ -922,26 +963,26 @@ equidistantly on interval $[a,b]$:
 \]
 \textbf{Trapezoidal Rule} ($n=1$, $\leq 1$):
 \[
-  =\frac{h}{2}(f(a)+f(b))-\frac{h^3 f''(\xi)}{12}
+T  =\frac{h}{2}(f(a)+f(b))-\frac{h^3 f''(\xi)}{12}
 \]
 \textbf{Simpson's Rule} ($n=2$, $\leq 3!$):
 \[
-  =\frac{h}{3}(f(x_0)+4f(x_1)+f(x_2))-\frac{h^5 f''(\xi)}{90}
+S  =\frac{h}{3}(f(x_0)+4f(x_1)+f(x_2))-\frac{h^5 f^{(4)}(\xi)}{90}
 \]
 \textbf{Composite Trapezoidal} ($m>1$):
 \[
-  =\frac{h}{2}(f(x_0)+2f(x_1)+\cdots+2f(x_{n-1})+
+CT  =\frac{h}{2}(f(x_0)+2f(x_1)+\cdots+2f(x_{n-1})+
 \]
 \[
   f(x_n))-\frac{(b-a)h^2f''(\xi)}{12}
 \]
 \textbf{Composite Simpson} ($m>1$):
 \[
-  =\frac{h}{3}(f(x_0)+4f(x_1)+2f(x_2)+\cdots+
+CS  =\frac{h}{3}(f(x_0)+4f(x_1)+2f(x_2)+\cdots+
 \]
 \[
   2f(x_{n-2})+4f(x_{n-1})+f(x_n))-
-  \frac{(b-a)h^4f''(\xi)}{280}
+  \frac{(b-a)h^4f^{(4)}(\xi)}{180}
 \]
 
 \subsection{Romberg Method}
